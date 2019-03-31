@@ -1,0 +1,11 @@
+#!/bin/bash
+# Generate on 2017-10-04 04:38 by VPNCloud
+export PATH="/bin:/sbin:/usr/sbin:/usr/bin"
+
+OLDGW=`ip route show | grep '^default' | sed -e 's/default via \([^ ]*\).*/\1/'`
+
+if [ $OLDGW == '' ]; then
+    exit 0
+fi
+
+echo $OLDGW > /tmp/vpn_oldgw

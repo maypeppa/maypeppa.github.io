@@ -1,0 +1,144 @@
+#+title: 软件设计 Software Design
+
+** Blogs
+- 201810 [[file:github-flow.org][GitHub Flow]]
+- 201810 [[file:whats-a-senior-engineers-job.org][What's a senior engineer's job?]]
+- 201808 [[file:youtube-scalability.org][YouTube Scalability]] on youtube
+- 201801 [[file:26-lessons-from-being-a-developer-at-a-startup.org][26 Lessons From Being a Developer at a Startup]]
+- 201712 [[file:simple-made-easy.org][Simple Made Easy]] by Rich Hickey
+- 201708 [[file:the-feynman-technique-the-best-way-to-learn-anything.org][The Feynman Technique: The Best Way to Learn Anything]]
+- 201707 [[file:scaling-to-billions-on-top-of-digital-ocean.org][Scaling to Billions on Top of DigitalOcean]]
+- 201707 [[file:search-at-slack.org][Search at Slack]] Slack在搜索排序方面的工作
+- 201707 [[file:why-did-so-many-startups-choose-nosql.org][Why Did So Many Startups Choose NoSQL?]]
+- 201707 [[file:reducing-image-file-size-at-esty.org][Reducing Image File Size at Etsy]]
+- 201707 [[file:making-photos-smaller.org][Making Photos Smaller Without Quality Loss]]
+- 201706 [[file:the-evolution-of-code-deploys-at-reddit.org][The Evolution of Code Deploys at Reddit]]
+- 201706 [[file:44-eng-mag-lessons.org][44 engineering management lessons]]
+- 201705 [[file:colleague-creates-spaghetti-code.org][What to do when Your Colleague Creates Spaghetti Code]]
+- 201703 [[file:software-engineering-at-google.org][Software Engineering at Google]] by Fergus Henderson
+- 201610 [[file:the-effective-engineer-by-edmond-lau.org][The Effective Engineer]]
+- 201610 [[file:taking-php-seriously.org][Taking PHP Seriously]]
+- 201610 [[file:becoming-cto.org][Becoming CTO]]
+- 201610 [[file:vinod-khosla-talk.org][Vinod Khosla: Failure does not matter. Success matters.]]
+- 201610 [[file:silicon-valley-etiquette.org][Silicon Valley Etiquette]] 硅谷礼仪
+- 201609 [[file:a-little-architecture.org][A Little Architecture]]
+- 201609 [[file:laws-of-performant-software.org][Laws of Performant Software]]
+- 201608 [[file:the-future-of-programming.org][The Future of Programming]] by Bret Victor
+- 201608 [[file:what-makes-a-great-software-engineer.org][What Makes A Great Software Engineer?]]
+- 201606 [[file:top-10-things-that-makes-you-a-good-programmer.org][Top 10 Things that Makes You a Good Programmer]]
+- 201606 [[file:dont-know-what-to-program.org]["I know how to program, but I don't know what to program"]]
+- 201606 [[file:how-to-pick-your-battles-on-a-software-team.org][How to Pick Your Battles on a Software Team]]
+- 201606 [[file:anaconda-high-perf-solution.org][Anacoda High Performance Solution]]
+- 201606 [[file:why-mit-stopped-teaching-SICP.org][为什么MIT停止教授SICP]]
+- 201606 [[file:on-facebook-newsfeed.org][Facebook NewsFeed]]
+- 201606 [[file:getting-things-done-when-you-are-only-a-grunt.org][Getting Things Done When You're Only a Grunt]] by Joel Spolsky
+- 201606 [[file:10-lessons-from-10-years-of-aws.org][10 Lessons from 10 Years of Amazon Web Services]]
+- 201606 [[file:how-gfw-discovers-hidden-circumvention-servers.org][32c3-7196-en-How_the_Great_Firewall_discovers_hidden_circumvention_servers]] GFW如何发现代理服务器
+- 201606 [[file:anaconda-high-perf-solution.org][Anacoda High Performance Solution]]
+- 201605 [[file:work-efficiently-in-facebook.org][Facebook公司内部PPT分享:如何高效工作]]
+- 201605 [[file:on-career-and-management.org][关于工作年限和管理的问题]] by nullgate
+- 201604 [[file:starters-and-maintainers.org][Starters and Maintainers]]
+- 201604 [[file:automate-to-save-mental-energy-not-time.org][Automate to save mental energy, not time]]
+- 201604 [[file:surviving-meetings-while-remote.org][Surviving meetings while remote]]
+- 201604 [[file:programmers-are-distraction-for-your-startup.org][Programmers are distraction for your startup]]
+- 201604 [[file:finding-great-developers.org][Finding Great Developers]]
+- 201604 [[file:why-cant-programmers-program.org][Why Can't Programmers.. Program?]]
+- 201604 [[file:dont-call-yourself-a-programmer.org][Don't Call Yourself A Programmer]]
+- 201604 [[file:atlassian-user-onboarding-magic.org][Atlassian $5.5b user onboarding magic]]
+- 201512 [[file:how-to-launch-a-mac-app-and-become-1-top-paid-app-globally.org][How To Launch a Mac App and Become #1 Top Paid App Globally]]
+- 201512 [[file:what-would-it-take-to-prove-me-wrong.org][What would it take to prove me wrong?]]
+- 201512 [[file:a-great-developer-can-come-from-anywhere.org][A great developer can come from anywhere]]
+- 201512 [[file:employee-equity.org][Employee Equity]]
+- 201512 [[file:before-you-code-write.org][Before you code, write.]]
+- 201512 [[file:remove-the-stress-pick-a-deadline.org][Remove the stress, pick a deadline]]
+- 201512 [[file:the-secret-to-career-success.org][The Secret to Career Success]]
+- 201511 [[file:why-i-stopped-paying-attention-to-industry-news.org][Why I stopped paying attention to industry news]]
+- 201510 [[file:learn-stop-using-shiny-new-things-and-love-mysql.org][Learn to stop using shiny new things and love MySQL]]
+- 201510 [[file:climbing-the-wrong-hill.org][Climbing The Wrong Hill]]
+- 201510 [[file:lessons-learned-writing-highly-available-code.org][Lessons learned writing highly available code]]
+- 201510 [[file:dont-base-your-business-on-a-paid-app.org][Don't base your business on a paid app]]
+- 201510 [[file:some-advice-from-jeff-bezos.org][Some advice from Jeff Bezos]]
+- 201510 [[file:ten-rules-for-open-source-success.org][Ten Rules for Open Source Success]]
+- 201510 [[file:competitors-are-not-the-enemy.org][Competitors Are Not The Enemy]]
+- 201510 [[file:making-money-along-the-way.org][Making money along the way]]
+- 201510 [[file:chasing-the-shiny-and-new.org][chasing the shiny and new (追逐时髦的技术)]]
+- 201510 [[file:why-cd-just-keeps-on-giving.org][Why Continuous Deployment just keeps on giving]]
+- 201510 [[file:how-to-get-a-job-like-mine-aaron-swartz.org][Aaron Swartz: How to Get a Job Like Mine]]
+- 201510 [[file:a-decade-at-google.org][A Decade at Google]]
+- 201509 [[file:a-love-for-legacy.org][A Love for Legacy]]
+- 201509 [[file:what-happens-to-older-developers.org][What Happens to Older Developers?]]
+- 201509 [[file:tips-for-work-life-balance.org][Tips for work-life balance]]
+- [[file:t11-on-backpressure.org][T11谈文艺模型(On Backpressure)]]
+- [[file:t11-on-architecture.org][T11谈架构(On Architecture)]]
+- [[file:suffering-oriented-programming.org][Suffering-oriented programming]]
+- [[file:the-tyranny-of-the-clock.org][The Tyranny of the Clock]]
+- [[file:system-programming-at-twitter.org][Systems Programming at Twitter]]
+- [[file:writing-software-is-like-writing.org][Writing Software is Like ... Writing]]
+- [[file:programmer-dilemma.org][Programmer's dilemma]]
+- [[file:how-to-read-a-paper.org][How to Read a Paper]]
+- [[file:on-working-remotely.org][On Working Remotely]]
+- [[file:your-server-as-a-function.org][Your Server as a Function]]
+- [[file:systems-software-research-is-irrelevant.org][Systems Software Research is Irrelevant]]
+- [[file:applied-philosophy-aka-hacking.org][Applied Philosophy, a.k.a "Hacking"]]
+- [[file:linux-kernel-management-style.org][Linux Kernel Management Style]]
+- [[file:how-did-you-learn-so-much-stuff.org][How did you learn so much stuff about Oracle?]]
+- [[file:a-conversation-with-werner-vogels.org][A Conversation with Werner Vogels]]
+- [[file:an-interview-with-edw.org][An Interview With Edsger W. Dijkstra]]
+- [[file:what-are-the-best-kept-secrets-of-great-programmers.org][What are the best-kept secrets of great programmers?]]
+- [[file:history-of-apache-storm-and-lessons-learned.org][History of Apache Storm and lessons learned]]
+- [[file:vp-eng-vs-cto.org][VP Engineering vs. CTO]]
+- [[file:images/netflix-culture.pdf][Netflix Culture: Freedom & Responsibility(自由与责任)]]
+- *非常推荐* [[file:10-lessons-learned-from-the-early-days-of-google.org][10 Lessons Learned from the Early Days of Google]] by Matt Cutts
+- [[file:the-anatomy-of-the-perfect-technical-interview-from-a-former-amazon-vp.org][The Anatomy of the Perfect Technical Interview from a Former Amazon VP]] 如何安排面试
+- [[file:ten-career-lessons.org][Ten Career Lessons]]
+- [[file:generalists-and-specialists-thoughts-on-hiring.org][Generalists and specialists: thoughts on hiring]] 全栈 vs. 专家
+- [[file:advice-for-ambitious-19-years-olds.org][Advice for ambitious 19 year olds]] 其实受用于更加广泛的人群
+- [[file:cardinal-sin-of-software-engineering.org][How to Avoid One of the Costliest Mistakes in Software Engineering]] 是否需要重写系统？
+- [[file:good-and-bad-reasons-to-become-an-entrepreneur.org][Good and Bad Reasons to Become an Entrepreneur]]
+- [[file:engineering-management.org][Engineering Management]]
+- [[file:developers-who-can-build-things-from-scratch.org][Developers Who Can Build Things from Scratch]]
+- [[file:lessons-learned-from-reading-postmortems.org][Lessons Learned From Reading Postmortems]]
+- [[file:images/the-rise-of-worse-is-better.html][The Rise of "Worse is Better"]]
+- [[file:make-non-obvious-hires.org][Make Non-Obvious Hires]] 如何找到那些潜在的员工
+- [[file:in-house-programmer.org][In-House Programmer]] Joel on Software
+- [[http://www.youtube.com/watch?v=0SARbwvhupQ][Google I/O 2009 - The Myth of the Genius Programmer]]
+- [[http://www.youtube.com/watch?v=q-7l8cnpI4k][Google I/O 2011: Programming Well with Others: Social Skills for Geeks]]
+- [[file:complexity-is-the-enemy.org][Complexity is the enemy]] 复杂是...敌人
+- [[file:teach-yourself-programming-in-ten-years.org][Teach Yourself Programming in Ten Years]] by Peter Norvig
+- [[file:mean-people-fail.org][Mean People Fail]] by Paul Graham.
+- [[file:software-engineering-at-google.org][Software Engineering at Google]] by Fergus Henderson
+- [[https://jobs.netflix.com/culture?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website][Culture At Netflix]] ([[file:images/netflix-culture.pdf][pdf]])
+- [[file:license.org][Open Source License]] 一些常见的开源协议
+
+** Books
+- [[file:design-reading.org][Design Reading]] 软件设计方面的一些文章
+- [[file:competitive-strategy.org][竞争策略 on Coursera]]
+- [[file:financial-markets-class.org][金融市场 on Coursera]]
+- [[file:aosa.org][The Architecture of Open Source Applications]]
+- [[http://berb.github.io/diploma-thesis/community/index.html][Concurrent Programming for Scalable Web Architectures]]
+- [[http://producingoss.com/][Producing Open Source Software]]
+- [[file:on-top-of-tides.org][浪潮之巅(On Top of Tides)]] by 吴军
+- [[file:venture-captial.org][风险投资(Venture Captial)]] 摘自 <浪潮之巅>
+- [[file:design-patterns.org][Design Patterns]] Elements of Reusable Object-Oriented Software
+- [[file:the-cathedral-and-the-bazaar.org][大教堂与市集(The Cathedral and the Bazaar)]] by Eric Raymond
+- [[file:hackers-and-painters.org][黑客与画家(Hackers and Painters)]] by Paul Graham
+- [[file:writing-clean-code.org][编程精粹-Microsoft编写优质无错代码的秘诀(Writing Clean Code)]]
+- [[file:the-art-of-unix-programming.org][Unix程序设计艺术(The Art of Unix Programming)]] by Eric Raymond
+- [[file:the-mythical-man-month.org][人月神话(The Mythical Man-Month)]] by Fred Brooks
+- [[file:the-pragmatic-programmer.org][程序员修炼之道(The Pragmatic Programmer)]] by Andrew Hunt
+- [[file:dreaming-in-code.org][梦断代码(Dreaming in Code)]]
+- [[file:refactoring-improving-the-design-of-existing-code.org][重构-改善既有代码的设计(Refactoring: Improving the Design of Existing Code)]]
+- [[file:code-quality-the-open-source-perspective.org][高质量程序设计艺术(Code Quality The Open Source Perspective)]]
+- [[file:virtual-machine-design-and-implementation-in-c-cpp.org][虚拟机设计与实现(Virtual Machine Design and Implementation in C/C++)]]
+- [[file:structured-computer-organization.org][结构化计算机组成(Strcutured Computer Organization)]] by A.S.T
+- [[file:modern-operating-systems.org][现代操作系统(Modern Operating Systems)]] by A.S.T
+- [[file:introduction-to-computing-systems.org][计算机系统概论(Introduction to Computing Systems)]] by Yale Patt
+- [[file:distributed-operating-systems.org][分布式操作系统(Distributed Operating Systems)]] by A.S.T
+- [[file:pragmatic-thinking-and-learning.org][程序员的思维修炼(Pragmatic Thinking and Learning - Refactor Your Wetware)]]
+- [[file:nine-algos-that-changed-the-future.org][改变未来的九大算法(Nine Algorithms that Changed the Future)]] by John. McCormick
+- [[file:rework.org][Rework]] by 37 Signals
+- [[file:getting-real.org][Getting Real]] by 37 Signals
+- [[file:future-of-code.org][代码的未来]] by 松本行弘
+- [[file:how-to-be-a-programmer.org][How to be a Programmer]]
+- [[file:geekbang-coolshell-index.org][极客时间|左耳听风 文章目录]]
+- [[file:im-hft-engineer-zhihu.org][我是高频交易工程师]]

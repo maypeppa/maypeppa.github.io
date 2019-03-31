@@ -1,0 +1,103 @@
+#+title: 极客时间|MySQL实战45讲 文章目录
+#+options: num:nil
+
+
+** [[https://time.geekbang.org/column/article/67888][开篇词 | 这一次，让我们一起来搞懂MySQL]]
+
+我希望这个专栏能够激发开发者对数据库原理的探索欲，从而更好地理解工作中遇到的问题，更能知道背后的为什么。
+
+
+** [[https://time.geekbang.org/column/article/68319][01 | 基础架构：一条SQL查询语句是如何执行的？]]
+
+今天我给你介绍了MySQL的逻辑架构，希望你对一个SQL语句完整执行流程的各个阶段能有一个初步的印象。
+
+
+** [[https://time.geekbang.org/column/article/68633][02  | 日志系统：一条SQL更新语句是如何执行的？]]
+
+今天这篇文章，主要介绍了MySQL里面最重要的两个日志，即物理日志redo log和逻辑日志binlog。
+
+
+** [[https://time.geekbang.org/column/article/68963][03 | 事务隔离：为什么你改了我还看不见？]]
+
+我介绍了MySQL的事务隔离级别的现象和实现，根据实现原理分析了长事务存在的风险，以及如何用正确的方式避免长...
+
+
+** [[https://time.geekbang.org/column/article/69236][04 | 深入浅出索引（上）]]
+
+今天这篇文章，介绍了引擎的数据结构模型，帮助你理解MySQL为什么选择B+树结构来存储数据。同时，这篇文章还...
+
+
+** [[https://time.geekbang.org/column/article/69636][05 | 深入浅出索引（下）]]
+
+在满足语句需求的情况下， 尽量少地访问资源是数据库设计的重要原则之一。我们在使用数据库的时候，尤其是在设...
+
+
+** [[https://time.geekbang.org/column/article/69862][06 | 全局锁和表锁 ：给表加个字段怎么有这么多阻碍？]]
+
+今天，我跟你介绍了MySQL的全局锁和表级锁。
+
+
+** [[https://time.geekbang.org/column/article/70215][07 | 行锁功过：怎么减少行锁对性能的影响？]]
+
+今天，我和你介绍了MySQL的行锁，涉及了两阶段所协议、死锁和死锁检测这两大部分内容。
+
+
+** [[https://time.geekbang.org/column/article/70562][08 | 事务到底是隔离的还是不隔离的？]]
+
+普通查询语句是一致性读，一致性读会根据row trx_id和up_limit_id的大小决定数据版本的可见性。
+
+
+** [[https://time.geekbang.org/column/article/70848][09 | 普通索引和唯一索引，应该怎么选择？]]
+
+我从普通索引和唯一索引的选择开始，和你分享了数据的查询和更新过程，然后说明了change buffer的机制以及应用...
+
+
+** [[https://time.geekbang.org/column/article/71173][10 | MySQL为什么有时候会选错索引？]]
+
+今天，我要和你聊聊索引统计的更新机制，以及优化器选错索引了应该如何处理。
+
+
+** [[https://time.geekbang.org/column/article/71492][11 |  怎么给字符串字段加索引？]]
+
+在今天这篇文章中，我跟你聊了聊字符串字段创建索引的场景。
+
+
+** [[https://time.geekbang.org/column/article/71806][12 | 为什么我的MySQL会“抖”一下？]]
+
+我延续第2篇中介绍的WAL的概念，和你解释了这个机制后续需要的刷脏页操作和执行时机。利用WAL技术，数据库将随...
+
+
+** [[https://time.geekbang.org/column/article/72388][13 | 为什么表数据删掉一半，表文件大小不变？]]
+
+今天这篇文章，我和你讨论了数据库中回收表空间的方法。
+
+
+** [[https://time.geekbang.org/column/article/72775][14 | count(*)这么慢，我该怎么办？]]
+
+今天，我和你聊了聊MySQL中获得表行数的几种方法。
+
+
+** [[https://time.geekbang.org/column/article/73161][15 | 答疑文章（一）：日志和索引相关问题]]
+
+我针对前14篇文章，大家在评论区中的留言，从中摘取了关于日志和索引的相关问题，串成了今天这篇文章。
+
+
+** [[https://time.geekbang.org/column/article/73370][直播回顾 | 林晓斌：我的 MySQL 心路历程]]
+
+在专栏上线后的11月21日，我来到极客时间做了一场主题是“我的MySQL心路历程”的直播。今天，我特意将这个直播...
+
+
+** [[https://time.geekbang.org/column/article/73479][16 | “order by”是怎么工作的？]]
+
+今天这篇文章，我和你介绍了MySQL里面order by语句的几种算法流程。
+
+
+** [[https://time.geekbang.org/column/article/73795][17 | 如何正确地显示随机消息？]]
+
+今天这篇文章，我是借着随机排序的需求，跟你介绍了MySQL对临时表排序的执行过程。
+
+
+** [[https://time.geekbang.org/column/article/74059][18 | 为什么这些SQL语句逻辑相同，性能却差异巨大？]]
+
+今天我给你举了三个例子，其实是在说同一件事儿，即：对索引字段做函数操作，可能会破坏索引值的有序性，因此优...
+

@@ -1,0 +1,83 @@
+#+title: Books
+
+** 人物传记
+- [[file:steve-jobs.org][史蒂夫乔布斯传(Steve Jobs)]]
+- [[file:made-in-america.org][富甲美国(Made in America)]] by Sam Walton
+- [[file:shoe-dog.org][鞋狗(Shoe Dog)]] by Phil Knight
+- [[file:jonathon-ive.org][乔纳森传(Jonathon Ive)]]
+- [[file:wu-qing-yuan-bio.org][中的精神（吴清源自传）]]
+- [[file:youtube-steve-chen-bio.org][YouTube创始人陈士骏自传]]
+- [[file:bob-dylan-bio-like-a-rolling-stone.org][编年史(Like A Rolling Stone)]] of Bob Dylan
+- [[file:delivering-happiness.org][奉上幸福(Devliering Happiness)]] by 谢家华
+
+** 经济，历史，社会
+- [[file:a-chronicle-of-tencent.org][腾讯传]] by 吴晓波
+- [[file:the-hard-thing-about-hard-things.org][创业维艰：如何完成比难更难的事]] by Ben Horowitz
+- [[file:the-economist.org][经济学人(The Economist)]] by Schumpeter(熊彼特)
+- [[file:the-instant-economist.org][斯坦福极简经济学(The Instant Economist)]] by 蒂莫西·泰勒
+- [[file:the-black-box-society.org][黑箱社会(The Black Box Society)]] by Frank Pasquale
+- [[file:the-times-of-intelligence.org][智能时代]] by 吴军
+- [[file:zhihu-daily-economy.org][知乎周刊-日常经济学]]
+- [[file:the-shortest-history-of-europe.org][极简欧洲史]] by John Hirst
+- [[file:how-google-works.org][谷歌是如何运营的(How Google Works)]] by Eric Schmidt
+- [[file:the-paypal-wars.org][支付战争(The PayPal Wars)]] by Eric Jackson
+- [[file:from-zero-to-one.org][从0到1(From Zero To One)]] by Peter Thiel
+- [[file:the-great-game.org][伟大的博弈: 华尔街金融帝国的崛起]] by John Gordon
+- [[file:lean-in.org][向前一步(Lean In)]] by Sheryl Sandberg
+- [[file:reminiscences-of-stock-broker.org][股票作手回忆录(Reminiscences of stock broker)]] by Jesse Livermore
+- [[file:the-men-who-built-america.org][谁建造了美国(The men who built America)]] by 网易公开课
+- [[file:growth-hacker.org][增长黑客(Growth Hacker)]] by 范冰
+- [[file:the-signal-and-the-noise.org][信号与噪声: 大数据时代预测的科学与艺术]] by Nate Silver
+- [[file:why-chinese-people-anxious.org][中国人的焦虑从哪里来]] by 茅于轼
+- [[file:the-facebook-effect.org][Facebook效应(The Facebook Effect)]]
+- [[file:the-economic-naturalist.org][牛奶可乐经济学(The Economic Naturalist)]]
+- [[file:venture-captial.org][风险投资(Venture Captial)]] 摘自 <浪潮之巅>
+- [[file:confessions-of-an-advertising-man.org][一个广告人的自白(Confessions of an Advertising Man)]]
+- [[file:inside-job.org][监守自盗(Inside Job)]]
+- 影响力(Influence) by Kerry Patterson
+- 娱乐至死(Amusing Ourselves to Death) by Neil Postman
+- 狂热分子(True Believer) by Eric Hoffer
+- 乌合之众(The Crowd) by Gustave Le Bon
+- [[file:on-top-of-tides.org][浪潮之巅(On Top of Tides)]] by 吴军
+- [[file:how-to-solve-it-a-new-apsect-of-math-method.org][如何解题-数学思维新方法]] by George Polya
+- [[file:republic.org][理想国(Republic)]] by Plato
+- [[file:big-data-and-revolution.org][大数据时代：生活、工作与思维的大变革]]
+- [[file:competitive-strategy.org][竞争策略 on Coursera]]
+- [[file:financial-markets-class.org][金融市场 on Coursera]]
+- [[file:images/shizhan/index.html][大师课-施展-枢纽]] on 得到App
+- [[file:chenyu-on-internet-finance.org][风吹江南之互联网金融]] by 陈宇
+
+** 小说
+- [[file:the-catcher-in-the-rye.org][麦田里的守望者(The Catcher in The Rye)]] by Jerome Salinger
+- [[file:god-father.org][教父(God Father)]] by Francis Coppola
+- [[file:animal-farm.org][动物庄园(Animal Farm)]] by George Orwell
+- [[file:1984.org][1984]] by George Orwell
+- [[file:wolf-totem.org][狼图腾(Wolf Totem)]] by 姜戎
+- [[file:that-man-looks-like-a-dog.org][那个人好像一条狗]] 周星驰 <大圣娶亲>
+- [[file:three-body.org][三体(Three Body)]] by 刘慈欣
+- [[file:the-little-prince.org][小王子(The Little Prince)]] by Antoine de Saint-Exupéry
+- [[file:star-wars.org][星球大战(Star Wars)]]
+- [[file:anti-destruction-in-china.org][李可乐抗拆记]] by 李承鹏
+- [[file:the-hitchhikers-guide-to-the-galaxy.org][银河系漫游指南(The Hitchhiker's Guide to the Galaxy)]] by Douglas Adams
+- [[file:flowers-to-algernon.org][献给阿尔吉侬的花束(Flowers for Algernon)]]
+- [[file:majority-of-silent-people.org][沉默的大多数]] by 王小波
+
+** 个人管理
+- [[file:principles.org][原则(Principles)]] by Ray Dalio
+- [[file:black-swan.org][黑天鹅(Black Swan)]] by Nassim Nicolas Taleb
+- [[file:the-bed-of-procrustes.org][随机生存的智慧: 黑天鹅语录(The Bed of Procrustes)]] by Nassim Nicholas Taleb
+- [[file:antifragile.org][反脆弱: 从不确定性中获益(Antifragile: Things That Gain from Disorder)]] by Nassim Nicholas Taleb
+- [[file:nnt-words-archive.org][NNT文字合集]] by NNT
+- [[file:how-to-win-friends-and-influence-people.org][人性的弱点全集(How to win friends and influence people)]] by Dale Carnegie
+- [[file:how-to-stop-worring-and-start-living.org][人性的优点全集(How to stop worring and start living)]] by Dale Carnegie
+- [[file:hard-to-believe.org][万万没想到:用理工科思维理解世界]] by 万维刚
+- [[file:so-good-they-can-not-ignore-you.org][优秀到不能被忽视(So Good they can not ignore you)]] by Cal Newport
+- [[file:poor-charlie-almanack.org][穷查理宝典(Poor Charlie's Almanack)]] by Charles Munger(查理芒格)
+- [[file:eureka-on-career.org][职场尤里卡]] by 科学家种太阳
+- [[file:dark-time.org][暗时间(Dark Time)]] by 刘未鹏
+- [[file:convict-conditioning.org][囚徒健身(Convict Conditioning)]] by Paul Wade
+- [[file:thinking-fast-and-slow.org][思考,快与慢(Thinking, Fast and Slow)]] by Daniel Kahneman
+- [[file:money-doggy.org][小狗钱钱(Money Doggy)]] by Bodo Schafer
+- [[file:dear-andreas.org][亲爱的安德烈]] by 龙应台
+- [[file:sears-the-baby-book.org][西尔斯育儿经]] by 威廉·西尔斯 玛莎·西尔斯
+- [[file:./five-years-phd.org][博士五年总结]] by 田渊栋

@@ -1,0 +1,424 @@
+#+title: Lua程序设计
+
+** 第一部分(C1~C10)
+
+这个部分介绍基本语法以及简单地介绍Lua环境。
+
+*** 类型，表达式，语句
+Lua有8种基础类型，通过函数 `type` 来了解具体类型
+1. nil(无效值)
+2. boolean(true/false)
+3. number(整数或者是双精度浮点)
+4. string
+5. userdata(自定义类型)
+6. function
+7. thread(线程)
+8. table
+
+如果要写入长字符串的话，可以使用下面这种格式.
+#+BEGIN_SRC Lua
+s = [[this is a very long string.
+could be multiple lines]]
+#+END_SRC
+获得字符串长度(table的大小)，可以使用 `#var` 得到。
+
+table既可以认为是一个dict, 也可以认为是array. 非常灵活的数据结构。
+- a['x'] = 10 或者是 a.x = 10
+- lua数组通常以1作为索引的起始值
+- lua将nil作为界定数组结尾的标识（这点在lua环境中很常见）
+#+BEGIN_SRC Lua
+a = {[1] = 10, [2] = 20, [10] = 10}
+for i, v in ipairs(a) do
+   print(i, v)
+end
+print(#a)
+#+END_SRC
+- ipairs假设index是数字并且从0开始，而pairs则没有这个假设
+
+table constructor(table构造式）很有趣，同时兼容key/value和array的构造
+- days = {'Sun', 'Mon', 'Tue'} 数组构造，下标从1开始
+- point = {x = 10, y = 20} 字典构造
+- 上面两者也可以混合在一起
+- 同时支持表达式做key days = {["*"] = mul} 或者是 days = {[ 0 ] = 20}
+- 虽然上面的写法支持下标为0，但是最好不要这么使用。
+
+多变量赋值时，如果没有匹配上的话，那么剩余的变量自动匹配到 nil. 多余的自动忽略。
+或者是如果直接声明 `local a` 的话，那么 `a` 的默认值也是 nil. 整个lua环境对 nil 有非常特殊的处理。
+
+块(block)(通常是do-end部分）是规定了local(局部)变量的作用范围。常见控制结构有
+- if then(else/elseif) end
+- while do ... end
+- repeat ... until
+- for var=exp1, exp2, exp3 do ... end(数字型for, numeric for)
+  - 如果exp2很大的话可以用 `math.huge` 来表示无线循环
+  - `var` 作用域仅限于这个block，不要对 `var` 做任何赋值
+- for var1, var2 in func do ... end(泛型for, generic for)
+
+*** 函数/深入函数/迭代器与泛型for
+lua的函数定义和scheme很像，默认地都是匿名函数，至于 `function a()` 不过是 `a = function()` 这种语法糖形式。
+
+函数调用中比较有意思的是，如果只有一个参数并且该参数是字符串或者是table构造式的话，可以省略 `()`. 这样的话写出来就非常漂亮比如
+#+BEGIN_SRC Lua
+print 'hello, world'
+a, b = table.unpack{10, 20}
+print(a, b)
+#+END_SRC
+这里 `unpack` 是将一个数组拆解开来。
+
+变长参数在C语言里面需要花费很大的力气才能解开，但是lua里面使用却很容易。
+#+BEGIN_SRC lua
+function test_vargs(a, b, ...)
+   print('a = ' .. a .. " , b = " .. b)
+   for i = 1, select('#', ...) do
+      print('varg #' .. i .. " = " .. select(i, ...))
+   end
+end
+test_vargs(10,20, table.unpack{30, 40 , 50})
+#+END_SRC
+
+Lua本身并不支持具名实参 `named arguments`. 但是有个workaround, 就是传入table/字典
+#+BEGIN_SRC Lua
+function get_named_args(args)
+   keys = {"height", "width", "depth"}
+   for i, k in ipairs(keys) do
+      local arg = args[k]
+      print(k .. ' = ' .. arg)
+   end
+end
+get_named_args({height = 100, width = 200, depth = 50})
+#+END_SRC
+虽然结果是想要的，但是好像不是那么地优雅。
+
+深入函数 这节里面展示了闭包的使用
+
+泛型for `for v1, v2, ...  in <explist> do ... end ` 的执行如下：
+
+file:images/lua-generic-for-execution.png
+
+所以实际上迭代可以通过 `_var`(控制变量) 控制，可以通过 `_s`(状态). 使用 `_var`得到的迭代器是无状态的迭代器，而使用 `_s`得到的迭代器是有状态的。尽可能使用无状态的迭代器。
+
+*** 编译执行与错误
+`loadstring`可以载入外部代码，`loadfile`可以载入代码文件。两者返回的都是一个function对象。只有执行这个function对象代码才会变真正执行，在执行的时候也是可以传入参数的。
+
+`package.loadlib`可以载入C代码（动态加载）。这个函数不是标准ANSI C的实现，但是因为这个函数太重要的，所以lua在每个平台上都有特定实现。
+
+`errro("error message")` 汇报错误；`assert` 做断言；`pcall`可以在保护模式(protected mode下面)调用函数，分别返回值和错误；`debug.traceback`可以打印出错堆栈。
+
+*** 协同程序(coroutine)
+coroutine的几个相关操作
+- co = coroutine.create(func)
+- coroutine.resume(co, ...) 让co继续执行
+  - 初始阶段传入参数，被传入 `func`
+  - 返回值(ok, `yield` 传入的参数)
+- coroutine.yield 传入的参数被 `resume` 返回，只能在co里面调用
+- coroutine.status 查询co的状态
+  - suspended 挂起
+  - running 运行
+  - dead 死亡
+  - normal 正常
+
+书里面producer/consumer的例子改写成为coroutine方式如下
+#+BEGIN_SRC lua
+-- function producer()
+--    while true do
+--       local x = io.read()
+--       send(x)
+--    end
+-- end
+
+producer = coroutine.create(
+   function()
+      while true do
+         local x = io.read()
+         send(x)
+      end
+   end
+)
+
+function consumer()
+   while true do
+      local x = receive()
+      io.write(x, "\n")
+   end
+end
+
+function receive()
+   local status, value = coroutine.resume(producer)
+   return value
+end
+
+function send(x)
+   coroutine.yield(x)
+end
+
+consumer()
+#+END_SRC
+
+** 第二部分(C11~C17)
+
+深入介绍Lua环境
+
+TODO:
+
+*** 数据结构/数据文件
+*** 元表和元方法
+元表(metatable)本质上是一个table，我们可以在这个table里面设置，然后来影响和扩展使用这个metatable的table的行为。在Lua代码里面只能设置table的metatable, 其他类型的metatable的设置只能在C代码里面完成。下面代码片段说明了metatable的使用
+- `_m` 是 `make_obj`里面对象o的metatable
+- __tostring 函数影响到如何输出这个对象
+- __add 函数影响到如何叠加两个对象
+- __index 函数影响到如何查找某个不断在的字段
+- rawget 可以不理会 __index 这个函数
+#+BEGIN_SRC Lua
+local _m = {
+   __tostring = function ()
+      return o.c
+   end,
+   __add = function (a, b)
+      return a.c + b.c
+   end,
+   __index = function (t, k)
+      -- t是调用对象，而非metatable
+      print(t == obj1, t == obj2, t == _m)
+      print('request key = ' .. k)
+      if k == 'e' then
+         return 10
+      else
+         return 20
+      end
+   end
+}
+
+local function make_obj(c)
+   o = {c = c}
+   setmetatable(o, _m)
+   return o
+end
+
+local function inspect_obj(o)
+   for k,v in pairs(o) do
+      print('key = ' .. k .. ', value = ' .. v)
+   end
+end
+
+obj1 = make_obj(10)
+obj2 = make_obj(20)
+print(obj1 + obj2)
+
+inspect_obj(obj1)
+print(obj1.e, obj1.f)
+print(rawget(obj1, 'e'), rawget(obj1, 'c'))
+#+END_SRC
+
+上面这段程序的输出如下
+#+BEGIN_EXAMPLE
+➜  workspace lua test.lua
+30
+key = c, value = 10
+true	false	false
+request key = e
+true	false	false
+request key = f
+10	20
+nil	10
+#+END_EXAMPLE
+
+__index还可以是一个table对象。如果是table对象而非函数的话，那么直接在这个table对象里面查找。
+
+除了 __index 之外，还有个 __newindex 函数是影响如果某个字段不存在，如何给这个字段赋值。所以可以结合 __index 和 __newindex 两个函数，来实现追踪table的读写。
+
+*** 环境
+Lua所有的全局变量都保存在一个table里面，这个table称为环境(environment). 可以使用 `_G` 来获得环境。结合上面元表(metatable)和元方法(metamethod), 可以做蛮多事情的。
+
+*** 模块与包
+模块可以通过 `require` 来加载。加载模块会有返回值，这个由模块来定义的，通常返回的是一个table.
+
+加载模块搜索路径存放在 `package.path` 里面，这个路径可以通过 LUA_PATH 环境变量控制。当loader没有办法找到对应Lua模块的时候，会去寻找C模块。C模块对应的路径分别是 `package.cpath` 和 `LUA_CPATH`. 一旦模块加载上来后，就会在 `package.loaded` 里面创建一个条目，之后再遇到 `require` 的话就从这里面读取。所以如果希望重新加载的话，可以将里面条目置nil.
+
+模块在编写上有许多技巧，似乎都比较复杂。下面我总结了个可以work的boilerplate (copy from [[https://moonbingbing.gitbooks.io/openresty-best-practices/lua/not_use_module.html][here]])
+#+BEGIN_SRC Lua
+-- /usr/bin/env lua
+-- coding:utf-8
+-- Copyright (C) dirlt
+
+local _M = {}           -- 局部的变量
+_M._VERSION = '1.0'     -- 模块版本
+
+local mt = { __index = _M }
+
+function _M.new(self, width, height)
+    return setmetatable({ width=width, height=height }, mt)
+end
+
+function _M.get_square(self)
+    return self.width * self.height
+end
+
+function _M.get_circumference(self)
+    return (self.width + self.height) * 2
+end
+
+return _M
+#+END_SRC
+
+在调用的时候如下
+#+BEGIN_SRC Lua
+local rect = require 'kv' -- 上面module命名为kv.lua
+
+obj = rect:new(10, 20)
+print(obj:get_square(), obj:get_circumference())
+
+for k in pairs(obj) do
+   print(k)
+end
+#+END_SRC
+
+*** 面向对象编程
+面向对象上没有更多概念的引入，都是在利用metatable/metamethod在模拟面向对象的性质，但是非常巧妙。更加奇妙的是，class/instance没有明确的界限，类似于javascript里面的prototype.
+
+看看下面这段代码
+- Account 是个类(class)，字段 `balance` 默认值是0
+- `new` 里面的o是一些new fields, 并且这个o就是返回对象(instance)
+- `setmetatable` 以及 `self.__index` 在后面会用到
+- `account` 是个对象(instance), `new`出来的时候并没有`balance`字段
+- 第一次调用 `add_balance` 的时候，`account` 对象里面才创建了 `balance` 对象
+
+`self.__index = self` 这段代码并不会影响到self本身，而是会影响到其他对self为metatable的对象。
+
+#+BEGIN_SRC Lua
+Account = {balance = 0}
+
+function Account:new (o)
+  o = o or {}
+  setmetatable(o, self)
+  self.__index = self
+  return o
+end
+
+function Account:add_balance(value)
+   self.balance = self.balance + value
+   return self
+end
+
+account = Account:new()
+print(rawget(account, 'balance'), account.balance)
+account:add_balance(10)
+account:add_balance(20)
+print(account.balance)
+#+END_SRC
+
+接下来创建子类：
+- SubAccount 是个subclass，里面多了个属性 `add_level`
+- `SubAccount:new` 里面注意
+  - setmetatable(o, SubAccount)
+  - SubAccount.__index= SubAccount
+#+BEGIN_SRC Lua
+SubAccount = Account:new()
+
+function SubAccount:add_level(value)
+   self.level = self.level + value
+   return self
+end
+
+sub_account = SubAccount:new({level = 10})
+sub_account:add_balance(10)
+sub_account:add_level(50)
+print(sub_account.balance, sub_account.level)
+#+END_SRC
+
+如果是多重继承的话，需要修改 `setmetatable(o, self)` 这段代码，需要传入所有的parent class, 然后在`__index`里面查找所有parent class. 书里面给了例子，我觉得写起来还挺有技巧性的，所以复制一份代码放在这里
+#+BEGIN_SRC Lua
+local function search(k, plist)
+   for i = 1, #plist do
+      local v = plist[i][k]
+      if v then return v end
+   end
+end
+
+function createClass(...)
+   local c = {}
+   local parents = { ... }
+   setmetatable(c, {__index = function(t, k)
+                       return search(k, parents)
+   end})
+   c.__index = c
+
+   function c:new(o)
+      o = o or {}
+      setmetatable(o, c)
+      return o
+   end
+   return c
+end
+#+END_SRC
+
+*** 弱引用table
+弱引用的table，里面key或者是value，如果没有被外面访问的话，那么在gc阶段是会被回收的。Lua只会回收弱引用table中的对象，而不会回收值。
+
+将普通的table变成弱引用table的方式是修改metatable. `{__mode = 'k'}` 说明key是弱引用， `{__mode = 'v'}` 说明value是弱引用。
+
+#+BEGIN_SRC Lua
+a = {}
+setmetatable(a, {__mode = 'v'})
+
+b = {1,2,3}
+c = {4,5,6}
+a.b = b
+a.c = c
+
+print('before gc ...')
+for k,v in pairs(a) do
+   print(k, v)
+end
+
+print('after gc ...')
+b = {} -- 此时外部已经没有对b的引用
+collectgarbage()
+for k, v in pairs(a) do
+   print(k, v)
+end
+#+END_SRC
+
+输出结果是这样的
+#+BEGIN_EXAMPLE
+➜  workspace lua test.lua
+before gc ...
+b	table: 0x7fe6e9406850
+c	table: 0x7fe6e9402b30
+after gc ...
+c	table: 0x7fe6e9402b30
+#+END_EXAMPLE
+
+** 第三部分(C18~C23)
+
+Lua各种库的使用方法。书里面介绍了下面这些库
+- 数学库 math
+- table库
+- 字符串库 string. 这个篇幅比较多，应该使用也比较多
+- IO库 io
+- 操作系统库 os
+- 调试库 debug
+
+最后这个调试库debug比较有意思。这个库并没有提供一个Lua调试器，只是提供了一些primitives, 使用这些primitives可以来完成调试功能。primitives可以分为两类:
+1. 自省函数(introspective function).
+   - 调用调试库的栈层stack level = 1
+   - `debug.getinfo`, 某个栈层的函数信息
+   - `debug.getlocal` 某个栈层的局部变量
+   - `debug.getupvalue` 某个函数的非局部变量(closure里面包含的变量)
+2. 钩子(hook).
+   - 在函数调用和返回处会调用钩子函数
+   - `debug.sethook` 参数包括回调函数，监控事件，以及可选数字指定多久获得一次事件
+
+注意这些primitives的性能并不高，Lua以一种不会影响程序正确执行的方式来保存调试信息而已。所以在production环境下面这些调试语句最好需要去除掉。
+
+** 第四部分(C24~C31)
+
+如何将Lua和C混合编程，包括用C扩展Lua以及在C里面调用Lua代码。
+
+一个Lua线程的全部状态都存储在lua_State对象里面。Lua和C之间的交互，是通过栈(stack)来完成的，而每个lua_State只需要维护独立的栈，就可以实现多线程。至于这种多线程可以是原生(比如使用pthread), 也可以是协同的(coroutine).
+
+通过栈来交互数据有两个考虑：
+1. 是否可以很容易地接入其他语言比如Java, C#.
+2. 因为Lua是有垃圾收集的，如果使用栈来保存交互数据的话，那么可以追踪到活跃对象。
+使用栈来交互数据并不是LuaVM才这么做的，JVM也是stack-based VM，Scala/Kotlin都可以和Java语言来做交互。
+
+用户自定义类型可以设置`__gc`字段，这个字段对应的函数会在对象被Lua执行GC的时候调用。

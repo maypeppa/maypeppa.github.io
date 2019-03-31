@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#Copyright (C) dirlt
+
+mkdir -p /tmp/keys
+cp src/main/resources/server.key /tmp/keys
+cp src/main/resources/server.crt /tmp/keys

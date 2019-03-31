@@ -1,0 +1,37 @@
+#+title: 机器学习 Machine Learning
+
+- [[file:ml-reading.org][Machine Learning Reading]] 机器学习方面的一些文章
+  - [[file:ml-the-hard-way.org][Machine Learning the Hard Way]] 用ML来赌马
+  - [[file:deconstructing-recommender-systems.org][Deconstructing Recommender Systems]] 关于推荐系统的介绍性文章
+  - [[file:why-you-should-be-spot-checking-algorithms.org][Why you should be Spot-Checking Algorithms on your Machine Learning Problems]]
+  - [[file:a-tour-of-machine-learning-algorithms.org][A Tour of Machine Learning Algorithms]]
+  - [[file:how-math-important-to-ml.org][机器学习里，数学究竟多重要？]]
+  - [[file:use-random-forest-testing-179-classifiers-121-datasets.org][Use Random Forest: Testing 179 Classifiers on 121 Datasets]]
+  - [[file:deep-learning-material-recommendations.org][深度學習(Deep Learning)自學素材推薦]]
+  - [[https://www.dropbox.com/s/l7h13igyjoywq1v/Getting%20Started%20With%20MachineLearning%20(all%20in%20one)_V0.91.pdf?dl=0][Getting Started with Machine Learning]] by Jim Liang
+  - [[file:best-practices-for-applying-deep-learning-for-novel-applications.org][Best Practices for Applying Deep Learning to Novel Applications]]
+  - [[https://developers.google.com/machine-learning/rules-of-ml/][机器学习规则 (Rules of Machine Learning)：关于机器学习工程的最佳实践]]
+  - [[file:images/GAN-basic-idea.jpg][Generative Adversarial Networks: The Basic Idea]]
+  - [[file:images/sklearn-mlalgs.png][Choosing the right estimator(sklearn)]]
+- [[file:sklearn.org][sklearn]] python scikit learn. Python的机器学习包.
+- [[file:caffe.org][caffe]] C++实现的深度学习框架，有python和matlab的扩展接口
+- [[file:nolearn.org][nolearn]] scikit-learn compatibile wrapper for neural nets. 底层可以使用不同的NN实现比如 [[file:caffe.org][caffe]], [[https://github.com/Lasagne/Lasagne][lasagne]].
+- [[file:beauty-of-math.org][数学之美]] wujun
+- [[file:statistical-learning-method.org][统计学习方法]] 李航
+- [[file:machine-learning-tom-mitchell.org][机器学习]] Tom M. Mitchell
+- [[file:ml-foundations.org][机器学习基石 on Coursera]]
+- [[file:ml-techniques.org][机器学习技法 on Coursera]]
+- [[file:neuralnets.org][Neural Networks for Machine Learning on Coursera]]
+- [[file:mining-massive-datasets.org][Mining Massive Datasets on Coursera]] 挖掘大规模数据
+- [[http://www.autonlab.org/tutorials/list.html][Statistical Data Mining Tutorials]] by [[http://www.cs.cmu.edu/~awm/][Andrew W. Moore]]
+- [[file:ml-class.org][Coursera: Machine Learning]] by Andrew Ng [[file:images/coursera-ml-2014.pdf][证书]]
+- [[file:codes/kaggle/][My kaggle's code]] and [[file:codes/py/mlcode/][一些机器学习算法实现]]
+- [[file:machine-learning-for-trading-class.org][Machine Learning for Trading]]
+- [[file:neural-networks-and-deep-learning.org][Coursera: Neural Networks and Deep Learning]] by Andrew Ng [[file:images/coursera-nn-dl.pdf][证书]]
+- [[file:improving-deep-neural-networks.org][Coursera: Improving Deep Neural Networks]] by Andrew Ng [[file:images/coursera-dnn.pdf][证书]]
+- [[file:structing-machine-learning-projects.org][Coursera: Structuring Machine Learning Projects]] by Andrew Ng [[file:images/coursera-ml-strategy.pdf][证书]]
+- [[file:convolutional-neural-networks.org][Coursera: Convolutional Neural Networks]] by Andrew Ng [[file:images/coursera-cnn.pdf][证书]]
+- [[file:nlp-sequence-models.org][Coursera: Sequence Models]] by Andrew Ng
+- 201801 [[file:wechat-auto-jump.org][微信跳一跳的自动化]]
+- [[file:building-machine-learning-systems-with-python.org][机器学习系统设计(Building Machine Learning Systems with Python)]]
+- [[file:intro-to-cnn.org][CNN(卷积神经网络)入门]]

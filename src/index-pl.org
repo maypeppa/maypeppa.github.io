@@ -1,0 +1,31 @@
+#+title: 程序设计语言 Programming Language
+
+- [[file:thoughts-on-prog-lang.org][thoughts on programming language]]
+  - compiler course [[file:images/compiler-cs143.pdf][cs143]]([[file:codes/cc/cs143/][code]])
+  - [[file:continuation.org][continuation]]
+  - [[file:build-system.org][build-system]] 在实现Baidu in-house的构建工具 [[http://wenku.baidu.com/view/19f3d535284ac850ad0242cc.html][comake2]] 之前做的构建系统调研总结.
+  - [[file:swig.org][swig]] C/C++多语言扩展接口生成器. 使用起来非常方便, 但是本身不太完善, 比较适合用于原型系统.
+
+
+- [[file:cpp.org][C/C++]]
+  - [[file:guide-to-advanced-programming-in-c.org][Guide to Advanced Programming in C]]
+  - [[file:the-cpp-prog-lang.org][The C++ Programming Language]]
+- [[file:scheme.org][Scheme]] [[http://www.schemers.org/][official site]]
+  - [[file:the-little-schemer.org][The Little Schemer]]
+  - [[file:the-seasoned-schemer.org][The Seasoned Schemer]]
+  - [[file:sicp.org][SICP = Structure and Interpretation of Computer Programs]]
+- [[file:java.org][Java]]
+  - [[file:maven.org][maven]]
+  - [[file:jni.org][JNI]] Java Native Interface
+  - [[file:jvm.org][JVM]] Java Virtual Machine
+- [[file:clojure.org][Clojure]]
+- [[file:python.org][Python]]
+  - [[file:efficiently-exploiting-multiple-cores-with-python.org][Efficiently Exploiting Multiple Cores with Python]] 如何有效使用多核
+  - [[file:python-ipython.org][IPython]] 交互式Python环境，Notebook也非常适合实验
+  - [[file:inside-the-python-gil.org][Inside the Python GIL]] by David Beazley @ 2009
+- [[file:go.org][Go]]
+  - [[file:go-lang-book.org][Go语言编程]] by 许式伟，吕桂华
+  - [[file:go-course-day.org][Go Course Day]] by Robe Pike
+- [[file:scala.org][Scala]] ([[file:effective-scala.org][Effective Scala]]) ([[file:images/coursera-fpps-2013.pdf][Coursera: FP in Scala]])
+- [[file:erlang.org][Erlang]] ([[file:erlang-prog-lang-book.org][Erlang程序设计]])
+- [[file:lua.org][Lua]] ([[file:lua-prog-lang-book.org][Lua程序设计]] by Robert 译 周惟迪) [[file:openresty-best-practices-lua.org][OpenResty最佳实践/Lua]]

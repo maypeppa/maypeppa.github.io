@@ -1,0 +1,21 @@
+#+title: 算法和数据结构 Algorithm and Data Structure
+
+- [[file:general-algorithm.org][General Algorithm]] 通用算法
+  - Matters Computational
+  - Hacker Delight
+- [[file:cracking-the-coding-interview.org][Cracking The Coding Interview]] 据说算法分为三种：面试算法，ACM算法，算法=D
+- [[file:competitive-programming-problems.org][Competitive Programming Problems]]
+- [[file:do-you-think-you-have-gambling-problem.org][Do You Think You Have a Gambling Problem?]] 赌博其实是概率问题
+- [[file:probabilistic-data-structures-for-web-analytics-and-data-mining.org][Probabilistic Data Structures for Web Analytics and Data Mining]] 用于Web分析和数据挖掘的概率化数据结构
+- [[file:computational-advertising.org][Computational Advertising]] 计算广告
+- [[file:bitcoin.org][Bitcoin: A Peer-to-Peer Electronic Cash System]] 比特币论文
+- [[file:think-stats.org][统计思维-程序员数学之概率统计]]
+- [[file:snappy.org][snappy]] Google的开源压缩解压库。在满足一定压缩比率的条件下着重提升压缩和解压速度。
+- [[file:lzf.org][lzf]] [[file:redis.org][redis]] 使用的开源压缩解压库。轻量(两个文件)可以很容易地独立纳入项目。
+- [[file:lzma.org][lzma]] Lempel-Ziv-Markov chain-Algorithm ，压缩速度相对较慢但是压缩比超高。
+- zopfli https://github.com/google/zopfli/
+- brotli https://github.com/google/brotli/
+- zstd https://github.com/facebook/zstd
+- 201801 [[file:find-10-digits-prime-in-consecutive-digits-of-e.org][Find 10 digits prime in consecutive digits of e]]
+- 201808 [[file:protobuf-encoding.org][Protobuf Encoding]] Protobuf编码方式
+- [[file:sparser.org][Sparser]] Raw Filtering for Faster Analytics over Raw Data

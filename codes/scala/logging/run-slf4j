@@ -1,0 +1,1 @@
+java -cp target/logging-1.0-SNAPSHOT-jar-with-dependencies.jar -Dlog4j.configuration=file://`pwd`/log4j.properties TestSlf4j

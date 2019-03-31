@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IPython</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">IPython</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2973073">1. Commands</a></li>
+<li><a href="#org8f7407b">2. Biolerplate</a></li>
+<li><a href="#org91085f0">3. Remote Notebook</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2973073" class="outline-2">
+<h2 id="org2973073"><span class="section-number-2">1</span> Commands</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+通常%用于测试单行语句，而%%用于块语句
+</p>
+
+<hr />
+<ul class="org-ul">
+<li>_iX X是输入的行号，这个变量表示第X个输入的字符串</li>
+<li>_X 第X个输出的内容</li>
+</ul>
+
+<hr />
+<ul class="org-ul">
+<li>%time: Time the execution of a single statement</li>
+<li>%timeit: Time repeated execution of a single statement for more accuracy</li>
+<li>%prun: Run code with the profiler</li>
+<li>%lprun: Run code with the line-by-line profiler # %load_ext line_profiler</li>
+<li>%memit: Measure the memory use of a single statement # %load_ext memory_profiler</li>
+<li>%mprun: Run code with the line-by-line memory profiler</li>
+</ul>
+
+
+<hr />
+<ul class="org-ul">
+<li>`!shell-command` 用来执行外部shell命令，同时可以将结果传给变量比如 `x = !pwd`.</li>
+<li>%quickref 显示notebook命令</li>
+<li>%history -n 1-4 历史命令1-4条</li>
+<li>%debug 进入调试模式，如果需要自动打开可以使用%pdb on</li>
+<li>%save filename n1-n2 保存历史上执行的命令，按照编号存取</li>
+<li>%store output_variable &gt; output.txt 把变量内容输出到文件</li>
+<li>%logstart/off/on/stop 可以保存ipython下面所有执行的命令</li>
+<li>%reset 清除当前session下面所有的变量</li>
+<li>%xdel variable 清除当前sesison的某个变量</li>
+<li>%bookmark &lt;name&gt; &lt;dir&gt; / cd &lt;name&gt; / %bookmark -l 书签系统</li>
+<li>%who/%whos/%who_ls 列举当前环境下所有的变量</li>
+<li>%cpaste 格式化粘贴代码</li>
+<li>%page variable 通过分页器打印变量</li>
+</ul>
+
+
+<hr />
+<p>
+`%%cython` 用来编译cython代码, 而且必须放在在cell第一行。调用前用 ` %load_ext cython` 加载cython模块。
+</p>
+
+<p>
+`@numba.jit` 使用numba jit来加速数值运算。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8f7407b" class="outline-2">
+<h2 id="org8f7407b"><span class="section-number-2">2</span> Biolerplate</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-Python">import pandas as pd
+import numpy as np
+%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn as sns
+np.set_printoptions(precision=4)
+# plt.style.use('fivethirtyeight')
+sns.set()
+plt.rcParams['font.sans-serif']=['SimHei'] #用来正常显示中文标签
+plt.rcParams['axes.unicode_minus']=False #用来正常显示负号
+plt.rcParams['figure.figsize'] = (15, 5)
+# 或者使用下面这个方式
+plt.rc('font', **{'sans-serif': ['SimHei']})
+plt.rc('axes', **{'unicode_minus': False})
+plt.rc('figure', **{'figsize': (10, 10)})
+pd.set_option('display.width', 5000)
+pd.set_option('display.max_columns', 60)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91085f0" class="outline-2">
+<h2 id="org91085f0"><span class="section-number-2">3</span> Remote Notebook</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+UPDATE @ 2016-08-26: 发现下面方法可以用来解决remote ipython notebook的问题.
+</p>
+<ul class="org-ul">
+<li>首先在目标机器dev上启动ipython notebook. `jupyter notebook &#x2013;no-browser &#x2013;port=8888`</li>
+<li>然后在本机上选择绑定端口比如1000. `ssh -L "*:10000:dev:8888" dev`</li>
+</ul>
+
+<p>
+之后就可以在本地使用 `<a href="http://localhost:10000">http://localhost:10000</a>` 来访问远端的notebook了.
+</p>
+</div>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/python-ipython.html';this.page.identifier = 'python-ipython.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

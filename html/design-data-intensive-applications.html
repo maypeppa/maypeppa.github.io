@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design Data-Intensive Applications</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">Design Data-Intensive Applications</h1>
+<p>
+这是一本关于大规模分布式存储系统的书籍，基本上每个topic都涉及到了并且有深入的介绍，既可以作为index也可以作为introduction.
+</p>
+
+
+<div class="figure">
+<p><img src="images/design-data-intensive-applications.png" alt="design-data-intensive-applications.png" />
+</p>
+</div>
+
+<p>
+Chapter1 这章讨论了Data-Intensive应用在Reliability（可用性），Scalability（扩展性），Maintainability（可维护性）三个方面可能遇到的问题，这些问题的原因是什么，以及这些问题的解决办法。
+</p>
+
+<p>
+Chapter2 这章讨论了各种数据模型：关系模型（从层次化模型演化过来），文档模型，图模型。这三种是现在使用最多的三种通用模型，还有很多场景需要定制化的数据模型。另外还有一节讨论数据查询语言。
+</p>
+
+<p>
+Chapter3 这章对于了解数据库系统非常有帮助。两种数据存储引擎实现方式：log-strucutred(LSM, SSTable) and page-oriented(BTree). LSM比较适合写多读少，而BTree适合写少读多，但是即便是短板性能上也还是可以的。OLTP和OLAP引擎和索引方式有很大的不同，使用列式存储(column-oriented storage).
+</p>
+
+<p>
+Chapter4 这章主要讨论数据通信以及序列化。encode/decode方面举例了json, xml, protobuf, thrift, avro. 在数据通信基本有三种方式：1. database 2. rpc 3. message queue. 里面介绍了Avro的设计和实现，并且分析了优缺点，我觉得这个序列化实现还挺不错的。
+</p>
+
+<p>
+Chapter5 这章讨论replication的各种问题：single-leader/multi-leader/leaderless, sync/async/semi-async, replication log impl(stmt-based, wal, logical record, physical record), consistency(eventual, read-after-write/session, monotonic reads, strong)
+</p>
+
+<p>
+Chapter6 这章主要讨论partition的各种问题：primary index, global vs local secondary index.  secondary index最大的问题是没有办法和partitioning关联起来，所以导致要不在每个partition上做index, 要不就在做个global index.
+</p>
+
+<p>
+Chapter7 这章讨论事务方面的问题：ACID的真实含义，事务的原子性，以及事务的隔离性。如何实现Read-Committed, Repeatable-Read, 如何避免lost updates（避免写丢失）, write skew and phantom read, 如何实现最高隔离性serializable(actual serial execution, two phase locking and SSI)
+</p>
+<blockquote>
+<p>
+To recap, in ACID, atomicity and isolation describe what the database should do if aclient makes several writes within the same transaction:
+</p>
+<ol class="org-ol">
+<li>Atomicity. If an error occurs halfway through a sequence of writes, the transaction should be aborted, and the writes made up to that point should be discarded. In other words, the database saves you from having to worry about partial failure, by giving an all-or-nothing guarantee.</li>
+<li>Isolation. Concurrently running transactions shouldn't interfere with each other. For example, if one transaction makes several writes, then another transaction should see either all or none of those writes, but not some subset.</li>
+</ol>
+</blockquote>
+
+<p>
+Chapter8 这章讨论了分布式系统里面几个和人们假设想去甚远的问题，比如网络延迟的不可控性，时钟的不可靠性，以及进程会被挂起很长时间，以及这些问题带来的新的问题和解决办法。大部分分布式系统可以不用考虑Byzantine问题，因为客户端和服务端都是可信的。
+</p>
+
+<p>
+Chapter9 这章看的有点晕，主要讨论如何实现各种一致性(consistency), 主要是strong consistency/linearizability. 完全实现linearizability性能会很差，一个改进是实现casual consistency/casuality（而且大部分情况下也是我们需要的)(lz ~ total order, cc ~ casual order)，通过lamport论文给出的定序方法。不过仅仅实现total ordering of operations还是不够的，这些顺序还需要最终确定下来被所有节点确认(total order broadcast). total order broadcast和consensus algorithm是等价的。 如何实现分布式事务(2PC)和共识算法(paxos, raft, zookeeper). 感觉这章难度比较大，如果相对分布式系统和理论深入学习的话，可以先把这个部分吃透。
+</p>
+
+<p>
+Chapter10 这章讨论了批处理系统的发展历史（和Unix Tools的对比），MapReduce/Graph编程模型，MR和MPP之间的对比，以及未来发展的趋势(operators, high-level API, graph iterative processing, machine learning capability etc)。
+</p>
+
+<p>
+Chapter11 这章讨论流式处理系统，包括message broker(JMS-style游标维护在服务器没有办法定序，以及log-based游标维护在客户端）, 如何有效地使用log来让多个数据系统进行同步（change data capture)， 以及流式消息系统的join和容错处理。
+</p>
+
+<p>
+Chapter12 这章讨论数据系统的未来发展，如何多个数据系统如何整合起来：将公司当做一个大数据库的话，内部各种数据系统就有点像各种索引，每种索引适合不同的场景。为了充分发挥作用，这个大数据库在read时候会将各种数据系统组合起来，而在write的时候又需要拆分开来保持数据同步。最后一节从社会角度讨论了如何正确地利用数据，数据和工具应该被我们所利用，而不应该成为我们的主人。
+</p>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/design-data-intensive-applications.html';this.page.identifier = 'design-data-intensive-applications.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

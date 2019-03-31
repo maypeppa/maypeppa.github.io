@@ -1,0 +1,80 @@
+#+title: 只言片语
+
+-----
+2019-03-15T17:25:21
+
+python里面的 `queue.task_done` 这个语义有点奇怪，从队列里面取出来为什么还要给queue确认一次呢？可能是为了
+确保外部消费者完成这个消息的处理。这么说来 `queue.join` 的语义也就清晰了，我必须等待所有的消息被确认。队列
+空还不能退出，必须等待所有消息被确认。
+
+另外python里面居然还没有read/write lock实现！！Can you believe it?!
+
+-----
+2019-03-15T16:55:28
+
+Python许多开源组件都没有清晰表明是否线程安全的，所以在使用的时候很容易出现奇怪的问题。所以用这些开源组件之前，
+一定要了解这些组件是否是线程安全的，allocate新的对象开销是不是很大，是否有pool的实现。如果没有Pool实现并且不是线程安全的话，
+那么就需要加一个锁（mutex或者是读写锁）。
+
+python logging模块里面的handler在实现上就是通过加锁来保证线程安全的。
+
+#+BEGIN_SRC Python
+
+    def handle(self, record):
+        """
+        Conditionally emit the specified logging record.
+        Emission depends on filters which may have been added to the handler.
+        Wrap the actual emission of the record with acquisition/release of
+        the I/O thread lock. Returns whether the filter passed the record for
+        emission.
+        """
+        rv = self.filter(record)
+        if rv:
+            self.acquire()
+            try:
+                self.emit(record)
+            finally:
+                self.release()
+        return rv
+#+END_SRC
+
+
+然后最近看到一个handler支持向cloudwatch输出日志，它的实现方式就是可选地往一个memory queue里面写入日志，然后后台
+有个worker在不断地将memory queue里面的日志输出到cloudwatch上。 [[https://github.com/kislyuk/watchtower][watchtower]]
+
+#+BEGIN_SRC Python
+        if self.use_queues:
+            if stream_name not in self.queues:
+                self.queues[stream_name] = queue.Queue()
+                thread = threading.Thread(target=self.batch_sender,
+                                          args=(self.queues[stream_name], stream_name, self.send_interval,
+                                                self.max_batch_size, self.max_batch_count))
+                self.threads.append(thread)
+                thread.daemon = True
+                thread.start()
+            if self.shutting_down:
+                warnings.warn("Received message after logging system shutdown", WatchtowerWarning)
+            else:
+                self.queues[stream_name].put(cwl_message)
+        else:
+            self._submit_batch([cwl_message], stream_name)
+#+END_SRC
+
+-----
+@2019-02-13T07:57:46
+
+单独开辟一个这个"只言片语"小专栏还不错，可以记录一些自己的胡乱想法。这些想法不太好创建一个新条目，但是也值得记录下来。
+写在evernote里面好像也不太好追踪，还是写在这里会比较轻松随意一些。
+
+从年前大约10月份开始吧，我就尽量减少糖分的摄入，饭吃的比之前要少，饮料的话也是尽可能少喝，如果要喝的话也是无糖的。
+喝了不少咖啡和啤酒，白天咖啡，晚上啤酒。但是逐渐养成了一个坏毛病，就是每天晚上必须撸一把。这事情说大不大，说小也不小。
+
+首先很影响白天的精神状态，其次尽管撸完了晚上也不见得睡得就更好，可能还是和工作压力大比较有关系。躺在床上，虽然身体很疲惫，
+但是脑子里面想的还是单位的事情。而且每次完成都有一种负罪感，我也不知道是为什么，时间长了容易产生自责情绪和不自信。
+
+过年几天，老婆和丈母娘来北京住几天，去超市买了不少吃的。初四从北京撤回天津的时候，在北京家里留了几瓶酸牛奶，保存在冰箱里面。
+这几天开始上班，早上起得比较早，为了提提神，就开始喝这几瓶酸牛奶。
+
+这几天下来我突然发现，自己好想变得更加有安全感了，而且没有了之前特别焦虑的情绪，晚上也可以开始不撸了。我现在在想是不是和
+这个摄入糖分和甜食是有关系的。之前尽可能远离这些甜食，觉得身体会更加健康一些，但是似乎从另外一个方面开始伤害身体了。
+正确的做法我觉得应该是，如果觉得想吃东西了，在不过量的情况下就吃，忍着会造成其他伤害。为了控制体重的话，多多锻炼就好了。

@@ -1,0 +1,428 @@
+#+title: 个人博客 Blogs
+
+** 2019
+- 201903 [[file:strangler-application.org][StranglerApplication]] 扼杀者应用（如何有效安全地替换掉老的应用）
+- 201903 [[file:pitalls-of-python-ecosystem.org][Python生态系统里的各种陷阱]]
+- 201903 [[file:instagram-under-the-hood.org][Instagram Under the Hood]]
+- 201903 [[file:running-sentry-on-ec2.org][在AWS EC2上启动Sentry]]
+- 201902 [[file:tour-of-forbidden-city-on-festival-day.org][春节逛圈故宫]]
+- 201902 [[file:lucky-to-have-someone-to-share.org][能找到一个人分享是多么难得的事情]]
+- 201901 [[file:instagram-engineering-3-rules-to-a-scalable-cloud-application-architecture.org][Instagram Engineering’s 3 rules to a scalable cloud application architecture]]
+- 201901 [[file:geekbang-tech-and-business-cases.org][极客时间|技术与商业案例解读 文章目录]]
+- 201901 [[file:geekbang-ai-internal-reference.org][极客时间|AI技术内参 文章目录]]
+
+** 2018
+- 201812 [[file:geekbang-recommender-system.org][极客时间|推荐系统36式 文章目录]]
+- 201812 [[file:geekbang-tech-management-class.org][极客时间|朱赟的技术管理课 文章目录]]
+- 201812 [[file:siraj-raval-youtube-channel-index.org][Siraj Raval视频索引]]
+- 201812 [[file:nginx-log-parser-opt.org][nginx日志解析器优化]]
+- 201812 [[file:geekbang-tech-management-practice.org][极客时间|技术管理实战36讲 文章目录]]
+- 201812 [[file:geekbang-mysql-practice.org][极客时间|MySQL实战45讲 文章目录]]
+- 201811 [[file:why-i-quit-google-to-work-for-myself.org][Why I Quit Google to Work for Myself]]
+- 201811 [[file:whats-the-largest-amount-of-bad-code-you-have-ever-seen-work.org][{Ask HN}What's the largest amount of bad code you have ever seen work?]]
+- 201811 [[file:interview-with-gmail-creator-and-y-combinator-partner-paul-buchheit.org][Interview with Gmail Creator Paul Buchheit]]
+- 201811 [[file:the-economics-of-getting-hired-as-a-data-scientist.org][The economics of getting hired as a data scientist]]
+- 201811 [[file:keras-author-on-software-engineering.org][Keras之父写给年轻程序员的33条忠告]]
+- 201810 [[file:writing-system-software-code-comments.org][Writing system software: code comments]]
+- 201810 [[file:github-flow.org][GitHub Flow]]
+- 201810 [[file:fallacies-of-distributed-computing-explained.org][Fallacies of Distributed Computing Explained]]
+- 201810 [[file:whats-a-senior-engineers-job.org][What's a senior engineer's job?]]
+- 201810 [[file:geekbang-coolshell-index.org][极客时间|左耳听风 文章目录]]
+- 201810 [[file:liyongle-youtube-channel-index.org][李永乐老师视频索引]]
+- 201810 [[file:living-in-county.org][深度好文：混在县城]]
+- 201810 [[file:avoiding-burnout.org][Avoiding burnout: lessons learned from a 19th century philosopher]]
+- 201810 [[file:find-lca-using-rmq.org][Find LCA using RMQ]]
+- 201810 [[file:sudoku-solving.org][数独程序求解]]
+- 201809 [[file:segment-tree-for-rmq.org][求解RMQ的线段树实现]]
+- 201809 [[file:klotski-solving.org][华容道程序求解]]
+- 201809 [[file:configure-topcoder-env.org][配置TopCoder环境]]
+- 201808 [[file:etsy-activity-feeds-architecture.org][Etsy Activity Feeds Architecture]]
+- 201808 [[file:protobuf-encoding.org][Protobuf Encoding]] Protobuf编码方式
+- 201808 [[file:youtube-scalability.org][YouTube Scalability]] on youtube
+- 201808 [[file:sit-boost-your-tech-career.org][SIT / Boost your tech career]]
+- 201807 [[file:algorithm-design-steps-in-interview.org][如何进行算法设计面试]] in Hired in Tech
+- 201807 [[file:system-design-steps-in-interview.org][如何进行系统设计面试]] in Hired in Tech
+- 201807 [[file:lang-detect-and-encoding-detect.org][语言检测和编码检测]] 一种利用语言检测来做编码检测的可能方法
+- 201807 [[file:aws-overview.org][AWS Overview]] 官方给出的AWS各种产品介绍，比我简单抓取的 [[file:aws-products.org][AWS Products]] 要好
+- 201807 [[file:amazon-dynamodb.org][Amazon DynamoDB]] All Things Distributed
+- 201807 [[file:5-lessons-we-have-learned-using-aws.org][5 Lessons We’ve Learned Using AWS]] Netflix TechBlog
+- 201807 [[file:how-to-write-a-good-software-design-doc.org][How to write a good software design doc]]
+- 201807 [[file:oh-i-have-seen-this-idea-before.org][oh, I’ve seen this idea before]] 如何回答这个问题
+- 201806 [[file:aws-products.org][AWS Products]]
+- 201806 [[file:binary-indexed-tree.org][Binary Indexed Tree(Fenwick Tree)]]
+- 201806 [[file:interview-psychological-tricks.org][面试心理技巧(Psychological Tricks)]]
+- 201805 [[file:an-impact-guide-for-engineers.org][An Impact Guide for Engineers]] 工程师影响力指南
+- 201805 [[file:types-of-scipy-sparse-matrix.org][scipy几种稀疏矩阵表示]]
+- 201805 [[file:tibet-travel.org][西藏(林芝-波密-拉萨)游记]]
+- 201805 [[file:skin-in-the-game-dedao.org][精英日课解读《利益悠关》]] 摘自得到的《精英日课》
+- 201805 [[file:mastering-study.org][寻常问题的精英解法-如何学习]] 摘自得到的《精英日课》
+- 201805 [[file:why-turing-is-master.org][计算机领域大人物：艾伦·图灵牛在哪？]] 摘自得到的《硅谷来信》
+- 201805 [[file:why-study-history.org][为什么学习历史]] 摘自得到的《硅谷来信》
+- 201804 [[file:ssh-proxycommand-on-ssr.org][ssh proxycommand on ssr]]
+- 201804 [[file:getting-started-elk-beat.org][本地跑跑ELK + Beat(日志收集和指标收集)]]
+- 201803 [[file:nginx-https-redirect-loop.org][nginx的https重定向循环问题]]
+- 201803 [[file:what-habits-make-a-programmer-great.org][What habits make a programmer great?]] about meta-habit
+- 201803 [[file:how-to-build-your-own-alpha-zero-ai.org][How to build your own AlphaZero AI using Python and Keras]]
+- 201803 [[file:on-being-a-senior-engineer.org][On Being A Senior Engineer]]
+- 201803 [[file:how-the-economic-machine-works-by-ray-dalio.org][How The Economic Machine Works By Ray Dalio]] 经济机器是如何运行的
+- 201802 [[file:difference-between-poor-rich-on-zhihu.org][你在哪一刻体验到了真正的贫富差距？]] 摘自知乎回答
+- 201802 [[file:python-weak-perf-matters.org][Python 的低性能问题是无法忽视的]]
+- 201802 [[file:management-actually-is-engineering.org][管理其实是个工程学]] 摘自得到的《精英日课》
+- 201801 [[file:websocket-and-socketio.org][WebSocket和Socket.IO]]
+- 201801 [[file:intro-quantum-computing.org][量子计算机初探]]
+- 201801 [[file:wechat-auto-jump.org][微信跳一跳的自动化]]
+- 201801 [[file:python-requests-encoding-issue.org][Python Requests库编码问题]]
+- 201801 [[file:minimal-wsgi-app-in-python.org][Minimal WSGI App in Pyton]]
+- 201801 [[file:reading-excel-in-python.org][Reading Excel in Python]]
+- 201801 [[file:find-10-digits-prime-in-consecutive-digits-of-e.org][Find 10 digits prime in consecutive digits of e]]
+- 201801 [[file:26-lessons-from-being-a-developer-at-a-startup.org][26 Lessons From Being a Developer at a Startup]]
+
+** 2017
+- 201712 [[file:geoffrey-hinton-interview-in-coursera.org][Geoffrey Hinton Interview in Coursera]]
+- 201712 [[file:cities-and-ambition.org][市井雄心 Cities and Ambition]] by Paul Graham
+- 201712 [[file:math-read.org][How to Read Mathematics]]
+- 201712 [[file:test-simhash.org][试试simhash]]
+- 201712 [[file:make-a-workable-dns.org][搭建一个可用的DNS]] (dnsmasq + ss)
+- 201712 [[file:the-language-of-the-system.org][The Language of the System]] by Rich Hickey
+- 201712 [[file:love-your-bugs.org][Love Your Bugs]]
+- 201712 [[file:code-in-space.org][Code in Space]] 太空系统环境下的编程
+- 201712 [[file:timeline-at-scale-in-twitter.org][Timeline at Scale in Twitter]] by Raffi Krikorian
+- 201712 [[file:simple-made-easy.org][Simple Made Easy]] by Rich Hickey
+- 201712 [[file:probability-paradox-by-peter-norvig.org][Probability Paradox by Norvig]] Norvig写的一篇关于概率和悖论文章
+- 201712 [[file:ways-of-paying-mortgage.org][等额本金和等额本息的计算]]
+- 201712 [[file:nobody-ever-got-fired-for-buying-a-cluster.org][Nobody ever got fired for buying a cluster]] 计算集群的必要性思考 @ 2013
+- 201712 [[file:sonos-streaming-basics.org][流媒体基础知识(sonos)]]
+- 201711 [[file:ten-rules-for-negotiating-a-job-offer.org][Ten Rules for Negotiating a Job Offer]]
+- 201711 [[file:tool-is-to-free-people.org][解放生产力的工具]]
+- 201711 [[file:software-2.org][Software 2.0]] by Andrej Karpathy
+- 201711 [[file:getting-real-about-distributed-system-reliability.org][Getting Real About Distributed System Reliability]]
+- 201711 [[file:pypy-impl.org][PyPy实现方式]]
+- 201710 [[file:mongodb34-perf-issue-checkpoint.org][升级到MongoDB 3.4出现的性能问题]]
+- 201710 [[file:make-startup-usb-stick-under-mac.org][在Mac下面制作USB启动盘]]
+- 201709 [[file:how-to-buildy=-your-personal-brand-as-a-new-developer.org][How to build your personal brand as a new developer]]
+- 201709 [[file:narrow-python-build.org][Narrow Python Build]]
+- 201708 [[file:the-feynman-technique-the-best-way-to-learn-anything.org][The Feynman Technique: The Best Way to Learn Anything]]
+- 201707 [[file:scaling-to-billions-on-top-of-digital-ocean.org][Scaling to Billions on Top of DigitalOcean]]
+- 201707 [[file:search-at-slack.org][Search at Slack]] Slack在搜索排序方面的工作
+- 201707 [[file:why-did-so-many-startups-choose-nosql.org][Why Did So Many Startups Choose NoSQL?]]
+- 201707 [[file:macosx-rootless-mode.org][MacOS X Rootless Mode]]
+- 201707 [[file:what-you-can-do-and-what-you-should-do.org][能做什么和该做什么]]
+- 201707 [[file:reducing-image-file-size-at-esty.org][Reducing Image File Size at Etsy]]
+- 201707 [[file:making-photos-smaller.org][Making Photos Smaller Without Quality Loss]]
+- 201707 [[file:proxy-on-http-streaming.org][HTTP流媒体的代理实现]]
+- 201707 [[file:ssh-permission-denied.org][SSH Permission Denied(Public Key)]]
+- 201706 [[file:the-evolution-of-code-deploys-at-reddit.org][The Evolution of Code Deploys at Reddit]]
+- 201706 [[file:on-python-profiling.org][Python程序性能分析]]
+- 201706 [[file:44-eng-mag-lessons.org][44 engineering management lessons]]
+- 201706 [[file:use-emacs-org-mode-to-build-site.org][用Emacs Org-Mode来建站]]
+- 201705 [[file:colleague-creates-spaghetti-code.org][What to do when Your Colleague Creates Spaghetti Code]]
+- 201705 [[file:how-yelp-runs-millions-of-tests-every-day.org][How Yelp Runs Millions of Tests Every Day]]
+- 201705 [[file:ssh-tunneling-python.org][SSH Tunneling in Python]]
+- 201705 [[file:issue-of-retry-after-field.org][Retry-After字段带来的问题]]
+- 201705 [[file:wujun-thoughts-on-career.org][职场上的四个误区和四个破法]] 摘自得到的《硅谷来信》
+- 201705 [[file:use-wifi-aps-to-identify-location.org][利用WiFi热点来定位]]
+- 201704 [[file:u-of-t-professor-geoffrey-hiton.org][U of T, Geoffrey Hinton]] 一篇关于Geoffrey Hiton的文章
+- 201704 [[file:scaling-your-api-with-rate-limiters.org][Scaling your API with rate limiters]]
+- 201704 [[file:a-few-days-at-village.org][在老家的几天]]
+- 201703 [[file:software-engineering-at-google.org][Software Engineering at Google]] by Fergus Henderson
+- 201703 [[file:a-possible-impl-of-reco-sys.org][推荐系统的可能实现]]
+- 201703 [[file:automation-on-finacial-report.org][实事求是谈金融报告自动化 – 文因互联]]
+- 201702 [[file:boost-shadowsocks-with-tcp-bbr.org][通过TCP BBR为ShadowSocks加速]]
+- 201702 [[file:principle-of-smart-route-in-vpn.org][VPN的智能加速原理]]
+- 201702 [[file:my-thoughts-on-startup.org][创业/小公司的优点和缺点]]
+- 201702 [[file:abandoned-probabilistic-option.org][被放弃的概率权]]
+- 201701 [[file:boots-of-spanish-leather.org][Boots of Spanish Leather]] by Bob Dylan
+- 201701 [[file:is-there-a-simple-algorithm-for-intelligence.org][Is there a simple algorithm for intelligence?]] By Michael Nielsen
+- 201701 [[file:on-the-future-of-neural-networks.org][On the future of neural networks]] By Michael Nielsen
+- 201701 [[file:on-stories-in-neural-networks.org][On stories in neural networks]] By Michael Nielsen
+
+** 2016
+- 201612 [[file:face-landmark-detection-dlib.org][dlib's face landmark detection]]
+- 201612 [[file:tensorflow-neural-art.org][Tensorflow Neural Art]]
+- 201610 [[file:the-times-they-are-changing.org][The Times They Are A-Changin']] by Bob Dylan
+- 201610 [[file:level-up-lang-taste.org][讲一件提升语言格调的小事]]
+- 201610 [[file:the-effective-engineer-by-edmond-lau.org][The Effective Engineer]]
+- 201610 [[file:taking-php-seriously.org][Taking PHP Seriously]]
+- 201610 [[file:becoming-cto.org][Becoming CTO]]
+- 201610 [[file:purchase-on-rapidssl.org][在RapidSSL上购买SSL证书]]
+- 201610 [[file:vinod-khosla-talk.org][Vinod Khosla: Failure does not matter. Success matters.]]
+- 201610 [[file:silicon-valley-etiquette.org][Silicon Valley Etiquette]] 硅谷礼仪
+- 201610 [[file:chengdu-travel.org][天府之旅]]
+- 201609 [[file:mxnet-neural-art.org][MXNet Neural Art]]
+- 201609 [[file:a-little-architecture.org][A Little Architecture]]
+- 201609 [[file:laws-of-performant-software.org][Laws of Performant Software]]
+- 201609 [[file:build-hls-server.org][搭建直播平台]]
+- 201609 [[file:stackoverflow-maintenance.org][StackOverflow Maintenance]]
+- 201609 [[file:yy-live-on-parenting.org][@杨樾杨樾 老师的育儿直播]]
+- 201608 [[file:some-non-casual-thoughts.org][一些想法（关于工作，人生，以及最近做的梦)]]
+- 201608 [[file:the-future-of-programming.org][The Future of Programming]] by Bret Victor
+- 201608 [[file:what-makes-a-great-software-engineer.org][What Makes A Great Software Engineer?]]
+- 201607 [[https://www.evernote.com/shard/s81/sh/b4dc1995-8028-4552-af4c-2696be08fce8/eb429ff5192222c2dce47aa95f0f5766][你不需要忙，你只需要坚持就够了]] by 汤小小
+- 201607 [[file:life-is-just-a-moment.org][Life is just a Moment]]
+- 201607 [[file:cool-retro-term.org][Cool Retro Term(CRT)]] 复古终端:D
+- 201607 [[file:spam-from-apple.org][来自Apple的垃圾邮件]]
+- 201606 [[file:america-alone-talk.org][只剩美国:我们眼睁睁看着末日的降临]]
+- 201606 [[file:top-10-things-that-makes-you-a-good-programmer.org][Top 10 Things that Makes You a Good Programmer]]
+- 201606 [[file:dont-know-what-to-program.org]["I know how to program, but I don't know what to program"]]
+- 201606 [[file:how-to-pick-your-battles-on-a-software-team.org][How to Pick Your Battles on a Software Team]]
+- 201606 [[file:why-mit-stopped-teaching-SICP.org][为什么MIT停止教授SICP]]
+- 201606 [[file:trap-of-startup-side-project.org][軟體工程師的創業陷阱-接案]]
+- 201606 [[file:on-facebook-newsfeed.org][Facebook NewsFeed]]
+- 201606 [[file:getting-things-done-when-you-are-only-a-grunt.org][Getting Things Done When You're Only a Grunt]] by Joel Spolsky
+- 201606 [[file:10-lessons-from-10-years-of-aws.org][10 Lessons from 10 Years of Amazon Web Services]]
+- 201606 [[file:republic-and-democracy.org][共和和民主的差别]] on zhihu
+- 201606 [[file:religulous.org][Religulous]] by Bill Maher
+- 201606 [[file:how-gfw-discovers-hidden-circumvention-servers.org][32c3-7196-en-How_the_Great_Firewall_discovers_hidden_circumvention_servers]] GFW如何发现代理服务器
+- 201606 [[file:a-person-of-fidget.org][心中的邪火]] 关于自己的心态失衡
+- 201606 [[file:anaconda-high-perf-solution.org][Anacoda High Performance Solution]]
+- 201605 [[file:work-efficiently-in-facebook.org][Facebook公司内部PPT分享:如何高效工作]]
+- 201605 [[file:on-career-and-management.org][关于工作年限和管理的问题]] by nullgate
+- 201605 [[file:notes-on-side-project.org][个人开发者接私活的要点]]
+- 201605 [[file:pf-thoughts-on-cn.org][pf写的回国感受]]
+- 201605 [[file:you-should-be-with-ambitious-people.org][要与野心人为伍]]
+- 201605 [[file:talk-with-lizhi-tech-team.org][专访荔枝fm技术团队]]
+- 201605 [[file:play-stock-in-vc-way.org][用VC的方法炒股票]]
+- 201605 [[file:true-history-of-google-cn.org][傲慢与偏见之 - 谷歌中国逆袭史]]
+- 201605 [[file:how-env-impacts-on-person.org][环境于个人的影响]]
+- 201605 [[file:tour-of-google-beijing.org][参观Google北京]]
+- 201604 [[https://www.evernote.com/shard/s81/sh/74babb59-ffb0-4858-a8e2-c157b973b7d1/b43c2ee7fc50363efb47daba78a9d59e][Facebook上最近传开了一组漫画，深深戳中咱中国家庭的痛点]] (学会做一个合格的父母)
+- 201604 [[file:squid-https-forwarding-proxy.org][用squid做http/https正向代理]]
+- 201604 [[file:why-i-work-remotely-hint-it-has-nothing-to-do-with-productivity.org][Why I work remotely (hint: it has nothing to do with productivity).]]
+- 201604 [[file:starters-and-maintainers.org][Starters and Maintainers]]
+- 201604 [[file:automate-to-save-mental-energy-not-time.org][Automate to save mental energy, not time]]
+- 201604 [[file:surviving-meetings-while-remote.org][Surviving meetings while remote]]
+- 201604 [[file:programmers-are-distraction-for-your-startup.org][Programmers are distraction for your startup]]
+- 201604 [[file:finding-great-developers.org][Finding Great Developers]]
+- 201604 [[file:why-cant-programmers-program.org][Why Can't Programmers.. Program?]]
+- 201604 [[file:dont-call-yourself-a-programmer.org][Don't Call Yourself A Programmer]]
+- 201604 [[file:data-infra-at-airbnb.org][Data Infrastructure at Airbnb]]
+- 201604 [[file:atlassian-user-onboarding-magic.org][Atlassian $5.5b user onboarding magic]]
+- 201604 [[file:authority-and-merit.org][Authority & Merit]]
+- 201604 [[file:nginx-forwarding-proxy.org][nginx正向代理]]
+- 201603 [[file:several-waters.org][纯水，软水，净水]]
+- 201603 [[file:nginx-site-redirect.org][nginx站点跳转]]
+- 201603 [[file:aws-ec2-instances.org][aws ec2的几种实例]]
+- 201603 [[file:mac-root-certification.org][mac根证书信任]]
+- 201603 [[file:python-universal-feed-parser.org][python universal feed parser]]
+- 201603 [[file:python-gzip-input-stream-impl.org][Python Gzip Input Stream 实现]]
+- 201602 [[file:got6-is-coming.org][GOT6 is coming]]
+- 201602 [[file:a-possible-impl-of-abtest-sys.org][关于AB Test使用和实现的猜测]]
+- 201602 [[file:discussion-on-rs.org][记一次推荐系统讨论]]
+- 201602 [[file:pieces-of-advice-from-yq.org][前辈给我的建议]]
+- 201602 [[file:experience-of-running-coffee-shop-for-40-years.org][开四十年咖啡店是种什么样的体验]]
+- 201602 [[file:jianshu-captcha.org][简书的captcha]]
+- 201602 [[file:build-nginx-from-source-on-ubuntu.org][build nginx from source on ubuntu]]
+- 201602 [[file:big-data-is-supposed-to-be.org][大数据应该是...]]
+- 201601 [[file:github-maintenance.org][Github Maintenance]]
+- 201601 [[file:reversed-bollinger-band.org][reversed bollinger band]]
+- 201601 [[file:on-computational-investing.org][on computational investing]]
+- 201601 [[file:calm-down-for-a-second.org][Calm Down For a Second]]
+- 201601 [[file:coursera-maintenance.org][Coursera Maintenance]]
+- 201601 [[file:stock-price-data-sanity.org][Stock price data sanity]]
+
+** 2015
+- 201512 [[file:ms-presentation.org][Michael Stonebraker Presentation]]
+- 201512 [[file:how-to-launch-a-mac-app-and-become-1-top-paid-app-globally.org][How To Launch a Mac App and Become #1 Top Paid App Globally]]
+- 201512 [[file:what-would-it-take-to-prove-me-wrong.org][What would it take to prove me wrong?]]
+- 201512 [[file:a-great-developer-can-come-from-anywhere.org][A great developer can come from anywhere]]
+- 201512 [[file:employee-equity.org][Employee Equity]] Sam Altman关于员工期权的文章.
+- 201512 [[file:before-you-code-write.org][Before you code, write.]]
+- 201512 [[file:remove-the-stress-pick-a-deadline.org][Remove the stress, pick a deadline]]
+- 201512 [[file:the-secret-to-career-success.org][The Secret to Career Success]]
+- 201512 [[file:the-scientist.org][The Scientist]]
+- 201511 [[file:ios-device-and-screenshot-size.org][iOS设备与屏幕分辨率对应关系]]
+- 201511 [[file:a-note-of-nobel-winner.org][石墨烯教父: 从千年博后到物理诺奖的心路历程]]
+- 201511 [[file:why-i-stopped-paying-attention-to-industry-news.org][Why I stopped paying attention to industry news]]
+- 201510 [[file:learn-stop-using-shiny-new-things-and-love-mysql.org][Learn to stop using shiny new things and love MySQL]]
+- 201510 [[file:climbing-the-wrong-hill.org][Climbing The Wrong Hill]]
+- 201510 [[file:lessons-learned-writing-highly-available-code.org][Lessons learned writing highly available code]]
+- 201510 [[file:dont-base-your-business-on-a-paid-app.org][Don't base your business on a paid app]]
+- 201510 [[file:some-advice-from-jeff-bezos.org][Some advice from Jeff Bezos]]
+- 201510 [[file:ten-rules-for-open-source-success.org][Ten Rules for Open Source Success]]
+- 201510 [[file:competitors-are-not-the-enemy.org][Competitors Are Not The Enemy]]
+- 201510 [[file:making-money-along-the-way.org][Making money along the way]]
+- 201510 [[file:staying-healthy-while-working-remotely.org][远程工作者如何保持健康]]
+- 201510 [[file:real-life-of-startup-with-baby.org][带着娃创业的真实一面]]
+- 201510 [[file:a-impl-of-my-dict-book.org][一个生词本的实现]]
+- 201510 [[file:chasing-the-shiny-and-new.org][chasing the shiny and new (追逐时髦的技术)]]
+- 201510 [[file:why-cd-just-keeps-on-giving.org][Why Continuous Deployment just keeps on giving]]
+- 201510 [[file:how-to-get-a-job-like-mine-aaron-swartz.org][Aaron Swartz: How to Get a Job Like Mine]]
+- 201510 [[file:a-decade-at-google.org][A Decade at Google]]
+- 201510 [[file:dont-switch-to-yinxiang-note.org][切换到印象笔记-NO!]]
+- 201509 [[file:ostep-persist-file.org][OSTEP / Persistence-File]]
+- 201509 [[file:ostep-persist-disk.org][OSTEP / Persistence-Disk]]
+- 201509 [[file:ostep-con-cv.org][OSTEP / Concurrency-CV]]
+- 201509 [[file:ostep-con-lock.org][OSTEP / Concurrency-Lock]]
+- 201509 [[file:hive-getting-started.org][hive getting started]]
+- 201509 [[file:zookeeper-getting-started.org][zookeeper getting started]]
+- 201509 [[file:ostep-virt-vax-vms.org][OSTEP / Virt-VAX/VMS]]
+- 201509 [[file:ostep-virt-vm-page.org][OSTEP / Virt-页式系统]]
+- 201509 [[file:ostep-virt-vm-seg.org][OSTEP / Virt-段式系统]]
+- 201509 [[file:ostep-virt-cpu.org][OSTEP / Virt-CPU]]
+- 201509 [[file:ostep-readings.org][OSTEP / Readings]]
+- 201509 [[file:a-love-for-legacy.org][A Love for Legacy]]
+- 201509 [[file:availability-vs-durability.org][Availability vs. Durability]]
+- 201509 [[file:2pc-vs-paxos.org][2PC vs. Paxos]]
+- 201509 [[file:central-limit-theorem.org][中心极限定理]]
+- 201509 [[file:spark-master-ui.org][spark master ui]]
+- 201509 [[file:what-happens-to-older-developers.org][What Happens to Older Developers?]]
+- 201509 [[file:tips-for-work-life-balance.org][Tips for work-life balance]]
+- 201509 [[file:start-from-simple.org][start from simple]]
+- 201508 [[file:you-know-so-little.org][其实你知道的太少]]
+- 201507 [[file:have-a-baby.org][宝宝出生了]]
+- 201505 [[file:equipped-with-ssd.org][装配SSD]]
+- 201504 [[file:kaggle-facial-keypoints-detection.org][Kaggle Facial Keypoints Detection]]
+- 201504 [[file:kaggle-digit-recongnizer.org][Kaggle Digit Recognizer]]
+- 201504 [[file:life-is-not-easy-but-magical.org][life is not easy but magical]]
+- 201503 [[file:how-to-do-cross-validation.org][如何做cross validation]]
+- 201503 [[file:kaggle-bike-sharing-demand.org][Kaggle Bike Sharing Demand]]
+- 201503 [[file:principle-of-alloc-time-for-work.org][分配工作时间的准则]]
+- 201502 [[file:how-to-choose-baseline.org][选用什么方法做baseline]]
+- 201502 [[file:2015-house-clean.org][2015家庭大扫除]]
+- 201502 [[file:do-house-work-as-leisure.org][有空多干点家务活]]
+- 201502 [[file:you-cant-read-all-books.org][书是读不过来的]]
+- 201502 [[file:peter-thiel-on-competition-obsession.org][Peter Thiel 谈竞争沉迷]]
+- 201502 [[file:telstra-billboard-of-love.org][Telstra BB]]
+
+** 2014
+- 201412 [[file:the-golden-circle.org][The Golden Circle]]
+- 201412 [[file:about-dna-sequencing.org][DNA测序原理]]
+- 201412 [[file:beginning-of-a-hard-journey.org][苦旅的起点]]
+- 201410 [[file:my-iphone5s.org][我的iPhone5S]]
+- 201409 [[file:helsinki-travel2.org][赫尔辛基印象2]]
+- 201408 [[file:jeju-travel.org][济州岛之旅]]
+- 201407 [[file:xmn-travel.org][厦门鼓浪屿印象]]
+- 201404 [[file:sfo-travel.org][旧金山印象]]
+- 201403 [[file:helsinki-travel.org][赫尔辛基印象]]
+- 201403 [[file:apply-visa-for-usa.org][申请美国签证]]
+- 201402 [[file:apply-visa-for-finland.org][申请芬兰签证]]
+- 201402 [[file:mobile-foreign-business.org][手机国际业务]]
+- 201402 [[file:cmb-hk-account.org][招商银行香港一卡通]]
+- 201401 [[file:talk-with-nenad.org][与Nenad面对面]]
+
+** 2013
+- 201312 [[file:have-a-nice-sleep-and-straighten-up.org][哪里还有时间去沮丧]]
+- 201312 [[file:thousands-pv.org][主页千次PV]]
+- 201311 [[file:heart-broken.org][为她心碎]]
+- 201311 [[file:professional-amateur.org][非业余的业余爱好]]
+- 201311 [[file:my-first-english-conversation.org][初次英语对话]]
+- 201310 [[file:my-first-moxa-wool-moxibustion.org][初次艾灸]]
+- 201310 [[file:run-wordpress-in-fast-way.org][简单搭建WordPress]]
+- 201309 [[file:do-we-need-exercise.org][我们是否需要运动]]
+- 201309 [[file:first-10km-running.org][初次10km跑]]
+- 201308 [[file:first-swimming.org][初次游泳]]
+- 201307 [[file:guilin-travel.org][桂林山水]]
+- 201307 [[file:ymy-travel.org][圆明园游]]
+- 201307 [[file:my-amoi-n821.org][我的夏新N821]]
+- 201306 [[file:unecessary-hurry-up.org][急得蛋碎了也没有用]]
+- 201306 [[file:meeting-dyq.org][做CTO都是出去过的]]
+- 201306 [[file:goodbye-dyy.org][朋友远行，一路顺风]]
+- 201305 [[file:be-careful-when-you-drive.org][小心开车]]
+- 201303 [[file:ms-interview.org][微软面试]]
+- 201302 [[file:my-without-wife-wedding.org][没有妻子的婚礼]]
+
+** 2012
+- 201211 [[file:not-easy-as-you-think.org][没有那么简单]]
+- 201211 [[file:first-foot-massage.org][初次足疗]]
+- 201209 [[file:what-can-i-do-when-old.org][以后老了我能做什么]]
+- 201208 [[file:how-to-define-software-stability.org][如何定义软件稳定]]
+- 201208 [[file:purchase-mba.org][购买MacBookAir]]
+- 201208 [[file:2012-birthday.org][记在2012年生日]]
+- 201207 [[file:visit-tj-data-center.org][参观天津机房]]
+- 201205 [[file:look-house-with-xcq.org][和xcq看房子]]
+- 201204 [[file:talk-with-luoyan.org][和luoyan的谈话]]
+- 201204 [[file:switch-back-to-windows.org][切换回windows]]
+- 201203 [[file:struggle-with-ubuntu.org][折腾Ubuntu]]
+- 201203 [[file:zj-travel.org][杭州印象]]
+- 201202 [[file:get-marriage-identity.org][领证经历]]
+- 201112 [[file:take-wedding-photo.org][婚纱摄影]]
+- 201112 [[file:how-to-apply-domain.org][如何申请域名]]
+- 201112 [[file:drive-learning.org][学车经历]]
+- 201108 [[file:purchase-diamond.org][购买钻戒]]
+- 201105 [[file:baidu-bit-shanghai-route.org][百度BIT上海行]]
+- 201003 [[file:graduate-final-report.org][记研究生答辩]]
+- 200903 [[file:purchase-compaq-notebook.org][购买compqa笔记本]]
+- 200609 [[file:new-era-carmack.org][新时代的卡马克]]
+
+** misc
+- [[file:images/cjy-baidu-blog-archive.html][百度空间存档(baidu space archive)]]
+- [[file:to-death.org][写给离去的亲人(to my dears)]]
+- [[file:cola-and-water.org][可乐和矿泉水(cola and water)]]
+- [[file:poetry-and-movie.org][诗歌和电影(poetry and movie)]]
+- [[file:cross-ocean.org][远渡重洋(cross ocean)]]
+- [[file:house.org][房子(house)]] - [[file:car.org][车子(car)]] - [[file:pregnancy.org][要孩子(preganancy)]]
+- [[file:baby-sleep-training.org][(ZZ)有关宝宝睡眠的那些事儿(睡眠训练实战操作经验)]]
+- 回顾系列
+  - [[file:review-2009.org][回顾2009]]
+  - [[file:review-2010.org][回顾2010]]
+  - [[file:review-2011.org][回顾2011]]
+  - [[file:review-2012.org][回顾2012]]
+  - [[file:review-2013.org][回顾2013]]
+  - [[file:review-2014.org][回顾2014]]
+  - [[file:review-2015.org][回顾2015]]
+  - [[file:review-2016.org][回顾2016]]
+  - [[file:review-2017.org][回顾2017]]
+  - [[file:review-2018.org][回顾2018]]
+- [[file:about-me.org][个人介绍 AboutMe]]
+- [[file:micro-twitter.org][只言片语 MicroTwitter]]
+
+** links
+People:
+- jwz. [[http://www.jwz.org/blog/][blog]] & [[http://www.jwz.org/doc/][doc]] "you can divide our industry into two kinds of people: those who want to go work for a company to make it successful, and those who want to go work for a successful company. " - [[http://www.jwz.org/gruntle/nomo.html][jwz]])
+- Leslie Lamport. http://research.microsoft.com/en-us/um/people/lamport/pubs/pubs.html
+- James Hamilton. http://mvdirona.com/jrh/work/
+- Jeff Dean. http://research.google.com/people/jeff/
+- Rob Pike. http://www.herpolhode.com/rob/
+- Russ Cox. https://swtch.com/~rsc/
+- Eric S. Raymond. http://www.catb.org/esr/
+- Matt Welsh. http://www.mdw.la/
+- Joe Armstrong. http://joearms.github.io/
+- Don Knuth. http://www-cs-faculty.stanford.edu/~uno/
+- Robert Morris. http://pdos.csail.mit.edu/~rtm/
+- [[http://www.cs.berkeley.edu/~matei/][Matei Zaharia]]. http://people.csail.mit.edu/matei/
+- R. Kent Dybvig. http://www.cs.indiana.edu/~dyb/
+- 陈寅恪 http://en.wikipedia.org/wiki/Chen_Yinke ([[file:reply-to-science-institution.org][对科学院的答复]])
+- 蔡元培 http://en.wikipedia.org/wiki/Cai_Yuanpei
+- Simon Peyton Jones. https://www.microsoft.com/en-us/research/people/simonpj/
+- Werner Vogels. http://www.allthingsdistributed.com/
+- Nathan Marz. http://nathanmarz.com/
+- Matt Might. http://matt.might.net/
+- Jeff Preshing. http://www.preshing.com/
+- Andrej Karpathy. http://karpathy.github.io/
+- Herb Sutter. http://www.gotw.ca/
+- 陈皓 http://coolshell.cn/
+- Peter Hintjens. http://hintjens.com/
+- 王垠 http://www.yinwang.org/
+- Colah's blog. http://colah.github.io/archive.html
+- Bret Victor. http://worrydream.com/#!/TheFutureOfProgramming
+- Wes McKinney. http://wesmckinney.com/archives.html
+- Petr Mitrichev. https://petr-mitrichev.blogspot.com/
+
+Blog:
+- Mechanical Sympathy : http://mechanical-sympathy.blogspot.co.at/
+- Paper Trail : http://the-paper-trail.org/blog/
+- Building Scalable Systems : http://scalingsystems.com/
+- Systems We Make : http://www.systemswemake.com/
+- 37Signals : http://signalvnoise.com/
+- Percona : http://www.mysqlperformanceblog.com/
+- DBMS 2 : http://www.dbms2.com/ # Database
+- Small Datum : http://smalldatum.blogspot.com/
+- IT Hare on Soft.ware : http://ithare.com/
+
+Conference:
+- strangeloop http://www.thestrangeloop.com/about.html
+- ICFP International Conference on Functional Programming
+- ICML International Conference on Machine Learning
+- IJCAI International Joint Conference on Artificial Intelligence
+- PLDI ACM-SIGPLAN Conference on Programming Language Design & Implementation
+- SOSP ACM SIGOPS Symposium on Operating Systems Principles http://sigops.org/sosp/
+- SOSP History Day http://sigops.org/sosp/sosp15/history/index.html
+- SIGKDD ACM International Conference on Knowledge Discovery and Data Mining
+- VLDB International Conference on Very Large Databases
+
+Archive:
+- The Best of 2012 | Dr Dobb's : http://www.drdobbs.com/architecture-and-design/the-best-of-2012/240145121
+- The Best of 2013 | Dr Dobb's : http://www.drdobbs.com/architecture-and-design/the-best-of-2013/240164956
+- High Scalability - All Time Favorites : http://highscalability.com/all-time-favorites/
+- What every computer science major should know - http://matt.might.net/articles/what-cs-majors-should-know/
+- What every programmer should know about memory, Part 1 [LWN.net] - https://lwn.net/Articles/250967/

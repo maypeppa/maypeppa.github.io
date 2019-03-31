@@ -1,0 +1,5 @@
+#+title: Go
+
+- [[http://golang.org/][The Go Programming Language]]
+- [[http://mmcgrana.github.com/2012/10/introducing-go-by-example.html][Introducing Go by Example]]
+- [[https://golang.org/doc/faq][Frequently Asked Questions (FAQ)]]

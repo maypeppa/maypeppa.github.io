@@ -1,0 +1,86 @@
+#+title: My CV
+
+* Contact
+- Yan Zhang, maypeppa1987 AT gmail DOT com
+- GitHub: https://github.com/maypeppa/
+- LinkedIn: https://www.linkedin.com/in/maypeppa
+
+* Summary
+Extensive experience in:
+- large-scale distributed system design and implementation.
+- network programming framework design and implementation.
+- storage system design and implementation.
+- performance optimization and tuning for systems and applications.
+- big data process and analysis, data mining and machine learning.
+
+Specialties:
+- proficient in C/C++, Python, Java, Scala.
+- solid knowledge of data structure and algorithm.
+- extremely familiar with system development on Linux.
+- good understanding of compiler technique and related tools.
+
+* Experience
+** Software Engineer, Head of Backend Development, [[http://castbox.fm/][CastBox.FM]], 2016.4 - Present
+
+- crawler system. It crawls podcasts available on the internet and notifies uses once new episodes are available. The software stacks include Python, Requests, Beautifulsoup, FeedParser, Squid, Redis, MongoDB etc. By collecting RSS feeds submitted by users and search query, the number of podcasts in the database has been increased from 200K to 600K, and the number of episodes has been increased from 20M to 40M. By applying machine learning algorithm on the released date of episodes in the past, we predict the future released date and increase responsiveness, that new episodes can be fetched by our crawler in 5 minutes after they are released by podcasters, and users on the app will be notified just in time. Meanwhile, we optimize images of episodes by compression and cropping, reduce the size of images from MB to less than 300KB without much loss on image quality, which saves network traffic and reduces image loading time on the mobile app.
+
+- search system. Users can search for podcasts and episodes by keywords and be provided keyword suggestions. It's developed on ElasticSearch and supports up to 12 languages including English, Portuguese, Spanish, German, Dutch, CJK etc. Data shows us more than 1/3 users subscription comes from the search system, so we put many efforts on improving and optimizing search system from following aspects.
+  - index freshness. Once an episode is fetched by our crawler system, a message will be put into the message queue(Redis) and triggers the indexing system. The latency of the whole pipeline is less than 10 seconds and more than 20k episodes are indexed per day.
+  - search latency. By using cache effectively and fine-tuning Elasticsearch, we control the latency of search API under 200ms and the latency of suggestion API under 10ms.
+  - search relevance. Besides document relevance score returned by Elasticsearch, we add many signals including play numbers and subscription numbers in the past in recent days, to get a better relevance score.
+
+- recommender system. By analysis user subscription data and applying collaborative filtering algorithm, we can recommend users podcasts that they may like and find similar podcasts. We use LightFM python library and apply WARP algorithm on user subscription data in recent 3 months. With fine tuning of parameters and A/B Testing, we raise CTR of user recommended podcasts from 2.16% to 4.52%, and CTR of similar podcasts from 1.90% to 3.19%.
+
+** Software Engineer, [[http://logzilla.net/][Logzilla]], 2015.4 - 2015.8 (Remote, as Consultant)
+
+A real-time event analytical platform.
+
+- performance tuning to support ~200K eps(event per second).
+- implement a new event storage engine to support ~1M eps(event per second).
+
+** Software Engineer, [[http://galeracluster.com/][Galera]], 2014.4 - 2014.11 (Remote, as Consultant)
+
+A drop-in plugin of MySQL multi-master.
+
+Optimize cluster recovery process regarding data center outage case, and reduce recovery time from the 30s to less than 3s.
+
+** Software Architect, Data Platform, [[https://www.umeng.com/][Umeng]], 2012.6 - 2016.4
+
+- design Umeng internal Realtime+Batch Architecture. (aka. Lambda Architecture http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html)
+
+- kvproxy, an asynchronous high-performance HTTP server for easily accessing various database systems such as HBase, MySQL, Riak etc. It's written in Scala and Finagle, use Google Protocol-Buffers as data exchange format and Google Guava LRUCache as the application-level cache. Since Finagle wraps an asynchronous function in a concept of 'Future' and encourages the developer to take server as a function(Your Server as a Function. http://monkey.org/~marius/funsrv.pdf), so kvproxy could be used not only as a server but also a library that could be easily embedded into other applications.
+
+- performance tuning of MapReduce jobs and Hadoop cluster usage from perspectives of
+  1. application. use HBase bulk-loading instead of writing data to HBase directly for better throughput and stability.
+  2. algorithm. use HyperLogLog algorithm instead of using set to calculate cardinality for better performance and any-time-range query ability.
+  3. system. turn off MapReduce speculative mode when reading data from HBase.
+  4. language. use JNI instead of pure Java code to accelerate CPU computation.
+  5. kernel. configure kernel parameters like /proc/sys/vm/zone_reclaim_mode and /sys/kernel/mm/redhat_transparent_hugepage/enabled.
+
+- FastHBaseRest, an asynchronous high-performance HTTP server written in Netty for easily accessing HBase in multiple languages by using Google Protocol-Buffers. Since HBase only provides underlying block cache, FastHBaseRest implements item cache on application level using Google Guava for better read performance. Comparing to HBase embedded HTTP server('hbase rest'), the access latency is 20% lower and transfer size is 40% lower. Meanwhile, it has more capabilities like request rewriting.
+
+- usched, an internal job scheduler system to arrange jobs which are codependent. It defines and implements a DSL called JDL(Job Description Language) which is used to describe dependencies between jobs and properties of jobs. It runs as an HTTP server and provides a web-console to manage jobs including submissions and running status dashboard etc. Thousand MapReduce jobs are scheduled by USched each day while the latency is below 5sec.
+
+** [[file:images/baidu-inf-com-2010q4.jpg][Senior Software Engineer]], [[https://www.baidu.com/][Baidu]], 2008.7 - 2012.6
+
+- dstream, an in-house distributed real-time stream processing system in C++ like Twitter's Storm and Yahoo!'s S4. The alpha version of 10 nodes cluster can process 1 million tuples per second while keeping the latency less than 100ms.
+
+- comake2, an in-house build system in Python, takes advantages of some open-source build systems such as SCons, CMake, Google's GYP, Boost's Jam etc. It has been wildly used in Baidu for continuous integration.
+
+- infpack, an in-house data exchange format in C++. Comparing to Google's Protocol-Buffers and Facebook's Thrift, the speed of serialization and deserialization is about 20~30% faster while size is 10~20% smaller. The generated code is carefully hand-tuned so implementation is very efficient.
+
+- ddbs(distributed database system), an in-house distributed relational database system. I mainly worked on SQL parser to extend syntax for more capability and implementing a SPASS(single point automatic switch system) for its fault-tolerant feature.
+
+- maintainer and developer of Baidu common libraries including BSL(Baidu standard library), ullib(wraps socket io, file io, and some Linux syscalls etc.), comdb(an embedded high-performance key-value storage system), memory allocator, character encoding, regular expression, signature and hash algorithm, URL handling, HTTP client, lock-free data structures and algorithms etc.
+
+- vitamin, an in-house tool to detect the potential bugs in C/C++ source code by static analyzation. It reports thousands of valuable warnings by scanning the whole of Baidu's code repository while keeping the rate of fake warnings relatively low.
+
+- IDL compiler, an in-house compiler translates a DSL(domain specified language) to the code that supports data exchange between C/C++ struct/class and Mcpack(an in-house data pack like Google's Protocol-Buffers) using Flex and Bison.
+
+* Projects
+- itachi, an open-source high-performance asynchronous network programming framework in C++. [[https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/cc/itachi][GitHub]]
+- nasty, a simple lisp-syntax parser in C++ using Flex and Bison. [[https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/cc/nasty][GitHub]]
+
+* Education
+- MS. Computer Science. [[http://www.sdu.edu.cn/][Shandong University]]
+- BE. Electronic Engineering. [[http://www.sdu.edu.cn/][Shandong University]]

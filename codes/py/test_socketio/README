@@ -1,0 +1,22 @@
+server.py 使用的是flask-socketio, 客户端nodejs的版本(client.js)，也有python版本(client.py, socketio-client). 但是python版本似乎有点bug, 在实测的时候消息触发有时候也不太及时。
+
+socketio实现里面有个好的地方就是支持message queue，一方面可以在外部实现控制，另外一方面可以做水平扩展，连接数可以超过单台机器的限制。
+
+ngx.conf提供了nginx的配置，可以使用 `multi_if.sh` 来创建多个网卡，这样nginx reverse proxy就可以创建更多的连接了。缺点估计就是，连接数量会翻倍，但是管理起来会更加方便。
+
+反向代理支持绑定本地网卡，但是这个需要在请求的时候headers里面带上room字段，room字段直接对应到绑定的网卡上。这个做法有点粗暴，更好的做法应该是，创建多个域名，每个域名绑定不同的反向代理网卡，然后在链接的时候随机选择域名。
+
+另外注意虚拟网卡只能链接本机，所以nginx proxy_bind 只能转发到本机上。所以水平扩展的正确方式应该是多搞几台nginx，nginx只会proxy到本机上，而不要用一台nginx proxy到多个机器上。
+
+-----
+
+load.* 主要是用来做压力测试
+- load_fio.py flask-socketio编写的server
+- load_sio.py socketio编写的server, 性能可能会比flask-socketio高点
+- load.js nodejs编写的client, 但是没有使用
+- load_client.py 用python编写的client.
+- load_trigger.py 触发发送信息
+
+压力测试有个工具 https://github.com/M6Web/websocket-bench, 可以做点简单的benchmark.
+
+这个benchmark做了两个测试：连接延迟和接收消息延迟。最终state没有办法合并，因为没有办法做序列化，所以只能是每个进程看看链接延迟和消息延迟

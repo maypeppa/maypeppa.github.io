@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>存储系统 Storage System</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">存储系统 Storage System</h1>
+<ul class="org-ul">
+<li><a href="storage-system-reading.html">Storage System Reading</a> 存储系统方面的一些文章
+<ul class="org-ul">
+<li><a href="http://redbook.cs.berkeley.edu/">Readings in Database Systems</a></li>
+<li>Design Data-Intensive Applications</li>
+<li><a href="backblaze-storage-pod.html">Backblaze Storage Pod</a> 构建廉价存储服务器的厂商，将其设计以及使用公开并且做了比较深入的说明。</li>
+<li><a href="nosql-back-to-the-feature-or-yet-another-db-feature.html">NoSQL - Back to the Future or Yet Another DB Feature</a> @2012</li>
+<li><a href="solid-state-revolution-in-depth-on-how-ssd-really-work.html">Solid-state revolution: in-depth on how SSDs really work</a> ssd发展演变，内部构造和工作方式</li>
+<li><a href="ssd-gc-and-trim.html">固态硬盘技术解析之垃圾回收和TRIM指令</a></li>
+<li><a href="coding-for-ssd.html">Coding for SSDs</a> 为ssd设计系统的要点（和ssd底层原理）</li>
+<li><a href="ssd-and-distributed-data-systems.html">SSDs and Distributed Data Systems</a> ssd对于设计分布式数据系统的影响</li>
+<li><a href="the-skinny-on-raid.html">The skinny on RAID</a> 一篇关于RAID的介绍性文章</li>
+</ul></li>
+
+<li>DBMS (database management system) <a href="dbms-intro.html">Introduction</a> &amp; <a href="dbms-impl.html">Implementation</a></li>
+<li><a href="gizzard.html">gizzard</a> a library for creating distributed datastores. <b>DEPRECATED, DONT USE IT</b></li>
+<li><a href="leveldb.html">leveldb</a> Google的开源kv存储系统。</li>
+<li><a href="mongodb.html">mongodb</a> 面向文档的分布式存储系统。</li>
+<li><a href="redis.html">redis</a> 内存存储系统，支持丰富的数据类型以及相应的计算，支持持久化。
+<ul class="org-ul">
+<li><a href="redis-cluster-tutorial.html">Redis Cluster Tutorial</a> Redis Cluster入门</li>
+<li><a href="redis-manifesto.html">Redis Manifesto</a></li>
+</ul></li>
+<li><a href="mysql.html">mysql</a> 开源关系型数据库。The world's most popular open source database.</li>
+<li><a href="galera.html">galera</a> 基于MySQL的同步多主备份集群(synchronous multi-master replication cluster). <a href="galera-code.html">code</a></li>
+<li><a href="memcached.html">memcached</a> an in-memory key-value store for small chunks of arbitrary data (strings, objects) 可以用来搭建分布式缓存服务，没有持久化存储。</li>
+<li><a href="rocksdb.html">rocksdb</a> A persistent key-value store for fast storage environments. 基于 <a href="leveldb.html">leveldb</a> 构建</li>
+<li><a href="rcfile.html">rcfile</a> / <a href="orcfile.html">orcfile</a> / <a href="parquet.html">parquet</a> 几种列式存储(columnar storage)实现</li>
+</ul>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/index-ss.html';this.page.identifier = 'index-ss.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
