@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MapReduce: A Flexible Data Processing Tool（MapRedcue: 一个灵活的数据库处理工具）</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">MapReduce: A Flexible Data Processing Tool（MapRedcue: 一个灵活的数据库处理工具）</h1>
@@ -16,13 +62,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7c32bb9">1. Heterogenous Systems</a></li>
-<li><a href="#org30f3a7b">2. Indices</a></li>
-<li><a href="#org8d2a0cd">3. Complex Functions</a></li>
-<li><a href="#org24aa191">4. Structured Data and Schemas</a></li>
-<li><a href="#orgf579292">5. Fault Tolerance</a></li>
-<li><a href="#orgf38fdf7">6. Performance</a></li>
-<li><a href="#orgd888145">7. Conclusion</a></li>
+<li><a href="#orgb8cac8a">1. Heterogenous Systems</a></li>
+<li><a href="#org3b0d995">2. Indices</a></li>
+<li><a href="#org8363435">3. Complex Functions</a></li>
+<li><a href="#orga05e617">4. Structured Data and Schemas</a></li>
+<li><a href="#org00e7840">5. Fault Tolerance</a></li>
+<li><a href="#org2675ebe">6. Performance</a></li>
+<li><a href="#orgd44c5eb">7. Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -58,8 +104,8 @@
 <li>Many conclusions in the comparison paper were based on implementation and evaluation shortcomings not fundamental to the MapReduce model; we discuss these shortcomings later in this article. 很多对于MapReduce提到的shortcomming并不是根本的问题，并且这些shortcomming也都有对应的解决办法。</li>
 </ul>
 
-<div id="outline-container-org7c32bb9" class="outline-2">
-<h2 id="org7c32bb9"><span class="section-number-2">1</span> Heterogenous Systems</h2>
+<div id="outline-container-orgb8cac8a" class="outline-2">
+<h2 id="orgb8cac8a"><span class="section-number-2">1</span> Heterogenous Systems</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Many production environments contain a mix of storage systems. 现实的生产环境中都是各种系统混合在一起的。</li>
@@ -73,8 +119,8 @@
 </div>
 </div>
 
-<div id="outline-container-org30f3a7b" class="outline-2">
-<h2 id="org30f3a7b"><span class="section-number-2">2</span> Indices</h2>
+<div id="outline-container-org3b0d995" class="outline-2">
+<h2 id="org3b0d995"><span class="section-number-2">2</span> Indices</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>事实上MapReduce是可以使用索引的</b>
@@ -82,17 +128,17 @@
 </div>
 </div>
 
-<div id="outline-container-org8d2a0cd" class="outline-2">
-<h2 id="org8d2a0cd"><span class="section-number-2">3</span> Complex Functions</h2>
+<div id="outline-container-org8363435" class="outline-2">
+<h2 id="org8363435"><span class="section-number-2">3</span> Complex Functions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-<b>在SQL难以编写复杂的过程</b>
+<b>在SQL难以编写复杂的过程</b> 
 </p>
 </div>
 </div>
 
-<div id="outline-container-org24aa191" class="outline-2">
-<h2 id="org24aa191"><span class="section-number-2">4</span> Structured Data and Schemas</h2>
+<div id="outline-container-orga05e617" class="outline-2">
+<h2 id="orga05e617"><span class="section-number-2">4</span> Structured Data and Schemas</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <b>Protocol Buffer for structed data and schema provided</b>
@@ -100,14 +146,14 @@
 </div>
 </div>
 
-<div id="outline-container-orgf579292" class="outline-2">
-<h2 id="orgf579292"><span class="section-number-2">5</span> Fault Tolerance</h2>
+<div id="outline-container-org00e7840" class="outline-2">
+<h2 id="org00e7840"><span class="section-number-2">5</span> Fault Tolerance</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这里正面回答了为什么MapReduce没有使用push模型而是使用pull模型
 </p>
 <ul class="org-ul">
-<li>The MapReduce implementation uses a pull model for moving data between mappers and reducers, as opposed to a push model where mappers write directly to reducers.
+<li>The MapReduce implementation uses a pull model for moving data between mappers and reducers, as opposed to a push model where mappers write directly to reducers. 
 <ul class="org-ul">
 <li>Pavlo et al. correctly pointed out that the pull model can result in the creation of many small files and many disk seeks to move data between mappers and reducers. pull模型会产生很多小文件并且产生大量的随机访问</li>
 <li>Implementation tricks like batching, sorting, and grouping of intermediate data and smart scheduling of reads are used by Google's MapReduce implementation to mitigate these costs. 在MapReduce实现上面有大量的优化在解决这个问题</li>
@@ -123,8 +169,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf38fdf7" class="outline-2">
-<h2 id="orgf38fdf7"><span class="section-number-2">6</span> Performance</h2>
+<div id="outline-container-org2675ebe" class="outline-2">
+<h2 id="org2675ebe"><span class="section-number-2">6</span> Performance</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Engineering considerations
@@ -140,9 +186,14 @@
 </div>
 </div>
 
-<div id="outline-container-orgd888145" class="outline-2">
-<h2 id="orgd888145"><span class="section-number-2">7</span> Conclusion</h2>
+<div id="outline-container-orgd44c5eb" class="outline-2">
+<h2 id="orgd44c5eb"><span class="section-number-2">7</span> Conclusion</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/mapreduce-a-flexible-data-processing-tool.html';this.page.identifier = 'mapreduce-a-flexible-data-processing-tool.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

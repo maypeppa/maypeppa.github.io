@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OProfile(obsolete)</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">OProfile(obsolete)</h1>
@@ -16,19 +62,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf5be08c">1. Overview</a>
+<li><a href="#org56a9322">1. Overview</a>
 <ul>
-<li><a href="#orgd36d8bc">1.1. 内核驱动</a></li>
-<li><a href="#org16260c2">1.2. 守护进程</a></li>
-<li><a href="#org20e0ce5">1.3. 工具附件</a></li>
+<li><a href="#org6df4261">1.1. 内核驱动</a></li>
+<li><a href="#org5d57b6e">1.2. 守护进程</a></li>
+<li><a href="#orgc11ae44">1.3. 工具附件</a></li>
 </ul>
 </li>
-<li><a href="#org633399a">2. Getting Started</a></li>
-<li><a href="#org83072d0">3. Notes</a>
+<li><a href="#org5d8533d">2. Getting Started</a></li>
+<li><a href="#org3a1ca5d">3. Notes</a>
 <ul>
-<li><a href="#orgc2c5ccd">3.1. opcontrol</a></li>
-<li><a href="#org83ba874">3.2. opreport</a></li>
-<li><a href="#org5988286">3.3. opannotate</a></li>
+<li><a href="#orga069e5c">3.1. opcontrol</a></li>
+<li><a href="#orgfb34c55">3.2. opreport</a></li>
+<li><a href="#orge3d4097">3.3. opannotate</a></li>
 </ul>
 </li>
 </ul>
@@ -48,8 +94,8 @@
 <li>AMD Family 10 Events <a href="http://oprofile.sourceforge.net/docs/amd-family10-events.php">http://oprofile.sourceforge.net/docs/amd-family10-events.php</a></li>
 </ul>
 
-<div id="outline-container-orgf5be08c" class="outline-2">
-<h2 id="orgf5be08c"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-org56a9322" class="outline-2">
+<h2 id="org56a9322"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="http://www.ibm.com/developerworks/cn/linux/l-oprof/">http://www.ibm.com/developerworks/cn/linux/l-oprof/</a>
@@ -68,8 +114,8 @@ oprofile由下面三个部分组成
 </p>
 </div>
 
-<div id="outline-container-orgd36d8bc" class="outline-3">
-<h3 id="orgd36d8bc"><span class="section-number-3">1.1</span> 内核驱动</h3>
+<div id="outline-container-org6df4261" class="outline-3">
+<h3 id="org6df4261"><span class="section-number-3">1.1</span> 内核驱动</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 内核驱动工作的时候分为三种模式：
@@ -107,8 +153,8 @@ oprofile由下面三个部分组成
 </div>
 </div>
 
-<div id="outline-container-org16260c2" class="outline-3">
-<h3 id="org16260c2"><span class="section-number-3">1.2</span> 守护进程</h3>
+<div id="outline-container-org5d57b6e" class="outline-3">
+<h3 id="org5d57b6e"><span class="section-number-3">1.2</span> 守护进程</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 守护进程(daemon)用于收集内核驱动采样数据，并且将采样数据dump到外部文件。对应的可执行程序是bin/oprofiled.
@@ -116,8 +162,8 @@ oprofile由下面三个部分组成
 </div>
 </div>
 
-<div id="outline-container-org20e0ce5" class="outline-3">
-<h3 id="org20e0ce5"><span class="section-number-3">1.3</span> 工具附件</h3>
+<div id="outline-container-orgc11ae44" class="outline-3">
+<h3 id="orgc11ae44"><span class="section-number-3">1.3</span> 工具附件</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 通过读取dump出来的外部文件得到采样数据进行加工：
@@ -132,8 +178,8 @@ oprofile由下面三个部分组成
 </div>
 </div>
 
-<div id="outline-container-org633399a" class="outline-2">
-<h2 id="org633399a"><span class="section-number-2">2</span> Getting Started</h2>
+<div id="outline-container-org5d8533d" class="outline-2">
+<h2 id="org5d8533d"><span class="section-number-2">2</span> Getting Started</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Installation <a href="http://oprofile.sourceforge.net/doc/install.html">http://oprofile.sourceforge.net/doc/install.html</a></li>
@@ -181,8 +227,8 @@ oprofile由下面三个部分组成
 <pre class="src src-Shell"># deprecated !!!
 easy_oprofile() {
     if [ $# -lt 5 ]; then
-        echo "easy_oprofile image-file(ELF) command"
-        exit 1
+	echo "easy_oprofile image-file(ELF) command"
+	exit 1
     fi
     local ifile=$1; shift
     local rfile="oprof.rpt"
@@ -209,19 +255,19 @@ easy_oprofile() {
 </div>
 </div>
 
-<div id="outline-container-org83072d0" class="outline-2">
-<h2 id="org83072d0"><span class="section-number-2">3</span> Notes</h2>
+<div id="outline-container-org3a1ca5d" class="outline-2">
+<h2 id="org3a1ca5d"><span class="section-number-2">3</span> Notes</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc2c5ccd" class="outline-3">
-<h3 id="orgc2c5ccd"><span class="section-number-3">3.1</span> opcontrol</h3>
+<div id="outline-container-orga069e5c" class="outline-3">
+<h3 id="orga069e5c"><span class="section-number-3">3.1</span> opcontrol</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 常用命令参数如下：
 </p>
 <ul class="org-ul">
 <li>&#x2013;reset # 清除session数据</li>
-<li>&#x2013;no-vmlinux|&#x2013;vmlinux=/boot/vmlinux-2.6.9.2_9-0-0-0 # 选择内核镜像剖分内核</li>
+<li>&#x2013;no-vmlinux|&#x2013;vmlinux=/boot/vmlinux-2.6.9.2<sub>9</sub>-0-0-0 # 选择内核镜像剖分内核</li>
 <li>&#x2013;deinit # 卸载oprofile device driver</li>
 <li>&#x2013;init # 加载oprofile device driver</li>
 <li>&#x2013;setup # 设置oprofile默认参数，保存在/root/.oprofile/daemonrc下面</li>
@@ -266,8 +312,8 @@ easy_oprofile() {
 </div>
 </div>
 
-<div id="outline-container-org83ba874" class="outline-3">
-<h3 id="org83ba874"><span class="section-number-3">3.2</span> opreport</h3>
+<div id="outline-container-orgfb34c55" class="outline-3">
+<h3 id="orgfb34c55"><span class="section-number-3">3.2</span> opreport</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 opreport包含两类参数，一类是过滤参数用于通知应用打印出关于哪些方面的信息，一类是命令参数是关于如何打印出这方面的信息。
@@ -313,8 +359,8 @@ opreport包含两类参数，一类是过滤参数用于通知应用打印出关
 </div>
 </div>
 
-<div id="outline-container-org5988286" class="outline-3">
-<h3 id="org5988286"><span class="section-number-3">3.3</span> opannotate</h3>
+<div id="outline-container-orge3d4097" class="outline-3">
+<h3 id="orge3d4097"><span class="section-number-3">3.3</span> opannotate</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 常用命令参数如下：
@@ -346,6 +392,11 @@ opreport包含两类参数，一类是过滤参数用于通知应用打印出关
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/oprofile-obsolete.html';this.page.identifier = 'oprofile-obsolete.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

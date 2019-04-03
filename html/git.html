@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">git</h1>
@@ -16,25 +62,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge4cb937">1. links</a></li>
-<li><a href="#org8be5920">2. git repo</a></li>
-<li><a href="#orgb2faaf4">3. git branch</a></li>
-<li><a href="#org4425f00">4. git tag</a></li>
-<li><a href="#org154be48">5. git flow</a></li>
-<li><a href="#orgcc9c053">6. tips</a>
+<li><a href="#orgac3159c">1. links</a></li>
+<li><a href="#org5a69a1b">2. git repo</a></li>
+<li><a href="#org3ad319c">3. git branch</a></li>
+<li><a href="#orgfaa47af">4. git tag</a></li>
+<li><a href="#orgf785d05">5. git flow</a></li>
+<li><a href="#org93e9a13">6. tips</a>
 <ul>
-<li><a href="#orgfcb1085">6.1. 合并多个commit</a></li>
-<li><a href="#orgb2fdd0c">6.2. https信任</a></li>
-<li><a href="#org4798d79">6.3. 仓库打包</a></li>
-<li><a href="#org9f372cc">6.4. 自建git仓库</a></li>
+<li><a href="#org0786a8e">6.1. 合并多个commit</a></li>
+<li><a href="#org1b6f3ac">6.2. https信任</a></li>
+<li><a href="#org09e7c52">6.3. 仓库打包</a></li>
+<li><a href="#orgb55b208">6.4. 自建git仓库</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge4cb937" class="outline-2">
-<h2 id="orge4cb937"><span class="section-number-2">1</span> links</h2>
+<div id="outline-container-orgac3159c" class="outline-2">
+<h2 id="orgac3159c"><span class="section-number-2">1</span> links</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Git – Fast Version Control System. <a href="http://git.or.cz/index.html">http://git.or.cz/index.html</a></li>
@@ -48,8 +94,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8be5920" class="outline-2">
-<h2 id="org8be5920"><span class="section-number-2">2</span> git repo</h2>
+<div id="outline-container-org5a69a1b" class="outline-2">
+<h2 id="org5a69a1b"><span class="section-number-2">2</span> git repo</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内容到本地仓库，并且也可以推送本地仓库到不同的远程仓库去。
@@ -85,7 +131,7 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 <li>git reset HEAD &lt;files&gt; 保留本地修改，取消INDEX</li>
 <li>git reset &#x2013;hard &lt;commit-id&gt; # 回退到某个commit-id，包括commit/index信息.</li>
 <li>git reset &#x2013;soft &lt;commit-id&gt; # 回退到某个commit-id，只是commit不包括index.</li>
-<li>#note: commit-id只能是本地commit. 可以使用HEAD^1这样类似游标方式</li>
+<li>#note: commit-id只能是本地commit. 可以使用HEAD<sup>1这样类似游标方式</sup></li>
 <li>git rm &lt;files&gt; 从HEAD删除</li>
 <li>git rm &#x2013;cached &lt;files&gt; 从INDEX删除 (从仓库里面删除但是不删除本地文件)</li>
 <li>git mv 重命名文件</li>
@@ -106,8 +152,8 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 </div>
 </div>
 
-<div id="outline-container-orgb2faaf4" class="outline-2">
-<h2 id="orgb2faaf4"><span class="section-number-2">3</span> git branch</h2>
+<div id="outline-container-org3ad319c" class="outline-2">
+<h2 id="org3ad319c"><span class="section-number-2">3</span> git branch</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 默认来说git包含一个master分支，也可以很容易地创建和删除分支。当从远程clone到本地的时候，
@@ -146,8 +192,8 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 </div>
 </div>
 
-<div id="outline-container-org4425f00" class="outline-2">
-<h2 id="org4425f00"><span class="section-number-2">4</span> git tag</h2>
+<div id="outline-container-orgfaa47af" class="outline-2">
+<h2 id="orgfaa47af"><span class="section-number-2">4</span> git tag</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Git使用的标签有两种类型：轻量级的（lightweight）和含附注的（annotated）。轻量级标签就像是个不会变化的分支，实际上它就是个指向特 定提交对象的引用。而含附注标签，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。一般我们都建议使用含附注型的标签，以便保留相关信息；当然，如果只是临时性加注标签，或者不需要旁注额外信息，用轻量级标签也没问题。
@@ -163,8 +209,8 @@ Git使用的标签有两种类型：轻量级的（lightweight）和含附注的
 </div>
 </div>
 
-<div id="outline-container-org154be48" class="outline-2">
-<h2 id="org154be48"><span class="section-number-2">5</span> git flow</h2>
+<div id="outline-container-orgf785d05" class="outline-2">
+<h2 id="orgf785d05"><span class="section-number-2">5</span> git flow</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 参考资源
@@ -228,19 +274,19 @@ git-flow主要推行的就是一种开发方式，然后通过工具来配合这
 </div>
 </div>
 
-<div id="outline-container-orgcc9c053" class="outline-2">
-<h2 id="orgcc9c053"><span class="section-number-2">6</span> tips</h2>
+<div id="outline-container-org93e9a13" class="outline-2">
+<h2 id="org93e9a13"><span class="section-number-2">6</span> tips</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgfcb1085" class="outline-3">
-<h3 id="orgfcb1085"><span class="section-number-3">6.1</span> 合并多个commit</h3>
+<div id="outline-container-org0786a8e" class="outline-3">
+<h3 id="org0786a8e"><span class="section-number-3">6.1</span> 合并多个commit</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 合并两个commit
 </p>
 <blockquote>
 <p>
-$ git reset &#x2013;soft HEAD^1
+$ git reset &#x2013;soft HEAD<sup>1</sup>
 $ git commit &#x2013;amend
 </p>
 </blockquote>
@@ -257,8 +303,8 @@ $ git rebase -i HEAD~n
 </div>
 </div>
 
-<div id="outline-container-orgb2fdd0c" class="outline-3">
-<h3 id="orgb2fdd0c"><span class="section-number-3">6.2</span> https信任</h3>
+<div id="outline-container-org1b6f3ac" class="outline-3">
+<h3 id="org1b6f3ac"><span class="section-number-3">6.2</span> https信任</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 <a href="http://support.beanstalkapp.com/article/856-how-do-i-make-git-remember-my-credentials">http://support.beanstalkapp.com/article/856-how-do-i-make-git-remember-my-credentials</a>
@@ -271,8 +317,8 @@ git config --global credential.helper 'cache --timeout=3600' # 将超时时间�
 </div>
 </div>
 
-<div id="outline-container-org4798d79" class="outline-3">
-<h3 id="org4798d79"><span class="section-number-3">6.3</span> 仓库打包</h3>
+<div id="outline-container-org09e7c52" class="outline-3">
+<h3 id="org09e7c52"><span class="section-number-3">6.3</span> 仓库打包</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 git archive &#x2013;format HEAD &gt; output.zip
@@ -280,8 +326,8 @@ git archive &#x2013;format HEAD &gt; output.zip
 </div>
 </div>
 
-<div id="outline-container-org9f372cc" class="outline-3">
-<h3 id="org9f372cc"><span class="section-number-3">6.4</span> 自建git仓库</h3>
+<div id="outline-container-orgb55b208" class="outline-3">
+<h3 id="orgb55b208"><span class="section-number-3">6.4</span> 自建git仓库</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 假设我们有一台开了ssh服务的机器my-node, 在这台机器上`git &#x2013;bare init /home/user/project`
@@ -293,6 +339,11 @@ git archive &#x2013;format HEAD &gt; output.zip
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/git.html';this.page.identifier = 'git.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

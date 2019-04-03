@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>nginx</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">nginx</h1>
@@ -16,10 +62,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org604000d">1. 站点跳转</a></li>
-<li><a href="#org1609e1d">2. 支持软链接</a></li>
-<li><a href="#orge11631e">3. 正向代理</a></li>
-<li><a href="#org615df26">4. 请求缓存</a></li>
+<li><a href="#org54088bb">1. 站点跳转</a></li>
+<li><a href="#org29a3585">2. 支持软链接</a></li>
+<li><a href="#orgd2aaa6a">3. 正向代理</a></li>
+<li><a href="#org5fbda67">4. 请求缓存</a></li>
 </ul>
 </div>
 </div>
@@ -27,8 +73,8 @@
 <a href="http://nginx.org/">http://nginx.org/</a>
 </p>
 
-<div id="outline-container-org604000d" class="outline-2">
-<h2 id="org604000d"><span class="section-number-2">1</span> 站点跳转</h2>
+<div id="outline-container-org54088bb" class="outline-2">
+<h2 id="org54088bb"><span class="section-number-2">1</span> 站点跳转</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 从dirlt.com跳转到maypeppa.info
@@ -73,8 +119,8 @@ http {
 </div>
 </div>
 
-<div id="outline-container-org1609e1d" class="outline-2">
-<h2 id="org1609e1d"><span class="section-number-2">2</span> 支持软链接</h2>
+<div id="outline-container-org29a3585" class="outline-2">
+<h2 id="org29a3585"><span class="section-number-2">2</span> 支持软链接</h2>
 <div class="outline-text-2" id="text-2">
 <pre class="example">
 http {
@@ -83,8 +129,8 @@ http {
 </pre>
 </div>
 </div>
-<div id="outline-container-orge11631e" class="outline-2">
-<h2 id="orge11631e"><span class="section-number-2">3</span> 正向代理</h2>
+<div id="outline-container-orgd2aaa6a" class="outline-2">
+<h2 id="orgd2aaa6a"><span class="section-number-2">3</span> 正向代理</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 用nginx做一个http proxy. `resolver*`这个字段是必要的。
@@ -118,8 +164,8 @@ Out[12]: &lt;Response [200]&gt;
 </div>
 </div>
 
-<div id="outline-container-org615df26" class="outline-2">
-<h2 id="org615df26"><span class="section-number-2">4</span> 请求缓存</h2>
+<div id="outline-container-org5fbda67" class="outline-2">
+<h2 id="org5fbda67"><span class="section-number-2">4</span> 请求缓存</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 可以针对某个路径下面的请求进行缓存。不过我还没有搞清楚缓存规则是怎么样的，默认应该是对query做key.
@@ -146,28 +192,33 @@ UPDATE: 这篇 <a href="http://zyan.cc/nginx_cache/">文章</a> 给了一些看�
 
 <blockquote>
 <p>
-#设置Web缓存区名称为cache_one，内存缓存空间大小为200MB，1天没有被访问的内容自动清除，硬盘缓存空间大小为30GB。
-proxy_cache_path  /data0/proxy_cache_dir  levels=1:2   keys_zone=cache_one:200m inactive=1d max_size=30g;
+#设置Web缓存区名称为cache<sub>one</sub>，内存缓存空间大小为200MB，1天没有被访问的内容自动清除，硬盘缓存空间大小为30GB。
+proxy<sub>cache</sub><sub>path</sub>  /data0/proxy<sub>cache</sub><sub>dir</sub>  levels=1:2   keys<sub>zone</sub>=cache<sub>one</sub>:200m inactive=1d max<sub>size</sub>=30g;
 </p>
 
 <p>
 #如果后端的服务器返回502、504、执行超时等错误，自动将请求转发到upstream负载均衡池中的另一台服务器，实现故障转移。
-proxy_next_upstream http_502 http_504 error timeout invalid_header;
+proxy<sub>next</sub><sub>upstream</sub> http<sub>502</sub> http<sub>504</sub> error timeout invalid<sub>header</sub>;
 </p>
 
 <p>
 #对不同的HTTP状态码设置不同的缓存时间
-proxy_cache_valid  200 304 12h;
+proxy<sub>cache</sub><sub>valid</sub>  200 304 12h;
 #以域名、URI、参数组合成Web缓存的Key值，Nginx根据Key值哈希，存储缓存内容到二级缓存目录内
-proxy_cache_key $host$uri$is_args$args;
+proxy<sub>cache</sub><sub>key</sub> $host$uri$is<sub>args</sub>$args;
 </p>
 </blockquote>
 
 <p>
-所以我们可以设置proxy_cache_key字段来选择cache_key.
+所以我们可以设置proxy<sub>cache</sub><sub>key字段来选择cache</sub><sub>key</sub>.
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/nginx.html';this.page.identifier = 'nginx.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

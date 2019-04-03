@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The economics of getting hired as a data scientist</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">The economics of getting hired as a data scientist</h1>
@@ -54,11 +100,16 @@ What are those things? Based on what I’ve seen, about 5 come to mind:
 
 <ol class="org-ol">
 <li>Replicate papers. This is especially true if you’re a deep learning buff. People don’t do this because it’s harder than grabbing a dataset and using a simple ANN or XGBoost to do cookie-cutter classification. Find the most interesting paper (ideally a relatively recent one) relevant to your field on the arXiv, and read it. Understand it. Then, replicate it, potentially on a new dataset. Write a blog post about it.</li>
-<li>Don’t get comfortable in your comfort zone. If you start a new project, it had better be to learn some new frameworks/libraries/tools. If you’re building your 6th Jupyter notebook that starts with df = pd.read_csv(filename) and ends with f1 = f1_score(y_true, y_pred) , it’s time to change your strategy.</li>
+<li>Don’t get comfortable in your comfort zone. If you start a new project, it had better be to learn some new frameworks/libraries/tools. If you’re building your 6th Jupyter notebook that starts with df = pd.read<sub>csv</sub>(filename) and ends with f1 = f1<sub>score</sub>(y<sub>true</sub>, y<sub>pred</sub>) , it’s time to change your strategy.</li>
 <li>Learn boring things. Other people aren’t doing this because no one likes boring things. But learning a proper Git flow, how to use Docker, how to build an app using Flask, and how to deploy models on AWS or Google Cloud, are skills that companies desperately want applicants to have, but that are under-appreciated by a solid majority of applicants.</li>
 <li>Do annoying things. 1) Offer to present a paper at a local data science meetup. Or, at the very least, attend the local data science meetup. 2) Send cold messages to people on LinkedIn. Try to offer value upfront (“I just noticed a typo on your website”). DO NOT ASK THEM FOR A JOB RIGHT AWAY. Make your ask as specific as possible (“I’d love to get your feedback on my blog post”). You’re trying to build a relationship and expand your network, and that takes patience. 3) Attend conferences and network. 4) Start a study group.</li>
 <li>Do things that seem crazy. Everyone goes to the UCI repository, or uses some stock dataset (yawn) to build their project. Don’t do that. Learn how to use a web scraping library, or some under-appreciated API to build your own, custom dataset. Data is hard to come by, and companies often need to rely on their engineers to get it for them. Your goal should be to come across as the kind of data science-obsessed lunatic who will build your own goddamn dataset if that’s what it takes to get the job done.</li>
 </ol>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/the-economics-of-getting-hired-as-a-data-scientist.html';this.page.identifier = 'the-economics-of-getting-hired-as-a-data-scientist.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

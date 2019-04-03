@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Caffe</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Caffe</h1>
@@ -16,16 +62,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org61cfe89">1. setup</a></li>
-<li><a href="#orga7fab1e">2. arch</a>
+<li><a href="#org55b06d2">1. setup</a></li>
+<li><a href="#org47db28e">2. arch</a>
 <ul>
-<li><a href="#org2a11fc4">2.1. Blob</a></li>
-<li><a href="#org929f824">2.2. Layer</a></li>
-<li><a href="#orgeec38af">2.3. Net</a></li>
-<li><a href="#orgf25fa45">2.4. Solver</a></li>
+<li><a href="#org47ceb52">2.1. Blob</a></li>
+<li><a href="#org86fb84e">2.2. Layer</a></li>
+<li><a href="#org73a8ff3">2.3. Net</a></li>
+<li><a href="#org2874295">2.4. Solver</a></li>
 </ul>
 </li>
-<li><a href="#orgda713cb">3. python</a></li>
+<li><a href="#org09a7785">3. python</a></li>
 </ul>
 </div>
 </div>
@@ -33,8 +79,8 @@
 <a href="http://caffe.berkeleyvision.org/">http://caffe.berkeleyvision.org/</a>
 </p>
 
-<div id="outline-container-org61cfe89" class="outline-2">
-<h2 id="org61cfe89"><span class="section-number-2">1</span> setup</h2>
+<div id="outline-container-org55b06d2" class="outline-2">
+<h2 id="org55b06d2"><span class="section-number-2">1</span> setup</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 安装需要下面这些组件。这些组件都可以通过apt-get获得。
@@ -52,8 +98,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga7fab1e" class="outline-2">
-<h2 id="orga7fab1e"><span class="section-number-2">2</span> arch</h2>
+<div id="outline-container-org47db28e" class="outline-2">
+<h2 id="org47db28e"><span class="section-number-2">2</span> arch</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 caffe是非常模块化的，可能这和神经网络本身就比较模块化相关。主页上有这个系统的设计哲学：
@@ -81,8 +127,8 @@ caffe是非常模块化的，可能这和神经网络本身就比较模块化相
 </p>
 </div>
 
-<div id="outline-container-org2a11fc4" class="outline-3">
-<h3 id="org2a11fc4"><span class="section-number-3">2.1</span> Blob</h3>
+<div id="outline-container-org47ceb52" class="outline-3">
+<h3 id="org47ceb52"><span class="section-number-3">2.1</span> Blob</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Blob是一个四维连续数组(4-D contiguous array, type = float32), 使用(n, k, h, w)表示的话，那么每一维的意思分别是：
@@ -108,8 +154,8 @@ Blob内部其实有两个字段data, diff. data表示流动数据(输出数据)�
 </div>
 </div>
 
-<div id="outline-container-org929f824" class="outline-3">
-<h3 id="org929f824"><span class="section-number-3">2.2</span> Layer</h3>
+<div id="outline-container-org86fb84e" class="outline-3">
+<h3 id="org86fb84e"><span class="section-number-3">2.2</span> Layer</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 caffe提供了许多内置layer，比如convolution layer, pool layer, dropout layer, nonlinearity layer等。这些层说明以及具体参数都可以在 <a href="http://caffe.berkeleyvision.org/tutorial/layers.html">这里</a> 查到（文档比代码有一些滞后，文档里面没有说支持了dropout但是实际已经提供）。每个layer有输入一些'bottom' blobs, 输出一些'top' blobs. 输入层是"data"和"label" blobs.
@@ -135,13 +181,13 @@ caffe支持的layer完整在 <a href="http://caffe.berkeleyvision.org/tutorial/l
 </p>
 
 <p>
-#note: 有可能文档上名字和实际代码对不上，如果是这样的话可以阅读src/caffe/layers/*_layer.cpp找到REGISTER_LAYER_CLASS(name). 其中name就是注册的字符串
+#note: 有可能文档上名字和实际代码对不上，如果是这样的话可以阅读src/caffe/layers/*<sub>layer.cpp找到REGISTER</sub><sub>LAYER</sub><sub>CLASS</sub>(name). 其中name就是注册的字符串
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgeec38af" class="outline-3">
-<h3 id="orgeec38af"><span class="section-number-3">2.3</span> Net</h3>
+<div id="outline-container-org73a8ff3" class="outline-3">
+<h3 id="org73a8ff3"><span class="section-number-3">2.3</span> Net</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 net是layers组成的DAG, 并且可以使用文本格式来描述(protocol-buffers TextFormat). 比如下面文本生成的是logistic regression.
@@ -242,14 +288,14 @@ input_dim: 28
 </p>
 
 <p>
-#note: 我没有使用caffe自身提供的classifier.py, 因为我发现Classifier会对input做一些处理。在进行实验的时候我发现使用Classifier得到的结果比直接使用Net::forward_all接口要差很多。
+#note: 我没有使用caffe自身提供的classifier.py, 因为我发现Classifier会对input做一些处理。在进行实验的时候我发现使用Classifier得到的结果比直接使用Net::forward<sub>all接口要差很多</sub>。
 </p>
 
 <div class="org-src-container">
 <pre class="src src-Python">caffe.set_mode_cpu()
 net = caffe.Net('caffe-conf/test.prototxt',
-                'uv_iter_10000.caffemodel',
-                caffe.TEST)
+		'uv_iter_10000.caffemodel',
+		caffe.TEST)
 data = data.reshape((-1, 1, 28, 28))
 out = net.forward_all(**{'data': data})
 rs = out['prob'] # 得到的是softmax.
@@ -259,8 +305,8 @@ print_timer("predict")
 </div>
 </div>
 
-<div id="outline-container-orgf25fa45" class="outline-3">
-<h3 id="orgf25fa45"><span class="section-number-3">2.4</span> Solver</h3>
+<div id="outline-container-org2874295" class="outline-3">
+<h3 id="org2874295"><span class="section-number-3">2.4</span> Solver</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 solver做了下面这些事情：
@@ -273,7 +319,7 @@ solver做了下面这些事情：
 <ul class="org-ul">
 <li>Solver::Snapshot() / Solver::Restore() # 保存和恢复网络参数, 后缀.caffemodel</li>
 <li>Solver::SnapshotSolverState() / Solver::RestoreSolverState() # 保存和恢复运行状态，后缀.solverstate</li>
-<li>文件名称是&lt;prefix&gt;_iter_&lt;N&gt;，其中prefix是指定前缀，N表示迭代轮数。</li>
+<li>文件名称是&lt;prefix&gt;<sub>iter</sub>_&lt;N&gt;，其中prefix是指定前缀，N表示迭代轮数。</li>
 </ul></li>
 </ul>
 
@@ -339,14 +385,14 @@ solver_mode: CPU
 </p>
 
 <p>
-如果你在训练时候不想进行test的话，那么可以指定上面的"net"为"train_net". 当然你也可以使用"test_nets"来指定多个test_net.
+如果你在训练时候不想进行test的话，那么可以指定上面的"net"为"train<sub>net</sub>". 当然你也可以使用"test<sub>nets</sub>"来指定多个test<sub>net</sub>.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgda713cb" class="outline-2">
-<h2 id="orgda713cb"><span class="section-number-2">3</span> python</h2>
+<div id="outline-container-org09a7785" class="outline-2">
+<h2 id="org09a7785"><span class="section-number-2">3</span> python</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="http://caffe.berkeleyvision.org/tutorial/interfaces.html">http://caffe.berkeleyvision.org/tutorial/interfaces.html</a>
@@ -388,6 +434,11 @@ caffe的python binding功能还是非常完备的
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/caffe.html';this.page.identifier = 'caffe.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

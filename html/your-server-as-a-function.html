@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Your Server as a Function</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Your Server as a Function</h1>
@@ -16,30 +62,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org20d5a68">1. Abstract</a></li>
-<li><a href="#org8323403">2. Introduction</a></li>
-<li><a href="#org2658298">3. Futures</a></li>
-<li><a href="#org2a61e9b">4. Services and Filters</a></li>
-<li><a href="#orga6fe025">5. Discussion</a>
+<li><a href="#org83fbb15">1. Abstract</a></li>
+<li><a href="#orgb60a9d8">2. Introduction</a></li>
+<li><a href="#orga949440">3. Futures</a></li>
+<li><a href="#orged39381">4. Services and Filters</a></li>
+<li><a href="#org5401797">5. Discussion</a>
 <ul>
-<li><a href="#orgd479e1a">5.1. Declarative programming with futures</a></li>
-<li><a href="#org887be66">5.2. Futures in practice</a></li>
-<li><a href="#org4d7d7ac">5.3. Filters</a></li>
-<li><a href="#org85082bb">5.4. The cost of abstraction</a></li>
-<li><a href="#org335cde7">5.5. Futures, Services, and Filters at Twitter</a></li>
+<li><a href="#org42e6750">5.1. Declarative programming with futures</a></li>
+<li><a href="#orgae03ae4">5.2. Futures in practice</a></li>
+<li><a href="#orgbe438c2">5.3. Filters</a></li>
+<li><a href="#org308076b">5.4. The cost of abstraction</a></li>
+<li><a href="#orgf95f045">5.5. Futures, Services, and Filters at Twitter</a></li>
 </ul>
 </li>
-<li><a href="#org168cd50">6. Related work</a></li>
-<li><a href="#org57290c1">7. Conclusions</a></li>
+<li><a href="#org534b2b3">6. Related work</a></li>
+<li><a href="#org3d4f0d2">7. Conclusions</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org20d5a68" class="outline-2">
-<h2 id="org20d5a68"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-org83fbb15" class="outline-2">
+<h2 id="org83fbb15"><span class="section-number-2">1</span> Abstract</h2>
 </div>
-<div id="outline-container-org8323403" class="outline-2">
-<h2 id="org8323403"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orgb60a9d8" class="outline-2">
+<h2 id="orgb60a9d8"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We present three abstractions around which we structure our server software at Twitter. They adhere to the style of func-tional programming—emphasizing immutability, the composition of first-class functions, and the isolation of side effects—and com-bine to present a large gain in flexibility, simplicity, ease of reason-ing, and robustness.(借鉴函数编程思想，不可变性，作为first-class的函数进行组合，以及将side-effects独立出来)
@@ -56,8 +102,8 @@ We present three abstractions around which we structure our server software at T
 </div>
 </div>
 
-<div id="outline-container-org2658298" class="outline-2">
-<h2 id="org2658298"><span class="section-number-2">3</span> Futures</h2>
+<div id="outline-container-orga949440" class="outline-2">
+<h2 id="orga949440"><span class="section-number-2">3</span> Futures</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>A future is a container used to hold the result of an asynchronous operation such as a network RPC, a timeout, or a disk I/O opera- tion.</li>
@@ -73,8 +119,8 @@ We present three abstractions around which we structure our server software at T
 </ul>
 </div>
 </div>
-<div id="outline-container-org2a61e9b" class="outline-2">
-<h2 id="org2a61e9b"><span class="section-number-2">4</span> Services and Filters</h2>
+<div id="outline-container-orged39381" class="outline-2">
+<h2 id="orged39381"><span class="section-number-2">4</span> Services and Filters</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>A service is an asynchronous function, typically representing some remote endpoint to which RPCs are dispatched; it is distinguished from a regular function in Scala by enforcing that its return value is represented by a Future
@@ -92,12 +138,12 @@ We present three abstractions around which we structure our server software at T
 </div>
 </div>
 
-<div id="outline-container-orga6fe025" class="outline-2">
-<h2 id="orga6fe025"><span class="section-number-2">5</span> Discussion</h2>
+<div id="outline-container-org5401797" class="outline-2">
+<h2 id="org5401797"><span class="section-number-2">5</span> Discussion</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgd479e1a" class="outline-3">
-<h3 id="orgd479e1a"><span class="section-number-3">5.1</span> Declarative programming with futures</h3>
+<div id="outline-container-org42e6750" class="outline-3">
+<h3 id="org42e6750"><span class="section-number-3">5.1</span> Declarative programming with futures</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 The style of declarative programming encouraged by futures forces the programmer to structure his system as a set of components whose data dependencies are witnessed by the various future com-binators. <b>This is a sort of systems description, divorcing the seman-tics of an operation, which are described by the programmer, from execution details, handled by Finagle.</b> This has been enormously beneficial, freeing the programmer from the tedium of managing threads, queues, resource pools, and resource reclamation, allowing him instead to focus on application semantics.
@@ -117,8 +163,8 @@ Another, perhaps surprising, benefit is that since future types are “infectiou
 </div>
 </div>
 
-<div id="outline-container-org887be66" class="outline-3">
-<h3 id="org887be66"><span class="section-number-3">5.2</span> Futures in practice</h3>
+<div id="outline-container-orgae03ae4" class="outline-3">
+<h3 id="orgae03ae4"><span class="section-number-3">5.2</span> Futures in practice</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 We introduced an interrupt mechanism to bridge the gap. In-terrupts enable consumers of a future to notify the asynchronous operation responsible for populating it, typically because the result is no longer needed. <b>Interrupts flow in the opposite direction of the data carried by futures, and they are advisory. Interrupts don’t di-rectly change the state of the future, but a producer may act on it. We added interrupt handling to the bottom-most part of our net-work clients.</b> In practice, only a handful of places in our code base, such as our timeout filter, were modified to raise interrupts.(interrupt并不会改变future状态, 但是producer能够识别它。整个interrupt是以data flow相反的方向传播的，然后finagle在最底层做interrupt处理)
@@ -134,8 +180,8 @@ Interrupts are not without problems. They introduce new seman- tic complications
 </div>
 </div>
 
-<div id="outline-container-org4d7d7ac" class="outline-3">
-<h3 id="org4d7d7ac"><span class="section-number-3">5.3</span> Filters</h3>
+<div id="outline-container-orgbe438c2" class="outline-3">
+<h3 id="orgbe438c2"><span class="section-number-3">5.3</span> Filters</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 This is an excerpt from its current configura- tion:
@@ -155,8 +201,8 @@ This is an excerpt from its current configura- tion:
 </div>
 </div>
 
-<div id="outline-container-org85082bb" class="outline-3">
-<h3 id="org85082bb"><span class="section-number-3">5.4</span> The cost of abstraction</h3>
+<div id="outline-container-org308076b" class="outline-3">
+<h3 id="org308076b"><span class="section-number-3">5.4</span> The cost of abstraction</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 High level programming languages and constructs do not come for free. Future combinators allocate new futures on the garbage collected heap; closures, too, need to be allocated on the heap, since their invocation is deferred. While we’ve focused on reducing the allocation footprints—and indeed created many tools for allocation analysis—it is an ongoing concern.(产生很多内存碎片导致性能下降)
@@ -181,12 +227,12 @@ This is an area of ongoing effort with many intriguing possibil-ities. Since Fin
 </div>
 </div>
 
-<div id="outline-container-org335cde7" class="outline-3">
-<h3 id="org335cde7"><span class="section-number-3">5.5</span> Futures, Services, and Filters at Twitter</h3>
+<div id="outline-container-orgf95f045" class="outline-3">
+<h3 id="orgf95f045"><span class="section-number-3">5.5</span> Futures, Services, and Filters at Twitter</h3>
 </div>
 </div>
-<div id="outline-container-org168cd50" class="outline-2">
-<h2 id="org168cd50"><span class="section-number-2">6</span> Related work</h2>
+<div id="outline-container-org534b2b3" class="outline-2">
+<h2 id="org534b2b3"><span class="section-number-2">6</span> Related work</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Lwt is a cooperative threading library for OCaml whose chief abstraction, the lightweight thread, is similar to our Future.</li>
@@ -199,9 +245,14 @@ This is an area of ongoing effort with many intriguing possibil-ities. Since Fin
 </div>
 </div>
 
-<div id="outline-container-org57290c1" class="outline-2">
-<h2 id="org57290c1"><span class="section-number-2">7</span> Conclusions</h2>
+<div id="outline-container-org3d4f0d2" class="outline-2">
+<h2 id="org3d4f0d2"><span class="section-number-2">7</span> Conclusions</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/your-server-as-a-function.html';this.page.identifier = 'your-server-as-a-function.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

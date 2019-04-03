@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux Kernel Management Style</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Linux Kernel Management Style</h1>
@@ -16,12 +62,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6519505">1. Chapter 1: Decisions</a></li>
-<li><a href="#orgc6ddf96">2. Chapter 2: People</a></li>
-<li><a href="#org19f9ae5">3. Chapter 3: People II - the Good Kind</a></li>
-<li><a href="#orgeb2f40f">4. Chapter 4: Placing blame</a></li>
-<li><a href="#org6020db6">5. Chapter 5: Things to avoid</a></li>
-<li><a href="#orgb701bdf">6. Chapter 6: Why me?</a></li>
+<li><a href="#orgcf4faf2">1. Chapter 1: Decisions</a></li>
+<li><a href="#orgae55e9d">2. Chapter 2: People</a></li>
+<li><a href="#org5ea545a">3. Chapter 3: People II - the Good Kind</a></li>
+<li><a href="#org3f1b580">4. Chapter 4: Placing blame</a></li>
+<li><a href="#orgd70228d">5. Chapter 5: Things to avoid</a></li>
+<li><a href="#orgac03a6c">6. Chapter 6: Why me?</a></li>
 </ul>
 </div>
 </div>
@@ -30,8 +76,8 @@
 <li><a href="http://wiki.woodpecker.org.cn/moin/LinuxKernelManaStyle">http://wiki.woodpecker.org.cn/moin/LinuxKernelManaStyle</a> 中文翻译</li>
 </ul>
 
-<div id="outline-container-org6519505" class="outline-2">
-<h2 id="org6519505"><span class="section-number-2">1</span> Chapter 1: Decisions</h2>
+<div id="outline-container-orgcf4faf2" class="outline-2">
+<h2 id="orgcf4faf2"><span class="section-number-2">1</span> Chapter 1: Decisions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Everybody thinks managers make decisions, and that decision-making is important.  The bigger and more painful the decision, the bigger the manager must be to make it.  That's very deep and obvious, but it's not actually true. 每个人都觉得管理者是作决定的，作决定是很重要的。决定越大、越艰难，管理者就越伟大。这一点很深刻、很明显，但不见得正确。
@@ -79,8 +125,8 @@ Btw, another way to avoid a decision is to plaintively just whine "can't we just
 </div>
 </div>
 
-<div id="outline-container-orgc6ddf96" class="outline-2">
-<h2 id="orgc6ddf96"><span class="section-number-2">2</span> Chapter 2: People</h2>
+<div id="outline-container-orgae55e9d" class="outline-2">
+<h2 id="orgae55e9d"><span class="section-number-2">2</span> Chapter 2: People</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Most people are idiots, and being a manager means you'll have to deal with it, and perhaps more importantly, that <span class="underline">they</span> have to deal with <span class="underline">you</span>. It turns out that while it's easy to undo technical mistakes, it's not as easy to undo personality disorders. You just have to live with theirs - and yours. 大多数人都是傻瓜，当管理者就意味着你不得不和这一点打交道。或许更重要的是，他们－不得不和你－打交道。事实证明，消除技术性问题还是容易的，消除人脑筋里的问题就没那么容易了。你就不得不忍受这些问题，他们的还有你自个儿的问题。
@@ -116,8 +162,8 @@ The option of being unfailingly polite really doesn't exist. Nobody will trust s
 </div>
 </div>
 
-<div id="outline-container-org19f9ae5" class="outline-2">
-<h2 id="org19f9ae5"><span class="section-number-2">3</span> Chapter 3: People II - the Good Kind</h2>
+<div id="outline-container-org5ea545a" class="outline-2">
+<h2 id="org5ea545a"><span class="section-number-2">3</span> Chapter 3: People II - the Good Kind</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 While it turns out that most people are idiots, the corollary to that is sadly that you are one too, and that while we can all bask in the secure knowledge that we're better than the average person (let's face it, nobody ever believes that they're average or below-average), we should also admit that we're not the sharpest knife around, and there will be other people that are less of an idiot that you are. Some people react badly to smart people. Others take advantage of them. 尽管现实是大多数人都是傻瓜，不幸的推论包括你也是傻瓜之一，尽管我们都心安理得的自认比傻瓜高明（让我们来面对事实，没有人自认傻瓜或不如傻瓜），我们还是应该承认我们不是独步江湖，总会有一些人不像我们一样的傻瓜。一些人嫉贤妒能，另一些人从善如流。
@@ -137,8 +183,8 @@ One thing to look out for is to realize that greatness in one area does not nece
 </div>
 </div>
 
-<div id="outline-container-orgeb2f40f" class="outline-2">
-<h2 id="orgeb2f40f"><span class="section-number-2">4</span> Chapter 4: Placing blame</h2>
+<div id="outline-container-org3f1b580" class="outline-2">
+<h2 id="org3f1b580"><span class="section-number-2">4</span> Chapter 4: Placing blame</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Things will go wrong, and people want somebody to blame. Tag, you're it. 事情总会出错的，大家会找人来责怪。哈，就是你了。
@@ -149,7 +195,7 @@ It's not actually that hard to accept the blame, especially if people kind of re
 </p>
 
 <p>
-Then make the developer who really screwed up (if you can find him) know <span class="underline">in_private</span> that he screwed up.  Not just so he can avoid it in the future, but so that he knows he owes you one.  And, perhaps even more importantly, he's also likely the person who can fix it.  Because, let's face it, it sure ain't you. 然后，私下－告诉那个搞砸了的家伙是他搞砸了（如果你能发现他的话）。这样不仅让他以后避免重犯，而且让他知道他欠你一个人情。而且，或许更重要的是，他可能就是那个能修补事故的人。因为，让我们来面对事实，你肯定不行。
+Then make the developer who really screwed up (if you can find him) know <span class="underline">in<sub>private</sub></span> that he screwed up.  Not just so he can avoid it in the future, but so that he knows he owes you one.  And, perhaps even more importantly, he's also likely the person who can fix it.  Because, let's face it, it sure ain't you. 然后，私下－告诉那个搞砸了的家伙是他搞砸了（如果你能发现他的话）。这样不仅让他以后避免重犯，而且让他知道他欠你一个人情。而且，或许更重要的是，他可能就是那个能修补事故的人。因为，让我们来面对事实，你肯定不行。
 </p>
 
 <p>
@@ -158,8 +204,8 @@ Taking the blame is also why you get to be manager in the first place. It's part
 </div>
 </div>
 
-<div id="outline-container-org6020db6" class="outline-2">
-<h2 id="org6020db6"><span class="section-number-2">5</span> Chapter 5: Things to avoid</h2>
+<div id="outline-container-orgd70228d" class="outline-2">
+<h2 id="orgd70228d"><span class="section-number-2">5</span> Chapter 5: Things to avoid</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 There's one thing people hate even more than being called "d*ckhead", and that is being called a "d*ckhead" in a sanctimonious voice.  The first you can apologize for, the second one you won't really get the chance.  They likely will no longer be listening even if you otherwise do a good job. 比骂人"猪头"更招人恨的是用挖苦的语调骂人"猪头"。你可以为前一个道歉，后一个你都不会有道歉的机会。即使你其他方面都做的很好，他们可能也不会再听你的了。
@@ -183,8 +229,8 @@ Some humor can help pad both the bluntness and the moralizing.  Going overboard 
 </div>
 </div>
 
-<div id="outline-container-orgb701bdf" class="outline-2">
-<h2 id="orgb701bdf"><span class="section-number-2">6</span> Chapter 6: Why me?</h2>
+<div id="outline-container-orgac03a6c" class="outline-2">
+<h2 id="orgac03a6c"><span class="section-number-2">6</span> Chapter 6: Why me?</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Since your main responsibility seems to be to take the blame for other peoples mistakes, and make it painfully obvious to everybody else that you're incompetent, the obvious question becomes one of why do it in the first place? 既然你的主要职责好像就是代人受过，赤裸裸的展示自己如何不称职，显然的问题是：那你为什么还要做呢？
@@ -199,6 +245,11 @@ It's a great job if you can hack it. 如果你能驾驭得了，这是一项伟�
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/linux-kernel-management-style.html';this.page.identifier = 'linux-kernel-management-style.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

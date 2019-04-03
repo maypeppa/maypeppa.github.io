@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DBMS Implementation</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">DBMS Implementation</h1>
@@ -16,17 +62,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd5df6cc">1. DBMS实现概述</a></li>
-<li><a href="#orge1e7634">2. 数据存储</a></li>
-<li><a href="#org9f1fdc7">3. 数据元素表示</a></li>
-<li><a href="#org710aa1f">4. 索引结构</a></li>
-<li><a href="#orgac090ff">5. 多维索引</a></li>
-<li><a href="#org1921b50">6. 查询执行</a></li>
-<li><a href="#orge7f1d5d">7. 查询编译器</a></li>
-<li><a href="#orgdfddfb9">8. 系统故障对策</a></li>
-<li><a href="#org12bcbb7">9. 并发控制</a></li>
-<li><a href="#org1bf342f">10. 再论事务管理</a></li>
-<li><a href="#org381189b">11. 信息集成</a></li>
+<li><a href="#org828d5cc">1. DBMS实现概述</a></li>
+<li><a href="#org2ab7818">2. 数据存储</a></li>
+<li><a href="#org7bb141a">3. 数据元素表示</a></li>
+<li><a href="#org01b0ac0">4. 索引结构</a></li>
+<li><a href="#org72c2e80">5. 多维索引</a></li>
+<li><a href="#orgd95b936">6. 查询执行</a></li>
+<li><a href="#org624b68e">7. 查询编译器</a></li>
+<li><a href="#orgb662ebd">8. 系统故障对策</a></li>
+<li><a href="#org0dcfaee">9. 并发控制</a></li>
+<li><a href="#orga0bb105">10. 再论事务管理</a></li>
+<li><a href="#org55d0b33">11. 信息集成</a></li>
 </ul>
 </div>
 </div>
@@ -34,8 +80,8 @@
 数据库系统实现(Database System Implementation)
 </p>
 
-<div id="outline-container-orgd5df6cc" class="outline-2">
-<h2 id="orgd5df6cc"><span class="section-number-2">1</span> DBMS实现概述</h2>
+<div id="outline-container-org828d5cc" class="outline-2">
+<h2 id="org828d5cc"><span class="section-number-2">1</span> DBMS实现概述</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 关于DBMS实现上面大概分为下面三个部分的内容：
@@ -59,8 +105,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge1e7634" class="outline-2">
-<h2 id="orge1e7634"><span class="section-number-2">2</span> 数据存储</h2>
+<div id="outline-container-org2ab7818" class="outline-2">
+<h2 id="org2ab7818"><span class="section-number-2">2</span> 数据存储</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>存储介质层次结构</b>
@@ -214,11 +260,11 @@
 </div>
 </div>
 
-<div id="outline-container-org9f1fdc7" class="outline-2">
-<h2 id="org9f1fdc7"><span class="section-number-2">3</span> 数据元素表示</h2>
+<div id="outline-container-org7bb141a" class="outline-2">
+<h2 id="org7bb141a"><span class="section-number-2">3</span> 数据元素表示</h2>
 </div>
-<div id="outline-container-org710aa1f" class="outline-2">
-<h2 id="org710aa1f"><span class="section-number-2">4</span> 索引结构</h2>
+<div id="outline-container-org01b0ac0" class="outline-2">
+<h2 id="org01b0ac0"><span class="section-number-2">4</span> 索引结构</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 B Tree + Hash.
@@ -226,8 +272,8 @@ B Tree + Hash.
 </div>
 </div>
 
-<div id="outline-container-orgac090ff" class="outline-2">
-<h2 id="orgac090ff"><span class="section-number-2">5</span> 多维索引</h2>
+<div id="outline-container-org72c2e80" class="outline-2">
+<h2 id="org72c2e80"><span class="section-number-2">5</span> 多维索引</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 适合数据立方体系统的数据通常组织成为一个事实表(fact table)和若干维表.
@@ -243,8 +289,8 @@ B Tree + Hash.
 </div>
 </div>
 
-<div id="outline-container-org1921b50" class="outline-2">
-<h2 id="org1921b50"><span class="section-number-2">6</span> 查询执行</h2>
+<div id="outline-container-orgd95b936" class="outline-2">
+<h2 id="orgd95b936"><span class="section-number-2">6</span> 查询执行</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 查询编译器：
@@ -261,8 +307,8 @@ B Tree + Hash.
 </div>
 </div>
 
-<div id="outline-container-orge7f1d5d" class="outline-2">
-<h2 id="orge7f1d5d"><span class="section-number-2">7</span> 查询编译器</h2>
+<div id="outline-container-org624b68e" class="outline-2">
+<h2 id="org624b68e"><span class="section-number-2">7</span> 查询编译器</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 #todo:
@@ -270,8 +316,8 @@ B Tree + Hash.
 </div>
 </div>
 
-<div id="outline-container-orgdfddfb9" class="outline-2">
-<h2 id="orgdfddfb9"><span class="section-number-2">8</span> 系统故障对策</h2>
+<div id="outline-container-orgb662ebd" class="outline-2">
+<h2 id="orgb662ebd"><span class="section-number-2">8</span> 系统故障对策</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 关于数据库系统的故障可以分为下面几种：
@@ -297,8 +343,8 @@ B Tree + Hash.
 </div>
 </div>
 
-<div id="outline-container-org12bcbb7" class="outline-2">
-<h2 id="org12bcbb7"><span class="section-number-2">9</span> 并发控制</h2>
+<div id="outline-container-org0dcfaee" class="outline-2">
+<h2 id="org0dcfaee"><span class="section-number-2">9</span> 并发控制</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>串行调度使得所有事务按照某种顺序执行，每个事务都是原子执行的。</li>
@@ -312,8 +358,8 @@ B Tree + Hash.
 </div>
 </div>
 
-<div id="outline-container-org1bf342f" class="outline-2">
-<h2 id="org1bf342f"><span class="section-number-2">10</span> 再论事务管理</h2>
+<div id="outline-container-orga0bb105" class="outline-2">
+<h2 id="orga0bb105"><span class="section-number-2">10</span> 再论事务管理</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 检测并解决死锁，最简单的方式是利用超时。对事物活跃的时间做出限制，如果事务超过这个时间就将其回滚。
@@ -321,8 +367,8 @@ B Tree + Hash.
 </div>
 </div>
 
-<div id="outline-container-org381189b" class="outline-2">
-<h2 id="org381189b"><span class="section-number-2">11</span> 信息集成</h2>
+<div id="outline-container-org55d0b33" class="outline-2">
+<h2 id="org55d0b33"><span class="section-number-2">11</span> 信息集成</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 信息集成有三种最常用的方式：
@@ -334,6 +380,11 @@ B Tree + Hash.
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/dbms-impl.html';this.page.identifier = 'dbms-impl.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

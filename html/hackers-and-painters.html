@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>黑客与画家(Hackers and Painters)</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">黑客与画家(Hackers and Painters)</h1>
@@ -16,30 +62,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org910af03">1. 序</a></li>
-<li><a href="#org7a3c9ed">2. 黑客伦理</a></li>
-<li><a href="#org0701dd8">3. 术语解析</a></li>
-<li><a href="#org9f5afcf">4. 为什么书呆子不受欢迎</a></li>
-<li><a href="#org71ebf8d">5. 黑客与画家</a></li>
-<li><a href="#org4a88984">6. 不能说的话</a></li>
-<li><a href="#org649dc40">7. 良好的坏习惯</a></li>
-<li><a href="#orga73d1e5">8. 另一条路</a></li>
-<li><a href="#orgcb2e0d4">9. 如何创造财富</a></li>
-<li><a href="#org4e18b09">10. 关注贫富分化</a></li>
-<li><a href="#org465c454">11. 设计者的品味</a></li>
-<li><a href="#org7cbb676">12. 编程语言解析</a></li>
-<li><a href="#org65e5f0c">13. 一百年后的编程语言</a></li>
-<li><a href="#org2197506">14. 拒绝平庸</a></li>
-<li><a href="#org9ff26f2">15. 书呆子的复仇</a></li>
-<li><a href="#org5019a2e">16. 梦寐以求的编程语言</a></li>
-<li><a href="#orgc5901a9">17. 梦寐以求的编程语言总结</a></li>
-<li><a href="#org4997bf6">18. 设计与研究</a></li>
-<li><a href="#orgb040210">19. 自己感想</a></li>
+<li><a href="#orgf9beb3f">1. 序</a></li>
+<li><a href="#org5cd2697">2. 黑客伦理</a></li>
+<li><a href="#orgb83bf0b">3. 术语解析</a></li>
+<li><a href="#org56cc74d">4. 为什么书呆子不受欢迎</a></li>
+<li><a href="#orge158fa3">5. 黑客与画家</a></li>
+<li><a href="#orgb349393">6. 不能说的话</a></li>
+<li><a href="#org9ebcb93">7. 良好的坏习惯</a></li>
+<li><a href="#orgcb1bad9">8. 另一条路</a></li>
+<li><a href="#orge36c0c1">9. 如何创造财富</a></li>
+<li><a href="#orgce3c730">10. 关注贫富分化</a></li>
+<li><a href="#org8c4fa3b">11. 设计者的品味</a></li>
+<li><a href="#orgf77459e">12. 编程语言解析</a></li>
+<li><a href="#org6b15886">13. 一百年后的编程语言</a></li>
+<li><a href="#org34dc316">14. 拒绝平庸</a></li>
+<li><a href="#org9549062">15. 书呆子的复仇</a></li>
+<li><a href="#orgedb18af">16. 梦寐以求的编程语言</a></li>
+<li><a href="#orgdd8762c">17. 梦寐以求的编程语言总结</a></li>
+<li><a href="#org6272154">18. 设计与研究</a></li>
+<li><a href="#org88c4d6c">19. 自己感想</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org910af03" class="outline-2">
-<h2 id="org910af03"><span class="section-number-2">1</span> 序</h2>
+<div id="outline-container-orgf9beb3f" class="outline-2">
+<h2 id="orgf9beb3f"><span class="section-number-2">1</span> 序</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Paul Graham有一套完整的创业哲学，他的创业公式是：
@@ -57,8 +103,8 @@ Paul Graham有一套完整的创业哲学，他的创业公式是：
 </div>
 </div>
 
-<div id="outline-container-org7a3c9ed" class="outline-2">
-<h2 id="org7a3c9ed"><span class="section-number-2">2</span> 黑客伦理</h2>
+<div id="outline-container-org5cd2697" class="outline-2">
+<h2 id="org5cd2697"><span class="section-number-2">2</span> 黑客伦理</h2>
 <div class="outline-text-2" id="text-2">
 <ol class="org-ol">
 <li>使用计算机以及所有有助于了解这个世界本质的事物都不应该受到任何限制。任何事情都应该亲手尝试。(Access to computers and anything that might teach you something about the way the world works – should be unlimited and total. Always yield to the Hands-On Imperative)</li>
@@ -71,8 +117,8 @@ Paul Graham有一套完整的创业哲学，他的创业公式是：
 </div>
 </div>
 
-<div id="outline-container-org0701dd8" class="outline-2">
-<h2 id="org0701dd8"><span class="section-number-2">3</span> 术语解析</h2>
+<div id="outline-container-orgb83bf0b" class="outline-2">
+<h2 id="orgb83bf0b"><span class="section-number-2">3</span> 术语解析</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用的语言的束缚，不相信存在更强大的语言。
@@ -92,8 +138,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org9f5afcf" class="outline-2">
-<h2 id="org9f5afcf"><span class="section-number-2">4</span> 为什么书呆子不受欢迎</h2>
+<div id="outline-container-org56cc74d" class="outline-2">
+<h2 id="org56cc74d"><span class="section-number-2">4</span> 为什么书呆子不受欢迎</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 但是我认为，孩子们欺负书呆子的主要原因也与追求“受欢迎”的心理有关。怎样才能让自己更受欢迎？个人魅力只是很小的一个方面，你应该更多考虑如何结盟。秘诀就是不停地设法使自己与其他受欢迎的人变得关系更密切。没有比什么一个共同的敌人更能使得人们团结起来了。这就好比一个政客，他想让选民忘记槽糕的国内局势，方法就是为国家找出一个敌人，哪怕敌人并不真的存在，他也可以创造一个出来。
@@ -105,8 +151,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org71ebf8d" class="outline-2">
-<h2 id="org71ebf8d"><span class="section-number-2">5</span> 黑客与画家</h2>
+<div id="outline-container-orge158fa3" class="outline-2">
+<h2 id="orge158fa3"><span class="section-number-2">5</span> 黑客与画家</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 优美的软件并不总是论文的合适题材。首先，科学研究必须具有原创性。写过博士论文的人都知道，确保自己在开垦新领地的方法，就是去找那些没有人要土地。其次，科学研究必须是能够产生大量成果的，而那些不成熟的，障碍重重的领域最容易写出许多篇论文，因为你可以写那些为了完成工作、你不得不克服的障碍。但是创造优美的东西往往不是从头做起，而是在现有成果的基础上做一些小小的调整，或者将已有的观点用比较新的方式组合起来。这种类型的工作很难用研究性的论文表达出来。
@@ -154,8 +200,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org4a88984" class="outline-2">
-<h2 id="org4a88984"><span class="section-number-2">6</span> 不能说的话</h2>
+<div id="outline-container-orgb349393" class="outline-2">
+<h2 id="orgb349393"><span class="section-number-2">6</span> 不能说的话</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 我猜想，道德禁忌的最大制造者是那些权力斗争中略占上风的一方。你会发现，这一方有实例推行禁忌，同时又软弱到需要禁忌保护自己的利益。大多数的斗争，不管它们实际争的是什么，都会以思想斗争的形式表现出来。思想斗争更容易获取支持者，不管哪一方获胜，他们所代表的思想也就被认为获得了胜利，仿佛上帝通过选择胜利的一方表示了自己的倾向。我并不是想说斗争从来就与思想无关，而是要强调，不管实际上是否有思想斗争，斗争都是会以思想斗争的形式表现出来。
@@ -183,8 +229,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org649dc40" class="outline-2">
-<h2 id="org649dc40"><span class="section-number-2">7</span> 良好的坏习惯</h2>
+<div id="outline-container-org9ebcb93" class="outline-2">
+<h2 id="org9ebcb93"><span class="section-number-2">7</span> 良好的坏习惯</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 信不信由你，“黑”的这两个意思也是相关的。丑陋的做法与聪明的做法存在一个共同点，那就是不符合常规。你用胶带把包裹绑在自行车上，那是不合常规的丑陋做法；你提出充满想象力的概念，推翻欧几里德（Eculidean space),那是不符合常规的聪明做法。从”丑陋“到”聪明“，他们之间存在一种连续性渐变。
@@ -196,8 +242,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-orga73d1e5" class="outline-2">
-<h2 id="orga73d1e5"><span class="section-number-2">8</span> 另一条路</h2>
+<div id="outline-container-orgcb1bad9" class="outline-2">
+<h2 id="orgcb1bad9"><span class="section-number-2">8</span> 另一条路</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 互联网软件的发布规则是：它运行不不了，你就无法发布。一旦它能运行了，你就可以立刻发布。这些行业的老手会想：你说的好听！软件运行不了，就不发布，但是如果你已经对外承诺了明确的发布日期，到时却没有准备好，怎么办？这个问题听起来有道理，但是事实上，你不会对互联网软件做出这样的承诺，因为它根本就没有”版本“这个概念。你的软件是连续性渐变的，某些更新也许比较重大，但是”版本“这个概念不适用于互联网软件。
@@ -217,8 +263,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-orgcb2e0d4" class="outline-2">
-<h2 id="orgcb2e0d4"><span class="section-number-2">9</span> 如何创造财富</h2>
+<div id="outline-container-orge36c0c1" class="outline-2">
+<h2 id="orge36c0c1"><span class="section-number-2">9</span> 如何创造财富</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 如果你想致富，应该怎么做？我认为最好的办法就是自己创业，或者加入创业公司。从经济学观点看，你可以把创业想象成为一个压缩过程，你的所有工作年份被压缩成了短短几年。
@@ -254,8 +300,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org4e18b09" class="outline-2">
-<h2 id="org4e18b09"><span class="section-number-2">10</span> 关注贫富分化</h2>
+<div id="outline-container-orgce3c730" class="outline-2">
+<h2 id="orgce3c730"><span class="section-number-2">10</span> 关注贫富分化</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 我认为有三个原因使得我们对赚钱另眼相看。第一，我们从小被误导对财富的看法；第二，历史上积累财富的方式大多名声不好；第三，担心收入差距拉大将对社会产生不利影响。（作者后面对于三点分别进行讨论了）。
@@ -275,8 +321,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org465c454" class="outline-2">
-<h2 id="org465c454"><span class="section-number-2">11</span> 设计者的品味</h2>
+<div id="outline-container-org8c4fa3b" class="outline-2">
+<h2 id="org8c4fa3b"><span class="section-number-2">11</span> 设计者的品味</h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>好设计是简单设计。这样强调简单似乎有点奇怪。有人会说，简单就是事物本来的样子，装饰反而意味着更多的工作。但是当人们自己从事创造性工作的时候，好像就会忘了保持简单这个原则。当你被迫把东西做得很简单时，你就被迫直接面对真正的问题。当你不能用表面的装饰交差时，你就不得不做好真正本质的部分。</li>
@@ -308,8 +354,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org7cbb676" class="outline-2">
-<h2 id="org7cbb676"><span class="section-number-2">12</span> 编程语言解析</h2>
+<div id="outline-container-orgf77459e" class="outline-2">
+<h2 id="orgf77459e"><span class="section-number-2">12</span> 编程语言解析</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 可能因为想炫耀自己见多识广，某些黑客会告诉你所有高级语言基本相似。“所有编程语言我都用过。”某个看上去饱经风霜又酷的黑客往酒吧里一坐，“你用什么语言并不重要，重要的是你对问题是否有正确的理解。代码以外的东西才是关键。”这当然是一派胡言。各种语言简直天差地别。
@@ -321,8 +367,8 @@ Blub困境（Bulb Paradox):程序员的思想往往会受到自己正在使用�
 </div>
 </div>
 
-<div id="outline-container-org65e5f0c" class="outline-2">
-<h2 id="org65e5f0c"><span class="section-number-2">13</span> 一百年后的编程语言</h2>
+<div id="outline-container-org6b15886" class="outline-2">
+<h2 id="org6b15886"><span class="section-number-2">13</span> 一百年后的编程语言</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 我认为，基本运算符是一种语言能否长期存在的最重要因素。其他因素都不是决定性的。这有点像买房子的时候你应该先考虑地理位置。别的地方将来出问题都有办法弥补，但是地理位置是没法变的。
@@ -358,8 +404,8 @@ Lisp语言的黑客很早就明白数据结构灵活性的价值。我们写程�
 </div>
 </div>
 
-<div id="outline-container-org2197506" class="outline-2">
-<h2 id="org2197506"><span class="section-number-2">14</span> 拒绝平庸</h2>
+<div id="outline-container-org34dc316" class="outline-2">
+<h2 id="org34dc316"><span class="section-number-2">14</span> 拒绝平庸</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 大公司可以互相模仿，但是创业公司就不行。我觉得很多人没有意识到这一点，尤其是一些创业者。大公司每年平均成长大约10%.所以，如果你掌管一家大公司，只要每件事都做到大公司的平均水准，你就能得到大公司的平均结果，也就是每年成长大约10%.如果你掌管创业公司，当然也可以这样。你把每件事都做到平均水平，就能得到平均结果。问题在于，小公司的平均结果就意味着关门倒闭。创业公司的生存率远低于50%.所以，如果你掌管创业公司，最好做一些独特的事情，否则就会有麻烦。
@@ -383,8 +429,8 @@ Lisp没有得到广泛使用的原因就是因为编程语言不仅仅是技术�
 </div>
 </div>
 
-<div id="outline-container-org9ff26f2" class="outline-2">
-<h2 id="org9ff26f2"><span class="section-number-2">15</span> 书呆子的复仇</h2>
+<div id="outline-container-org9549062" class="outline-2">
+<h2 id="org9549062"><span class="section-number-2">15</span> 书呆子的复仇</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 你不能让那些衣冠楚楚，西装革履的家伙替你做技术决策。潜在的并购方有没有对我们使用Lisp语言感到很难受呢？稍微有一点吧，但是如果我们不使用Lisp，我们就根本写不出现在的软件，也就不会有人想收购我们。他们眼中不正常的事情恰恰就是使得这一切发生的原因所在。
@@ -396,8 +442,8 @@ Lisp没有得到广泛使用的原因就是因为编程语言不仅仅是技术�
 </div>
 </div>
 
-<div id="outline-container-org5019a2e" class="outline-2">
-<h2 id="org5019a2e"><span class="section-number-2">16</span> 梦寐以求的编程语言</h2>
+<div id="outline-container-orgedb18af" class="outline-2">
+<h2 id="orgedb18af"><span class="section-number-2">16</span> 梦寐以求的编程语言</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 黑客的看法其实比语言设计者的更重要。编程语言不是数学定理，而是一种工具，为了便于使用，它们才被设计出来。所以，设计编程语言的时候必须考虑到人类的长处和短处，就像设计鞋子的时候必须符合人类的脚型。如果鞋子穿上去不舒服，无论它的外形多么优美，多么像一件艺术品，你也只能把它当做一双坏鞋。
@@ -429,8 +475,8 @@ Lisp没有得到广泛使用的原因就是因为编程语言不仅仅是技术�
 </div>
 </div>
 
-<div id="outline-container-orgc5901a9" class="outline-2">
-<h2 id="orgc5901a9"><span class="section-number-2">17</span> 梦寐以求的编程语言总结</h2>
+<div id="outline-container-orgdd8762c" class="outline-2">
+<h2 id="orgdd8762c"><span class="section-number-2">17</span> 梦寐以求的编程语言总结</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 让我们使者描述黑客心目中梦寐以求的语言来为以上内容做一个小节。
@@ -466,8 +512,8 @@ Lisp没有得到广泛使用的原因就是因为编程语言不仅仅是技术�
 </div>
 </div>
 
-<div id="outline-container-org4997bf6" class="outline-2">
-<h2 id="org4997bf6"><span class="section-number-2">18</span> 设计与研究</h2>
+<div id="outline-container-org6272154" class="outline-2">
+<h2 id="org6272154"><span class="section-number-2">18</span> 设计与研究</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 设计与研究最大的不同在于你会更多地考虑用户。设计的时候，一开始总是问：我为谁设计？他们需要什么？优秀的建筑师不会先设计，然后强迫用户接受，而是先研究最终用户需求，然后最初用户需要的设计。注意，我说的是“用户需要的设计”，而不是“用户要求的设计”。让用户满意并不等于迎合用户的一切要求。用户不了解所有可能的选择，也经常弄错自己真正想要的东西。大多数优秀设计都是这样产生的，它们关注用户，并且以用户为中心。
@@ -487,8 +533,8 @@ Lisp没有得到广泛使用的原因就是因为编程语言不仅仅是技术�
 </div>
 </div>
 
-<div id="outline-container-orgb040210" class="outline-2">
-<h2 id="orgb040210"><span class="section-number-2">19</span> 自己感想</h2>
+<div id="outline-container-org88c4d6c" class="outline-2">
+<h2 id="org88c4d6c"><span class="section-number-2">19</span> 自己感想</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 每章都是作者一篇散文，视角也是非常广泛，从在学校的书呆子为什么不收欢迎，到书呆子走出学校如何致富以及如何创业，关注社会问题比如贫富分化以及强调黑客的本质，当然也谈到了计算机编程方面包括编程语言和设计。很多问题因为自己没有感同身受，自己也没有经历过所以不好说是否正确，但是作者的话却给予我们相当多的启示，这些启示或许对于自己以后在人生发展道路选择，或者是对于计算机编程和设计方面权衡和决定，都应该会有非常大的作用。书后面说这本书”将迫使你重新思考计算机编程的本质“，我觉得这本书的目的达到了。当我把书中的一些段落摘抄完之后，感觉作者已经成功地按照他的逻辑指引带我重新思考了一次计算机编程的本质。谢谢Paul Graham以及《黑客与画家》的译者阮一峰。
@@ -499,6 +545,11 @@ Lisp没有得到广泛使用的原因就是因为编程语言不仅仅是技术�
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/hackers-and-painters.html';this.page.identifier = 'hackers-and-painters.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

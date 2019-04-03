@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Machine Learning by Andrew Ng</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Machine Learning by Andrew Ng</h1>
@@ -16,30 +62,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org13ebd58">1. definition</a></li>
-<li><a href="#org36487a5">2. prerequisite</a></li>
-<li><a href="#org5af8aee">3. supervised learning</a></li>
-<li><a href="#orgdd91f62">4. neural networks</a></li>
-<li><a href="#org78ce236">5. support vector machine</a></li>
-<li><a href="#org06098ef">6. advice for applying ML</a></li>
-<li><a href="#org013af85">7. advice for designing ML</a></li>
-<li><a href="#orgdec4e80">8. unsupervised learning</a></li>
-<li><a href="#orge1f1a1d">9. dimensionality reduction</a></li>
-<li><a href="#org1dd7299">10. anomaly detection</a></li>
-<li><a href="#orgc63bc9b">11. recommender system</a></li>
-<li><a href="#orga332346">12. ML in large scale</a></li>
-<li><a href="#org53e684b">13. appendix code</a>
+<li><a href="#org9563617">1. definition</a></li>
+<li><a href="#org4486268">2. prerequisite</a></li>
+<li><a href="#org9930098">3. supervised learning</a></li>
+<li><a href="#org30bfd2c">4. neural networks</a></li>
+<li><a href="#orgb42278a">5. support vector machine</a></li>
+<li><a href="#org936dd70">6. advice for applying ML</a></li>
+<li><a href="#org05cd595">7. advice for designing ML</a></li>
+<li><a href="#org5cfd38f">8. unsupervised learning</a></li>
+<li><a href="#orgfe22e0b">9. dimensionality reduction</a></li>
+<li><a href="#orgcd9a2a9">10. anomaly detection</a></li>
+<li><a href="#org8579a66">11. recommender system</a></li>
+<li><a href="#org4d383ca">12. ML in large scale</a></li>
+<li><a href="#orgb3258f8">13. appendix code</a>
 <ul>
-<li><a href="#orgdc2aec8">13.1. feature normalization</a></li>
-<li><a href="#orgde2ec00">13.2. linear regression cost function</a></li>
-<li><a href="#org20049da">13.3. neural network cost function</a></li>
-<li><a href="#org718ea9d">13.4. pca(principal compoenent analysis)</a></li>
-<li><a href="#org5320444">13.5. gaussian distribution</a></li>
-<li><a href="#orgf6f6cf7">13.6. anomaly detection select threshold</a></li>
-<li><a href="#orgb0e6a91">13.7. collaborative filtering cost function</a></li>
+<li><a href="#org58ccdd3">13.1. feature normalization</a></li>
+<li><a href="#org37fff7d">13.2. linear regression cost function</a></li>
+<li><a href="#org18583a1">13.3. neural network cost function</a></li>
+<li><a href="#org220a887">13.4. pca(principal compoenent analysis)</a></li>
+<li><a href="#org88c8a5e">13.5. gaussian distribution</a></li>
+<li><a href="#org41bc2c8">13.6. anomaly detection select threshold</a></li>
+<li><a href="#orgbdfba8a">13.7. collaborative filtering cost function</a></li>
 </ul>
 </li>
-<li><a href="#org2f8531d">14. octave notes</a></li>
+<li><a href="#org63b8116">14. octave notes</a></li>
 </ul>
 </div>
 </div>
@@ -47,8 +93,8 @@
 <a href="https://class.coursera.org/ml-007">https://class.coursera.org/ml-007</a>
 </p>
 
-<div id="outline-container-org13ebd58" class="outline-2">
-<h2 id="org13ebd58"><span class="section-number-2">1</span> definition</h2>
+<div id="outline-container-org9563617" class="outline-2">
+<h2 id="org9563617"><span class="section-number-2">1</span> definition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 T(task),E(experience),P(performance)
@@ -56,8 +102,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-org36487a5" class="outline-2">
-<h2 id="org36487a5"><span class="section-number-2">2</span> prerequisite</h2>
+<div id="outline-container-org4486268" class="outline-2">
+<h2 id="org4486268"><span class="section-number-2">2</span> prerequisite</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>linear algebra
@@ -71,8 +117,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-org5af8aee" class="outline-2">
-<h2 id="org5af8aee"><span class="section-number-2">3</span> supervised learning</h2>
+<div id="outline-container-org9930098" class="outline-2">
+<h2 id="org9930098"><span class="section-number-2">3</span> supervised learning</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="http://math.stackexchange.com/questions/141381/regression-vs-classification">http://math.stackexchange.com/questions/141381/regression-vs-classification</a></li>
@@ -89,7 +135,7 @@ T(task),E(experience),P(performance)
 <li><a href="images/ml-class-lr.pdf">logistic regression</a> # 逻辑回归
 <ul class="org-ul">
 <li>sigmoid / logistic function</li>
-<li>g(x) = 1 / (1 + e^-x) [0, 1]</li>
+<li>g(x) = 1 / (1 + e<sup>-x</sup>) [0, 1]</li>
 <li>interpretation of hypothesis output.</li>
 <li>p(y=0|x;theta) + p(y=1|x;theta) = 1 (for binary-class)</li>
 <li>h(x) = 1 / (1 + e^-(theta * x)) [0, 1]</li>
@@ -158,8 +204,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-orgdd91f62" class="outline-2">
-<h2 id="orgdd91f62"><span class="section-number-2">4</span> neural networks</h2>
+<div id="outline-container-org30bfd2c" class="outline-2">
+<h2 id="org30bfd2c"><span class="section-number-2">4</span> neural networks</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>motivation # 神经网络
@@ -167,7 +213,7 @@ T(task),E(experience),P(performance)
 <li>complex non-linear classification / hypothesis # 针对复杂非线性分类</li>
 <li>many features -&gt; too many polynomial terms.
 <ul class="org-ul">
-<li>quantic x, then O(n^x).</li>
+<li>quantic x, then O(n<sup>x</sup>).</li>
 <li>quadratic : O(n ^ 2)</li>
 <li>cubic: O(n ^ 3)</li>
 </ul></li>
@@ -247,8 +293,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-org78ce236" class="outline-2">
-<h2 id="org78ce236"><span class="section-number-2">5</span> <a href="images/ml-class-svm.pdf">support vector machine</a></h2>
+<div id="outline-container-orgb42278a" class="outline-2">
+<h2 id="orgb42278a"><span class="section-number-2">5</span> <a href="images/ml-class-svm.pdf">support vector machine</a></h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>alternative view of logistic regression</li>
@@ -265,9 +311,9 @@ T(task),E(experience),P(performance)
 <li>to compute similarity (with landmarks) as more complex, non-linear features.</li>
 <li>gaussian kernel function.
 <ul class="org-ul">
-<li>K(x,y,e) = exp ^ (-0.5 / e^2 * |x-y|^2)</li>
-<li>if e^2 is large, high bias and low variance</li>
-<li>if e^2 is small, low bias and high variance</li>
+<li>K(x,y,e) = exp ^ (-0.5 / e<sup>2</sup> * |x-y|<sup>2</sup>)</li>
+<li>if e<sup>2</sup> is large, high bias and low variance</li>
+<li>if e<sup>2</sup> is small, low bias and high variance</li>
 </ul></li>
 <li>output range [0,1]</li>
 </ul></li>
@@ -291,8 +337,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-org06098ef" class="outline-2">
-<h2 id="org06098ef"><span class="section-number-2">6</span> <a href="images/ml-class-apply-ml.pdf">advice for applying ML</a></h2>
+<div id="outline-container-org936dd70" class="outline-2">
+<h2 id="org936dd70"><span class="section-number-2">6</span> <a href="images/ml-class-apply-ml.pdf">advice for applying ML</a></h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>unacceptablely large errors in its predictions
@@ -309,7 +355,7 @@ T(task),E(experience),P(performance)
 <li>evaluating hypothesis
 <ul class="org-ul">
 <li>split examples randomly into training set(70%) and test set(30%).</li>
-<li>see J_test(theta) is overfitting or not.</li>
+<li>see J<sub>test</sub>(theta) is overfitting or not.</li>
 </ul></li>
 <li>model selection (for choosing polynomial terms and regularization)
 <ul class="org-ul">
@@ -319,9 +365,9 @@ T(task),E(experience),P(performance)
 </ul></li>
 <li>high bias vs. variance
 <ul class="org-ul">
-<li>bias =&gt; underfit: J_train(theta) is high, J_cv/test(theta) = J_train(theta)</li>
-<li>variance =&gt; overfit: J_train(theta) is low, but J_cv/test(theta) &gt; J_train(theta)</li>
-<li>learning curves # J_cv/test(theta) and J_train(theta) over training set size</li>
+<li>bias =&gt; underfit: J<sub>train</sub>(theta) is high, J<sub>cv</sub>/test(theta) = J<sub>train</sub>(theta)</li>
+<li>variance =&gt; overfit: J<sub>train</sub>(theta) is low, but J<sub>cv</sub>/test(theta) &gt; J<sub>train</sub>(theta)</li>
+<li>learning curves # J<sub>cv</sub>/test(theta) and J<sub>train</sub>(theta) over training set size</li>
 <li>if suffers from high bias, more training data will not help</li>
 <li>if suffers from high variance, more training data might help</li>
 </ul></li>
@@ -330,15 +376,15 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-org013af85" class="outline-2">
-<h2 id="org013af85"><span class="section-number-2">7</span> <a href="images/ml-class-design-ml.pdf">advice for designing ML</a></h2>
+<div id="outline-container-org05cd595" class="outline-2">
+<h2 id="org05cd595"><span class="section-number-2">7</span> <a href="images/ml-class-design-ml.pdf">advice for designing ML</a></h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>numerical evaluation # a real number tells how well is your system. 使用一个数值来衡量系统</li>
 <li>error analysis # spot any systematic trend in what type of examples it is making errors on. 误差分析</li>
 <li>skewed classes.
 <ul class="org-ul">
-<li>y = 1 in presence of rare class # 如果y_pred=0的话没有任何预测性但是accuracy准确率超高</li>
+<li>y = 1 in presence of rare class # 如果y<sub>pred</sub>=0的话没有任何预测性但是accuracy准确率超高</li>
 <li>precision = true positive / [no. of predicted positive = (true pos + false pos)] # 精确度</li>
 <li>recall = true positive / [no. of actual positive = (true pos + false neg)] # 召回率</li>
 <li>good classifier: precision and recall are both high enough.
@@ -357,8 +403,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-orgdec4e80" class="outline-2">
-<h2 id="orgdec4e80"><span class="section-number-2">8</span> unsupervised learning</h2>
+<div id="outline-container-org5cfd38f" class="outline-2">
+<h2 id="org5cfd38f"><span class="section-number-2">8</span> unsupervised learning</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="images/ml-class-clustering.pdf">cluster algorithm</a></li>
@@ -382,8 +428,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-orge1f1a1d" class="outline-2">
-<h2 id="orge1f1a1d"><span class="section-number-2">9</span> dimensionality reduction</h2>
+<div id="outline-container-orgfe22e0b" class="outline-2">
+<h2 id="orgfe22e0b"><span class="section-number-2">9</span> dimensionality reduction</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>motivation # 维度降解
@@ -400,13 +446,13 @@ T(task),E(experience),P(performance)
 <ul class="org-ul">
 <li>sigma = 1/m * sum{X(i) * X(i)'}. X(i)~n*1, so sigma~n*n</li>
 <li>[U,S,V] = svd(sigma) # singular value decomposition</li>
-<li>U~n*n. use first k columns called U_reduce~(n*k)</li>
-<li>z = U_reduce' * X(i) ~ (k * n * n * 1) = (k*1)</li>
-<li>reconstruct: X_approx(i) = U_reduce * z ~ (n * k * k * 1) = (n*1)</li>
+<li>U~n*n. use first k columns called U<sub>reduce</sub>~(n*k)</li>
+<li>z = U<sub>reduce</sub>' * X(i) ~ (k * n * n * 1) = (k*1)</li>
+<li>reconstruct: X<sub>approx</sub>(i) = U<sub>reduce</sub> * z ~ (n * k * k * 1) = (n*1)</li>
 </ul></li>
 <li>choose k # n% of variance is retained.
 <ul class="org-ul">
-<li>n = sum{i=1,k}S_{ii} / sum{i=1,n}S_{ii} (S from svd, diagonal matrix)</li>
+<li>n = sum{i=1,k}S<sub>ii</sub> / sum{i=1,n}S<sub>ii</sub> (S from svd, diagonal matrix)</li>
 <li>n = 99 typical value</li>
 </ul></li>
 </ul></li>
@@ -419,19 +465,19 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-org1dd7299" class="outline-2">
-<h2 id="org1dd7299"><span class="section-number-2">10</span> <a href="images/ml-class-anomaly-detection.pdf">anomaly detection</a></h2>
+<div id="outline-container-orgcd9a2a9" class="outline-2">
+<h2 id="orgcd9a2a9"><span class="section-number-2">10</span> <a href="images/ml-class-anomaly-detection.pdf">anomaly detection</a></h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>gaussian distribution # 高斯分布
 <ul class="org-ul">
-<li>X ~ N(u, e^2) # X distributed as N. where mean = u, variance = e^2</li>
-<li>p(x, u, e^2) = 1 / ((sqrt(2 * pi) * e)) * exp ^ { - (x-u)^2 / (2 * e^2) } # probability</li>
+<li>X ~ N(u, e<sup>2</sup>) # X distributed as N. where mean = u, variance = e<sup>2</sup></li>
+<li>p(x, u, e<sup>2</sup>) = 1 / ((sqrt(2 * pi) * e)) * exp ^ { - (x-u)<sup>2</sup> / (2 * e<sup>2</sup>) } # probability</li>
 <li>multivariate version # 多变量高斯分布
 <ul class="org-ul">
 <li>to capture anomalous combination of values. computationally expensive.</li>
 <li>u~{n*1}, e~{n*n} (covariance matrix) # intuition. contour not axis aligned.</li>
-<li>p(x, u, e) = 1 / ((2 * pi) ^ (n/2) * sqrt(det(e))) * exp ^ {-0.5 * (x-u)' * e^-1 * (x-u)}</li>
+<li>p(x, u, e) = 1 / ((2 * pi) ^ (n/2) * sqrt(det(e))) * exp ^ {-0.5 * (x-u)' * e<sup>-1</sup> * (x-u)}</li>
 <li>u = 1/m * sum{x}, e = 1/m * sum{(x-u) * (x-u)'}</li>
 <li>#note: m &gt; n, otherwise e is non-invertible.</li>
 </ul></li>
@@ -443,7 +489,7 @@ T(task),E(experience),P(performance)
 <ul class="org-ul">
 <li>epsilon # p(x) is comparable for normal and anomalous examples.</li>
 <li>features to distinguish normal and anomalous examples.</li>
-<li>p(x) = p1(x1, u1, e1^2) * &#x2026; pj(xj, uj, ej^2).. # j = # of features.</li>
+<li>p(x) = p1(x1, u1, e1<sup>2</sup>) * &#x2026; pj(xj, uj, ej<sup>2</sup>).. # j = # of features.</li>
 <li>if xj is not gaussian feature, transform it to fit into gaussian distribution. # 如果数据不满足高斯分布，那么要对数据做变换符合高斯分布</li>
 </ul></li>
 </ul></li>
@@ -468,8 +514,8 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-orgc63bc9b" class="outline-2">
-<h2 id="orgc63bc9b"><span class="section-number-2">11</span> <a href="images/ml-class-rec-sys.pdf">recommender system</a></h2>
+<div id="outline-container-org8579a66" class="outline-2">
+<h2 id="org8579a66"><span class="section-number-2">11</span> <a href="images/ml-class-rec-sys.pdf">recommender system</a></h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>content based recommendation</li>
@@ -484,15 +530,15 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-orga332346" class="outline-2">
-<h2 id="orga332346"><span class="section-number-2">12</span> <a href="images/ml-class-large-scale-ml.pdf">ML in large scale</a></h2>
+<div id="outline-container-org4d383ca" class="outline-2">
+<h2 id="org4d383ca"><span class="section-number-2">12</span> <a href="images/ml-class-large-scale-ml.pdf">ML in large scale</a></h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>stochastic gradient descent algorithm # 随机梯度下降算法
 <ul class="org-ul">
 <li>vs. batch gradient descent # 可以增量使用训练数据</li>
 <li>randomly shuffle dataset</li>
-<li>repeat for i = 1..m { for j = 0..n  { update theta_j only use ith data } }</li>
+<li>repeat for i = 1..m { for j = 0..n  { update theta<sub>j</sub> only use ith data } }</li>
 <li>move to global minimum generally, but not always in one iteration.</li>
 <li>convergence checking
 <ul class="org-ul">
@@ -519,12 +565,12 @@ T(task),E(experience),P(performance)
 </div>
 </div>
 
-<div id="outline-container-org53e684b" class="outline-2">
-<h2 id="org53e684b"><span class="section-number-2">13</span> appendix code</h2>
+<div id="outline-container-orgb3258f8" class="outline-2">
+<h2 id="orgb3258f8"><span class="section-number-2">13</span> appendix code</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-orgdc2aec8" class="outline-3">
-<h3 id="orgdc2aec8"><span class="section-number-3">13.1</span> feature normalization</h3>
+<div id="outline-container-org58ccdd3" class="outline-3">
+<h3 id="org58ccdd3"><span class="section-number-3">13.1</span> feature normalization</h3>
 <div class="outline-text-3" id="text-13-1">
 <div class="org-src-container">
 <pre class="src src-Octave">function [X_norm, mu, sigma] = featureNormalize(X)
@@ -549,8 +595,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgde2ec00" class="outline-3">
-<h3 id="orgde2ec00"><span class="section-number-3">13.2</span> linear regression cost function</h3>
+<div id="outline-container-org37fff7d" class="outline-3">
+<h3 id="org37fff7d"><span class="section-number-3">13.2</span> linear regression cost function</h3>
 <div class="outline-text-3" id="text-13-2">
 <p>
 #note: works for polynomial regression too.
@@ -595,8 +641,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org20049da" class="outline-3">
-<h3 id="org20049da"><span class="section-number-3">13.3</span> neural network cost function</h3>
+<div id="outline-container-org18583a1" class="outline-3">
+<h3 id="org18583a1"><span class="section-number-3">13.3</span> neural network cost function</h3>
 <div class="outline-text-3" id="text-13-3">
 
 <div class="figure">
@@ -612,10 +658,10 @@ end
 
 <div class="org-src-container">
 <pre class="src src-Octave">function [J grad] = nnCostFunction(nn_params, ...
-                                   input_layer_size, ...
-                                   hidden_layer_size, ...
-                                   num_labels, ...
-                                   X, y, lambda)
+				   input_layer_size, ...
+				   hidden_layer_size, ...
+				   num_labels, ...
+				   X, y, lambda)
 %NNCOSTFUNCTION Implements the neural network cost function for a two layer
 %neural network which performs classification
 %   [J grad] = NNCOSTFUNCTON(nn_params, hidden_layer_size, num_labels, ...
@@ -630,10 +676,10 @@ end
 % Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices
 % for our 2 layer neural network
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
-                 hidden_layer_size, (input_layer_size + 1));
+		 hidden_layer_size, (input_layer_size + 1));
 
 Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
-                 num_labels, (hidden_layer_size + 1));
+		 num_labels, (hidden_layer_size + 1));
 
 % Setup some useful variables
 m = size(X, 1);
@@ -720,8 +766,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org718ea9d" class="outline-3">
-<h3 id="org718ea9d"><span class="section-number-3">13.4</span> pca(principal compoenent analysis)</h3>
+<div id="outline-container-org220a887" class="outline-3">
+<h3 id="org220a887"><span class="section-number-3">13.4</span> pca(principal compoenent analysis)</h3>
 <div class="outline-text-3" id="text-13-4">
 <div class="org-src-container">
 <pre class="src src-Octave">function [U, S] = pca(X)
@@ -834,8 +880,8 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org5320444" class="outline-3">
-<h3 id="org5320444"><span class="section-number-3">13.5</span> gaussian distribution</h3>
+<div id="outline-container-org88c8a5e" class="outline-3">
+<h3 id="org88c8a5e"><span class="section-number-3">13.5</span> gaussian distribution</h3>
 <div class="outline-text-3" id="text-13-5">
 <p>
 compute mean and variance of X
@@ -909,8 +955,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgf6f6cf7" class="outline-3">
-<h3 id="orgf6f6cf7"><span class="section-number-3">13.6</span> anomaly detection select threshold</h3>
+<div id="outline-container-org41bc2c8" class="outline-3">
+<h3 id="org41bc2c8"><span class="section-number-3">13.6</span> anomaly detection select threshold</h3>
 <div class="outline-text-3" id="text-13-6">
 <div class="org-src-container">
 <pre class="src src-Octave">function [bestEpsilon bestF1] = selectThreshold(yval, pval)
@@ -960,8 +1006,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgb0e6a91" class="outline-3">
-<h3 id="orgb0e6a91"><span class="section-number-3">13.7</span> collaborative filtering cost function</h3>
+<div id="outline-container-orgbdfba8a" class="outline-3">
+<h3 id="orgbdfba8a"><span class="section-number-3">13.7</span> collaborative filtering cost function</h3>
 <div class="outline-text-3" id="text-13-7">
 
 <div class="figure">
@@ -977,7 +1023,7 @@ end
 
 <div class="org-src-container">
 <pre class="src src-Octave">function [J, grad] = cofiCostFunc(params, Y, R, num_users, num_movies, ...
-                                  num_features, lambda)
+				  num_features, lambda)
 %COFICOSTFUNC Collaborative filtering cost function
 %   [J, grad] = COFICOSTFUNC(params, Y, R, num_users, num_movies, ...
 %   num_features, lambda) returns the cost and gradient for the
@@ -987,7 +1033,7 @@ end
 % Unfold the U and W matrices from params
 X = reshape(params(1:num_movies*num_features), num_movies, num_features);
 Theta = reshape(params(num_movies*num_features+1:end), ...
-                num_users, num_features);
+		num_users, num_features);
 
 
 % You need to return the following values correctly
@@ -1040,8 +1086,8 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org2f8531d" class="outline-2">
-<h2 id="org2f8531d"><span class="section-number-2">14</span> octave notes</h2>
+<div id="outline-container-org63b8116" class="outline-2">
+<h2 id="org63b8116"><span class="section-number-2">14</span> octave notes</h2>
 <div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>basic syntax
@@ -1102,7 +1148,7 @@ starts comment with %</li>
 <li>if &lt;cond&gt;, &lt;stmt&gt; end; / elseif / else</li>
 <li>while &lt;cond&gt;, &lt;stmt&gt; end;</li>
 <li>break/continue</li>
-<li>function definition resides in function_name.m
+<li>function definition resides in function<sub>name.m</sub>
 <ul class="org-ul">
 <li>function y = &lt;name&gt;(x)</li>
 <li>function [y1,y2] = &lt;name&gt;(x)</li>
@@ -1114,6 +1160,11 @@ starts comment with %</li>
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/ml-class.html';this.page.identifier = 'ml-class.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

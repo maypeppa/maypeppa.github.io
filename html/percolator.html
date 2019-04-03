@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Large-scale Incremental Processing Using Distributed Transactions and Notifications</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Large-scale Incremental Processing Using Distributed Transactions and Notifications</h1>
@@ -16,20 +62,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7da0989">1. Abstract</a></li>
-<li><a href="#orge4d8bce">2. Introduction</a></li>
-<li><a href="#orgf4db510">3. Design</a>
+<li><a href="#org4dcd133">1. Abstract</a></li>
+<li><a href="#orgf89b8a9">2. Introduction</a></li>
+<li><a href="#orge33e756">3. Design</a>
 <ul>
-<li><a href="#org5330a9e">3.1. Bigtable overview</a></li>
-<li><a href="#orgfaa4288">3.2. Transactions</a></li>
-<li><a href="#orgde31b2b">3.3. Timestamps</a></li>
-<li><a href="#org5738380">3.4. Notifications</a></li>
-<li><a href="#org28feb0f">3.5. Discussion</a></li>
+<li><a href="#org1531c33">3.1. Bigtable overview</a></li>
+<li><a href="#orgd2913ca">3.2. Transactions</a></li>
+<li><a href="#org619a090">3.3. Timestamps</a></li>
+<li><a href="#org94d6e02">3.4. Notifications</a></li>
+<li><a href="#orgf7cff5a">3.5. Discussion</a></li>
 </ul>
 </li>
-<li><a href="#org5bdd399">4. Evaluation</a></li>
-<li><a href="#org21458bb">5. Related Work</a></li>
-<li><a href="#org04ff5a2">6. Conclusion and Future Work</a></li>
+<li><a href="#orgbd6030d">4. Evaluation</a></li>
+<li><a href="#orga752b41">5. Related Work</a></li>
+<li><a href="#org7b25931">6. Conclusion and Future Work</a></li>
 </ul>
 </div>
 </div>
@@ -37,8 +83,8 @@
 <a href="http://research.google.com/pubs/pub36726.html">http://research.google.com/pubs/pub36726.html</a> @ 2010
 </p>
 
-<div id="outline-container-org7da0989" class="outline-2">
-<h2 id="org7da0989"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-org4dcd133" class="outline-2">
+<h2 id="org4dcd133"><span class="section-number-2">1</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Updating an index of the web as documents are crawled requires continuously transforming a large repository of existing documents as new documents ar-rive. This task is one example of a class of data pro-cessing tasks that transform a large repository of data via small, independent mutations. These tasks lie in a gap between the capabilities of existing infrastructure.(主要解决的问题就是，在非常大的base repository上面有少量的mutation应该如何进行处理？就现有的基础设施并没有很好地解决这个问题）</li>
@@ -50,8 +96,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge4d8bce" class="outline-2">
-<h2 id="orge4d8bce"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orgf89b8a9" class="outline-2">
+<h2 id="orgf89b8a9"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Consider the task of building an index of the web that can be used to answer search queries. The indexing sys- tem starts by crawling every page on the web and pro- cessing them while maintaining a set of invariants on the index.（在indexing system里需要维护索引一些不变量）</li>
@@ -84,8 +130,8 @@ The remainder of this paper describes a particular in-cremental processing syste
 </div>
 </div>
 
-<div id="outline-container-orgf4db510" class="outline-2">
-<h2 id="orgf4db510"><span class="section-number-2">3</span> Design</h2>
+<div id="outline-container-orge33e756" class="outline-2">
+<h2 id="orge33e756"><span class="section-number-2">3</span> Design</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Percolator provides two main abstractions for per-forming incremental processing at large scale: （为增量处理提供了两种抽象）
@@ -116,8 +162,8 @@ The remainder of this paper describes a particular in-cremental processing syste
 </div>
 
 
-<div id="outline-container-org5330a9e" class="outline-3">
-<h3 id="org5330a9e"><span class="section-number-3">3.1</span> Bigtable overview</h3>
+<div id="outline-container-org1531c33" class="outline-3">
+<h3 id="org1531c33"><span class="section-number-3">3.1</span> Bigtable overview</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 percolator API封装了对于bigtable的访问，但是和bigtable api非常类似。封装主要原因一方面是底层可以更好地优化bigtable访问模式，另外主要的一方面是为了能够在bigtable上面实现multirow transactions，通过在原来的table schema上面增加了几个辅助的column：
@@ -171,29 +217,29 @@ percolator API封装了对于bigtable的访问，但是和bigtable api非常类�
 <li>write // 写入数据的时间（和bigtable本身提供的timestamp区分开）</li>
 <li>date // 写入的数据</li>
 <li>notify // 这个cell是否已经ditry，是否需要运行对应的observer</li>
-<li>ack_O // observer O上次成功运行的时间</li>
+<li>ack<sub>O</sub> // observer O上次成功运行的时间</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfaa4288" class="outline-3">
-<h3 id="orgfaa4288"><span class="section-number-3">3.2</span> Transactions</h3>
+<div id="outline-container-orgd2913ca" class="outline-3">
+<h3 id="orgd2913ca"><span class="section-number-3">3.2</span> Transactions</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 下面是使用percolator transactions功能一个example code
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">bool</span> <span class="org-function-name">UpdateDocument</span>(<span class="org-type">Document</span> <span class="org-variable-name">doc</span>) {
-  Transaction <span class="org-type">t</span>(&amp;<span class="org-variable-name">cluster</span>);
-  t.Set(doc.url(), <span class="org-string">"contents"</span>, <span class="org-string">"document"</span>, doc.contents());
-  <span class="org-type">int</span> <span class="org-variable-name">hash</span> = Hash(doc.contents());
-  <span class="org-comment-delimiter">// </span><span class="org-comment">dups table maps hash &#8594; canonical URL</span>
-  <span class="org-type">string</span> <span class="org-variable-name">canonical</span>;
-  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>t.Get(hash, <span class="org-string">"canonical-url"</span>, <span class="org-string">"dups"</span>, &amp;canonical)) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">No canonical yet; write myself in</span>
-    t.Set(hash, <span class="org-string">"canonical-url"</span>, <span class="org-string">"dups"</span>, doc.url());
-  } <span class="org-comment-delimiter">// </span><span class="org-comment">else this document already exists, ignore new copy</span>
-  <span class="org-keyword">return</span> t.Commit();
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold;">UpdateDocument</span>(<span style="font-weight: bold; text-decoration: underline;">Document</span> <span style="font-weight: bold; font-style: italic;">doc</span>) {
+  Transaction <span style="font-weight: bold; text-decoration: underline;">t</span>(&amp;<span style="font-weight: bold; font-style: italic;">cluster</span>);
+  t.Set(doc.url(), <span style="font-style: italic;">"contents"</span>, <span style="font-style: italic;">"document"</span>, doc.contents());
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">hash</span> = Hash(doc.contents());
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">dups table maps hash &#8594; canonical URL</span>
+  <span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold; font-style: italic;">canonical</span>;
+  <span style="font-weight: bold;">if</span> (!t.Get(hash, <span style="font-style: italic;">"canonical-url"</span>, <span style="font-style: italic;">"dups"</span>, &amp;canonical)) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">No canonical yet; write myself in</span>
+    t.Set(hash, <span style="font-style: italic;">"canonical-url"</span>, <span style="font-style: italic;">"dups"</span>, doc.url());
+  } <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">else this document already exists, ignore new copy</span>
+  <span style="font-weight: bold;">return</span> t.Commit();
 }
 </pre>
 </div>
@@ -286,71 +332,71 @@ Snapshot isolation does not provide serializability，这个问题以下面的ps
 下面是Transaction具体实现，关于一些说明会以注释的形式标记在代码上面。 #todo: BackoffAndMaybeCleanupLock如何实现？
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Transaction</span> {
-  <span class="org-keyword">struct</span> <span class="org-type">Write</span> { <span class="org-type">Row</span> <span class="org-variable-name">row</span>; <span class="org-type">Column</span> <span class="org-variable-name">col</span>; <span class="org-type">string</span> <span class="org-variable-name">value</span>; };
-  <span class="org-type">vector</span>&lt;<span class="org-type">Write</span>&gt; <span class="org-variable-name">writes</span> ;
-  <span class="org-type">int</span> <span class="org-variable-name">start</span> ts ;
-  <span class="org-function-name">Transaction</span>() : start ts (oracle.GetTimestamp()) {} <span class="org-comment-delimiter">// </span><span class="org-comment">&#21021;&#22987;&#21270;&#20250;&#20174;oracle&#33719;&#24471;&#19968;&#20010;timestamp&#65292;&#34920;&#26126;&#36825;&#20010;transaction&#23545;&#24212;&#30340;&#26102;&#38388;&#12290;</span>
-  <span class="org-type">void</span> <span class="org-function-name">Set</span>(<span class="org-type">Write</span> <span class="org-variable-name">w</span>) { writes .push back(w); } <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377;&#30340;&#20889;&#37117;&#20250;&#32531;&#23384;&#19979;&#26469;&#65292;&#32780;&#19981;&#26159;&#31435;&#21051;&#20889;&#20837;table</span>
-  <span class="org-type">bool</span> <span class="org-function-name">Get</span>(<span class="org-type">Row</span> <span class="org-variable-name">row</span>, <span class="org-type">Column</span> <span class="org-variable-name">c</span>, <span class="org-type">string</span>* <span class="org-variable-name">value</span>) {
-    <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
-      <span class="org-constant">bigtable</span>::<span class="org-type">Txn</span> <span class="org-variable-name">T</span> = <span class="org-constant">bigtable</span>::StartRowTransaction(row); <span class="org-comment-delimiter">// </span><span class="org-comment">todo:??</span>
-      <span class="org-comment-delimiter">// </span><span class="org-comment">Check for locks that signal concurrent writes.</span>
-      <span class="org-keyword">if</span> (T.Read(row, c+<span class="org-string">"lock"</span>, [0, <span class="org-constant">start</span> <span class="org-variable-name">ts</span> ])) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#22312;&#36825;&#20010;timestamp&#20043;&#21069;&#23384;&#22312;lock,&#35828;&#26126;&#22312;&#36825;&#20010;ts&#20043;&#21069;&#32943;&#23450;&#23384;&#22312;commit&#20294;&#26159;&#36824;&#27809;&#26377;&#25552;&#20132;&#25104;&#21151;&#65288;&#21487;&#33021;&#22312;&#36816;&#34892;&#65292;&#20063;&#21487;&#33021;&#30452;&#25509;fail&#65289;</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">There is a pending lock; try to clean it and wait</span>
-        BackoffAndMaybeCleanupLock(row, c); <span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;&#36825;&#20010;pending lock&#65292;&#25105;&#20204;&#20250;&#36873;&#25321;&#31561;&#24453;&#65292;&#25110;&#32773;&#21487;&#33021;&#26159;&#21024;&#38500;&#12290;</span>
-        <span class="org-keyword">continue</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Transaction</span> {
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">Write</span> { <span style="font-weight: bold; text-decoration: underline;">Row</span> <span style="font-weight: bold; font-style: italic;">row</span>; <span style="font-weight: bold; text-decoration: underline;">Column</span> <span style="font-weight: bold; font-style: italic;">col</span>; <span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold; font-style: italic;">value</span>; };
+  <span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">Write</span>&gt; <span style="font-weight: bold; font-style: italic;">writes</span> ;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">start</span> ts ;
+  <span style="font-weight: bold;">Transaction</span>() : start ts (oracle.GetTimestamp()) {} <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21021;&#22987;&#21270;&#20250;&#20174;oracle&#33719;&#24471;&#19968;&#20010;timestamp&#65292;&#34920;&#26126;&#36825;&#20010;transaction&#23545;&#24212;&#30340;&#26102;&#38388;&#12290;</span>
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">Set</span>(<span style="font-weight: bold; text-decoration: underline;">Write</span> <span style="font-weight: bold; font-style: italic;">w</span>) { writes .push back(w); } <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25152;&#26377;&#30340;&#20889;&#37117;&#20250;&#32531;&#23384;&#19979;&#26469;&#65292;&#32780;&#19981;&#26159;&#31435;&#21051;&#20889;&#20837;table</span>
+  <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold;">Get</span>(<span style="font-weight: bold; text-decoration: underline;">Row</span> <span style="font-weight: bold; font-style: italic;">row</span>, <span style="font-weight: bold; text-decoration: underline;">Column</span> <span style="font-weight: bold; font-style: italic;">c</span>, <span style="font-weight: bold; text-decoration: underline;">string</span>* <span style="font-weight: bold; font-style: italic;">value</span>) {
+    <span style="font-weight: bold;">while</span> (<span style="font-weight: bold; text-decoration: underline;">true</span>) {
+      <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::<span style="font-weight: bold; text-decoration: underline;">Txn</span> <span style="font-weight: bold; font-style: italic;">T</span> = <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::StartRowTransaction(row); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">todo:??</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Check for locks that signal concurrent writes.</span>
+      <span style="font-weight: bold;">if</span> (T.Read(row, c+<span style="font-style: italic;">"lock"</span>, [0, <span style="font-weight: bold; text-decoration: underline;">start</span> <span style="font-weight: bold; font-style: italic;">ts</span> ])) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#22312;&#36825;&#20010;timestamp&#20043;&#21069;&#23384;&#22312;lock,&#35828;&#26126;&#22312;&#36825;&#20010;ts&#20043;&#21069;&#32943;&#23450;&#23384;&#22312;commit&#20294;&#26159;&#36824;&#27809;&#26377;&#25552;&#20132;&#25104;&#21151;&#65288;&#21487;&#33021;&#22312;&#36816;&#34892;&#65292;&#20063;&#21487;&#33021;&#30452;&#25509;fail&#65289;</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">There is a pending lock; try to clean it and wait</span>
+        BackoffAndMaybeCleanupLock(row, c); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23545;&#20110;&#36825;&#20010;pending lock&#65292;&#25105;&#20204;&#20250;&#36873;&#25321;&#31561;&#24453;&#65292;&#25110;&#32773;&#21487;&#33021;&#26159;&#21024;&#38500;&#12290;</span>
+        <span style="font-weight: bold;">continue</span>;
       }
-      <span class="org-comment-delimiter">// </span><span class="org-comment">Find the latest write below our start timestamp.</span>
-      <span class="org-type">latest</span> <span class="org-variable-name">write</span> = T.Read(row, c+<span class="org-string">"write"</span>, [0, <span class="org-constant">start</span> <span class="org-variable-name">ts</span> ]); <span class="org-comment-delimiter">// </span><span class="org-comment">&#35828;&#26126;&#20043;&#21069;&#30340;commit&#20197;&#21069;&#25552;&#20132;&#23436;&#25104;&#65292;&#37027;&#20040;&#30475;&#26368;&#36817;&#19968;&#27425;&#30340;write&#26159;&#22312;&#20160;&#20040;&#26102;&#20505;&#12290;&#25152;&#35859;&#26368;&#36817;&#26159;&#25351;&#20889;&#20837;&#30340;&#26102;&#38388;&#26159;&#21518;&#38754;&#30340;commit_ts.</span>
-      <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>latest write.found()) <span class="org-keyword">return</span> <span class="org-constant">false</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">no data</span>
-      <span class="org-type">int</span> <span class="org-variable-name">data</span> ts = latest write.start timestamp(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#26368;&#36817;&#20889;&#20837;write&#30340;&#21457;&#36215;&#26102;&#38388;&#65292;&#20063;&#23601;&#26159;start_ts.&#36825;&#20010;&#38656;&#35201;&#32467;&#21512;&#21518;&#38754;&#30340;prewrite&#21644;commit&#26469;&#29702;&#35299;&#12290;</span>
-      *value = T.Read(row, c+<span class="org-string">"data"</span>, [<span class="org-constant">data</span> ts, <span class="org-constant">data</span> <span class="org-variable-name">ts</span>]);
-      <span class="org-keyword">return</span> <span class="org-constant">true</span>;
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Find the latest write below our start timestamp.</span>
+      <span style="font-weight: bold; text-decoration: underline;">latest</span> <span style="font-weight: bold; font-style: italic;">write</span> = T.Read(row, c+<span style="font-style: italic;">"write"</span>, [0, <span style="font-weight: bold; text-decoration: underline;">start</span> <span style="font-weight: bold; font-style: italic;">ts</span> ]); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#35828;&#26126;&#20043;&#21069;&#30340;commit&#20197;&#21069;&#25552;&#20132;&#23436;&#25104;&#65292;&#37027;&#20040;&#30475;&#26368;&#36817;&#19968;&#27425;&#30340;write&#26159;&#22312;&#20160;&#20040;&#26102;&#20505;&#12290;&#25152;&#35859;&#26368;&#36817;&#26159;&#25351;&#20889;&#20837;&#30340;&#26102;&#38388;&#26159;&#21518;&#38754;&#30340;commit_ts.</span>
+      <span style="font-weight: bold;">if</span> (!latest write.found()) <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">no data</span>
+      <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">data</span> ts = latest write.start timestamp(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#28982;&#21518;&#26368;&#36817;&#20889;&#20837;write&#30340;&#21457;&#36215;&#26102;&#38388;&#65292;&#20063;&#23601;&#26159;start_ts.&#36825;&#20010;&#38656;&#35201;&#32467;&#21512;&#21518;&#38754;&#30340;prewrite&#21644;commit&#26469;&#29702;&#35299;&#12290;</span>
+      *value = T.Read(row, c+<span style="font-style: italic;">"data"</span>, [<span style="font-weight: bold; text-decoration: underline;">data</span> ts, <span style="font-weight: bold; text-decoration: underline;">data</span> <span style="font-weight: bold; font-style: italic;">ts</span>]);
+      <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>;
     }
   }
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Prewrite tries to lock cell w, returning false in case of conflict.</span>
-  <span class="org-type">bool</span> <span class="org-function-name">Prewrite</span>(<span class="org-type">Write</span> <span class="org-variable-name">w</span>, <span class="org-type">Write</span> <span class="org-variable-name">primary</span>) {
-    <span class="org-type">Column</span> <span class="org-variable-name">c</span> = w.col;
-    <span class="org-constant">bigtable</span>::<span class="org-type">Txn</span> <span class="org-variable-name">T</span> = <span class="org-constant">bigtable</span>::StartRowTransaction(w.row);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Abort on writes after our start timestamp . . .</span>
-    <span class="org-keyword">if</span> (T.Read(w.row, c+<span class="org-string">"write"</span>, [<span class="org-constant">start</span> ts , <span class="org-constant">INFINITY</span>])) <span class="org-keyword">return</span> <span class="org-constant">false</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">start_ts&#20043;&#21518;&#26159;&#21542;&#26377;&#26032;&#30340;&#25552;&#20132;&#12290;&#22914;&#26524;&#23384;&#22312;&#26032;&#30340;&#25552;&#20132;&#30340;&#35805;&#65292;&#36825;&#23601;&#24847;&#21619;&#36825;&#26412;&#27425;T&#30340;&#22833;&#36133;&#12290;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#20010;&#22320;&#26041;&#38750;&#24120;&#37325;&#35201;&#65292;&#22240;&#20026;&#25105;&#20204;&#35835;&#21462;&#30340;&#25968;&#25454;&#26159;start_ts&#20043;&#21069;&#30340;&#25968;&#25454;&#65292;&#22240;&#27492;&#22914;&#26524;start_ts&#20043;&#21518;&#23384;&#22312;&#25968;&#25454;&#20889;&#20837;&#30340;&#35805;&#65292;&#37027;&#20040;&#35828;&#26126;&#23384;&#22312;&#22810;&#20010;&#20107;&#29289;&#27491;&#22312;&#25552;&#20132;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#26159;write-write conflicts.</span>
-    <span class="org-comment-delimiter">//</span><span class="org-comment">. . . or locks at any timestamp.</span>
-    <span class="org-keyword">if</span> (T.Read(w.row, c+<span class="org-string">"lock"</span>, [0, <span class="org-constant">INFINITY</span>])) <span class="org-keyword">return</span> <span class="org-constant">false</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#36825;&#20010;cell&#34987;lock&#30340;&#35805;&#65292;&#37027;&#20040;&#24847;&#21619;&#30528;&#26412;&#22320;T&#20063;&#26159;&#22833;&#36133;&#30340;&#12290;&#27880;&#24847;&#36825;&#37324;&#23545;lock&#26102;&#38388;&#27809;&#26377;&#20219;&#20309;&#38480;&#21046;&#12290;</span>
-    T.Write(w.row, c+<span class="org-string">"data"</span>, <span class="org-type">start</span> <span class="org-variable-name">ts</span> , w.value); <span class="org-comment-delimiter">// </span><span class="org-comment">&#20889;&#20837;&#25968;&#25454;&#65292;&#27880;&#24847;&#36825;&#37324;&#30340;&#26102;&#38388;&#25139;&#26159;start_ts</span>
-    T.Write(w.row, c+<span class="org-string">"lock"</span>, <span class="org-type">start</span> <span class="org-variable-name">ts</span> , <span class="org-comment-delimiter">// </span><span class="org-comment">&#20889;&#20837;lock&#65292;&#20869;&#23481;&#26159;primary row&#21644;col</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Prewrite tries to lock cell w, returning false in case of conflict.</span>
+  <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold;">Prewrite</span>(<span style="font-weight: bold; text-decoration: underline;">Write</span> <span style="font-weight: bold; font-style: italic;">w</span>, <span style="font-weight: bold; text-decoration: underline;">Write</span> <span style="font-weight: bold; font-style: italic;">primary</span>) {
+    <span style="font-weight: bold; text-decoration: underline;">Column</span> <span style="font-weight: bold; font-style: italic;">c</span> = w.col;
+    <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::<span style="font-weight: bold; text-decoration: underline;">Txn</span> <span style="font-weight: bold; font-style: italic;">T</span> = <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::StartRowTransaction(w.row);
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Abort on writes after our start timestamp . . .</span>
+    <span style="font-weight: bold;">if</span> (T.Read(w.row, c+<span style="font-style: italic;">"write"</span>, [<span style="font-weight: bold; text-decoration: underline;">start</span> ts , <span style="font-weight: bold; text-decoration: underline;">INFINITY</span>])) <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">start_ts&#20043;&#21518;&#26159;&#21542;&#26377;&#26032;&#30340;&#25552;&#20132;&#12290;&#22914;&#26524;&#23384;&#22312;&#26032;&#30340;&#25552;&#20132;&#30340;&#35805;&#65292;&#36825;&#23601;&#24847;&#21619;&#36825;&#26412;&#27425;T&#30340;&#22833;&#36133;&#12290;</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#20010;&#22320;&#26041;&#38750;&#24120;&#37325;&#35201;&#65292;&#22240;&#20026;&#25105;&#20204;&#35835;&#21462;&#30340;&#25968;&#25454;&#26159;start_ts&#20043;&#21069;&#30340;&#25968;&#25454;&#65292;&#22240;&#27492;&#22914;&#26524;start_ts&#20043;&#21518;&#23384;&#22312;&#25968;&#25454;&#20889;&#20837;&#30340;&#35805;&#65292;&#37027;&#20040;&#35828;&#26126;&#23384;&#22312;&#22810;&#20010;&#20107;&#29289;&#27491;&#22312;&#25552;&#20132;</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#26159;write-write conflicts.</span>
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">. . . or locks at any timestamp.</span>
+    <span style="font-weight: bold;">if</span> (T.Read(w.row, c+<span style="font-style: italic;">"lock"</span>, [0, <span style="font-weight: bold; text-decoration: underline;">INFINITY</span>])) <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#36825;&#20010;cell&#34987;lock&#30340;&#35805;&#65292;&#37027;&#20040;&#24847;&#21619;&#30528;&#26412;&#22320;T&#20063;&#26159;&#22833;&#36133;&#30340;&#12290;&#27880;&#24847;&#36825;&#37324;&#23545;lock&#26102;&#38388;&#27809;&#26377;&#20219;&#20309;&#38480;&#21046;&#12290;</span>
+    T.Write(w.row, c+<span style="font-style: italic;">"data"</span>, <span style="font-weight: bold; text-decoration: underline;">start</span> <span style="font-weight: bold; font-style: italic;">ts</span> , w.value); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20889;&#20837;&#25968;&#25454;&#65292;&#27880;&#24847;&#36825;&#37324;&#30340;&#26102;&#38388;&#25139;&#26159;start_ts</span>
+    T.Write(w.row, c+<span style="font-style: italic;">"lock"</span>, <span style="font-weight: bold; text-decoration: underline;">start</span> <span style="font-weight: bold; font-style: italic;">ts</span> , <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20889;&#20837;lock&#65292;&#20869;&#23481;&#26159;primary row&#21644;col</span>
             {primary.row, primary.col});
-    <span class="org-comment-delimiter">// </span><span class="org-comment">The primary&#8217;s location.</span>
-    <span class="org-keyword">return</span> T.Commit();
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">The primary&#8217;s location.</span>
+    <span style="font-weight: bold;">return</span> T.Commit();
   }
-  <span class="org-type">bool</span> <span class="org-function-name">Commit</span>() {
-    <span class="org-type">Write</span> <span class="org-variable-name">primary</span> = writes [0];
-    <span class="org-type">vector</span>&lt;<span class="org-type">Write</span>&gt; <span class="org-variable-name">secondaries</span>(writes .begin()+1, writes .end());
-    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>Prewrite(primary, primary)) <span class="org-keyword">return</span> <span class="org-constant">false</span>;
-    <span class="org-keyword">for</span> (<span class="org-type">Write</span> <span class="org-variable-name">w</span> : secondaries)
-      <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>Prewrite(w, primary)) <span class="org-keyword">return</span> <span class="org-constant">false</span>;
-    <span class="org-type">int</span> <span class="org-variable-name">commit</span> ts = oracle .GetTimestamp(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#39044;&#20808;&#20889;&#20837;&#20869;&#23481;&#20043;&#21518;&#20934;&#22791;&#36827;&#34892;&#25552;&#20132;&#65292;&#25552;&#20132;&#26102;&#38388;&#20026;commit_ts</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Commit primary first.</span>
-    <span class="org-type">Write</span> <span class="org-variable-name">p</span> = primary;
-    <span class="org-constant">bigtable</span>::<span class="org-type">Txn</span> <span class="org-variable-name">T</span> = <span class="org-constant">bigtable</span>::StartRowTransaction(p.row);
-    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>T.Read(p.row, p.col+<span class="org-string">"lock"</span>, [<span class="org-constant">start</span> ts , <span class="org-constant">start</span> <span class="org-variable-name">ts</span> ])) <span class="org-comment-delimiter">// </span><span class="org-comment">&#37325;&#26032;&#26816;&#26597;&#20043;&#21069;&#30340;&#38145;&#26159;&#21542;&#36824;&#22312;&#65311;&#22914;&#26524;&#36824;&#22312;&#30340;&#35805;&#37027;&#20040;&#20889;&#20837;&#25968;&#25454;&#24182;&#19988;&#21024;&#38500;&#25481;&#38145;&#12290;&#36825;&#20010;&#24517;&#39035;&#26159;&#19968;&#20010;&#20107;&#21153;&#25805;&#20316;&#65292;&#32780;&#36825;&#20010;&#28857;&#23601;&#26159;commit point</span>
-      <span class="org-keyword">return</span> <span class="org-constant">false</span>;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#20043;&#21518;&#25552;&#20132;&#25968;&#25454;&#65292;&#20462;&#25913;write&#26102;&#38388;&#24182;&#19988;&#23558;lock&#28165;&#38500;&#25481;&#12290;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">aborted while working</span>
-    T.Write(p.row, p.col+<span class="org-string">"write"</span>, <span class="org-type">commit</span> <span class="org-variable-name">ts</span>,
-            <span class="org-type">start</span> <span class="org-variable-name">ts</span> ); <span class="org-comment-delimiter">// </span><span class="org-comment">Pointer to data written at start ts .</span>
-    T.Erase(p.row, p.col+<span class="org-string">"lock"</span>, <span class="org-type">commit</span> <span class="org-variable-name">ts</span>);
-    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>T.Commit()) <span class="org-keyword">return</span> <span class="org-constant">false</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">commit point</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Second phase: write out write records for secondary cells.</span>
-    <span class="org-keyword">for</span> (<span class="org-type">Write</span> <span class="org-variable-name">w</span> : secondaries) {
-      <span class="org-constant">bigtable</span>::Write(w.row, w.col+<span class="org-string">"write"</span>, <span class="org-type">commit</span> <span class="org-variable-name">ts</span>, <span class="org-type">start</span> <span class="org-variable-name">ts</span> );
-      <span class="org-constant">bigtable</span>::Erase(w.row, w.col+<span class="org-string">"lock"</span>, <span class="org-type">commit</span> <span class="org-variable-name">ts</span>);
+  <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold;">Commit</span>() {
+    <span style="font-weight: bold; text-decoration: underline;">Write</span> <span style="font-weight: bold; font-style: italic;">primary</span> = writes [0];
+    <span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">Write</span>&gt; <span style="font-weight: bold; font-style: italic;">secondaries</span>(writes .begin()+1, writes .end());
+    <span style="font-weight: bold;">if</span> (!Prewrite(primary, primary)) <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">Write</span> <span style="font-weight: bold; font-style: italic;">w</span> : secondaries)
+      <span style="font-weight: bold;">if</span> (!Prewrite(w, primary)) <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">commit</span> ts = oracle .GetTimestamp(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#39044;&#20808;&#20889;&#20837;&#20869;&#23481;&#20043;&#21518;&#20934;&#22791;&#36827;&#34892;&#25552;&#20132;&#65292;&#25552;&#20132;&#26102;&#38388;&#20026;commit_ts</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Commit primary first.</span>
+    <span style="font-weight: bold; text-decoration: underline;">Write</span> <span style="font-weight: bold; font-style: italic;">p</span> = primary;
+    <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::<span style="font-weight: bold; text-decoration: underline;">Txn</span> <span style="font-weight: bold; font-style: italic;">T</span> = <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::StartRowTransaction(p.row);
+    <span style="font-weight: bold;">if</span> (!T.Read(p.row, p.col+<span style="font-style: italic;">"lock"</span>, [<span style="font-weight: bold; text-decoration: underline;">start</span> ts , <span style="font-weight: bold; text-decoration: underline;">start</span> <span style="font-weight: bold; font-style: italic;">ts</span> ])) <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#37325;&#26032;&#26816;&#26597;&#20043;&#21069;&#30340;&#38145;&#26159;&#21542;&#36824;&#22312;&#65311;&#22914;&#26524;&#36824;&#22312;&#30340;&#35805;&#37027;&#20040;&#20889;&#20837;&#25968;&#25454;&#24182;&#19988;&#21024;&#38500;&#25481;&#38145;&#12290;&#36825;&#20010;&#24517;&#39035;&#26159;&#19968;&#20010;&#20107;&#21153;&#25805;&#20316;&#65292;&#32780;&#36825;&#20010;&#28857;&#23601;&#26159;commit point</span>
+      <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20043;&#21518;&#25552;&#20132;&#25968;&#25454;&#65292;&#20462;&#25913;write&#26102;&#38388;&#24182;&#19988;&#23558;lock&#28165;&#38500;&#25481;&#12290;</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">aborted while working</span>
+    T.Write(p.row, p.col+<span style="font-style: italic;">"write"</span>, <span style="font-weight: bold; text-decoration: underline;">commit</span> <span style="font-weight: bold; font-style: italic;">ts</span>,
+            <span style="font-weight: bold; text-decoration: underline;">start</span> <span style="font-weight: bold; font-style: italic;">ts</span> ); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Pointer to data written at start ts .</span>
+    T.Erase(p.row, p.col+<span style="font-style: italic;">"lock"</span>, <span style="font-weight: bold; text-decoration: underline;">commit</span> <span style="font-weight: bold; font-style: italic;">ts</span>);
+    <span style="font-weight: bold;">if</span> (!T.Commit()) <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">commit point</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Second phase: write out write records for secondary cells.</span>
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">Write</span> <span style="font-weight: bold; font-style: italic;">w</span> : secondaries) {
+      <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::Write(w.row, w.col+<span style="font-style: italic;">"write"</span>, <span style="font-weight: bold; text-decoration: underline;">commit</span> <span style="font-weight: bold; font-style: italic;">ts</span>, <span style="font-weight: bold; text-decoration: underline;">start</span> <span style="font-weight: bold; font-style: italic;">ts</span> );
+      <span style="font-weight: bold; text-decoration: underline;">bigtable</span>::Erase(w.row, w.col+<span style="font-style: italic;">"lock"</span>, <span style="font-weight: bold; text-decoration: underline;">commit</span> <span style="font-weight: bold; font-style: italic;">ts</span>);
     }
-    <span class="org-keyword">return</span> <span class="org-constant">true</span>;
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>;
   }
-} <span class="org-comment-delimiter">// </span><span class="org-comment">class Transaction</span>
+} <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class Transaction</span>
 </pre>
 </div>
 
@@ -374,8 +420,8 @@ Snapshot isolation does not provide serializability，这个问题以下面的ps
 </div>
 </div>
 
-<div id="outline-container-orgde31b2b" class="outline-3">
-<h3 id="orgde31b2b"><span class="section-number-3">3.3</span> Timestamps</h3>
+<div id="outline-container-org619a090" class="outline-3">
+<h3 id="org619a090"><span class="section-number-3">3.3</span> Timestamps</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>The timestamp oracle is a server that hands out times-tamps in strictly increasing order. Since every transaction requires contacting the timestamp oracle twice, this ser-vice must scale well. （因为每个transaction都需要和oracle通信两次，所以扩展性是非常重要的）</li>
@@ -391,8 +437,8 @@ jump forward to the maximum allocated timestamp (but will never go backwards).�
 </div>
 </div>
 
-<div id="outline-container-org5738380" class="outline-3">
-<h3 id="org5738380"><span class="section-number-3">3.4</span> Notifications</h3>
+<div id="outline-container-org94d6e02" class="outline-3">
+<h3 id="org94d6e02"><span class="section-number-3">3.4</span> Notifications</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>In Percolator, the user writes code (“observers”) to be triggered by changes to the ta-ble, and we link all the observers into a binary running alongside every tablet server in the system. Each ob-server registers a function and a set of columns with Per-colator, and Percolator invokes the function after data is written to one of those columns in any row.（observer在实现上是link进入worker的binary里面的。observer会将一个function和一组columns关联起来，如果column内容变化的话就会触发observer）</li>
@@ -410,8 +456,8 @@ jump forward to the maximum allocated timestamp (but will never go backwards).�
 </div>
 </div>
 
-<div id="outline-container-org28feb0f" class="outline-3">
-<h3 id="org28feb0f"><span class="section-number-3">3.5</span> Discussion</h3>
+<div id="outline-container-orgf7cff5a" class="outline-3">
+<h3 id="orgf7cff5a"><span class="section-number-3">3.5</span> Discussion</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>One of the inefficiencies of Percolator relative to a MapReduce-based system is the number of RPCs sent per work-unit. While MapReduce does a single large read to GFS and obtains all of the data for 10s or 100s of web pages, Percolator performs around 50 individual Bigtable operations to process a single document.（percolator在数量上面相对于MR多许多，MR从GFS一次读取就可以得到10-100个webpage所需要的全部信息，而percolator处理单个文档就需要调用50个bigtable操作）</li>
@@ -430,15 +476,20 @@ jump forward to the maximum allocated timestamp (but will never go backwards).�
 </div>
 </div>
 
-<div id="outline-container-org5bdd399" class="outline-2">
-<h2 id="org5bdd399"><span class="section-number-2">4</span> Evaluation</h2>
+<div id="outline-container-orgbd6030d" class="outline-2">
+<h2 id="orgbd6030d"><span class="section-number-2">4</span> Evaluation</h2>
 </div>
-<div id="outline-container-org21458bb" class="outline-2">
-<h2 id="org21458bb"><span class="section-number-2">5</span> Related Work</h2>
+<div id="outline-container-orga752b41" class="outline-2">
+<h2 id="orga752b41"><span class="section-number-2">5</span> Related Work</h2>
 </div>
-<div id="outline-container-org04ff5a2" class="outline-2">
-<h2 id="org04ff5a2"><span class="section-number-2">6</span> Conclusion and Future Work</h2>
+<div id="outline-container-org7b25931" class="outline-2">
+<h2 id="org7b25931"><span class="section-number-2">6</span> Conclusion and Future Work</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/percolator.html';this.page.identifier = 'percolator.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

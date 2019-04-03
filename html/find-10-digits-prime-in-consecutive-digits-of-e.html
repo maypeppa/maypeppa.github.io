@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Find 10 digits prime in consecutive digits of e</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Find 10 digits prime in consecutive digits of e</h1>
@@ -24,7 +70,7 @@
 
 <hr />
 <p>
-如何得到e的数字？可以通过泰勒级数加上缩放，获得小数点后面精确的数字。使用f(x) = e^x 函数f(1)=e, 然后在 x0=0 这个点进行展开。
+如何得到e的数字？可以通过泰勒级数加上缩放，获得小数点后面精确的数字。使用f(x) = e<sup>x</sup> 函数f(1)=e, 然后在 x0=0 这个点进行展开。
 </p>
 
 
@@ -34,7 +80,7 @@
 </div>
 
 <p>
-Python的好处就是可以直接操作大数。代码里面有个很重要的问题是，如果控制精度。我的办法是加上 `fac &gt;= fac_thres` 这个判断，可以认为一旦满足这个条件的话，那么小数点前面的部分应该不会变化了。我没有办法证明，只是直觉这么认为。如果希望更加保险的话，可以让 `fac_thres` 这个值再大些。
+Python的好处就是可以直接操作大数。代码里面有个很重要的问题是，如果控制精度。我的办法是加上 `fac &gt;= fac<sub>thres</sub>` 这个判断，可以认为一旦满足这个条件的话，那么小数点前面的部分应该不会变化了。我没有办法证明，只是直觉这么认为。如果希望更加保险的话，可以让 `fac<sub>thres</sub>` 这个值再大些。
 </p>
 
 <div class="org-src-container">
@@ -46,12 +92,12 @@ Python的好处就是可以直接操作大数。代码里面有个很重要的�
     b = 0
     i = 0
     while True:
-        i += 1
-        fac *= i
-        if fac &gt;= fac_thres:
-            break
-        a += scale_10 // fac
-        b += scale_10 % fac
+	i += 1
+	fac *= i
+	if fac &gt;= fac_thres:
+	    break
+	a += scale_10 // fac
+	b += scale_10 % fac
 
     a += b // scale_10
     b = b % scale_10
@@ -67,33 +113,33 @@ Python的好处就是可以直接操作大数。代码里面有个很重要的�
 <div class="org-src-container">
 <pre class="src src-Python">import random
 def miller_rabin(n, k=10):
-    if n == 2:
-        return True
-    if not n &amp; 1:
-        return False
+	if n == 2:
+		return True
+	if not n &amp; 1:
+		return False
 
-    def check(a, s, d, n):
-        x = pow(a, d, n)
-        if x == 1:
-            return True
-        for i in range(s - 1):
-            if x == n - 1:
-                return True
-            x = pow(x, 2, n)
-        return x == n - 1
+	def check(a, s, d, n):
+		x = pow(a, d, n)
+		if x == 1:
+			return True
+		for i in range(s - 1):
+			if x == n - 1:
+				return True
+			x = pow(x, 2, n)
+		return x == n - 1
 
-    s = 0
-    d = n - 1
+	s = 0
+	d = n - 1
 
-    while d % 2 == 0:
-        d &gt;&gt;= 1
-        s += 1
+	while d % 2 == 0:
+		d &gt;&gt;= 1
+		s += 1
 
-    for i in range(k):
-        a = random.randrange(2, n - 1)
-        if not check(a, s, d, n):
-            return False
-    return True
+	for i in range(k):
+		a = random.randrange(2, n - 1)
+		if not check(a, s, d, n):
+			return False
+	return True
 </pre>
 </div>
 
@@ -118,10 +164,10 @@ Wall time: 1.18 ms
 <pre class="src src-Python">def find_prime_digits(a, k = 10):
     a = str(a)
     for i in range(0, len(a) - k):
-        s = a[i:i+k]
-        v = int(s)
-        if miller_rabin(v):
-            return s
+	s = a[i:i+k]
+	v = int(s)
+	if miller_rabin(v):
+	    return s
 </pre>
 </div>
 
@@ -136,6 +182,11 @@ CPU times: user 831 µs, sys: 2 µs, total: 833 µs
 Wall time: 837 µs
 '7427466391'
 </pre>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/find-10-digits-prime-in-consecutive-digits-of-e.html';this.page.identifier = 'find-10-digits-prime-in-consecutive-digits-of-e.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

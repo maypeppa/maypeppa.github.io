@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>mapred</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">mapred</h1>
@@ -38,52 +84,52 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org428fac5">1. Scheduler</a></li>
-<li><a href="#orga131493">2. hadoop-lzo</a>
+<li><a href="#org4caf5c9">1. Scheduler</a></li>
+<li><a href="#org31d920e">2. hadoop-lzo</a>
 <ul>
-<li><a href="#org87347f9">2.1. 安装配置</a></li>
-<li><a href="#org4df089e">2.2. 使用lzo</a></li>
-<li><a href="#org63f5c95">2.3. 配合protobuf</a></li>
+<li><a href="#orgab1ad6a">2.1. 安装配置</a></li>
+<li><a href="#orga21ec59">2.2. 使用lzo</a></li>
+<li><a href="#org35b1a25">2.3. 配合protobuf</a></li>
 </ul>
 </li>
-<li><a href="#org2c7d6f1">3. 多路输入</a>
+<li><a href="#orgdfd4051">3. 多路输入</a>
 <ul>
-<li><a href="#org33bfddf">3.1. MultipleInputs</a></li>
-<li><a href="#org3df6957">3.2. MultipleTableInputFormat</a></li>
+<li><a href="#org33a78b7">3.1. MultipleInputs</a></li>
+<li><a href="#org6728c77">3.2. MultipleTableInputFormat</a></li>
 </ul>
 </li>
-<li><a href="#org78432e3">4. 多路输出</a>
+<li><a href="#orgfc4f2d2">4. 多路输出</a>
 <ul>
-<li><a href="#org268145f">4.1. MultipleOutputs</a></li>
-<li><a href="#orga11f191">4.2. MultipleTableOutputFormat</a></li>
+<li><a href="#org3bbb1cd">4.1. MultipleOutputs</a></li>
+<li><a href="#orgcf8edea">4.2. MultipleTableOutputFormat</a></li>
 </ul>
 </li>
-<li><a href="#orgfa9a1e8">5. 获取集群运行状况</a></li>
-<li><a href="#org9e8d11e">6. OutOfMemoryError</a></li>
-<li><a href="#org433516f">7. topology rack awareness</a></li>
-<li><a href="#org4b1024b">8. streaming</a></li>
-<li><a href="#org10cad3f">9. Too many fetch-failures</a></li>
-<li><a href="#org171133d">10. blacklist</a></li>
-<li><a href="#org72247b2">11. 磁盘空间</a></li>
-<li><a href="#org54fbbf7">12. getMapOutput failed</a>
+<li><a href="#org0a81e3e">5. 获取集群运行状况</a></li>
+<li><a href="#org33cf63d">6. OutOfMemoryError</a></li>
+<li><a href="#org19acace">7. topology rack awareness</a></li>
+<li><a href="#org5a7aab3">8. streaming</a></li>
+<li><a href="#org39ddedc">9. Too many fetch-failures</a></li>
+<li><a href="#org600798a">10. blacklist</a></li>
+<li><a href="#orga1e49f5">11. 磁盘空间</a></li>
+<li><a href="#org7727078">12. getMapOutput failed</a>
 <ul>
-<li><a href="#orgf3ac667">12.1. normal case</a></li>
-<li><a href="#org8d869b0">12.2. bas case</a></li>
+<li><a href="#orgd46ff1e">12.1. normal case</a></li>
+<li><a href="#org846e6fb">12.2. bas case</a></li>
 </ul>
 </li>
-<li><a href="#org4fdd2c8">13. Error initializing</a>
+<li><a href="#org668b0da">13. Error initializing</a>
 <ul>
-<li><a href="#org9abca29">13.1. No such file or directory</a></li>
+<li><a href="#org4937515">13.1. No such file or directory</a></li>
 </ul>
 </li>
-<li><a href="#orgfc0dfc2">14. shuffleInMemory OutOfMemoryError</a></li>
-<li><a href="#orgaf03556">15. HowManyMapsAndReduces</a></li>
+<li><a href="#org299b3c4">14. shuffleInMemory OutOfMemoryError</a></li>
+<li><a href="#orgc4dc557">15. HowManyMapsAndReduces</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org428fac5" class="outline-2">
-<h2 id="org428fac5"><span class="section-number-2">1</span> Scheduler</h2>
+<div id="outline-container-org4caf5c9" class="outline-2">
+<h2 id="org4caf5c9"><span class="section-number-2">1</span> Scheduler</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Fair Scheduler Guide <a href="http://archive.cloudera.com/cdh/3/hadoop/fair_scheduler.html">http://archive.cloudera.com/cdh/3/hadoop/fair_scheduler.html</a></li>
@@ -96,12 +142,12 @@
 </div>
 </div>
 
-<div id="outline-container-orga131493" class="outline-2">
-<h2 id="orga131493"><span class="section-number-2">2</span> hadoop-lzo</h2>
+<div id="outline-container-org31d920e" class="outline-2">
+<h2 id="org31d920e"><span class="section-number-2">2</span> hadoop-lzo</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org87347f9" class="outline-3">
-<h3 id="org87347f9"><span class="section-number-3">2.1</span> 安装配置</h3>
+<div id="outline-container-orgab1ad6a" class="outline-3">
+<h3 id="orgab1ad6a"><span class="section-number-3">2.1</span> 安装配置</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>安装liblzo2库，sudo apt-get install liblzo2-2(liblzo2-dev)</li>
@@ -116,11 +162,11 @@
 <li><a href="http://code.google.com/a/apache-extras.org/p/hadoop-gpl-compression/">http://code.google.com/a/apache-extras.org/p/hadoop-gpl-compression/</a></li>
 </ul></li>
 <li>编译，ant compile-native tar</li>
-<li>将结果build/hadoop-lzo-0.4.14的hadoop-lzo-0.4.14.jar复制到 $HADOOP_HOME/lib，将build/hadoop-lzo-0.4.14/lib/native下的文件复制到$HADOOP_HOME/lib/native (native/Linux-amd64-64)
+<li>将结果build/hadoop-lzo-0.4.14的hadoop-lzo-0.4.14.jar复制到 $HADOOP<sub>HOME</sub>/lib，将build/hadoop-lzo-0.4.14/lib/native下的文件复制到$HADOOP<sub>HOME</sub>/lib/native (native/Linux-amd64-64)
 <ul class="org-ul">
 <li>如果没有安装hadoop只是打算本地编译然后提交任务的话，那么可以设置下面两个环境变量</li>
-<li>export HADOOP_CLASSPATH=/path/to/your/hadoop-lzo-lib.jar</li>
-<li>export JAVA_LIBRARY_PATH=/path/to/hadoop-lzo-native-libs:/path/to/standard-hadoop-native-libs</li>
+<li>export HADOOP<sub>CLASSPATH</sub>=/path/to/your/hadoop-lzo-lib.jar</li>
+<li>export JAVA<sub>LIBRARY</sub><sub>PATH</sub>=/path/to/hadoop-lzo-native-libs:/path/to/standard-hadoop-native-libs</li>
 </ul></li>
 <li>修改core-site.xml配置</li>
 </ul>
@@ -138,8 +184,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4df089e" class="outline-3">
-<h3 id="org4df089e"><span class="section-number-3">2.2</span> 使用lzo</h3>
+<div id="outline-container-orga21ec59" class="outline-3">
+<h3 id="orga21ec59"><span class="section-number-3">2.2</span> 使用lzo</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 关于如何使用lzo可以参看代码示例 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/java/mr/src/main/java/com/dirlt/java/mr/ReadLzoInput.java">code on github</a>. 下面几点需要说明：
@@ -179,8 +225,8 @@
 </div>
 </div>
 
-<div id="outline-container-org63f5c95" class="outline-3">
-<h3 id="org63f5c95"><span class="section-number-3">2.3</span> 配合protobuf</h3>
+<div id="outline-container-org35b1a25" class="outline-3">
+<h3 id="org35b1a25"><span class="section-number-3">2.3</span> 配合protobuf</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 elephant-bird实现了protobuf+lzo组合使用方式。
@@ -203,10 +249,10 @@ message Message {
 </pre>
 <ul class="org-ul">
 <li>package 名字空间</li>
-<li>java_outer_classname 具体输出类名称</li>
+<li>java<sub>outer</sub><sub>classname</sub> 具体输出类名称</li>
 </ul>
 <p>
-使用protoc &#x2013;java_out=&lt;dir&gt; message.proto就会在&lt;dir&gt;下面生成MessageProtos1.java文件。
+使用protoc &#x2013;java<sub>out</sub>=&lt;dir&gt; message.proto就会在&lt;dir&gt;下面生成MessageProtos1.java文件。
 </p>
 
 <p>
@@ -218,8 +264,8 @@ message Message {
 <div class="org-src-container">
 <pre class="src src-Java">public class MessageLzoProtobufInputFormat extends LzoProtobufBlockInputFormat&lt;MessageProtos1.Message&gt; {
     public MessageLzoProtobufInputFormat() {
-        super(new TypeRef&lt;MessageProtos1.Message&gt;() {
-        });
+	super(new TypeRef&lt;MessageProtos1.Message&gt;() {
+	});
     }
 }
 </pre>
@@ -231,8 +277,8 @@ message Message {
 <div class="org-src-container">
 <pre class="src src-Java">public class MessageLzoProtobufOutputFormat extends LzoProtobufBlockOutputFormat&lt;MessageProtos1.Message&gt; {
     public MessageLzoProtobufOutputFormat() {
-        super(new TypeRef&lt;MessageProtos1.Message&gt;() {
-        });
+	super(new TypeRef&lt;MessageProtos1.Message&gt;() {
+	});
     }
 }
 </pre>
@@ -244,13 +290,13 @@ message Message {
 <div class="org-src-container">
 <pre class="src src-Java">public class MessageLzoProtobufWritable extends ProtobufWritable&lt;MessageProtos1.Message&gt; {
     public MessageLzoProtobufWritable() {
-        super(new TypeRef&lt;MessageProtos1.Message&gt;() {
-        });
+	super(new TypeRef&lt;MessageProtos1.Message&gt;() {
+	});
     }
 
     public MessageLzoProtobufWritable(MessageProtos1.Message message) {
-        super(message, new TypeRef&lt;MessageProtos1.Message&gt;() {
-        });
+	super(message, new TypeRef&lt;MessageProtos1.Message&gt;() {
+	});
     }
 }
 
@@ -264,12 +310,12 @@ message Message {
 </div>
 </div>
 
-<div id="outline-container-org2c7d6f1" class="outline-2">
-<h2 id="org2c7d6f1"><span class="section-number-2">3</span> 多路输入</h2>
+<div id="outline-container-orgdfd4051" class="outline-2">
+<h2 id="orgdfd4051"><span class="section-number-2">3</span> 多路输入</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org33bfddf" class="outline-3">
-<h3 id="org33bfddf"><span class="section-number-3">3.1</span> MultipleInputs</h3>
+<div id="outline-container-org33a78b7" class="outline-3">
+<h3 id="org33a78b7"><span class="section-number-3">3.1</span> MultipleInputs</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>参考代码 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleInputs1.java">code on github</a></li>
@@ -285,14 +331,14 @@ message Message {
 <li>使用MultipleInputs的话，hadoop会在环境变量中将输入内容设置成为inputPath=className, inputPath=className这样的字符串</li>
 <li>MultipleInputs底层将InputFormat替换成为了自己的DelegateInputFormat.</li>
 <li>DelegateInputFormat根据每个className初始化实例并且将inputPath给这个实例，这些对于FileInputFormat工作很好</li>
-<li>而对于TableInputFormat没有使用这个inputPath，而是直接读取configuration里面设置的TableOutputFormat.OUTPUT_TABLE这个值</li>
+<li>而对于TableInputFormat没有使用这个inputPath，而是直接读取configuration里面设置的TableOutputFormat.OUTPUT<sub>TABLE这个值</sub></li>
 </ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3df6957" class="outline-3">
-<h3 id="org3df6957"><span class="section-number-3">3.2</span> MultipleTableInputFormat</h3>
+<div id="outline-container-org6728c77" class="outline-3">
+<h3 id="org6728c77"><span class="section-number-3">3.2</span> MultipleTableInputFormat</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>参考代码 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleInputs2.java">code on github</a></li>
@@ -324,12 +370,12 @@ message Message {
 </div>
 </div>
 
-<div id="outline-container-org78432e3" class="outline-2">
-<h2 id="org78432e3"><span class="section-number-2">4</span> 多路输出</h2>
+<div id="outline-container-orgfc4f2d2" class="outline-2">
+<h2 id="orgfc4f2d2"><span class="section-number-2">4</span> 多路输出</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org268145f" class="outline-3">
-<h3 id="org268145f"><span class="section-number-3">4.1</span> MultipleOutputs</h3>
+<div id="outline-container-org3bbb1cd" class="outline-3">
+<h3 id="org3bbb1cd"><span class="section-number-3">4.1</span> MultipleOutputs</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>参考代码 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleOutputs.java">code on github</a></li>
@@ -349,8 +395,8 @@ message Message {
 </div>
 </div>
 
-<div id="outline-container-orga11f191" class="outline-3">
-<h3 id="orga11f191"><span class="section-number-3">4.2</span> MultipleTableOutputFormat</h3>
+<div id="outline-container-orgcf8edea" class="outline-3">
+<h3 id="orgcf8edea"><span class="section-number-3">4.2</span> MultipleTableOutputFormat</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>参考代码 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleTableOutput.java">code on github</a></li>
@@ -358,15 +404,15 @@ message Message {
 <li>调用context.write的key需要指定outputTable
 <ul class="org-ul">
 <li>其实这也意味着如果是单表输出的话那么key为null即可</li>
-<li>前提是需要使用conf.set(TableOutputFormat.OUTPUT_TABLE,tableName);</li>
+<li>前提是需要使用conf.set(TableOutputFormat.OUTPUT<sub>TABLE,tableName</sub>);</li>
 </ul></li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfa9a1e8" class="outline-2">
-<h2 id="orgfa9a1e8"><span class="section-number-2">5</span> 获取集群运行状况</h2>
+<div id="outline-container-org0a81e3e" class="outline-2">
+<h2 id="org0a81e3e"><span class="section-number-2">5</span> 获取集群运行状况</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>参考代码 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/java/mr/src/main/java/com/dirlt/java/mr/ClusterSummary.java">code on github</a></li>
@@ -375,8 +421,8 @@ message Message {
 </div>
 </div>
 
-<div id="outline-container-org9e8d11e" class="outline-2">
-<h2 id="org9e8d11e"><span class="section-number-2">6</span> OutOfMemoryError</h2>
+<div id="outline-container-org33cf63d" class="outline-2">
+<h2 id="org33cf63d"><span class="section-number-2">6</span> OutOfMemoryError</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>hadoop的mapreduce作业中经常出现Java heap space解决方案 <a href="http://blog.sina.com.cn/s/blog_6345041c01011bjq.html">http://blog.sina.com.cn/s/blog_6345041c01011bjq.html</a></li>
@@ -389,7 +435,7 @@ message Message {
 总结起来大致就是以下几种原因吧：
 </p>
 <ul class="org-ul">
-<li>Increase the heap size for the TaskTracker, I did this by changing HADOOP_HEAPSIZE to 4096 in /etc/hadoop/conf/hadoop-env.sh to test.  This did not solve it.（增加TaskTracker的heapsize）</li>
+<li>Increase the heap size for the TaskTracker, I did this by changing HADOOP<sub>HEAPSIZE</sub> to 4096 in /etc/hadoop/conf/hadoop-env.sh to test.  This did not solve it.（增加TaskTracker的heapsize）</li>
 <li>Increase the heap size for the spawned child.  Add -Xmx1024 in mapred-site.xml for mapred.map.child.java.opts.  This did not solve it. （增加task的heapsize）</li>
 <li>Make sure that the limit of open files is not reached, I had already done this by adding “mapred – nofile 65536″ in /etc/security/limits.conf.  This did not solve it. （增加文件数目限制）</li>
 <li>Adding the following to /etc/security/limits.conf and restarting the TaskTracker solved it "mapred – nproc 8192" （增加开辟子进程的数目）</li>
@@ -397,8 +443,8 @@ message Message {
 </div>
 </div>
 
-<div id="outline-container-org433516f" class="outline-2">
-<h2 id="org433516f"><span class="section-number-2">7</span> topology rack awareness</h2>
+<div id="outline-container-org19acace" class="outline-2">
+<h2 id="org19acace"><span class="section-number-2">7</span> topology rack awareness</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 有两种方式实现，主要是实现DNS-name/IP到network path映射，network path是如下格式的字符串
@@ -428,8 +474,8 @@ message Message {
 </div>
 </div>
 
-<div id="outline-container-org4b1024b" class="outline-2">
-<h2 id="org4b1024b"><span class="section-number-2">8</span> streaming</h2>
+<div id="outline-container-org5a7aab3" class="outline-2">
+<h2 id="org5a7aab3"><span class="section-number-2">8</span> streaming</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Hadoop Streaming <a href="http://hadoop.apache.org/docs/r1.1.2/streaming.html">http://hadoop.apache.org/docs/r1.1.2/streaming.html</a></li>
@@ -440,7 +486,7 @@ streaming允许用户使用脚本来编写mapper/reducer，使用stdin/stdout作
 </p>
 
 <p>
-调用方式：hadoop $HADOOP_HOME/contrib/streaming/hadoop-streaming-*.jar &lt;OPTIONS&gt; 其中OPTIONS如下：
+调用方式：hadoop $HADOOP<sub>HOME</sub>/contrib/streaming/hadoop-streaming-*.jar &lt;OPTIONS&gt; 其中OPTIONS如下：
 </p>
 <ul class="org-ul">
 <li>-input</li>
@@ -474,8 +520,8 @@ streaming允许用户使用脚本来编写mapper/reducer，使用stdin/stdout作
 </div>
 </div>
 
-<div id="outline-container-org10cad3f" class="outline-2">
-<h2 id="org10cad3f"><span class="section-number-2">9</span> Too many fetch-failures</h2>
+<div id="outline-container-org39ddedc" class="outline-2">
+<h2 id="org39ddedc"><span class="section-number-2">9</span> Too many fetch-failures</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 集群中出现job中少数几个任务卡在reduce的copy阶段，并且这几个任务都是在同一个机器执行。tasktracker log日志如下： <b>可以看到有两个task,49和50</b>
@@ -694,8 +740,8 @@ Heap
 </div>
 </div>
 
-<div id="outline-container-org171133d" class="outline-2">
-<h2 id="org171133d"><span class="section-number-2">10</span> blacklist</h2>
+<div id="outline-container-org600798a" class="outline-2">
+<h2 id="org600798a"><span class="section-number-2">10</span> blacklist</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li><a href="http://www.mapr.com/doc/display/MapR/TaskTracker+Blacklisting">http://www.mapr.com/doc/display/MapR/TaskTracker+Blacklisting</a></li>
@@ -736,8 +782,8 @@ Heap
 </div>
 </div>
 
-<div id="outline-container-org72247b2" class="outline-2">
-<h2 id="org72247b2"><span class="section-number-2">11</span> 磁盘空间</h2>
+<div id="outline-container-orga1e49f5" class="outline-2">
+<h2 id="orga1e49f5"><span class="section-number-2">11</span> 磁盘空间</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 随着我们以5T/day数据量曾长，很多机器磁盘都已经出现饱和情况（可能是某个data目录已经饱和），对我们的tasktracker也造成了一定的影响。我抽取了了今天所有挂掉的tt来做post-mortem. 结果是这样的。其中有几个tt前几天已经是被blacklist的。这些机器有 dp24,dp31,dp34,dp36,dp41. 我们后续对磁盘规划的话，一定需要预留一部分磁盘空间出来给tt（不知道现在是否预留足够），另外一个就是我们调研一下如何tt是否可以强制清理，自己腾出一部分磁盘空间。
@@ -843,8 +889,8 @@ none             24G     0   24G   0% /run/shm
 </pre>
 </div>
 </div>
-<div id="outline-container-org54fbbf7" class="outline-2">
-<h2 id="org54fbbf7"><span class="section-number-2">12</span> getMapOutput failed</h2>
+<div id="outline-container-org7727078" class="outline-2">
+<h2 id="org7727078"><span class="section-number-2">12</span> getMapOutput failed</h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li><a href="http://stackoverflow.com/questions/10799143/hadoop-mapreduce-getmapoutput-failed">http://stackoverflow.com/questions/10799143/hadoop-mapreduce-getmapoutput-failed</a> (bad case)</li>
@@ -852,14 +898,14 @@ none             24G     0   24G   0% /run/shm
 </ul>
 </div>
 
-<div id="outline-container-orgf3ac667" class="outline-3">
-<h3 id="orgf3ac667"><span class="section-number-3">12.1</span> normal case</h3>
+<div id="outline-container-orgd46ff1e" class="outline-3">
+<h3 id="orgd46ff1e"><span class="section-number-3">12.1</span> normal case</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 dp41上面出现如下错误日志，可以看到dp41在作为map output server时候，dp16从这些取数据但是失败，并且可以分析
 </p>
 <ul class="org-ul">
-<li>map task attempt_201301231102_33841_m_000331_0</li>
+<li>map task attempt<sub>201301231102</sub><sub>33841</sub><sub>m</sub><sub>000331</sub><sub>0</sub></li>
 <li>reduce task id = 15</li>
 </ul>
 <pre class="example">
@@ -1032,7 +1078,7 @@ Reduce input records	321,140,243
 </pre>
 
 <p>
-性能数据非常正常. 然后察看dp16对应时刻的日志，发现这个getMapOutput只不过是一个偶然的失败。但是其实从dp16上面的日志来看，可能只是取map output部分block没有成功，但是后续还是成功的，观察 <b>attempt_201301231102_33841_r_000015_0</b> 传输百分比和block数目。
+性能数据非常正常. 然后察看dp16对应时刻的日志，发现这个getMapOutput只不过是一个偶然的失败。但是其实从dp16上面的日志来看，可能只是取map output部分block没有成功，但是后续还是成功的，观察 <b>attempt<sub>201301231102</sub><sub>33841</sub><sub>r</sub><sub>000015</sub><sub>0</sub></b> 传输百分比和block数目。
 </p>
 <pre class="example">
 2013-05-13 12:23:04,575 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_33841_r_000015_0 0.01798942% reduce &gt; copy (102 of 1890 at 19.63 MB/s) &gt;
@@ -1049,16 +1095,16 @@ Reduce input records	321,140,243
 </div>
 </div>
 
-<div id="outline-container-org8d869b0" class="outline-3">
-<h3 id="org8d869b0"><span class="section-number-3">12.2</span> bas case</h3>
+<div id="outline-container-org846e6fb" class="outline-3">
+<h3 id="org846e6fb"><span class="section-number-3">12.2</span> bas case</h3>
 </div>
 </div>
-<div id="outline-container-org4fdd2c8" class="outline-2">
-<h2 id="org4fdd2c8"><span class="section-number-2">13</span> Error initializing</h2>
+<div id="outline-container-org668b0da" class="outline-2">
+<h2 id="org668b0da"><span class="section-number-2">13</span> Error initializing</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org9abca29" class="outline-3">
-<h3 id="org9abca29"><span class="section-number-3">13.1</span> No such file or directory</h3>
+<div id="outline-container-org4937515" class="outline-3">
+<h3 id="org4937515"><span class="section-number-3">13.1</span> No such file or directory</h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
 dp31出现如下日志，这个过程是非常诡异的。从stacktrace上面可以看到过程是在创建job directory时候正要修改权限，但是文件找不到了。从dp31的df -h可以看到剩余磁盘空间如下
@@ -1124,8 +1170,8 @@ ENOENT: No such file or directory
 </div>
 </div>
 
-<div id="outline-container-orgfc0dfc2" class="outline-2">
-<h2 id="orgfc0dfc2"><span class="section-number-2">14</span> shuffleInMemory OutOfMemoryError</h2>
+<div id="outline-container-org299b3c4" class="outline-2">
+<h2 id="org299b3c4"><span class="section-number-2">14</span> shuffleInMemory OutOfMemoryError</h2>
 <div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>Users - Shuffle In Memory OutOfMemoryError : <a href="http://hadoop-common.472056.n3.nabble.com/Shuffle-In-Memory-OutOfMemoryError-td433197.html">http://hadoop-common.472056.n3.nabble.com/Shuffle-In-Memory-OutOfMemoryError-td433197.html</a></li>
@@ -1143,8 +1189,8 @@ ENOENT: No such file or directory
 </p>
 </div>
 </div>
-<div id="outline-container-orgaf03556" class="outline-2">
-<h2 id="orgaf03556"><span class="section-number-2">15</span> HowManyMapsAndReduces</h2>
+<div id="outline-container-orgc4dc557" class="outline-2">
+<h2 id="orgc4dc557"><span class="section-number-2">15</span> HowManyMapsAndReduces</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 <a href="http://wiki.apache.org/hadoop/HowManyMapsAndReduces">http://wiki.apache.org/hadoop/HowManyMapsAndReduces</a>
@@ -1169,6 +1215,11 @@ Number of Reduces：
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/mapred.html';this.page.identifier = 'mapred.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

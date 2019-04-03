@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Effective Scala</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Effective Scala</h1>
@@ -16,19 +62,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8a0c3a1">1. Introduction</a></li>
-<li><a href="#orgb251315">2. Formatting</a></li>
-<li><a href="#org7395dd7">3. Types and Generics</a></li>
-<li><a href="#org8132dd5">4. Collections</a></li>
-<li><a href="#org707c836">5. Concurrency</a></li>
-<li><a href="#org479c94e">6. Control structures</a></li>
-<li><a href="#orgc18984f">7. Functional programming</a></li>
-<li><a href="#org0eefabb">8. Object oriented programming</a></li>
-<li><a href="#org1e7c363">9. Error handling</a></li>
-<li><a href="#org48c2c7e">10. Garbage collection</a></li>
-<li><a href="#org93da24c">11. Java compatibility</a></li>
-<li><a href="#org5dcaf65">12. Twitter's standard libraries</a></li>
-<li><a href="#org2e8168f">13. Acknowledgements</a></li>
+<li><a href="#orga12b55b">1. Introduction</a></li>
+<li><a href="#org1259a34">2. Formatting</a></li>
+<li><a href="#orgf6bd7d0">3. Types and Generics</a></li>
+<li><a href="#org54b3b83">4. Collections</a></li>
+<li><a href="#org3edc5b0">5. Concurrency</a></li>
+<li><a href="#org6484981">6. Control structures</a></li>
+<li><a href="#orge7d2bdf">7. Functional programming</a></li>
+<li><a href="#orgc24b56e">8. Object oriented programming</a></li>
+<li><a href="#org1814e78">9. Error handling</a></li>
+<li><a href="#orgaf48b29">10. Garbage collection</a></li>
+<li><a href="#org6810f48">11. Java compatibility</a></li>
+<li><a href="#orgcb76461">12. Twitter's standard libraries</a></li>
+<li><a href="#orge5f2061">13. Acknowledgements</a></li>
 </ul>
 </div>
 </div>
@@ -40,8 +86,8 @@
 还是看 <a href="http://twitter.github.io/effectivescala/index-cn.html">中文版</a> 比较省力:)
 </p>
 
-<div id="outline-container-org8a0c3a1" class="outline-2">
-<h2 id="org8a0c3a1"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orga12b55b" class="outline-2">
+<h2 id="orga12b55b"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Scala provides many tools that enable succinct expression. Less typing is less reading, and less reading is often faster reading, and thus brevity enhances clarity. However brevity is a blunt tool that can also deliver the opposite effect: After correctness, think always of the reader.
@@ -52,7 +98,7 @@ Scala provides many tools that enable succinct expression. Less typing is less r
 </p>
 
 <p>
-Above all, program in Scala. You are not writing Java, nor Haskell, nor Python; a Scala program is unlike one written in any of these. In order to use the language effectively, you must phrase your problems in its terms. There’s no use coercing a Java program into Scala, for it will be inferior in most ways to its original.
+Above all, program in Scala. You are not writing Java, nor Haskell, nor Python; a Scala program is unlike one written in any of these. In order to use the language effectively, you must phrase your problems in its terms. There’s no use coercing a Java program into Scala, for it will be inferior in most ways to its original. 
 </p>
 
 <p>
@@ -69,8 +115,8 @@ This is a living document that will change to reflect our current “best practi
 </div>
 </div>
 
-<div id="outline-container-orgb251315" class="outline-2">
-<h2 id="orgb251315"><span class="section-number-2">2</span> Formatting</h2>
+<div id="outline-container-org1259a34" class="outline-2">
+<h2 id="org1259a34"><span class="section-number-2">2</span> Formatting</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 用主动语态(active)来命名有副作用的操作：user.activate()而非 user.setActive()
@@ -86,8 +132,8 @@ getters不采用前缀get：用get是多余的: site.count而非site.getCount
 </div>
 </div>
 
-<div id="outline-container-org7395dd7" class="outline-2">
-<h2 id="org7395dd7"><span class="section-number-2">3</span> Types and Generics</h2>
+<div id="outline-container-orgf6bd7d0" class="outline-2">
+<h2 id="orgf6bd7d0"><span class="section-number-2">3</span> Types and Generics</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Scala的强大类型系统是学术探索和实践共同来源(例如 <a href="http://apocalisp.wordpress.com/2010/06/08/type-level-programming-in-scala/">Type level programming in Scala</a>) 。但这是一个迷人的学术话题，这些技术很少在应用和正式产品代码中使用。它们应该被避免。
@@ -111,8 +157,8 @@ If you do find yourself using implicits, always ask yourself if there is a way t
 </div>
 </div>
 
-<div id="outline-container-org8132dd5" class="outline-2">
-<h2 id="org8132dd5"><span class="section-number-2">4</span> Collections</h2>
+<div id="outline-container-org54b3b83" class="outline-2">
+<h2 id="org54b3b83"><span class="section-number-2">4</span> Collections</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <a href="http://www.scala-lang.org/docu/files/collections-api/collections.html">http://www.scala-lang.org/docu/files/collections-api/collections.html</a>
@@ -123,7 +169,7 @@ Scala有一个非常通用，丰富，强大，可组合的集合库；集合是
 </p>
 
 <p>
-The collections library is large: in addition to an elaborate hierarchy — the root of which being Traversable[T] — there are immutable and mutable variants for most collections. Whatever the complexity, the following diagram contains the important distinctions for both immutable and mutable hierarchies.
+The collections library is large: in addition to an elaborate hierarchy — the root of which being Traversable[T] — there are immutable and mutable variants for most collections. Whatever the complexity, the following diagram contains the important distinctions for both immutable and mutable hierarchies. 
 </p>
 
 <p>
@@ -147,7 +193,7 @@ Iterable[T] 是所有可遍历的集合，它提供了迭代的方法(foreach)�
 </ul>
 
 <p>
-Prefer using immutable collections. They are applicable in most circumstances, and make programs easier to reason about since they are referentially transparent and are thus also threadsafe by default. Use the mutable namespace explicitly.
+Prefer using immutable collections. They are applicable in most circumstances, and make programs easier to reason about since they are referentially transparent and are thus also threadsafe by default. Use the mutable namespace explicitly. 
 </p>
 
 <p>
@@ -160,7 +206,7 @@ val set = mutable.Set()
 </div>
 
 <p>
-Use the default constructor for the collection type. The corollary to the above is: in your own methods and constructors, receive the most generic collection type appropriate. This typically boils down to one of the above: Iterable, Seq, Set, or Map.
+Use the default constructor for the collection type. The corollary to the above is: in your own methods and constructors, receive the most generic collection type appropriate. This typically boils down to one of the above: Iterable, Seq, Set, or Map. 
 </p>
 
 <p>
@@ -185,8 +231,8 @@ Use scala.collection.JavaConverters to interoperate with Java collections. These
 </div>
 </div>
 
-<div id="outline-container-org707c836" class="outline-2">
-<h2 id="org707c836"><span class="section-number-2">5</span> Concurrency</h2>
+<div id="outline-container-org3edc5b0" class="outline-2">
+<h2 id="org3edc5b0"><span class="section-number-2">5</span> Concurrency</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 完全看不懂下面这段话的意思. 感觉像是说了一些什么, 但是好像油什么都没有说:X. 资源管理确实危害了模块化, 但是线程本身并没有让逻辑从基础资源中分离出来更加复杂.
@@ -244,8 +290,8 @@ If an immutable collection will do, use it — they are referentially transparen
 </div>
 </div>
 
-<div id="outline-container-org479c94e" class="outline-2">
-<h2 id="org479c94e"><span class="section-number-2">6</span> Control structures</h2>
+<div id="outline-container-org6484981" class="outline-2">
+<h2 id="org6484981"><span class="section-number-2">6</span> Control structures</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 returns can have hidden costs: when used inside of a closure. <b>implemented in bytecode as an exception catching/throwing pair which, used in hot code, has performance implications.</b>
@@ -274,11 +320,11 @@ require and assert both serve as executable documentation. Both are useful for s
 </div>
 </div>
 
-<div id="outline-container-orgc18984f" class="outline-2">
-<h2 id="orgc18984f"><span class="section-number-2">7</span> Functional programming</h2>
+<div id="outline-container-orge7d2bdf" class="outline-2">
+<h2 id="orge7d2bdf"><span class="section-number-2">7</span> Functional programming</h2>
 <div class="outline-text-2" id="text-7">
 <p>
-Value oriented programming confers many advantages, especially when used in conjunction with functional programming constructs. This style emphasizes
+Value oriented programming confers many advantages, especially when used in conjunction with functional programming constructs. This style emphasizes 
 </p>
 <ul class="org-ul">
 <li>the transformation of values over stateful mutation,</li>
@@ -317,14 +363,14 @@ flatMap — the combination of map with flatten — deserves special attention, 
 </div>
 </div>
 
-<div id="outline-container-org0eefabb" class="outline-2">
-<h2 id="org0eefabb"><span class="section-number-2">8</span> Object oriented programming</h2>
+<div id="outline-container-orgc24b56e" class="outline-2">
+<h2 id="orgc24b56e"><span class="section-number-2">8</span> Object oriented programming</h2>
 </div>
-<div id="outline-container-org1e7c363" class="outline-2">
-<h2 id="org1e7c363"><span class="section-number-2">9</span> Error handling</h2>
+<div id="outline-container-org1814e78" class="outline-2">
+<h2 id="org1814e78"><span class="section-number-2">9</span> Error handling</h2>
 </div>
-<div id="outline-container-org48c2c7e" class="outline-2">
-<h2 id="org48c2c7e"><span class="section-number-2">10</span> Garbage collection</h2>
+<div id="outline-container-orgaf48b29" class="outline-2">
+<h2 id="orgaf48b29"><span class="section-number-2">10</span> Garbage collection</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 We spend a lot of time tuning garbage collection in production. The garbage collection concerns are largely similar to those of Java though idiomatic Scala code tends to generate more (short-lived) garbage than idiomatic Java code — a byproduct of the functional style. Hotspot’s generational garbage collection typically makes this a nonissue as short-lived garbage is effectively free in most circumstances.
@@ -348,11 +394,11 @@ In Scala proper, your only tool to mitigate GC problems is to generate less garb
 </div>
 </div>
 
-<div id="outline-container-org93da24c" class="outline-2">
-<h2 id="org93da24c"><span class="section-number-2">11</span> Java compatibility</h2>
+<div id="outline-container-org6810f48" class="outline-2">
+<h2 id="org6810f48"><span class="section-number-2">11</span> Java compatibility</h2>
 </div>
-<div id="outline-container-org5dcaf65" class="outline-2">
-<h2 id="org5dcaf65"><span class="section-number-2">12</span> Twitter's standard libraries</h2>
+<div id="outline-container-orgcb76461" class="outline-2">
+<h2 id="orgcb76461"><span class="section-number-2">12</span> Twitter's standard libraries</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 The most important standard libraries at Twitter are <a href="http://github.com/twitter/util">Util</a> and <a href="https://github.com/twitter/finagle">Finagle</a>. Util should be considered an extension to the Scala and Java standard libraries, providing missing functionality or more appropriate implementations. Finagle is our RPC system; the kernel distributed systems components.
@@ -367,7 +413,7 @@ The most important standard libraries at Twitter are <a href="http://github.com/
 </p>
 
 <p>
-Twitter’s futures are asynchronous, so blocking operations — basically any operation that can suspend the execution of its thread; network IO and disk IO are examples — must be handled by a system that itself provides futures for the results of said operations. Finagle provides such a system for network IO.
+Twitter’s futures are asynchronous, so blocking operations — basically any operation that can suspend the execution of its thread; network IO and disk IO are examples — must be handled by a system that itself provides futures for the results of said operations. Finagle provides such a system for network IO. 
 </p>
 
 <p>
@@ -379,11 +425,11 @@ Twitter的future是异步的，所以基本上任何操作(阻塞操作)——�
 </p>
 
 <p>
-Util’s Local provides a reference cell that is local to a particular future dispatch tree. Setting the value of a local makes this value available to any computation deferred by a Future in the same thread. <b>They are analogous to thread locals, except their scope is not a Java thread but a tree of “future threads”.</b>
+Util’s Local provides a reference cell that is local to a particular future dispatch tree. Setting the value of a local makes this value available to any computation deferred by a Future in the same thread. <b>They are analogous to thread locals, except their scope is not a Java thread but a tree of “future threads”.</b> 
 </p>
 
 <p>
-As with thread locals, Locals can be very convenient, but should almost always be avoided: make sure the problem cannot be sufficiently solved by passing data around explicitly, even if it is somewhat burdensome.
+As with thread locals, Locals can be very convenient, but should almost always be avoided: make sure the problem cannot be sufficiently solved by passing data around explicitly, even if it is somewhat burdensome. 
 </p>
 
 <p>
@@ -424,9 +470,14 @@ Offer/Broker 建立于Actor之上，以这三种重要的方式表现：1，通�
 </div>
 </div>
 
-<div id="outline-container-org2e8168f" class="outline-2">
-<h2 id="org2e8168f"><span class="section-number-2">13</span> Acknowledgements</h2>
+<div id="outline-container-orge5f2061" class="outline-2">
+<h2 id="orge5f2061"><span class="section-number-2">13</span> Acknowledgements</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/effective-scala.html';this.page.identifier = 'effective-scala.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

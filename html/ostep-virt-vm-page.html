@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OSTEP / Virt-页式系统</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">OSTEP / Virt-页式系统</h1>
@@ -34,11 +80,11 @@
 如果我们仔细分析整个步骤的话, 会发现即使翻译一次都会非常耗时:
 </p>
 <ul class="org-ul">
-<li>VPN = (virtual address &amp; mask1) &gt;&gt; shift_bit</li>
-<li>PTE = page_table.find(VPN)</li>
+<li>VPN = (virtual address &amp; mask1) &gt;&gt; shift<sub>bit</sub></li>
+<li>PTE = page<sub>table.find</sub>(VPN)</li>
 <li>PFN = PTE &amp; mask2</li>
-<li>page = fetch_page_by_frame_number(PFN)</li>
-<li>data = page + (virtual_address &amp; mask3)</li>
+<li>page = fetch<sub>page</sub><sub>by</sub><sub>frame</sub><sub>number</sub>(PFN)</li>
+<li>data = page + (virtual<sub>address</sub> &amp; mask3)</li>
 </ul>
 
 <p>
@@ -76,11 +122,11 @@ TLB在实现上是fully-associative, 简单地说就是所有entry都可以使�
 </ul>
 
 <p>
-比较有意思的是ASID和V. 这两个字段都和context switch有关. 如果发生上下文切换, 那么上一个进程cache的虚拟地址其实是不可用的. 一种办法就是flush将valid标记为0. 但是这种办法显然比较粗鲁对性能有很大影响. 解决办法就是为每个进程分配一个ASID, 这个ID类似PID但是比PID短, 8个bit. 这样我们就可以区分, 某一个VPN到底是哪一个进程产生的而不至于混淆. 那么如果当前进程数量&gt;=2^8怎么办? 如果是这种情况就只能flush TLB了.
+比较有意思的是ASID和V. 这两个字段都和context switch有关. 如果发生上下文切换, 那么上一个进程cache的虚拟地址其实是不可用的. 一种办法就是flush将valid标记为0. 但是这种办法显然比较粗鲁对性能有很大影响. 解决办法就是为每个进程分配一个ASID, 这个ID类似PID但是比PID短, 8个bit. 这样我们就可以区分, 某一个VPN到底是哪一个进程产生的而不至于混淆. 那么如果当前进程数量&gt;=2<sup>8怎么办</sup>? 如果是这种情况就只能flush TLB了.
 </p>
 
 <p>
-如何选择eviction策略? 通常使用LRU都是正确选择. LRU在一些极端情况下会出现最差情况. 假设我们不断地做循环访问1-50, 1-50. 但是TLB cache szie只有49. 那么实际上每次都会出现TLB miss.
+如何选择eviction策略? 通常使用LRU都是正确选择. LRU在一些极端情况下会出现最差情况. 假设我们不断地做循环访问1-50, 1-50. 但是TLB cache szie只有49. 那么实际上每次都会出现TLB miss. 
 </p>
 
 <p>
@@ -92,7 +138,7 @@ TLB在实现上是fully-associative, 简单地说就是所有entry都可以使�
 </p>
 
 <p>
-之前提到了Intel使用multi-level page table结构. multi-level是相对linear这种single-level而言的. 考虑了32bit虚拟地址空间, page-size = 4KB, 那么VPN就占用20bits. 如果使用linear/array方式来做page table的话, 那么entry数量就在1&lt;&lt;20 = 4MB, 每个entry如果使用8bytes的话, 一个进程就使用32MB的page table, 开销非常大.
+之前提到了Intel使用multi-level page table结构. multi-level是相对linear这种single-level而言的. 考虑了32bit虚拟地址空间, page-size = 4KB, 那么VPN就占用20bits. 如果使用linear/array方式来做page table的话, 那么entry数量就在1&lt;&lt;20 = 4MB, 每个entry如果使用8bytes的话, 一个进程就使用32MB的page table, 开销非常大. 
 </p>
 
 <p>
@@ -108,6 +154,11 @@ TLB在实现上是fully-associative, 简单地说就是所有entry都可以使�
 <p>
 使用Multi-level page table好处是减少memory footprint支持更大的虚拟地址空间.  图中是2-level, 对于更大地址范围可能到3-level. 缺点是因此indirect次数增加而导致address translation时间更长.
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/ostep-virt-vm-page.html';this.page.identifier = 'ostep-virt-vm-page.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

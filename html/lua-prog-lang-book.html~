@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lua程序设计</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">Lua程序设计</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org81e150f">1. 第一部分(C1~C10)</a>
+<ul>
+<li><a href="#org17e6bc6">1.1. 类型，表达式，语句</a></li>
+<li><a href="#orgc5c04af">1.2. 函数/深入函数/迭代器与泛型for</a></li>
+<li><a href="#org9de56e0">1.3. 编译执行与错误</a></li>
+<li><a href="#org10bcb0a">1.4. 协同程序(coroutine)</a></li>
+</ul>
+</li>
+<li><a href="#org3ae71f3">2. 第二部分(C11~C17)</a>
+<ul>
+<li><a href="#org22842bb">2.1. 数据结构/数据文件</a></li>
+<li><a href="#org6352390">2.2. 元表和元方法</a></li>
+<li><a href="#orgf9798ea">2.3. 环境</a></li>
+<li><a href="#orgd09c8aa">2.4. 模块与包</a></li>
+<li><a href="#org774fa8a">2.5. 面向对象编程</a></li>
+<li><a href="#orgdf9306b">2.6. 弱引用table</a></li>
+</ul>
+</li>
+<li><a href="#org3f74dca">3. 第三部分(C18~C23)</a></li>
+<li><a href="#org0e9c355">4. 第四部分(C24~C31)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org81e150f" class="outline-2">
+<h2 id="org81e150f"><span class="section-number-2">1</span> 第一部分(C1~C10)</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+这个部分介绍基本语法以及简单地介绍Lua环境。
+</p>
+</div>
+
+<div id="outline-container-org17e6bc6" class="outline-3">
+<h3 id="org17e6bc6"><span class="section-number-3">1.1</span> 类型，表达式，语句</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Lua有8种基础类型，通过函数 `type` 来了解具体类型
+</p>
+<ol class="org-ol">
+<li>nil(无效值)</li>
+<li>boolean(true/false)</li>
+<li>number(整数或者是双精度浮点)</li>
+<li>string</li>
+<li>userdata(自定义类型)</li>
+<li>function</li>
+<li>thread(线程)</li>
+<li>table</li>
+</ol>
+
+<p>
+如果要写入长字符串的话，可以使用下面这种格式.
+</p>
+<div class="org-src-container">
+<pre class="src src-Lua">s = [[this is a very long string.
+could be multiple lines]]
+</pre>
+</div>
+<p>
+获得字符串长度(table的大小)，可以使用 `#var` 得到。
+</p>
+
+<p>
+table既可以认为是一个dict, 也可以认为是array. 非常灵活的数据结构。
+</p>
+<ul class="org-ul">
+<li>a['x'] = 10 或者是 a.x = 10</li>
+<li>lua数组通常以1作为索引的起始值</li>
+<li>lua将nil作为界定数组结尾的标识（这点在lua环境中很常见）</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Lua">a = {[1] = 10, [2] = 20, [10] = 10}
+for i, v in ipairs(a) do
+   print(i, v)
+end
+print(#a)
+</pre>
+</div>
+<ul class="org-ul">
+<li>ipairs假设index是数字并且从0开始，而pairs则没有这个假设</li>
+</ul>
+
+<p>
+table constructor(table构造式）很有趣，同时兼容key/value和array的构造
+</p>
+<ul class="org-ul">
+<li>days = {'Sun', 'Mon', 'Tue'} 数组构造，下标从1开始</li>
+<li>point = {x = 10, y = 20} 字典构造</li>
+<li>上面两者也可以混合在一起</li>
+<li>同时支持表达式做key days = {["*"] = mul} 或者是 days = {[ 0 ] = 20}</li>
+<li>虽然上面的写法支持下标为0，但是最好不要这么使用。</li>
+</ul>
+
+<p>
+多变量赋值时，如果没有匹配上的话，那么剩余的变量自动匹配到 nil. 多余的自动忽略。
+或者是如果直接声明 `local a` 的话，那么 `a` 的默认值也是 nil. 整个lua环境对 nil 有非常特殊的处理。
+</p>
+
+<p>
+块(block)(通常是do-end部分）是规定了local(局部)变量的作用范围。常见控制结构有
+</p>
+<ul class="org-ul">
+<li>if then(else/elseif) end</li>
+<li>while do &#x2026; end</li>
+<li>repeat &#x2026; until</li>
+<li>for var=exp1, exp2, exp3 do &#x2026; end(数字型for, numeric for)
+<ul class="org-ul">
+<li>如果exp2很大的话可以用 `math.huge` 来表示无线循环</li>
+<li>`var` 作用域仅限于这个block，不要对 `var` 做任何赋值</li>
+</ul></li>
+<li>for var1, var2 in func do &#x2026; end(泛型for, generic for)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc5c04af" class="outline-3">
+<h3 id="orgc5c04af"><span class="section-number-3">1.2</span> 函数/深入函数/迭代器与泛型for</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+lua的函数定义和scheme很像，默认地都是匿名函数，至于 `function a()` 不过是 `a = function()` 这种语法糖形式。
+</p>
+
+<p>
+函数调用中比较有意思的是，如果只有一个参数并且该参数是字符串或者是table构造式的话，可以省略 `()`. 这样的话写出来就非常漂亮比如
+</p>
+<div class="org-src-container">
+<pre class="src src-Lua">print 'hello, world'
+a, b = table.unpack{10, 20}
+print(a, b)
+</pre>
+</div>
+<p>
+这里 `unpack` 是将一个数组拆解开来。
+</p>
+
+<p>
+变长参数在C语言里面需要花费很大的力气才能解开，但是lua里面使用却很容易。
+</p>
+<div class="org-src-container">
+<pre class="src src-lua"><span class="org-keyword">function</span> <span class="org-function-name">test_vargs</span>(a, b, ...)
+   <span class="org-builtin">print</span>(<span class="org-string">'a = '</span> .. a .. <span class="org-string">" , b = "</span> .. b)
+   <span class="org-keyword">for</span> <span class="org-variable-name">i</span> = 1, <span class="org-builtin">select</span>(<span class="org-string">'#'</span>, ...) <span class="org-keyword">do</span>
+      <span class="org-builtin">print</span>(<span class="org-string">'varg #'</span> .. i .. <span class="org-string">" = "</span> .. <span class="org-builtin">select</span>(i, ...))
+   <span class="org-keyword">end</span>
+<span class="org-keyword">end</span>
+test_vargs(10,20, <span class="org-builtin">table</span>.<span class="org-builtin">unpack</span>{30, 40 , 50})
+</pre>
+</div>
+
+<p>
+Lua本身并不支持具名实参 `named arguments`. 但是有个workaround, 就是传入table/字典
+</p>
+<div class="org-src-container">
+<pre class="src src-Lua">function get_named_args(args)
+   keys = {"height", "width", "depth"}
+   for i, k in ipairs(keys) do
+      local arg = args[k]
+      print(k .. ' = ' .. arg)
+   end
+end
+get_named_args({height = 100, width = 200, depth = 50})
+</pre>
+</div>
+<p>
+虽然结果是想要的，但是好像不是那么地优雅。
+</p>
+
+<p>
+深入函数 这节里面展示了闭包的使用
+</p>
+
+<p>
+泛型for `for v1, v2, &#x2026;  in &lt;explist&gt; do &#x2026; end ` 的执行如下：
+</p>
+
+
+<div class="figure">
+<p><img src="images/lua-generic-for-execution.png" alt="lua-generic-for-execution.png" />
+</p>
+</div>
+
+<p>
+所以实际上迭代可以通过 `_var`(控制变量) 控制，可以通过 `_s`(状态). 使用 `_var`得到的迭代器是无状态的迭代器，而使用 `_s`得到的迭代器是有状态的。尽可能使用无状态的迭代器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9de56e0" class="outline-3">
+<h3 id="org9de56e0"><span class="section-number-3">1.3</span> 编译执行与错误</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+`loadstring`可以载入外部代码，`loadfile`可以载入代码文件。两者返回的都是一个function对象。只有执行这个function对象代码才会变真正执行，在执行的时候也是可以传入参数的。
+</p>
+
+<p>
+`package.loadlib`可以载入C代码（动态加载）。这个函数不是标准ANSI C的实现，但是因为这个函数太重要的，所以lua在每个平台上都有特定实现。
+</p>
+
+<p>
+`errro("error message")` 汇报错误；`assert` 做断言；`pcall`可以在保护模式(protected mode下面)调用函数，分别返回值和错误；`debug.traceback`可以打印出错堆栈。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org10bcb0a" class="outline-3">
+<h3 id="org10bcb0a"><span class="section-number-3">1.4</span> 协同程序(coroutine)</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+coroutine的几个相关操作
+</p>
+<ul class="org-ul">
+<li>co = coroutine.create(func)</li>
+<li>coroutine.resume(co, &#x2026;) 让co继续执行
+<ul class="org-ul">
+<li>初始阶段传入参数，被传入 `func`</li>
+<li>返回值(ok, `yield` 传入的参数)</li>
+</ul></li>
+<li>coroutine.yield 传入的参数被 `resume` 返回，只能在co里面调用</li>
+<li>coroutine.status 查询co的状态
+<ul class="org-ul">
+<li>suspended 挂起</li>
+<li>running 运行</li>
+<li>dead 死亡</li>
+<li>normal 正常</li>
+</ul></li>
+</ul>
+
+<p>
+书里面producer/consumer的例子改写成为coroutine方式如下
+</p>
+<div class="org-src-container">
+<pre class="src src-lua"><span class="org-comment-delimiter">-- </span><span class="org-comment">function producer()</span>
+<span class="org-comment-delimiter">--    </span><span class="org-comment">while true do</span>
+<span class="org-comment-delimiter">--       </span><span class="org-comment">local x = io.read()</span>
+<span class="org-comment-delimiter">--       </span><span class="org-comment">send(x)</span>
+<span class="org-comment-delimiter">--    </span><span class="org-comment">end</span>
+<span class="org-comment-delimiter">-- </span><span class="org-comment">end</span>
+
+producer = <span class="org-builtin">coroutine</span>.<span class="org-builtin">create</span>(
+   <span class="org-keyword">function</span>()
+      <span class="org-keyword">while</span> <span class="org-constant">true</span> <span class="org-keyword">do</span>
+         <span class="org-keyword">local</span> <span class="org-variable-name">x</span> = <span class="org-builtin">io</span>.<span class="org-builtin">read</span>()
+         send(x)
+      <span class="org-keyword">end</span>
+   <span class="org-keyword">end</span>
+)
+
+<span class="org-keyword">function</span> <span class="org-function-name">consumer</span>()
+   <span class="org-keyword">while</span> <span class="org-constant">true</span> <span class="org-keyword">do</span>
+      <span class="org-keyword">local</span> <span class="org-variable-name">x</span> = receive()
+      <span class="org-builtin">io</span>.<span class="org-builtin">write</span>(x, <span class="org-string">"\n"</span>)
+   <span class="org-keyword">end</span>
+<span class="org-keyword">end</span>
+
+<span class="org-keyword">function</span> <span class="org-function-name">receive</span>()
+   <span class="org-keyword">local</span> <span class="org-variable-name">status</span>, <span class="org-variable-name">value</span> = <span class="org-builtin">coroutine</span>.<span class="org-builtin">resume</span>(producer)
+   <span class="org-keyword">return</span> value
+<span class="org-keyword">end</span>
+
+<span class="org-keyword">function</span> <span class="org-function-name">send</span>(x)
+   <span class="org-builtin">coroutine</span>.<span class="org-builtin">yield</span>(x)
+<span class="org-keyword">end</span>
+
+consumer()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3ae71f3" class="outline-2">
+<h2 id="org3ae71f3"><span class="section-number-2">2</span> 第二部分(C11~C17)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+深入介绍Lua环境
+</p>
+
+<p>
+TODO:
+</p>
+</div>
+
+<div id="outline-container-org22842bb" class="outline-3">
+<h3 id="org22842bb"><span class="section-number-3">2.1</span> 数据结构/数据文件</h3>
+</div>
+<div id="outline-container-org6352390" class="outline-3">
+<h3 id="org6352390"><span class="section-number-3">2.2</span> 元表和元方法</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+元表(metatable)本质上是一个table，我们可以在这个table里面设置，然后来影响和扩展使用这个metatable的table的行为。在Lua代码里面只能设置table的metatable, 其他类型的metatable的设置只能在C代码里面完成。下面代码片段说明了metatable的使用
+</p>
+<ul class="org-ul">
+<li>`_m` 是 `make_obj`里面对象o的metatable</li>
+<li>__tostring 函数影响到如何输出这个对象</li>
+<li>__add 函数影响到如何叠加两个对象</li>
+<li>__index 函数影响到如何查找某个不断在的字段</li>
+<li>rawget 可以不理会 __index 这个函数</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Lua">local _m = {
+   __tostring = function ()
+      return o.c
+   end,
+   __add = function (a, b)
+      return a.c + b.c
+   end,
+   __index = function (t, k)
+      -- t是调用对象，而非metatable
+      print(t == obj1, t == obj2, t == _m)
+      print('request key = ' .. k)
+      if k == 'e' then
+         return 10
+      else
+         return 20
+      end
+   end
+}
+
+local function make_obj(c)
+   o = {c = c}
+   setmetatable(o, _m)
+   return o
+end
+
+local function inspect_obj(o)
+   for k,v in pairs(o) do
+      print('key = ' .. k .. ', value = ' .. v)
+   end
+end
+
+obj1 = make_obj(10)
+obj2 = make_obj(20)
+print(obj1 + obj2)
+
+inspect_obj(obj1)
+print(obj1.e, obj1.f)
+print(rawget(obj1, 'e'), rawget(obj1, 'c'))
+</pre>
+</div>
+
+<p>
+上面这段程序的输出如下
+</p>
+<pre class="example">
+➜  workspace lua test.lua
+30
+key = c, value = 10
+true	false	false
+request key = e
+true	false	false
+request key = f
+10	20
+nil	10
+</pre>
+
+<p>
+__index还可以是一个table对象。如果是table对象而非函数的话，那么直接在这个table对象里面查找。
+</p>
+
+<p>
+除了 __index 之外，还有个 __newindex 函数是影响如果某个字段不存在，如何给这个字段赋值。所以可以结合 __index 和 __newindex 两个函数，来实现追踪table的读写。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf9798ea" class="outline-3">
+<h3 id="orgf9798ea"><span class="section-number-3">2.3</span> 环境</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Lua所有的全局变量都保存在一个table里面，这个table称为环境(environment). 可以使用 `_G` 来获得环境。结合上面元表(metatable)和元方法(metamethod), 可以做蛮多事情的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd09c8aa" class="outline-3">
+<h3 id="orgd09c8aa"><span class="section-number-3">2.4</span> 模块与包</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+模块可以通过 `require` 来加载。加载模块会有返回值，这个由模块来定义的，通常返回的是一个table.
+</p>
+
+<p>
+加载模块搜索路径存放在 `package.path` 里面，这个路径可以通过 LUA_PATH 环境变量控制。当loader没有办法找到对应Lua模块的时候，会去寻找C模块。C模块对应的路径分别是 `package.cpath` 和 `LUA_CPATH`. 一旦模块加载上来后，就会在 `package.loaded` 里面创建一个条目，之后再遇到 `require` 的话就从这里面读取。所以如果希望重新加载的话，可以将里面条目置nil.
+</p>
+
+<p>
+模块在编写上有许多技巧，似乎都比较复杂。下面我总结了个可以work的boilerplate (copy from <a href="https://moonbingbing.gitbooks.io/openresty-best-practices/lua/not_use_module.html">here</a>)
+</p>
+<div class="org-src-container">
+<pre class="src src-Lua">-- /usr/bin/env lua
+-- coding:utf-8
+-- Copyright (C) dirlt
+
+local _M = {}           -- 局部的变量
+_M._VERSION = '1.0'     -- 模块版本
+
+local mt = { __index = _M }
+
+function _M.new(self, width, height)
+    return setmetatable({ width=width, height=height }, mt)
+end
+
+function _M.get_square(self)
+    return self.width * self.height
+end
+
+function _M.get_circumference(self)
+    return (self.width + self.height) * 2
+end
+
+return _M
+</pre>
+</div>
+
+<p>
+在调用的时候如下
+</p>
+<div class="org-src-container">
+<pre class="src src-Lua">local rect = require 'kv' -- 上面module命名为kv.lua
+
+obj = rect:new(10, 20)
+print(obj:get_square(), obj:get_circumference())
+
+for k in pairs(obj) do
+   print(k)
+end
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org774fa8a" class="outline-3">
+<h3 id="org774fa8a"><span class="section-number-3">2.5</span> 面向对象编程</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+面向对象上没有更多概念的引入，都是在利用metatable/metamethod在模拟面向对象的性质，但是非常巧妙。更加奇妙的是，class/instance没有明确的界限，类似于javascript里面的prototype.
+</p>
+
+<p>
+看看下面这段代码
+</p>
+<ul class="org-ul">
+<li>Account 是个类(class)，字段 `balance` 默认值是0</li>
+<li>`new` 里面的o是一些new fields, 并且这个o就是返回对象(instance)</li>
+<li>`setmetatable` 以及 `self.__index` 在后面会用到</li>
+<li>`account` 是个对象(instance), `new`出来的时候并没有`balance`字段</li>
+<li>第一次调用 `add_balance` 的时候，`account` 对象里面才创建了 `balance` 对象</li>
+</ul>
+
+<p>
+`self.__index = self` 这段代码并不会影响到self本身，而是会影响到其他对self为metatable的对象。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Lua">Account = {balance = 0}
+
+function Account:new (o)
+  o = o or {}
+  setmetatable(o, self)
+  self.__index = self
+  return o
+end
+
+function Account:add_balance(value)
+   self.balance = self.balance + value
+   return self
+end
+
+account = Account:new()
+print(rawget(account, 'balance'), account.balance)
+account:add_balance(10)
+account:add_balance(20)
+print(account.balance)
+</pre>
+</div>
+
+<p>
+接下来创建子类：
+</p>
+<ul class="org-ul">
+<li>SubAccount 是个subclass，里面多了个属性 `add_level`</li>
+<li>`SubAccount:new` 里面注意
+<ul class="org-ul">
+<li>setmetatable(o, SubAccount)</li>
+<li>SubAccount.__index= SubAccount</li>
+</ul></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Lua">SubAccount = Account:new()
+
+function SubAccount:add_level(value)
+   self.level = self.level + value
+   return self
+end
+
+sub_account = SubAccount:new({level = 10})
+sub_account:add_balance(10)
+sub_account:add_level(50)
+print(sub_account.balance, sub_account.level)
+</pre>
+</div>
+
+<p>
+如果是多重继承的话，需要修改 `setmetatable(o, self)` 这段代码，需要传入所有的parent class, 然后在`__index`里面查找所有parent class. 书里面给了例子，我觉得写起来还挺有技巧性的，所以复制一份代码放在这里
+</p>
+<div class="org-src-container">
+<pre class="src src-Lua">local function search(k, plist)
+   for i = 1, #plist do
+      local v = plist[i][k]
+      if v then return v end
+   end
+end
+
+function createClass(...)
+   local c = {}
+   local parents = { ... }
+   setmetatable(c, {__index = function(t, k)
+                       return search(k, parents)
+   end})
+   c.__index = c
+
+   function c:new(o)
+      o = o or {}
+      setmetatable(o, c)
+      return o
+   end
+   return c
+end
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdf9306b" class="outline-3">
+<h3 id="orgdf9306b"><span class="section-number-3">2.6</span> 弱引用table</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+弱引用的table，里面key或者是value，如果没有被外面访问的话，那么在gc阶段是会被回收的。Lua只会回收弱引用table中的对象，而不会回收值。
+</p>
+
+<p>
+将普通的table变成弱引用table的方式是修改metatable. `{__mode = 'k'}` 说明key是弱引用， `{__mode = 'v'}` 说明value是弱引用。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Lua">a = {}
+setmetatable(a, {__mode = 'v'})
+
+b = {1,2,3}
+c = {4,5,6}
+a.b = b
+a.c = c
+
+print('before gc ...')
+for k,v in pairs(a) do
+   print(k, v)
+end
+
+print('after gc ...')
+b = {} -- 此时外部已经没有对b的引用
+collectgarbage()
+for k, v in pairs(a) do
+   print(k, v)
+end
+</pre>
+</div>
+
+<p>
+输出结果是这样的
+</p>
+<pre class="example">
+➜  workspace lua test.lua
+before gc ...
+b	table: 0x7fe6e9406850
+c	table: 0x7fe6e9402b30
+after gc ...
+c	table: 0x7fe6e9402b30
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3f74dca" class="outline-2">
+<h2 id="org3f74dca"><span class="section-number-2">3</span> 第三部分(C18~C23)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Lua各种库的使用方法。书里面介绍了下面这些库
+</p>
+<ul class="org-ul">
+<li>数学库 math</li>
+<li>table库</li>
+<li>字符串库 string. 这个篇幅比较多，应该使用也比较多</li>
+<li>IO库 io</li>
+<li>操作系统库 os</li>
+<li>调试库 debug</li>
+</ul>
+
+<p>
+最后这个调试库debug比较有意思。这个库并没有提供一个Lua调试器，只是提供了一些primitives, 使用这些primitives可以来完成调试功能。primitives可以分为两类:
+</p>
+<ol class="org-ol">
+<li>自省函数(introspective function).
+<ul class="org-ul">
+<li>调用调试库的栈层stack level = 1</li>
+<li>`debug.getinfo`, 某个栈层的函数信息</li>
+<li>`debug.getlocal` 某个栈层的局部变量</li>
+<li>`debug.getupvalue` 某个函数的非局部变量(closure里面包含的变量)</li>
+</ul></li>
+<li>钩子(hook).
+<ul class="org-ul">
+<li>在函数调用和返回处会调用钩子函数</li>
+<li>`debug.sethook` 参数包括回调函数，监控事件，以及可选数字指定多久获得一次事件</li>
+</ul></li>
+</ol>
+
+<p>
+注意这些primitives的性能并不高，Lua以一种不会影响程序正确执行的方式来保存调试信息而已。所以在production环境下面这些调试语句最好需要去除掉。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0e9c355" class="outline-2">
+<h2 id="org0e9c355"><span class="section-number-2">4</span> 第四部分(C24~C31)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+如何将Lua和C混合编程，包括用C扩展Lua以及在C里面调用Lua代码。
+</p>
+
+<p>
+一个Lua线程的全部状态都存储在lua_State对象里面。Lua和C之间的交互，是通过栈(stack)来完成的，而每个lua_State只需要维护独立的栈，就可以实现多线程。至于这种多线程可以是原生(比如使用pthread), 也可以是协同的(coroutine).
+</p>
+
+<p>
+通过栈来交互数据有两个考虑：
+</p>
+<ol class="org-ol">
+<li>是否可以很容易地接入其他语言比如Java, C#.</li>
+<li>因为Lua是有垃圾收集的，如果使用栈来保存交互数据的话，那么可以追踪到活跃对象。</li>
+</ol>
+<p>
+使用栈来交互数据并不是LuaVM才这么做的，JVM也是stack-based VM，Scala/Kotlin都可以和Java语言来做交互。
+</p>
+
+<p>
+用户自定义类型可以设置`__gc`字段，这个字段对应的函数会在对象被Lua执行GC的时候调用。
+</p>
+</div>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/lua-prog-lang-book.html';this.page.identifier = 'lua-prog-lang-book.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

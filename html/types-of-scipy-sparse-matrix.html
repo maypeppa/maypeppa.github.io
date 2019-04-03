@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>scipy几种稀疏矩阵表示</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">scipy几种稀疏矩阵表示</h1>
@@ -16,24 +62,24 @@
 scipy.sparse里面有几种稀疏矩阵的表示：
 </p>
 <ol class="org-ol">
-<li>lil_matrix(row-based linked list matrix)</li>
-<li>dok_matrix(dictionary of keys matrix)</li>
-<li>coo_matrix(coordinate matrix)</li>
+<li>lil<sub>matrix</sub>(row-based linked list matrix)</li>
+<li>dok<sub>matrix</sub>(dictionary of keys matrix)</li>
+<li>coo<sub>matrix</sub>(coordinate matrix)</li>
 </ol>
 
 <p>
-lil_matrix实现上是基于row的链表实现，在创建阶段最好按照row的顺序插入或者是修改。适合增量构建。
-dok_matrix是认为坐标是(i,j)是key, 矩阵元素是value, 使用字典的方式进行存储。适合增量构建。
-coo_matrix有三个数组,row,col, data. 其中data[i] = matrix[row[i], col[i]]. 不太容易增量构建，适合批量构建。
+lil<sub>matrix实现上是基于row的链表实现</sub>，在创建阶段最好按照row的顺序插入或者是修改。适合增量构建。
+dok<sub>matrix是认为坐标是</sub>(i,j)是key, 矩阵元素是value, 使用字典的方式进行存储。适合增量构建。
+coo<sub>matrix有三个数组,row,col</sub>, data. 其中data[i] = matrix[row[i], col[i]]. 不太容易增量构建，适合批量构建。
 </p>
 
 <p>
-在coo_matrix的基础上进行压缩，根据压缩方式有几种矩阵表示：
+在coo<sub>matrix的基础上进行压缩</sub>，根据压缩方式有几种矩阵表示：
 </p>
 <ol class="org-ol">
-<li>csr_matrix. (compressed sparse row matrix). 针对行做压缩</li>
-<li>csc_matrix. (compressed sparse column matrix). 针对列做压缩</li>
-<li>bsr_matrix. 在csr_matrix基础上的优化，针对局部比较稠密的矩阵做压缩</li>
+<li>csr<sub>matrix</sub>. (compressed sparse row matrix). 针对行做压缩</li>
+<li>csc<sub>matrix</sub>. (compressed sparse column matrix). 针对列做压缩</li>
+<li>bsr<sub>matrix</sub>. 在csr<sub>matrix基础上的优化</sub>，针对局部比较稠密的矩阵做压缩</li>
 </ol>
 
 <p>
@@ -57,7 +103,7 @@ m4 = m2.tocsc()
 </pre>
 
 <p>
-coo_matrix矩阵比较好理解
+coo<sub>matrix矩阵比较好理解</sub>
 </p>
 <pre class="example">
 m2.data
@@ -71,7 +117,7 @@ Out[116]: array([0, 1, 2, 1, 2], dtype=int32)
 </pre>
 
 <p>
-csr_matrix矩阵里面有 `data`, `indptr`, `indices` 三个变量共同定位，其中row ith的数据是 `data[indptr[i]:indptr[i+1]]`, 对应的colum是 `indices[indptr[i]:indptr[i+1]`. 所以假设有N个row的话，那么indptr的大小是N+1. csc_matrix和csr_matrix相对应，只不过是通过column来定位.
+csr<sub>matrix矩阵里面有</sub> `data`, `indptr`, `indices` 三个变量共同定位，其中row ith的数据是 `data[indptr[i]:indptr[i+1]]`, 对应的colum是 `indices[indptr[i]:indptr[i+1]`. 所以假设有N个row的话，那么indptr的大小是N+1. csc<sub>matrix和csr</sub><sub>matrix相对应</sub>，只不过是通过column来定位.
 </p>
 <pre class="example">
 m3.data
@@ -110,6 +156,11 @@ mat_csr
 The slowest run took 5.54 times longer than the fastest. This could mean that an intermediate result is being cached.
 1 loop, best of 3: 5.1 s per loop
 </pre>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/types-of-scipy-sparse-matrix.html';this.page.identifier = 'types-of-scipy-sparse-matrix.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

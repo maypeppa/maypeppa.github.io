@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Optimizing software in C++(An optimization guide for Windows, Linux and Mac platforms)</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Optimizing software in C++(An optimization guide for Windows, Linux and Mac platforms)</h1>
@@ -16,91 +62,91 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org061ef73">1. Introduction</a></li>
-<li><a href="#org3e92d0c">2. Choosing the optimal platform</a>
+<li><a href="#org5ac0d19">1. Introduction</a></li>
+<li><a href="#org9bbba3a">2. Choosing the optimal platform</a>
 <ul>
-<li><a href="#orgb3df28f">2.1. Choice of operating system</a></li>
+<li><a href="#org4d3555d">2.1. Choice of operating system</a></li>
 </ul>
 </li>
-<li><a href="#org75d76d3">3. Finding the biggest time consumers</a>
+<li><a href="#org3eac20e">3. Finding the biggest time consumers</a>
 <ul>
-<li><a href="#org7be0160">3.1. Use a profiler to find hot spots</a></li>
+<li><a href="#orgd6c1651">3.1. Use a profiler to find hot spots</a></li>
 </ul>
 </li>
-<li><a href="#org0acf537">4. Performance and usability</a></li>
-<li><a href="#orgf348374">5. Choosing the optimal algorithm</a></li>
-<li><a href="#org8ea258b">6. Development process</a></li>
-<li><a href="#org8ed9ae4">7. The efficiency of different C++ constructs</a>
+<li><a href="#org8f15471">4. Performance and usability</a></li>
+<li><a href="#org17c34bb">5. Choosing the optimal algorithm</a></li>
+<li><a href="#orgbc2cdfe">6. Development process</a></li>
+<li><a href="#orga44043c">7. The efficiency of different C++ constructs</a>
 <ul>
-<li><a href="#orgce575f8">7.1. Different kinds of variable storage</a></li>
-<li><a href="#orgb5c051d">7.2. Integers variables and operators</a></li>
-<li><a href="#org2c18b23">7.3. Floating point variables and operators</a></li>
-<li><a href="#org4fe1a6f">7.4. Function pointers</a></li>
-<li><a href="#org2211150">7.5. Type conversions</a></li>
-<li><a href="#org246961e">7.6. Branches and switch statements</a></li>
-<li><a href="#org764d5c3">7.7. Functions</a></li>
+<li><a href="#org5f6a95b">7.1. Different kinds of variable storage</a></li>
+<li><a href="#org03206e4">7.2. Integers variables and operators</a></li>
+<li><a href="#orgff7c486">7.3. Floating point variables and operators</a></li>
+<li><a href="#orgd0ee1b2">7.4. Function pointers</a></li>
+<li><a href="#org51cdf47">7.5. Type conversions</a></li>
+<li><a href="#org8c8b4f8">7.6. Branches and switch statements</a></li>
+<li><a href="#org7d39363">7.7. Functions</a></li>
 </ul>
 </li>
-<li><a href="#org183a244">8. Optimizations in the compiler</a>
+<li><a href="#org9ddbdfd">8. Optimizations in the compiler</a>
 <ul>
-<li><a href="#org15cc14d">8.1. How compilers optimize</a></li>
-<li><a href="#orgf52e57c">8.2. Comparison of different compilers</a></li>
-<li><a href="#org1b75f67">8.3. Obstacles to optimization by compiler</a></li>
-<li><a href="#orga1923f0">8.4. Obstacles to optimization by CPU</a></li>
-<li><a href="#org84305aa">8.5. Compiler optimization options</a></li>
-<li><a href="#orgc81e7f9">8.6. Optimization directives</a></li>
-<li><a href="#org5ccf260">8.7. Checking what the compiler does</a></li>
+<li><a href="#org51e921a">8.1. How compilers optimize</a></li>
+<li><a href="#orgf5fa8c0">8.2. Comparison of different compilers</a></li>
+<li><a href="#org4d971b5">8.3. Obstacles to optimization by compiler</a></li>
+<li><a href="#orge7ac84a">8.4. Obstacles to optimization by CPU</a></li>
+<li><a href="#org26cc071">8.5. Compiler optimization options</a></li>
+<li><a href="#org6280e57">8.6. Optimization directives</a></li>
+<li><a href="#org40afad6">8.7. Checking what the compiler does</a></li>
 </ul>
 </li>
-<li><a href="#org0e7c74d">9. Optimizing memory access</a>
+<li><a href="#org933e1ac">9. Optimizing memory access</a>
 <ul>
-<li><a href="#org2675ba1">9.1. Caching of code and data</a></li>
-<li><a href="#org93c7f3b">9.2. Cache organization</a></li>
-<li><a href="#orgb1315e5">9.3. Functions that are used together should be stored together</a></li>
-<li><a href="#orgac8779b">9.4. Variables that are used together should be stored together</a></li>
-<li><a href="#orgc9c3375">9.5. Alignment of data</a></li>
-<li><a href="#org320b911">9.6. Dynamic memory allocation</a></li>
-<li><a href="#org81e6551">9.7. Container classes</a></li>
-<li><a href="#orgfcae6c6">9.8. Strings</a></li>
-<li><a href="#org304ff44">9.9. Access data sequentially</a></li>
-<li><a href="#org944157a">9.10. Cache contentions in large data structures</a></li>
-<li><a href="#org152ef6b">9.11. Explicit cache control</a></li>
+<li><a href="#org149a381">9.1. Caching of code and data</a></li>
+<li><a href="#org651d465">9.2. Cache organization</a></li>
+<li><a href="#org363f6ea">9.3. Functions that are used together should be stored together</a></li>
+<li><a href="#org98aa2b5">9.4. Variables that are used together should be stored together</a></li>
+<li><a href="#org016ba9a">9.5. Alignment of data</a></li>
+<li><a href="#org8f78bdb">9.6. Dynamic memory allocation</a></li>
+<li><a href="#org1213653">9.7. Container classes</a></li>
+<li><a href="#org9dd4f2a">9.8. Strings</a></li>
+<li><a href="#org76a46cd">9.9. Access data sequentially</a></li>
+<li><a href="#org1a7a0dd">9.10. Cache contentions in large data structures</a></li>
+<li><a href="#org1ce07f9">9.11. Explicit cache control</a></li>
 </ul>
 </li>
-<li><a href="#org5c8ef31">10. Multithreading</a>
+<li><a href="#orge4af996">10. Multithreading</a>
 <ul>
-<li><a href="#orgd2a883f">10.1. Hyperthreading</a></li>
+<li><a href="#org3c04c3a">10.1. Hyperthreading</a></li>
 </ul>
 </li>
-<li><a href="#org0c9d1d0">11. Out of order execution</a></li>
-<li><a href="#orge7ed002">12. Using vector operations</a></li>
-<li><a href="#orgdafac9e">13. Making critical code in multiple versions for different instruction sets</a></li>
-<li><a href="#orgb5fd14f">14. Specific optimization topics</a>
+<li><a href="#org121325e">11. Out of order execution</a></li>
+<li><a href="#org9d8e625">12. Using vector operations</a></li>
+<li><a href="#org68e7b17">13. Making critical code in multiple versions for different instruction sets</a></li>
+<li><a href="#org18cbe92">14. Specific optimization topics</a>
 <ul>
-<li><a href="#org556f917">14.1. Use lookup tables</a></li>
-<li><a href="#org7c8005a">14.2. Bounds checking</a></li>
-<li><a href="#orgae1ea0c">14.3. Use bitwise operators for checking multiple values at once</a></li>
-<li><a href="#org8995609">14.4. Integer multiplication</a></li>
-<li><a href="#orgec530a4">14.5. Integer division</a></li>
-<li><a href="#org44642cd">14.6. Floating point division</a></li>
-<li><a href="#org9facde5">14.7. Don't mix float and double</a></li>
-<li><a href="#orgc8bbbcd">14.8. Conversions between floating point numbers and integers</a></li>
-<li><a href="#org260eeab">14.9. Using integer operations for manipulating floating point variables</a></li>
-<li><a href="#org2d694c9">14.10. Mathematical functions</a></li>
-<li><a href="#org565b976">14.11. Static versus dynamic libraries</a></li>
-<li><a href="#orgfe277fd">14.12. Position-independent code</a></li>
-<li><a href="#orgd5b1ae9">14.13. System programming</a></li>
+<li><a href="#orgbcb4fd6">14.1. Use lookup tables</a></li>
+<li><a href="#org2259c5e">14.2. Bounds checking</a></li>
+<li><a href="#org24c5389">14.3. Use bitwise operators for checking multiple values at once</a></li>
+<li><a href="#org1827e6d">14.4. Integer multiplication</a></li>
+<li><a href="#orga8c948f">14.5. Integer division</a></li>
+<li><a href="#org9f3e029">14.6. Floating point division</a></li>
+<li><a href="#orgef6256e">14.7. Don't mix float and double</a></li>
+<li><a href="#orgf42a0fb">14.8. Conversions between floating point numbers and integers</a></li>
+<li><a href="#org034d733">14.9. Using integer operations for manipulating floating point variables</a></li>
+<li><a href="#org9b36737">14.10. Mathematical functions</a></li>
+<li><a href="#org7a67b14">14.11. Static versus dynamic libraries</a></li>
+<li><a href="#org8567277">14.12. Position-independent code</a></li>
+<li><a href="#org9548a71">14.13. System programming</a></li>
 </ul>
 </li>
-<li><a href="#org45574aa">15. Metaprogramming</a></li>
-<li><a href="#orgcabf11d">16. Testing speed</a>
+<li><a href="#org9443059">15. Metaprogramming</a></li>
+<li><a href="#org4c5a2a9">16. Testing speed</a>
 <ul>
-<li><a href="#org0981a76">16.1. The pitfalls of unit-testing</a></li>
-<li><a href="#org49b1a08">16.2. Worst-case testing</a></li>
+<li><a href="#org3348671">16.1. The pitfalls of unit-testing</a></li>
+<li><a href="#orgf6fbd08">16.2. Worst-case testing</a></li>
 </ul>
 </li>
-<li><a href="#orgf8c1d5e">17. Optimization in embedded systems</a></li>
-<li><a href="#org0eefd02">18. Overview of compiler options</a></li>
+<li><a href="#org1397ce1">17. Optimization in embedded systems</a></li>
+<li><a href="#org1d085ff">18. Overview of compiler options</a></li>
 </ul>
 </div>
 </div>
@@ -108,15 +154,15 @@
 <a href="http://www.agner.org/optimize/">http://www.agner.org/optimize/</a>
 </p>
 
-<div id="outline-container-org061ef73" class="outline-2">
-<h2 id="org061ef73"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org5ac0d19" class="outline-2">
+<h2 id="org5ac0d19"><span class="section-number-2">1</span> Introduction</h2>
 </div>
-<div id="outline-container-org3e92d0c" class="outline-2">
-<h2 id="org3e92d0c"><span class="section-number-2">2</span> Choosing the optimal platform</h2>
+<div id="outline-container-org9bbba3a" class="outline-2">
+<h2 id="org9bbba3a"><span class="section-number-2">2</span> Choosing the optimal platform</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb3df28f" class="outline-3">
-<h3 id="orgb3df28f"><span class="section-number-3">2.1</span> Choice of operating system</h3>
+<div id="outline-container-org4d3555d" class="outline-3">
+<h3 id="org4d3555d"><span class="section-number-3">2.1</span> Choice of operating system</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 64 bit systems have several advantages over 32 bit systems:
@@ -134,7 +180,7 @@
 </p>
 <ul class="org-ul">
 <li>Pointers, references, and stack entries use 64 bits rather than 32 bits. This makes data caching less efficient.</li>
-<li>Access to static or global arrays require a few extra instructions for address calculation in 64 bit mode if the image base is not guaranteed to be less than 2^31. This extra cost is seen in 64 bit Windows and Mac programs but rarely in Linux.</li>
+<li>Access to static or global arrays require a few extra instructions for address calculation in 64 bit mode if the image base is not guaranteed to be less than 2<sup>31</sup>. This extra cost is seen in 64 bit Windows and Mac programs but rarely in Linux.</li>
 <li>Address calculation is more complicated in a large memory model where the combined size of code and data can exceed 2 Gbytes. This large memory model is hardly ever used, though.</li>
 <li>Some instructions are one byte longer in 64 bit mode than in 32 bit mode.</li>
 <li>Some 64-bit compilers are inferior to their 32-bit counterparts.</li>
@@ -143,12 +189,12 @@
 </div>
 </div>
 
-<div id="outline-container-org75d76d3" class="outline-2">
-<h2 id="org75d76d3"><span class="section-number-2">3</span> Finding the biggest time consumers</h2>
+<div id="outline-container-org3eac20e" class="outline-2">
+<h2 id="org3eac20e"><span class="section-number-2">3</span> Finding the biggest time consumers</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org7be0160" class="outline-3">
-<h3 id="org7be0160"><span class="section-number-3">3.1</span> Use a profiler to find hot spots</h3>
+<div id="outline-container-orgd6c1651" class="outline-3">
+<h3 id="orgd6c1651"><span class="section-number-3">3.1</span> Use a profiler to find hot spots</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Most compiler packages include a profiler that can tell how many times each function is
@@ -210,7 +256,7 @@ counter in the CPU, which counts at the CPU clock frequency.（通过CPU时钟�
 <p>
 The time stamp counter becomes invalid if a thread jumps between different CPU cores.
 You may have to fix the thread to a specific CPU core during time measurements to avoid
-this. (In Windows, SetThreadAffinityMask, in Linux, sched_setaffinity).（为了避免线程在多个CPU上执行的话需要绑定CPU）
+this. (In Windows, SetThreadAffinityMask, in Linux, sched<sub>setaffinity</sub>).（为了避免线程在多个CPU上执行的话需要绑定CPU）
 </p>
 
 <p>
@@ -228,21 +274,21 @@ exceptions, etc. in this piece of code. （如果是片段代码或者是库函�
 </div>
 </div>
 
-<div id="outline-container-org0acf537" class="outline-2">
-<h2 id="org0acf537"><span class="section-number-2">4</span> Performance and usability</h2>
+<div id="outline-container-org8f15471" class="outline-2">
+<h2 id="org8f15471"><span class="section-number-2">4</span> Performance and usability</h2>
 </div>
-<div id="outline-container-orgf348374" class="outline-2">
-<h2 id="orgf348374"><span class="section-number-2">5</span> Choosing the optimal algorithm</h2>
+<div id="outline-container-org17c34bb" class="outline-2">
+<h2 id="org17c34bb"><span class="section-number-2">5</span> Choosing the optimal algorithm</h2>
 </div>
-<div id="outline-container-org8ea258b" class="outline-2">
-<h2 id="org8ea258b"><span class="section-number-2">6</span> Development process</h2>
+<div id="outline-container-orgbc2cdfe" class="outline-2">
+<h2 id="orgbc2cdfe"><span class="section-number-2">6</span> Development process</h2>
 </div>
-<div id="outline-container-org8ed9ae4" class="outline-2">
-<h2 id="org8ed9ae4"><span class="section-number-2">7</span> The efficiency of different C++ constructs</h2>
+<div id="outline-container-orga44043c" class="outline-2">
+<h2 id="orga44043c"><span class="section-number-2">7</span> The efficiency of different C++ constructs</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgce575f8" class="outline-3">
-<h3 id="orgce575f8"><span class="section-number-3">7.1</span> Different kinds of variable storage</h3>
+<div id="outline-container-org5f6a95b" class="outline-3">
+<h3 id="org5f6a95b"><span class="section-number-3">7.1</span> Different kinds of variable storage</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 The volatile keyword specifies that a variable can be changed by another thread. This
@@ -257,7 +303,7 @@ write the variable at the same time. （volatile变量要求编译器必须每�
 
 <p>
 Most compilers can make thread-local storage of static and global variables by using the
-keyword __thread or __declspec(thread). Such variables have one instance for
+keyword _<sub>thread</sub> or _<sub>declspec</sub>(thread). Such variables have one instance for
 each thread. Thread-local storage is inefficient because it is accessed through a pointer
 stored in a thread environment block. Thread-local storage should be avoided, if possible,
 and replaced by storage on the stack (see above, p. 26). Variables stored on the stack
@@ -266,8 +312,8 @@ always belong to the thread in which they are created.（线程级别变量访�
 </div>
 </div>
 
-<div id="outline-container-orgb5c051d" class="outline-3">
-<h3 id="orgb5c051d"><span class="section-number-3">7.2</span> Integers variables and operators</h3>
+<div id="outline-container-org03206e4" class="outline-3">
+<h3 id="org03206e4"><span class="section-number-3">7.2</span> Integers variables and operators</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 In most cases, there is no difference in speed between using signed and unsigned integers.
@@ -296,8 +342,8 @@ speed up multiplications and divisions are given on page 139 and 140, respective
 </div>
 </div>
 
-<div id="outline-container-org2c18b23" class="outline-3">
-<h3 id="org2c18b23"><span class="section-number-3">7.3</span> Floating point variables and operators</h3>
+<div id="outline-container-orgff7c486" class="outline-3">
+<h3 id="orgff7c486"><span class="section-number-3">7.3</span> Floating point variables and operators</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 Modern microprocessors in the x86 family have two different types of floating point registers
@@ -397,8 +443,8 @@ Avoid conversions between integers and floating point variables, if possible. Se
 </div>
 </div>
 
-<div id="outline-container-org4fe1a6f" class="outline-3">
-<h3 id="org4fe1a6f"><span class="section-number-3">7.4</span> Function pointers</h3>
+<div id="outline-container-orgd0ee1b2" class="outline-3">
+<h3 id="orgd0ee1b2"><span class="section-number-3">7.4</span> Function pointers</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 Calling a function through a function pointer typically takes a few clock cycles more than
@@ -410,8 +456,8 @@ be mispredicted, which causes a long delay.（通过函数指针调用通常会�
 </div>
 </div>
 
-<div id="outline-container-org2211150" class="outline-3">
-<h3 id="org2211150"><span class="section-number-3">7.5</span> Type conversions</h3>
+<div id="outline-container-org51cdf47" class="outline-3">
+<h3 id="org51cdf47"><span class="section-number-3">7.5</span> Type conversions</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 Conversions between float, double and long double take no extra time when the
@@ -450,8 +496,8 @@ important to do something about it. Possible solutions are:
 </div>
 </div>
 
-<div id="outline-container-org246961e" class="outline-3">
-<h3 id="org246961e"><span class="section-number-3">7.6</span> Branches and switch statements</h3>
+<div id="outline-container-org8c8b4f8" class="outline-3">
+<h3 id="org8c8b4f8"><span class="section-number-3">7.6</span> Branches and switch statements</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 A branch instruction takes typically 0 - 2 clock cycles in the case that the microprocessor
@@ -462,8 +508,8 @@ misprediction penalty.（分支预测正确跳转占用0-2个时钟周期，而�
 </div>
 </div>
 
-<div id="outline-container-org764d5c3" class="outline-3">
-<h3 id="org764d5c3"><span class="section-number-3">7.7</span> Functions</h3>
+<div id="outline-container-org7d39363" class="outline-3">
+<h3 id="org7d39363"><span class="section-number-3">7.7</span> Functions</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 Function calls may slow down a program for the following reasons:
@@ -503,12 +549,12 @@ difference between 32-bit Linux and 32-bit Windows in this respect.（64位系�
 </div>
 </div>
 
-<div id="outline-container-org183a244" class="outline-2">
-<h2 id="org183a244"><span class="section-number-2">8</span> Optimizations in the compiler</h2>
+<div id="outline-container-org9ddbdfd" class="outline-2">
+<h2 id="org9ddbdfd"><span class="section-number-2">8</span> Optimizations in the compiler</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org15cc14d" class="outline-3">
-<h3 id="org15cc14d"><span class="section-number-3">8.1</span> How compilers optimize</h3>
+<div id="outline-container-org51e921a" class="outline-3">
+<h3 id="org51e921a"><span class="section-number-3">8.1</span> How compilers optimize</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>Function inlining</li>
@@ -534,24 +580,24 @@ difference between 32-bit Linux and 32-bit Windows in this respect.（64位系�
 </div>
 </div>
 
-<div id="outline-container-orgf52e57c" class="outline-3">
-<h3 id="orgf52e57c"><span class="section-number-3">8.2</span> Comparison of different compilers</h3>
+<div id="outline-container-orgf5fa8c0" class="outline-3">
+<h3 id="orgf5fa8c0"><span class="section-number-3">8.2</span> Comparison of different compilers</h3>
 </div>
-<div id="outline-container-org1b75f67" class="outline-3">
-<h3 id="org1b75f67"><span class="section-number-3">8.3</span> Obstacles to optimization by compiler</h3>
+<div id="outline-container-org4d971b5" class="outline-3">
+<h3 id="org4d971b5"><span class="section-number-3">8.3</span> Obstacles to optimization by compiler</h3>
 <div class="outline-text-3" id="text-8-3">
 <ul class="org-ul">
 <li>Cannot optimize across modules</li>
 <li>Pointer aliasing
 <ul class="org-ul">
-<li>It is also possible to tell the compiler that a specific pointer does not alias anything by using the keyword <span class="underline"><span class="underline">restrict or __restrict</span></span>, if supported by the compiler.</li>
+<li>It is also possible to tell the compiler that a specific pointer does not alias anything by using the keyword <span class="underline"><span class="underline">restrict or _<sub>restrict</sub></span></span>, if supported by the compiler.</li>
 <li>We can never be sure that the compiler takes the hint about no pointer aliasing. The only way to make sure that the code is optimized is to do it explicitly.</li>
 </ul></li>
 <li>Dynamic memory allocation</li>
 <li>Pure functions
 <ul class="org-ul">
 <li>Unfortunately, the compiler cannot know that a function is pure if the function is defined in a different module or a function library.</li>
-<li>__attribute__((const))</li>
+<li>_<sub>attribute</sub>_<sub>((const))</sub></li>
 </ul></li>
 <li>Virtual functions and function pointers</li>
 <li>Algebraic reduction</li>
@@ -561,11 +607,11 @@ difference between 32-bit Linux and 32-bit Windows in this respect.（64位系�
 </div>
 </div>
 
-<div id="outline-container-orga1923f0" class="outline-3">
-<h3 id="orga1923f0"><span class="section-number-3">8.4</span> Obstacles to optimization by CPU</h3>
+<div id="outline-container-orge7ac84a" class="outline-3">
+<h3 id="orge7ac84a"><span class="section-number-3">8.4</span> Obstacles to optimization by CPU</h3>
 </div>
-<div id="outline-container-org84305aa" class="outline-3">
-<h3 id="org84305aa"><span class="section-number-3">8.5</span> Compiler optimization options</h3>
+<div id="outline-container-org26cc071" class="outline-3">
+<h3 id="org26cc071"><span class="section-number-3">8.5</span> Compiler optimization options</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 Some compilers have support for whole program optimization. This works by compiling in
@@ -607,35 +653,35 @@ unless your program relies on exception handling.（对帧指针不分配寄存�
 </div>
 </div>
 
-<div id="outline-container-orgc81e7f9" class="outline-3">
-<h3 id="orgc81e7f9"><span class="section-number-3">8.6</span> Optimization directives</h3>
+<div id="outline-container-org6280e57" class="outline-3">
+<h3 id="org6280e57"><span class="section-number-3">8.6</span> Optimization directives</h3>
 </div>
-<div id="outline-container-org5ccf260" class="outline-3">
-<h3 id="org5ccf260"><span class="section-number-3">8.7</span> Checking what the compiler does</h3>
+<div id="outline-container-org40afad6" class="outline-3">
+<h3 id="org40afad6"><span class="section-number-3">8.7</span> Checking what the compiler does</h3>
 </div>
 </div>
 
-<div id="outline-container-org0e7c74d" class="outline-2">
-<h2 id="org0e7c74d"><span class="section-number-2">9</span> Optimizing memory access</h2>
+<div id="outline-container-org933e1ac" class="outline-2">
+<h2 id="org933e1ac"><span class="section-number-2">9</span> Optimizing memory access</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org2675ba1" class="outline-3">
-<h3 id="org2675ba1"><span class="section-number-3">9.1</span> Caching of code and data</h3>
+<div id="outline-container-org149a381" class="outline-3">
+<h3 id="org149a381"><span class="section-number-3">9.1</span> Caching of code and data</h3>
 </div>
-<div id="outline-container-org93c7f3b" class="outline-3">
-<h3 id="org93c7f3b"><span class="section-number-3">9.2</span> Cache organization</h3>
+<div id="outline-container-org651d465" class="outline-3">
+<h3 id="org651d465"><span class="section-number-3">9.2</span> Cache organization</h3>
 </div>
-<div id="outline-container-orgb1315e5" class="outline-3">
-<h3 id="orgb1315e5"><span class="section-number-3">9.3</span> Functions that are used together should be stored together</h3>
+<div id="outline-container-org363f6ea" class="outline-3">
+<h3 id="org363f6ea"><span class="section-number-3">9.3</span> Functions that are used together should be stored together</h3>
 </div>
-<div id="outline-container-orgac8779b" class="outline-3">
-<h3 id="orgac8779b"><span class="section-number-3">9.4</span> Variables that are used together should be stored together</h3>
+<div id="outline-container-org98aa2b5" class="outline-3">
+<h3 id="org98aa2b5"><span class="section-number-3">9.4</span> Variables that are used together should be stored together</h3>
 </div>
-<div id="outline-container-orgc9c3375" class="outline-3">
-<h3 id="orgc9c3375"><span class="section-number-3">9.5</span> Alignment of data</h3>
+<div id="outline-container-org016ba9a" class="outline-3">
+<h3 id="org016ba9a"><span class="section-number-3">9.5</span> Alignment of data</h3>
 </div>
-<div id="outline-container-org320b911" class="outline-3">
-<h3 id="org320b911"><span class="section-number-3">9.6</span> Dynamic memory allocation</h3>
+<div id="outline-container-org8f78bdb" class="outline-3">
+<h3 id="org8f78bdb"><span class="section-number-3">9.6</span> Dynamic memory allocation</h3>
 <div class="outline-text-3" id="text-9-6">
 <p>
 A little-known alternative to using new and delete is to allocate variable-size arrays with
@@ -647,20 +693,20 @@ called. There is no need to deallocate the space explicitly when alloca is used.
 </div>
 </div>
 
-<div id="outline-container-org81e6551" class="outline-3">
-<h3 id="org81e6551"><span class="section-number-3">9.7</span> Container classes</h3>
+<div id="outline-container-org1213653" class="outline-3">
+<h3 id="org1213653"><span class="section-number-3">9.7</span> Container classes</h3>
 </div>
-<div id="outline-container-orgfcae6c6" class="outline-3">
-<h3 id="orgfcae6c6"><span class="section-number-3">9.8</span> Strings</h3>
+<div id="outline-container-org9dd4f2a" class="outline-3">
+<h3 id="org9dd4f2a"><span class="section-number-3">9.8</span> Strings</h3>
 </div>
-<div id="outline-container-org304ff44" class="outline-3">
-<h3 id="org304ff44"><span class="section-number-3">9.9</span> Access data sequentially</h3>
+<div id="outline-container-org76a46cd" class="outline-3">
+<h3 id="org76a46cd"><span class="section-number-3">9.9</span> Access data sequentially</h3>
 </div>
-<div id="outline-container-org944157a" class="outline-3">
-<h3 id="org944157a"><span class="section-number-3">9.10</span> Cache contentions in large data structures</h3>
+<div id="outline-container-org1a7a0dd" class="outline-3">
+<h3 id="org1a7a0dd"><span class="section-number-3">9.10</span> Cache contentions in large data structures</h3>
 </div>
-<div id="outline-container-org152ef6b" class="outline-3">
-<h3 id="org152ef6b"><span class="section-number-3">9.11</span> Explicit cache control</h3>
+<div id="outline-container-org1ce07f9" class="outline-3">
+<h3 id="org1ce07f9"><span class="section-number-3">9.11</span> Explicit cache control</h3>
 <div class="outline-text-3" id="text-9-11">
 <p>
 包括预取指令（如果不是使用常规访问模式来访问内存的话）以及”写内存但是不写缓存“指令（如果确定数据之后不会读取上来并且cache冲突严重）
@@ -669,8 +715,8 @@ called. There is no need to deallocate the space explicitly when alloca is used.
 </div>
 </div>
 
-<div id="outline-container-org5c8ef31" class="outline-2">
-<h2 id="org5c8ef31"><span class="section-number-2">10</span> Multithreading</h2>
+<div id="outline-container-orge4af996" class="outline-2">
+<h2 id="orge4af996"><span class="section-number-2">10</span> Multithreading</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 It is important to distinguish between coarse-grained parallelism and fine-grained parallelism
@@ -718,8 +764,8 @@ be more (128 or 256 bytes) on future processors. （现代处理器的cache line
 </p>
 </div>
 
-<div id="outline-container-orgd2a883f" class="outline-3">
-<h3 id="orgd2a883f"><span class="section-number-3">10.1</span> Hyperthreading</h3>
+<div id="outline-container-org3c04c3a" class="outline-3">
+<h3 id="org3c04c3a"><span class="section-number-3">10.1</span> Hyperthreading</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 Some versions of Intel microprocessors are able to run two threads in each core. For
@@ -773,8 +819,8 @@ prefetching so this feature is rarely needed.（大部分情况使用默认CPU�
 </div>
 </div>
 
-<div id="outline-container-org0c9d1d0" class="outline-2">
-<h2 id="org0c9d1d0"><span class="section-number-2">11</span> Out of order execution</h2>
+<div id="outline-container-org121325e" class="outline-2">
+<h2 id="org121325e"><span class="section-number-2">11</span> Out of order execution</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 All modern x86 CPUs can execute instructions out of order or do more than one thing at the
@@ -793,11 +839,11 @@ dependency chain. A microprocessor with out-of-order capabilities can overlap th
 and start the calculation of one iteration before the preceding iteration is finished. Example:
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">Example 11.3</span>
-<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">size</span> = 100; <span class="org-type">int</span> <span class="org-variable-name">i</span>;
-<span class="org-type">float</span> <span class="org-variable-name">a</span>[size], <span class="org-variable-name">b</span>[size], <span class="org-variable-name">c</span>[size];
-<span class="org-type">float</span> <span class="org-keyword">register</span> temp;
-<span class="org-keyword">for</span> (i = 0; i &lt; size; i++) {
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Example 11.3</span>
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">size</span> = 100; <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+<span style="font-weight: bold; text-decoration: underline;">float</span> <span style="font-weight: bold; font-style: italic;">a</span>[size], <span style="font-weight: bold; font-style: italic;">b</span>[size], <span style="font-weight: bold; font-style: italic;">c</span>[size];
+<span style="font-weight: bold; text-decoration: underline;">float</span> <span style="font-weight: bold;">register</span> temp;
+<span style="font-weight: bold;">for</span> (i = 0; i &lt; size; i++) {
   temp = a[i] + b[i];
   c[i] = temp * temp;
 }
@@ -839,8 +885,8 @@ calculations with memory access.（除了打破dependency chain之外，还可�
 </div>
 </div>
 
-<div id="outline-container-orge7ed002" class="outline-2">
-<h2 id="orge7ed002"><span class="section-number-2">12</span> Using vector operations</h2>
+<div id="outline-container-org9d8e625" class="outline-2">
+<h2 id="org9d8e625"><span class="section-number-2">12</span> Using vector operations</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 #note: 之前调研过x86 simd指令集并且整理过一篇<a href="simd.html">文章</a>
@@ -848,8 +894,8 @@ calculations with memory access.（除了打破dependency chain之外，还可�
 </div>
 </div>
 
-<div id="outline-container-orgdafac9e" class="outline-2">
-<h2 id="orgdafac9e"><span class="section-number-2">13</span> Making critical code in multiple versions for different instruction sets</h2>
+<div id="outline-container-org68e7b17" class="outline-2">
+<h2 id="org68e7b17"><span class="section-number-2">13</span> Making critical code in multiple versions for different instruction sets</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 A disadvantage of using the newest instruction set is that the compatibility with older
@@ -865,12 +911,12 @@ system and choose the appropriate version of the subroutine for the critical inn
 </div>
 </div>
 
-<div id="outline-container-orgb5fd14f" class="outline-2">
-<h2 id="orgb5fd14f"><span class="section-number-2">14</span> Specific optimization topics</h2>
+<div id="outline-container-org18cbe92" class="outline-2">
+<h2 id="org18cbe92"><span class="section-number-2">14</span> Specific optimization topics</h2>
 <div class="outline-text-2" id="text-14">
 </div>
-<div id="outline-container-org556f917" class="outline-3">
-<h3 id="org556f917"><span class="section-number-3">14.1</span> Use lookup tables</h3>
+<div id="outline-container-orgbcb4fd6" class="outline-3">
+<h3 id="orgbcb4fd6"><span class="section-number-3">14.1</span> Use lookup tables</h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 Replacing a function with a lookup table is advantageous in most cases where the number
@@ -894,32 +940,32 @@ loop.（静态内存分布在不同的内存区域上，容易造成cache miss. 
 </div>
 </div>
 
-<div id="outline-container-org7c8005a" class="outline-3">
-<h3 id="org7c8005a"><span class="section-number-3">14.2</span> Bounds checking</h3>
+<div id="outline-container-org2259c5e" class="outline-3">
+<h3 id="org2259c5e"><span class="section-number-3">14.2</span> Bounds checking</h3>
 <div class="outline-text-3" id="text-14-2">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">if</span> (i &lt; 0 || i &gt;= size) {
-  cout &lt;&lt; <span class="org-string">"Error: Index out of range"</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">if</span> (i &lt; 0 || i &gt;= size) {
+  cout &lt;&lt; <span style="font-style: italic;">"Error: Index out of range"</span>;
 }
-<span class="org-comment-delimiter">// </span><span class="org-comment">TO</span>
-<span class="org-keyword">if</span> ((<span class="org-type">unsigned</span> <span class="org-type">int</span>)i &gt;= (<span class="org-type">unsigned</span> <span class="org-type">int</span>)size) {
-  cout &lt;&lt; <span class="org-string">"Error: Index out of range"</span>;
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">TO</span>
+<span style="font-weight: bold;">if</span> ((<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span>)i &gt;= (<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span>)size) {
+  cout &lt;&lt; <span style="font-style: italic;">"Error: Index out of range"</span>;
 }
 
-<span class="org-keyword">if</span> (i &gt;= min &amp;&amp; i &lt;= max) { ... }
-<span class="org-comment-delimiter">// </span><span class="org-comment">TO</span>
-<span class="org-keyword">if</span> ((<span class="org-type">unsigned</span> <span class="org-type">int</span>)(i - min) &lt;= (<span class="org-type">unsigned</span> <span class="org-type">int</span>)(max - min)) { ...
+<span style="font-weight: bold;">if</span> (i &gt;= min &amp;&amp; i &lt;= max) { ... }
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">TO</span>
+<span style="font-weight: bold;">if</span> ((<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span>)(i - min) &lt;= (<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span>)(max - min)) { ...
 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgae1ea0c" class="outline-3">
-<h3 id="orgae1ea0c"><span class="section-number-3">14.3</span> Use bitwise operators for checking multiple values at once</h3>
+<div id="outline-container-org24c5389" class="outline-3">
+<h3 id="org24c5389"><span class="section-number-3">14.3</span> Use bitwise operators for checking multiple values at once</h3>
 </div>
-<div id="outline-container-org8995609" class="outline-3">
-<h3 id="org8995609"><span class="section-number-3">14.4</span> Integer multiplication</h3>
+<div id="outline-container-org1827e6d" class="outline-3">
+<h3 id="org1827e6d"><span class="section-number-3">14.4</span> Integer multiplication</h3>
 <div class="outline-text-3" id="text-14-4">
 <p>
 Integer multiplication takes longer time than addition and subtraction (3 - 10 clock cycles,
@@ -927,18 +973,18 @@ depending on the processor).（整数乘法通常在3-10个时钟周期）
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">struct</span> <span class="org-type">S1</span> {
-  <span class="org-type">int</span> <span class="org-variable-name">a</span>;
-  <span class="org-type">int</span> <span class="org-variable-name">b</span>;
-  <span class="org-type">int</span> <span class="org-variable-name">c</span>;
-  <span class="org-type">int</span> <span class="org-variable-name">UnusedFiller</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">S1</span> {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">b</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">UnusedFiller</span>;
 };
-<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">size</span> = 100;
-<span class="org-type">S1</span> <span class="org-variable-name">list</span>[size];
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">size</span> = 100;
+<span style="font-weight: bold; text-decoration: underline;">S1</span> <span style="font-weight: bold; font-style: italic;">list</span>[size];
 </pre>
 </div>
 <p>
-通过增加UnusedFiller字段来使得结构体大小是2^n. 这样从下标偏移对应到内存偏移计算相对就更快速。
+通过增加UnusedFiller字段来使得结构体大小是2<sup>n</sup>. 这样从下标偏移对应到内存偏移计算相对就更快速。
 </p>
 
 <p>
@@ -951,8 +997,8 @@ the cache then you can get very expensive cache contentions, as explained on pag
 </div>
 </div>
 
-<div id="outline-container-orgec530a4" class="outline-3">
-<h3 id="orgec530a4"><span class="section-number-3">14.5</span> Integer division</h3>
+<div id="outline-container-orga8c948f" class="outline-3">
+<h3 id="orga8c948f"><span class="section-number-3">14.5</span> Integer division</h3>
 <div class="outline-text-3" id="text-14-5">
 <p>
 Integer division takes much longer time than addition, subtraction and multiplication (27 - 80
@@ -970,8 +1016,8 @@ The following guidelines can be used for improving code that contains integer di
 </div>
 </div>
 
-<div id="outline-container-org44642cd" class="outline-3">
-<h3 id="org44642cd"><span class="section-number-3">14.6</span> Floating point division</h3>
+<div id="outline-container-org9f3e029" class="outline-3">
+<h3 id="org9f3e029"><span class="section-number-3">14.6</span> Floating point division</h3>
 <div class="outline-text-3" id="text-14-6">
 <p>
 Floating point division takes much longer time than addition, subtraction and multiplication
@@ -980,8 +1026,8 @@ Floating point division takes much longer time than addition, subtraction and mu
 </div>
 </div>
 
-<div id="outline-container-org9facde5" class="outline-3">
-<h3 id="org9facde5"><span class="section-number-3">14.7</span> Don't mix float and double</h3>
+<div id="outline-container-orgef6256e" class="outline-3">
+<h3 id="orgef6256e"><span class="section-number-3">14.7</span> Don't mix float and double</h3>
 <div class="outline-text-3" id="text-14-7">
 <p>
 Floating point calculations usually take the same time regardless of whether you are using
@@ -999,8 +1045,8 @@ same precision in all operands in case the code is later ported to another platf
 </div>
 </div>
 
-<div id="outline-container-orgc8bbbcd" class="outline-3">
-<h3 id="orgc8bbbcd"><span class="section-number-3">14.8</span> Conversions between floating point numbers and integers</h3>
+<div id="outline-container-orgf42a0fb" class="outline-3">
+<h3 id="orgf42a0fb"><span class="section-number-3">14.8</span> Conversions between floating point numbers and integers</h3>
 <div class="outline-text-3" id="text-14-8">
 <p>
 <b>Conversion from floating point to integer</b>
@@ -1050,12 +1096,12 @@ conversion to floating point if the conversion to signed integer doesn't cause o
 </div>
 </div>
 
-<div id="outline-container-org260eeab" class="outline-3">
-<h3 id="org260eeab"><span class="section-number-3">14.9</span> Using integer operations for manipulating floating point variables</h3>
+<div id="outline-container-org034d733" class="outline-3">
+<h3 id="org034d733"><span class="section-number-3">14.9</span> Using integer operations for manipulating floating point variables</h3>
 <div class="outline-text-3" id="text-14-9">
 <p>
 The representation of float, double and long double reflects the floating point value
-written as (+-)2^eee * 1.fffff, where ± is the sign, eee is the exponent, and fffff is the
+written as (+-)2<sup>eee</sup> * 1.fffff, where ± is the sign, eee is the exponent, and fffff is the
 binary decimals of the fraction. The sign is stored as a single bit which is 0 for positive and 1
 for negative numbers. The exponent is stored as a biased binary integer, and the fraction is
 stored as the binary digits. The exponent is always normalized, if possible, so that the value
@@ -1064,21 +1110,21 @@ long double format. The formats can be expressed as follows:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">struct</span> <span class="org-type">Sfloat</span> {
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">fraction</span> : 23; <span class="org-comment-delimiter">// </span><span class="org-comment">fractional part</span>
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">exponent</span> : 8; <span class="org-comment-delimiter">// </span><span class="org-comment">exponent + 0x7F</span>
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">sign</span> : 1; <span class="org-comment-delimiter">// </span><span class="org-comment">sign bit</span>
+<pre class="src src-C++"><span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">Sfloat</span> {
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">fraction</span> : 23; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">fractional part</span>
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">exponent</span> : 8; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">exponent + 0x7F</span>
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sign</span> : 1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">sign bit</span>
 };
-<span class="org-keyword">struct</span> <span class="org-type">Sdouble</span> {
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">fraction</span> : 52; <span class="org-comment-delimiter">// </span><span class="org-comment">fractional part</span>
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">exponent</span> : 11; <span class="org-comment-delimiter">// </span><span class="org-comment">exponent + 0x3FF</span>
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">sign</span> : 1; <span class="org-comment-delimiter">// </span><span class="org-comment">sign bit</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">Sdouble</span> {
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">fraction</span> : 52; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">fractional part</span>
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">exponent</span> : 11; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">exponent + 0x3FF</span>
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sign</span> : 1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">sign bit</span>
 };
-<span class="org-keyword">struct</span> <span class="org-type">Slongdouble</span> {
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">fraction</span> : 63; <span class="org-comment-delimiter">// </span><span class="org-comment">fractional part</span>
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">one</span> : 1; <span class="org-comment-delimiter">// </span><span class="org-comment">always 1 if nonzero and normal</span>
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">exponent</span> : 15; <span class="org-comment-delimiter">// </span><span class="org-comment">exponent + 0x3FFF</span>
-  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">sign</span> : 1; <span class="org-comment-delimiter">// </span><span class="org-comment">sign bit</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">Slongdouble</span> {
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">fraction</span> : 63; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">fractional part</span>
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">one</span> : 1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">always 1 if nonzero and normal</span>
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">exponent</span> : 15; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">exponent + 0x3FFF</span>
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sign</span> : 1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">sign bit</span>
 };
 </pre>
 </div>
@@ -1132,8 +1178,8 @@ endian storage (e.g. PowerPC).
 </div>
 </div>
 
-<div id="outline-container-org2d694c9" class="outline-3">
-<h3 id="org2d694c9"><span class="section-number-3">14.10</span> Mathematical functions</h3>
+<div id="outline-container-org9b36737" class="outline-3">
+<h3 id="org9b36737"><span class="section-number-3">14.10</span> Mathematical functions</h3>
 <div class="outline-text-3" id="text-14-10">
 <p>
 The most common mathematical functions such as logarithms, exponential functions,
@@ -1152,8 +1198,8 @@ precision.（软件实现较硬件实现而言，在单精度浮点上优化更�
 </div>
 </div>
 
-<div id="outline-container-org565b976" class="outline-3">
-<h3 id="org565b976"><span class="section-number-3">14.11</span> Static versus dynamic libraries</h3>
+<div id="outline-container-org7a67b14" class="outline-3">
+<h3 id="org7a67b14"><span class="section-number-3">14.11</span> Static versus dynamic libraries</h3>
 <div class="outline-text-3" id="text-14-11">
 <p>
 The advantages of using static linking rather than dynamic linking are:
@@ -1201,8 +1247,8 @@ at load time.
 </div>
 </div>
 
-<div id="outline-container-orgfe277fd" class="outline-3">
-<h3 id="orgfe277fd"><span class="section-number-3">14.12</span> Position-independent code</h3>
+<div id="outline-container-org8567277" class="outline-3">
+<h3 id="org8567277"><span class="section-number-3">14.12</span> Position-independent code</h3>
 <div class="outline-text-3" id="text-14-12">
 <p>
 #note: 之前写过一篇有关于pic的<a href="pic.html">文章</a>
@@ -1281,7 +1327,7 @@ You can't have public variables in a 64-bit shared object made with option -fpie
 the linker makes an error message when it sees a relative reference to a public variable
 where it expects a GOT entry. You can avoid this error by avoiding any public variables. All
 global variables (i.e. variables defined outside any function) should be hidden by using the
-declaration "static" or "__attribute__((visibility ("hidden")))". A more
+declaration "static" or "_<sub>attribute</sub>_<sub>((visibility ("hidden")))</sub>". A more
 complicated solution is to use inline assembly code to give the variable two names, one
 global and one local, and use the local name for local references.（因为-fpie不会使用GOT，所以便
 没有办法解决全局变量问题，所有变量必须只对内可见）
@@ -1289,15 +1335,15 @@ global and one local, and use the local name for local references.（因为-fpie
 </div>
 </div>
 
-<div id="outline-container-orgd5b1ae9" class="outline-3">
-<h3 id="orgd5b1ae9"><span class="section-number-3">14.13</span> System programming</h3>
+<div id="outline-container-org9548a71" class="outline-3">
+<h3 id="org9548a71"><span class="section-number-3">14.13</span> System programming</h3>
 </div>
 </div>
-<div id="outline-container-org45574aa" class="outline-2">
-<h2 id="org45574aa"><span class="section-number-2">15</span> Metaprogramming</h2>
+<div id="outline-container-org9443059" class="outline-2">
+<h2 id="org9443059"><span class="section-number-2">15</span> Metaprogramming</h2>
 </div>
-<div id="outline-container-orgcabf11d" class="outline-2">
-<h2 id="orgcabf11d"><span class="section-number-2">16</span> Testing speed</h2>
+<div id="outline-container-org4c5a2a9" class="outline-2">
+<h2 id="org4c5a2a9"><span class="section-number-2">16</span> Testing speed</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 The measured time is interpreted in the following way. The first count is always higher than
@@ -1330,11 +1376,11 @@ mentioned above.（如果CPU频率会自动调节的话，那么读取clock coun
 </p>
 </div>
 
-<div id="outline-container-org0981a76" class="outline-3">
-<h3 id="org0981a76"><span class="section-number-3">16.1</span> The pitfalls of unit-testing</h3>
+<div id="outline-container-org3348671" class="outline-3">
+<h3 id="org3348671"><span class="section-number-3">16.1</span> The pitfalls of unit-testing</h3>
 </div>
-<div id="outline-container-org49b1a08" class="outline-3">
-<h3 id="org49b1a08"><span class="section-number-3">16.2</span> Worst-case testing</h3>
+<div id="outline-container-orgf6fbd08" class="outline-3">
+<h3 id="orgf6fbd08"><span class="section-number-3">16.2</span> Worst-case testing</h3>
 <div class="outline-text-3" id="text-16-2">
 <p>
 Each of the following methods could possibly be relevant when testing worst-case
@@ -1350,19 +1396,24 @@ performance:
 <li>Use an antivirus program that scans all files on access.（减少操作系统对文件缓存影响）</li>
 <li>Run multiple processes or threads simultaneously. If the microprocessor has hyperthreading, then try to run two threads in each processor core.</li>
 <li>Try to allocate more RAM than there is, in order to force the swapping of memory to disk.</li>
-<li>Provoke cache misses by making the code size or data used in the innermost loop bigger than the cache size. Alternatively, you may actively invalidate the cache. The operating system may have a function for this purpose, or you may use the _mm_clflush intrinsic function. （通过指令强制cache失效）</li>
+<li>Provoke cache misses by making the code size or data used in the innermost loop bigger than the cache size. Alternatively, you may actively invalidate the cache. The operating system may have a function for this purpose, or you may use the _mm<sub>clflush</sub> intrinsic function. （通过指令强制cache失效）</li>
 <li>Provoke branch mispredictions by making the data more random than normal.（使用随机数据来触发分支误判）</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf8c1d5e" class="outline-2">
-<h2 id="orgf8c1d5e"><span class="section-number-2">17</span> Optimization in embedded systems</h2>
+<div id="outline-container-org1397ce1" class="outline-2">
+<h2 id="org1397ce1"><span class="section-number-2">17</span> Optimization in embedded systems</h2>
 </div>
-<div id="outline-container-org0eefd02" class="outline-2">
-<h2 id="org0eefd02"><span class="section-number-2">18</span> Overview of compiler options</h2>
+<div id="outline-container-org1d085ff" class="outline-2">
+<h2 id="org1d085ff"><span class="section-number-2">18</span> Overview of compiler options</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/optimizing-software-in-cpp.html';this.page.identifier = 'optimizing-software-in-cpp.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>字符编码</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">字符编码</h1>
@@ -16,11 +62,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org97f35e5">1. 切换编码考虑</a></li>
-<li><a href="#orge79bef8">2. GB2312-80/GBK/GB18030</a></li>
-<li><a href="#org99b9930">3. Unicode</a></li>
-<li><a href="#org4211278">4. UTF16/UTF32</a></li>
-<li><a href="#org5b8909d">5. UTF8</a></li>
+<li><a href="#org83521ec">1. 切换编码考虑</a></li>
+<li><a href="#org7eb8048">2. GB2312-80/GBK/GB18030</a></li>
+<li><a href="#org25e0fa3">3. Unicode</a></li>
+<li><a href="#org887e059">4. UTF16/UTF32</a></li>
+<li><a href="#org085af2b">5. UTF8</a></li>
 </ul>
 </div>
 </div>
@@ -30,8 +76,8 @@
 <li><a href="http://www.joelonsoftware.com/articles/Unicode.html">http://www.joelonsoftware.com/articles/Unicode.html</a></li>
 </ul>
 
-<div id="outline-container-org97f35e5" class="outline-2">
-<h2 id="org97f35e5"><span class="section-number-2">1</span> 切换编码考虑</h2>
+<div id="outline-container-org83521ec" class="outline-2">
+<h2 id="org83521ec"><span class="section-number-2">1</span> 切换编码考虑</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>数据容量</li>
@@ -43,8 +89,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge79bef8" class="outline-2">
-<h2 id="orge79bef8"><span class="section-number-2">2</span> GB2312-80/GBK/GB18030</h2>
+<div id="outline-container-org7eb8048" class="outline-2">
+<h2 id="org7eb8048"><span class="section-number-2">2</span> GB2312-80/GBK/GB18030</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 编码方式都是2字节,对于GB18030也有4字节表示.
@@ -154,8 +200,8 @@
 </div>
 </div>
 
-<div id="outline-container-org99b9930" class="outline-2">
-<h2 id="org99b9930"><span class="section-number-2">3</span> Unicode</h2>
+<div id="outline-container-org25e0fa3" class="outline-2">
+<h2 id="org25e0fa3"><span class="section-number-2">3</span> Unicode</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Unicode是为了整合全世界所有的语言文字而诞生的.任何文字在Unicode中都对应一个值,这个值称为码点(code point).文字和码点之间对应关系如果是2个字节表示一个文字的话,那么就是UCS(Unicode Character Set)-2关系,如果是4个字节的话那么就是UCS-4关系.表达是U+XXXX.,U+XXXXXXXX这样来写.但是UCS-2,UCS-4只是规定和对应的关系但是却没有规定如何存储.关于存储方面应用较多的就是UTF(Unicode Transformation Format)
@@ -188,8 +234,8 @@ Unicode全角和半角转换 uch&gt;=0xFF00 &amp;&amp; uch&lt;=0xFF5E =&gt; (uch
 </div>
 </div>
 
-<div id="outline-container-org4211278" class="outline-2">
-<h2 id="org4211278"><span class="section-number-2">4</span> UTF16/UTF32</h2>
+<div id="outline-container-org887e059" class="outline-2">
+<h2 id="org887e059"><span class="section-number-2">4</span> UTF16/UTF32</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 UTF使用2个字节来表示一个码点.很明显UTF16对应UCS-2关系.但是UTF16是一种具体的编码所以需要考虑大小端问题[Little-Endian和Big-Endian的关系].所以UTF16实际上包含3种编码方式
@@ -200,13 +246,13 @@ UTF使用2个字节来表示一个码点.很明显UTF16对应UCS-2关系.但是U
 <li>UTF16 //这个通过BOM(byte order mark)来进行标记</li>
 </ul>
 <p>
-因为UCS-2没有定义FFFE,所以FFFE和FEFF就能够来判断是大端还是小端.UTF32对应UCS-4关系,使用4个字节表示一个码点.和UTF16一样也分little endian和big endian,也包含BOM这种方式.UCS-2引入了欧元字符为0x20ac.GBK-&gt;UCS2的转换一定是始终成功的.相反UCS-2向GBK的转换可能存在不对应字符.UTF16在U+0000-U+FFFF之间使用单一的16位编码单元[基本多语言级别],而在+U10000-U+10FFFF之间使用一对16位编码单元.FFFD在UCS-2里面是没有使用的,所以可以来做NO_MAPPING.
+因为UCS-2没有定义FFFE,所以FFFE和FEFF就能够来判断是大端还是小端.UTF32对应UCS-4关系,使用4个字节表示一个码点.和UTF16一样也分little endian和big endian,也包含BOM这种方式.UCS-2引入了欧元字符为0x20ac.GBK-&gt;UCS2的转换一定是始终成功的.相反UCS-2向GBK的转换可能存在不对应字符.UTF16在U+0000-U+FFFF之间使用单一的16位编码单元[基本多语言级别],而在+U10000-U+10FFFF之间使用一对16位编码单元.FFFD在UCS-2里面是没有使用的,所以可以来做NO<sub>MAPPING</sub>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5b8909d" class="outline-2">
-<h2 id="org5b8909d"><span class="section-number-2">5</span> UTF8</h2>
+<div id="outline-container-org085af2b" class="outline-2">
+<h2 id="org085af2b"><span class="section-number-2">5</span> UTF8</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 UTF8和UTF16/UTF32是两种不同的编码方法.16/32属于定长编码而utf8属于变长编码.使用字节长度从1~4不等.同时UTF8不需要考虑大端和小端问题.对应方式如下:
@@ -222,10 +268,15 @@ U-04000000 - U-7FFFFFFF: 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
 </pre>
 <ul class="org-ul">
 <li>使用&amp;0xC0=0x80可以来判断是否为HEADER字节&#x2026;:)..这个特性很不错:).0xFE和0xFF在UTF8中从未使用.</li>
-<li>根据第一个字节就能够知道长度.可以看到最多31个x所以最多编入2^31个UCS代码.UCS-2(4)和UTF8转换的关系就是把所有的位收集起来然后散布出去.utf8表示未知字符串0xEF0xBB0xBF[BOM].那么直接略过这3个字.</li>
+<li>根据第一个字节就能够知道长度.可以看到最多31个x所以最多编入2<sup>31个UCS代码.UCS</sup>-2(4)和UTF8转换的关系就是把所有的位收集起来然后散布出去.utf8表示未知字符串0xEF0xBB0xBF[BOM].那么直接略过这3个字.</li>
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/char-encoding.html';this.page.identifier = 'char-encoding.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

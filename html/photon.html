@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Photon: Fault-tolerant and Scalable Joining of Continuous Data Streams</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Photon: Fault-tolerant and Scalable Joining of Continuous Data Streams</h1>
@@ -16,14 +62,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5a0569d">1. Abstract</a></li>
-<li><a href="#orgcb22e50">2. Introduction</a></li>
-<li><a href="#orgc93cff1">3. Paxos-Based ID Registry</a></li>
-<li><a href="#org6461c2f">4. Single Datacenter Pipeline</a></li>
-<li><a href="#org853ce5c">5. Performance Results</a></li>
-<li><a href="#org3f27932">6. Design Lessons</a></li>
-<li><a href="#org1a3fc0a">7. Related Work</a></li>
-<li><a href="#org1a7ddb7">8. Conclusions and Future Work</a></li>
+<li><a href="#org2bae047">1. Abstract</a></li>
+<li><a href="#org3633cdd">2. Introduction</a></li>
+<li><a href="#org9c49a61">3. Paxos-Based ID Registry</a></li>
+<li><a href="#org2c52ecf">4. Single Datacenter Pipeline</a></li>
+<li><a href="#orgd2f141b">5. Performance Results</a></li>
+<li><a href="#orgb58d658">6. Design Lessons</a></li>
+<li><a href="#orga4eebf5">7. Related Work</a></li>
+<li><a href="#org03ef3ea">8. Conclusions and Future Work</a></li>
 </ul>
 </div>
 </div>
@@ -35,8 +81,8 @@
 虽然photon也是流式处理系统, 但是并不是通用的流式处理系统, 它只是流式地完成query/click之间的join操作, 应用范围相对有限. <a href="millwheel.html">MillWheel</a> 才是google的通用流式系统.
 </p>
 
-<div id="outline-container-org5a0569d" class="outline-2">
-<h2 id="org5a0569d"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-org2bae047" class="outline-2">
+<h2 id="org2bae047"><span class="section-number-2">1</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Photon is deployed within Google Advertising System to join data streams such as web search queries and user clicks on advertisements. # 在google广告系统中将搜索和点击关联起来</li>
@@ -47,15 +93,15 @@
 </div>
 </div>
 
-<div id="outline-container-orgcb22e50" class="outline-2">
-<h2 id="orgcb22e50"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-org3633cdd" class="outline-2">
+<h2 id="org3633cdd"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 photon user-case大致是这样的:
 </p>
 <ul class="org-ul">
-<li>user在t1时刻发起query. google对这些query返回结果同时带上ad, 并且标上query_id(query-event). 同时google会将这个事件写入log-datacenters(使用 <a href="gfs.html">GFS</a> 存储, key = query_id, value = data-of-event).</li>
-<li>user在这个query返回的页面时候, 如果点击某个广告的话, 那么会向google服务器发起click-event(带上query_id), 服务器为这个click-event分配click_id, 然后将这个事件写入log-datacenters.</li>
+<li>user在t1时刻发起query. google对这些query返回结果同时带上ad, 并且标上query<sub>id</sub>(query-event). 同时google会将这个事件写入log-datacenters(使用 <a href="gfs.html">GFS</a> 存储, key = query<sub>id</sub>, value = data-of-event).</li>
+<li>user在这个query返回的页面时候, 如果点击某个广告的话, 那么会向google服务器发起click-event(带上query<sub>id</sub>), 服务器为这个click-event分配click<sub>id</sub>, 然后将这个事件写入log-datacenters.</li>
 <li>photon会从log-datacenters里面读出query-event and click-event进行join. # 理论上也可以要求客户端把所有内容都返回, 这样就不用join了. 但是出于数据安全以及带宽考虑, 这种方法并不可行.</li>
 </ul>
 
@@ -80,8 +126,8 @@ While building Photon to join continuous data streams, we face these challenges:
 </div>
 </div>
 
-<div id="outline-container-orgc93cff1" class="outline-2">
-<h2 id="orgc93cff1"><span class="section-number-2">3</span> Paxos-Based ID Registry</h2>
+<div id="outline-container-org9c49a61" class="outline-2">
+<h2 id="org9c49a61"><span class="section-number-2">3</span> Paxos-Based ID Registry</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>The simplest way to achieve fault-tolerance on commodity hardware is through replication. Extending this prin-ciple to a large collection of machines, we can withstand datacenter-level outage by running the same system in mul-tiple datacenters in parallel. # 通过replication可以达到fault-tolerance的目的. 通过将这个原理扩展到大部分机器的话, 那么我们可以通过在多个datacenters并行运行系统来应对datacenter级别的故障.</li>
@@ -126,7 +172,7 @@ While building Photon to join continuous data streams, we face these challenges:
 <li>为此我们需要确定的是:
 <ul class="org-ul">
 <li>在ts = 5200之前将这20个shard上线.</li>
-<li>在上线之前不会出现ts &gt;= 5200的click_event.</li>
+<li>在上线之前不会出现ts &gt;= 5200的click<sub>event</sub>.</li>
 <li>同时在此之前所有client都能接收到这个configuration.</li>
 </ul></li>
 </ul></li>
@@ -140,8 +186,8 @@ While building Photon to join continuous data streams, we face these challenges:
 </div>
 </div>
 
-<div id="outline-container-org6461c2f" class="outline-2">
-<h2 id="org6461c2f"><span class="section-number-2">4</span> Single Datacenter Pipeline</h2>
+<div id="outline-container-org2c52ecf" class="outline-2">
+<h2 id="org2c52ecf"><span class="section-number-2">4</span> Single Datacenter Pipeline</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 下面两幅图分别是在单个datacenter的pipeline, 以及在多个dantacenters的pipeline.
@@ -162,20 +208,20 @@ While building Photon to join continuous data streams, we face these challenges:
 <ul class="org-ul">
 <li>logs. #note: logs存储在GFS上. 但是似乎这里使用file形式并不太自然, message-system会更好些比如kafka
 <ul class="org-ul">
-<li>如何生成event_id(query_event and click_event) ? (server_ip + process_id + timestamp + id). timestamp通过TrueTime定时同步.</li>
+<li>如何生成event<sub>id</sub>(query<sub>event</sub> and click<sub>event</sub>) ? (server<sub>ip</sub> + process<sub>id</sub> + timestamp + id). timestamp通过TrueTime定时同步.</li>
 <li>所有的server同时向某个(or 几个?)GFS log files追加文件. 因为timestamp会定时同步, 所以一个log file里面日志数据基本是按照timestamp排序的.</li>
 </ul></li>
-<li>dispatcher. 从click_logs读取click_event. 然后使用event_id查询IdRegistry. 如果已经存在的话那么直接丢弃, 否则转发给joiner.</li>
-<li>joiner. 完成join过程并且将输出写到logs. 在输出之前会尝试插入event_id, 如果成功才会插入.
+<li>dispatcher. 从click<sub>logs读取click</sub><sub>event</sub>. 然后使用event<sub>id查询IdRegistry</sub>. 如果已经存在的话那么直接丢弃, 否则转发给joiner.</li>
+<li>joiner. 完成join过程并且将输出写到logs. 在输出之前会尝试插入event<sub>id</sub>, 如果成功才会插入. 
 <ul class="org-ul">
-<li>如果出现query_log delay情况的话, 那么joiner查找不到任何数据. 那么joiner会通知dispatcher稍后重试. 指数退避.</li>
+<li>如果出现query<sub>log</sub> delay情况的话, 那么joiner查找不到任何数据. 那么joiner会通知dispatcher稍后重试. 指数退避.</li>
 <li>如果joiner有太多requests in flight, 那么会给dispatcher反馈, 以此达到throttling目的. 另外限制数量的原因是想减少因为crash而丢失的数据.</li>
 </ul></li>
-<li>event_store. 从query_logs读取query_event存储起来以便为joiner提供查询.
+<li>event<sub>store</sub>. 从query<sub>logs读取query</sub><sub>event存储起来以便为joiner提供查询</sub>.
 <ul class="org-ul">
 <li>分为两层 1)CacheEventStore. 2)LogsEventStore.</li>
-<li>CacheEventStore 存储query_id -&gt; file offset. 放在memcached里面. 能够支撑90%的流量</li>
-<li>LogsEventStore 支撑10%的流量. 但是如果需要join的是old click logs的话, 那么查询都是走这里(因为CacheEventStore只保留了最近一段时间的query_log)</li>
+<li>CacheEventStore 存储query<sub>id</sub> -&gt; file offset. 放在memcached里面. 能够支撑90%的流量</li>
+<li>LogsEventStore 支撑10%的流量. 但是如果需要join的是old click logs的话, 那么查询都是走这里(因为CacheEventStore只保留了最近一段时间的query<sub>log</sub>)</li>
 <li>LogsEventStore 实现原理则是按照timestamp做table scan. 在bigtable上存储(timestamp)为prefix的rowkey. value可以是文件名称和偏移.</li>
 </ul></li>
 </ul>
@@ -183,11 +229,11 @@ While building Photon to join continuous data streams, we face these challenges:
 <hr />
 
 <p>
-Minimizing Joiner Losses
+Minimizing Joiner Losses 
 </p>
 <ul class="org-ul">
-<li>如果joiner请求insert click_id, 但是RPC返回超时如何处理? IdRegistry内部可能已经记录了这个click_id.</li>
-<li>joiner可以为自己分配一个UUID/token. 在insert click_id时候带上这个token, IdRegistry也记录这个token.</li>
+<li>如果joiner请求insert click<sub>id</sub>, 但是RPC返回超时如何处理? IdRegistry内部可能已经记录了这个click<sub>id</sub>.</li>
+<li>joiner可以为自己分配一个UUID/token. 在insert click<sub>id时候带上这个token</sub>, IdRegistry也记录这个token.</li>
 <li>joiner在重试的时候带上这个token. 这样IdRegistry在对比的时候如果上次token和本地token相同, 那么直接返回true.</li>
 </ul>
 
@@ -195,26 +241,31 @@ Minimizing Joiner Losses
 Verification and Recovery
 </p>
 <ul class="org-ul">
-<li>如果成功写入之后joiner crash, 或者是joiner成功写入click_id但是写入output_logs失败, 那么就需要人工介入处理.</li>
-<li>人工处理可以对比input click_logs和output joined_click_logs. 如果某click_id没有出现的话, 那么就在IdRegistry找到这个click_id对应的token</li>
-<li>通过token我们可以找到具体是哪个joiner出了问题. 确定问题之后将从IdRegistry里面删除这个click_id, 然后从源头feed进去即可重算.</li>
-<li>在对比的时候我们还可以从IdRegistry删除那些已经出现在output click_logs里面的click_id对应的token.</li>
+<li>如果成功写入之后joiner crash, 或者是joiner成功写入click<sub>id但是写入output</sub><sub>logs失败</sub>, 那么就需要人工介入处理.</li>
+<li>人工处理可以对比input click<sub>logs和output</sub> joined<sub>click</sub><sub>logs</sub>. 如果某click<sub>id没有出现的话</sub>, 那么就在IdRegistry找到这个click<sub>id对应的token</sub></li>
+<li>通过token我们可以找到具体是哪个joiner出了问题. 确定问题之后将从IdRegistry里面删除这个click<sub>id</sub>, 然后从源头feed进去即可重算.</li>
+<li>在对比的时候我们还可以从IdRegistry删除那些已经出现在output click<sub>logs里面的click</sub><sub>id对应的token</sub>.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org853ce5c" class="outline-2">
-<h2 id="org853ce5c"><span class="section-number-2">5</span> Performance Results</h2>
+<div id="outline-container-orgd2f141b" class="outline-2">
+<h2 id="orgd2f141b"><span class="section-number-2">5</span> Performance Results</h2>
 </div>
-<div id="outline-container-org3f27932" class="outline-2">
-<h2 id="org3f27932"><span class="section-number-2">6</span> Design Lessons</h2>
+<div id="outline-container-orgb58d658" class="outline-2">
+<h2 id="orgb58d658"><span class="section-number-2">6</span> Design Lessons</h2>
 </div>
-<div id="outline-container-org1a3fc0a" class="outline-2">
-<h2 id="org1a3fc0a"><span class="section-number-2">7</span> Related Work</h2>
+<div id="outline-container-orga4eebf5" class="outline-2">
+<h2 id="orga4eebf5"><span class="section-number-2">7</span> Related Work</h2>
 </div>
-<div id="outline-container-org1a7ddb7" class="outline-2">
-<h2 id="org1a7ddb7"><span class="section-number-2">8</span> Conclusions and Future Work</h2>
+<div id="outline-container-org03ef3ea" class="outline-2">
+<h2 id="org03ef3ea"><span class="section-number-2">8</span> Conclusions and Future Work</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/photon.html';this.page.identifier = 'photon.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

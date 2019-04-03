@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</h1>
@@ -16,13 +62,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd50638d">1. Bias/Variance</a></li>
-<li><a href="#orgf564827">2. Regularization</a></li>
-<li><a href="#org57c3398">3. Batch Normalization</a></li>
-<li><a href="#org31eaf7c">4. Hyperparameter Tunning</a></li>
-<li><a href="#org878f319">5. Optimization</a></li>
-<li><a href="#orgfe43fba">6. Gradient Check</a></li>
-<li><a href="#org325ea32">7. Multiclass</a></li>
+<li><a href="#org7e52e7a">1. Bias/Variance</a></li>
+<li><a href="#org678608a">2. Regularization</a></li>
+<li><a href="#org301b75d">3. Batch Normalization</a></li>
+<li><a href="#org0b897fc">4. Hyperparameter Tunning</a></li>
+<li><a href="#org2b77bb8">5. Optimization</a></li>
+<li><a href="#org389457e">6. Gradient Check</a></li>
+<li><a href="#org84ea441">7. Multiclass</a></li>
 </ul>
 </div>
 </div>
@@ -34,8 +80,8 @@
 这门课程主要将的是如何优化深度神经网络，包括如何调参，如何减少bias/variance，如何更好地优化缩短训练时间等等。按照这么课程标题划分的话包括三个部分：超参数微调，正则化和优化。
 </p>
 
-<div id="outline-container-orgd50638d" class="outline-2">
-<h2 id="orgd50638d"><span class="section-number-2">1</span> Bias/Variance</h2>
+<div id="outline-container-org7e52e7a" class="outline-2">
+<h2 id="org7e52e7a"><span class="section-number-2">1</span> Bias/Variance</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 bias强调的是，训练得到的准确率(train error), 和最优准确率(optimal error/bayes error/human level error)，之间的差距。如果这个差距过大的话，那么称为high bias.
@@ -65,8 +111,8 @@ high variance意味着训练算法得到的是overfit的结果，需要使用更
 </div>
 </div>
 
-<div id="outline-container-orgf564827" class="outline-2">
-<h2 id="orgf564827"><span class="section-number-2">2</span> Regularization</h2>
+<div id="outline-container-org678608a" class="outline-2">
+<h2 id="org678608a"><span class="section-number-2">2</span> Regularization</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Regularization的最终作用，就是让模型尽可能地简单。
@@ -102,8 +148,8 @@ Dropout可以让在一个layers上，某些neuron可以尽可能地不依赖于�
 </div>
 </div>
 
-<div id="outline-container-org57c3398" class="outline-2">
-<h2 id="org57c3398"><span class="section-number-2">3</span> Batch Normalization</h2>
+<div id="outline-container-org301b75d" class="outline-2">
+<h2 id="org301b75d"><span class="section-number-2">3</span> Batch Normalization</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 BN是在一个mini-batch上面对输入进行normalization，并且这个BN是作用在每一个layer上面的，每个layer上面都会有两个参数gamma, beta.
@@ -121,8 +167,8 @@ BN在每层有两个超参数，并且最终训练完成之后也有两个参数
 </div>
 </div>
 
-<div id="outline-container-org31eaf7c" class="outline-2">
-<h2 id="org31eaf7c"><span class="section-number-2">4</span> Hyperparameter Tunning</h2>
+<div id="outline-container-org0b897fc" class="outline-2">
+<h2 id="org0b897fc"><span class="section-number-2">4</span> Hyperparameter Tunning</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 超参数(hyper-param)和普通参数(param)的区别是，普通参数是我们希望最终得到的，而超参数是为了更好地获得这些参数使用的参数。
@@ -142,8 +188,8 @@ BN在每层有两个超参数，并且最终训练完成之后也有两个参数
 </div>
 </div>
 
-<div id="outline-container-org878f319" class="outline-2">
-<h2 id="org878f319"><span class="section-number-2">5</span> Optimization</h2>
+<div id="outline-container-org2b77bb8" class="outline-2">
+<h2 id="org2b77bb8"><span class="section-number-2">5</span> Optimization</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 DL优化，并不是要解决local optima，因为cost function是一个非常高纬度的函数，不太可能在所有dimension上都是最低点，更多的是sadle point(鞍点，在某些dimension是最低点，但是另外一些dimension上并不是）。DL优化其实解决的是plateau, 在plateau上没有办法再继续优化/尝试了（或者是迭代很缓慢）。
@@ -173,8 +219,8 @@ momentum在更新weight时候，不是直接更新-a * dW, 而是更新这些dW�
 </div>
 </div>
 
-<div id="outline-container-orgfe43fba" class="outline-2">
-<h2 id="orgfe43fba"><span class="section-number-2">6</span> Gradient Check</h2>
+<div id="outline-container-org389457e" class="outline-2">
+<h2 id="org389457e"><span class="section-number-2">6</span> Gradient Check</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 优化阶段为了证明BP写正确了，最好做梯度检查(gradient checking). 梯度有两种方法可以求解：
@@ -195,20 +241,25 @@ momentum在更新weight时候，不是直接更新-a * dW, 而是更新这些dW�
 </div>
 </div>
 
-<div id="outline-container-org325ea32" class="outline-2">
-<h2 id="org325ea32"><span class="section-number-2">7</span> Multiclass</h2>
+<div id="outline-container-org84ea441" class="outline-2">
+<h2 id="org84ea441"><span class="section-number-2">7</span> Multiclass</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 如何处理多分类:
 </p>
 <ul class="org-ul">
-<li>多分类的输出使用softmax yi = e^zi / sum{i=1..C}(e^zi)</li>
+<li>多分类的输出使用softmax yi = e<sup>zi</sup> / sum{i=1..C}(e<sup>zi</sup>)</li>
 <li>多分类的cost function L = -sum{i=1..C}(yi * log(yi'))</li>
 <li>其中C表示分类的数量</li>
 <li>dL/dz = -y(1-y')</li>
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/improving-deep-neural-networks.html';this.page.identifier = 'improving-deep-neural-networks.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

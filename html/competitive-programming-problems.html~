@@ -1,0 +1,1819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Competitive Programming Problems</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">Competitive Programming Problems</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org570544e">1. Array</a>
+<ul>
+<li><a href="#org9f35c1a">1.1. Trapping Rain Water @ leetcode</a></li>
+<li><a href="#orgecfaa49">1.2. Sort Colors @ leetcode</a></li>
+<li><a href="#org817d50a">1.3. 3Sum @ leetcode</a></li>
+<li><a href="#orga1642ac">1.4. First Missing Positive @ leetcode</a></li>
+<li><a href="#orgd1202c7">1.5. Find All Numbers Disappeared in an Array @ leetcode</a></li>
+<li><a href="#org8ffde8b">1.6. Shortest Unsorted Continuous Subarray @ leetcode</a></li>
+<li><a href="#org878afed">1.7. Sum of Subarray Minimums @ leetcode</a></li>
+<li><a href="#org3a27596">1.8. Image Overlap @ leetcode</a></li>
+<li><a href="#org05d8c04">1.9. 792. Number of Matching Subsequences @ leetcode</a></li>
+<li><a href="#org0fe04fc">1.10. 782. Transform to Chessboard @ leetcode</a></li>
+<li><a href="#org0f9c5fd">1.11. 915. Partition Array into Disjoint Intervals @ leetcode</a></li>
+<li><a href="#org951b960">1.12. 731. My Calendar II</a></li>
+</ul>
+</li>
+<li><a href="#org8217648">2. Math</a>
+<ul>
+<li><a href="#orga3ea965">2.1. Poor Pigs @ leetcode</a></li>
+<li><a href="#org1363317">2.2. Reconstruct Original Digits from English @ leetcode</a></li>
+<li><a href="#orge226306">2.3. Sum of Subsequence Widths @ leetcode</a></li>
+<li><a href="#org5f308b6">2.4. 279. Perfect Squares @ leetcode</a></li>
+</ul>
+</li>
+<li><a href="#org18bfc84">3. DP</a>
+<ul>
+<li><a href="#org2ce97b7">3.1. NOIP2000方格取数</a></li>
+<li><a href="#org3ae0e1b">3.2. Maximal Rectangle @ leetcode</a></li>
+<li><a href="#orgd7154f1">3.3. Length of Longest Fibonacci Subsequence @ leetcode</a></li>
+<li><a href="#orga4dbf46">3.4. Number of Subarrays with Bounded Maximum</a></li>
+<li><a href="#org24ef474">3.5. 714. Best Time to Buy and Sell Stock with Transaction Fee @ leetcode</a></li>
+<li><a href="#orgcabc2ea">3.6. 689. Maximum Sum of 3 Non-Overlapping Subarrays</a></li>
+<li><a href="#org084f852">3.7. 97. Interleaving String</a></li>
+<li><a href="#org6ee143e">3.8. 123. Best Time to Buy and Sell Stock III</a></li>
+</ul>
+</li>
+<li><a href="#org5cb913a">4. BS</a>
+<ul>
+<li><a href="#orga0a8114">4.1. Find the Duplicate Number @ leetcode</a></li>
+<li><a href="#orge2c4add">4.2. Median of Two Sorted Arrays @ leetcode</a></li>
+<li><a href="#orga5c2bc2">4.3. 719. Find K-th Smallest Pair Distance @ leetcode</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org570544e" class="outline-2">
+<h2 id="org570544e"><span class="section-number-2">1</span> Array</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org9f35c1a" class="outline-3">
+<h3 id="org9f35c1a"><span class="section-number-3">1.1</span> <a href="https://leetcode.com/problems/trapping-rain-water/description/">Trapping Rain Water @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+这道题目很有意思，我最先想到的一个办法是维护left, right两个数组，分别表示从i向左和向右的最高值。
+时间和空间复杂度都是O(n), 代码简单易懂。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        n = len(height)
+        if n == 0: return 0
+        left = [0] * n
+        right = [0] * n
+
+        right[-1] = height[-1]
+        for i in range(n - 2, -1, -1):
+            right[i] = max(height[i], right[i + 1])
+        left[0] = height[0]
+        for i in range(1, n):
+            left[i] = max(height[i], left[i - 1])
+
+        ans = 0
+        for i in range(n):
+            ans += min(left[i], right[i]) - height[i]
+        return ans
+</pre>
+</div>
+
+<p>
+但是 <a href="https://leetcode.com/problems/trapping-rain-water/discuss/17527/My-Accepted-Java-Solution">thread</a> 里面有个更好的办法，space是O(1). 想法和我的差不多，但是首先找到max_index,
+然后分开两个部分计算。这样左边只需要维护left, 右边只需要维护right, 那么空间复杂度就可以降到O(1).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Java">public int trap(int[] height) {
+    if (height.length &lt;= 2) return 0;
+    int max = Integer.MIN_VALUE;
+    int maxIndex = -1;
+    for (int i = 0; i &lt; height.length; i++) {
+        if (height[i] &gt; max) {
+            max = height[i];
+            maxIndex = i;
+        }
+    }
+
+    int leftMax = height[0];
+    int water = 0;
+    for (int i = 1; i &lt; maxIndex; i++) {
+        if (height[i] &gt; leftMax) {
+            leftMax = height[i];
+        } else {
+            water += leftMax - height[i];
+        }
+    }
+
+    int rightMax = height[height.length - 1];
+    for (int i = height.length - 2; i &gt; maxIndex; i--) {
+        if (height[i] &gt; rightMax) {
+            rightMax = height[i];
+        } else {
+            water += rightMax - height[i];
+        }
+    }
+
+    return water;
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgecfaa49" class="outline-3">
+<h3 id="orgecfaa49"><span class="section-number-3">1.2</span> <a href="https://leetcode.com/problems/sort-colors/description/">Sort Colors @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+这个题目就是三色旗排序问题，维护三个指针(left, right, now)分别表示存放0,2的位置以及当前位置。
+终止条件是`now &gt; right`
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+class Solution(object):
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+
+        n = len(nums)
+        x, y = 0, n - 1
+        i = 0
+        while i &lt;= y:
+            if nums[i] == 0:
+                nums[x], nums[i] = nums[i], nums[x]
+                assert nums[x] in (0, 1)
+                x += 1
+                i += 1 # 这里可以前移是因为掉过来的值只能是1，如果是2的话已经放在最右端了。
+            elif nums[i] == 2:
+                nums[y], nums[i] = nums[i], nums[y]
+                y -= 1
+            else:
+                i += 1
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org817d50a" class="outline-3">
+<h3 id="org817d50a"><span class="section-number-3">1.3</span> <a href="https://leetcode.com/problems/3sum/description/">3Sum @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+这题目的时间复杂度是O(n^2)没有太多问题，我觉得值得学习的地方是进行去重。当然可以首先获得所有可能的结果，然后统一进行去重，
+但是那样效率比较低有额外的数据结构。更好的办法是在搜索的时候就进行去重，代码如下：（另外Python3是完全压线过去的，用C++重写不难）
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        n = len(nums)
+        ans = []
+
+        for i in range(n):
+            if i &gt; 0 and nums[i] == nums[i - 1]: continue
+
+            target = 0 - nums[i]
+            j, k = i + 1, n - 1
+            while j &lt; k:
+                value = nums[j] + nums[k]
+                if value == target:
+                    a, b, c = nums[i], nums[j], nums[k]
+                    value = (a, b, c)
+                    ans.append(value)
+                    j += 1
+                    k -= 1
+                    while j &lt; k and nums[j] == nums[j - 1]:
+                        j += 1
+                    while j &lt; k and nums[k] == nums[k + 1]:
+                        k -= 1
+                elif value &gt; target:
+                    k -= 1
+                    while j &lt; k and nums[k] == nums[k + 1]:
+                        k -= 1
+                else:
+                    j += 1
+                    while j &lt; k and nums[j] == nums[j - 1]:
+                        j += 1
+        return ans
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga1642ac" class="outline-3">
+<h3 id="orga1642ac"><span class="section-number-3">1.4</span> <a href="https://leetcode.com/problems/first-missing-positive/description/">First Missing Positive @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+pass1: 遍历所有的元素，将这些元素尽可能地放置到应该的位置。
+</p>
+
+<p>
+pass2: 遍历归置好的数组，输出结果。
+</p>
+
+<p>
+这个解法很有通用性。leetcode上还有一些题目也可以按照这个思路来解决 <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/">448. Find All Numbers Disappeared in an Array</a> 和 <a href="https://leetcode.com/problems/find-all-duplicates-in-an-array/description/">442. Find All Duplicates in an Array</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution(object):
+    def firstMissingPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        n = len(nums)
+        for i in range(n):
+            x = nums[i]
+            while 0 &lt; x &lt;= n and nums[x - 1] != x:
+                nums[i], nums[x - 1] = nums[x - 1], nums[i]
+                x = nums[i]
+
+        print(nums)
+        for i in range(n):
+            x = nums[i]
+            if (i + 1) != x:
+                return i + 1
+        return n + 1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd1202c7" class="outline-3">
+<h3 id="orgd1202c7"><span class="section-number-3">1.5</span> <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/">Find All Numbers Disappeared in an Array @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+这个题目可以按照 "First Missing Positive" 的解法来做
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+class Solution:
+    def findDisappearedNumbers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+
+        n = len(nums)
+        for i in range(n):
+            while nums[i] != (i + 1):
+                x = nums[i]
+                y = nums[x - 1]
+                if y == x:
+                    break
+                nums[i], nums[x - 1] = nums[x - 1], nums[i]
+        ans = []
+        for i in range(n):
+            if nums[i] != (i + 1):
+                ans.append(i + 1)
+        return ans
+</pre>
+</div>
+
+<p>
+我在 <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/discuss/92958/c++-solution-O(1)-space">thread</a> 里面也看到了另外一种解法很有意思。如果x出现的话，那么将nums[x-1]做符号翻转（当然也可以做其他信息存储），
+在pass2的时候，如果nums[i]变为了负值说明(i+1)出现了一次，否则说明(i+1)就没有出现过。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+<span class="org-keyword">public</span>:
+    <span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt; <span class="org-function-name">findDisappearedNumbers</span>(<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&amp; <span class="org-variable-name">nums</span>) {
+        <span class="org-type">int</span> <span class="org-variable-name">len</span> = nums.size();
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0; i&lt;len; i++) {
+            <span class="org-type">int</span> <span class="org-variable-name">m</span> = abs(<span class="org-type">nums</span>[i])-1; <span class="org-comment-delimiter">// </span><span class="org-comment">index start from 0</span>
+            nums[m] = nums[m]&gt;0 ? -nums[m] : nums[m];
+        }
+        <span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">res</span>;
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i&lt;len; i++) {
+            <span class="org-keyword">if</span>(nums[i] &gt; 0) res.push_back(i+1);
+        }
+        <span class="org-keyword">return</span> res;
+    }
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8ffde8b" class="outline-3">
+<h3 id="org8ffde8b"><span class="section-number-3">1.6</span> <a href="https://leetcode.com/problems/shortest-unsorted-continuous-subarray/description/">Shortest Unsorted Continuous Subarray @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+我的想法是，如果某个位置i, max(nums[..i]) &lt;= nums[i] &lt;= min(nums[i+1..]) 满足这个条件的话，那么就不是一个合法
+的置换点，不满足这个条件的话才需要进行调换。然后只需要找到最小和最大的两个置换点即可。为了O(1)计算max/min的话，那么
+需要O(n)的辅助空间进行记录。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def findUnsortedSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        n = len(nums)
+        if n == 0: return 0
+
+        right = [0] * n
+        right[-1] = nums[-1]
+        for i in range(n - 2, -1, -1):
+            right[i] = min(right[i + 1], nums[i])
+        left = [0] * n
+        left[0] = nums[0]
+        for i in range(1, n):
+            left[i] = max(left[i - 1], nums[i])
+
+        x, y = None, None
+        for i in range(n):
+            if not (left[i] &lt;= nums[i] &lt;= right[i]):
+                x = i
+                break
+        for i in reversed(range(n)):
+            if not (left[i] &lt;= nums[i] &lt;= right[i]):
+                y = i
+                break
+        if x is None:
+            return 0
+        return y - x + 1
+</pre>
+</div>
+
+<p>
+不过我在 <a href="https://leetcode.com/problems/shortest-unsorted-continuous-subarray/discuss/103057/Java-O(n)-Time-O(1)-Space">thread</a> 里面看到了另外一个更好的解法，不需要辅助空间，只需要沿着两个方向分别找到最小和最大值即可。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def findUnsortedSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        n = len(nums)
+        if n == 0: return 0
+
+        left_max = nums[0]
+        end = None
+        for i in range(n):
+            left_max = max(left_max, nums[i])
+            if nums[i] &lt; left_max:
+                end = i
+
+        right_min = nums[-1]
+        begin = None
+        for i in reversed(range(n)):
+            right_min = min(right_min, nums[i])
+            if nums[i] &gt; right_min:
+                begin = i
+
+        if end is None:
+            return 0
+        return end - begin + 1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org878afed" class="outline-3">
+<h3 id="org878afed"><span class="section-number-3">1.7</span> <a href="https://leetcode.com/problems/sum-of-subarray-minimums/description/">Sum of Subarray Minimums @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+This solution is very similar to <a href="https://leetcode.com/problems/largest-rectangle-in-histogram/description/">84. Largest Rectangle in Histogram</a>
+</p>
+
+<p>
+we maintain a stack of tuple (x, i, j). x = A[i], and i is the index. j is the least index which A[j] &lt; A[i].
+</p>
+
+<p>
+when we iterates kth value, if this value is smaller than stack top value such as (x, i, j), it means
+</p>
+
+<p>
+x is the smallest value of range A[j..k], on the left there are (i-j+1) values, on the right there are (k-j) values
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def sumSubarrayMins(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+
+        st = []
+        # (v, i, j), v = A[i]
+        # j means least index which A[j] &lt; A[i]
+
+        MOD = 10 ** 9 + 7
+        n = len(A)
+        ans = 0
+        for i in range(n):
+            j = i
+            while st and A[i] &lt; st[-1][0]:
+                x = st[-1]
+                ans += x[0] * (i - x[1]) * (x[1] - x[2] + 1)
+                ans = ans % MOD
+                j = x[2]
+                st.pop()
+            st.append((A[i], i, j))
+
+        while st:
+            x = st[-1]
+            ans += x[0] * (n - x[1]) * (x[1] - x[2] + 1)
+            ans = ans % MOD
+            st.pop()
+        return ans
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3a27596" class="outline-3">
+<h3 id="org3a27596"><span class="section-number-3">1.8</span> <a href="https://leetcode.com/problems/image-overlap/description/">Image Overlap @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+这个题目应该只能通过穷举来完成，关键是如何有效地筛选掉没有overlap的偏移。我的做法是将行使用bits表示，
+然后通过位运算判断是否有overlap, 对于没有overlap可以快速掉过，否则就需要统计里面1的个数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+class Solution:
+    def largestOverlap(self, A, B):
+        """
+        :type A: List[List[int]]
+        :type B: List[List[int]]
+        :rtype: int
+        """
+
+        n = len(A)
+
+        Ax = [0] * n
+        Bx = [0] * n
+        for i in range(n):
+            val1 = 0
+            val2 = 0
+            for j in range(n):
+                val1 = (val1 &lt;&lt; 1) + A[i][j]
+                val2 = (val2 &lt;&lt; 1) + B[i][j]
+            Ax[i] = val1
+            Bx[i] = val2
+
+        # print(Ax, Bx)
+
+        def check(r, c, Ax, Bx):
+            res = 0
+            for i in range(r, n):
+                mask = (1 &lt;&lt; (n - c)) - 1
+                val = (Ax[i] &amp; mask) &amp; (Bx[i - r] &gt;&gt; c)
+                while val:
+                    if val &amp; 0x1:
+                        res += 1
+                    val = val // 2
+            return res
+
+        ans = 0
+        for i in range(n):
+            for j in range(n):
+                res = check(i, j, Ax, Bx)
+                ans = max(ans, res)
+                res = check(i, j, Bx, Ax)
+                ans = max(ans, res)
+
+        return ans
+</pre>
+</div>
+
+<p>
+在 <a href="https://leetcode.com/problems/image-overlap/discuss/130623/C++JavaPython-Straight-Forward">thread</a> 里面给了一个解法也非常漂亮，将每个(x,y)映射成为唯一的整数，然后统计所有整数可能的差并且累加。
+不同的差表示不同的shift方案，对应的值就是重叠区域里面的1的个数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">def largestOverlap(self, A, B):
+       N = len(A)
+       LA = [i / N * 100 + i % N for i in xrange(N * N) if A[i / N][i % N]]
+       LB = [i / N * 100 + i % N for i in xrange(N * N) if B[i / N][i % N]]
+       c = collections.Counter(i - j for i in LA for j in LB)
+       return max(c.values() or [0])
+</pre>
+</div>
+
+<p>
+至于为什么这面选择100，是因为需要确保(x,y)映射成为唯一整数。可以想象，如果两个列超相反方向移动N的话，
+（这个是最极端的情况，并且列上是没有重合的），所以行的base需要确保是&gt;=2N. 作者在thread里面也给出了解释。
+</p>
+
+<pre class="example">
+Update 2018-05-15 about i / N * 100 + i % N
+I find many people discuss it, so I update this explanantion.
+
+1.why 100?
+100 is big enough and very clear.
+For example, If I slide 13 rows and 19 cols, it will be 1319.
+
+why not 30?
+30 is not big enough.
+For example: 409 = 13 * 30 + 19 = 14 * 30 - 11.
+409 can be taken as sliding "14 rows and -11 cols" or "13 rows and 19 cols" at the same time.
+
+How big is enough?
+Bigger than 2N-1. Bigger than 2N-1. Bigger than 2N-1.
+
+Can we replace i / N * 100 + i % N by i?
+No, it's wrong for simple test case [[0,1],[1,1]], [[1,1],[1,0]]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org05d8c04" class="outline-3">
+<h3 id="org05d8c04"><span class="section-number-3">1.9</span> <a href="https://leetcode.com/problems/number-of-matching-subsequences/description/">792. Number of Matching Subsequences @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+首先需要确定的是，这个匹配是一个贪婪匹配，尽可能地向前匹配是安全的。
+然后一旦字符w[j]在S[i]匹配之后，我们最关心的其实是，w[j+1]会在哪个位置k匹配，其中k&gt;i.
+而这个信息其实是可以被缓存的，占用空间是O(n * 26).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">
+class Solution:
+    def numMatchingSubseq(self, S, words):
+        """
+        :type S: str
+        :type words: List[str]
+        :rtype: int
+        """
+
+        cache = {}
+        n = len(S)
+
+        def find_next(i, ch):
+            key = '{}.{}'.format(i, ch)
+            if key in cache:
+                return cache[key]
+
+            ans = n
+            for j in range(i, n):
+                if S[j] == ch:
+                    ans = j
+                    break
+            cache[key] = ans
+            return ans
+
+        ans = 0
+        for w in words:
+            i = 0
+            matched = True
+            for ch in w:
+                j = find_next(i, ch)
+                if j == n:
+                    matched = False
+                    break
+                i = j + 1
+            if matched:
+                ans += 1
+        return ans
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0fe04fc" class="outline-3">
+<h3 id="org0fe04fc"><span class="section-number-3">1.10</span> <a href="https://leetcode.com/problems/transform-to-chessboard/description/">782. Transform to Chessboard @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+可以互换的前提是，行列里面只能有两种值a, b:
+</p>
+<ol class="org-ol">
+<li>a &amp; b = 0</li>
+<li>a | b = (1 &lt;&lt; n) - 1</li>
+<li>a, b的数量各占一半或者是k+1,k</li>
+</ol>
+
+<p>
+然后在计算swap次数的时候，假设0110要变成0101,
+那么只需要计算有差异的位置个数(然后//2即可)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def movesToChessboard(self, board):
+        """
+        :type board: List[List[int]]
+        :rtype: int
+        """
+
+        n = len(board)
+
+        # for i in range(n):
+        #     print(board[i])
+
+        def try_swap(xs):
+            cnt = 0
+            temp = []
+            for i in range(n):
+                if xs[i] == xs[0]:
+                    cnt += 1
+                    temp.append(0)
+                elif ((xs[0] &amp; xs[i]) == 0) and ((xs[0] | xs[i]) == (1 &lt;&lt; n) - 1):
+                    temp.append(1)
+                else:
+                    return -1
+            if abs(n - cnt - cnt) &gt; 1:
+                return -1
+
+            cnt0, cnt1 = 0, 0
+            exp = 0
+            for i in range(n):
+                if temp[i] != exp:
+                    cnt0 += 1
+                if temp[i] != (1 - exp):
+                    cnt1 += 1
+                exp = 1 - exp
+
+            res = 1 &lt;&lt; 10
+            if cnt0 % 2 == 0:
+                res = min(res, cnt0 // 2)
+            if cnt1 % 2 == 0:
+                res = min(res, cnt1 // 2)
+            return res
+
+        ans = 0
+        # handle row
+        xs = []
+        for i in range(n):
+            value = 0
+            for j in range(n):
+                value = (value &lt;&lt; 1) | board[i][j]
+            xs.append(value)
+        res = try_swap(xs)
+        if res == -1:
+            return -1
+        ans += res
+
+        # handle col
+        xs = []
+        for j in range(n):
+            value = 0
+            for i in range(n):
+                value = (value &lt;&lt; 1) | board[i][j]
+            xs.append(value)
+        res = try_swap(xs)
+        if res == -1:
+            return -1
+        ans += res
+        return ans
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0f9c5fd" class="outline-3">
+<h3 id="org0f9c5fd"><span class="section-number-3">1.11</span> <a href="https://leetcode.com/problems/partition-array-into-disjoint-intervals/description/">915. Partition Array into Disjoint Intervals @ leetcode</a></h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+这题目和 <a href="https://leetcode.com/problems/max-chunks-to-make-sorted-ii/description/">768. Max Chunks To Make Sorted II</a> 非常类似，不过它只需要取第一个interval就行。
+所以这题虽然也可以使用O(n)空间和O(n)时间来解决。
+</p>
+
+<p>
+使用O(n)空间的算法如下。right[i]表示从A[i]向右的最小值是多少。
+</p>
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def partitionDisjoint(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+
+        n = len(A)
+        right = [0] * n
+        right[-1] = A[-1]
+        for i in range(n - 2, -1, -1):
+            right[i] = min(right[i + 1], A[i])
+
+        value = A[0]
+        for i in range(n - 1):
+            value = max(value, A[i])
+            if value &lt;= right[i + 1]:
+                return i + 1
+        raise RuntimeError()
+</pre>
+</div>
+
+<p>
+不过我们可以进一步优化到O(1)空间. i是扫描下表，j是观察后续元素是否都比max(A[..i])要大。
+如果j不符合条件的话，那么j也不能回退。所以时间复杂度是O(n).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def partitionDisjoint(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+
+        n = len(A)
+        value = A[0]
+        i, j = 0, 0
+        while j &lt; n:
+            if value &lt;= A[j]:
+                j += 1
+            else:
+                i += 1
+                value = max(value, A[i])
+                j = max(i + 1, j)
+        return i + 1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org951b960" class="outline-3">
+<h3 id="org951b960"><span class="section-number-3">1.12</span> <a href="https://leetcode.com/problems/my-calendar-ii/description/">731. My Calendar II</a></h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+这题目是 <a href="https://leetcode.com/problems/my-calendar-i/description/">729. My Calendar I</a> 的扩展。II的解法可以用在I上面，而I最好的解法还是手写平衡树来判断是否存在重叠。
+这个时间复杂度是O(lgn). 但是手写平衡树这件事情，我个人觉得在leetcode上没有什么意义。我们可以查找[start, end)
+可能重叠的附近两个区间O(lgn), 判断是否重合。如果不重合的话，那么还是需要使用O(n)操作进行插入。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+import bisect
+
+
+class MyCalendar:
+
+    def __init__(self):
+        self.xs = []
+        self.ys = []
+
+    def book(self, start, end):
+        """
+        :type start: int
+        :type end: int
+        :rtype: bool
+        """
+        i = bisect.bisect_left(self.xs, start)
+        # compare to self.ys[i-1] and self.xs[i]
+        if (i - 1) &gt;= 0:
+            if start &lt; self.ys[i - 1]:
+                return False
+        if i &lt; len(self.xs):
+            if end &gt; self.xs[i]:
+                return False
+        self.xs.insert(i, start)
+        self.ys.insert(i, end)
+        return True
+
+</pre>
+</div>
+
+<p>
+而II这题目不管是手写平衡树，还是使用这种讨巧的办法，最坏情况下面时间复杂度都是O(n). 手写平衡树需要进行区间分隔，
+代码比较长而且很容易出错，实现可以看 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/contest/lintcode/my-calendar-ii.py">code on github</a>. 一种更好的实现是，维护一个计数器overlap，每当进入某个区间的时候
+overlap+1, 从某个区间出来的时候overlap-1. 如果在某个时候overlap &gt;=3 的话，那么说明有3个区间交叠。
+</p>
+
+<p>
+一种实现是维护数组A, 元素是(x, d). 其中x是位置，d表示进还是出，数组A是按照x排序的，如果x相当出优先。
+不过这种实现每次添加一个区间需要对A重新排序。为了避免每次都进行排序，我们可以维护一个map&lt;int, int&gt; counter.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment"> */</span>
+
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;algorithm&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;map&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;queue&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;set&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+
+<span class="org-keyword">class</span> <span class="org-type">MyCalendar</span> {
+   <span class="org-keyword">public</span>:
+    <span class="org-type">map</span>&lt;<span class="org-type">int</span>, <span class="org-type">int</span>&gt; <span class="org-variable-name">counter</span>;
+    <span class="org-function-name">MyCalendar</span>() {}
+
+    <span class="org-type">bool</span> <span class="org-function-name">book</span>(<span class="org-type">int</span> <span class="org-variable-name">start</span>, <span class="org-type">int</span> <span class="org-variable-name">end</span>) {
+        counter[start] += 1;
+        counter[end] -= 1;
+        <span class="org-type">int</span> <span class="org-variable-name">overlap</span> = 0;
+        <span class="org-keyword">auto</span> <span class="org-variable-name">ans</span> = <span class="org-constant">true</span>;
+        <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">it</span> = counter.begin(); it != counter.end(); ++it) {
+            <span class="org-keyword">if</span> (it-&gt;first &gt; end) {
+                <span class="org-keyword">break</span>;
+            }
+            overlap += it-&gt;second;
+            <span class="org-keyword">if</span> (overlap &gt;= 2) {
+                ans = <span class="org-constant">false</span>;
+                <span class="org-keyword">break</span>;
+            }
+        }
+        <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>ans) {
+            counter[start] -= 1;
+            counter[end] += 1;
+        }
+        <span class="org-keyword">return</span> ans;
+    }
+};
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8217648" class="outline-2">
+<h2 id="org8217648"><span class="section-number-2">2</span> Math</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orga3ea965" class="outline-3">
+<h3 id="orga3ea965"><span class="section-number-3">2.1</span> <a href="//leetcode.com/problems/poor-pigs/description/">Poor Pigs @ leetcode</a></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+这个 <a href="https://leetcode.com/problems/poor-pigs/discuss/94266/another-explanation-and-solution">thread</a> 给出的解释非常清晰
+</p>
+
+<pre class="example">
+
+With 2 pigs, poison killing in 15 minutes, and having 60 minutes, we can find the poison in up to 25 buckets in the following way.
+Arrange the buckets in a 5×5 square:
+
+ 1  2  3  4  5
+ 6  7  8  9 10
+11 12 13 14 15
+16 17 18 19 20
+21 22 23 24 25
+Now use one pig to find the row (make it drink from buckets 1, 2, 3, 4, 5, wait 15 minutes,
+make it drink from buckets 6, 7, 8, 9, 10, wait 15 minutes, etc).
+Use the second pig to find the column (make it drink 1, 6, 11, 16, 21, then 2, 7, 12, 17, 22, etc).
+
+Having 60 minutes and tests taking 15 minutes means we can run four tests.
+If the row pig dies in the third test, the poison is in the third row.
+If the column pig doesn't die at all, the poison is in the fifth column
+(this is why we can cover five rows/columns even though we can only run four tests).
+
+With 3 pigs, we can similarly use a 5×5×5 cube instead of a 5×5 square and again use one pig to determine the coordinate of one dimension
+(one pig drinks layers from top to bottom, one drinks layers from left to right, one drinks layers from front to back).
+So 3 pigs can solve up to 125 buckets.
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+class Solution(object):
+    def poorPigs(self, buckets, minutesToDie, minutesToTest):
+        """
+        :type buckets: int
+        :type minutesToDie: int
+        :type minutesToTest: int
+        :rtype: int
+        """
+        pigs = 0
+        rounds = minutesToTest / minutesToDie
+        while True:
+            if (rounds + 1) ** pigs &gt;= buckets:
+                break
+            pigs += 1
+        return pigs
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.poorPigs(1000, 15, 60))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1363317" class="outline-3">
+<h3 id="org1363317"><span class="section-number-3">2.2</span> <a href="https://leetcode.com/problems/reconstruct-original-digits-from-english/description/">Reconstruct Original Digits from English @ leetcode</a></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+这题目如果使用递归的话会出现TLE. 讨论区里面 tornmy 给出的方法很对，就是其实每个数字英语表示都可以通过一个字母来完全确定。
+</p>
+
+<pre class="example">
+In general situation, it should be transformed into a problem to calculate A from AX=B, matrix X is formed as follows,
+         //                                             /// efghinorstuvwxz ///
+        // 0 z e r o        e         o  r            z    100000110000001
+        // 1 o n e          e        no                    100001100000000
+        // 2 t w o                    o      t    w         000000100100100
+        // 3 t h r e e      e    h       r   t              200100010100000
+        // 4 f o u r          f       o  r     u             010000110010000
+        // 5 f i v e        e f    i             v            110010000001000
+        // 6 s i x                 i       s        x          000010001000010
+        // 7 s e v e n      e        n     s     v        200001001001000
+        // 8 e i g h t      e  g h i         t              101110000100000
+        // 9 n i n e        e      i n                       100012000000000
+</pre>
+
+<p>
+从上面分析可以看到，"zero"的z是唯一的，"six"的x是唯一的，依次类推。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+
+class Solution:
+    def originalDigits(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+
+        def ch2idx(c):
+            return ord(c) - ord('a')
+
+        counter = [0] * 26
+        for c in s:
+            idx = ch2idx(c)
+            counter[idx] += 1
+
+        preps = []
+        for word in ('zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'):
+            vec = []
+            for c in word:
+                vec.append(ch2idx(c))
+            preps.append(vec)
+
+        def remove_chars(c, digit):
+            idx = ch2idx(c)
+            prep = preps[digit]
+            cnt = counter[idx]
+            for idx in prep:
+                counter[idx] -= cnt
+            return str(digit) * cnt
+
+        res = ''
+        res += remove_chars('z', 0)
+        res += remove_chars('x', 6)
+        res += remove_chars('w', 2)
+        res += remove_chars('u', 4)
+        res += remove_chars('g', 8)
+        res += remove_chars('o', 1)
+        res += remove_chars('h', 3)
+        res += remove_chars('f', 5)
+        res += remove_chars('v', 7)
+        res += remove_chars('i', 9)
+        res = list(res)
+        res.sort()
+        res = ''.join(res)
+        return res
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge226306" class="outline-3">
+<h3 id="orge226306"><span class="section-number-3">2.3</span> <a href="https://leetcode.com/problems/sum-of-subsequence-widths/description/">Sum of Subsequence Widths @ leetcode</a></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+这里有个很奇妙的公式推导，首先对A进行排序。假设S[i]是A[0..i]所有序列的width之和。那么有ans = sum(S[0..n-1]).
+</p>
+
+<p>
+然后有这个几个规律：
+</p>
+<ol class="org-ol">
+<li>A[i+1] 是 A[0..i+1]的最大值，最小值是A[0]</li>
+<li>A[i..j]所有序列的width之和是 (A[j]-A[i]) * 2 ^ (j-i-1)</li>
+<li>S[j]包括A[0..j], A[1..j] &#x2026; A[j-1..j]</li>
+<li>S[j+1]包括A[0..j+1], A[1..j+1] &#x2026; A[j-1..j+1], A[j..j+1]</li>
+<li>S[j+1] - 2*S[j] = (A[j+1] - A[j]) * (2^j + 2^(j-1) + &#x2026;1) = (A[j+1]-A[j]) * (2^(j+1) -1 )</li>
+</ol>
+
+<p>
+所以 S[i+1] = (2^(i+1) - 1) * (A[i+1]-A[i]) + 2*S[i].
+</p>
+
+<p>
+这个问题朝着O(n)的解法去基本上都能想出来。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+class Solution:
+    def sumSubseqWidths(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+
+        n = len(A)
+        A.sort()
+        ans = 0
+        last = 0
+        p2 = 1
+        MOD = 10 ** 9 + 7
+        for i in range(n - 1):
+            p2 = (p2 * 2) % MOD
+            now = (p2 - 1) * (A[i + 1] - A[i]) + 2 * last
+            now = now % MOD
+            ans = (ans + now) % MOD
+            last = now
+        return ans
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5f308b6" class="outline-3">
+<h3 id="org5f308b6"><span class="section-number-3">2.4</span> <a href="https://leetcode.com/problems/perfect-squares/description/">279. Perfect Squares @ leetcode</a></h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+这题可以使用动态规划来解决，空间复杂度是O(n), 时间复杂度是O(n^(3/2)).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+
+class Solution:
+    def __init__(self):
+        self.dp = [0]
+
+    def numSquares(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+
+        dp = self.dp
+        while len(dp) &lt;= n:
+            x = len(dp)
+            ans = 1 &lt;&lt; 30
+            for p in range(1, x + 1):
+                p2 = p ** 2
+                if p2 &gt; x:
+                    break
+                ans = min(ans, dp[x - p2] + 1)
+            dp.append(ans)
+        return dp[n]
+
+</pre>
+</div>
+
+<p>
+但是在 <a href="https://leetcode.com/problems/perfect-squares/discuss/180403/C++-O(sqrt(n))-Solution-Using-Legendre's-Three-Square-Theorem-Beats-100">thread</a> 里面给了更加精妙的 <a href="https://en.wikipedia.org/wiki/Legendre's_three-square_theorem">Legendre's three-square theorem</a> 和 <a href="https://en.wikipedia.org/wiki/Lagrange's_four-square_theorem">Lagrange's four-square theorem</a>
+空间复杂度是O(1), 时间复杂度是O(sqrt(n)).“所有整数都可以表示成为四个平方数之和”，“所有整数都可以表示成为
+三个平方数之和，除非n满足4^a * (8b+7)这样的形式”。数论真的是太神奇了！
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+    <span class="org-type">bool</span> <span class="org-function-name">isSquare</span>(<span class="org-type">int</span> <span class="org-variable-name">n</span>) {
+        <span class="org-type">int</span> <span class="org-variable-name">sqroot</span> = floor(<span class="org-type">sqrt</span>(<span class="org-variable-name">n</span>));
+
+        <span class="org-keyword">return</span> sqroot * sqroot == n;
+    }
+<span class="org-keyword">public</span>:
+    <span class="org-type">int</span> <span class="org-function-name">numSquares</span>(<span class="org-type">int</span> <span class="org-variable-name">n</span>) {
+        <span class="org-keyword">if</span>(isSquare(n))
+            <span class="org-keyword">return</span> 1;
+
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 1; i*i &lt; n; i++) {
+            <span class="org-keyword">if</span>(isSquare(n - i*i))
+                <span class="org-keyword">return</span> 2;
+        }
+
+        <span class="org-type">int</span> <span class="org-variable-name">p4</span> = 1;
+        <span class="org-keyword">while</span>(n % (4 * p4) == 0)
+            p4 *= 4;
+
+        <span class="org-keyword">if</span>((n / p4)%8 == 7)
+            <span class="org-keyword">return</span> 4;
+
+        <span class="org-keyword">return</span> 3;
+    }
+};
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org18bfc84" class="outline-2">
+<h2 id="org18bfc84"><span class="section-number-2">3</span> DP</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org2ce97b7" class="outline-3">
+<h3 id="org2ce97b7"><span class="section-number-3">3.1</span> <a href="https://www.rqnoj.cn/problem/314">NOIP2000方格取数</a></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<a href="https://blog.csdn.net/rowanhaoa/article/details/15816067">https://blog.csdn.net/rowanhaoa/article/details/15816067</a>
+</p>
+
+<p>
+这种动态规划解法还被称为多线程dp. 我理解这里的多线程是指同时考虑两条路径的状态。
+</p>
+
+<p>
+dp[step][x][y] 表示移动了step步，path1停留在(i, step-i)上，path2停留在(j, step-j)上的路径和。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">def solve(graph, n):
+    inf = 1 &lt;&lt; 30
+    neg_inf = -inf
+
+    # for i in range(n):
+    #     print(graph[i])
+
+    dp = [[[neg_inf for _ in range(n)] for _ in range(n)] for _ in range(2)]
+    now = 0
+    dp[now][0][0] = graph[0][0]
+
+    def get_dp(k, i, j):
+        if i &lt; 0 or j &lt; 0:
+            return neg_inf
+        return dp[k][i][j]
+
+    for step in range(1, 2 * n - 1):
+        for i in range(n):
+            for j in range(n):
+                # if 0 &lt;= (step - i) &lt; n and 0 &lt;= (step - j) &lt; n:
+                if i &gt; step or j &gt; step: continue
+                if (i + n) &lt;= step or (j + n) &lt;= step: continue
+                res = max(get_dp(now, i - 1, j), get_dp(now, i, j - 1),
+                          get_dp(now, i - 1, j - 1), get_dp(now, i, j))
+                res += graph[i][step - i]
+                if i != j:
+                    res += graph[j][step - j]
+                dp[1 - now][i][j] = res
+        now = 1 - now
+
+    return dp[now][n - 1][n - 1]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ae0e1b" class="outline-3">
+<h3 id="org3ae0e1b"><span class="section-number-3">3.2</span> <a href="https://leetcode.com/problems/maximal-rectangle/description/">Maximal Rectangle @ leetcode</a></h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+在 <a href="https://leetcode.com/problems/maximal-rectangle/discuss/29054/Share-my-DP-solution">thread</a> 下面 @Self_Learner 的注释不错。还有 <a href="https://leetcode.com/problems/maximal-rectangle/discuss/165472/Largest-Rectangle-Python">thread</a> 提出可以使用 "Largest Rectangle in Historgam" 的方法来解决，也非常巧妙。这些算法的时间复杂度都是O(nm)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Java">/* we start from the first row, and move downward;
+ * height[i] record the current number of countinous '1' in column i;
+ * left[i] record the left most index j which satisfies that for any index k from j to  i, height[k] &gt;= height[i];
+ * right[i] record the right most index j which satifies that for any index k from i to  j, height[k] &gt;= height[i];
+ * by understanding the definition, we can easily figure out we need to update maxArea with value (height[i] * (right[i] - left[i] + 1));
+ *
+ * Then the question is how to update the array of height, left, and right
+ * =================================
+ * for updating height, it is easy
+ * for (int j = 0; j &lt; n; j++) {
+ *    if (matrix[i][j] == '1') height[j]++;
+ *    else height[j] = 0;
+ * }
+ * =============================================================================
+ * It is a little bit tricky for initializing and updating left and right array
+ * for initialization:
+ * we know initially, height array contains all 0, so according to the definition of left and right array,
+ * left array should contains all 0, and right array should contain all n - 1
+ * for updating left and right, it is kind of tricky to understand...
+ *     ==============================================================
+ *     Here is the code for updating left array, we scan from left to right
+ *     int lB = 0;  //lB is indicating the left boundry for the current row of the matrix (for cells with char "1"), not the height array...
+ *     for (int j = 0; j &lt; n; j++) {
+ *          if (matrix[i][j] == '1') {
+ *              left[j] = Math.max(left[j], lB); // this means the current boundry should satisfy two conditions:
+ *              // within the boundry of the previous height array, and within the boundry of the current row...
+ *          } else {
+ *              left[j] = 0; // when matrix[i][j] = 0, height[j] will get update to 0, so left[j] becomes 0,
+ *              // since all height in between 0 - j satisfies the condition of height[k] &gt;= height[j];
+ *              lB = j + 1; //and since current position is '0', so the left most boundry for next "1" cell is at least j + 1;
+ *          }
+ *     }
+ *     ==============================================================
+ *     the idea for updating the right boundary is similar, we just need to iterate from right to left
+ *     int rB = n - 1;
+ *     for (int j = n - 1; j &gt;= 0; j--) {
+ *         if (matrix[i][j] == '1') {
+ *              right[j] = Math.min(right[j], rB);
+ *         } else {
+ *              right[j] = n - 1;
+ *              rB = j - 1;
+ *      }
+ */
+class Solution {
+    public int maximalRectangle(char[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) return 0;
+        int m = matrix.length, n = matrix[0].length, maxArea = 0;
+        int[] left = new int[n];
+        int[] right = new int[n];
+        int[] height = new int[n];
+        Arrays.fill(right, n - 1);
+        for (int i = 0; i &lt; m; i++) {
+            int rB = n - 1;
+            for (int j = n - 1; j &gt;= 0; j--) {
+                if (matrix[i][j] == '1') {
+                    right[j] = Math.min(right[j], rB);
+                } else {
+                    right[j] = n - 1;
+                    rB = j - 1;
+                }
+            }
+            int lB = 0;
+            for (int j = 0; j &lt; n; j++) {
+                if (matrix[i][j] == '1') {
+                    left[j] = Math.max(left[j], lB);
+                    height[j]++;
+                    maxArea = Math.max(maxArea, height[j] * (right[j] - left[j] + 1));
+                } else {
+                    height[j] = 0;
+                    left[j] = 0;
+                    lB = j + 1;
+                }
+            }
+        }
+        return maxArea;
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7154f1" class="outline-3">
+<h3 id="orgd7154f1"><span class="section-number-3">3.3</span> <a href="https://leetcode.com/problems/length-of-longest-fibonacci-subsequence/description/">Length of Longest Fibonacci Subsequence @ leetcode</a></h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+这个可以认为是一类DP问题，通过几个数可以完全确定剩余序列，然后求解满足这种序列的数量。
+</p>
+
+<p>
+`dp[x] = dp[y] + 1 if dp[y] == 0 else k` 注意这个代码模式
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+
+class Solution:
+    def lenLongestFibSubseq(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+
+        n = len(A)
+        indices = {}
+        for i in range(n):
+            indices[A[i]] = i
+        dp = [[0] * n for _ in range(n)]
+
+        ans = 0
+        for i in range(n):
+            for j in range(i):
+                # A[k] + A[j] = A[i]
+                k = indices.get(A[i] - A[j])
+                if k is not None and k &lt; j:
+                    dp[i][j] = dp[j][k] + 1 if dp[j][k] != 0 else 3
+                    ans = max(ans, dp[i][j])
+        return ans
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga4dbf46" class="outline-3">
+<h3 id="orga4dbf46"><span class="section-number-3">3.4</span> <a href="https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/description/">Number of Subarrays with Bounded Maximum</a></h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+这题的动态规划很有意思
+</p>
+<ol class="org-ol">
+<li>back[i+1]=j 表示截止到A[i], 那么A[j..i]所有的值都是在[L,R]之间的</li>
+<li>dp[i+1] 则表示包含A[i]的话，有多少种组合</li>
+</ol>
+
+<p>
+这里需要计算back的原因是，如果A[i]&lt;L的话，那么只能使用之前的组合。
+但是如果A[i]在[L,R]范围的话，那么实际选择是有i-back[i]+1中选择的
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def numSubarrayBoundedMax(self, A, L, R):
+        """
+        :type A: List[int]
+        :type L: int
+        :type R: int
+        :rtype: int
+        """
+
+        n = len(A)
+        back = [0] * (n + 1)
+        dp = [0] * (n + 1)
+        for i in range(n):
+            if A[i] &gt; R:
+                back[i + 1] = i + 1
+                dp[i + 1] = 0
+            else:
+                back[i + 1] = min(i + 1, back[i])
+                if A[i] &lt; L:
+                    dp[i + 1] = dp[i]
+                else:
+                    dp[i + 1] = (i - back[i] + 1)
+        # print(dp[1:], back[1:])
+        ans = 0
+        for i in range(n):
+            ans += dp[i + 1]
+        return ans
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org24ef474" class="outline-3">
+<h3 id="org24ef474"><span class="section-number-3">3.5</span> <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/">714. Best Time to Buy and Sell Stock with Transaction Fee @ leetcode</a></h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+这题目从数量级看应该是需要O(n)的解法。我最开始的想法是使用启发式方法：
+</p>
+<ol class="org-ol">
+<li>把所有的上涨列举出来</li>
+<li>遍历所有上涨，合并可能的上涨</li>
+</ol>
+<p>
+这个方法对 <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii">122. Best Time to Buy and Sell Stock II</a> 是可以work的，但是用在本题上找不到最优解。
+方法可以看 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/contest/leetcode/best-time-to-buy-and-sell-stock-with-transaction-fee.py">code on github</a> 里面的 `maxProfitWA`
+</p>
+
+<p>
+假设我们允许O(n^2)的DP解法的话，实现可以是这样的
+</p>
+<div class="org-src-container">
+<pre class="src src-Python">def maxProfitNaive(self, prices, fee):
+    """
+    :type prices: List[int]
+    :type fee: int
+    :rtype: int
+    """
+
+    n = len(prices)
+    dp = [0] * n
+    for i in range(1, n):
+        min_value = prices[i]
+        profit = 0
+        for j in range(i - 1, -1, -1):
+            min_value = min(min_value, prices[j])
+            profit = max(profit, dp[j] + (prices[i] - min_value - fee))
+        dp[i] = profit
+    return max(dp)
+</pre>
+</div>
+
+<p>
+代码上看 `min_value` 和 `dp[j]` 是可以放在一起的，我们不用去查找这两个对的所有可能值，
+只需要保存 `max(dp[j] - min_value)` 即可。所以我们将代码改写成为下面这样，时间复杂度
+也可以降低到O(n), 空间复杂度是O(1).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">def maxProfit(self, prices, fee):
+    """
+    :type prices: List[int]
+    :type fee: int
+    :rtype: int
+    """
+
+    n = len(prices)
+    ans = 0
+    cost = -prices[0]
+    for i in range(1, n):
+        res = prices[i] - fee + cost
+        if res &gt; ans:
+            ans = res
+        cost = max(cost, ans - prices[i])
+    return ans
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcabc2ea" class="outline-3">
+<h3 id="orgcabc2ea"><span class="section-number-3">3.6</span> <a href="https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/description/">689. Maximum Sum of 3 Non-Overlapping Subarrays</a></h3>
+<div class="outline-text-3" id="text-3-6">
+<ol class="org-ol">
+<li>通过枚举得到所有长度为k的subarray(k-subarry)的和，对应代码里面的 `acc`</li>
+<li>遍历计算 `left`和`right`. `left[i]` 表示 `nums[..i]` 中最大 k-subarray 之和，而lidx[i]表示对应的下标。</li>
+<li>枚举中间所有可能的位置。这个方法其实可以推广到4个或者是多个non-overlapping subarrays.</li>
+</ol>
+
+<p>
+如果是k non-overlapping subarrays的话，时间复杂度是O(n^(k-2)). 所以这题时间复杂度是O(n)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+
+class Solution:
+    def maxSumOfThreeSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        acc = []
+        value = sum(nums[:k])
+        acc.append(value)
+        for i in range(k, len(nums)):
+            value -= nums[i - k]
+            value += nums[i]
+            acc.append(value)
+
+        n = len(acc)
+        left = [0] * n
+        lidx = [-1] * n
+        left[0] = acc[0]
+        lidx[0] = 0
+        for i in range(1, n):
+            if acc[i] &gt; left[i - 1]:
+                lidx[i] = i
+                left[i] = acc[i]
+            else:
+                lidx[i] = lidx[i - 1]
+                left[i] = left[i - 1]
+
+        right = [0] * n
+        ridx = [-1] * n
+        right[n - 1] = acc[n - 1]
+        ridx[n - 1] = n - 1
+        for i in range(n - 2, -1, -1):
+            if acc[i] &gt; right[i + 1]:
+                ridx[i] = i
+                right[i] = acc[i]
+            else:
+                ridx[i] = ridx[i + 1]
+                right[i] = right[i + 1]
+
+        res = 0
+        items = []
+        for i in range(k, n - k):
+            value = left[i - k] + acc[i] + right[i + k]
+            if value &gt; res:
+                res = value
+                items = [lidx[i - k], i, ridx[i + k]]
+        return items
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org084f852" class="outline-3">
+<h3 id="org084f852"><span class="section-number-3">3.7</span> <a href="https://leetcode.com/problems/interleaving-string/description/">97. Interleaving String</a></h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+这题目的状态转移方程不是很难，时间复杂度是O((n+m) * min(n,m))，
+空间复杂度上可以使用滚动数组的方式减少到O(min(n,m)). 为了可以减少到O(min(n,m)),
+我们需要在最开始判断一下哪个字符串比较短。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">class Solution:
+    def isInterleave(self, s1, s2, s3):
+        """
+        :type s1: str
+        :type s2: str
+        :type s3: str
+        :rtype: bool
+        """
+
+        n = len(s1)
+        m = len(s2)
+        if n &gt; m:
+            n, m = m, n
+            s1, s2 = s2, s1
+        if (n + m) != len(s3):
+            return False
+        dp = [[0] * (n + 1) for _ in range(2)]
+        now = 0
+        dp[now][0] = 1
+        for i in range(n + m):
+            for j in range(n + 1):
+                val = 0
+                if (0 &lt;= (j - 1) &lt; n) and s1[j - 1] == s3[i]:
+                    val = max(val, dp[now][j - 1])
+                if (0 &lt;= (i - j) &lt; m) and s2[i - j] == s3[i]:
+                    val = max(val, dp[now][j])
+                dp[1 - now][j] = val
+            now = 1 - now
+        return bool(dp[now][n])
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ee143e" class="outline-3">
+<h3 id="org6ee143e"><span class="section-number-3">3.8</span> <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/">123. Best Time to Buy and Sell Stock III</a></h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+如果这题限制最多只允许一次交易的话就变成了 <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/">121. Best Time to Buy and Sell Stock</a>.
+这个题目也可以使用DP方法求解，但是只需要O(1)的空间复杂度。我们可以在这题目的基础上，
+预处理得到数组st. st[i]表示从i之后进行交易的话最大的profit是多少。然后在遍历的时候，
+`max_profit_now + st[i]` 就是如果i点进行一次卖出的话，整个过程最多可以获得的profit.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+
+        if not prices: return 0
+
+        n = len(prices)
+        st = [0] * n
+
+        # st[i]: 从i开始往后交易最多的profit
+        max_sell = prices[-1]
+        max_profit = 0
+        for i in reversed(range(n)):
+            max_sell = max(max_sell, prices[i])
+            max_profit = max(max_profit, max_sell - prices[i])
+            st[i] = max_profit
+
+        ans = 0
+        min_buy = prices[0]
+        max_profit = 0
+        for i in range(n):
+            min_buy = min(min_buy, prices[i])
+            max_profit = max(max_profit, prices[i] - min_buy)
+            ans = max(ans, max_profit + st[i])
+
+        return ans
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5cb913a" class="outline-2">
+<h2 id="org5cb913a"><span class="section-number-2">4</span> BS</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orga0a8114" class="outline-3">
+<h3 id="orga0a8114"><span class="section-number-3">4.1</span> <a href="https://leetcode.com/problems/find-the-duplicate-number/description/">Find the Duplicate Number @ leetcode</a></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+对目标值进行二分搜索，如果这个值x出现次数多余1那么就是这个值，如果小于这个值的个数超过(x-1)那么说明目标值比x小
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+# NOTE(yan): 很有意思的一道题目
+
+class Solution:
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        n = len(nums)
+
+        def check(x):
+            low, high, eq = 0, 0, 0
+            for v in nums:
+                if v &lt; x:
+                    low += 1
+                elif v == x:
+                    eq += 1
+                elif v &gt; x:
+                    high += 1
+            if eq &gt;= 2:
+                return 0
+            elif low &gt; (x - 1):
+                return -1
+            else:
+                return 1
+
+        s, e = 1, n - 1
+        while s &lt; e:
+            m = (s + e) // 2
+            res = check(m)
+            if res == 0:
+                return m
+            elif res == -1:
+                e = m - 1
+            else:
+                s = m + 1
+        return s
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge2c4add" class="outline-3">
+<h3 id="orge2c4add"><span class="section-number-3">4.2</span> <a href="https://leetcode.com/problems/median-of-two-sorted-arrays/description/">Median of Two Sorted Arrays @ leetcode</a></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+非常经典的二分再二分问题，但是因为第二次二分其实可以根据第一次缩减范围，所以时间复杂度不是O(lgn * lgm)而是O(lg(m+n))
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+import bisect
+
+
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        m = len(nums1)
+        n = len(nums2)
+        if (m + n) % 2 == 0:
+            b = self.Xth(nums1, nums2, (m + n) // 2)
+            a = self.Xth(nums1, nums2, (m + n) // 2 + 1)
+            return (a + b) * 0.5
+        else:
+            return self.Xth(nums1, nums2, (m + n) // 2 + 1)
+
+    def Xth(self, nums1, nums2, x):
+        v = self.xth(nums1, nums2, x)
+        if v: return v
+        return self.xth(nums2, nums1, x)
+
+    def xth(self, nums1, nums2, x):
+        s, e = 0, len(nums1) - 1
+        s2, e2 = 0, len(nums2) - 1
+        while s &lt;= e:
+            m = (s + e) // 2
+            a = nums1[m]
+            left = bisect.bisect_left(nums2, a, s2, e2 + 1)
+            right = bisect.bisect_right(nums2, a, s2, e2 + 1)
+            if m + left + 1 &lt;= x &lt;= m + right + 1:
+                return a
+            elif (m + left + 1) &lt; x:
+                s = m + 1
+                s2 = max(s2, right)
+            else:
+                e = m - 1
+                e2 = min(e2, left)
+        return None
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga5c2bc2" class="outline-3">
+<h3 id="orga5c2bc2"><span class="section-number-3">4.3</span> <a href="https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/">719. Find K-th Smallest Pair Distance @ leetcode</a></h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+给定一个距离 `d`, 计算有多少个pairs的是在这个距离范围内的，
+这个是函数 `find_kth` 的工作，假设返回结果是 `k2`,
+并且这个函数在有序的数组上也可以通过二分实现，时间复杂度是O(nlgn).
+</p>
+
+<p>
+然后在外层二分可能的距离空间来去确定最终的距离，时间复杂度是O(lgK).
+所以这个算法的最终时间复杂度是O(lgK * nlgn).
+</p>
+
+<p>
+在外层如果 `k2 &lt; k` 的话说明距离还不够，相反情况说明距离是符合的。
+因为肯定是有个满足解，所以在外层判断条件可以是 `s &lt; e`.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+import bisect
+
+
+class Solution:
+    def smallestDistancePair(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+
+        n = len(nums)
+        nums.sort()
+
+        def find_kth(d):
+            ans = 0
+            for i in range(n):
+                j = bisect.bisect_right(nums, nums[i] + d, i + 1)
+                ans += j - i - 1
+            return ans
+
+        s, e = 0, nums[-1] - nums[0]
+        while s &lt; e:
+            m = (s + e) // 2
+            k2 = find_kth(m)
+            if k2 &lt; k:
+                s = m + 1
+            else:
+                e = m
+        return e
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/competitive-programming-problems.html';this.page.identifier = 'competitive-programming-problems.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

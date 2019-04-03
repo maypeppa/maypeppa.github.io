@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>General Algorithm</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">General Algorithm</h1>
@@ -16,113 +62,113 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9ae4c9f">1. strlen in glibc</a></li>
-<li><a href="#org2c0e7cd">2. consistent hashing</a></li>
-<li><a href="#orgca2e937">3. rsync core algorithm</a></li>
-<li><a href="#org951fbf3">4. simhash algorithm</a></li>
-<li><a href="#orgbcecc73">5. HyperLogLog</a></li>
-<li><a href="#org03aa438">6. CONCISE</a></li>
-<li><a href="#org94c9587">7. 流式计算均值和方差</a></li>
-<li><a href="#org6f22de5">8. 查找非重复数字</a></li>
-<li><a href="#org3ccd874">9. Monty Hall Problem</a></li>
-<li><a href="#org53af006">10. 神奇帽子问题 Magical Hat</a></li>
-<li><a href="#orgfb92914">11. 等概率选取链表元素</a></li>
-<li><a href="#org33a36a8">12. CS中最重要的32个算法</a></li>
+<li><a href="#orgc0c228b">1. strlen in glibc</a></li>
+<li><a href="#org9a0f621">2. consistent hashing</a></li>
+<li><a href="#org833b2ba">3. rsync core algorithm</a></li>
+<li><a href="#org723f7fb">4. simhash algorithm</a></li>
+<li><a href="#org9347b1a">5. HyperLogLog</a></li>
+<li><a href="#org65f5f15">6. CONCISE</a></li>
+<li><a href="#org2bfe289">7. 流式计算均值和方差</a></li>
+<li><a href="#org24d40f7">8. 查找非重复数字</a></li>
+<li><a href="#org945f67d">9. Monty Hall Problem</a></li>
+<li><a href="#org0e9b480">10. 神奇帽子问题 Magical Hat</a></li>
+<li><a href="#org5c3d20f">11. 等概率选取链表元素</a></li>
+<li><a href="#org77d68ba">12. CS中最重要的32个算法</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9ae4c9f" class="outline-2">
-<h2 id="org9ae4c9f"><span class="section-number-2">1</span> strlen in glibc</h2>
+<div id="outline-container-orgc0c228b" class="outline-2">
+<h2 id="orgc0c228b"><span class="section-number-2">1</span> strlen in glibc</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 参考链接 <a href="http://www.kuqin.com/language/20071113/2308.html">http://www.kuqin.com/language/20071113/2308.html</a>. 这里和链接有点不太一样的就是，这个版本glibc实现考虑了非ASCII字符。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">size_t</span> <span class="org-function-name">strlen</span>(str)
-<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">str</span>;
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold;">strlen</span>(str)
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">str</span>;
 {
-  <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">char_ptr</span>;
-  <span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">long</span> <span class="org-type">int</span> *<span class="org-variable-name">longword_ptr</span>;
-  <span class="org-type">unsigned</span> <span class="org-type">long</span> <span class="org-type">int</span> <span class="org-variable-name">longword</span>, <span class="org-variable-name">himagic</span>, <span class="org-variable-name">lomagic</span>;
+  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">char_ptr</span>;
+  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">longword_ptr</span>;
+  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">longword</span>, <span style="font-weight: bold; font-style: italic;">himagic</span>, <span style="font-weight: bold; font-style: italic;">lomagic</span>;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">&#39318;&#20808;&#26159;&#38656;&#35201;&#23545;&#40784;&#21040;unsigned long int&#36825;&#20010;&#38271;&#24230;.</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">&#20043;&#21518;&#23601;&#26159;&#27599;&#20010;unsigned long int&#26469;&#36827;&#34892;&#21028;&#26029;.</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#26679;&#21487;&#20197;&#21152;&#24555;&#36895;&#24230;</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#39318;&#20808;&#26159;&#38656;&#35201;&#23545;&#40784;&#21040;unsigned long int&#36825;&#20010;&#38271;&#24230;.</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20043;&#21518;&#23601;&#26159;&#27599;&#20010;unsigned long int&#26469;&#36827;&#34892;&#21028;&#26029;.</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26679;&#21487;&#20197;&#21152;&#24555;&#36895;&#24230;</span>
 
-  <span class="org-comment-delimiter">/* </span><span class="org-comment">Handle the first few characters by reading one character at a time.</span>
-<span class="org-comment">   * Do this until CHAR_PTR is aligned on a longword boundary.  */</span>
-  <span class="org-keyword">for</span> (char_ptr = str; ((<span class="org-type">unsigned</span> <span class="org-type">long</span> <span class="org-type">int</span>) char_ptr
-                        &amp; (<span class="org-keyword">sizeof</span>(longword) - 1)) != 0; ++char_ptr)
-    <span class="org-keyword">if</span> (*char_ptr == <span class="org-string">'\0'</span>)
-      <span class="org-keyword">return</span> char_ptr - str;
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">Handle the first few characters by reading one character at a time.</span>
+<span style="font-weight: bold; font-style: italic;">   * Do this until CHAR_PTR is aligned on a longword boundary.  */</span>
+  <span style="font-weight: bold;">for</span> (char_ptr = str; ((<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; text-decoration: underline;">int</span>) char_ptr
+                        &amp; (<span style="font-weight: bold;">sizeof</span>(longword) - 1)) != 0; ++char_ptr)
+    <span style="font-weight: bold;">if</span> (*char_ptr == <span style="font-style: italic;">'\0'</span>)
+      <span style="font-weight: bold;">return</span> char_ptr - str;
 
-  <span class="org-comment-delimiter">/* </span><span class="org-comment">All these elucidatory comments refer to 4-byte longwords,</span>
-<span class="org-comment">   * but the theory applies equally well to 8-byte longwords.  */</span>
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">All these elucidatory comments refer to 4-byte longwords,</span>
+<span style="font-weight: bold; font-style: italic;">   * but the theory applies equally well to 8-byte longwords.  */</span>
 
-  longword_ptr = (<span class="org-type">unsigned</span> <span class="org-type">long</span> <span class="org-type">int</span> *) char_ptr;
+  longword_ptr = (<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; text-decoration: underline;">int</span> *) char_ptr;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">&#20026;&#20102;&#31616;&#21270;&#22788;&#29702;&#30340;&#35805;&#65292;&#25105;&#20204;&#21487;&#20197;&#35748;&#20026;sizeof(longword)==8&#65292;&#36825;&#26679;</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">himagic = 0x8080808080808080L</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">lomagic = 0x0101010101010101L</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20026;&#20102;&#31616;&#21270;&#22788;&#29702;&#30340;&#35805;&#65292;&#25105;&#20204;&#21487;&#20197;&#35748;&#20026;sizeof(longword)==8&#65292;&#36825;&#26679;</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">himagic = 0x8080808080808080L</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">lomagic = 0x0101010101010101L</span>
 
-  <span class="org-comment-delimiter">/* </span><span class="org-comment">Bits 31, 24, 16, and 8 of this number are zero.  Call these bits</span>
-<span class="org-comment">   * the "holes."  Note that there is a hole just to the left of</span>
-<span class="org-comment">   * each byte, with an extra at the end:</span>
-<span class="org-comment">   *</span>
-<span class="org-comment">   * bits:  01111110 11111110 11111110 11111111</span>
-<span class="org-comment">   * bytes: AAAAAAAA BBBBBBBB CCCCCCCC DDDDDDDD</span>
-<span class="org-comment">   *</span>
-<span class="org-comment">   * The 1-bits make sure that carries propagate to the next 0-bit.</span>
-<span class="org-comment">   * The 0-bits provide holes for carries to fall into.  */</span>
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">Bits 31, 24, 16, and 8 of this number are zero.  Call these bits</span>
+<span style="font-weight: bold; font-style: italic;">   * the "holes."  Note that there is a hole just to the left of</span>
+<span style="font-weight: bold; font-style: italic;">   * each byte, with an extra at the end:</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * bits:  01111110 11111110 11111110 11111111</span>
+<span style="font-weight: bold; font-style: italic;">   * bytes: AAAAAAAA BBBBBBBB CCCCCCCC DDDDDDDD</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * The 1-bits make sure that carries propagate to the next 0-bit.</span>
+<span style="font-weight: bold; font-style: italic;">   * The 0-bits provide holes for carries to fall into.  */</span>
   himagic = 0x80808080L;
   lomagic = 0x01010101L;
-  <span class="org-keyword">if</span> (<span class="org-keyword">sizeof</span>(longword) &gt; 4) {
-    <span class="org-comment-delimiter">/* </span><span class="org-comment">64-bit version of the magic.  */</span>
-    <span class="org-comment-delimiter">/* </span><span class="org-comment">Do the shift in two steps to avoid a warning if long has 32 bits.  */</span>
+  <span style="font-weight: bold;">if</span> (<span style="font-weight: bold;">sizeof</span>(longword) &gt; 4) {
+    <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">64-bit version of the magic.  */</span>
+    <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">Do the shift in two steps to avoid a warning if long has 32 bits.  */</span>
     himagic = ((himagic &lt;&lt; 16) &lt;&lt; 16) | himagic;
     lomagic = ((lomagic &lt;&lt; 16) &lt;&lt; 16) | lomagic;
   }
-  <span class="org-keyword">if</span> (<span class="org-keyword">sizeof</span>(longword) &gt; 8)
+  <span style="font-weight: bold;">if</span> (<span style="font-weight: bold;">sizeof</span>(longword) &gt; 8)
     abort();
 
-  <span class="org-comment-delimiter">/* </span><span class="org-comment">Instead of the traditional loop which tests each character,</span>
-<span class="org-comment">   * we will test a longword at a time.  The tricky part is testing</span>
-<span class="org-comment">   * if *any of the four* bytes in the longword in question are zero.  */</span>
-  <span class="org-keyword">for</span> (;;) {
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">Instead of the traditional loop which tests each character,</span>
+<span style="font-weight: bold; font-style: italic;">   * we will test a longword at a time.  The tricky part is testing</span>
+<span style="font-weight: bold; font-style: italic;">   * if *any of the four* bytes in the longword in question are zero.  */</span>
+  <span style="font-weight: bold;">for</span> (;;) {
     longword = *longword_ptr++;
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#21407;&#29702;&#38750;&#24120;&#31616;&#21333;,&#20551;&#35774;&#22312;unsigned long int&#37324;&#38754;&#23384;&#22312;&#19968;&#20010;0&#30340;&#35805;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#37027;&#20040;0-lomagic&#30340;&#35805;&#20250;&#36896;&#25104;&#39640;&#20301;&#20026;1.&#22914;&#26524;!=0&#30340;&#35805;&#37027;&#20040;&#33267;&#23569;&gt;=1&#23601;&#19981;&#20250;&#36896;&#25104;&#23545;&#24212;&#23383;&#33410;&#39640;&#23383;&#33410;&#20026;1&#20102;.</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#24403;&#28982;&#36825;&#37324;&#36824;&#26377;&#19968;&#31181;&#24773;&#20917;&#23601;&#26159;&#36825;&#20010;&#19981;&#26159;&#19968;&#20010;ASCII&#23383;&#31526;.</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#20351;&#29992;&amp; ~longword&#26469;&#21028;&#26029;&#30340;&#35805;,&#22914;&#26524;&#39640;&#20301;&#23601;&#20026;1&#30340;&#35805;&#37027;&#20040;&#23601;&#20250;&#32622;&#20026;0,&#36825;&#26679;&#23601;&#25490;&#38500;&#20102;&#38750;ASCII&#24773;&#20917;.</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&amp; himagic&#30340;&#35805;,&#26469;&#21028;&#26029;&#26159;&#21542;&#26377;&#39640;&#20301;&#20026;1.&#22914;&#26524;&#26377;&#30340;&#35805;&#35828;&#26126;&#36825;&#20960;&#20010;&#23383;&#33410;&#37324;&#38754;&#23384;&#22312;0.</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#23384;&#22312;0&#30340;&#35805;&#37027;&#20040;&#23601;&#21482;&#26159;&#38024;&#23545;&#36825;8&#20010;&#23383;&#33410;&#36827;&#34892;&#26522;&#20030;</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;&#21407;&#29702;&#38750;&#24120;&#31616;&#21333;,&#20551;&#35774;&#22312;unsigned long int&#37324;&#38754;&#23384;&#22312;&#19968;&#20010;0&#30340;&#35805;</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#37027;&#20040;0-lomagic&#30340;&#35805;&#20250;&#36896;&#25104;&#39640;&#20301;&#20026;1.&#22914;&#26524;!=0&#30340;&#35805;&#37027;&#20040;&#33267;&#23569;&gt;=1&#23601;&#19981;&#20250;&#36896;&#25104;&#23545;&#24212;&#23383;&#33410;&#39640;&#23383;&#33410;&#20026;1&#20102;.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#24403;&#28982;&#36825;&#37324;&#36824;&#26377;&#19968;&#31181;&#24773;&#20917;&#23601;&#26159;&#36825;&#20010;&#19981;&#26159;&#19968;&#20010;ASCII&#23383;&#31526;.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20351;&#29992;&amp; ~longword&#26469;&#21028;&#26029;&#30340;&#35805;,&#22914;&#26524;&#39640;&#20301;&#23601;&#20026;1&#30340;&#35805;&#37027;&#20040;&#23601;&#20250;&#32622;&#20026;0,&#36825;&#26679;&#23601;&#25490;&#38500;&#20102;&#38750;ASCII&#24773;&#20917;.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#28982;&#21518;&amp; himagic&#30340;&#35805;,&#26469;&#21028;&#26029;&#26159;&#21542;&#26377;&#39640;&#20301;&#20026;1.&#22914;&#26524;&#26377;&#30340;&#35805;&#35828;&#26126;&#36825;&#20960;&#20010;&#23383;&#33410;&#37324;&#38754;&#23384;&#22312;0.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#23384;&#22312;0&#30340;&#35805;&#37027;&#20040;&#23601;&#21482;&#26159;&#38024;&#23545;&#36825;8&#20010;&#23383;&#33410;&#36827;&#34892;&#26522;&#20030;</span>
 
-    <span class="org-keyword">if</span> (((longword - lomagic) &amp; ~longword &amp; himagic) != 0) {
-      <span class="org-comment-delimiter">/* </span><span class="org-comment">Which of the bytes was the zero?  If none of them were, it was</span>
-<span class="org-comment">       * a misfire; continue the search.  */</span>
+    <span style="font-weight: bold;">if</span> (((longword - lomagic) &amp; ~longword &amp; himagic) != 0) {
+      <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">Which of the bytes was the zero?  If none of them were, it was</span>
+<span style="font-weight: bold; font-style: italic;">       * a misfire; continue the search.  */</span>
 
-      <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">cp</span> = (<span class="org-keyword">const</span> <span class="org-type">char</span> *) (longword_ptr - 1);
+      <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">cp</span> = (<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">char</span> *) (longword_ptr - 1);
 
-      <span class="org-keyword">if</span> (cp[0] == 0)
-        <span class="org-keyword">return</span> cp - str;
-      <span class="org-keyword">if</span> (cp[1] == 0)
-        <span class="org-keyword">return</span> cp - str + 1;
-      <span class="org-keyword">if</span> (cp[2] == 0)
-        <span class="org-keyword">return</span> cp - str + 2;
-      <span class="org-keyword">if</span> (cp[3] == 0)
-        <span class="org-keyword">return</span> cp - str + 3;
-      <span class="org-keyword">if</span> (<span class="org-keyword">sizeof</span>(longword) &gt; 4) {
-        <span class="org-keyword">if</span> (cp[4] == 0)
-          <span class="org-keyword">return</span> cp - str + 4;
-        <span class="org-keyword">if</span> (cp[5] == 0)
-          <span class="org-keyword">return</span> cp - str + 5;
-        <span class="org-keyword">if</span> (cp[6] == 0)
-          <span class="org-keyword">return</span> cp - str + 6;
-        <span class="org-keyword">if</span> (cp[7] == 0)
-          <span class="org-keyword">return</span> cp - str + 7;
+      <span style="font-weight: bold;">if</span> (cp[0] == 0)
+        <span style="font-weight: bold;">return</span> cp - str;
+      <span style="font-weight: bold;">if</span> (cp[1] == 0)
+        <span style="font-weight: bold;">return</span> cp - str + 1;
+      <span style="font-weight: bold;">if</span> (cp[2] == 0)
+        <span style="font-weight: bold;">return</span> cp - str + 2;
+      <span style="font-weight: bold;">if</span> (cp[3] == 0)
+        <span style="font-weight: bold;">return</span> cp - str + 3;
+      <span style="font-weight: bold;">if</span> (<span style="font-weight: bold;">sizeof</span>(longword) &gt; 4) {
+        <span style="font-weight: bold;">if</span> (cp[4] == 0)
+          <span style="font-weight: bold;">return</span> cp - str + 4;
+        <span style="font-weight: bold;">if</span> (cp[5] == 0)
+          <span style="font-weight: bold;">return</span> cp - str + 5;
+        <span style="font-weight: bold;">if</span> (cp[6] == 0)
+          <span style="font-weight: bold;">return</span> cp - str + 6;
+        <span style="font-weight: bold;">if</span> (cp[7] == 0)
+          <span style="font-weight: bold;">return</span> cp - str + 7;
       }
     }
   }
@@ -132,8 +178,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2c0e7cd" class="outline-2">
-<h2 id="org2c0e7cd"><span class="section-number-2">2</span> consistent hashing</h2>
+<div id="outline-container-org9a0f621" class="outline-2">
+<h2 id="org9a0f621"><span class="section-number-2">2</span> consistent hashing</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="http://en.wikipedia.org/wiki/Consistent_hash">http://en.wikipedia.org/wiki/Consistent_hash</a></li>
@@ -155,8 +201,8 @@ The basic idea behind the consistent hashing algorithm is to hash both objects a
 </div>
 </div>
 
-<div id="outline-container-orgca2e937" class="outline-2">
-<h2 id="orgca2e937"><span class="section-number-2">3</span> rsync core algorithm</h2>
+<div id="outline-container-org833b2ba" class="outline-2">
+<h2 id="org833b2ba"><span class="section-number-2">3</span> rsync core algorithm</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="http://coolshell.cn/articles/7425.html">http://coolshell.cn/articles/7425.html</a></li>
@@ -187,8 +233,8 @@ The basic idea behind the consistent hashing algorithm is to hash both objects a
 </div>
 </div>
 
-<div id="outline-container-org951fbf3" class="outline-2">
-<h2 id="org951fbf3"><span class="section-number-2">4</span> simhash algorithm</h2>
+<div id="outline-container-org723f7fb" class="outline-2">
+<h2 id="org723f7fb"><span class="section-number-2">4</span> simhash algorithm</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="http://blog.csdn.net/lgnlgn/article/details/6008498">http://blog.csdn.net/lgnlgn/article/details/6008498</a></li>
@@ -221,8 +267,8 @@ simhash算法原理非常简单：
 假设S是排好序的个数是N，我们simhash f=64.如果k非常小比如{1,2,3}的话，那么可以枚举和d simhash相差k的所有simhash值，然后再S里面进行检索，时间复杂度在C(64,k)*lgN.但是如果k比较大比如&gt;=10的话，那么我们可以先对S进行分段搜索：
 </p>
 <ol class="org-ol">
-<li>我们对S进行分段，每次取出2^m个元素，我们确保2^m个元素高位有m’相同。因为S排好序所以通常m'很高。</li>
-<li>我们首先对于m'个位和d simhash高位判断有多少位存在差异，假设x存在差异.这样我们可以在2^m元素判断m-x差异的元素。</li>
+<li>我们对S进行分段，每次取出2<sup>m个元素</sup>，我们确保2<sup>m个元素高位有m</sup>’相同。因为S排好序所以通常m'很高。</li>
+<li>我们首先对于m'个位和d simhash高位判断有多少位存在差异，假设x存在差异.这样我们可以在2<sup>m元素判断m</sup>-x差异的元素。</li>
 <li>总体思想来说的话就是希望可以缩小搜索集。似乎在算法复杂度上面没有啥改进，可以在实现上改进。</li>
 </ol>
 <p>
@@ -255,8 +301,8 @@ UPDATE@201808 这篇 <a href="https://github.com/julycoding/The-Art-Of-Programmi
 </div>
 </div>
 
-<div id="outline-container-orgbcecc73" class="outline-2">
-<h2 id="orgbcecc73"><span class="section-number-2">5</span> HyperLogLog</h2>
+<div id="outline-container-org9347b1a" class="outline-2">
+<h2 id="org9347b1a"><span class="section-number-2">5</span> HyperLogLog</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf">http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf</a></li>
@@ -339,7 +385,7 @@ def estimate_cardinality(values, k):
 </p>
 <ul class="org-ul">
 <li>去掉30%的最大的bucket，只是计算剩余70%的bucket</li>
-<li>max_zeroes的计算不是使用geometric mean而是使用harmonic mean</li>
+<li>max<sub>zeroes的计算不是使用geometric</sub> mean而是使用harmonic mean</li>
 </ul>
 
 <p>
@@ -348,8 +394,8 @@ def estimate_cardinality(values, k):
 </div>
 </div>
 
-<div id="outline-container-org03aa438" class="outline-2">
-<h2 id="org03aa438"><span class="section-number-2">6</span> CONCISE</h2>
+<div id="outline-container-org65f5f15" class="outline-2">
+<h2 id="org65f5f15"><span class="section-number-2">6</span> CONCISE</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Maximum Performance with Minimum Storage: Data Compression in Druid | Metamarkets <a href="http://metamarkets.com/2012/druid-bitmap-compression/">http://metamarkets.com/2012/druid-bitmap-compression/</a></li>
@@ -376,7 +422,7 @@ def estimate_cardinality(values, k):
 </div>
 
 <p>
-可以看到其实&lt;n&gt;最长为2^30-1（肯定不会为0）.但是实际上大部分到不了这么长。剩余的空间就会存在浪费。
+可以看到其实&lt;n&gt;最长为2<sup>30</sup>-1（肯定不会为0）.但是实际上大部分到不了这么长。剩余的空间就会存在浪费。
 </p>
 
 <p>
@@ -387,7 +433,7 @@ CONCISE针对这个部分稍微改进了一下
 <li>and the remaining 25 bits count the number of 31-blocks that compose the fill minus one. （剩余的25个bit表示后面存在多少个31bit blocks)</li>
 </ul>
 <p>
-可以看到最大的范围是31 + 2^25 * 31 = 1040187423 , 如果从0开始的话，那么就是[0,1040187422]
+可以看到最大的范围是31 + 2<sup>25</sup> * 31 = 1040187423 , 如果从0开始的话，那么就是[0,1040187422]
 </p>
 
 <p>
@@ -413,8 +459,8 @@ CONCISE针对这个部分稍微改进了一下
 </div>
 </div>
 
-<div id="outline-container-org94c9587" class="outline-2">
-<h2 id="org94c9587"><span class="section-number-2">7</span> 流式计算均值和方差</h2>
+<div id="outline-container-org2bfe289" class="outline-2">
+<h2 id="org2bfe289"><span class="section-number-2">7</span> 流式计算均值和方差</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><a href="http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance">http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance</a></li>
@@ -445,8 +491,8 @@ th^2 * n = (X1-Xe)^2 + (X2-Xe)^2 + (X3-Xe)^2 + ... (Xi-Xe)^2 + .. (Xn-Xe)^2
 </div>
 </div>
 
-<div id="outline-container-org6f22de5" class="outline-2">
-<h2 id="org6f22de5"><span class="section-number-2">8</span> 查找非重复数字</h2>
+<div id="outline-container-org24d40f7" class="outline-2">
+<h2 id="org24d40f7"><span class="section-number-2">8</span> 查找非重复数字</h2>
 <div class="outline-text-2" id="text-8">
 <hr />
 <p>
@@ -466,15 +512,15 @@ a1 a1 a2 a2 &#x2026; an an X
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Solution</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-type">int</span> <span class="org-function-name">singleNumber</span>(<span class="org-type">int</span> <span class="org-variable-name">A</span>[], <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Note: The Solution object is instantiated only once and is reused by each test case.</span>
-    <span class="org-type">int</span> <span class="org-variable-name">x</span> = 0;
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;n;i++) {
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">singleNumber</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Note: The Solution object is instantiated only once and is reused by each test case.</span>
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">x</span> = 0;
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>=0;i&lt;n;i++) {
       x ^= A[i];
     }
-    <span class="org-keyword">return</span> x;
+    <span style="font-weight: bold;">return</span> x;
   }
 };
 </pre>
@@ -523,32 +569,32 @@ a1 a1 a1 a2 a2 a2 &#x2026; an an an X
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Solution</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-type">int</span> <span class="org-function-name">singleNumber</span>(<span class="org-type">int</span> <span class="org-variable-name">A</span>[], <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Note: The Solution object is instantiated only once and is reused by each test case.</span>
-    <span class="org-type">int</span> <span class="org-variable-name">mask</span>[32]; <span class="org-comment-delimiter">// </span><span class="org-comment">sizeof(int) == 32;</span>
-    memset(mask,0,<span class="org-keyword">sizeof</span>(mask));
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;n;i++) {
-      R(<span class="org-type">A</span>[i],mask);
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">singleNumber</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Note: The Solution object is instantiated only once and is reused by each test case.</span>
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mask</span>[32]; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">sizeof(int) == 32;</span>
+    memset(mask,0,<span style="font-weight: bold;">sizeof</span>(mask));
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>=0;i&lt;n;i++) {
+      R(<span style="font-weight: bold; text-decoration: underline;">A</span>[i],mask);
     }
-    <span class="org-type">int</span> <span class="org-variable-name">code</span> = S(mask);
-    <span class="org-keyword">return</span> code;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">code</span> = S(mask);
+    <span style="font-weight: bold;">return</span> code;
   }
-  <span class="org-type">void</span> <span class="org-function-name">R</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-type">int</span> <span class="org-variable-name">mask</span>[]) {
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;32;i++) {
-      <span class="org-keyword">if</span>(a &amp; 0x1) {
-        mask[i] = (<span class="org-type">mask</span>[i] + 1) % 3;
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">R</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mask</span>[]) {
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>=0;i&lt;32;i++) {
+      <span style="font-weight: bold;">if</span>(a &amp; 0x1) {
+        mask[i] = (<span style="font-weight: bold; text-decoration: underline;">mask</span>[i] + 1) % 3;
       }
       a &gt;&gt;= 1;
     }
   }
-  <span class="org-type">int</span> <span class="org-function-name">S</span>(<span class="org-type">int</span> <span class="org-variable-name">mask</span>[]) {
-    <span class="org-type">int</span> <span class="org-variable-name">code</span> = 0;
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=31;i&gt;=0;i--) {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">S</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mask</span>[]) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">code</span> = 0;
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>=31;i&gt;=0;i--) {
       code = (code &lt;&lt; 1) + mask[i];
     }
-    <span class="org-keyword">return</span> code;
+    <span style="font-weight: bold;">return</span> code;
   }
 };
 </pre>
@@ -556,8 +602,8 @@ a1 a1 a1 a2 a2 a2 &#x2026; an an an X
 </div>
 </div>
 
-<div id="outline-container-org3ccd874" class="outline-2">
-<h2 id="org3ccd874"><span class="section-number-2">9</span> Monty Hall Problem</h2>
+<div id="outline-container-org945f67d" class="outline-2">
+<h2 id="org945f67d"><span class="section-number-2">9</span> Monty Hall Problem</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 原题是有三扇门，一扇门后面是一辆汽车，后面两扇门没有东西。主持人首先让你选择一扇门，之后主持人打开一扇后面没有任何东西的门，然后主持人问你是否需要更换你的选择？扩展一下这个问题，如果扩展到N(N&gt;=3)扇门的话，那么之前和之后中奖概率分别是多少？
@@ -585,8 +631,8 @@ UPDATE@2015-09-08: 这个问题是 <a href="https://en.wikipedia.org/wiki/Monty_
 </div>
 </div>
 
-<div id="outline-container-org53af006" class="outline-2">
-<h2 id="org53af006"><span class="section-number-2">10</span> 神奇帽子问题 Magical Hat</h2>
+<div id="outline-container-org0e9b480" class="outline-2">
+<h2 id="org0e9b480"><span class="section-number-2">10</span> 神奇帽子问题 Magical Hat</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 A bunch of men are on an island. A genie comes down and gathers everyone together and places a magical hat on some people’s heads (i.e., at least one person has a hat). The hat is magical: it can be seen by other people, but not by the wearer of the hat himself. To remove the hat, those (and only those who have a hat) must dunk themselves underwater at exactly midnight. If there are n people and c hats, how long does it take the men to remove the hats? The men cannot tell each other (in any way) that they have a hat.
@@ -620,8 +666,8 @@ Case General: If c = 3, then each man is unsure whether c = 2 or 3. If it were 2
 </div>
 </div>
 
-<div id="outline-container-orgfb92914" class="outline-2">
-<h2 id="orgfb92914"><span class="section-number-2">11</span> 等概率选取链表元素</h2>
+<div id="outline-container-org5c3d20f" class="outline-2">
+<h2 id="org5c3d20f"><span class="section-number-2">11</span> 等概率选取链表元素</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 <a href="https://www.geeksforgeeks.org/reservoir-sampling/">https://www.geeksforgeeks.org/reservoir-sampling/</a>
@@ -631,9 +677,9 @@ Case General: If c = 3, then each man is unsure whether c = 2 or 3. If it were 2
 等概率选取未知长度的链表中的元素，要求是只能够遍历这个链表一次。下面是代码， <b>注意这里的wanted会不断地被更新</b>
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">int</span> <span class="org-variable-name">nmatch</span> = 0;
-<span class="org-keyword">for</span> ( p=list; p!=<span class="org-constant">NULL</span>; p=p-&gt;next ){
-    <span class="org-keyword">if</span> ( rand() % ++nmatch == 0 ){
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">nmatch</span> = 0;
+<span style="font-weight: bold;">for</span> ( p=list; p!=<span style="font-weight: bold; text-decoration: underline;">NULL</span>; p=p-&gt;next ){
+    <span style="font-weight: bold;">if</span> ( rand() % ++nmatch == 0 ){
         wanted = p;
     }
 }
@@ -653,8 +699,8 @@ Case General: If c = 3, then each man is unsure whether c = 2 or 3. If it were 2
 </div>
 </div>
 
-<div id="outline-container-org33a36a8" class="outline-2">
-<h2 id="org33a36a8"><span class="section-number-2">12</span> CS中最重要的32个算法</h2>
+<div id="outline-container-org77d68ba" class="outline-2">
+<h2 id="org77d68ba"><span class="section-number-2">12</span> CS中最重要的32个算法</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 <a href="http://www.infoq.com/cn/news/2012/08/32-most-important-algorithms">http://www.infoq.com/cn/news/2012/08/32-most-important-algorithms</a>
@@ -696,6 +742,11 @@ Case General: If c = 3, then each man is unsure whether c = 2 or 3. If it were 2
 </ol>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/general-algorithm.html';this.page.identifier = 'general-algorithm.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

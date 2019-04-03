@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gunicorn</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">gunicorn</h1>
@@ -16,8 +62,8 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd01ffdf">1. Design</a></li>
-<li><a href="#org31cfba4">2. Settings</a></li>
+<li><a href="#orgf804779">1. Design</a></li>
+<li><a href="#org3288176">2. Settings</a></li>
 </ul>
 </div>
 </div>
@@ -25,8 +71,8 @@
 <a href="http://docs.gunicorn.org/en/latest/index.html">http://docs.gunicorn.org/en/latest/index.html</a>
 </p>
 
-<div id="outline-container-orgd01ffdf" class="outline-2">
-<h2 id="orgd01ffdf"><span class="section-number-2">1</span> Design</h2>
+<div id="outline-container-orgf804779" class="outline-2">
+<h2 id="orgf804779"><span class="section-number-2">1</span> Design</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 设计上gunicorn和 <a href="nginx.html">nginx</a> 很类似，一个master process和多个worker process. master做绑定端口，监控worker的工作，<a href="http://docs.gunicorn.org/en/latest/signals.html">管理配置和热升级</a> 等，worker来接受连接以及处理连接。
@@ -52,26 +98,31 @@ thread worker处理请求同时受限于thread number以及max connections, 后�
 </div>
 </div>
 
-<div id="outline-container-org31cfba4" class="outline-2">
-<h2 id="org31cfba4"><span class="section-number-2">2</span> Settings</h2>
+<div id="outline-container-org3288176" class="outline-2">
+<h2 id="org3288176"><span class="section-number-2">2</span> Settings</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 设置按照优先级排序分别是：命令行，配置文件(python)，框架本身。大部分 <a href="http://docs.gunicorn.org/en/latest/settings.html">设置</a> 比较常规，下面这些设置有点意思：
 </p>
 <ul class="org-ul">
-<li>worker_connections # 单个进程可以同时处理的最大连接数</li>
-<li>max_requests # 单个进程处理最大请求数，超过就会重启，目的是"This is a simple method to help limit the damage of memory leaks"</li>
-<li>max_requests_jitter # 在上面基础上加上random(0, max_requests_jitter)偏差，为了避免所有worker同时重启</li>
+<li>worker<sub>connections</sub> # 单个进程可以同时处理的最大连接数</li>
+<li>max<sub>requests</sub> # 单个进程处理最大请求数，超过就会重启，目的是"This is a simple method to help limit the damage of memory leaks"</li>
+<li>max<sub>requests</sub><sub>jitter</sub> # 在上面基础上加上random(0, max<sub>requests</sub><sub>jitter</sub>)偏差，为了避免所有worker同时重启</li>
 <li>timeout # 单个进程空闲时间超过这个阈值就会重启，可能是为了解决整个worker因为bug挂住导致长时间不响应。</li>
-<li>preload_app # 在master就加载application. 好处是可以加快worker启动速度，但是坏处就是如果代码升级需要将master也重启。</li>
-<li>reload # 代码发生变化就会立即reload. 和preload_app选项冲突，推荐只在开发环境下面使用。</li>
-<li>check_config # 检查配置文件是否正确</li>
-<li>logger_class # 默认使用gunicorn.glogging.Logger.</li>
-<li>statsd_host # 可以向 <a href="https://github.com/etsy/statsd">statsd</a> 汇报服务器性能状况. 具体可以看 <a href="http://docs.gunicorn.org/en/latest/instrumentation.html">这里</a></li>
+<li>preload<sub>app</sub> # 在master就加载application. 好处是可以加快worker启动速度，但是坏处就是如果代码升级需要将master也重启。</li>
+<li>reload # 代码发生变化就会立即reload. 和preload<sub>app选项冲突</sub>，推荐只在开发环境下面使用。</li>
+<li>check<sub>config</sub> # 检查配置文件是否正确</li>
+<li>logger<sub>class</sub> # 默认使用gunicorn.glogging.Logger.</li>
+<li>statsd<sub>host</sub> # 可以向 <a href="https://github.com/etsy/statsd">statsd</a> 汇报服务器性能状况. 具体可以看 <a href="http://docs.gunicorn.org/en/latest/instrumentation.html">这里</a></li>
 <li>Server Hooks # gunicorn定义了一系列hooks允许在各个阶段添加自己代码</li>
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/gunicorn.html';this.page.identifier = 'gunicorn.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

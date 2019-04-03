@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pig Latin: A Not-So-Foreign Language for Data Processing</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Pig Latin: A Not-So-Foreign Language for Data Processing</h1>
@@ -38,48 +84,48 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb4d19a7">1. ABSTRACT</a></li>
-<li><a href="#orgf5e72f9">2. INTRODUCTION</a></li>
-<li><a href="#org051b498">3. FEATURES AND MOTIVATION</a>
+<li><a href="#org5975579">1. ABSTRACT</a></li>
+<li><a href="#org5e7b472">2. INTRODUCTION</a></li>
+<li><a href="#org11e6ebd">3. FEATURES AND MOTIVATION</a>
 <ul>
-<li><a href="#org5d65d1d">3.1. Dataflow Language</a></li>
-<li><a href="#org294e36a">3.2. Quick Start and Interoperability</a></li>
-<li><a href="#org843026a">3.3. Nested Data Model</a></li>
-<li><a href="#org3741a63">3.4. UDFs as First-Class Citizens</a></li>
-<li><a href="#org6c6c421">3.5. Parallelism Required</a></li>
-<li><a href="#org5397824">3.6. Debugging Environment</a></li>
+<li><a href="#org9a032f2">3.1. Dataflow Language</a></li>
+<li><a href="#orgc20a19e">3.2. Quick Start and Interoperability</a></li>
+<li><a href="#org75a739a">3.3. Nested Data Model</a></li>
+<li><a href="#orgfe0e54d">3.4. UDFs as First-Class Citizens</a></li>
+<li><a href="#org69d1521">3.5. Parallelism Required</a></li>
+<li><a href="#org8143f9d">3.6. Debugging Environment</a></li>
 </ul>
 </li>
-<li><a href="#org7e2148c">4. PIG LATIN</a>
+<li><a href="#org52b9f9a">4. PIG LATIN</a>
 <ul>
-<li><a href="#orgbb2eddf">4.1. Data Model</a></li>
-<li><a href="#orgba8a474">4.2. Specifying Input Data: LOAD</a></li>
-<li><a href="#orge178016">4.3. Per-tuple Processing: FOREACH</a></li>
-<li><a href="#orga93f657">4.4. Discarding Unwanted Data: FILTER</a></li>
-<li><a href="#orgdba414f">4.5. Getting Related Data Together: COGROUP</a>
+<li><a href="#org490b0a2">4.1. Data Model</a></li>
+<li><a href="#orga686ebb">4.2. Specifying Input Data: LOAD</a></li>
+<li><a href="#org01d8c7f">4.3. Per-tuple Processing: FOREACH</a></li>
+<li><a href="#org6998275">4.4. Discarding Unwanted Data: FILTER</a></li>
+<li><a href="#orgf024a29">4.5. Getting Related Data Together: COGROUP</a>
 <ul>
-<li><a href="#orgb60f6b2">4.5.1. Special Case of COGROUP: GROUP</a></li>
-<li><a href="#org710b0fe">4.5.2. JOIN in Pig Latin</a></li>
-<li><a href="#org8df1c87">4.5.3. Map-Reduce in Pig Latin</a></li>
+<li><a href="#orgb204324">4.5.1. Special Case of COGROUP: GROUP</a></li>
+<li><a href="#orgb16125a">4.5.2. JOIN in Pig Latin</a></li>
+<li><a href="#org3d9bc00">4.5.3. Map-Reduce in Pig Latin</a></li>
 </ul>
 </li>
-<li><a href="#orgb3cc95f">4.6. Other Commands</a></li>
-<li><a href="#org6389eb1">4.7. Nested Operations</a></li>
-<li><a href="#org2b937e0">4.8. Asking for Output: STORE</a></li>
+<li><a href="#org7de69eb">4.6. Other Commands</a></li>
+<li><a href="#org68a74bd">4.7. Nested Operations</a></li>
+<li><a href="#orgfe1f55a">4.8. Asking for Output: STORE</a></li>
 </ul>
 </li>
-<li><a href="#orgbec398c">5. IMPLEMENTATION</a>
+<li><a href="#org9de237a">5. IMPLEMENTATION</a>
 <ul>
-<li><a href="#org44fecc4">5.1. Building a Logical Plan</a></li>
-<li><a href="#orge8ca795">5.2. Map-Reduce Plan Compilation</a></li>
-<li><a href="#orgd160bfc">5.3. Efficiency With Nested Bags</a></li>
+<li><a href="#orga86f025">5.1. Building a Logical Plan</a></li>
+<li><a href="#org9f2854a">5.2. Map-Reduce Plan Compilation</a></li>
+<li><a href="#org8ef1b16">5.3. Efficiency With Nested Bags</a></li>
 </ul>
 </li>
-<li><a href="#org111a223">6. DEBUGGING ENVIRONMENT</a></li>
-<li><a href="#org470b8ad">7. USAGE SCENARIOS</a></li>
-<li><a href="#org90d648e">8. RELATED WORK</a></li>
-<li><a href="#org8fb035d">9. FUTURE WORK</a></li>
-<li><a href="#org05f3efd">10. SUMMARY</a></li>
+<li><a href="#org8ba7874">6. DEBUGGING ENVIRONMENT</a></li>
+<li><a href="#org11f1567">7. USAGE SCENARIOS</a></li>
+<li><a href="#org38eefe0">8. RELATED WORK</a></li>
+<li><a href="#orgd5a0625">9. FUTURE WORK</a></li>
+<li><a href="#org834f2fd">10. SUMMARY</a></li>
 </ul>
 </div>
 </div>
@@ -87,8 +133,8 @@
 <a href="http://research.yahoo.com/pub/2200">http://research.yahoo.com/pub/2200</a> @ 2008
 </p>
 
-<div id="outline-container-orgb4d19a7" class="outline-2">
-<h2 id="orgb4d19a7"><span class="section-number-2">1</span> ABSTRACT</h2>
+<div id="outline-container-org5975579" class="outline-2">
+<h2 id="org5975579"><span class="section-number-2">1</span> ABSTRACT</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>We describe a new language called Pig Latin that we have designed to fit in a sweet spot between the declarative style of SQL, and the low-level, procedural style of map-reduce. The accompanying system, Pig, is fully implemented, and compiles Pig Latin into physical plans that are executed over Hadoop, an open-source, map-reduce implementation. 语言名称为Pig Latin, 系统为Pig. Pig Latin是在声明式的SQL和底层过程式的MR表达方式的折中。Pig将Pig Latin翻译成为physical plans也就是MapReduce.</li>
@@ -96,8 +142,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf5e72f9" class="outline-2">
-<h2 id="orgf5e72f9"><span class="section-number-2">2</span> INTRODUCTION</h2>
+<div id="outline-container-org5e7b472" class="outline-2">
+<h2 id="org5e7b472"><span class="section-number-2">2</span> INTRODUCTION</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>These products however, can be prohibitively expensive at web scale. Besides, they wrench programmers away from their preferred method of analyzing data, namely writing imperative scripts or code, toward writing declara-tive queries in SQL, which they often find unnatural, and overly restrictive. 对于数据库系统来说很难达到web-scale，并且SQL不方便程序员来做数据分析</li>
@@ -140,12 +186,12 @@ category, AVG(good_urls.pagerank);
 </div>
 </div>
 
-<div id="outline-container-org051b498" class="outline-2">
-<h2 id="org051b498"><span class="section-number-2">3</span> FEATURES AND MOTIVATION</h2>
+<div id="outline-container-org11e6ebd" class="outline-2">
+<h2 id="org11e6ebd"><span class="section-number-2">3</span> FEATURES AND MOTIVATION</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org5d65d1d" class="outline-3">
-<h3 id="org5d65d1d"><span class="section-number-3">3.1</span> Dataflow Language</h3>
+<div id="outline-container-org9a032f2" class="outline-3">
+<h3 id="org9a032f2"><span class="section-number-3">3.1</span> Dataflow Language</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Note that although Pig Latin programs supply an explicit sequence of operations, it is not necessary that the oper-ations be executed in that order. Pig并不一定按照pig latin操作顺序执行</li>
@@ -153,8 +199,8 @@ category, AVG(good_urls.pagerank);
 </div>
 </div>
 
-<div id="outline-container-org294e36a" class="outline-3">
-<h3 id="org294e36a"><span class="section-number-3">3.2</span> Quick Start and Interoperability</h3>
+<div id="outline-container-orgc20a19e" class="outline-3">
+<h3 id="orgc20a19e"><span class="section-number-3">3.2</span> Quick Start and Interoperability</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>By operating over data residing in external files, and not taking over control over the data, Pig readily interoper-ates with other applications in the ecosystem. 相对于DBMS来说，Pig不需要导入数据这样的步骤，可以直接在数据上进行操作</li>
@@ -173,8 +219,8 @@ category, AVG(good_urls.pagerank);
 </div>
 </div>
 
-<div id="outline-container-org843026a" class="outline-3">
-<h3 id="org843026a"><span class="section-number-3">3.3</span> Nested Data Model</h3>
+<div id="outline-container-org75a739a" class="outline-3">
+<h3 id="org75a739a"><span class="section-number-3">3.3</span> Nested Data Model</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>There are several reasons why a nested model is more ap-propriate for our setting than 1NF: <b>1NF就是出现在数据库里面记录的存储方式，flatten data model</b>
@@ -188,8 +234,8 @@ category, AVG(good_urls.pagerank);
 </div>
 </div>
 
-<div id="outline-container-org3741a63" class="outline-3">
-<h3 id="org3741a63"><span class="section-number-3">3.4</span> UDFs as First-Class Citizens</h3>
+<div id="outline-container-orgfe0e54d" class="outline-3">
+<h3 id="orgfe0e54d"><span class="section-number-3">3.4</span> UDFs as First-Class Citizens</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>The input and output of UDFs in Pig Latin follow our flexible, fully nested data model. Consequently, a UDF to be used in Pig Latin can take non-atomic parameters as input, and also output non-atomic values. This flexibility is often very useful as shown by the following example.（UDF input/output 都是嵌套数据模）</li>
@@ -197,8 +243,8 @@ category, AVG(good_urls.pagerank);
 </div>
 </div>
 
-<div id="outline-container-org6c6c421" class="outline-3">
-<h3 id="org6c6c421"><span class="section-number-3">3.5</span> Parallelism Required</h3>
+<div id="outline-container-org69d1521" class="outline-3">
+<h3 id="org69d1521"><span class="section-number-3">3.5</span> Parallelism Required</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>Consequently, we have only included in Pig Latin a small set of carefully chosen primitives that can be easily parallelized. Language primitives that do not lend them-selves to e cient parallel evaluation (e.g., non-equi-joins, correlated subqueries) have been deliberately excluded.（Pig在设计Pig Latin的时候确保primitives都是可以并行处理的，那些不能够并行处理的primitives都被排除）</li>
@@ -206,17 +252,17 @@ category, AVG(good_urls.pagerank);
 </div>
 </div>
 
-<div id="outline-container-org5397824" class="outline-3">
-<h3 id="org5397824"><span class="section-number-3">3.6</span> Debugging Environment</h3>
+<div id="outline-container-org8143f9d" class="outline-3">
+<h3 id="org8143f9d"><span class="section-number-3">3.6</span> Debugging Environment</h3>
 </div>
 </div>
 
-<div id="outline-container-org7e2148c" class="outline-2">
-<h2 id="org7e2148c"><span class="section-number-2">4</span> PIG LATIN</h2>
+<div id="outline-container-org52b9f9a" class="outline-2">
+<h2 id="org52b9f9a"><span class="section-number-2">4</span> PIG LATIN</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgbb2eddf" class="outline-3">
-<h3 id="orgbb2eddf"><span class="section-number-3">4.1</span> Data Model</h3>
+<div id="outline-container-org490b0a2" class="outline-3">
+<h3 id="org490b0a2"><span class="section-number-3">4.1</span> Data Model</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Pig has a rich, yet simple data model consisting of the following four types:
@@ -236,8 +282,8 @@ Pig has a rich, yet simple data model consisting of the following four types:
 </div>
 </div>
 
-<div id="outline-container-orgba8a474" class="outline-3">
-<h3 id="orgba8a474"><span class="section-number-3">4.2</span> Specifying Input Data: LOAD</h3>
+<div id="outline-container-orga686ebb" class="outline-3">
+<h3 id="orga686ebb"><span class="section-number-3">4.2</span> Specifying Input Data: LOAD</h3>
 <div class="outline-text-3" id="text-4-2">
 <pre class="example">
 queries = LOAD ‘query_log.txt’
@@ -253,8 +299,8 @@ queries = LOAD ‘query_log.txt’
 </div>
 </div>
 
-<div id="outline-container-orge178016" class="outline-3">
-<h3 id="orge178016"><span class="section-number-3">4.3</span> Per-tuple Processing: FOREACH</h3>
+<div id="outline-container-org01d8c7f" class="outline-3">
+<h3 id="org01d8c7f"><span class="section-number-3">4.3</span> Per-tuple Processing: FOREACH</h3>
 <div class="outline-text-3" id="text-4-3">
 <pre class="example">
 expanded_queries = FOREACH queries GENERATE
@@ -277,8 +323,8 @@ expanded_queries = FOREACH queries GENERATE
 </div>
 </div>
 
-<div id="outline-container-orga93f657" class="outline-3">
-<h3 id="orga93f657"><span class="section-number-3">4.4</span> Discarding Unwanted Data: FILTER</h3>
+<div id="outline-container-org6998275" class="outline-3">
+<h3 id="org6998275"><span class="section-number-3">4.4</span> Discarding Unwanted Data: FILTER</h3>
 <div class="outline-text-3" id="text-4-4">
 <pre class="example">
 real_queries = FILTER queries BY userId neq ‘bot’;
@@ -289,8 +335,8 @@ real_queries = FILTER queries BY userId neq ‘bot’;
 </div>
 </div>
 
-<div id="outline-container-orgdba414f" class="outline-3">
-<h3 id="orgdba414f"><span class="section-number-3">4.5</span> Getting Related Data Together: COGROUP</h3>
+<div id="outline-container-orgf024a29" class="outline-3">
+<h3 id="orgf024a29"><span class="section-number-3">4.5</span> Getting Related Data Together: COGROUP</h3>
 <div class="outline-text-3" id="text-4-5">
 <pre class="example">
 grouped_data =  COGROUP results BY queryString,
@@ -313,8 +359,8 @@ url_revenues = FOREACH grouped_data GENERATE
 </ul>
 </div>
 
-<div id="outline-container-orgb60f6b2" class="outline-4">
-<h4 id="orgb60f6b2"><span class="section-number-4">4.5.1</span> Special Case of COGROUP: GROUP</h4>
+<div id="outline-container-orgb204324" class="outline-4">
+<h4 id="orgb204324"><span class="section-number-4">4.5.1</span> Special Case of COGROUP: GROUP</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <pre class="example">
 grouped_revenue = GROUP revenue BY queryString;
@@ -329,8 +375,8 @@ query_revenues = FOREACH grouped_revenue GENERATE
 </div>
 </div>
 
-<div id="outline-container-org710b0fe" class="outline-4">
-<h4 id="org710b0fe"><span class="section-number-4">4.5.2</span> JOIN in Pig Latin</h4>
+<div id="outline-container-orgb16125a" class="outline-4">
+<h4 id="orgb16125a"><span class="section-number-4">4.5.2</span> JOIN in Pig Latin</h4>
 <div class="outline-text-4" id="text-4-5-2">
 <pre class="example">
 join_result = JOIN results BY queryString, revenue BY queryString;
@@ -368,13 +414,13 @@ grunt&gt; DUMP sj;
 </div>
 </div>
 
-<div id="outline-container-org8df1c87" class="outline-4">
-<h4 id="org8df1c87"><span class="section-number-4">4.5.3</span> Map-Reduce in Pig Latin</h4>
+<div id="outline-container-org3d9bc00" class="outline-4">
+<h4 id="org3d9bc00"><span class="section-number-4">4.5.3</span> Map-Reduce in Pig Latin</h4>
 </div>
 </div>
 
-<div id="outline-container-orgb3cc95f" class="outline-3">
-<h3 id="orgb3cc95f"><span class="section-number-3">4.6</span> Other Commands</h3>
+<div id="outline-container-org7de69eb" class="outline-3">
+<h3 id="org7de69eb"><span class="section-number-3">4.6</span> Other Commands</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Pig Latin has a number of other commands that are very similar to their SQL counterparts. These are:
@@ -388,8 +434,8 @@ Pig Latin has a number of other commands that are very similar to their SQL coun
 </div>
 </div>
 
-<div id="outline-container-org6389eb1" class="outline-3">
-<h3 id="org6389eb1"><span class="section-number-3">4.7</span> Nested Operations</h3>
+<div id="outline-container-org68a74bd" class="outline-3">
+<h3 id="org68a74bd"><span class="section-number-3">4.7</span> Nested Operations</h3>
 <div class="outline-text-3" id="text-4-7">
 <pre class="example">
 grouped_revenue = GROUP revenue BY queryString;
@@ -408,8 +454,8 @@ query_revenues = FOREACH grouped_revenue{
 </div>
 </div>
 
-<div id="outline-container-org2b937e0" class="outline-3">
-<h3 id="org2b937e0"><span class="section-number-3">4.8</span> Asking for Output: STORE</h3>
+<div id="outline-container-orgfe1f55a" class="outline-3">
+<h3 id="orgfe1f55a"><span class="section-number-3">4.8</span> Asking for Output: STORE</h3>
 <div class="outline-text-3" id="text-4-8">
 <pre class="example">
 STORE query_revenues INTO ‘myoutput’
@@ -422,8 +468,8 @@ STORE query_revenues INTO ‘myoutput’
 </div>
 </div>
 
-<div id="outline-container-orgbec398c" class="outline-2">
-<h2 id="orgbec398c"><span class="section-number-2">5</span> IMPLEMENTATION</h2>
+<div id="outline-container-org9de237a" class="outline-2">
+<h2 id="org9de237a"><span class="section-number-2">5</span> IMPLEMENTATION</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Pig Latin is fully implemented by our system, Pig. Pig is architected to allow different systems to be plugged in as the execution platform for Pig Latin. Pig Latin底层可以转换成为多种任务执行，这个是可扩展和可定制的。</li>
@@ -439,8 +485,8 @@ STORE query_revenues INTO ‘myoutput’
 </div>
 
 
-<div id="outline-container-org44fecc4" class="outline-3">
-<h3 id="org44fecc4"><span class="section-number-3">5.1</span> Building a Logical Plan</h3>
+<div id="outline-container-orga86f025" class="outline-3">
+<h3 id="orga86f025"><span class="section-number-3">5.1</span> Building a Logical Plan</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>the Pig interpreter first parses it, and verifies that the input files and bags be-ing referred to by the command are valid. 检查输入文件以及定义bag是否合法</li>
@@ -452,8 +498,8 @@ STORE query_revenues INTO ‘myoutput’
 </div>
 </div>
 
-<div id="outline-container-orge8ca795" class="outline-3">
-<h3 id="orge8ca795"><span class="section-number-3">5.2</span> Map-Reduce Plan Compilation</h3>
+<div id="outline-container-org9f2854a" class="outline-3">
+<h3 id="org9f2854a"><span class="section-number-3">5.2</span> Map-Reduce Plan Compilation</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>The map-reduce primitive essentially provides the ability to do a large-scale group by, where the map tasks assign keys for grouping, and the reduce tasks process a group at a time. Our compiler begins by converting each (CO)GROUP command in the logical plan into a distinct map-reduce job with its own map and reduce functions.（以COGROUP为分界线，COGROUP的前部分使用map来处理，COGROUP的后部分使用reduce来处理）</li>
@@ -483,8 +529,8 @@ STORE query_revenues INTO ‘myoutput’
 </div>
 </div>
 
-<div id="outline-container-orgd160bfc" class="outline-3">
-<h3 id="orgd160bfc"><span class="section-number-3">5.3</span> Efficiency With Nested Bags</h3>
+<div id="outline-container-org8ef1b16" class="outline-3">
+<h3 id="org8ef1b16"><span class="section-number-3">5.3</span> Efficiency With Nested Bags</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>To cope with these cases, our implementation allows for nested bags to spill to disk. Our disk-resident bag implementation comes with database-style external sort algorithms to do operations such as sorting and duplicate elimination of the nested bags #note: nested operations里面支持ORDER BY以及DISTINCT操作。对于large nested bag需要spill到磁盘上，并且Pig有专门为在磁盘存储bag的实现，这种实现允许在上面有效地做sort和distinct操作</li>
@@ -493,21 +539,26 @@ STORE query_revenues INTO ‘myoutput’
 </div>
 </div>
 
-<div id="outline-container-org111a223" class="outline-2">
-<h2 id="org111a223"><span class="section-number-2">6</span> DEBUGGING ENVIRONMENT</h2>
+<div id="outline-container-org8ba7874" class="outline-2">
+<h2 id="org8ba7874"><span class="section-number-2">6</span> DEBUGGING ENVIRONMENT</h2>
 </div>
-<div id="outline-container-org470b8ad" class="outline-2">
-<h2 id="org470b8ad"><span class="section-number-2">7</span> USAGE SCENARIOS</h2>
+<div id="outline-container-org11f1567" class="outline-2">
+<h2 id="org11f1567"><span class="section-number-2">7</span> USAGE SCENARIOS</h2>
 </div>
-<div id="outline-container-org90d648e" class="outline-2">
-<h2 id="org90d648e"><span class="section-number-2">8</span> RELATED WORK</h2>
+<div id="outline-container-org38eefe0" class="outline-2">
+<h2 id="org38eefe0"><span class="section-number-2">8</span> RELATED WORK</h2>
 </div>
-<div id="outline-container-org8fb035d" class="outline-2">
-<h2 id="org8fb035d"><span class="section-number-2">9</span> FUTURE WORK</h2>
+<div id="outline-container-orgd5a0625" class="outline-2">
+<h2 id="orgd5a0625"><span class="section-number-2">9</span> FUTURE WORK</h2>
 </div>
-<div id="outline-container-org05f3efd" class="outline-2">
-<h2 id="org05f3efd"><span class="section-number-2">10</span> SUMMARY</h2>
+<div id="outline-container-org834f2fd" class="outline-2">
+<h2 id="org834f2fd"><span class="section-number-2">10</span> SUMMARY</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/pig.html';this.page.identifier = 'pig.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

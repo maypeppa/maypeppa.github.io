@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Apache HBase Configuration</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Apache HBase Configuration</h1>
@@ -38,11 +84,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdc5b603">1. core</a></li>
-<li><a href="#org74141a6">2. master</a></li>
-<li><a href="#org30cfa60">3. regionserver</a></li>
-<li><a href="#org4a4c937">4. client</a></li>
-<li><a href="#org096b64c">5. zookeeper</a></li>
+<li><a href="#org9df984d">1. core</a></li>
+<li><a href="#org5f7707f">2. master</a></li>
+<li><a href="#org708f65f">3. regionserver</a></li>
+<li><a href="#org1426474">4. client</a></li>
+<li><a href="#orgce4833a">5. zookeeper</a></li>
 </ul>
 </div>
 </div>
@@ -60,8 +106,8 @@
 <li>Not all configuration options make it out to hbase-default.xml. <b>Configuration that it is thought rare anyone would change can exist only in code;</b> the only way to turn up such configurations is via a reading of the source code itself.</li>
 </ul>
 
-<div id="outline-container-orgdc5b603" class="outline-2">
-<h2 id="orgdc5b603"><span class="section-number-2">1</span> core</h2>
+<div id="outline-container-org9df984d" class="outline-2">
+<h2 id="org9df984d"><span class="section-number-2">1</span> core</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>hbase.rootdir
@@ -101,8 +147,8 @@
 </div>
 </div>
 
-<div id="outline-container-org74141a6" class="outline-2">
-<h2 id="org74141a6"><span class="section-number-2">2</span> master</h2>
+<div id="outline-container-org5f7707f" class="outline-2">
+<h2 id="org5f7707f"><span class="section-number-2">2</span> master</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>hbase.master.port
@@ -152,8 +198,8 @@
 </div>
 </div>
 
-<div id="outline-container-org30cfa60" class="outline-2">
-<h2 id="org30cfa60"><span class="section-number-2">3</span> regionserver</h2>
+<div id="outline-container-org708f65f" class="outline-2">
+<h2 id="org708f65f"><span class="section-number-2">3</span> regionserver</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>hbase.regionserver.port
@@ -210,7 +256,7 @@
 <ul class="org-ul">
 <li>region splitting上限，超过这个上限之后就不做splitting</li>
 <li>Limit for the number of regions after which no more region splitting should take place.</li>
-<li>Default is set to MAX_INT; i.e. do not block splitting.</li>
+<li>Default is set to MAX<sub>INT</sub>; i.e. do not block splitting.</li>
 <li>Default: 2147483647</li>
 </ul></li>
 <li><b>hbase.regionserver.logroll.period</b>
@@ -377,7 +423,7 @@
 <li>hfile.format.version
 <ul class="org-ul">
 <li>HFile的格式版本号，用于处理兼容性问题。</li>
-<li>The HFile format version to use for new files. Set this to 1 to test backwards-compatibility. The default value of this option should be consistent with FixedFileTrailer.MAX_VERSION.</li>
+<li>The HFile format version to use for new files. Set this to 1 to test backwards-compatibility. The default value of this option should be consistent with FixedFileTrailer.MAX<sub>VERSION</sub>.</li>
 <li>Default: 2</li>
 </ul></li>
 <li><b>io.storefile.bloom.block.size</b>
@@ -426,8 +472,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4a4c937" class="outline-2">
-<h2 id="org4a4c937"><span class="section-number-2">4</span> client</h2>
+<div id="outline-container-org1426474" class="outline-2">
+<h2 id="org1426474"><span class="section-number-2">4</span> client</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>hbase.client.write.buffer
@@ -471,8 +517,8 @@
 </div>
 </div>
 
-<div id="outline-container-org096b64c" class="outline-2">
-<h2 id="org096b64c"><span class="section-number-2">5</span> zookeeper</h2>
+<div id="outline-container-orgce4833a" class="outline-2">
+<h2 id="orgce4833a"><span class="section-number-2">5</span> zookeeper</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>hbase.zookeeper.dns.interface
@@ -548,6 +594,11 @@
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/hbase-configuration.html';this.page.identifier = 'hbase-configuration.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

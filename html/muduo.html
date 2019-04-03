@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>muduo</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">muduo</h1>
@@ -16,26 +62,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7e44e96">1. base</a></li>
-<li><a href="#orgcebee95">2. Buffer</a></li>
-<li><a href="#org3973c7a">3. Channel</a></li>
-<li><a href="#org3a1d7eb">4. Poller</a></li>
-<li><a href="#orgbe7c5d9">5. EventLoop</a>
+<li><a href="#org9fdc696">1. base</a></li>
+<li><a href="#orgbfa7a62">2. Buffer</a></li>
+<li><a href="#org9cfec36">3. Channel</a></li>
+<li><a href="#orga620f41">4. Poller</a></li>
+<li><a href="#orgc97c7bc">5. EventLoop</a>
 <ul>
-<li><a href="#orgb948a9c">5.1. 单线程单EventLoop</a></li>
-<li><a href="#org1b2efbe">5.2. 跨线程激活</a></li>
-<li><a href="#orgc16a9fa">5.3. 跨线程任务</a></li>
-<li><a href="#org981ff19">5.4. 定时器任务</a></li>
-<li><a href="#orgeee9533">5.5. How it works</a></li>
+<li><a href="#orgddc8268">5.1. 单线程单EventLoop</a></li>
+<li><a href="#orgf9a6dc3">5.2. 跨线程激活</a></li>
+<li><a href="#org91892b8">5.3. 跨线程任务</a></li>
+<li><a href="#org8230f7f">5.4. 定时器任务</a></li>
+<li><a href="#org4e2ed72">5.5. How it works</a></li>
 </ul>
 </li>
-<li><a href="#org4eb1be8">6. TimerQueue</a></li>
-<li><a href="#org1fc6166">7. EventLoopThread</a></li>
-<li><a href="#org730be96">8. Acceptor</a></li>
-<li><a href="#org1d3fc3a">9. Connector</a></li>
-<li><a href="#org24ddbcd">10. TcpConnection</a></li>
-<li><a href="#org6f5729d">11. TcpClient</a></li>
-<li><a href="#org5b226b1">12. TcpServer</a></li>
+<li><a href="#org40eabab">6. TimerQueue</a></li>
+<li><a href="#org67017a6">7. EventLoopThread</a></li>
+<li><a href="#orgee7f9bf">8. Acceptor</a></li>
+<li><a href="#org72d9846">9. Connector</a></li>
+<li><a href="#org06cb849">10. TcpConnection</a></li>
+<li><a href="#org9bd0f67">11. TcpClient</a></li>
+<li><a href="#org3c561ca">12. TcpServer</a></li>
 </ul>
 </div>
 </div>
@@ -68,8 +114,8 @@ muduo使用了很多新的Linux内核特性，包括使用signalfd和timerfd来�
 muduo将hpserver下面的event item和event handler以及handle都在一起，称之为Channel.而Reactor在这里称为EventLoop.所以可以认为相对于hpserver,类层次结构好理解多了。
 </p>
 
-<div id="outline-container-org7e44e96" class="outline-2">
-<h2 id="org7e44e96"><span class="section-number-2">1</span> base</h2>
+<div id="outline-container-org9fdc696" class="outline-2">
+<h2 id="org9fdc696"><span class="section-number-2">1</span> base</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 base下面都是一些关于多线程编程方面需要使用的组件
@@ -77,27 +123,27 @@ base下面都是一些关于多线程编程方面需要使用的组件
 包括下面这些文件：
 </p>
 <ul class="org-ul">
-<li>Atomic.h // 原子操作，里面的CAS没有使用汇编而是使用__sync_val_compare_and_swap这个GCC内置函数</li>
+<li>Atomic.h // 原子操作，里面的CAS没有使用汇编而是使用_<sub>sync</sub><sub>val</sub><sub>compare</sub><sub>and</sub><sub>swap这个GCC内置函数</sub></li>
 <li>BlockingQueue.h // 异步队列，底层使用std::deque来实现，没有大小限制</li>
 <li>BoundedBlockingQueue.h // 异步队列，但是使用循环数组来实现，有大小限制</li>
-<li>Condition.h // pthread_cond封装</li>
+<li>Condition.h // pthread<sub>cond封装</sub></li>
 <li>CountDownLatch.h // 可以用作类似于起跑线机制，值得学习一下</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">CountDownLatch</span>::<span class="org-function-name">wait</span>() <span class="org-comment-delimiter">// </span><span class="org-comment">latchdown&#20043;&#21518;&#28982;&#21518;&#35843;&#29992;wait.&#31561;&#24453;&#26368;&#21518;&#19968;&#20010;&#32447;&#31243;notifyAll,</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#22810;&#20010;&#32447;&#31243;&#21516;&#26102;&#35299;&#38500;&#38145;&#23450;&#23601;&#21487;&#20197;&#21516;&#26102;&#24320;&#22987;&#25191;&#34892;&#20102;</span>
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">CountDownLatch</span>::<span style="font-weight: bold;">wait</span>() <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">latchdown&#20043;&#21518;&#28982;&#21518;&#35843;&#29992;wait.&#31561;&#24453;&#26368;&#21518;&#19968;&#20010;&#32447;&#31243;notifyAll,</span>
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#28982;&#21518;&#22810;&#20010;&#32447;&#31243;&#21516;&#26102;&#35299;&#38500;&#38145;&#23450;&#23601;&#21487;&#20197;&#21516;&#26102;&#24320;&#22987;&#25191;&#34892;&#20102;</span>
 {
-    <span class="org-type">MutexLockGuard</span> <span class="org-variable-name">lock</span>(mutex_);
-    <span class="org-keyword">while</span> (count_ &gt; 0) {
+    <span style="font-weight: bold; text-decoration: underline;">MutexLockGuard</span> <span style="font-weight: bold; font-style: italic;">lock</span>(mutex_);
+    <span style="font-weight: bold;">while</span> (count_ &gt; 0) {
         condition_.wait();
     }
 }
 
-<span class="org-type">void</span> <span class="org-constant">CountDownLatch</span>::<span class="org-function-name">countDown</span>() <span class="org-comment-delimiter">// </span><span class="org-comment">&#27599;&#20010;&#32447;&#31243;&#22312;&#24320;&#22987;&#37117;latchdown,&#26368;&#21518;&#19968;&#20010;&#32447;&#31243;&#20250;notifyAll</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">CountDownLatch</span>::<span style="font-weight: bold;">countDown</span>() <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#27599;&#20010;&#32447;&#31243;&#22312;&#24320;&#22987;&#37117;latchdown,&#26368;&#21518;&#19968;&#20010;&#32447;&#31243;&#20250;notifyAll</span>
 {
-    <span class="org-type">MutexLockGuard</span> <span class="org-variable-name">lock</span>(mutex_);
+    <span style="font-weight: bold; text-decoration: underline;">MutexLockGuard</span> <span style="font-weight: bold; font-style: italic;">lock</span>(mutex_);
     --count_;
-    <span class="org-keyword">if</span> (count_ == 0) {
+    <span style="font-weight: bold;">if</span> (count_ == 0) {
         condition_.notifyAll();
     }
 }
@@ -110,58 +156,58 @@ base下面都是一些关于多线程编程方面需要使用的组件
 <li>Singleton.h // 单例模式，实现上比较有特色</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">static</span> <span class="org-type">T</span>&amp; <span class="org-function-name">instance</span>()
+<pre class="src src-C++"><span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">T</span>&amp; <span style="font-weight: bold;">instance</span>()
 {
-  pthread_once(&amp;ponce_, &amp;<span class="org-constant">Singleton</span>::init); <span class="org-comment-delimiter">// </span><span class="org-comment">&#20351;&#29992;pthread_once&#26469;&#36827;&#34892;&#26500;&#36896;</span>
-  <span class="org-keyword">return</span> *value_;
+  pthread_once(&amp;ponce_, &amp;<span style="font-weight: bold; text-decoration: underline;">Singleton</span>::init); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20351;&#29992;pthread_once&#26469;&#36827;&#34892;&#26500;&#36896;</span>
+  <span style="font-weight: bold;">return</span> *value_;
 }
 </pre>
 </div>
 <ul class="org-ul">
 <li>Thread.h // 线程封装,内部有一个static变量记录当前创建了多少个线程</li>
-<li>ThreadLocal.h // 线程局部变量封装，不用在使用pthread_get/setspecific</li>
+<li>ThreadLocal.h // 线程局部变量封装，不用在使用pthread<sub>get</sub>/setspecific</li>
 <li>ThreadLocalSignleton.h // 线程局部单例，不用考虑多个线程同时创建</li>
 <li>ThreadPool.h // 线程池包装，内部维护了一个异步队列，多个线程的工作就是取出task来执行</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">&#22806;&#37096;&#20002;&#20837;Task&#25918;&#21040;&#32447;&#31243;&#27744;&#20869;&#37096;</span>
-<span class="org-type">void</span> <span class="org-constant">ThreadPool</span>::<span class="org-function-name">run</span>(<span class="org-keyword">const</span> <span class="org-type">Task</span>&amp; <span class="org-variable-name">task</span>)
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22806;&#37096;&#20002;&#20837;Task&#25918;&#21040;&#32447;&#31243;&#27744;&#20869;&#37096;</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">ThreadPool</span>::<span style="font-weight: bold;">run</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Task</span>&amp; <span style="font-weight: bold; font-style: italic;">task</span>)
 {
-  <span class="org-keyword">if</span> (threads_.empty()) <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#27809;&#26377;&#20219;&#20309;&#32447;&#31243;</span>
+  <span style="font-weight: bold;">if</span> (threads_.empty()) <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#27809;&#26377;&#20219;&#20309;&#32447;&#31243;</span>
   {
     task();
   }
-  <span class="org-keyword">else</span>
+  <span style="font-weight: bold;">else</span>
   {
-    <span class="org-type">MutexLockGuard</span> <span class="org-variable-name">lock</span>(mutex_);
+    <span style="font-weight: bold; text-decoration: underline;">MutexLockGuard</span> <span style="font-weight: bold; font-style: italic;">lock</span>(mutex_);
     queue_.push_back(task);
     cond_.notify();
   }
 }
-<span class="org-constant">ThreadPool</span>::<span class="org-type">Task</span> <span class="org-constant">ThreadPool</span>::<span class="org-function-name">take</span>()
+<span style="font-weight: bold; text-decoration: underline;">ThreadPool</span>::<span style="font-weight: bold; text-decoration: underline;">Task</span> <span style="font-weight: bold; text-decoration: underline;">ThreadPool</span>::<span style="font-weight: bold;">take</span>()
 {
-  <span class="org-type">MutexLockGuard</span> <span class="org-variable-name">lock</span>(mutex_);
-  <span class="org-keyword">while</span> (queue_.empty() &amp;&amp; running_)
+  <span style="font-weight: bold; text-decoration: underline;">MutexLockGuard</span> <span style="font-weight: bold; font-style: italic;">lock</span>(mutex_);
+  <span style="font-weight: bold;">while</span> (queue_.empty() &amp;&amp; running_)
   {
     cond_.wait();
   }
-  <span class="org-type">Task</span> <span class="org-variable-name">task</span>;
-  <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>queue_.empty())
+  <span style="font-weight: bold; text-decoration: underline;">Task</span> <span style="font-weight: bold; font-style: italic;">task</span>;
+  <span style="font-weight: bold;">if</span>(!queue_.empty())
   {
     task = queue_.front();
     queue_.pop_front();
   }
-  <span class="org-keyword">return</span> task;
+  <span style="font-weight: bold;">return</span> task;
 }
-<span class="org-comment-delimiter">// </span><span class="org-comment">&#32447;&#31243;&#22238;&#35843;&#20989;&#25968;</span>
-<span class="org-type">void</span> <span class="org-constant">ThreadPool</span>::<span class="org-function-name">runInThread</span>()
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#32447;&#31243;&#22238;&#35843;&#20989;&#25968;</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">ThreadPool</span>::<span style="font-weight: bold;">runInThread</span>()
 {
-  <span class="org-keyword">try</span>
+  <span style="font-weight: bold;">try</span>
   {
-    <span class="org-keyword">while</span> (running_)
+    <span style="font-weight: bold;">while</span> (running_)
     {
-      <span class="org-type">Task</span> <span class="org-variable-name">task</span>(take());
-      <span class="org-keyword">if</span> (task)
+      <span style="font-weight: bold; text-decoration: underline;">Task</span> <span style="font-weight: bold; font-style: italic;">task</span>(take());
+      <span style="font-weight: bold;">if</span> (task)
       {
         task();
       }
@@ -173,8 +219,8 @@ base下面都是一些关于多线程编程方面需要使用的组件
 </div>
 </div>
 
-<div id="outline-container-orgcebee95" class="outline-2">
-<h2 id="orgcebee95"><span class="section-number-2">2</span> Buffer</h2>
+<div id="outline-container-orgbfa7a62" class="outline-2">
+<h2 id="orgbfa7a62"><span class="section-number-2">2</span> Buffer</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Buffer设计的非常精巧。Buffer内部是一个std::vector&lt;char*&gt;表示的，逻辑上结构是这样的
@@ -196,18 +242,18 @@ Buffer设计的非常精巧。Buffer内部是一个std::vector&lt;char*&gt;表�
 是会进行压缩的。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-function-name">makeSpace</span>(<span class="org-type">size_t</span> <span class="org-variable-name">len</span>)
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">makeSpace</span>(<span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">len</span>)
 {
-    <span class="org-keyword">if</span> (writableBytes() + prependableBytes() &lt; len + kCheapPrepend) <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#24403;&#21069;&#19981;&#33021;&#22815;&#36890;&#36807;&#21387;&#32553;&#21512;&#24182;&#30340;&#35805;</span>
+    <span style="font-weight: bold;">if</span> (writableBytes() + prependableBytes() &lt; len + kCheapPrepend) <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#24403;&#21069;&#19981;&#33021;&#22815;&#36890;&#36807;&#21387;&#32553;&#21512;&#24182;&#30340;&#35805;</span>
     {
         buffer_.resize(writerIndex_+len);
     }
-    <span class="org-keyword">else</span>
+    <span style="font-weight: bold;">else</span>
     {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">move readable data to the front, make space inside buffer</span>
-        assert(kCheapPrepend &lt; readerIndex_); <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#21487;&#20197;&#21387;&#32553;&#30340;&#35805;&#37027;&#20040;&#23601;&#21387;&#32553;</span>
-        <span class="org-type">size_t</span> <span class="org-variable-name">readable</span> = readableBytes();
-        <span class="org-constant">std</span>::copy(begin()+readerIndex_,
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">move readable data to the front, make space inside buffer</span>
+        assert(kCheapPrepend &lt; readerIndex_); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#21487;&#20197;&#21387;&#32553;&#30340;&#35805;&#37027;&#20040;&#23601;&#21387;&#32553;</span>
+        <span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">readable</span> = readableBytes();
+        <span style="font-weight: bold; text-decoration: underline;">std</span>::copy(begin()+readerIndex_,
                   begin()+writerIndex_,
                   begin()+kCheapPrepend);
         readerIndex_ = kCheapPrepend;
@@ -220,30 +266,30 @@ Buffer设计的非常精巧。Buffer内部是一个std::vector&lt;char*&gt;表�
 </div>
 </div>
 
-<div id="outline-container-org3973c7a" class="outline-2">
-<h2 id="org3973c7a"><span class="section-number-2">3</span> Channel</h2>
+<div id="outline-container-org9cfec36" class="outline-2">
+<h2 id="org9cfec36"><span class="section-number-2">3</span> Channel</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Channel</span> : <span class="org-constant">boost</span>::<span class="org-type">noncopyable</span>
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Channel</span> : <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">noncopyable</span>
 {
-  <span class="org-keyword">public</span>:
-    <span class="org-keyword">typedef</span> <span class="org-constant">boost</span>::<span class="org-type">function</span>&lt;<span class="org-type">void</span>()&gt; <span class="org-type">EventCallback</span>;
-    <span class="org-keyword">typedef</span> <span class="org-constant">boost</span>::<span class="org-type">function</span>&lt;<span class="org-type">void</span>(<span class="org-variable-name">Timestamp</span>)&gt; <span class="org-type">ReadEventCallback</span>;
-    <span class="org-type">void</span> <span class="org-function-name">handleEvent</span>(<span class="org-type">Timestamp</span> <span class="org-variable-name">receiveTime</span>);
-  <span class="org-keyword">private</span>:
-    <span class="org-type">EventLoop</span>* <span class="org-variable-name">loop_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#23646;&#20110;&#21738;&#19968;&#20010;Reactor</span>
-    <span class="org-keyword">const</span> <span class="org-type">int</span>  <span class="org-variable-name">fd_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#20851;&#32852;fd</span>
-    <span class="org-type">int</span>        <span class="org-variable-name">events_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#20851;&#27880;&#20107;&#20214;</span>
-    <span class="org-type">int</span>        <span class="org-variable-name">revents_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">ready&#20107;&#20214;</span>
-    <span class="org-type">int</span>        <span class="org-variable-name">index_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">used by Poller. &#22312;Poller&#20013;&#30340;&#32534;&#21495;&#65292;&#23454;&#38469;&#19978;&#27809;&#26377;&#29305;&#21035;&#24847;&#24605;</span>
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">function</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span>()&gt; <span style="font-weight: bold; text-decoration: underline;">EventCallback</span>;
+    <span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">function</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span>(<span style="font-weight: bold; font-style: italic;">Timestamp</span>)&gt; <span style="font-weight: bold; text-decoration: underline;">ReadEventCallback</span>;
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">handleEvent</span>(<span style="font-weight: bold; text-decoration: underline;">Timestamp</span> <span style="font-weight: bold; font-style: italic;">receiveTime</span>);
+  <span style="font-weight: bold;">private</span>:
+    <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">loop_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23646;&#20110;&#21738;&#19968;&#20010;Reactor</span>
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int</span>  <span style="font-weight: bold; font-style: italic;">fd_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20851;&#32852;fd</span>
+    <span style="font-weight: bold; text-decoration: underline;">int</span>        <span style="font-weight: bold; font-style: italic;">events_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20851;&#27880;&#20107;&#20214;</span>
+    <span style="font-weight: bold; text-decoration: underline;">int</span>        <span style="font-weight: bold; font-style: italic;">revents_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">ready&#20107;&#20214;</span>
+    <span style="font-weight: bold; text-decoration: underline;">int</span>        <span style="font-weight: bold; font-style: italic;">index_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">used by Poller. &#22312;Poller&#20013;&#30340;&#32534;&#21495;&#65292;&#23454;&#38469;&#19978;&#27809;&#26377;&#29305;&#21035;&#24847;&#24605;</span>
 
-    <span class="org-constant">boost</span>::<span class="org-type">weak_ptr</span>&lt;<span class="org-type">void</span>&gt; <span class="org-variable-name">tie_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#32465;&#23450;&#30340;&#23545;&#35937;&#65292;&#36825;&#20010;&#23545;&#20110;boost::weak_ptr&#19981;&#26159;&#24456;&#20102;&#35299;&#65292;&#20294;&#26159;&#36825;&#20010;&#23545;&#20110;&#29702;&#35299;&#26694;&#26550;&#27809;&#26377;&#29992;&#36884;</span>
-    <span class="org-type">bool</span> <span class="org-variable-name">tied_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#26159;&#21542;&#32465;&#23450;&#20102;&#23545;&#35937;&#19978;&#26469;</span>
-    <span class="org-type">bool</span> <span class="org-variable-name">eventHandling_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#24403;&#21069;&#27491;&#22312;&#22788;&#29702;event</span>
-    <span class="org-type">ReadEventCallback</span> <span class="org-variable-name">readCallback_</span>;
-    <span class="org-type">EventCallback</span> <span class="org-variable-name">writeCallback_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#23450;&#20041;&#22914;&#20309;&#20889;&#25968;&#25454;</span>
-    <span class="org-type">EventCallback</span> <span class="org-variable-name">closeCallback_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#23450;&#20041;&#22914;&#20309;&#20851;&#38381;&#36830;&#25509;</span>
-    <span class="org-type">EventCallback</span> <span class="org-variable-name">errorCallback_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#23450;&#20041;&#22914;&#26524;&#20986;&#38169;&#30340;&#35805;&#22914;&#20309;&#22788;&#29702;</span>
+    <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">weak_ptr</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span>&gt; <span style="font-weight: bold; font-style: italic;">tie_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#32465;&#23450;&#30340;&#23545;&#35937;&#65292;&#36825;&#20010;&#23545;&#20110;boost::weak_ptr&#19981;&#26159;&#24456;&#20102;&#35299;&#65292;&#20294;&#26159;&#36825;&#20010;&#23545;&#20110;&#29702;&#35299;&#26694;&#26550;&#27809;&#26377;&#29992;&#36884;</span>
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">tied_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#26159;&#21542;&#32465;&#23450;&#20102;&#23545;&#35937;&#19978;&#26469;</span>
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">eventHandling_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#24403;&#21069;&#27491;&#22312;&#22788;&#29702;event</span>
+    <span style="font-weight: bold; text-decoration: underline;">ReadEventCallback</span> <span style="font-weight: bold; font-style: italic;">readCallback_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">EventCallback</span> <span style="font-weight: bold; font-style: italic;">writeCallback_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#22914;&#20309;&#20889;&#25968;&#25454;</span>
+    <span style="font-weight: bold; text-decoration: underline;">EventCallback</span> <span style="font-weight: bold; font-style: italic;">closeCallback_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#22914;&#20309;&#20851;&#38381;&#36830;&#25509;</span>
+    <span style="font-weight: bold; text-decoration: underline;">EventCallback</span> <span style="font-weight: bold; font-style: italic;">errorCallback_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#22914;&#26524;&#20986;&#38169;&#30340;&#35805;&#22914;&#20309;&#22788;&#29702;</span>
 };
 </pre>
 </div>
@@ -252,71 +298,71 @@ Buffer设计的非常精巧。Buffer内部是一个std::vector&lt;char*&gt;表�
 代表接收超时时间，对于write而言的话没有超时时间。内部的话handleEvent会根据revents触发的事件来分别决定调用哪些回调
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">Channel</span>::<span class="org-function-name">handleEventWithGuard</span>(<span class="org-type">Timestamp</span> <span class="org-variable-name">receiveTime</span>)
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">Channel</span>::<span style="font-weight: bold;">handleEventWithGuard</span>(<span style="font-weight: bold; text-decoration: underline;">Timestamp</span> <span style="font-weight: bold; font-style: italic;">receiveTime</span>)
 {
-    eventHandling_ = <span class="org-constant">true</span>;
-    <span class="org-keyword">if</span> ((revents_ &amp; POLLHUP) &amp;&amp; <span class="org-negation-char">!</span>(revents_ &amp; POLLIN))
+    eventHandling_ = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    <span style="font-weight: bold;">if</span> ((revents_ &amp; POLLHUP) &amp;&amp; !(revents_ &amp; POLLIN))
     {
-        LOG_WARN &lt;&lt; <span class="org-string">"Channel::handle_event() POLLHUP"</span>;
-        <span class="org-keyword">if</span> (closeCallback_) closeCallback_();
+        LOG_WARN &lt;&lt; <span style="font-style: italic;">"Channel::handle_event() POLLHUP"</span>;
+        <span style="font-weight: bold;">if</span> (closeCallback_) closeCallback_();
     }
-    <span class="org-keyword">if</span> (revents_ &amp; POLLNVAL)
+    <span style="font-weight: bold;">if</span> (revents_ &amp; POLLNVAL)
     {
-        LOG_WARN &lt;&lt; <span class="org-string">"Channel::handle_event() POLLNVAL"</span>;
+        LOG_WARN &lt;&lt; <span style="font-style: italic;">"Channel::handle_event() POLLNVAL"</span>;
     }
-    <span class="org-keyword">if</span> (revents_ &amp; (POLLERR | POLLNVAL))
+    <span style="font-weight: bold;">if</span> (revents_ &amp; (POLLERR | POLLNVAL))
     {
-        <span class="org-keyword">if</span> (errorCallback_) errorCallback_();
+        <span style="font-weight: bold;">if</span> (errorCallback_) errorCallback_();
     }
-    <span class="org-keyword">if</span> (revents_ &amp; (POLLIN | POLLPRI | POLLRDHUP))
+    <span style="font-weight: bold;">if</span> (revents_ &amp; (POLLIN | POLLPRI | POLLRDHUP))
     {
-        <span class="org-keyword">if</span> (readCallback_) readCallback_(receiveTime);
+        <span style="font-weight: bold;">if</span> (readCallback_) readCallback_(receiveTime);
     }
-    <span class="org-keyword">if</span> (revents_ &amp; POLLOUT)
+    <span style="font-weight: bold;">if</span> (revents_ &amp; POLLOUT)
     {
-        <span class="org-keyword">if</span> (writeCallback_) writeCallback_();
+        <span style="font-weight: bold;">if</span> (writeCallback_) writeCallback_();
     }
-    eventHandling_ = <span class="org-constant">false</span>;
+    eventHandling_ = <span style="font-weight: bold; text-decoration: underline;">false</span>;
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3a1d7eb" class="outline-2">
-<h2 id="org3a1d7eb"><span class="section-number-2">4</span> Poller</h2>
+<div id="outline-container-orga620f41" class="outline-2">
+<h2 id="orga620f41"><span class="section-number-2">4</span> Poller</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Poller本身也是一个抽象类，然后底层支持poll和epoll.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Poller</span> : <span class="org-constant">boost</span>::<span class="org-type">noncopyable</span>
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Poller</span> : <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">noncopyable</span>
 {
-  <span class="org-keyword">public</span>:
-    <span class="org-keyword">typedef</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Channel</span>*&gt; <span class="org-type">ChannelList</span>;
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Polls the I/O events.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Must be called in the loop thread.</span>
-    <span class="org-keyword">virtual</span> <span class="org-type">Timestamp</span> <span class="org-function-name">poll</span>(<span class="org-type">int</span> <span class="org-variable-name">timeoutMs</span>, <span class="org-type">ChannelList</span>* <span class="org-variable-name">activeChannels</span>) = 0;  <span class="org-comment-delimiter">// </span><span class="org-comment">&#36827;&#34892;poll&#25805;&#20316;&#65292;&#27963;&#36291;&#20107;&#20214;&#25918;&#22312;activeChannels&#37324;&#38754;</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Changes the interested I/O events.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Must be called in the loop thread.</span>
-    <span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">updateChannel</span>(<span class="org-type">Channel</span>* <span class="org-variable-name">channel</span>) = 0; <span class="org-comment-delimiter">// </span><span class="org-comment">&#26356;&#26032;channel</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Remove the channel, when it destructs.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Must be called in the loop thread.</span>
-    <span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">removeChannel</span>(<span class="org-type">Channel</span>* <span class="org-variable-name">channel</span>) = 0; <span class="org-comment-delimiter">// </span><span class="org-comment">&#21024;&#38500;channel</span>
-  <span class="org-keyword">private</span>:
-    <span class="org-type">EventLoop</span>* <span class="org-variable-name">ownerLoop_</span>;
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">Channel</span>*&gt; <span style="font-weight: bold; text-decoration: underline;">ChannelList</span>;
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Polls the I/O events.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Must be called in the loop thread.</span>
+    <span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">Timestamp</span> <span style="font-weight: bold;">poll</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">timeoutMs</span>, <span style="font-weight: bold; text-decoration: underline;">ChannelList</span>* <span style="font-weight: bold; font-style: italic;">activeChannels</span>) = 0;  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36827;&#34892;poll&#25805;&#20316;&#65292;&#27963;&#36291;&#20107;&#20214;&#25918;&#22312;activeChannels&#37324;&#38754;</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Changes the interested I/O events.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Must be called in the loop thread.</span>
+    <span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">updateChannel</span>(<span style="font-weight: bold; text-decoration: underline;">Channel</span>* <span style="font-weight: bold; font-style: italic;">channel</span>) = 0; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#26356;&#26032;channel</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Remove the channel, when it destructs.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Must be called in the loop thread.</span>
+    <span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">removeChannel</span>(<span style="font-weight: bold; text-decoration: underline;">Channel</span>* <span style="font-weight: bold; font-style: italic;">channel</span>) = 0; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21024;&#38500;channel</span>
+  <span style="font-weight: bold;">private</span>:
+    <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">ownerLoop_</span>;
 };
 </pre>
 </div>
 <p>
 在poller目录下面有poll和epoll的对应实现，不过我们这里没有必要仔细阅读。需要注意的是这里的channel处理并没有引入优先级的概念。
-poll操作的timeoutMs就是epoll_wait超时时间，而activeChannels就是活跃channel.返回值就是epoll_wait之后的时间戳。
+poll操作的timeoutMs就是epoll<sub>wait超时时间</sub>，而activeChannels就是活跃channel.返回值就是epoll<sub>wait之后的时间戳</sub>。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbe7c5d9" class="outline-2">
-<h2 id="orgbe7c5d9"><span class="section-number-2">5</span> EventLoop</h2>
+<div id="outline-container-orgc97c7bc" class="outline-2">
+<h2 id="orgc97c7bc"><span class="section-number-2">5</span> EventLoop</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 和之前一样，我们还是看看EventLoop有哪些结构。对于EventLoop结构比较复杂，我们列出主要的接口和成员。
@@ -326,152 +372,152 @@ queueInLoop的功能，将一些task加入到这个event loop对应的线程中�
 pipe来完成。然后我们还允许向EventLoop里面添加定时器任务，就是runAt,runAfter和runEvery三个函数，我们只需要关注其中一个即可。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">EventLoop</span> : <span class="org-constant">boost</span>::<span class="org-type">noncopyable</span>
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">EventLoop</span> : <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">noncopyable</span>
 {
-  <span class="org-keyword">public</span>:
-    <span class="org-keyword">typedef</span> <span class="org-constant">boost</span>::<span class="org-type">function</span>&lt;<span class="org-type">void</span>()&gt; <span class="org-type">Functor</span>;
-    <span class="org-keyword">typedef</span> <span class="org-constant">boost</span>::<span class="org-type">function</span>&lt;<span class="org-type">void</span>()&gt; <span class="org-type">TimerCallback</span>;
-    <span class="org-type">void</span> <span class="org-function-name">loop</span>();
-    <span class="org-type">void</span> <span class="org-function-name">quit</span>();
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Runs callback immediately in the loop thread.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">It wakes up the loop, and run the cb.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">If in the same loop thread, cb is run within the function.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Safe to call from other threads.</span>
-    <span class="org-type">void</span> <span class="org-function-name">runInLoop</span>(<span class="org-keyword">const</span> <span class="org-type">Functor</span>&amp; <span class="org-variable-name">cb</span>);
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Queues callback in the loop thread.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Runs after finish pooling.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Safe to call from other threads.</span>
-    <span class="org-type">void</span> <span class="org-function-name">queueInLoop</span>(<span class="org-keyword">const</span> <span class="org-type">Functor</span>&amp; <span class="org-variable-name">cb</span>);
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">function</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span>()&gt; <span style="font-weight: bold; text-decoration: underline;">Functor</span>;
+    <span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">function</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span>()&gt; <span style="font-weight: bold; text-decoration: underline;">TimerCallback</span>;
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">loop</span>();
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">quit</span>();
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Runs callback immediately in the loop thread.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">It wakes up the loop, and run the cb.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">If in the same loop thread, cb is run within the function.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Safe to call from other threads.</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">runInLoop</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Functor</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>);
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Queues callback in the loop thread.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Runs after finish pooling.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Safe to call from other threads.</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">queueInLoop</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Functor</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>);
 
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Runs callback at 'time'.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Safe to call from other threads.</span>
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-type">TimerId</span> <span class="org-function-name">runAt</span>(<span class="org-keyword">const</span> <span class="org-type">Timestamp</span>&amp; <span class="org-variable-name">time</span>, <span class="org-keyword">const</span> <span class="org-type">TimerCallback</span>&amp; <span class="org-variable-name">cb</span>);
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Runs callback after @c delay seconds.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Safe to call from other threads.</span>
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-type">TimerId</span> <span class="org-function-name">runAfter</span>(<span class="org-type">double</span> <span class="org-variable-name">delay</span>, <span class="org-keyword">const</span> <span class="org-type">TimerCallback</span>&amp; <span class="org-variable-name">cb</span>);
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Runs callback every @c interval seconds.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Safe to call from other threads.</span>
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-type">TimerId</span> <span class="org-function-name">runEvery</span>(<span class="org-type">double</span> <span class="org-variable-name">interval</span>, <span class="org-keyword">const</span> <span class="org-type">TimerCallback</span>&amp; <span class="org-variable-name">cb</span>);
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Cancels the timer.</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Safe to call from other threads.</span>
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">void cancel(TimerId timerId);</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">internal usage</span>
-    <span class="org-type">void</span> <span class="org-function-name">wakeup</span>();
-    <span class="org-type">void</span> <span class="org-function-name">updateChannel</span>(<span class="org-type">Channel</span>* <span class="org-variable-name">channel</span>);
-    <span class="org-type">void</span> <span class="org-function-name">removeChannel</span>(<span class="org-type">Channel</span>* <span class="org-variable-name">channel</span>);
-    <span class="org-type">bool</span> <span class="org-function-name">isInLoopThread</span>() <span class="org-keyword">const</span> { <span class="org-keyword">return</span> threadId_ == <span class="org-constant">CurrentThread</span>::tid(); }
-  <span class="org-keyword">private</span>:
-    <span class="org-keyword">typedef</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Channel</span>*&gt; <span class="org-type">ChannelList</span>;
-    <span class="org-type">bool</span> <span class="org-variable-name">looping_</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">atomic */</span>
-    <span class="org-type">bool</span> <span class="org-variable-name">quit_</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">atomic */</span>
-    <span class="org-type">bool</span> <span class="org-variable-name">eventHandling_</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">atomic */</span>
-    <span class="org-type">bool</span> <span class="org-variable-name">callingPendingFunctors_</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">atomic */</span>
-    <span class="org-keyword">const</span> <span class="org-type">pid_t</span> <span class="org-variable-name">threadId_</span>;
-    <span class="org-type">Timestamp</span> <span class="org-variable-name">pollReturnTime_</span>;
-    <span class="org-constant">boost</span>::<span class="org-type">scoped_ptr</span>&lt;Poller&gt; <span class="org-variable-name">poller_</span>;
-    <span class="org-constant">boost</span>::<span class="org-type">scoped_ptr</span>&lt;TimerQueue&gt; <span class="org-variable-name">timerQueue_</span>;
-    <span class="org-type">int</span> <span class="org-variable-name">wakeupFd_</span>;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">unlike in TimerQueue, which is an internal class,</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">we don't expose Channel to client.</span>
-    <span class="org-constant">boost</span>::<span class="org-type">scoped_ptr</span>&lt;<span class="org-type">Channel</span>&gt; <span class="org-variable-name">wakeupChannel_</span>;
-    <span class="org-type">ChannelList</span> <span class="org-variable-name">activeChannels_</span>;
-    <span class="org-type">MutexLock</span> <span class="org-variable-name">mutex_</span>;
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Functor</span>&gt; <span class="org-variable-name">pendingFunctors_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">@BuardedBy mutex_</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Runs callback at 'time'.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Safe to call from other threads.</span>
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; text-decoration: underline;">TimerId</span> <span style="font-weight: bold;">runAt</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Timestamp</span>&amp; <span style="font-weight: bold; font-style: italic;">time</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">TimerCallback</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>);
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Runs callback after @c delay seconds.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Safe to call from other threads.</span>
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; text-decoration: underline;">TimerId</span> <span style="font-weight: bold;">runAfter</span>(<span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">delay</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">TimerCallback</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>);
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Runs callback every @c interval seconds.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Safe to call from other threads.</span>
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; text-decoration: underline;">TimerId</span> <span style="font-weight: bold;">runEvery</span>(<span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">interval</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">TimerCallback</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>);
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Cancels the timer.</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Safe to call from other threads.</span>
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">void cancel(TimerId timerId);</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">internal usage</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">wakeup</span>();
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">updateChannel</span>(<span style="font-weight: bold; text-decoration: underline;">Channel</span>* <span style="font-weight: bold; font-style: italic;">channel</span>);
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">removeChannel</span>(<span style="font-weight: bold; text-decoration: underline;">Channel</span>* <span style="font-weight: bold; font-style: italic;">channel</span>);
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold;">isInLoopThread</span>() <span style="font-weight: bold;">const</span> { <span style="font-weight: bold;">return</span> threadId_ == <span style="font-weight: bold; text-decoration: underline;">CurrentThread</span>::tid(); }
+  <span style="font-weight: bold;">private</span>:
+    <span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">Channel</span>*&gt; <span style="font-weight: bold; text-decoration: underline;">ChannelList</span>;
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">looping_</span>; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">atomic */</span>
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">quit_</span>; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">atomic */</span>
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">eventHandling_</span>; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">atomic */</span>
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">callingPendingFunctors_</span>; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">atomic */</span>
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">pid_t</span> <span style="font-weight: bold; font-style: italic;">threadId_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">Timestamp</span> <span style="font-weight: bold; font-style: italic;">pollReturnTime_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">scoped_ptr</span>&lt;Poller&gt; <span style="font-weight: bold; font-style: italic;">poller_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">scoped_ptr</span>&lt;TimerQueue&gt; <span style="font-weight: bold; font-style: italic;">timerQueue_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">wakeupFd_</span>;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">unlike in TimerQueue, which is an internal class,</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">we don't expose Channel to client.</span>
+    <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">scoped_ptr</span>&lt;<span style="font-weight: bold; text-decoration: underline;">Channel</span>&gt; <span style="font-weight: bold; font-style: italic;">wakeupChannel_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">ChannelList</span> <span style="font-weight: bold; font-style: italic;">activeChannels_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">MutexLock</span> <span style="font-weight: bold; font-style: italic;">mutex_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">Functor</span>&gt; <span style="font-weight: bold; font-style: italic;">pendingFunctors_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">@BuardedBy mutex_</span>
 };
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgb948a9c" class="outline-3">
-<h3 id="orgb948a9c"><span class="section-number-3">5.1</span> 单线程单EventLoop</h3>
+<div id="outline-container-orgddc8268" class="outline-3">
+<h3 id="orgddc8268"><span class="section-number-3">5.1</span> 单线程单EventLoop</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 作者建议一个线程绑定一个EventLoop,这个实现呢？其实还是使用线程局部变量。首先定义线程局部变量
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">__thread <span class="org-type">EventLoop</span>* <span class="org-variable-name">t_loopInThisThread</span> = 0;
+<pre class="src src-C++">__thread <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">t_loopInThisThread</span> = 0;
 </pre>
 </div>
 <p>
 然后在EventLoop构造函数的时候判断这个是否==0,如果不为=0的话说明在这个线程已经构造过一个EventLoop了。
-直接使用__thread这个关键字，值得学习一下。
+直接使用_<sub>thread这个关键字</sub>，值得学习一下。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1b2efbe" class="outline-3">
-<h3 id="org1b2efbe"><span class="section-number-3">5.2</span> 跨线程激活</h3>
+<div id="outline-container-orgf9a6dc3" class="outline-3">
+<h3 id="orgf9a6dc3"><span class="section-number-3">5.2</span> 跨线程激活</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 首先我们看看跨线程激活是怎么操作的。在EventLoop的初始化函数内部初始化了wakeupFd并且创建了channel.但是如果不仔细阅读，
 很可能觉得的这个channel没有注册。而实际上这个channel在enableReading()就会注册的。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-constant">EventLoop</span>::<span class="org-function-name">EventLoop</span>()
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">EventLoop</span>::<span style="font-weight: bold;">EventLoop</span>()
   : wakeupFd_(createEventfd()),
-    wakeupChannel_(<span class="org-keyword">new</span> <span class="org-type">Channel</span>(<span class="org-keyword">this</span>, wakeupFd_))
+    wakeupChannel_(<span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Channel</span>(<span style="font-weight: bold;">this</span>, wakeupFd_))
 {
   wakeupChannel_-&gt;setReadCallback(
-      <span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">EventLoop</span>::handleRead, <span class="org-keyword">this</span>)); <span class="org-comment-delimiter">// </span><span class="org-comment">&#32465;&#23450;&#21040;handleRead&#19978;&#38754;&#20102;</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">we are always reading the wakeupfd</span>
+      <span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">EventLoop</span>::handleRead, <span style="font-weight: bold;">this</span>)); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#32465;&#23450;&#21040;handleRead&#19978;&#38754;&#20102;</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">we are always reading the wakeupfd</span>
   wakeupChannel_-&gt;enableReading();
 }
 #+END_SRC C++
 &#36328;&#32447;&#31243;&#28608;&#27963;&#30340;&#20989;&#25968;&#26159;wakeUp.&#25105;&#20204;&#30475;&#30475;&#24590;&#20040;&#23454;&#29616;
 #+BEGIN_SRC C++
-<span class="org-type">void</span> <span class="org-constant">EventLoop</span>::wakeup()
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>::wakeup()
 {
-  <span class="org-type">uint64_t</span> <span class="org-variable-name">one</span> = 1;
-  <span class="org-type">ssize_t</span> <span class="org-variable-name">n</span> = <span class="org-constant">sockets</span>::write(wakeupFd_, &amp;one, <span class="org-keyword">sizeof</span> one); <span class="org-comment-delimiter">// </span><span class="org-comment">&#31867;&#20284;&#20110;&#31649;&#36947;&#30452;&#25509;&#20889;</span>
+  <span style="font-weight: bold; text-decoration: underline;">uint64_t</span> <span style="font-weight: bold; font-style: italic;">one</span> = 1;
+  <span style="font-weight: bold; text-decoration: underline;">ssize_t</span> <span style="font-weight: bold; font-style: italic;">n</span> = <span style="font-weight: bold; text-decoration: underline;">sockets</span>::write(wakeupFd_, &amp;one, <span style="font-weight: bold;">sizeof</span> one); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#31867;&#20284;&#20110;&#31649;&#36947;&#30452;&#25509;&#20889;</span>
 }
 </pre>
 </div>
 <p>
-一旦wakeup完成之后那么wakeUpFd_就是可读的，这样EventLoop就会被通知到并且立刻跳出epoll_wait开始处理。当然我们需要将这个wakeupFd_
+一旦wakeup完成之后那么wakeUpFd<sub>就是可读的</sub>，这样EventLoop就会被通知到并且立刻跳出epoll<sub>wait开始处理</sub>。当然我们需要将这个wakeupFd_
 上面数据读出来，不然的话下一次又会被通知到，读取函数就是handleRead
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">EventLoop</span>::<span class="org-function-name">handleRead</span>()
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>::<span style="font-weight: bold;">handleRead</span>()
 {
-  <span class="org-type">uint64_t</span> <span class="org-variable-name">one</span> = 1;
-  <span class="org-type">ssize_t</span> <span class="org-variable-name">n</span> = <span class="org-constant">sockets</span>::read(wakeupFd_, &amp;one, <span class="org-keyword">sizeof</span> one);
+  <span style="font-weight: bold; text-decoration: underline;">uint64_t</span> <span style="font-weight: bold; font-style: italic;">one</span> = 1;
+  <span style="font-weight: bold; text-decoration: underline;">ssize_t</span> <span style="font-weight: bold; font-style: italic;">n</span> = <span style="font-weight: bold; text-decoration: underline;">sockets</span>::read(wakeupFd_, &amp;one, <span style="font-weight: bold;">sizeof</span> one);
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc16a9fa" class="outline-3">
-<h3 id="orgc16a9fa"><span class="section-number-3">5.3</span> 跨线程任务</h3>
+<div id="outline-container-org91892b8" class="outline-3">
+<h3 id="org91892b8"><span class="section-number-3">5.3</span> 跨线程任务</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 runInLoop和queueInLoop就是跨线程任务。内容非常简单
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">EventLoop</span>::<span class="org-function-name">runInLoop</span>(<span class="org-keyword">const</span> <span class="org-type">Functor</span>&amp; <span class="org-variable-name">cb</span>){
-  <span class="org-keyword">if</span> (isInLoopThread()){ <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#36825;&#20010;&#20989;&#25968;&#22312;&#33258;&#24049;&#30340;&#32447;&#31243;&#35843;&#29992;&#65292;&#37027;&#20040;&#23601;&#21487;&#20197;&#31435;&#21363;&#25191;&#34892;</span>
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>::<span style="font-weight: bold;">runInLoop</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Functor</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>){
+  <span style="font-weight: bold;">if</span> (isInLoopThread()){ <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#36825;&#20010;&#20989;&#25968;&#22312;&#33258;&#24049;&#30340;&#32447;&#31243;&#35843;&#29992;&#65292;&#37027;&#20040;&#23601;&#21487;&#20197;&#31435;&#21363;&#25191;&#34892;</span>
     cb();
-  }<span class="org-keyword">else</span>{
-    queueInLoop(cb); <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#26159;&#20854;&#20182;&#32447;&#31243;&#35843;&#29992;&#65292;&#37027;&#20040;&#21152;&#20837;&#21040;pendingFunctors&#37324;&#38754;&#21435;</span>
-    wakeup(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#24182;&#19988;&#36890;&#30693;&#36825;&#20010;&#32447;&#31243;&#65292;&#26377;&#20219;&#21153;&#21040;&#26469;</span>
+  }<span style="font-weight: bold;">else</span>{
+    queueInLoop(cb); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#26159;&#20854;&#20182;&#32447;&#31243;&#35843;&#29992;&#65292;&#37027;&#20040;&#21152;&#20837;&#21040;pendingFunctors&#37324;&#38754;&#21435;</span>
+    wakeup(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#24182;&#19988;&#36890;&#30693;&#36825;&#20010;&#32447;&#31243;&#65292;&#26377;&#20219;&#21153;&#21040;&#26469;</span>
   }
 }
 
-<span class="org-type">void</span> <span class="org-constant">EventLoop</span>::<span class="org-function-name">queueInLoop</span>(<span class="org-keyword">const</span> <span class="org-type">Functor</span>&amp; <span class="org-variable-name">cb</span>){
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>::<span style="font-weight: bold;">queueInLoop</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Functor</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>){
   {
-  <span class="org-type">MutexLockGuard</span> <span class="org-variable-name">lock</span>(mutex_);
+  <span style="font-weight: bold; text-decoration: underline;">MutexLockGuard</span> <span style="font-weight: bold; font-style: italic;">lock</span>(mutex_);
   pendingFunctors_.push_back(cb);
   }
-  <span class="org-keyword">if</span> (isInLoopThread() &amp;&amp; callingPendingFunctors_){
-    wakeup(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#34987;&#25490;&#19978;&#38431;&#20043;&#21518;&#22914;&#26524;&#26159;&#22312;&#33258;&#24049;&#32447;&#31243;&#24182;&#19988;&#27491;&#22312;&#25191;&#34892;pendingFunctors&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#21487;&#20197;&#28608;&#27963;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#21542;&#21017;&#19979;&#19968;&#36718;&#23436;&#20840;&#21487;&#20197;&#34987;&#25490;&#19978;&#65292;&#25152;&#20197;&#27809;&#26377;&#24517;&#35201;&#28608;&#27963;</span>
+  <span style="font-weight: bold;">if</span> (isInLoopThread() &amp;&amp; callingPendingFunctors_){
+    wakeup(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#34987;&#25490;&#19978;&#38431;&#20043;&#21518;&#22914;&#26524;&#26159;&#22312;&#33258;&#24049;&#32447;&#31243;&#24182;&#19988;&#27491;&#22312;&#25191;&#34892;pendingFunctors&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#21487;&#20197;&#28608;&#27963;</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21542;&#21017;&#19979;&#19968;&#36718;&#23436;&#20840;&#21487;&#20197;&#34987;&#25490;&#19978;&#65292;&#25152;&#20197;&#27809;&#26377;&#24517;&#35201;&#28608;&#27963;</span>
   }
 }
 </pre>
@@ -479,24 +525,24 @@ runInLoop和queueInLoop就是跨线程任务。内容非常简单
 </div>
 </div>
 
-<div id="outline-container-org981ff19" class="outline-3">
-<h3 id="org981ff19"><span class="section-number-3">5.4</span> 定时器任务</h3>
+<div id="outline-container-org8230f7f" class="outline-3">
+<h3 id="org8230f7f"><span class="section-number-3">5.4</span> 定时器任务</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 定时器任务都是交给了TimerQueue来处理的，在TimerQueue这个部分我们会简要地分析一下
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">TimerId</span> <span class="org-constant">EventLoop</span>::<span class="org-function-name">runAt</span>(<span class="org-keyword">const</span> <span class="org-type">Timestamp</span>&amp; <span class="org-variable-name">time</span>, <span class="org-keyword">const</span> <span class="org-type">TimerCallback</span>&amp; <span class="org-variable-name">cb</span>)
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">TimerId</span> <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>::<span style="font-weight: bold;">runAt</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Timestamp</span>&amp; <span style="font-weight: bold; font-style: italic;">time</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">TimerCallback</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>)
 {
-  <span class="org-keyword">return</span> timerQueue_-&gt;addTimer(cb, time, 0.0); <span class="org-comment-delimiter">// </span><span class="org-comment">time&#26159;&#22312;&#20043;&#21518;&#20160;&#20040;&#26102;&#20505;&#24320;&#22987;&#65292;0.0&#34920;&#31034;&#20197;&#21518;&#27599;&#27425;&#36816;&#34892;&#26102;&#38388;(0.0&#34920;&#31034;&#19981;&#20250;repeat).</span>
+  <span style="font-weight: bold;">return</span> timerQueue_-&gt;addTimer(cb, time, 0.0); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">time&#26159;&#22312;&#20043;&#21518;&#20160;&#20040;&#26102;&#20505;&#24320;&#22987;&#65292;0.0&#34920;&#31034;&#20197;&#21518;&#27599;&#27425;&#36816;&#34892;&#26102;&#38388;(0.0&#34920;&#31034;&#19981;&#20250;repeat).</span>
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgeee9533" class="outline-3">
-<h3 id="orgeee9533"><span class="section-number-3">5.5</span> How it works</h3>
+<div id="outline-container-org4e2ed72" class="outline-3">
+<h3 id="org4e2ed72"><span class="section-number-3">5.5</span> How it works</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 基本上和hpserver非常相似，不断地调用poller::poll方法，然后在外层不断地查看是否需要quit.poll之后会得到activeChannels.和hpserver不同的是，
@@ -507,30 +553,30 @@ muduo没有调用器(其实也不需要，本来就没有优先级概念)，仅�
 </div>
 </div>
 
-<div id="outline-container-org4eb1be8" class="outline-2">
-<h2 id="org4eb1be8"><span class="section-number-2">6</span> TimerQueue</h2>
+<div id="outline-container-org40eabab" class="outline-2">
+<h2 id="org40eabab"><span class="section-number-2">6</span> TimerQueue</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 TimerQueue里面最主要的方法就是addTimer.我们看看addTimer里面做了哪些事情，整个过程有点绕
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">TimerId</span> <span class="org-constant">TimerQueue</span>::<span class="org-function-name">addTimer</span>(<span class="org-keyword">const</span> <span class="org-type">TimerCallback</span>&amp; <span class="org-variable-name">cb</span>,
-                             <span class="org-type">Timestamp</span> <span class="org-variable-name">when</span>,
-                             <span class="org-type">double</span> <span class="org-variable-name">interval</span>)
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">TimerId</span> <span style="font-weight: bold; text-decoration: underline;">TimerQueue</span>::<span style="font-weight: bold;">addTimer</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">TimerCallback</span>&amp; <span style="font-weight: bold; font-style: italic;">cb</span>,
+                             <span style="font-weight: bold; text-decoration: underline;">Timestamp</span> <span style="font-weight: bold; font-style: italic;">when</span>,
+                             <span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">interval</span>)
 {
-  <span class="org-type">Timer</span>* <span class="org-variable-name">timer</span> = <span class="org-keyword">new</span> <span class="org-type">Timer</span>(cb, when, interval); <span class="org-comment-delimiter">// </span><span class="org-comment">&#39318;&#20808;&#21019;&#24314;&#19968;&#20010;Timer&#23545;&#35937;&#65292;&#28982;&#21518;&#23558;cb&#25918;&#22312;&#37324;&#38754;&#12290;&#20869;&#37096;&#26377;&#19968;&#20010;run&#20989;&#25968;&#65292;&#35843;&#29992;&#30340;&#23601;&#26159;cb</span>
+  <span style="font-weight: bold; text-decoration: underline;">Timer</span>* <span style="font-weight: bold; font-style: italic;">timer</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Timer</span>(cb, when, interval); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#39318;&#20808;&#21019;&#24314;&#19968;&#20010;Timer&#23545;&#35937;&#65292;&#28982;&#21518;&#23558;cb&#25918;&#22312;&#37324;&#38754;&#12290;&#20869;&#37096;&#26377;&#19968;&#20010;run&#20989;&#25968;&#65292;&#35843;&#29992;&#30340;&#23601;&#26159;cb</span>
   loop_-&gt;runInLoop(
-      <span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">TimerQueue</span>::scheduleInLoop, <span class="org-keyword">this</span>, timer)); <span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#23558;&#36825;&#20010;timer&#20002;&#21040;eventLoop&#37324;&#38754;&#21435;&#25191;&#34892;</span>
-  <span class="org-keyword">return</span> TimerId(timer, timer-&gt;sequence());
+      <span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">TimerQueue</span>::scheduleInLoop, <span style="font-weight: bold;">this</span>, timer)); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#28982;&#21518;&#23558;&#36825;&#20010;timer&#20002;&#21040;eventLoop&#37324;&#38754;&#21435;&#25191;&#34892;</span>
+  <span style="font-weight: bold;">return</span> TimerId(timer, timer-&gt;sequence());
 }
-<span class="org-type">void</span> <span class="org-constant">TimerQueue</span>::<span class="org-function-name">scheduleInLoop</span>(<span class="org-type">Timer</span>* <span class="org-variable-name">timer</span>)
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TimerQueue</span>::<span style="font-weight: bold;">scheduleInLoop</span>(<span style="font-weight: bold; text-decoration: underline;">Timer</span>* <span style="font-weight: bold; font-style: italic;">timer</span>)
 {
   loop_-&gt;assertInLoopThread();
-  <span class="org-type">bool</span> <span class="org-variable-name">earliestChanged</span> = insert(timer); <span class="org-comment-delimiter">// </span><span class="org-comment">&#23558;timer&#25554;&#20837;&#21040;&#20869;&#37096;&#30340;&#38142;&#34920;&#37324;&#38754;&#21435;&#65292;&#25353;&#29031;&#36229;&#26102;&#26102;&#38388;&#39034;&#24207;&#25554;&#20837;&#65292;&#24182;&#19988;&#21028;&#26029;&#36825;&#20010;&#25554;&#20837;&#26159;&#21542;&#20250;&#24433;&#21709;&#26368;&#26089;&#26102;&#38388;</span>
+  <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">earliestChanged</span> = insert(timer); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23558;timer&#25554;&#20837;&#21040;&#20869;&#37096;&#30340;&#38142;&#34920;&#37324;&#38754;&#21435;&#65292;&#25353;&#29031;&#36229;&#26102;&#26102;&#38388;&#39034;&#24207;&#25554;&#20837;&#65292;&#24182;&#19988;&#21028;&#26029;&#36825;&#20010;&#25554;&#20837;&#26159;&#21542;&#20250;&#24433;&#21709;&#26368;&#26089;&#26102;&#38388;</span>
 
-  <span class="org-keyword">if</span> (earliestChanged)
+  <span style="font-weight: bold;">if</span> (earliestChanged)
   {
-    resetTimerfd(timerfd_, timer-&gt;expiration()); <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#24433;&#21709;&#30340;&#35805;&#65292;&#37027;&#20040;&#35201;&#20462;&#25913;&#36825;&#20010;timerfd&#36229;&#26102;&#26102;&#38388;&#12290;</span>
+    resetTimerfd(timerfd_, timer-&gt;expiration()); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#24433;&#21709;&#30340;&#35805;&#65292;&#37027;&#20040;&#35201;&#20462;&#25913;&#36825;&#20010;timerfd&#36229;&#26102;&#26102;&#38388;&#12290;</span>
   }
 }
 </pre>
@@ -539,17 +585,17 @@ TimerQueue里面最主要的方法就是addTimer.我们看看addTimer里面做�
 然后一旦timerfd可读的时候，就会调用下面这个函数
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">TimerQueue</span>::<span class="org-function-name">handleRead</span>()
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TimerQueue</span>::<span style="font-weight: bold;">handleRead</span>()
 {
   loop_-&gt;assertInLoopThread();
-  <span class="org-type">Timestamp</span> <span class="org-variable-name">now</span>(<span class="org-constant">Timestamp</span>::now());
+  <span style="font-weight: bold; text-decoration: underline;">Timestamp</span> <span style="font-weight: bold; font-style: italic;">now</span>(<span style="font-weight: bold; text-decoration: underline;">Timestamp</span>::now());
   readTimerfd(timerfd_, now);
-  <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;Entry&gt; <span class="org-variable-name">expired</span> = getExpired(now); <span class="org-comment-delimiter">// </span><span class="org-comment">&#25105;&#20204;&#21487;&#20197;&#30693;&#36947;&#26377;&#21738;&#20123;&#35745;&#26102;&#22120;&#36229;&#26102;</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">safe to callback outside critical section</span>
-  <span class="org-keyword">for</span> (<span class="org-constant">std</span>::<span class="org-constant">vector</span>&lt;Entry&gt;::<span class="org-type">iterator</span> <span class="org-variable-name">it</span> = expired.begin();
+  <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;Entry&gt; <span style="font-weight: bold; font-style: italic;">expired</span> = getExpired(now); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25105;&#20204;&#21487;&#20197;&#30693;&#36947;&#26377;&#21738;&#20123;&#35745;&#26102;&#22120;&#36229;&#26102;</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">safe to callback outside critical section</span>
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;Entry&gt;::<span style="font-weight: bold; text-decoration: underline;">iterator</span> <span style="font-weight: bold; font-style: italic;">it</span> = expired.begin();
       it != expired.end(); ++it)
   {
-    it-&gt;second-&gt;run(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;&#36825;&#20123;&#36229;&#26102;&#30340;Timer,&#25191;&#34892;run()&#20989;&#25968;&#65292;&#23545;&#24212;&#20063;&#23601;&#26159;&#25105;&#20204;&#19968;&#24320;&#22987;&#27880;&#20876;&#30340;&#22238;&#35843;&#20989;&#25968;&#12290;</span>
+    it-&gt;second-&gt;run(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23545;&#20110;&#36825;&#20123;&#36229;&#26102;&#30340;Timer,&#25191;&#34892;run()&#20989;&#25968;&#65292;&#23545;&#24212;&#20063;&#23601;&#26159;&#25105;&#20204;&#19968;&#24320;&#22987;&#27880;&#20876;&#30340;&#22238;&#35843;&#20989;&#25968;&#12290;</span>
   }
   reset(expired, now);
 }
@@ -558,30 +604,30 @@ TimerQueue里面最主要的方法就是addTimer.我们看看addTimer里面做�
 </div>
 </div>
 
-<div id="outline-container-org1fc6166" class="outline-2">
-<h2 id="org1fc6166"><span class="section-number-2">7</span> EventLoopThread</h2>
+<div id="outline-container-org67017a6" class="outline-2">
+<h2 id="org67017a6"><span class="section-number-2">7</span> EventLoopThread</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 EventLoopThread就是将一个EventLoop和Thread包装在一起的对象。这个内容到没有什么，不过觉得代码方面有点技巧。
 我们在启动startLoop这个样就会执行线程threadFunc,但是我们必须等待threadFunc将栈上面的EventLoop绑定之后才可以返回，所以这里用到了条件变量。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">EventLoop</span>* <span class="org-constant">EventLoopThread</span>::<span class="org-function-name">startLoop</span>(){
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; text-decoration: underline;">EventLoopThread</span>::<span style="font-weight: bold;">startLoop</span>(){
     thread_.start();
     {
-        <span class="org-type">MutexLockGuard</span> <span class="org-variable-name">lock</span>(mutex_);
-        <span class="org-keyword">while</span> (loop_ == <span class="org-constant">NULL</span>)
+        <span style="font-weight: bold; text-decoration: underline;">MutexLockGuard</span> <span style="font-weight: bold; font-style: italic;">lock</span>(mutex_);
+        <span style="font-weight: bold;">while</span> (loop_ == <span style="font-weight: bold; text-decoration: underline;">NULL</span>)
         {
             cond_.wait();
         }
     }
-    <span class="org-keyword">return</span> loop_;
+    <span style="font-weight: bold;">return</span> loop_;
 }
 
-<span class="org-type">void</span> <span class="org-constant">EventLoopThread</span>::<span class="org-function-name">threadFunc</span>(){
-    <span class="org-type">EventLoop</span> <span class="org-variable-name">loop</span>;
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">EventLoopThread</span>::<span style="font-weight: bold;">threadFunc</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">EventLoop</span> <span style="font-weight: bold; font-style: italic;">loop</span>;
     {
-        <span class="org-type">MutexLockGuard</span> <span class="org-variable-name">lock</span>(mutex_);
+        <span style="font-weight: bold; text-decoration: underline;">MutexLockGuard</span> <span style="font-weight: bold; font-style: italic;">lock</span>(mutex_);
         loop_ = &amp;loop;
         cond_.notify();
     }
@@ -595,15 +641,15 @@ EventLoopThread就是将一个EventLoop和Thread包装在一起的对象。这�
 </div>
 </div>
 
-<div id="outline-container-org730be96" class="outline-2">
-<h2 id="org730be96"><span class="section-number-2">8</span> Acceptor</h2>
+<div id="outline-container-orgee7f9bf" class="outline-2">
+<h2 id="orgee7f9bf"><span class="section-number-2">8</span> Acceptor</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Acceptor帮助简化了搭建服务器accept这个部分的逻辑。通常这个逻辑是在单个线程里面完成的，所以抽取出来蛮有必要的。
 代码不是很麻烦，用户要做的就是编写一个回调，这个回调在新建立连接时候出发，参数分别是链接fd和连接地址。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-constant">boost</span>::<span class="org-type">function</span>&lt;<span class="org-type">void</span> (<span class="org-type">int</span> <span class="org-variable-name">sockfd</span>,<span class="org-keyword">const</span> <span class="org-type">InetAddress</span>&amp;)&gt; <span class="org-type">NewConnectionCallback</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">function</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sockfd</span>,<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">InetAddress</span>&amp;)&gt; <span style="font-weight: bold; text-decoration: underline;">NewConnectionCallback</span>;
 </pre>
 </div>
 <p>
@@ -613,14 +659,14 @@ Acceptor帮助简化了搭建服务器accept这个部分的逻辑。通常这个
 </div>
 </div>
 
-<div id="outline-container-org1d3fc3a" class="outline-2">
-<h2 id="org1d3fc3a"><span class="section-number-2">9</span> Connector</h2>
+<div id="outline-container-org72d9846" class="outline-2">
+<h2 id="org72d9846"><span class="section-number-2">9</span> Connector</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Connector也是为了简化客户端编写，用户只需要提供这个逻辑即可，这个回调函数在建立链接成功的时候使用
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-constant">boost</span>::<span class="org-type">function</span>&lt;<span class="org-type">void</span> (<span class="org-type">int</span> <span class="org-variable-name">sockfd</span>)&gt; <span class="org-type">NewConnectionCallback</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">function</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sockfd</span>)&gt; <span style="font-weight: bold; text-decoration: underline;">NewConnectionCallback</span>;
 </pre>
 </div>
 <p>
@@ -631,51 +677,51 @@ Connector初始化以EventLoop和服务器地址初始化，然后在start的时
 </div>
 </div>
 
-<div id="outline-container-org24ddbcd" class="outline-2">
-<h2 id="org24ddbcd"><span class="section-number-2">10</span> TcpConnection</h2>
+<div id="outline-container-org06cb849" class="outline-2">
+<h2 id="org06cb849"><span class="section-number-2">10</span> TcpConnection</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 TcpConnection完成的工作就是当TCP连接建立之后处理socket的读写以及关闭。同样我们看看TcpConnection的结构
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">TcpConnection</span> : <span class="org-constant">boost</span>::<span class="org-type">noncopyable</span>,
-                      <span class="org-keyword">public</span> <span class="org-constant">boost</span>::<span class="org-type">enable_shared_from_this</span>&lt;<span class="org-type">TcpConnection</span>&gt;
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">TcpConnection</span> : <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">noncopyable</span>,
+                      <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">enable_shared_from_this</span>&lt;<span style="font-weight: bold; text-decoration: underline;">TcpConnection</span>&gt;
 {
-  <span class="org-keyword">public</span>:
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">Constructs a TcpConnection with a connected sockfd</span>
-    <span class="org-comment-delimiter">///</span>
-    <span class="org-comment-delimiter">/// </span><span class="org-comment">User should not create this object.</span>
-    <span class="org-function-name">TcpConnection</span>(<span class="org-type">EventLoop</span>* <span class="org-variable-name">loop</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#24314;&#31435;&#36830;&#25509;&#38656;&#35201;&#19968;&#20010;Reactor</span>
-                  <span class="org-keyword">const</span> <span class="org-type">string</span>&amp; <span class="org-variable-name">name</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#36830;&#25509;&#21517;&#31216;</span>
-                  <span class="org-type">int</span> <span class="org-variable-name">sockfd</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#36830;&#25509;fd.</span>
-                  <span class="org-keyword">const</span> <span class="org-type">InetAddress</span>&amp; <span class="org-variable-name">localAddr</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#36830;&#25509;&#30340;address.</span>
-                  <span class="org-keyword">const</span> <span class="org-type">InetAddress</span>&amp; <span class="org-variable-name">peerAddr</span>);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">called when TcpServer accepts a new connection</span>
-    <span class="org-type">void</span> <span class="org-function-name">connectEstablished</span>();   <span class="org-comment-delimiter">// </span><span class="org-comment">should be called only once</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">called when TcpServer has removed me from its map</span>
-    <span class="org-type">void</span> <span class="org-function-name">connectDestroyed</span>();  <span class="org-comment-delimiter">// </span><span class="org-comment">should be called only once</span>
-  <span class="org-keyword">private</span>:
-    <span class="org-keyword">enum</span> <span class="org-type">StateE</span> { <span class="org-variable-name">kDisconnected</span>, <span class="org-variable-name">kConnecting</span>, <span class="org-variable-name">kConnected</span>, <span class="org-variable-name">kDisconnecting</span> };
-    <span class="org-type">void</span> <span class="org-function-name">sendInLoop</span>(<span class="org-keyword">const</span> <span class="org-type">void</span>* <span class="org-variable-name">message</span>, <span class="org-type">size_t</span> <span class="org-variable-name">len</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#21457;&#36865;&#28040;&#24687;</span>
-    <span class="org-type">void</span> <span class="org-function-name">setState</span>(<span class="org-type">StateE</span> <span class="org-variable-name">s</span>) { state_ = s; }
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Constructs a TcpConnection with a connected sockfd</span>
+    <span style="font-weight: bold; font-style: italic;">///</span>
+    <span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">User should not create this object.</span>
+    <span style="font-weight: bold;">TcpConnection</span>(<span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">loop</span>, <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#24314;&#31435;&#36830;&#25509;&#38656;&#35201;&#19968;&#20010;Reactor</span>
+                  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">string</span>&amp; <span style="font-weight: bold; font-style: italic;">name</span>, <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36830;&#25509;&#21517;&#31216;</span>
+                  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sockfd</span>, <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36830;&#25509;fd.</span>
+                  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">InetAddress</span>&amp; <span style="font-weight: bold; font-style: italic;">localAddr</span>, <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36830;&#25509;&#30340;address.</span>
+                  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">InetAddress</span>&amp; <span style="font-weight: bold; font-style: italic;">peerAddr</span>);
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">called when TcpServer accepts a new connection</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">connectEstablished</span>();   <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">should be called only once</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">called when TcpServer has removed me from its map</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">connectDestroyed</span>();  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">should be called only once</span>
+  <span style="font-weight: bold;">private</span>:
+    <span style="font-weight: bold;">enum</span> <span style="font-weight: bold; text-decoration: underline;">StateE</span> { <span style="font-weight: bold; font-style: italic;">kDisconnected</span>, <span style="font-weight: bold; font-style: italic;">kConnecting</span>, <span style="font-weight: bold; font-style: italic;">kConnected</span>, <span style="font-weight: bold; font-style: italic;">kDisconnecting</span> };
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">sendInLoop</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">message</span>, <span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">len</span>); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21457;&#36865;&#28040;&#24687;</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">setState</span>(<span style="font-weight: bold; text-decoration: underline;">StateE</span> <span style="font-weight: bold; font-style: italic;">s</span>) { state_ = s; }
 
-    <span class="org-type">EventLoop</span>* <span class="org-variable-name">loop_</span>;
-    <span class="org-type">string</span> <span class="org-variable-name">name_</span>;
-    <span class="org-type">StateE</span> <span class="org-variable-name">state_</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">FIXME: use atomic variable</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">we don't expose those classes to client.</span>
-    <span class="org-constant">boost</span>::<span class="org-type">scoped_ptr</span>&lt;Socket&gt; <span class="org-variable-name">socket_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">socket.</span>
-    <span class="org-constant">boost</span>::<span class="org-type">scoped_ptr</span>&lt;Channel&gt; <span class="org-variable-name">channel_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#36830;&#25509;channel</span>
-    <span class="org-type">InetAddress</span> <span class="org-variable-name">localAddr_</span>;
-    <span class="org-type">InetAddress</span> <span class="org-variable-name">peerAddr_</span>;
-    <span class="org-type">ConnectionCallback</span> <span class="org-variable-name">connectionCallback_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#36830;&#25509;&#22238;&#35843;&#65292;&#36825;&#20010;&#35302;&#21457;&#21253;&#25324;&#22312;&#36830;&#25509;&#24314;&#31435;&#21644;&#26029;&#24320;&#37117;&#20250;&#35302;&#21457;</span>
-    <span class="org-type">MessageCallback</span> <span class="org-variable-name">messageCallback_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#26377;&#25968;&#25454;&#21487;&#35835;&#30340;&#22238;&#35843;</span>
-    <span class="org-type">WriteCompleteCallback</span> <span class="org-variable-name">writeCompleteCallback_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#20889;&#23436;&#27605;&#30340;&#22238;&#35843;</span>
-    <span class="org-type">CloseCallback</span> <span class="org-variable-name">closeCallback_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#36830;&#25509;&#20851;&#38381;&#22238;&#35843;</span>
-    <span class="org-type">Buffer</span> <span class="org-variable-name">inputBuffer_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#25968;&#25454;&#35835;&#21462;buffer.</span>
-    <span class="org-type">Buffer</span> <span class="org-variable-name">outputBuffer_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">FIXME: use list&lt;Buffer&gt; as output buffer.</span>
-    <span class="org-constant">boost</span>::<span class="org-type">any</span> <span class="org-variable-name">context_</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#19978;&#19979;&#25991;&#29615;&#22659;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">FIXME: creationTime_, lastReceiveTime_</span>
-    <span class="org-comment-delimiter">//        </span><span class="org-comment">bytesReceived_, bytesSent_</span>
+    <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">loop_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold; font-style: italic;">name_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">StateE</span> <span style="font-weight: bold; font-style: italic;">state_</span>;  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">FIXME: use atomic variable</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">we don't expose those classes to client.</span>
+    <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">scoped_ptr</span>&lt;Socket&gt; <span style="font-weight: bold; font-style: italic;">socket_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">socket.</span>
+    <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">scoped_ptr</span>&lt;Channel&gt; <span style="font-weight: bold; font-style: italic;">channel_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36830;&#25509;channel</span>
+    <span style="font-weight: bold; text-decoration: underline;">InetAddress</span> <span style="font-weight: bold; font-style: italic;">localAddr_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">InetAddress</span> <span style="font-weight: bold; font-style: italic;">peerAddr_</span>;
+    <span style="font-weight: bold; text-decoration: underline;">ConnectionCallback</span> <span style="font-weight: bold; font-style: italic;">connectionCallback_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36830;&#25509;&#22238;&#35843;&#65292;&#36825;&#20010;&#35302;&#21457;&#21253;&#25324;&#22312;&#36830;&#25509;&#24314;&#31435;&#21644;&#26029;&#24320;&#37117;&#20250;&#35302;&#21457;</span>
+    <span style="font-weight: bold; text-decoration: underline;">MessageCallback</span> <span style="font-weight: bold; font-style: italic;">messageCallback_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#26377;&#25968;&#25454;&#21487;&#35835;&#30340;&#22238;&#35843;</span>
+    <span style="font-weight: bold; text-decoration: underline;">WriteCompleteCallback</span> <span style="font-weight: bold; font-style: italic;">writeCompleteCallback_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20889;&#23436;&#27605;&#30340;&#22238;&#35843;</span>
+    <span style="font-weight: bold; text-decoration: underline;">CloseCallback</span> <span style="font-weight: bold; font-style: italic;">closeCallback_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36830;&#25509;&#20851;&#38381;&#22238;&#35843;</span>
+    <span style="font-weight: bold; text-decoration: underline;">Buffer</span> <span style="font-weight: bold; font-style: italic;">inputBuffer_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25968;&#25454;&#35835;&#21462;buffer.</span>
+    <span style="font-weight: bold; text-decoration: underline;">Buffer</span> <span style="font-weight: bold; font-style: italic;">outputBuffer_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">FIXME: use list&lt;Buffer&gt; as output buffer.</span>
+    <span style="font-weight: bold; text-decoration: underline;">boost</span>::<span style="font-weight: bold; text-decoration: underline;">any</span> <span style="font-weight: bold; font-style: italic;">context_</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#19978;&#19979;&#25991;&#29615;&#22659;</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">FIXME: creationTime_, lastReceiveTime_</span>
+    <span style="font-weight: bold; font-style: italic;">//        </span><span style="font-weight: bold; font-style: italic;">bytesReceived_, bytesSent_</span>
 };
 </pre>
 </div>
@@ -695,28 +741,28 @@ TcpConnection一次最多读取64K字节的内容，然后交给上层。上层�
 </div>
 </div>
 
-<div id="outline-container-org6f5729d" class="outline-2">
-<h2 id="org6f5729d"><span class="section-number-2">11</span> TcpClient</h2>
+<div id="outline-container-org9bd0f67" class="outline-2">
+<h2 id="org9bd0f67"><span class="section-number-2">11</span> TcpClient</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 一旦我们了解了TcpConnection之后的话，这个托管了建立好连接之后所需要的处理的所有事情，那么我们对于client关心的重点就是如果触发连接的建立以及连接是如何断开的。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-constant">TcpClient</span>::<span class="org-function-name">TcpClient</span>(<span class="org-type">EventLoop</span>* <span class="org-variable-name">loop</span>,
-                     <span class="org-keyword">const</span> <span class="org-type">InetAddress</span>&amp; <span class="org-variable-name">serverAddr</span>,
-                     <span class="org-keyword">const</span> <span class="org-type">string</span>&amp; <span class="org-variable-name">name</span>)
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">TcpClient</span>::<span style="font-weight: bold;">TcpClient</span>(<span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">loop</span>,
+                     <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">InetAddress</span>&amp; <span style="font-weight: bold; font-style: italic;">serverAddr</span>,
+                     <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">string</span>&amp; <span style="font-weight: bold; font-style: italic;">name</span>)
         : loop_(CHECK_NOTNULL(loop)),
-          connector_(<span class="org-keyword">new</span> <span class="org-type">Connector</span>(loop, serverAddr)),
+          connector_(<span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Connector</span>(loop, serverAddr)),
           name_(name),
           connectionCallback_(defaultConnectionCallback),
           messageCallback_(defaultMessageCallback),
-          retry_(<span class="org-constant">false</span>),
-          connect_(<span class="org-constant">true</span>),
+          retry_(<span style="font-weight: bold; text-decoration: underline;">false</span>),
+          connect_(<span style="font-weight: bold; text-decoration: underline;">true</span>),
           nextConnId_(1)
 {
     connector_-&gt;setNewConnectionCallback(
-        <span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">TcpClient</span>::newConnection, <span class="org-keyword">this</span>, _1));
-    <span class="org-comment-delimiter">// </span><span class="org-comment">FIXME setConnectFailedCallback</span>
+        <span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">TcpClient</span>::newConnection, <span style="font-weight: bold;">this</span>, _1));
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">FIXME setConnectFailedCallback</span>
 }
 </pre>
 </div>
@@ -729,28 +775,28 @@ TcpConnection::connectEstablished,之后的所有操作都交给TcpConnection了
 </div>
 </div>
 
-<div id="outline-container-org5b226b1" class="outline-2">
-<h2 id="org5b226b1"><span class="section-number-2">12</span> TcpServer</h2>
+<div id="outline-container-org3c561ca" class="outline-2">
+<h2 id="org3c561ca"><span class="section-number-2">12</span> TcpServer</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 从分析上我们和TcpClient一样只是关心连接是如何建立这个过程。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-constant">TcpServer</span>::<span class="org-function-name">TcpServer</span>(<span class="org-type">EventLoop</span>* <span class="org-variable-name">loop</span>,
-                     <span class="org-keyword">const</span> <span class="org-type">InetAddress</span>&amp; <span class="org-variable-name">listenAddr</span>,
-                     <span class="org-keyword">const</span> <span class="org-type">string</span>&amp; <span class="org-variable-name">nameArg</span>)
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">TcpServer</span>::<span style="font-weight: bold;">TcpServer</span>(<span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">loop</span>,
+                     <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">InetAddress</span>&amp; <span style="font-weight: bold; font-style: italic;">listenAddr</span>,
+                     <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">string</span>&amp; <span style="font-weight: bold; font-style: italic;">nameArg</span>)
   : loop_(CHECK_NOTNULL(loop)),
     hostport_(listenAddr.toHostPort()),
     name_(nameArg),
-    acceptor_(<span class="org-keyword">new</span> <span class="org-type">Acceptor</span>(loop, listenAddr)),
-    threadPool_(<span class="org-keyword">new</span> <span class="org-type">EventLoopThreadPool</span>(loop)),
+    acceptor_(<span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Acceptor</span>(loop, listenAddr)),
+    threadPool_(<span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">EventLoopThreadPool</span>(loop)),
     connectionCallback_(defaultConnectionCallback),
     messageCallback_(defaultMessageCallback),
-    started_(<span class="org-constant">false</span>),
+    started_(<span style="font-weight: bold; text-decoration: underline;">false</span>),
     nextConnId_(1)
 {
   acceptor_-&gt;setNewConnectionCallback(
-      <span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">TcpServer</span>::newConnection, <span class="org-keyword">this</span>, _1, _2));
+      <span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">TcpServer</span>::newConnection, <span style="font-weight: bold;">this</span>, _1, _2));
 }
 </pre>
 </div>
@@ -759,34 +805,39 @@ TcpConnection::connectEstablished,之后的所有操作都交给TcpConnection了
 会调用acceptor::listen这个方法，一旦有连接建立的话那么会调用newConnection.下面是newConnection代码
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">TcpServer</span>::<span class="org-function-name">newConnection</span>(<span class="org-type">int</span> <span class="org-variable-name">sockfd</span>, <span class="org-keyword">const</span> <span class="org-type">InetAddress</span>&amp; <span class="org-variable-name">peerAddr</span>)
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TcpServer</span>::<span style="font-weight: bold;">newConnection</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sockfd</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">InetAddress</span>&amp; <span style="font-weight: bold; font-style: italic;">peerAddr</span>)
 {
     loop_-&gt;assertInLoopThread();
-    <span class="org-type">EventLoop</span>* <span class="org-variable-name">ioLoop</span> = threadPool_-&gt;getNextLoop();
-    <span class="org-type">char</span> <span class="org-variable-name">buf</span>[32];
-    snprintf(buf, <span class="org-keyword">sizeof</span> buf, <span class="org-string">":%s#%d"</span>, hostport_.c_str(), nextConnId_);
+    <span style="font-weight: bold; text-decoration: underline;">EventLoop</span>* <span style="font-weight: bold; font-style: italic;">ioLoop</span> = threadPool_-&gt;getNextLoop();
+    <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">buf</span>[32];
+    snprintf(buf, <span style="font-weight: bold;">sizeof</span> buf, <span style="font-style: italic;">":%s#%d"</span>, hostport_.c_str(), nextConnId_);
     ++nextConnId_;
-    <span class="org-type">string</span> <span class="org-variable-name">connName</span> = name_ + buf;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">FIXME poll with zero timeout to double confirm the new connection</span>
-    <span class="org-type">TcpConnectionPtr</span> <span class="org-variable-name">conn</span>(
-        <span class="org-keyword">new</span> <span class="org-type">TcpConnection</span>(ioLoop, connName, sockfd, localAddr, peerAddr));
+    <span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold; font-style: italic;">connName</span> = name_ + buf;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">FIXME poll with zero timeout to double confirm the new connection</span>
+    <span style="font-weight: bold; text-decoration: underline;">TcpConnectionPtr</span> <span style="font-weight: bold; font-style: italic;">conn</span>(
+        <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">TcpConnection</span>(ioLoop, connName, sockfd, localAddr, peerAddr));
     connections_[connName] = conn;
     conn-&gt;setConnectionCallback(connectionCallback_);
     conn-&gt;setMessageCallback(messageCallback_);
     conn-&gt;setWriteCompleteCallback(writeCompleteCallback_);
     conn-&gt;setCloseCallback(
-        <span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">TcpServer</span>::removeConnection, <span class="org-keyword">this</span>, _1)); <span class="org-comment-delimiter">// </span><span class="org-comment">FIXME: unsafe</span>
-    ioLoop-&gt;runInLoop(<span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">TcpConnection</span>::connectEstablished, conn));
+        <span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">TcpServer</span>::removeConnection, <span style="font-weight: bold;">this</span>, _1)); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">FIXME: unsafe</span>
+    ioLoop-&gt;runInLoop(<span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">TcpConnection</span>::connectEstablished, conn));
 }
 </pre>
 </div>
 <p>
-对于服务端来说连接都被唯一化了然后映射称为字符串放在connections_这个容器内部。threadPool_-&gt;getNextLoop()可以轮询地将取出么一个线程然后将
-TcpConnection::connectEstablished轮询地丢到每个线程里面去完成。存放在connections_是有原因了，每个TcpConnection有唯一一个名字，这样Server
-就可以根据TcpConnection来从自己内部移除链接了。在析构函数里面可以遍历connections_内容得到所有建立的连接并且逐一释放。
+对于服务端来说连接都被唯一化了然后映射称为字符串放在connections<sub>这个容器内部</sub>。threadPool_-&gt;getNextLoop()可以轮询地将取出么一个线程然后将
+TcpConnection::connectEstablished轮询地丢到每个线程里面去完成。存放在connections<sub>是有原因了</sub>，每个TcpConnection有唯一一个名字，这样Server
+就可以根据TcpConnection来从自己内部移除链接了。在析构函数里面可以遍历connections<sub>内容得到所有建立的连接并且逐一释放</sub>。
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/muduo.html';this.page.identifier = 'muduo.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

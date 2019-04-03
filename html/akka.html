@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Akka Doc</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Akka Doc</h1>
@@ -16,39 +62,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3a70b4d">1. Introduction</a></li>
-<li><a href="#orgd3410c9">2. Actor System</a></li>
-<li><a href="#orga5d3e37">3. Actor Concept</a>
+<li><a href="#org1e80180">1. Introduction</a></li>
+<li><a href="#orgd19492b">2. Actor System</a></li>
+<li><a href="#org976b58d">3. Actor Concept</a>
 <ul>
-<li><a href="#org950df88">3.1. Reference</a></li>
-<li><a href="#org35a8b86">3.2. Path</a></li>
-<li><a href="#orge07b581">3.3. State</a></li>
-<li><a href="#org963dc58">3.4. Behavior</a></li>
-<li><a href="#orgb876d1f">3.5. Mailbox</a></li>
-<li><a href="#orgb50cb22">3.6. in Akka</a></li>
+<li><a href="#orgae2bcd2">3.1. Reference</a></li>
+<li><a href="#org7dfb42a">3.2. Path</a></li>
+<li><a href="#orge107283">3.3. State</a></li>
+<li><a href="#org89e5d40">3.4. Behavior</a></li>
+<li><a href="#orgb040b19">3.5. Mailbox</a></li>
+<li><a href="#org9f40691">3.6. in Akka</a></li>
 </ul>
 </li>
-<li><a href="#org0567460">4. Actor Lifecycle</a></li>
-<li><a href="#org5589915">5. Supervision And Monitoring</a></li>
-<li><a href="#org0c044ad">6. Message Order and Delivery Guarantees</a></li>
-<li><a href="#org140aa0d">7. Location Transparency</a></li>
-<li><a href="#org161ee2e">8. Configuration</a></li>
-<li><a href="#org6621ff4">9. Dispatcher</a></li>
-<li><a href="#org641539c">10. Mailboxes</a></li>
-<li><a href="#org190dcd9">11. Routing</a></li>
-<li><a href="#org73908ad">12. Transactors</a></li>
-<li><a href="#org1bb54f3">13. Enhancement</a>
+<li><a href="#orgbdf7c5b">4. Actor Lifecycle</a></li>
+<li><a href="#orgdd0ad75">5. Supervision And Monitoring</a></li>
+<li><a href="#orgfa32c03">6. Message Order and Delivery Guarantees</a></li>
+<li><a href="#orge2f2720">7. Location Transparency</a></li>
+<li><a href="#org0135307">8. Configuration</a></li>
+<li><a href="#org7c8d79c">9. Dispatcher</a></li>
+<li><a href="#orgf7a34d0">10. Mailboxes</a></li>
+<li><a href="#orgd84cb5d">11. Routing</a></li>
+<li><a href="#org872cc6a">12. Transactors</a></li>
+<li><a href="#orgfdf2a54">13. Enhancement</a>
 <ul>
-<li><a href="#org20fae7a">13.1. Typed Channel</a></li>
-<li><a href="#orgdde24dd">13.2. Typed Actor</a></li>
-<li><a href="#org8458476">13.3. FSM</a></li>
-<li><a href="#org1491293">13.4. Futures</a></li>
-<li><a href="#orgac915c6">13.5. Dataflow Concurrency</a></li>
-<li><a href="#org701423b">13.6. STM</a></li>
-<li><a href="#orgb513e17">13.7. Agents</a></li>
+<li><a href="#org901edfd">13.1. Typed Channel</a></li>
+<li><a href="#org735a005">13.2. Typed Actor</a></li>
+<li><a href="#org4f76f68">13.3. FSM</a></li>
+<li><a href="#orge5c8783">13.4. Futures</a></li>
+<li><a href="#org2d459e7">13.5. Dataflow Concurrency</a></li>
+<li><a href="#orgebe4dfa">13.6. STM</a></li>
+<li><a href="#org444707d">13.7. Agents</a></li>
 </ul>
 </li>
-<li><a href="#org6b070d5">14. TroubleShooting</a></li>
+<li><a href="#orgbeabcc2">14. TroubleShooting</a></li>
 </ul>
 </div>
 </div>
@@ -56,8 +102,8 @@
 <a href="http://akka.io/">http://akka.io/</a>
 </p>
 
-<div id="outline-container-org3a70b4d" class="outline-2">
-<h2 id="org3a70b4d"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org1e80180" class="outline-2">
+<h2 id="org1e80180"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Akka implements a unique hybrid
@@ -141,8 +187,8 @@ class Worker extends Actor {
 </div>
 </div>
 
-<div id="outline-container-orgd3410c9" class="outline-2">
-<h2 id="orgd3410c9"><span class="section-number-2">2</span> Actor System</h2>
+<div id="outline-container-orgd19492b" class="outline-2">
+<h2 id="orgd19492b"><span class="section-number-2">2</span> Actor System</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Related Terminology, Concepts
@@ -218,8 +264,8 @@ An actor system manages the resources it is configured to use in order to run th
 </div>
 </div>
 
-<div id="outline-container-orga5d3e37" class="outline-2">
-<h2 id="orga5d3e37"><span class="section-number-2">3</span> Actor Concept</h2>
+<div id="outline-container-org976b58d" class="outline-2">
+<h2 id="org976b58d"><span class="section-number-2">3</span> Actor Concept</h2>
 <div class="outline-text-2" id="text-3">
 
 <div class="figure">
@@ -228,8 +274,8 @@ An actor system manages the resources it is configured to use in order to run th
 </div>
 </div>
 
-<div id="outline-container-org950df88" class="outline-3">
-<h3 id="org950df88"><span class="section-number-3">3.1</span> Reference</h3>
+<div id="outline-container-orgae2bcd2" class="outline-3">
+<h3 id="orgae2bcd2"><span class="section-number-3">3.1</span> Reference</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>#note: ActorRef. 类似Actor对象指针，所有Actor对象操作都是通过引用来完成的。这样Actor如果重启，或者是部署在远程做通信的话，都可以以透明方式来完成</li>
@@ -292,8 +338,8 @@ Equality of ActorRef match the intention that an ActorRef corresponds to the tar
 </div>
 </div>
 
-<div id="outline-container-org35a8b86" class="outline-3">
-<h3 id="org35a8b86"><span class="section-number-3">3.2</span> Path</h3>
+<div id="outline-container-org7dfb42a" class="outline-3">
+<h3 id="org7dfb42a"><span class="section-number-3">3.2</span> Path</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Since actors are created in a strictly hierarchical fashion, there exists a unique sequence of actor names given by recursively following the supervision links between child and parent down towards the root of the actor system. This sequence can be seen as enclosing folders in a file system, hence we adopted the name “path” to refer to it.（非常类似文件系统）
@@ -369,8 +415,8 @@ The need to structure the name space for actors like this arises from a central 
 </div>
 </div>
 
-<div id="outline-container-orge07b581" class="outline-3">
-<h3 id="orge07b581"><span class="section-number-3">3.3</span> State</h3>
+<div id="outline-container-orge107283" class="outline-3">
+<h3 id="orge107283"><span class="section-number-3">3.3</span> State</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Behind the scenes Akka will run sets of actors on sets of real threads, where typically many actors share one thread, and subsequent invocations of one actor may end up being processed on different threads. Akka ensures that this implementation detail does not affect the single-threadedness of handling the actor’s state.（多个Actor对象可能会共享一个线程，并且Actor每次执行可能是在不同的线程上执行）</li>
@@ -379,8 +425,8 @@ The need to structure the name space for actors like this arises from a central 
 </div>
 </div>
 
-<div id="outline-container-org963dc58" class="outline-3">
-<h3 id="org963dc58"><span class="section-number-3">3.4</span> Behavior</h3>
+<div id="outline-container-org89e5d40" class="outline-3">
+<h3 id="org89e5d40"><span class="section-number-3">3.4</span> Behavior</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Every time a message is processed, it is matched against the current behavior of the actor. Behavior means a function which defines the actions to be taken in reaction to the message at that point in time, say forward a request if the client is authorized, deny it otherwise.</li>
@@ -391,8 +437,8 @@ The need to structure the name space for actors like this arises from a central 
 </div>
 </div>
 
-<div id="outline-container-orgb876d1f" class="outline-3">
-<h3 id="orgb876d1f"><span class="section-number-3">3.5</span> Mailbox</h3>
+<div id="outline-container-orgb040b19" class="outline-3">
+<h3 id="orgb040b19"><span class="section-number-3">3.5</span> Mailbox</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>The piece which connects sender and receiver is the actor’s mailbox: each actor has exactly one mailbox to which all senders enqueue their messages.
@@ -411,8 +457,8 @@ The need to structure the name space for actors like this arises from a central 
 </div>
 </div>
 
-<div id="outline-container-orgb50cb22" class="outline-3">
-<h3 id="orgb50cb22"><span class="section-number-3">3.6</span> in Akka</h3>
+<div id="outline-container-org9f40691" class="outline-3">
+<h3 id="org9f40691"><span class="section-number-3">3.6</span> in Akka</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Akka实现的Actor对象内部包括了下面几个比较重要的字段和方法
@@ -433,8 +479,8 @@ Akka实现的Actor对象内部包括了下面几个比较重要的字段和方�
 </div>
 </div>
 
-<div id="outline-container-org0567460" class="outline-2">
-<h2 id="org0567460"><span class="section-number-2">4</span> Actor Lifecycle</h2>
+<div id="outline-container-orgbdf7c5b" class="outline-2">
+<h2 id="orgbdf7c5b"><span class="section-number-2">4</span> Actor Lifecycle</h2>
 <div class="outline-text-2" id="text-4">
 
 <div class="figure">
@@ -462,8 +508,8 @@ Termination
 </div>
 </div>
 
-<div id="outline-container-org5589915" class="outline-2">
-<h2 id="org5589915"><span class="section-number-2">5</span> Supervision And Monitoring</h2>
+<div id="outline-container-orgdd0ad75" class="outline-2">
+<h2 id="orgdd0ad75"><span class="section-number-2">5</span> Supervision And Monitoring</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Akka implements a specific form called <b>“parental supervision”.</b>
@@ -558,8 +604,8 @@ The AllForOneStrategy is applicable in cases where the ensemble of children has 
 </div>
 </div>
 
-<div id="outline-container-org0c044ad" class="outline-2">
-<h2 id="org0c044ad"><span class="section-number-2">6</span> Message Order and Delivery Guarantees</h2>
+<div id="outline-container-orgfa32c03" class="outline-2">
+<h2 id="orgfa32c03"><span class="section-number-2">6</span> Message Order and Delivery Guarantees</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Messages are sent to an Actor through one of the following methods.（两种方式来进行消息发送）
@@ -627,8 +673,8 @@ The main use of this facility is for debugging, especially if an actor send does
 </div>
 </div>
 
-<div id="outline-container-org140aa0d" class="outline-2">
-<h2 id="org140aa0d"><span class="section-number-2">7</span> Location Transparency</h2>
+<div id="outline-container-orge2f2720" class="outline-2">
+<h2 id="orge2f2720"><span class="section-number-2">7</span> Location Transparency</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Everything in Akka is designed to work in a distributed setting: all interactions of actors use purely message passing and everything is asynchronous. This effort has been undertaken to ensure that all functions are available equally when running within a single JVM or on a cluster of hundreds of machines. The key for enabling this is to go from remote to local by way of optimization instead of trying to go from local to remote by way of generalization. See <a href="http://doc.akka.io/docs/misc/smli_tr-94-29.pdf">this classic paper</a> for a detailed discussion on why the second approach is bound to fail.(将local特化成为一种remote形式才是正确处理分布式的方法。所有消息之间通信包括远程通信都是异步的）
@@ -648,8 +694,8 @@ We took the idea of transparency to the limit in that there is nearly no API for
 </div>
 </div>
 
-<div id="outline-container-org161ee2e" class="outline-2">
-<h2 id="org161ee2e"><span class="section-number-2">8</span> Configuration</h2>
+<div id="outline-container-org0135307" class="outline-2">
+<h2 id="org0135307"><span class="section-number-2">8</span> Configuration</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 You can start using Akka without defining any configuration, since sensible default values are provided. Later on you might need to amend the settings to change the default behavior or adapt for specific runtime environments. Typical examples of settings that you might amend:
@@ -685,8 +731,8 @@ Akka’s configuration approach relies heavily on the notion of every module/jar
 </div>
 </div>
 
-<div id="outline-container-org6621ff4" class="outline-2">
-<h2 id="org6621ff4"><span class="section-number-2">9</span> Dispatcher</h2>
+<div id="outline-container-org7c8d79c" class="outline-2">
+<h2 id="org7c8d79c"><span class="section-number-2">9</span> Dispatcher</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 An Akka MessageDispatcher is what makes Akka Actors “tick”, it is the engine of the machine so to speak. All MessageDispatcher implementations are also an ExecutionContext, which means that they can be used to execute arbitrary code, for instance Futures.(Dispatcher让整个Akka运行起来）。There are 4 different types of message dispatchers：
@@ -738,8 +784,8 @@ An Akka MessageDispatcher is what makes Akka Actors “tick”, it is the engine
 </div>
 </div>
 
-<div id="outline-container-org641539c" class="outline-2">
-<h2 id="org641539c"><span class="section-number-2">10</span> Mailboxes</h2>
+<div id="outline-container-orgf7a34d0" class="outline-2">
+<h2 id="orgf7a34d0"><span class="section-number-2">10</span> Mailboxes</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 Akka comes shipped with a number of mailbox implementations:
@@ -790,8 +836,8 @@ Akka comes shipped with a number of mailbox implementations:
 </div>
 </div>
 
-<div id="outline-container-org190dcd9" class="outline-2">
-<h2 id="org190dcd9"><span class="section-number-2">11</span> Routing</h2>
+<div id="outline-container-orgd84cb5d" class="outline-2">
+<h2 id="orgd84cb5d"><span class="section-number-2">11</span> Routing</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 A Router is an actor that receives messages and efficiently routes them to other actors, known as its routees. Different routing strategies can be used, according to your application’s needs. Akka comes with several useful routing strategies right out of the box. But, as you will see in this chapter, it is also possible to create your own. The routers shipped with Akka are:
@@ -831,8 +877,8 @@ Handling for Special Messages
 </div>
 </div>
 
-<div id="outline-container-org73908ad" class="outline-2">
-<h2 id="org73908ad"><span class="section-number-2">12</span> Transactors</h2>
+<div id="outline-container-org872cc6a" class="outline-2">
+<h2 id="org872cc6a"><span class="section-number-2">12</span> Transactors</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Memory Model
@@ -861,35 +907,40 @@ Memory Model
 </div>
 </div>
 
-<div id="outline-container-org1bb54f3" class="outline-2">
-<h2 id="org1bb54f3"><span class="section-number-2">13</span> Enhancement</h2>
+<div id="outline-container-orgfdf2a54" class="outline-2">
+<h2 id="orgfdf2a54"><span class="section-number-2">13</span> Enhancement</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org20fae7a" class="outline-3">
-<h3 id="org20fae7a"><span class="section-number-3">13.1</span> Typed Channel</h3>
+<div id="outline-container-org901edfd" class="outline-3">
+<h3 id="org901edfd"><span class="section-number-3">13.1</span> Typed Channel</h3>
 </div>
-<div id="outline-container-orgdde24dd" class="outline-3">
-<h3 id="orgdde24dd"><span class="section-number-3">13.2</span> Typed Actor</h3>
+<div id="outline-container-org735a005" class="outline-3">
+<h3 id="org735a005"><span class="section-number-3">13.2</span> Typed Actor</h3>
 </div>
-<div id="outline-container-org8458476" class="outline-3">
-<h3 id="org8458476"><span class="section-number-3">13.3</span> FSM</h3>
+<div id="outline-container-org4f76f68" class="outline-3">
+<h3 id="org4f76f68"><span class="section-number-3">13.3</span> FSM</h3>
 </div>
-<div id="outline-container-org1491293" class="outline-3">
-<h3 id="org1491293"><span class="section-number-3">13.4</span> Futures</h3>
+<div id="outline-container-orge5c8783" class="outline-3">
+<h3 id="orge5c8783"><span class="section-number-3">13.4</span> Futures</h3>
 </div>
-<div id="outline-container-orgac915c6" class="outline-3">
-<h3 id="orgac915c6"><span class="section-number-3">13.5</span> Dataflow Concurrency</h3>
+<div id="outline-container-org2d459e7" class="outline-3">
+<h3 id="org2d459e7"><span class="section-number-3">13.5</span> Dataflow Concurrency</h3>
 </div>
-<div id="outline-container-org701423b" class="outline-3">
-<h3 id="org701423b"><span class="section-number-3">13.6</span> STM</h3>
+<div id="outline-container-orgebe4dfa" class="outline-3">
+<h3 id="orgebe4dfa"><span class="section-number-3">13.6</span> STM</h3>
 </div>
-<div id="outline-container-orgb513e17" class="outline-3">
-<h3 id="orgb513e17"><span class="section-number-3">13.7</span> Agents</h3>
+<div id="outline-container-org444707d" class="outline-3">
+<h3 id="org444707d"><span class="section-number-3">13.7</span> Agents</h3>
 </div>
 </div>
-<div id="outline-container-org6b070d5" class="outline-2">
-<h2 id="org6b070d5"><span class="section-number-2">14</span> TroubleShooting</h2>
+<div id="outline-container-orgbeabcc2" class="outline-2">
+<h2 id="orgbeabcc2"><span class="section-number-2">14</span> TroubleShooting</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/akka.html';this.page.identifier = 'akka.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

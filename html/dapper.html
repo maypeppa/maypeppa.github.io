@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dapper, a Large-Scale Distributed Systems Tracing Infrastructure</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Dapper, a Large-Scale Distributed Systems Tracing Infrastructure</h1>
@@ -16,54 +62,54 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1345cf5">1. Abstract</a></li>
-<li><a href="#orga8c1ad0">2. Introduction</a></li>
-<li><a href="#orge3d4c0a">3. Distributed Tracing in Dapper</a>
+<li><a href="#orgae1c053">1. Abstract</a></li>
+<li><a href="#orgbad5754">2. Introduction</a></li>
+<li><a href="#org461aad4">3. Distributed Tracing in Dapper</a>
 <ul>
-<li><a href="#org8866068">3.1. Trace trees and spans</a></li>
-<li><a href="#org6fdb641">3.2. Instrumentation points</a></li>
-<li><a href="#orgdf5ceec">3.3. Annotations</a></li>
-<li><a href="#org74a598c">3.4. Sampling</a></li>
-<li><a href="#org1800575">3.5. Trace collection</a></li>
-<li><a href="#org66a2670">3.6. Security and privacy considerations</a></li>
+<li><a href="#org5b4d531">3.1. Trace trees and spans</a></li>
+<li><a href="#orgbd36527">3.2. Instrumentation points</a></li>
+<li><a href="#org8017c11">3.3. Annotations</a></li>
+<li><a href="#org056c998">3.4. Sampling</a></li>
+<li><a href="#orgb21040b">3.5. Trace collection</a></li>
+<li><a href="#org1021699">3.6. Security and privacy considerations</a></li>
 </ul>
 </li>
-<li><a href="#org4d23d48">4. Dapper Deployment Status</a>
+<li><a href="#org7c9f6e1">4. Dapper Deployment Status</a>
 <ul>
-<li><a href="#org36eb525">4.1. Dapper runtime library</a></li>
-<li><a href="#orgd994269">4.2. Production coverage</a></li>
-<li><a href="#org8cc10ea">4.3. Use of trace annotations</a></li>
+<li><a href="#org1f6c012">4.1. Dapper runtime library</a></li>
+<li><a href="#org1323dfc">4.2. Production coverage</a></li>
+<li><a href="#org90b0b7c">4.3. Use of trace annotations</a></li>
 </ul>
 </li>
-<li><a href="#org7404520">5. Managing Tracing Overhead</a>
+<li><a href="#org2bcac25">5. Managing Tracing Overhead</a>
 <ul>
-<li><a href="#org2992c40">5.1. Trace generation overhead</a></li>
-<li><a href="#orgd416817">5.2. Trace collection overhead</a></li>
-<li><a href="#org830b45a">5.3. Effect on production workloads</a></li>
-<li><a href="#org9fc0f20">5.4. Adaptive sampling</a></li>
-<li><a href="#orgb7fd98d">5.5. Coping with aggressive sampling</a></li>
-<li><a href="#org24ac670">5.6. Additional sampling during collection</a></li>
+<li><a href="#orgd86d489">5.1. Trace generation overhead</a></li>
+<li><a href="#org964e8fc">5.2. Trace collection overhead</a></li>
+<li><a href="#orgab0b371">5.3. Effect on production workloads</a></li>
+<li><a href="#org55ff80d">5.4. Adaptive sampling</a></li>
+<li><a href="#org851c4d7">5.5. Coping with aggressive sampling</a></li>
+<li><a href="#orgde9ea08">5.6. Additional sampling during collection</a></li>
 </ul>
 </li>
-<li><a href="#org5229235">6. General-Purpose Dapper Tools</a>
+<li><a href="#orgffca7a3">6. General-Purpose Dapper Tools</a>
 <ul>
-<li><a href="#org24418ba">6.1. The Dapper Depot API</a></li>
-<li><a href="#org66d6745">6.2. The Dapper user interface</a></li>
+<li><a href="#orgcc2cb32">6.1. The Dapper Depot API</a></li>
+<li><a href="#org5472148">6.2. The Dapper user interface</a></li>
 </ul>
 </li>
-<li><a href="#orgf63595b">7. Experiences</a>
+<li><a href="#org74ff059">7. Experiences</a>
 <ul>
-<li><a href="#org29b3b34">7.1. Using Dapper during development</a></li>
-<li><a href="#org3a33a60">7.2. Addressing long tail latency</a></li>
-<li><a href="#orge9baf2d">7.3. Inferring service dependencies</a></li>
-<li><a href="#org6054639">7.4. Network usage of different services</a></li>
-<li><a href="#orga5af855">7.5. Layered and Shared Storage Systems</a></li>
-<li><a href="#org47f6ba2">7.6. Firefighting with Dapper</a></li>
+<li><a href="#org0863e3d">7.1. Using Dapper during development</a></li>
+<li><a href="#org257e8f3">7.2. Addressing long tail latency</a></li>
+<li><a href="#org0de9b9c">7.3. Inferring service dependencies</a></li>
+<li><a href="#orga04a21a">7.4. Network usage of different services</a></li>
+<li><a href="#orgfb76571">7.5. Layered and Shared Storage Systems</a></li>
+<li><a href="#org1c6fbc4">7.6. Firefighting with Dapper</a></li>
 </ul>
 </li>
-<li><a href="#org0190652">8. Other Lessons Learned</a></li>
-<li><a href="#org6180789">9. Related Work</a></li>
-<li><a href="#org58e5953">10. Conclusions</a></li>
+<li><a href="#org5448028">8. Other Lessons Learned</a></li>
+<li><a href="#orgfaa6617">9. Related Work</a></li>
+<li><a href="#org01eb993">10. Conclusions</a></li>
 </ul>
 </div>
 </div>
@@ -72,8 +118,8 @@
 <li><a href="http://duanple.blog.163.com/blog/static/70971767201329113141336/">http://duanple.blog.163.com/blog/static/70971767201329113141336/</a></li>
 </ul>
 
-<div id="outline-container-org1345cf5" class="outline-2">
-<h2 id="org1345cf5"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-orgae1c053" class="outline-2">
+<h2 id="orgae1c053"><span class="section-number-2">1</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Modern Internet services are often implemented as com- plex, large-scale distributed systems. These applications are constructed from collections of software modules that may be developed by different teams, perhaps in different programming languages, and could span many thousands of machines across multiple physical facili- ties. Tools that aid in understanding system behavior and reasoning about performance issues are invaluable in such an environment.（现代互联网服务底层都是复杂的，大规模的分布式系统， 由很多组件模块组成。而这些组件模块都是由不同的开发团队开发的，甚至使用不同语言完成的，并且有可能分布式很多机器上。在这样的环境下面，有工具能够帮助理解系统行为并且对性能问题进行解释分析是非常有帮助的）。 #note：Dapper就是这样一个追踪系统，能够追踪到各个模块之间相互调用关系，这些调用关系可能是跨越服务，跨越机器的。通过这种追踪系统就能够在比较高的层面上分析问题和理解系统
@@ -81,8 +127,8 @@ Modern Internet services are often implemented as com- plex, large-scale distrib
 </div>
 </div>
 
-<div id="outline-container-orga8c1ad0" class="outline-2">
-<h2 id="orga8c1ad0"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orgbad5754" class="outline-2">
+<h2 id="orgbad5754"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>An engineer looking only at the overall latency may know there is a problem, but may not be able to guess which service is at fault, nor why it is behaving poorly. （系统复杂的时候比较难以分析性能开销和瓶颈在什么地方）
@@ -116,8 +162,8 @@ Modern Internet services are often implemented as com- plex, large-scale distrib
 </div>
 </div>
 
-<div id="outline-container-orge3d4c0a" class="outline-2">
-<h2 id="orge3d4c0a"><span class="section-number-2">3</span> Distributed Tracing in Dapper</h2>
+<div id="outline-container-org461aad4" class="outline-2">
+<h2 id="org461aad4"><span class="section-number-2">3</span> Distributed Tracing in Dapper</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A tracing infrastructure for distributed services needs to record information about all the work done in a sys-￼tem on behalf of a given initiator. A simple yet useful distributed trace for this request would be a collection of message identifiers and timestamped events for every message sent and received at each server.
@@ -137,7 +183,7 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 <ul class="org-ul">
 <li>While black-box schemes are more portable than annotation-based methods, they need more data in order to gain sufficient accuracy due to their reliance on sta- tistical inference.（需要一定的历史数据来建立这种关联）</li>
 </ul></li>
-<li>Annotation-based schemes rely on applications or middleware to explicitly tag every record with a global identifier that links these message records back to the originating re- quest. （而基于标注的办法就需要在record上面标明号GID, 这样通过GID将所有的信息联系起来）
+<li>Annotation-based schemes rely on applications or middleware to explicitly tag every record with a global identifier that links these message records back to the originating re- quest. （而基于标注的办法就需要在record上面标明号GID, 这样通过GID将所有的信息联系起来） 
 <ul class="org-ul">
 <li>The key disadvantage of annotation- based methods is, obviously, the need to instrument pro- grams. （需要应用程序额外提供一些信息，影响了透明性）</li>
 <li>In our environment, since all applications use the same threading model, control flow and RPC system, we found that it was possible to restrict instrumentation to a small set of common libraries, and achieve a monitor- ing system that is effectively transparent to application developers.（但是因为将dapper封装成为library, 所以可以限制这种对透明性的影响）</li>
@@ -145,11 +191,11 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </ul>
 </div>
 
-<div id="outline-container-org8866068" class="outline-3">
-<h3 id="org8866068"><span class="section-number-3">3.1</span> Trace trees and spans</h3>
+<div id="outline-container-org5b4d531" class="outline-3">
+<h3 id="org5b4d531"><span class="section-number-3">3.1</span> Trace trees and spans</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
-<li>In a Dapper trace tree, the tree nodes are basic units of work which we refer to as spans.（每个活动都称为一个span)
+<li>In a Dapper trace tree, the tree nodes are basic units of work which we refer to as spans.（每个活动都称为一个span) 
 <ul class="org-ul">
 <li>The edges indicate a casual relationship between a span and its parent span.</li>
 <li>Independent of its place in a larger trace tree, though, a span is also a simple log of timestamped records which encode the span’s start and end time, any RPC timing data, and zero or more application-specific annotations(span里面记录了起始和终止时间，并且附带了其他一些来自应用程序的注解信息）</li>
@@ -166,8 +212,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org6fdb641" class="outline-3">
-<h3 id="org6fdb641"><span class="section-number-3">3.2</span> Instrumentation points</h3>
+<div id="outline-container-orgbd36527" class="outline-3">
+<h3 id="orgbd36527"><span class="section-number-3">3.2</span> Instrumentation points</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>Dapper is able to follow distributed control paths with near-zero intervention from application developers by re- lying almost entirely on instrumentation of a few com- mon libraries:
@@ -180,8 +226,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-orgdf5ceec" class="outline-3">
-<h3 id="orgdf5ceec"><span class="section-number-3">3.3</span> Annotations</h3>
+<div id="outline-container-org8017c11" class="outline-3">
+<h3 id="org8017c11"><span class="section-number-3">3.3</span> Annotations</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>The instrumentation points described above are sufﬁcient to derive detailed traces of complex distributed systems, making the core Dapper functionality available to otherwise unmodiﬁed Google applications. However, Dapper also allows application developers to enrich Dapper traces with additional information that may be useful to monitor higher level system behavior or to help in debugging problems.（annotation能够更方面了解系统行为和定位问题，但是不是核心功能）</li>
@@ -191,8 +237,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org74a598c" class="outline-3">
-<h3 id="org74a598c"><span class="section-number-3">3.4</span> Sampling</h3>
+<div id="outline-container-org056c998" class="outline-3">
+<h3 id="org056c998"><span class="section-number-3">3.4</span> Sampling</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Low overhead was a key design goal for Dapper, since service operators would be understandably reluctant to deploy a new tool of yet unproven value if it had any signiﬁcant impact on performance.</li>
@@ -201,8 +247,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org1800575" class="outline-3">
-<h3 id="org1800575"><span class="section-number-3">3.5</span> Trace collection</h3>
+<div id="outline-container-orgb21040b" class="outline-3">
+<h3 id="orgb21040b"><span class="section-number-3">3.5</span> Trace collection</h3>
 <div class="outline-text-3" id="text-3-5">
 
 <div class="figure">
@@ -235,16 +281,16 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org66a2670" class="outline-3">
-<h3 id="org66a2670"><span class="section-number-3">3.6</span> Security and privacy considerations</h3>
+<div id="outline-container-org1021699" class="outline-3">
+<h3 id="org1021699"><span class="section-number-3">3.6</span> Security and privacy considerations</h3>
 </div>
 </div>
-<div id="outline-container-org4d23d48" class="outline-2">
-<h2 id="org4d23d48"><span class="section-number-2">4</span> Dapper Deployment Status</h2>
+<div id="outline-container-org7c9f6e1" class="outline-2">
+<h2 id="org7c9f6e1"><span class="section-number-2">4</span> Dapper Deployment Status</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org36eb525" class="outline-3">
-<h3 id="org36eb525"><span class="section-number-3">4.1</span> Dapper runtime library</h3>
+<div id="outline-container-org1f6c012" class="outline-3">
+<h3 id="org1f6c012"><span class="section-number-3">4.1</span> Dapper runtime library</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Perhaps the most critical part of Dapper’s code base is the instrumentation of basic RPC, threading and control ﬂow libraries, which includes span creation, sampling, and logging to local disks.</li>
@@ -254,8 +300,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-orgd994269" class="outline-3">
-<h3 id="orgd994269"><span class="section-number-3">4.2</span> Production coverage</h3>
+<div id="outline-container-org1323dfc" class="outline-3">
+<h3 id="org1323dfc"><span class="section-number-3">4.2</span> Production coverage</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>Dapper penetration can be assessed in two dimensions: the fraction of production processes that can generate Dapper traces (i.e., those that are linked with Dapperinstrumented runtime libraries) and the fraction of production machines running Dapper’s trace collection daemon.（Dapper覆盖包括两个方面，一个是在application process里面使用runtime library部分，一个是在server上面部署daemon部分）
@@ -267,8 +313,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org8cc10ea" class="outline-3">
-<h3 id="org8cc10ea"><span class="section-number-3">4.3</span> Use of trace annotations</h3>
+<div id="outline-container-org90b0b7c" class="outline-3">
+<h3 id="org90b0b7c"><span class="section-number-3">4.3</span> Use of trace annotations</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>41 Java and 68 C++ applications have added custom application annotations in order to better understand intra-span activity in their services.</li>
@@ -278,12 +324,12 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org7404520" class="outline-2">
-<h2 id="org7404520"><span class="section-number-2">5</span> Managing Tracing Overhead</h2>
+<div id="outline-container-org2bcac25" class="outline-2">
+<h2 id="org2bcac25"><span class="section-number-2">5</span> Managing Tracing Overhead</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org2992c40" class="outline-3">
-<h3 id="org2992c40"><span class="section-number-3">5.1</span> Trace generation overhead</h3>
+<div id="outline-container-orgd86d489" class="outline-3">
+<h3 id="orgd86d489"><span class="section-number-3">5.1</span> Trace generation overhead</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Trace generation overhead is the most critical segment of Dapper’s performance footprint, since collection and analysis can more easily be turned off in an emergency.（对于collection以及analysis都能够在紧急情况下面关闭）</li>
@@ -297,8 +343,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-orgd416817" class="outline-3">
-<h3 id="orgd416817"><span class="section-number-3">5.2</span> Trace collection overhead</h3>
+<div id="outline-container-org964e8fc" class="outline-3">
+<h3 id="org964e8fc"><span class="section-number-3">5.2</span> Trace collection overhead</h3>
 <div class="outline-text-3" id="text-5-2">
 
 <div class="figure">
@@ -313,8 +359,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 
 
-<div id="outline-container-org830b45a" class="outline-3">
-<h3 id="org830b45a"><span class="section-number-3">5.3</span> Effect on production workloads</h3>
+<div id="outline-container-orgab0b371" class="outline-3">
+<h3 id="orgab0b371"><span class="section-number-3">5.3</span> Effect on production workloads</h3>
 <div class="outline-text-3" id="text-5-3">
 
 <div class="figure">
@@ -330,8 +376,8 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org9fc0f20" class="outline-3">
-<h3 id="org9fc0f20"><span class="section-number-3">5.4</span> Adaptive sampling</h3>
+<div id="outline-container-org55ff80d" class="outline-3">
+<h3 id="org55ff80d"><span class="section-number-3">5.4</span> Adaptive sampling</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>The Dapper overhead attributed to any given process is proportional to the number of traces that process samples per unit time.
@@ -344,11 +390,11 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-orgb7fd98d" class="outline-3">
-<h3 id="orgb7fd98d"><span class="section-number-3">5.5</span> Coping with aggressive sampling</h3>
+<div id="outline-container-org851c4d7" class="outline-3">
+<h3 id="org851c4d7"><span class="section-number-3">5.5</span> Coping with aggressive sampling</h3>
 </div>
-<div id="outline-container-org24ac670" class="outline-3">
-<h3 id="org24ac670"><span class="section-number-3">5.6</span> Additional sampling during collection</h3>
+<div id="outline-container-orgde9ea08" class="outline-3">
+<h3 id="orgde9ea08"><span class="section-number-3">5.6</span> Additional sampling during collection</h3>
 <div class="outline-text-3" id="text-5-6">
 <ul class="org-ul">
 <li>The sampling mechanisms described above were designed to minimize perceptible overhead in applications which incorporate the Dapper runtime library. The Dapper team also needs to control the total size of data written to its central repositories, though, and thus we incorporate a second round of sampling for that purpose. （之前sampling的机制主要是用来减少instruct的overhead. 但是Dapper为了控制数据总量，在collection阶段还会进行一次sampling)
@@ -356,7 +402,7 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 <li>Our production clusters presently generate more than 1 terabyte of sampled trace data per day. Dapper users would like trace data to remain available for at least two weeks after it was initially logged from a production pro- cess.(每天产生1TB数据，而用户通常需要观察最近两周的数据）</li>
 <li>The benefits of increased trace data density must then be weighed against the cost of machines and disk storage for the Dapper repositories. Sampling a high fraction of requests also brings the Dapper collectors un- comfortably close to the write throughput limit for the Dapper Bigtable repository.(如果后期采样密度高的话会接近bigtable的极限）</li>
 </ul></li>
-<li>In order to maintain flexibility around both the mate- rial resource requirements and the cumulative Bigtable write throughput, we added support for additional sam- pling in the collection system itself.
+<li>In order to maintain flexibility around both the mate- rial resource requirements and the cumulative Bigtable write throughput, we added support for additional sam- pling in the collection system itself. 
 <ul class="org-ul">
 <li>We leverage the fact that all spans for a given trace – though they may be spread across thousands of distinct host machines – share a common trace id. （根据trace id进行聚合）</li>
 <li>For each span seen in the col- lection system, we hash the associated trace id as a scalar z, where 0 ≤ z ≤ 1. If z is less than our collection sam- pling coefficient, we keep the span and write it to the Bigtable. Otherwise, we discard it.（然后将trace id转换成为标量z，然后根据z判断是否小于某个系数。如果小于某个系数的话，那么就保留否则就丢弃）</li>
@@ -374,12 +420,12 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org5229235" class="outline-2">
-<h2 id="org5229235"><span class="section-number-2">6</span> General-Purpose Dapper Tools</h2>
+<div id="outline-container-orgffca7a3" class="outline-2">
+<h2 id="orgffca7a3"><span class="section-number-2">6</span> General-Purpose Dapper Tools</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org24418ba" class="outline-3">
-<h3 id="org24418ba"><span class="section-number-3">6.1</span> The Dapper Depot API</h3>
+<div id="outline-container-orgcc2cb32" class="outline-3">
+<h3 id="orgcc2cb32"><span class="section-number-3">6.1</span> The Dapper Depot API</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>The Dapper “Depot API,” or DAPI, provides direct ac- cess to the distributed trace records in the regional Dap- per repositories (or “Depots”). The DAPI and the Dap- per trace repositories were designed in tandem, and the DAPI is meant to expose a clean and intuitive interface to the raw data contained within these Dapper reposito- ries.（ API以及repository的设计是同时进行的，使得API能够很容易地访问到收集到的原始数据）Our use cases suggested the following three ways to access trace data:
@@ -397,42 +443,47 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 </div>
 </div>
 
-<div id="outline-container-org66d6745" class="outline-3">
-<h3 id="org66d6745"><span class="section-number-3">6.2</span> The Dapper user interface</h3>
+<div id="outline-container-org5472148" class="outline-3">
+<h3 id="org5472148"><span class="section-number-3">6.2</span> The Dapper user interface</h3>
 </div>
 </div>
-<div id="outline-container-orgf63595b" class="outline-2">
-<h2 id="orgf63595b"><span class="section-number-2">7</span> Experiences</h2>
+<div id="outline-container-org74ff059" class="outline-2">
+<h2 id="org74ff059"><span class="section-number-2">7</span> Experiences</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org29b3b34" class="outline-3">
-<h3 id="org29b3b34"><span class="section-number-3">7.1</span> Using Dapper during development</h3>
+<div id="outline-container-org0863e3d" class="outline-3">
+<h3 id="org0863e3d"><span class="section-number-3">7.1</span> Using Dapper during development</h3>
 </div>
-<div id="outline-container-org3a33a60" class="outline-3">
-<h3 id="org3a33a60"><span class="section-number-3">7.2</span> Addressing long tail latency</h3>
+<div id="outline-container-org257e8f3" class="outline-3">
+<h3 id="org257e8f3"><span class="section-number-3">7.2</span> Addressing long tail latency</h3>
 </div>
-<div id="outline-container-orge9baf2d" class="outline-3">
-<h3 id="orge9baf2d"><span class="section-number-3">7.3</span> Inferring service dependencies</h3>
+<div id="outline-container-org0de9b9c" class="outline-3">
+<h3 id="org0de9b9c"><span class="section-number-3">7.3</span> Inferring service dependencies</h3>
 </div>
-<div id="outline-container-org6054639" class="outline-3">
-<h3 id="org6054639"><span class="section-number-3">7.4</span> Network usage of different services</h3>
+<div id="outline-container-orga04a21a" class="outline-3">
+<h3 id="orga04a21a"><span class="section-number-3">7.4</span> Network usage of different services</h3>
 </div>
-<div id="outline-container-orga5af855" class="outline-3">
-<h3 id="orga5af855"><span class="section-number-3">7.5</span> Layered and Shared Storage Systems</h3>
+<div id="outline-container-orgfb76571" class="outline-3">
+<h3 id="orgfb76571"><span class="section-number-3">7.5</span> Layered and Shared Storage Systems</h3>
 </div>
-<div id="outline-container-org47f6ba2" class="outline-3">
-<h3 id="org47f6ba2"><span class="section-number-3">7.6</span> Firefighting with Dapper</h3>
+<div id="outline-container-org1c6fbc4" class="outline-3">
+<h3 id="org1c6fbc4"><span class="section-number-3">7.6</span> Firefighting with Dapper</h3>
 </div>
 </div>
-<div id="outline-container-org0190652" class="outline-2">
-<h2 id="org0190652"><span class="section-number-2">8</span> Other Lessons Learned</h2>
+<div id="outline-container-org5448028" class="outline-2">
+<h2 id="org5448028"><span class="section-number-2">8</span> Other Lessons Learned</h2>
 </div>
-<div id="outline-container-org6180789" class="outline-2">
-<h2 id="org6180789"><span class="section-number-2">9</span> Related Work</h2>
+<div id="outline-container-orgfaa6617" class="outline-2">
+<h2 id="orgfaa6617"><span class="section-number-2">9</span> Related Work</h2>
 </div>
-<div id="outline-container-org58e5953" class="outline-2">
-<h2 id="org58e5953"><span class="section-number-2">10</span> Conclusions</h2>
+<div id="outline-container-org01eb993" class="outline-2">
+<h2 id="org01eb993"><span class="section-number-2">10</span> Conclusions</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/dapper.html';this.page.identifier = 'dapper.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

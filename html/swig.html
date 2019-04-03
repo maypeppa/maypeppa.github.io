@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>swig</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">swig</h1>
@@ -16,12 +62,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org720c950">1. how it works</a></li>
-<li><a href="#org11347c8">2. a simple example</a></li>
-<li><a href="#org8c02f97">3. options</a></li>
-<li><a href="#org49e6102">4. instructions</a></li>
-<li><a href="#orgb764781">5. about types</a></li>
-<li><a href="#orgce3dd71">6. python extension</a></li>
+<li><a href="#org48fa520">1. how it works</a></li>
+<li><a href="#orge488450">2. a simple example</a></li>
+<li><a href="#org1e86747">3. options</a></li>
+<li><a href="#org9a202bc">4. instructions</a></li>
+<li><a href="#orgd4db40a">5. about types</a></li>
+<li><a href="#org63ae6dd">6. python extension</a></li>
 </ul>
 </div>
 </div>
@@ -33,8 +79,8 @@ SWIG(Simple Wrapper Interface Generator)是一个C/C++多语言扩展接口生�
 update@201509: 相比boost::python可以更容易地使用C++来编写Python扩展
 </p>
 
-<div id="outline-container-org720c950" class="outline-2">
-<h2 id="org720c950"><span class="section-number-2">1</span> how it works</h2>
+<div id="outline-container-org48fa520" class="outline-2">
+<h2 id="org48fa520"><span class="section-number-2">1</span> how it works</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 首先我们需要编写一个输入文件里面有我们需要包装的C++类或者是函数的声明并且加上一些特殊的标记，然后SWIG内部有一个C++解析器能够解析这些标记以及C++
@@ -44,8 +90,8 @@ update@201509: 相比boost::python可以更容易地使用C++来编写Python扩�
 </div>
 </div>
 
-<div id="outline-container-org11347c8" class="outline-2">
-<h2 id="org11347c8"><span class="section-number-2">2</span> a simple example</h2>
+<div id="outline-container-orge488450" class="outline-2">
+<h2 id="orge488450"><span class="section-number-2">2</span> a simple example</h2>
 <div class="outline-text-2" id="text-2">
 <pre class="example">
 %module pycompack_  // 生成pycompack_.py和pycompack_wrap.cxx.
@@ -60,57 +106,57 @@ update@201509: 相比boost::python可以更容易地使用C++来编写Python扩�
 然后我们看看pycompack.h内部的片段代码
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> SWIG <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#27809;&#26377;&#22312;SWIG&#39044;&#22788;&#29702;&#19979;&#38754;&#30340;&#35805;&#37027;&#20040;&#21253;&#21547;&#22836;&#25991;&#20214;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">"compack/compack.h"</span>
-<span class="org-preprocessor">#endif</span>
+<pre class="src src-C++"><span style="font-weight: bold;">#if</span><span style="font-weight: bold;">n</span><span style="font-weight: bold;">def</span> SWIG <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#27809;&#26377;&#22312;SWIG&#39044;&#22788;&#29702;&#19979;&#38754;&#30340;&#35805;&#37027;&#20040;&#21253;&#21547;&#22836;&#25991;&#20214;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"compack/compack.h"</span>
+<span style="font-weight: bold;">#endif</span>
 
-<span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> __STDC_LIMIT_MACROS
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">__STDC_LIMIT_MACROS</span>
-<span class="org-preprocessor">#endif</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">we have to include this one</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">unless the SWIG doesn't know int8_t  ...</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdint.h&gt;</span>
+<span style="font-weight: bold;">#if</span><span style="font-weight: bold;">n</span><span style="font-weight: bold;">def</span> __STDC_LIMIT_MACROS
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">__STDC_LIMIT_MACROS</span>
+<span style="font-weight: bold;">#endif</span>
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">we have to include this one</span>
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">unless the SWIG doesn't know int8_t  ...</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdint.h&gt;</span>
 
-<span class="org-comment-delimiter">//</span><span class="org-comment">thin wrapper class</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">because we want the UI simple.</span>
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">thin wrapper class</span>
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">because we want the UI simple.</span>
 
-<span class="org-comment-delimiter">//</span><span class="org-comment">exception</span>
-<span class="org-preprocessor">#ifdef</span> SWIG <span class="org-comment-delimiter">// </span><span class="org-comment">&#25105;&#20204;&#21487;&#20197;&#23450;&#20041;&#24322;&#24120;&#65292;&#23558;std::exception&#37325;&#21629;&#21517;&#20026;std_exception</span>
-%rename(std_exception) <span class="org-constant">std</span>::exception;
-%rename(bsl_exception) <span class="org-constant">bsl</span>::Exception;
-<span class="org-keyword">namespace</span> <span class="org-constant">std</span>{
-<span class="org-keyword">class</span> <span class="org-type">exception</span>{ <span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;&#24322;&#24120;&#30340;&#35805;&#25105;&#20204;&#24517;&#39035;&#20889;&#28165;&#26970;&#26500;&#36896;&#21644;&#26512;&#26500;&#20989;&#25968;&#65292;&#19981;&#28982;&#20869;&#23384;&#20250;&#23384;&#22312;&#27844;&#28431;&#24773;&#20917;</span>
-  <span class="org-keyword">public</span>:
-    <span class="org-function-name">exception</span>(){}
-    ~<span class="org-function-name">exception</span>(){}
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">exception</span>
+<span style="font-weight: bold;">#ifdef</span> SWIG <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25105;&#20204;&#21487;&#20197;&#23450;&#20041;&#24322;&#24120;&#65292;&#23558;std::exception&#37325;&#21629;&#21517;&#20026;std_exception</span>
+%rename(std_exception) <span style="font-weight: bold; text-decoration: underline;">std</span>::exception;
+%rename(bsl_exception) <span style="font-weight: bold; text-decoration: underline;">bsl</span>::Exception;
+<span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>{
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">exception</span>{ <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23545;&#20110;&#24322;&#24120;&#30340;&#35805;&#25105;&#20204;&#24517;&#39035;&#20889;&#28165;&#26970;&#26500;&#36896;&#21644;&#26512;&#26500;&#20989;&#25968;&#65292;&#19981;&#28982;&#20869;&#23384;&#20250;&#23384;&#22312;&#27844;&#28431;&#24773;&#20917;</span>
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold;">exception</span>(){}
+    ~<span style="font-weight: bold;">exception</span>(){}
 };
 }
-<span class="org-keyword">namespace</span> <span class="org-constant">bsl</span>{
-<span class="org-keyword">class</span> <span class="org-type">Exception</span>{
-  <span class="org-keyword">public</span>:
-    <span class="org-function-name">Exception</span>(){}
-    ~<span class="org-function-name">Exception</span>(){}
+<span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">bsl</span>{
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Exception</span>{
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold;">Exception</span>(){}
+    ~<span style="font-weight: bold;">Exception</span>(){}
 };
 }
-<span class="org-preprocessor">#endif</span> <span class="org-comment-delimiter">// </span><span class="org-comment">SWIG</span>
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">PYCOMPACK_THROW</span> <span class="org-keyword">throw</span>(<span class="org-constant">bsl</span>::<span class="org-type">Exception</span>,<span class="org-constant">std</span>::<span class="org-type">exception</span>)
-<span class="org-preprocessor">#define</span> <span class="org-function-name">PYCOMPACK_TRY</span>()
-<span class="org-preprocessor">#define</span> <span class="org-function-name">PYCOMPACK_CATCH</span>()
+<span style="font-weight: bold;">#endif</span> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">SWIG</span>
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">PYCOMPACK_THROW</span> <span style="font-weight: bold;">throw</span>(<span style="font-weight: bold; text-decoration: underline;">bsl</span>::<span style="font-weight: bold; text-decoration: underline;">Exception</span>,<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">exception</span>)
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">PYCOMPACK_TRY</span>()
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">PYCOMPACK_CATCH</span>()
 
 
-<span class="org-comment-delimiter">//</span><span class="org-comment">to wrapper the binary data</span>
-<span class="org-preprocessor">#ifdef</span> SWIG <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#26679;&#23545;&#20110;const char* bin,unsigned int binlen&#36825;&#26679;&#30340;&#35805;&#23601;&#20250;&#20256;&#36882;python&#30340;&#20108;&#36827;&#21046;</span>
-%apply (<span class="org-type">char</span> *<span class="org-variable-name">STRING</span>, <span class="org-type">size_t</span> <span class="org-variable-name">LENGTH</span>) { (<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">bin</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">binlen</span>) };
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">to wrapper the binary data</span>
+<span style="font-weight: bold;">#ifdef</span> SWIG <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26679;&#23545;&#20110;const char* bin,unsigned int binlen&#36825;&#26679;&#30340;&#35805;&#23601;&#20250;&#20256;&#36882;python&#30340;&#20108;&#36827;&#21046;</span>
+%apply (<span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">STRING</span>, <span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">LENGTH</span>) { (<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">bin</span>, <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">binlen</span>) };
+<span style="font-weight: bold;">#endif</span>
 
-<span class="org-keyword">class</span> <span class="org-type">Stream</span>{
-  <span class="org-keyword">public</span>:
-<span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> SWIG
-    <span class="org-constant">compack</span>::<span class="org-type">AutoBuffer</span> <span class="org-variable-name">_buffer</span>;
-<span class="org-preprocessor">#endif</span>
-    <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-function-name">content</span>(<span class="org-type">size_t</span> <span class="org-variable-name">size</span>) PYCOMPACK_THROW{ <span class="org-comment-delimiter">// </span><span class="org-comment">&#22312;&#36825;&#37324;&#25105;&#20204;&#21487;&#20197;&#25243;&#24322;&#24120;</span>
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Stream</span>{
+  <span style="font-weight: bold;">public</span>:
+<span style="font-weight: bold;">#if</span><span style="font-weight: bold;">n</span><span style="font-weight: bold;">def</span> SWIG
+    <span style="font-weight: bold; text-decoration: underline;">compack</span>::<span style="font-weight: bold; text-decoration: underline;">AutoBuffer</span> <span style="font-weight: bold; font-style: italic;">_buffer</span>;
+<span style="font-weight: bold;">#endif</span>
+    <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold;">content</span>(<span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">size</span>) PYCOMPACK_THROW{ <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22312;&#36825;&#37324;&#25105;&#20204;&#21487;&#20197;&#25243;&#24322;&#24120;</span>
         PYCOMPACK_TRY();
-        <span class="org-keyword">return</span> <span class="org-constant">std</span>::string(<span class="org-keyword">static_cast</span>&lt;<span class="org-type">char</span>*&gt;(_buffer.buffer()),size);
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::string(<span style="font-weight: bold;">static_cast</span>&lt;<span style="font-weight: bold; text-decoration: underline;">char</span>*&gt;(_buffer.buffer()),size);
         PYCOMPACK_CATCH();
     }
 };
@@ -128,14 +174,14 @@ update@201509: 相比boost::python可以更容易地使用C++来编写Python扩�
 swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 </pre>
 <p>
-然后会有pycompack_wrap.cxx和pycompack_.py生成，至于如何如何生成python扩展的话在python扩展一节说明。
+然后会有pycompack<sub>wrap.cxx和pycompack</sub><sub>.py生成</sub>，至于如何如何生成python扩展的话在python扩展一节说明。
 因为python有自己的构建扩展的方式。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8c02f97" class="outline-2">
-<h2 id="org8c02f97"><span class="section-number-2">3</span> options</h2>
+<div id="outline-container-org1e86747" class="outline-2">
+<h2 id="org1e86747"><span class="section-number-2">3</span> options</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>-c++ // 使用C++编写扩展</li>
@@ -145,8 +191,8 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 </div>
 </div>
 
-<div id="outline-container-org49e6102" class="outline-2">
-<h2 id="org49e6102"><span class="section-number-2">4</span> instructions</h2>
+<div id="outline-container-org9a202bc" class="outline-2">
+<h2 id="org9a202bc"><span class="section-number-2">4</span> instructions</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>%rename(x) y; // 能够将y重名为x</li>
@@ -155,15 +201,15 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 </div>
 </div>
 
-<div id="outline-container-orgb764781" class="outline-2">
-<h2 id="orgb764781"><span class="section-number-2">5</span> about types</h2>
+<div id="outline-container-orgd4db40a" class="outline-2">
+<h2 id="orgd4db40a"><span class="section-number-2">5</span> about types</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 默认情况下面的话SWIG只是支持几个C/C++类型比如char,unsigned char,int,unsigned int等，而对于其他类型都认为是opaque pointer.我们经常遇到的问题就是
-我们使用int64_t这样的类型，但是SWIG认为这个是一个pointer.当然我们可以使用typedef来进行类型定义，显示地告诉SWIG这个是一个基本类型，比如
+我们使用int64<sub>t这样的类型</sub>，但是SWIG认为这个是一个pointer.当然我们可以使用typedef来进行类型定义，显示地告诉SWIG这个是一个基本类型，比如
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-type">long</span> <span class="org-type">long</span> <span class="org-type">int64_t</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; text-decoration: underline;">int64_t</span>;
 </pre>
 </div>
 <p>
@@ -194,24 +240,24 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 然后使用异常的时候只需要在函数声明部分加上throw即可。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#ifdef</span> SWIG
-%rename(bsl_exception) <span class="org-constant">bsl</span>::Exception;
-<span class="org-keyword">namespace</span> <span class="org-constant">bsl</span>{
-<span class="org-keyword">class</span> <span class="org-type">Exception</span>{
-  <span class="org-keyword">public</span>:
-    <span class="org-function-name">Exception</span>(){}
-    ~<span class="org-function-name">Exception</span>(){}
+<pre class="src src-C++"><span style="font-weight: bold;">#ifdef</span> SWIG
+%rename(bsl_exception) <span style="font-weight: bold; text-decoration: underline;">bsl</span>::Exception;
+<span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">bsl</span>{
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Exception</span>{
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold;">Exception</span>(){}
+    ~<span style="font-weight: bold;">Exception</span>(){}
 };
 }
-<span class="org-preprocessor">#endif</span> <span class="org-comment-delimiter">// </span><span class="org-comment">SWIG</span>
-<span class="org-type">void</span> <span class="org-function-name">foo</span>() <span class="org-keyword">throw</span> (<span class="org-constant">bsl</span>::<span class="org-type">Excption</span>);
+<span style="font-weight: bold;">#endif</span> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">SWIG</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>() <span style="font-weight: bold;">throw</span> (<span style="font-weight: bold; text-decoration: underline;">bsl</span>::<span style="font-weight: bold; text-decoration: underline;">Excption</span>);
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgce3dd71" class="outline-2">
-<h2 id="orgce3dd71"><span class="section-number-2">6</span> python extension</h2>
+<div id="outline-container-org63ae6dd" class="outline-2">
+<h2 id="org63ae6dd"><span class="section-number-2">6</span> python extension</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 python本身提供了非常简单的方式来编译扩展，使用内置的distutils模块即可搞定。我们编写setup.py内容如下：
@@ -221,10 +267,10 @@ python本身提供了非常简单的方式来编译扩展，使用内置的distu
 import os
 // 首先我们定义我们要编译的扩展对象(.so)
 pycompack=Extension('_pycompack_', # _pycompack_.so
-                    sources=['pycompack_wrap.cxx','pycompack.cc'], # 源文件
-                    include_dirs=['..'],  # 头文件路径
-                    libraries=['pthread'], # 库文件
-                    library_dirs=['..']) # 库文件路径
+		    sources=['pycompack_wrap.cxx','pycompack.cc'], # 源文件
+		    include_dirs=['..'],  # 头文件路径
+		    libraries=['pthread'], # 库文件
+		    library_dirs=['..']) # 库文件路径
 
 // 然后定义我们编译和发布信息
 setup(name='pycompack', # 模块名称
@@ -246,6 +292,11 @@ setup(name='pycompack', # 模块名称
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/swig.html';this.page.identifier = 'swig.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

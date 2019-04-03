@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Protobuf Encoding</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Protobuf Encoding</h1>
@@ -28,11 +74,11 @@
 </div>
 
 <p>
-protobuf是按照key-value pair来进行编码的，key包含 (field_number, wire_type).
+protobuf是按照key-value pair来进行编码的，key包含 (field<sub>number</sub>, wire<sub>type</sub>).
 </p>
 
 <p>
-因为wire_type包含下面6种，所以key可以用 (field_number &lt;&lt; 3) | wire_type 进行编码。
+因为wire<sub>type包含下面6种</sub>，所以key可以用 (field<sub>number</sub> &lt;&lt; 3) | wire<sub>type</sub> 进行编码。
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -92,7 +138,7 @@ protobuf是按照key-value pair来进行编码的，key包含 (field_number, wir
 </table>
 
 <p>
-解析过程是数据驱动的：先解析key, 判断wire_type和代码的type是否compatible, 然后解析value.
+解析过程是数据驱动的：先解析key, 判断wire<sub>type和代码的type是否compatible</sub>, 然后解析value.
 </p>
 
 <p>
@@ -100,11 +146,11 @@ protobuf是按照key-value pair来进行编码的，key包含 (field_number, wir
 </p>
 
 <p>
-repeated fields在proto2的编码方式还是key-value, key-value并不是相邻的，可能散落一个message字节流的各个位置。但是这样打包会带来key的重复开销，所以在proto3使用packed方式，要求key-value是相邻的，布局格式是 key, payload_size, value1, value2 &#x2026;
+repeated fields在proto2的编码方式还是key-value, key-value并不是相邻的，可能散落一个message字节流的各个位置。但是这样打包会带来key的重复开销，所以在proto3使用packed方式，要求key-value是相邻的，布局格式是 key, payload<sub>size</sub>, value1, value2 &#x2026;
 </p>
 
 <p>
-考虑最开始的例子，a是int32, 那么type是0. field_number = 1, 所以key = (1 &lt;&lt; 3) | 0 = 8, 那么 96 01是怎么来的呢？
+考虑最开始的例子，a是int32, 那么type是0. field<sub>number</sub> = 1, 所以key = (1 &lt;&lt; 3) | 0 = 8, 那么 96 01是怎么来的呢？
 </p>
 
 <hr />
@@ -135,21 +181,21 @@ def unpack_varint(bs, offset):
     ans = 0
     move = 0
     while True:
-        b = bs[offset]
-        offset += 1
-        payload = b &amp; 0x7f
-        ans |= (payload &lt;&lt; move)
-        move += 7
-        if (b &gt;&gt; 7) == 0:
-            break
+	b = bs[offset]
+	offset += 1
+	payload = b &amp; 0x7f
+	ans |= (payload &lt;&lt; move)
+	move += 7
+	if (b &gt;&gt; 7) == 0:
+	    break
     return ans, offset
 
 
 def pack_varint(bs, value):
     while value &gt;= 128:
-        x = value &amp; 0x7f
-        bs.append((1 &lt;&lt; 7) | x)
-        value = value &gt;&gt; 7
+	x = value &amp; 0x7f
+	bs.append((1 &lt;&lt; 7) | x)
+	value = value &gt;&gt; 7
     bs.append(value)
 
 
@@ -226,6 +272,11 @@ print(ans, offset)
 <p>
 所以对于-2来说 (-2 &lt;&lt; 1) 取反就是3，对于-3来说就是5。
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/protobuf-encoding.html';this.page.identifier = 'protobuf-encoding.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

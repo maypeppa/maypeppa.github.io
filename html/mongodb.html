@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MongoDB</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">MongoDB</h1>
@@ -16,19 +62,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3e7826b">1. Introduction</a></li>
-<li><a href="#orgfc10c14">2. Cheatsheet</a></li>
-<li><a href="#orgb5546fe">3. 网络模型</a></li>
-<li><a href="#org92046eb">4. 单机存储</a></li>
-<li><a href="#org58065c2">5. 内存占用</a></li>
-<li><a href="#org820a61d">6. Sharding</a></li>
-<li><a href="#orgb85eee1">7. HA方案</a></li>
+<li><a href="#orgd7c2ac4">1. Introduction</a></li>
+<li><a href="#org1129e2a">2. Cheatsheet</a></li>
+<li><a href="#orgcbf717d">3. 网络模型</a></li>
+<li><a href="#org68d6e56">4. 单机存储</a></li>
+<li><a href="#orgb706053">5. 内存占用</a></li>
+<li><a href="#orga8b3092">6. Sharding</a></li>
+<li><a href="#orga8a4ab2">7. HA方案</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3e7826b" class="outline-2">
-<h2 id="org3e7826b"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orgd7c2ac4" class="outline-2">
+<h2 id="orgd7c2ac4"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 主页是<a href="http://www.mongodb.org/">http://www.mongodb.org/</a>. mongdb有下面这些特点：
@@ -59,8 +105,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfc10c14" class="outline-2">
-<h2 id="orgfc10c14"><span class="section-number-2">2</span> Cheatsheet</h2>
+<div id="outline-container-org1129e2a" class="outline-2">
+<h2 id="org1129e2a"><span class="section-number-2">2</span> Cheatsheet</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>必须使用wiredtiger引擎</b> 相比mmapv1, wiredtiger可以更好地管理内存. `&#x2013;storageEngine wiredTiger &#x2013;wiredTigerCacheSizeGB 1`
@@ -69,13 +115,13 @@
 <ul class="org-ul">
 <li>db.playlist.find({'lang': 'zh-cn'}, projection = {'pid': 1, 'releaseDate': 1, 'title': 1, 'weight': 1}).sort({'weight': 1, 'releaseDate': -1}) # 查询，选择字段，排序</li>
 <li>db.playlist.update({}, {'$unset':{'skip':1}}, {'multi':true}) # 删除多个文档中的字段</li>
-<li>db.playlist.update({}, {'$rename': {'genres': 'itunes_genres'}, '$set': {'skip': 1}}, {'multi': true}) # 更新多个文档中的字段</li>
+<li>db.playlist.update({}, {'$rename': {'genres': 'itunes<sub>genres</sub>'}, '$set': {'skip': 1}}, {'multi': true}) # 更新多个文档中的字段</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb5546fe" class="outline-2">
-<h2 id="orgb5546fe"><span class="section-number-2">3</span> 网络模型</h2>
+<div id="outline-container-orgcbf717d" class="outline-2">
+<h2 id="orgcbf717d"><span class="section-number-2">3</span> 网络模型</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 mongodb采用一个线程处理一个请求的模型，不太确定mongodb是否限制了并发连接数。
@@ -84,8 +130,8 @@ mongodb采用一个线程处理一个请求的模型，不太确定mongodb是否
 </div>
 </div>
 
-<div id="outline-container-org92046eb" class="outline-2">
-<h2 id="org92046eb"><span class="section-number-2">4</span> 单机存储</h2>
+<div id="outline-container-org68d6e56" class="outline-2">
+<h2 id="org68d6e56"><span class="section-number-2">4</span> 单机存储</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 这里有一些关于MongoDB单机存储方面的文章.
@@ -125,9 +171,9 @@ drwxrwxr-x 2 dirlt dirlt 4.0K  6月  1 11:48 _tmp/
 关于位置信息都是通过DiskLoc数据结构进行存储，存储了数据文件编号和块在文件中的位置。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">struct</span> <span class="org-type">DiskLoc</span> {
-  <span class="org-type">int</span> <span class="org-variable-name">fileNum</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#25991;&#20214;&#32534;&#21495;</span>
-  <span class="org-type">int</span> <span class="org-variable-name">offset</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#25991;&#20214;&#20559;&#31227;</span>
+<pre class="src src-C++"><span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">DiskLoc</span> {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">fileNum</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25991;&#20214;&#32534;&#21495;</span>
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">offset</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25991;&#20214;&#20559;&#31227;</span>
 };
 </pre>
 </div>
@@ -173,8 +219,8 @@ mongodb底层使用btree来进行索引.btree放在内存所以操作非常快(�
 </div>
 </div>
 
-<div id="outline-container-org58065c2" class="outline-2">
-<h2 id="org58065c2"><span class="section-number-2">5</span> 内存占用</h2>
+<div id="outline-container-orgb706053" class="outline-2">
+<h2 id="orgb706053"><span class="section-number-2">5</span> 内存占用</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这里有一些关于MongoDB内存使用和Linux内存方面的文章.
@@ -193,8 +239,8 @@ MongoDB不管是索引还是数据文件都强烈依赖于mmap.但是这里有�
 </div>
 </div>
 
-<div id="outline-container-org820a61d" class="outline-2">
-<h2 id="org820a61d"><span class="section-number-2">6</span> Sharding</h2>
+<div id="outline-container-orga8b3092" class="outline-2">
+<h2 id="orga8b3092"><span class="section-number-2">6</span> Sharding</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 mdb可以通过指定shard key来做auto-sharding.对于sharding的话需要三个组件
@@ -226,8 +272,8 @@ auto-sharding有三个需要考虑的问题：
 </div>
 </div>
 
-<div id="outline-container-orgb85eee1" class="outline-2">
-<h2 id="orgb85eee1"><span class="section-number-2">7</span> HA方案</h2>
+<div id="outline-container-orga8a4ab2" class="outline-2">
+<h2 id="orga8a4ab2"><span class="section-number-2">7</span> HA方案</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 对于HA方案来说的话，mdb有两种解决方案
@@ -284,6 +330,11 @@ Within the replica set, members are interconnected with each other to exchange h
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/mongodb.html';this.page.identifier = 'mongodb.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

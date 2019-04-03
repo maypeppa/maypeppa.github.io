@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Guide to Advanced Programming in C</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Guide to Advanced Programming in C</h1>
@@ -16,12 +62,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org39dac37">1. Integer Overflows and Promotions</a></li>
-<li><a href="#org9143712">2. Memory Allocation and Management</a></li>
-<li><a href="#org6a50f7d">3. Pointers and Arrays</a></li>
-<li><a href="#org4f2a144">4. Interpositioning</a></li>
-<li><a href="#orgb1f9333">5. Explicit Inlining</a></li>
-<li><a href="#orge83635c">6. Vector Extensions</a></li>
+<li><a href="#orgefa45da">1. Integer Overflows and Promotions</a></li>
+<li><a href="#org9b7bbc5">2. Memory Allocation and Management</a></li>
+<li><a href="#org64c3c96">3. Pointers and Arrays</a></li>
+<li><a href="#org6d9e62e">4. Interpositioning</a></li>
+<li><a href="#org83012cc">5. Explicit Inlining</a></li>
+<li><a href="#orga5ff024">6. Vector Extensions</a></li>
 </ul>
 </div>
 </div>
@@ -29,11 +75,11 @@
 <a href="http://pfacka.binaryparadise.com/articles/guide-to-advanced-programming-in-C.html">http://pfacka.binaryparadise.com/articles/guide-to-advanced-programming-in-C.html</a>
 </p>
 
-<div id="outline-container-org39dac37" class="outline-2">
-<h2 id="org39dac37"><span class="section-number-2">1</span> Integer Overflows and Promotions</h2>
+<div id="outline-container-orgefa45da" class="outline-2">
+<h2 id="orgefa45da"><span class="section-number-2">1</span> Integer Overflows and Promotions</h2>
 </div>
-<div id="outline-container-org9143712" class="outline-2">
-<h2 id="org9143712"><span class="section-number-2">2</span> Memory Allocation and Management</h2>
+<div id="outline-container-org9b7bbc5" class="outline-2">
+<h2 id="org9b7bbc5"><span class="section-number-2">2</span> Memory Allocation and Management</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Many operating systems provide interface to control access over memory regions to protect memory against unintended read/write operations such as Posix <a href="http://pubs.opengroup.org/onlinepubs/9699919799/functions/mprotect.html">mprotect</a> . These mechanisms usually apply to whole memory pages. (mprotect以page为单位）
@@ -48,11 +94,11 @@ Stack Overflow Problems
 This file gives some hints on addressing this problem on different platforms.
 
 Under Unix-like systems, programs may throw a "Segmentation Fault"
-error.  This can be due to stack overflow, especially from recursive
+error.  This can be due to stack overflow, especially from recursive 
 function calls or huge data sets.  In our demo program "Pi"
 (see "$(CORE_PATH)/progs/pi"), we compute Pi to any number of desired
 bits or digits.  Here are some test results on when stack overflows
-will occur on different platforms, using their default stack sizes.
+will occur on different platforms, using their default stack sizes.  
 
 	platform	default size	# bits	# digits
         ===============================================================
@@ -60,23 +106,23 @@ will occur on different platforms, using their default stack sizes.
 	Linux 		8172K bytes	&lt;=62407	&lt;=18786
 	Windows		1024K bytes	&lt;=10581	&lt;=3185	(Release Version)
 	cygwin		2048K bytes	&lt;=3630	&lt;=1092
-
-If we now change their stack size to their maximum, our Pi program can
-compute more bits.
+	
+If we now change their stack size to their maximum, our Pi program can 
+compute more bits. 
 
 	platform	stack size	# bits		# digits
         ===============================================================
 	SunOS/Solaris	unlimited	&gt;=100,000	30102
 	Linux		8172K bytes	&lt;=33,219,282	&lt;=10,000,000(?)
 	Windows		32768K bytes	&lt;=343077	&lt;=12041
-
+	
 How to change the default stack size on different platforms:
-In general, under Unix-like platforms, the stack size is controlled
-by environment variable, not the program itself.
-So you cannot pass any flags to the
+In general, under Unix-like platforms, the stack size is controlled 
+by environment variable, not the program itself.  
+So you cannot pass any flags to the 
 compilers, like gcc, to setup stack size.  Under Windows platforms, the
-stack size information is contained in the executable files.  It can be set
-during compilation in Visual C++, but this is not available in gcc.
+stack size information is contained in the executable files.  It can be set 
+during compilation in Visual C++, but this is not available in gcc. 
 Alternatively, Microsoft provides a program "editbin.exe" which can change the
 executable files directly.  Here are more details:
 
@@ -96,28 +142,28 @@ Windows (during compilation):
 	1. Select "Project-&gt;Setting".
 	2. Select "Link" page.
 	3. Select "Category" to "Output".
-	4. Type your preferred stack size in "Reserve:" field under "Stack
+	4. Type your preferred stack size in "Reserve:" field under "Stack 
 	   allocations". eg, 32768 in decimal or 0x20000 in hexadecimal.
 
 Windows (to modify the executable file):
 =======================================
 There are two programs included in Microsoft Visual Studio, "dumpbin.exe"
- and "editbin.exe".  Run "dumpbin /headers executable_file", and you can see
-the "size of stack reserve" information in "optional header values".  Run
+ and "editbin.exe".  Run "dumpbin /headers executable_file", and you can see 
+the "size of stack reserve" information in "optional header values".  Run 
 "editbin /STACK:size" to change the default stack size.
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6a50f7d" class="outline-2">
-<h2 id="org6a50f7d"><span class="section-number-2">3</span> Pointers and Arrays</h2>
+<div id="outline-container-org64c3c96" class="outline-2">
+<h2 id="org64c3c96"><span class="section-number-2">3</span> Pointers and Arrays</h2>
 </div>
-<div id="outline-container-org4f2a144" class="outline-2">
-<h2 id="org4f2a144"><span class="section-number-2">4</span> Interpositioning</h2>
+<div id="outline-container-org6d9e62e" class="outline-2">
+<h2 id="org6d9e62e"><span class="section-number-2">4</span> Interpositioning</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-__attribute__ ((visibility (&lt;value&gt;))) 可以用来控制符号可见域，其中value可以指定为
+_<sub>attribute</sub>__ ((visibility (&lt;value&gt;))) 可以用来控制符号可见域，其中value可以指定为
 </p>
 <ul class="org-ul">
 <li>"default" # 对其他单元可见</li>
@@ -129,17 +175,17 @@ __attribute__ ((visibility (&lt;value&gt;))) 可以用来控制符号可见域�
 </div>
 </div>
 
-<div id="outline-container-orgb1f9333" class="outline-2">
-<h2 id="orgb1f9333"><span class="section-number-2">5</span> Explicit Inlining</h2>
+<div id="outline-container-org83012cc" class="outline-2">
+<h2 id="org83012cc"><span class="section-number-2">5</span> Explicit Inlining</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-inline __attribute__((always _inline)) 可以强制inline.
+inline _<sub>attribute</sub>_<sub>((always _inline))</sub> 可以强制inline.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge83635c" class="outline-2">
-<h2 id="orge83635c"><span class="section-number-2">6</span> Vector Extensions</h2>
+<div id="outline-container-orga5ff024" class="outline-2">
+<h2 id="orga5ff024"><span class="section-number-2">6</span> Vector Extensions</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 通常编译器都会提供对应的头文件（提供指令以及数据类型）
@@ -167,6 +213,11 @@ typedef char __v16qi __attribute__ ((__vector_size__ (16)));
 </pre>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/guide-to-advanced-programming-in-c.html';this.page.identifier = 'guide-to-advanced-programming-in-c.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

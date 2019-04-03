@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Earlybird: Real-Time Search at Twitter</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Earlybird: Real-Time Search at Twitter</h1>
@@ -36,7 +82,7 @@ twitter检索系统:
 </p>
 
 <p>
-index是由多个segments组成的, 任何时候只有一个segment是可写的. 单个segment有tweets数量上限(2^23 ∼ 8.4 million tweets), 当超过这个数量之后会flush到磁盘上形成read-friendly格式文件. 因为按照时间倒序作为相关性, 所以segment上面的inverted index是按照时间逆序的tweets的链表. 通常一个instance上面有~12 segments. 为了提高内存分配效率, 使用slab分配slice, slice可以链表方式串联起来. slab的大小有2^1, 2^4, 2^7和2^11. slices链表方式只用于内存表示, 没有进行压缩. 但是当flush到磁盘时候会使用连续内存块存储并且压缩, 可以省去大约55%的内存.
+index是由多个segments组成的, 任何时候只有一个segment是可写的. 单个segment有tweets数量上限(2<sup>23</sup> ∼ 8.4 million tweets), 当超过这个数量之后会flush到磁盘上形成read-friendly格式文件. 因为按照时间倒序作为相关性, 所以segment上面的inverted index是按照时间逆序的tweets的链表. 通常一个instance上面有~12 segments. 为了提高内存分配效率, 使用slab分配slice, slice可以链表方式串联起来. slab的大小有2<sup>1</sup>, 2<sup>4</sup>, 2<sup>7和2</sup><sup>11</sup>. slices链表方式只用于内存表示, 没有进行压缩. 但是当flush到磁盘时候会使用连续内存块存储并且压缩, 可以省去大约55%的内存.
 </p>
 
 <p>
@@ -64,6 +110,11 @@ wmb只能保证reader能够读取到tweet{i}, 但是不能保证不会读取到t
 <p>
 比较有意思的是, 在earlybird使用(2011年)之前, twitter的检索系统使用的是Summize公司的, 这个公司在2008年被twitter收购. 原先的检索系统架构是ROR做front-end, MySQL做backend, 效果也还不错. 在2010年被替换到earlybird之前, 处理性能是1000TPS+12000QPS.
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/earlybird-realtime-search-at-twitter.html';this.page.identifier = 'earlybird-realtime-search-at-twitter.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lessons Learned From Reading Postmortems</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Lessons Learned From Reading Postmortems</h1>
@@ -16,9 +62,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga6a726d">1. Error Handling</a></li>
-<li><a href="#orgc20ecc3">2. Configuration</a></li>
-<li><a href="#org3412009">3. Monitoring / Alerting</a></li>
+<li><a href="#org5cf29b0">1. Error Handling</a></li>
+<li><a href="#orgec61fce">2. Configuration</a></li>
+<li><a href="#orgd4095bc">3. Monitoring / Alerting</a></li>
 </ul>
 </div>
 </div>
@@ -26,8 +72,8 @@
 <a href="http://danluu.com/postmortem-lessons/">http://danluu.com/postmortem-lessons/</a>
 </p>
 
-<div id="outline-container-orga6a726d" class="outline-2">
-<h2 id="orga6a726d"><span class="section-number-2">1</span> Error Handling</h2>
+<div id="outline-container-org5cf29b0" class="outline-2">
+<h2 id="org5cf29b0"><span class="section-number-2">1</span> Error Handling</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Proper error handling code is hard. Bugs in error handling code are a major cause of bad problems. This means that the probability of having sequential bugs, where an error causes buggy error handling code to run, isn’t just the independent probabilities of the individual errors multiplied. It’s common to have cascading failures cause a serious outage. # 错误处理中的bugs经常造成级联错误引起故障.
@@ -49,8 +95,8 @@ Drilling down further, 25% of bugs are from simply ignoring an error, 8% are fro
 </div>
 </div>
 
-<div id="outline-container-orgc20ecc3" class="outline-2">
-<h2 id="orgc20ecc3"><span class="section-number-2">2</span> Configuration</h2>
+<div id="outline-container-orgec61fce" class="outline-2">
+<h2 id="orgec61fce"><span class="section-number-2">2</span> Configuration</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Configuration bugs, not code bugs, are the most common cause I’ve seen of really bad outages. When I looked at publicly available postmortems, searching for “global outage postmortem” returned about 50% outages caused by configuration changes. Publicly available postmortems aren’t a representative sample of all outages, but a random sampling of postmortem databases also reveals that config changes are responsible for a disproportionate fraction of extremely bad outages. As with error handling, I’m often told that it’s obvious that config changes are scary, but it’s not so obvious that most companies test and stage config changes like they do code changes. # 从公开的postmortems可以发现近50%故障中断是因为配置变化. 就像错误处理一样, 虽然大部分公司虽然觉得配置变化很重要, 但是却很少像代码变化一样来测试和演练.
@@ -61,7 +107,7 @@ Except in extreme emergencies, risky code changes are basically never simultaneo
 </p>
 
 <p>
-I don’t mean to pick on large cloud companies, either. If anything, the situation there is better than at most startups, even very well funded ones. Most of the “unicorn” startups that I know of don’t have a proper testing/staging environment that lets them test risky config changes. I can understand why – it’s often hard to set up a good QA environment that mirrors prod well enough that config changes can get tested, and like driving without a seatbelt, nothing bad happens the vast majority of the time. If I had to make my own seatbelt before driving my car, I might not drive with a seatbelt either. Then again, if driving without a seatbelt were as scary as making config change, I might consider it. # 许多创业公司包括unicorn公司都没有合适的测试演练环境来测试配置变化.
+I don’t mean to pick on large cloud companies, either. If anything, the situation there is better than at most startups, even very well funded ones. Most of the “unicorn” startups that I know of don’t have a proper testing/staging environment that lets them test risky config changes. I can understand why – it’s often hard to set up a good QA environment that mirrors prod well enough that config changes can get tested, and like driving without a seatbelt, nothing bad happens the vast majority of the time. If I had to make my own seatbelt before driving my car, I might not drive with a seatbelt either. Then again, if driving without a seatbelt were as scary as making config change, I might consider it. # 许多创业公司包括unicorn公司都没有合适的测试演练环境来测试配置变化. 
 </p>
 
 <p>
@@ -70,8 +116,8 @@ I don’t mean to pick on large cloud companies, either. If anything, the situat
 </div>
 </div>
 
-<div id="outline-container-org3412009" class="outline-2">
-<h2 id="org3412009"><span class="section-number-2">3</span> Monitoring / Alerting</h2>
+<div id="outline-container-orgd4095bc" class="outline-2">
+<h2 id="orgd4095bc"><span class="section-number-2">3</span> Monitoring / Alerting</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The lack of proper monitor is never the sole cause of a problem, but it’s often a serious contributing factor. As is the case for human errors, these seem underrepresented in public postmortems. When I talk to folks at other companies about their worst near disasters, a large fraction of them come from not having the right sort of alerting set up. They’re often saved having a disaster bad enough to require a public postmortem by some sort of ops heroism, but heroism isn’t a scalable solution. # 合理的监控和报警
@@ -86,6 +132,11 @@ The <a href="https://en.wikipedia.org/wiki/Northeast_blackout_of_2003">Northeast
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/lessons-learned-from-reading-postmortems.html';this.page.identifier = 'lessons-learned-from-reading-postmortems.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

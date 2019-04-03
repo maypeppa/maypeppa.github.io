@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">C++</h1>
@@ -16,44 +62,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3dd03df">1. language</a>
+<li><a href="#orga006d8c">1. language</a>
 <ul>
-<li><a href="#org478784c">1.1. new/delete</a>
+<li><a href="#org67b08d1">1.1. new/delete</a>
 <ul>
-<li><a href="#org6dd4cbd">1.1.1. new重载</a></li>
-<li><a href="#org13e6860">1.1.2. new异常规格</a></li>
-<li><a href="#org6404ac5">1.1.3. 内存分配失败</a></li>
-<li><a href="#orgd30a2b3">1.1.4. operator new与new operator</a></li>
+<li><a href="#org985b38b">1.1.1. new重载</a></li>
+<li><a href="#orgde43c1b">1.1.2. new异常规格</a></li>
+<li><a href="#org9bd4077">1.1.3. 内存分配失败</a></li>
+<li><a href="#org2904de3">1.1.4. operator new与new operator</a></li>
 </ul>
 </li>
-<li><a href="#org80b31f2">1.2. static assert</a></li>
-<li><a href="#orged05a99">1.3. renew static_cast</a>
+<li><a href="#orgf97867f">1.2. static assert</a></li>
+<li><a href="#org104d904">1.3. renew static<sub>cast</sub></a>
 <ul>
-<li><a href="#orgab5b6df">1.3.1. 正确的例子</a></li>
-<li><a href="#org6d220cd">1.3.2. 当处理多继承时</a></li>
-<li><a href="#orgd069b83">1.3.3. 应该怎么做</a></li>
+<li><a href="#orgc0b190f">1.3.1. 正确的例子</a></li>
+<li><a href="#org95c633d">1.3.2. 当处理多继承时</a></li>
+<li><a href="#org3fd71af">1.3.3. 应该怎么做</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org348bc5f">2. runtime</a>
+<li><a href="#org06f99f0">2. runtime</a>
 <ul>
-<li><a href="#org9bf59b3">2.1. local static object</a></li>
-<li><a href="#orgb0706ea">2.2. hook function</a></li>
-<li><a href="#org35e2cef">2.3. undefined reference to static const class member</a></li>
-<li><a href="#org0460e53">2.4. malloc warmup performance</a></li>
+<li><a href="#org2182138">2.1. local static object</a></li>
+<li><a href="#org99a88a5">2.2. hook function</a></li>
+<li><a href="#org3f3c8da">2.3. undefined reference to static const class member</a></li>
+<li><a href="#org43c3d18">2.4. malloc warmup performance</a></li>
 </ul>
 </li>
-<li><a href="#orga5b4854">3. library</a>
+<li><a href="#org958e005">3. library</a>
 <ul>
-<li><a href="#org263ab05">3.1. boost::bind</a></li>
-<li><a href="#orge401a76">3.2. boost::spirit</a></li>
-<li><a href="#orgdd87553">3.3. boost::property_tree</a></li>
-<li><a href="#org3f45745">3.4. boost::python</a></li>
-<li><a href="#orge48cac6">3.5. logging</a></li>
+<li><a href="#org54b5b51">3.1. boost::bind</a></li>
+<li><a href="#orge7f7619">3.2. boost::spirit</a></li>
+<li><a href="#org7527e9d">3.3. boost::property<sub>tree</sub></a></li>
+<li><a href="#org457d12e">3.4. boost::python</a></li>
+<li><a href="#org94927be">3.5. logging</a></li>
 </ul>
 </li>
-<li><a href="#org0866968">4. c++11</a></li>
+<li><a href="#orgf2b617f">4. c++11</a></li>
 </ul>
 </div>
 </div>
@@ -66,12 +112,12 @@
 <li><a href="https://isocpp.org/get-started">https://isocpp.org/get-started</a></li>
 </ul>
 
-<div id="outline-container-org3dd03df" class="outline-2">
-<h2 id="org3dd03df"><span class="section-number-2">1</span> language</h2>
+<div id="outline-container-orga006d8c" class="outline-2">
+<h2 id="orga006d8c"><span class="section-number-2">1</span> language</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org478784c" class="outline-3">
-<h3 id="org478784c"><span class="section-number-3">1.1</span> new/delete</h3>
+<div id="outline-container-org67b08d1" class="outline-3">
+<h3 id="org67b08d1"><span class="section-number-3">1.1</span> new/delete</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 new/delete和C的内存分配有很多区别，主要的改进在进行了很多可定制化的内容:
@@ -81,37 +127,37 @@ new/delete和C的内存分配有很多区别，主要的改进在进行了很多
 <li>在new/delete对象的时候会调用分配对象的构造和析构函数</li>
 <li>new/delete对象的时候区分了new/delete和new/delete [](主要原因还是因为需要调用构造和析构函数):-)</li>
 <li>支持放置语法，就是传入一个信息告诉分配函数希望在哪个地方进行分配</li>
-<li>加入了异常分配失败抛出bad_alloc</li>
-<li>提供了一种方法设置handler在分配失败的时候调用set_new_handler()</li>
+<li>加入了异常分配失败抛出bad<sub>alloc</sub></li>
+<li>提供了一种方法设置handler在分配失败的时候调用set<sub>new</sub><sub>handler</sub>()</li>
 <li>默认的new还进行检查以确信在传递地址给构造函数之前内存分配成功</li>
 <li>允许重载全局new/delete和某个类的new/delete</li>
 </ul>
 </div>
 
-<div id="outline-container-org6dd4cbd" class="outline-4">
-<h4 id="org6dd4cbd"><span class="section-number-4">1.1.1</span> new重载</h4>
+<div id="outline-container-org985b38b" class="outline-4">
+<h4 id="org985b38b"><span class="section-number-4">1.1.1</span> new重载</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 用户可以重载new/delete来实现全局new/delete或者是某个类的new/delete.原型有下面这些
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">#include &lt;new&gt;</span>
-<span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-constant">std</span>::<span class="org-type">size_t</span>) <span class="org-keyword">throw</span> (<span class="org-constant">std</span>::<span class="org-type">bad_alloc</span>);
-<span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>[](<span class="org-constant">std</span>::size_t) <span class="org-keyword">throw</span> (<span class="org-constant">std</span>::<span class="org-type">bad_alloc</span>);
-<span class="org-type">void</span> <span class="org-keyword">operator</span> <span class="org-keyword">delete</span>(<span class="org-type">void</span>*) <span class="org-keyword">throw</span>();
-<span class="org-type">void</span> <span class="org-keyword">operator</span> <span class="org-keyword">delete</span>[](<span class="org-type">void</span>*) <span class="org-keyword">throw</span>();
-<span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-constant">std</span>::<span class="org-type">size_t</span>, <span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">nothrow_t</span>&amp;) <span class="org-keyword">throw</span>();
-<span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>[](<span class="org-constant">std</span>::size_t, <span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">nothrow_t</span>&amp;) <span class="org-keyword">throw</span>();
-<span class="org-type">void</span> <span class="org-keyword">operator</span> <span class="org-keyword">delete</span>(<span class="org-type">void</span>*, <span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">nothrow_t</span>&amp;) <span class="org-keyword">throw</span>();
-<span class="org-type">void</span> <span class="org-keyword">operator</span> <span class="org-keyword">delete</span>[](<span class="org-type">void</span>*, <span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">nothrow_t</span>&amp;) <span class="org-keyword">throw</span>();
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">#include &lt;new&gt;</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">size_t</span>) <span style="font-weight: bold;">throw</span> (<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">bad_alloc</span>);
+<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>[](<span style="font-weight: bold; text-decoration: underline;">std</span>::size_t) <span style="font-weight: bold;">throw</span> (<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">bad_alloc</span>);
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>*) <span style="font-weight: bold;">throw</span>();
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>[](<span style="font-weight: bold; text-decoration: underline;">void</span>*) <span style="font-weight: bold;">throw</span>();
+<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">size_t</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">nothrow_t</span>&amp;) <span style="font-weight: bold;">throw</span>();
+<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>[](<span style="font-weight: bold; text-decoration: underline;">std</span>::size_t, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">nothrow_t</span>&amp;) <span style="font-weight: bold;">throw</span>();
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>*, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">nothrow_t</span>&amp;) <span style="font-weight: bold;">throw</span>();
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>[](<span style="font-weight: bold; text-decoration: underline;">void</span>*, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">nothrow_t</span>&amp;) <span style="font-weight: bold;">throw</span>();
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Default placement versions of operator new.</span>
-<span class="org-keyword">inline</span> <span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-constant">std</span>::<span class="org-type">size_t</span>, <span class="org-type">void</span>* <span class="org-variable-name">__p</span>) <span class="org-keyword">throw</span>() { <span class="org-keyword">return</span> __p; }
-<span class="org-keyword">inline</span> <span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>[](<span class="org-constant">std</span>::size_t, <span class="org-type">void</span>* <span class="org-variable-name">__p</span>) <span class="org-keyword">throw</span>() { <span class="org-keyword">return</span> __p; }
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Default placement versions of operator new.</span>
+<span style="font-weight: bold;">inline</span> <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">size_t</span>, <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">__p</span>) <span style="font-weight: bold;">throw</span>() { <span style="font-weight: bold;">return</span> __p; }
+<span style="font-weight: bold;">inline</span> <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>[](<span style="font-weight: bold; text-decoration: underline;">std</span>::size_t, <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">__p</span>) <span style="font-weight: bold;">throw</span>() { <span style="font-weight: bold;">return</span> __p; }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Default placement versions of operator delete.</span>
-<span class="org-keyword">inline</span> <span class="org-type">void</span>  <span class="org-keyword">operator</span> <span class="org-keyword">delete</span>  (<span class="org-type">void</span>*, <span class="org-type">void</span>*) <span class="org-keyword">throw</span>() { }
-<span class="org-keyword">inline</span> <span class="org-type">void</span>  <span class="org-keyword">operator</span> <span class="org-keyword">delete</span>[](<span class="org-type">void</span>*, <span class="org-type">void</span>*) <span class="org-keyword">throw</span>() { }
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Default placement versions of operator delete.</span>
+<span style="font-weight: bold;">inline</span> <span style="font-weight: bold; text-decoration: underline;">void</span>  <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>  (<span style="font-weight: bold; text-decoration: underline;">void</span>*, <span style="font-weight: bold; text-decoration: underline;">void</span>*) <span style="font-weight: bold;">throw</span>() { }
+<span style="font-weight: bold;">inline</span> <span style="font-weight: bold; text-decoration: underline;">void</span>  <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>[](<span style="font-weight: bold; text-decoration: underline;">void</span>*, <span style="font-weight: bold; text-decoration: underline;">void</span>*) <span style="font-weight: bold;">throw</span>() { }
 </pre>
 </div>
 
@@ -120,56 +166,56 @@ new/delete如果作为类成员的话被重载的话，始终是静态成员，�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;new&gt;</span>
-<span class="org-keyword">class</span> <span class="org-type">A</span>{
- <span class="org-keyword">public</span>:
-  <span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-type">size_t</span> <span class="org-variable-name">s</span>,<span class="org-type">int</span> <span class="org-variable-name">arg</span>) <span class="org-keyword">throw</span>(<span class="org-constant">std</span>::<span class="org-type">bad_alloc</span>) {
-    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"size : "</span> &lt;&lt; s &lt;&lt; <span class="org-string">", arg : "</span> &lt;&lt; arg &lt;&lt; <span class="org-constant">std</span>::endl;
-    <span class="org-keyword">return</span> ::<span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-type">s</span>);
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;iostream&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;new&gt;</span>
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">s</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">arg</span>) <span style="font-weight: bold;">throw</span>(<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">bad_alloc</span>) {
+    <span style="font-weight: bold; text-decoration: underline;">std</span>::cout &lt;&lt; <span style="font-style: italic;">"size : "</span> &lt;&lt; s &lt;&lt; <span style="font-style: italic;">", arg : "</span> &lt;&lt; arg &lt;&lt; <span style="font-weight: bold; text-decoration: underline;">std</span>::endl;
+    <span style="font-weight: bold;">return</span> ::<span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">s</span>);
   }
-  <span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-type">size_t</span> <span class="org-variable-name">s</span>,<span class="org-type">int</span> <span class="org-variable-name">arg</span>,<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">nothrow_t</span>&amp; <span class="org-variable-name">nothrow</span>){
-    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"[nothrow]size : "</span> &lt;&lt; s &lt;&lt; <span class="org-string">", arg : "</span> &lt;&lt; arg &lt;&lt; <span class="org-constant">std</span>::endl;
-    <span class="org-keyword">return</span> ::<span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-type">s</span>,nothrow);
+  <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">s</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">arg</span>,<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">nothrow_t</span>&amp; <span style="font-weight: bold; font-style: italic;">nothrow</span>){
+    <span style="font-weight: bold; text-decoration: underline;">std</span>::cout &lt;&lt; <span style="font-style: italic;">"[nothrow]size : "</span> &lt;&lt; s &lt;&lt; <span style="font-style: italic;">", arg : "</span> &lt;&lt; arg &lt;&lt; <span style="font-weight: bold; text-decoration: underline;">std</span>::endl;
+    <span style="font-weight: bold;">return</span> ::<span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">s</span>,nothrow);
   }
-  <span class="org-type">void</span> <span class="org-keyword">operator</span> <span class="org-keyword">delete</span>(<span class="org-type">void</span>* <span class="org-variable-name">p</span>) {
-    ::<span class="org-keyword">operator</span> <span class="org-keyword">delete</span>(p);
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">p</span>) {
+    ::<span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">delete</span>(p);
   }
-  <span class="org-type">int</span> <span class="org-variable-name">x</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">x</span>;
 };
-<span class="org-keyword">class</span> <span class="org-type">B</span>: <span class="org-keyword">public</span> <span class="org-type">A</span>{
-  <span class="org-type">int</span> <span class="org-variable-name">y</span>;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">B</span>: <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">y</span>;
 };
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>(){
-  <span class="org-type">A</span>* <span class="org-variable-name">a</span>=<span class="org-keyword">new</span> (10,<span class="org-constant">std</span>::nothrow)<span class="org-type">A</span>();
-  <span class="org-type">B</span>* <span class="org-variable-name">b</span>=<span class="org-keyword">new</span> (20)<span class="org-type">B</span>();
-  <span class="org-keyword">delete</span> a;
-  <span class="org-keyword">delete</span> b;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(){
+  <span style="font-weight: bold; text-decoration: underline;">A</span>* <span style="font-weight: bold; font-style: italic;">a</span>=<span style="font-weight: bold;">new</span> (10,<span style="font-weight: bold; text-decoration: underline;">std</span>::nothrow)<span style="font-weight: bold; text-decoration: underline;">A</span>();
+  <span style="font-weight: bold; text-decoration: underline;">B</span>* <span style="font-weight: bold; font-style: italic;">b</span>=<span style="font-weight: bold;">new</span> (20)<span style="font-weight: bold; text-decoration: underline;">B</span>();
+  <span style="font-weight: bold;">delete</span> a;
+  <span style="font-weight: bold;">delete</span> b;
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org13e6860" class="outline-4">
-<h4 id="org13e6860"><span class="section-number-4">1.1.2</span> new异常规格</h4>
+<div id="outline-container-orgde43c1b" class="outline-4">
+<h4 id="orgde43c1b"><span class="section-number-4">1.1.2</span> new异常规格</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
-从new的异常规格可以看到，如果是普通的调用的话可能会抛出std::bad_alloc这个异常，但是原型里面还有
+从new的异常规格可以看到，如果是普通的调用的话可能会抛出std::bad<sub>alloc这个异常</sub>，但是原型里面还有
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span>* <span class="org-keyword">operator</span> <span class="org-keyword">new</span>(<span class="org-constant">std</span>::<span class="org-type">size_t</span>, <span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">nothrow_t</span>&amp;) <span class="org-keyword">throw</span>();
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">operator</span> <span style="font-weight: bold;">new</span>(<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">size_t</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">nothrow_t</span>&amp;) <span style="font-weight: bold;">throw</span>();
 </pre>
 </div>
 <p>
 这种使用placement来通知new不抛出异常的的接口，语义是返回NULL来告诉app分配失败。要使用这个函数也非常简单
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">#include &lt;new&gt;</span>
-<span class="org-comment-delimiter">//  </span><span class="org-comment">struct nothrow_t { };</span>
-<span class="org-comment-delimiter">//  </span><span class="org-comment">extern const nothrow_t nothrow;</span>
-<span class="org-type">void</span>* <span class="org-variable-name">p</span>=<span class="org-keyword">new</span> (<span class="org-constant">std</span>::nothrow) <span class="org-type">int</span>(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;std::nothrow&#23601;&#26159;std::nothrow_t&#30340;&#23454;&#20363;</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">#include &lt;new&gt;</span>
+<span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">struct nothrow_t { };</span>
+<span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">extern const nothrow_t nothrow;</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">p</span>=<span style="font-weight: bold;">new</span> (<span style="font-weight: bold; text-decoration: underline;">std</span>::nothrow) <span style="font-weight: bold; text-decoration: underline;">int</span>(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;std::nothrow&#23601;&#26159;std::nothrow_t&#30340;&#23454;&#20363;</span>
 </pre>
 </div>
 <p>
@@ -178,25 +224,25 @@ new/delete如果作为类成员的话被重载的话，始终是静态成员，�
 </div>
 </div>
 
-<div id="outline-container-org6404ac5" class="outline-4">
-<h4 id="org6404ac5"><span class="section-number-4">1.1.3</span> 内存分配失败</h4>
+<div id="outline-container-org9bd4077" class="outline-4">
+<h4 id="org9bd4077"><span class="section-number-4">1.1.3</span> 内存分配失败</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 C++来提供了内存分配失败的回调函数，但是这个只能够处理全局new分配失败的情况
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">/** </span><span class="org-comment">If you write your own error handler to be called by @c new, it must</span>
-<span class="org-comment"> *  be of this type.  */</span>
-<span class="org-keyword">typedef</span> <span class="org-type">void</span> (*<span class="org-type">new_handler</span>)();
-<span class="org-comment-delimiter">/// </span><span class="org-comment">Takes a replacement handler as the argument, returns the previous handler.</span>
-<span class="org-type">new_handler</span> <span class="org-function-name">set_new_handler</span>(<span class="org-type">new_handler</span>) <span class="org-keyword">throw</span>();
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">/** </span><span style="font-weight: bold; font-style: italic;">If you write your own error handler to be called by @c new, it must</span>
+<span style="font-weight: bold; font-style: italic;"> *  be of this type.  */</span>
+<span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">void</span> (*<span style="font-weight: bold; text-decoration: underline;">new_handler</span>)();
+<span style="font-weight: bold; font-style: italic;">/// </span><span style="font-weight: bold; font-style: italic;">Takes a replacement handler as the argument, returns the previous handler.</span>
+<span style="font-weight: bold; text-decoration: underline;">new_handler</span> <span style="font-weight: bold;">set_new_handler</span>(<span style="font-weight: bold; text-decoration: underline;">new_handler</span>) <span style="font-weight: bold;">throw</span>();
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd30a2b3" class="outline-4">
-<h4 id="orgd30a2b3"><span class="section-number-4">1.1.4</span> operator new与new operator</h4>
+<div id="outline-container-org2904de3" class="outline-4">
+<h4 id="org2904de3"><span class="section-number-4">1.1.4</span> operator new与new operator</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 此外在很多书籍里面会提到operator new和new operator这两个说法，这两个是不一样的概念。operator new就是我们重写运算符函数，而new operator使我们调用new这个表达式。本质上说new这个表达式调用了分配类型里面的operator new函数，同时调用这个类型的初始化构造函数。同理operator delete和delete operator差别也是一样的。通常new operator的动作是这样的:
@@ -204,7 +250,7 @@ C++来提供了内存分配失败的回调函数，但是这个只能够处理�
 <ul class="org-ul">
 <li>void *raw=operaotor new(sizeof(A)); //使用operator new进行内存分配</li>
 <li>call A::A on *raw; //在raw上面调用构造函数</li>
-<li>A *a=static_castraw; //最后进行一次强制转换</li>
+<li>A *a=static<sub>castraw</sub>; //最后进行一次强制转换</li>
 </ul>
 <p>
 同理通常delete operator的动作是这样的:
@@ -220,23 +266,23 @@ C++来提供了内存分配失败的回调函数，但是这个只能够处理�
 </div>
 </div>
 
-<div id="outline-container-org80b31f2" class="outline-3">
-<h3 id="org80b31f2"><span class="section-number-3">1.2</span> static assert</h3>
+<div id="outline-container-orgf97867f" class="outline-3">
+<h3 id="orgf97867f"><span class="section-number-3">1.2</span> static assert</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#define</span> <span class="org-function-name">STATIC_ASSERT</span>(<span class="org-variable-name">_cond</span>,<span class="org-variable-name">_name</span>)      <span class="org-keyword">typedef</span> <span class="org-type">char</span> <span class="org-type">STATIC_ASSERT_FAILED_</span> ## _name [ (_cond) ? 1 : -1 ]
-<span class="org-preprocessor">#define</span> <span class="org-function-name">STATIC_SIZE_ASSERT</span>(<span class="org-variable-name">_type</span>,<span class="org-variable-name">_size</span>) STATIC_ASSERT ( <span class="org-keyword">sizeof</span>(_type)==_size, _type ## _MUST_BE_ ## _size ## _BYTES )
+<pre class="src src-C++"><span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">STATIC_ASSERT</span>(<span style="font-weight: bold; font-style: italic;">_cond</span>,<span style="font-weight: bold; font-style: italic;">_name</span>)      <span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; text-decoration: underline;">STATIC_ASSERT_FAILED_</span> ## _name [ (_cond) ? 1 : -1 ]
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">STATIC_SIZE_ASSERT</span>(<span style="font-weight: bold; font-style: italic;">_type</span>,<span style="font-weight: bold; font-style: italic;">_size</span>) STATIC_ASSERT ( <span style="font-weight: bold;">sizeof</span>(_type)==_size, _type ## _MUST_BE_ ## _size ## _BYTES )
 </pre>
 </div>
 
 <p>
-这个宏用来检测sizeof(_type)==_size这个假设，这个可以在编译代码的时候可以进行断言。好比下面这段程序
+这个宏用来检测sizeof(<sub>type</sub>)==<sub>size这个假设</sub>，这个可以在编译代码的时候可以进行断言。好比下面这段程序
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">main</span>() {
-  STATIC_SIZE_ASSERT(<span class="org-type">int</span>,8);
-  <span class="org-keyword">return</span> 0;
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+  STATIC_SIZE_ASSERT(<span style="font-weight: bold; text-decoration: underline;">int</span>,8);
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -253,41 +299,41 @@ main.cc:5: error: size of array `STATIC_ASSERT_FAILED_int_MUST_BE_8_BYTES’ is 
 </p>
 
 <p>
-c++0x(&#x2013;std=c++0x)在语言层面上支持static_assert.
+c++0x(&#x2013;std=c++0x)在语言层面上支持static<sub>assert</sub>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orged05a99" class="outline-3">
-<h3 id="orged05a99"><span class="section-number-3">1.3</span> renew static_cast</h3>
+<div id="outline-container-org104d904" class="outline-3">
+<h3 id="org104d904"><span class="section-number-3">1.3</span> renew static<sub>cast</sub></h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
-学习C的时候总是认为强转不过就是二进制层面的强转。开始学习C++之后就认为C语言的强转对应的就是reinterpret_cast.而static_cast和reinterpret_cast的差别不过就是static_cast可以做一些类型上面的检查，所以在大多数的时候都习惯使用reinterpret_cast而非static_cast.直到在编写itachi（一个异步网络编程框架）的时候，才发现并不是这么回事。下面的例子是我遇到问题的一个抽象。
+学习C的时候总是认为强转不过就是二进制层面的强转。开始学习C++之后就认为C语言的强转对应的就是reinterpret<sub>cast.而static</sub><sub>cast和reinterpret</sub><sub>cast的差别不过就是static</sub><sub>cast可以做一些类型上面的检查</sub>，所以在大多数的时候都习惯使用reinterpret<sub>cast而非static</sub><sub>cast.直到在编写itachi</sub>（一个异步网络编程框架）的时候，才发现并不是这么回事。下面的例子是我遇到问题的一个抽象。
 </p>
 </div>
 
-<div id="outline-container-orgab5b6df" class="outline-4">
-<h4 id="orgab5b6df"><span class="section-number-4">1.3.1</span> 正确的例子</h4>
+<div id="outline-container-orgc0b190f" class="outline-4">
+<h4 id="orgc0b190f"><span class="section-number-4">1.3.1</span> 正确的例子</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-keyword">struct</span> <span class="org-type">A</span>{
-}; <span class="org-comment-delimiter">// </span><span class="org-comment">class A</span>
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+}; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class A</span>
 
-<span class="org-keyword">struct</span> <span class="org-type">B</span>: <span class="org-keyword">public</span> <span class="org-type">A</span>{
-  <span class="org-type">int</span> <span class="org-variable-name">g</span>;
-}; <span class="org-comment-delimiter">// </span><span class="org-comment">class B</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">B</span>: <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">g</span>;
+}; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class B</span>
 
-<span class="org-type">void</span> <span class="org-function-name">onComplete</span>(<span class="org-type">A</span>* <span class="org-variable-name">o</span>){
-  <span class="org-type">B</span>* <span class="org-variable-name">pb</span>=<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">B</span>*&gt;(o);
-  printf(<span class="org-string">"%p\n"</span>,&amp;(pb-&gt;g));
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">onComplete</span>(<span style="font-weight: bold; text-decoration: underline;">A</span>* <span style="font-weight: bold; font-style: italic;">o</span>){
+  <span style="font-weight: bold; text-decoration: underline;">B</span>* <span style="font-weight: bold; font-style: italic;">pb</span>=<span style="font-weight: bold;">reinterpret_cast</span>&lt;<span style="font-weight: bold; text-decoration: underline;">B</span>*&gt;(o);
+  printf(<span style="font-style: italic;">"%p\n"</span>,&amp;(pb-&gt;g));
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-  <span class="org-type">B</span> <span class="org-variable-name">b</span>;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+  <span style="font-weight: bold; text-decoration: underline;">B</span> <span style="font-weight: bold; font-style: italic;">b</span>;
   onComplete(&amp;b);
-  printf(<span class="org-string">"%p\n"</span>,&amp;(b.g));
-  <span class="org-keyword">return</span> 0;
+  printf(<span style="font-style: italic;">"%p\n"</span>,&amp;(b.g));
+  <span style="font-weight: bold;">return</span> 0;
 }
 
 </pre>
@@ -308,38 +354,38 @@ c++0x(&#x2013;std=c++0x)在语言层面上支持static_assert.
 </div>
 </div>
 
-<div id="outline-container-org6d220cd" class="outline-4">
-<h4 id="org6d220cd"><span class="section-number-4">1.3.2</span> 当处理多继承时</h4>
+<div id="outline-container-org95c633d" class="outline-4">
+<h4 id="org95c633d"><span class="section-number-4">1.3.2</span> 当处理多继承时</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
-处理B类型没有问题，但是处理B的子类型的话，那么上面代码可能就会出现问题。因为对于B子类型而言的话很可能在 <b>对象模型</b> 之前添加了一些字段，按照reintrepret_cast语义的话是直接二进制映射，字段没有虚方法所以是直接按照偏移来取的，因此可能存在问题。但是看看下面这个例子
+处理B类型没有问题，但是处理B的子类型的话，那么上面代码可能就会出现问题。因为对于B子类型而言的话很可能在 <b>对象模型</b> 之前添加了一些字段，按照reintrepret<sub>cast语义的话是直接二进制映射</sub>，字段没有虚方法所以是直接按照偏移来取的，因此可能存在问题。但是看看下面这个例子
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-keyword">struct</span> <span class="org-type">A</span>{
-}; <span class="org-comment-delimiter">// </span><span class="org-comment">class A</span>
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+}; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class A</span>
 
-<span class="org-keyword">struct</span> <span class="org-type">B</span>: <span class="org-keyword">public</span> <span class="org-type">A</span>{
-  <span class="org-type">int</span> <span class="org-variable-name">g</span>;
-}; <span class="org-comment-delimiter">// </span><span class="org-comment">class B</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">B</span>: <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">g</span>;
+}; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class B</span>
 
-<span class="org-keyword">struct</span> <span class="org-type">Holder</span>{
-  <span class="org-type">int</span> <span class="org-variable-name">dummy</span>;
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">Holder</span>{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">dummy</span>;
 };
-<span class="org-keyword">struct</span> <span class="org-type">C</span>: <span class="org-keyword">public</span> <span class="org-type">Holder</span>,
-          <span class="org-keyword">public</span> <span class="org-type">B</span>{
-}; <span class="org-comment-delimiter">// </span><span class="org-comment">class C</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">C</span>: <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">Holder</span>,
+          <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">B</span>{
+}; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class C</span>
 
-<span class="org-type">void</span> <span class="org-function-name">onComplete</span>(<span class="org-type">A</span>* <span class="org-variable-name">o</span>){
-  <span class="org-type">B</span>* <span class="org-variable-name">pb</span>=<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">B</span>*&gt;(o);
-  printf(<span class="org-string">"o:%p pb-&gt;g:%p\n"</span>,pb, &amp;(pb-&gt;g));
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">onComplete</span>(<span style="font-weight: bold; text-decoration: underline;">A</span>* <span style="font-weight: bold; font-style: italic;">o</span>){
+  <span style="font-weight: bold; text-decoration: underline;">B</span>* <span style="font-weight: bold; font-style: italic;">pb</span>=<span style="font-weight: bold;">reinterpret_cast</span>&lt;<span style="font-weight: bold; text-decoration: underline;">B</span>*&gt;(o);
+  printf(<span style="font-style: italic;">"o:%p pb-&gt;g:%p\n"</span>,pb, &amp;(pb-&gt;g));
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-  <span class="org-type">C</span> <span class="org-variable-name">c</span>;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+  <span style="font-weight: bold; text-decoration: underline;">C</span> <span style="font-weight: bold; font-style: italic;">c</span>;
   onComplete(&amp;c);
-  printf(<span class="org-string">"c:%p c.g:%p\n"</span>,&amp;c, &amp;(c.g));
-  <span class="org-keyword">return</span> 0;
+  printf(<span style="font-style: italic;">"c:%p c.g:%p\n"</span>,&amp;c, &amp;(c.g));
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -354,119 +400,119 @@ c:0xbfff9a9c c.g:0xbfff9aa0
 </pre>
 
 <p>
-问题出来了，并不像我们想的那样，pb-&gt;g和c.g的地址是一样的。但是神奇的是，o和c的地址是不一样的。这是为什么呢？原因就在于static_cast.在传参的时候，根据形参和实参之间的类型信息来进行指针的转换。 <b>也就是说，static_cast能够正确处理类型系统。而这点reintrepret_cast是做不到的。</b>
+问题出来了，并不像我们想的那样，pb-&gt;g和c.g的地址是一样的。但是神奇的是，o和c的地址是不一样的。这是为什么呢？原因就在于static<sub>cast.在传参的时候</sub>，根据形参和实参之间的类型信息来进行指针的转换。 <b>也就是说，static<sub>cast能够正确处理类型系统</sub>。而这点reintrepret<sub>cast是做不到的</sub>。</b>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd069b83" class="outline-4">
-<h4 id="orgd069b83"><span class="section-number-4">1.3.3</span> 应该怎么做</h4>
+<div id="outline-container-org3fd71af" class="outline-4">
+<h4 id="org3fd71af"><span class="section-number-4">1.3.3</span> 应该怎么做</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
-<b>因为自己也缺乏C++对象模型方面的知识，所以也没有办法从底层解释原因。</b> 但是结论却非常简单，就是应该尽量地执行static_cast而非reinterpret_cast. reinterpret_cast对于继承方面基本没有做任何事情，而使用static_cast的话则能够检测到类型系统，然后根据类型系统来进行正确的转换。 要是想对于static_cast有更多认识的话，需要了解C++对象模型的实现。
+<b>因为自己也缺乏C++对象模型方面的知识，所以也没有办法从底层解释原因。</b> 但是结论却非常简单，就是应该尽量地执行static<sub>cast而非reinterpret</sub><sub>cast</sub>. reinterpret<sub>cast对于继承方面基本没有做任何事情</sub>，而使用static<sub>cast的话则能够检测到类型系统</sub>，然后根据类型系统来进行正确的转换。 要是想对于static<sub>cast有更多认识的话</sub>，需要了解C++对象模型的实现。
 </p>
 
 <p>
 下面我总结了一下各种cast应该使用的场景：
 </p>
 <ol class="org-ol">
-<li>static_cast无论如何应该首先考虑使用，而且编译器在生成函数调用时候内部也是在用static_cast.</li>
-<li>reinterpret_cast只有在你确定只处理某两种final类型时候，两者之间的转换。比如在内存操作时候uint8_t*和char*之间的转换</li>
-<li>const_cast只有在消除const以及volatile这些标记时候有用。</li>
-<li>dynamic_cast得到父类型但是不确定子类型的时候，你需要逐个尝试转换可以使用。但是如果外部存在字符串比如type这样的字段表示类型的话，那么可以直接使用static_cast.</li>
+<li>static<sub>cast无论如何应该首先考虑使用</sub>，而且编译器在生成函数调用时候内部也是在用static<sub>cast</sub>.</li>
+<li>reinterpret<sub>cast只有在你确定只处理某两种final类型时候</sub>，两者之间的转换。比如在内存操作时候uint8<sub>t</sub>*和char*之间的转换</li>
+<li>const<sub>cast只有在消除const以及volatile这些标记时候有用</sub>。</li>
+<li>dynamic<sub>cast得到父类型但是不确定子类型的时候</sub>，你需要逐个尝试转换可以使用。但是如果外部存在字符串比如type这样的字段表示类型的话，那么可以直接使用static<sub>cast</sub>.</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org348bc5f" class="outline-2">
-<h2 id="org348bc5f"><span class="section-number-2">2</span> runtime</h2>
+<div id="outline-container-org06f99f0" class="outline-2">
+<h2 id="org06f99f0"><span class="section-number-2">2</span> runtime</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org9bf59b3" class="outline-3">
-<h3 id="org9bf59b3"><span class="section-number-3">2.1</span> local static object</h3>
+<div id="outline-container-org2182138" class="outline-3">
+<h3 id="org2182138"><span class="section-number-3">2.1</span> local static object</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 局部静态对象在C里面初始化只允许是常数，所以这个在编译期就可以搞定。在C++里面局部静态对象允许是一个类对象，那么就涉及到类的初始化等问题，这个是在编译期搞不定的只能够在运行期解决。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-<span class="org-keyword">class</span> <span class="org-type">A</span>{
- <span class="org-keyword">public</span>:
-  <span class="org-function-name">A</span>(){
-    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"A()"</span> &lt;&lt; <span class="org-constant">std</span>::endl;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;iostream&gt;</span>
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold;">A</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">std</span>::cout &lt;&lt; <span style="font-style: italic;">"A()"</span> &lt;&lt; <span style="font-weight: bold; text-decoration: underline;">std</span>::endl;
   }
 };
-<span class="org-type">void</span> <span class="org-function-name">foo</span>(){
-  <span class="org-keyword">static</span> <span class="org-type">A</span> <span class="org-variable-name">a</span>;
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>(){
+  <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">A</span> <span style="font-weight: bold; font-style: italic;">a</span>;
 }
-<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(){
   foo();
-  <span class="org-keyword">return</span> 0;
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
 
 <p>
-我们考虑局部静态对象的初始化时机。如果仅仅是在程序启动时候就初始化的话那么肯定不合适，所以肯定是在第一次调用foo时候进行初始化(这里还需要考虑多线程问题).我们可以看看这个部分汇编代码.对于a对象的话好比存在一个instance_counter初始化为0.首先判断是否初始化了，然后会调用__cxa_guard_acquire加锁然后再判断一次(double check,可以减少开销），最后使用__cxa_guard_release释放这个锁。
+我们考虑局部静态对象的初始化时机。如果仅仅是在程序启动时候就初始化的话那么肯定不合适，所以肯定是在第一次调用foo时候进行初始化(这里还需要考虑多线程问题).我们可以看看这个部分汇编代码.对于a对象的话好比存在一个instance<sub>counter初始化为0.首先判断是否初始化了</sub>，然后会调用_<sub>cxa</sub><sub>guard</sub><sub>acquire加锁然后再判断一次</sub>(double check,可以减少开销），最后使用_<sub>cxa</sub><sub>guard</sub><sub>release释放这个锁</sub>。
 </p>
 
 <div class="org-src-container">
 <pre class="src src-ASM">.globl _Z3foov
-    .type	_Z3foov, @function
+	.type	_Z3foov, @function
 _Z3foov:
 .LFB1445:
-    pushq	%rbp
+	pushq	%rbp
 .LCFI3:
-    movq	%rsp, %rbp
+	movq	%rsp, %rbp
 .LCFI4:
-    subq	$32, %rsp
+	subq	$32, %rsp
 .LCFI5:
-    cmpb	$0, _ZGVZ3foovE1a(%rip)
-    jne	.L10
-    movl	$_ZGVZ3foovE1a, %edi
-    call	__cxa_guard_acquire
-    testl	%eax, %eax
-    je	.L10
-    movb	$0, -1(%rbp)
-    movl	$_ZZ3foovE1a, %edi
+	cmpb	$0, _ZGVZ3foovE1a(%rip)
+	jne	.L10
+	movl	$_ZGVZ3foovE1a, %edi
+	call	__cxa_guard_acquire
+	testl	%eax, %eax
+	je	.L10
+	movb	$0, -1(%rbp)
+	movl	$_ZZ3foovE1a, %edi
 .LEHB0:
-    call	_ZN1AC1Ev
+	call	_ZN1AC1Ev
 .LEHE0:
-    movl	$_ZGVZ3foovE1a, %edi
-    call	__cxa_guard_release
-    jmp	.L10
+	movl	$_ZGVZ3foovE1a, %edi
+	call	__cxa_guard_release
+	jmp	.L10
 .L19:
-    movq	%rax, -24(%rbp)
+	movq	%rax, -24(%rbp)
 .L13:
-    movq	-24(%rbp), %rax
-    movq	%rax, -16(%rbp)
-    cmpb	$0, -1(%rbp)
-    je	.L15
-    jmp	.L16
+	movq	-24(%rbp), %rax
+	movq	%rax, -16(%rbp)
+	cmpb	$0, -1(%rbp)
+	je	.L15
+	jmp	.L16
 .L15:
-    movl	$_ZGVZ3foovE1a, %edi
-    call	__cxa_guard_abort
+	movl	$_ZGVZ3foovE1a, %edi
+	call	__cxa_guard_abort
 .L16:
-    movq	-16(%rbp), %rax
-    movq	%rax, -24(%rbp)
+	movq	-16(%rbp), %rax
+	movq	%rax, -24(%rbp)
 .L17:
-    movq	-24(%rbp), %rdi
+	movq	-24(%rbp), %rdi
 .LEHB1:
-    call	_Unwind_Resume
+	call	_Unwind_Resume
 .LEHE1:
 .L10:
-    leave
-    ret
+	leave
+	ret
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb0706ea" class="outline-3">
-<h3 id="orgb0706ea"><span class="section-number-3">2.2</span> hook function</h3>
+<div id="outline-container-org99a88a5" class="outline-3">
+<h3 id="org99a88a5"><span class="section-number-3">2.2</span> hook function</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 hook函数调用有两种方式，一种是hook我们代码内部的函数，这意味这这个函数是由我们来编译的，当然我们不能够修改需要hook的函数实现否则就没有意义了。另外一种hook函数是动态库里面的函数，静态库里面的函数因为完全进入了可执行程序，所以修改起来比较麻烦一些。我们QA写过这样的程序用libbfd库修改可执行程序本身，在函数调用之间加上跳板，但是相比本文介绍的两种方式更加复杂。（复杂就以为着容易出错，而且这种修改可执行程序应该是不值得提倡的）。
@@ -480,42 +526,42 @@ hook函数调用有两种方式，一种是hook我们代码内部的函数，这
 在gcc编译的时候需要加入-finstrument-functions这个选项之后，那么每个函数调用之前和之后都会调用
 </p>
 <ul class="org-ul">
-<li>__cyg_profile_func_enter</li>
-<li>__cyg_profile_func_exit</li>
+<li>_<sub>cyg</sub><sub>profile</sub><sub>func</sub><sub>enter</sub></li>
+<li>_<sub>cyg</sub><sub>profile</sub><sub>func</sub><sub>exit</sub></li>
 </ul>
 <p>
-这两个函数是gcc内置函数，_enter函数能够在函数调用之前进行调用，_exit函数能够在函数调用退出之后调用，原型分别是
+这两个函数是gcc内置函数，<sub>enter函数能够在函数调用之前进行调用</sub>，<sub>exit函数能够在函数调用退出之后调用</sub>，原型分别是
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">this&#26159;&#36825;&#20010;callee&#20989;&#25968;&#22320;&#22336;</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">callsite&#26159;caller&#20989;&#25968;&#35843;&#29992;&#28857;&#22320;&#22336;(&#19981;&#26159;&#20989;&#25968;&#22320;&#22336;)</span>
-<span class="org-type">void</span> <span class="org-function-name">__cyg_profile_func_enter</span>(<span class="org-type">void</span> *<span class="org-keyword">this</span>, <span class="org-type">void</span> *<span class="org-variable-name">callsite</span>);
-<span class="org-type">void</span> <span class="org-function-name">__cyg_profile_func_exit</span>(<span class="org-type">void</span> *<span class="org-keyword">this</span>, <span class="org-type">void</span> *<span class="org-variable-name">callsite</span>);
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">this&#26159;&#36825;&#20010;callee&#20989;&#25968;&#22320;&#22336;</span>
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">callsite&#26159;caller&#20989;&#25968;&#35843;&#29992;&#28857;&#22320;&#22336;(&#19981;&#26159;&#20989;&#25968;&#22320;&#22336;)</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">__cyg_profile_func_enter</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">this</span>, <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">callsite</span>);
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">__cyg_profile_func_exit</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">this</span>, <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">callsite</span>);
 </pre>
 </div>
 
 <p>
-如果不希望函数被hook的话，那么可以在函数属性之后加上__attribute__((no _instrument _function)).尤其是这个函数如果在enter和exit里面调用的话，最好加上这个属性，不然非常容易出现递归调用
+如果不希望函数被hook的话，那么可以在函数属性之后加上_<sub>attribute</sub>_<sub>((no _instrument _function))</sub>.尤其是这个函数如果在enter和exit里面调用的话，最好加上这个属性，不然非常容易出现递归调用
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdlib&gt;</span>
-<span class="org-type">void</span> <span class="org-function-name">foo</span>() <span class="org-keyword">__attribute__</span>((no_instrument_function));
-<span class="org-type">void</span> <span class="org-function-name">foo</span>() {
-    printf(<span class="org-string">"%s\n"</span>,__func__);
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdlib&gt;</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>() <span style="font-weight: bold;">__attribute__</span>((no_instrument_function));
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>() {
+    printf(<span style="font-style: italic;">"%s\n"</span>,__func__);
 }
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    printf(<span class="org-string">"main\n"</span>);
-    <span class="org-keyword">return</span> 0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+    printf(<span style="font-style: italic;">"main\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
 }
-<span class="org-keyword">extern</span> <span class="org-string">"C"</span> {
-    <span class="org-type">void</span> <span class="org-function-name">__cyg_profile_func_enter</span>(<span class="org-type">void</span>* <span class="org-variable-name">callee</span>, <span class="org-type">void</span>* <span class="org-variable-name">callsite</span>)  <span class="org-keyword">__attribute__</span>((no_instrument_function));
-    <span class="org-type">void</span> <span class="org-function-name">__cyg_profile_func_exit</span>(<span class="org-type">void</span>* <span class="org-variable-name">callee</span>, <span class="org-type">void</span>* <span class="org-variable-name">callsite</span>) <span class="org-keyword">__attribute__</span>((no_instrument_function));
-    <span class="org-type">void</span> <span class="org-function-name">__cyg_profile_func_enter</span>(<span class="org-type">void</span>* <span class="org-variable-name">callee</span>, <span class="org-type">void</span>* <span class="org-variable-name">callsite</span>) {
+<span style="font-weight: bold;">extern</span> <span style="font-style: italic;">"C"</span> {
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">__cyg_profile_func_enter</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callee</span>, <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callsite</span>)  <span style="font-weight: bold;">__attribute__</span>((no_instrument_function));
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">__cyg_profile_func_exit</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callee</span>, <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callsite</span>) <span style="font-weight: bold;">__attribute__</span>((no_instrument_function));
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">__cyg_profile_func_enter</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callee</span>, <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callsite</span>) {
         foo();
     }
-    <span class="org-type">void</span> <span class="org-function-name">__cyg_profile_func_exit</span>(<span class="org-type">void</span>* <span class="org-variable-name">callee</span>, <span class="org-type">void</span>* <span class="org-variable-name">callsite</span>){
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">__cyg_profile_func_exit</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callee</span>, <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">callsite</span>){
         foo();
     }
 }
@@ -527,56 +573,56 @@ hook函数调用有两种方式，一种是hook我们代码内部的函数，这
 </p>
 
 <p>
-可以使用dlopen截获函数入口，然后使用dlsym(RTLD_NEXT)来获得下一个入口.我们以截获malloc为例。
+可以使用dlopen截获函数入口，然后使用dlsym(RTLD<sub>NEXT</sub>)来获得下一个入口.我们以截获malloc为例。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;dlfcn.h&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstring&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdlib&gt;</span>
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;unistd.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;dlfcn.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstring&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdlib&gt;</span>
 
-<span class="org-type">void</span>* <span class="org-function-name">malloc</span>(<span class="org-type">size_t</span> <span class="org-variable-name">size</span>){
-    write(2,<span class="org-string">"do malloc\n"</span>,strlen(<span class="org-string">"do malloc\n"</span>)+1); <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#19981;&#33021;&#22815;&#29992;printf,&#22240;&#20026;&#20869;&#37096;&#21487;&#33021;&#20250;&#35843;&#29992;malloc</span>
-    <span class="org-keyword">static</span> <span class="org-type">void</span>* (*<span class="org-function-name">pmalloc</span>)(<span class="org-type">size_t</span> <span class="org-variable-name">size</span>)=0;
-    <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>pmalloc){
-        pmalloc=(<span class="org-type">void</span>*(*)(<span class="org-type">size_t</span> <span class="org-variable-name">size</span>))(dlsym(RTLD_NEXT,<span class="org-string">"malloc"</span>));
+<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">malloc</span>(<span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">size</span>){
+    write(2,<span style="font-style: italic;">"do malloc\n"</span>,strlen(<span style="font-style: italic;">"do malloc\n"</span>)+1); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;&#19981;&#33021;&#22815;&#29992;printf,&#22240;&#20026;&#20869;&#37096;&#21487;&#33021;&#20250;&#35843;&#29992;malloc</span>
+    <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span>* (*<span style="font-weight: bold;">pmalloc</span>)(<span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">size</span>)=0;
+    <span style="font-weight: bold;">if</span>(!pmalloc){
+        pmalloc=(<span style="font-weight: bold; text-decoration: underline;">void</span>*(*)(<span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">size</span>))(dlsym(RTLD_NEXT,<span style="font-style: italic;">"malloc"</span>));
     }
-    <span class="org-keyword">return</span> pmalloc(size);
+    <span style="font-weight: bold;">return</span> pmalloc(size);
 }
 
-<span class="org-type">void</span> <span class="org-function-name">free</span>(<span class="org-type">void</span> *<span class="org-variable-name">p</span>){
-    write(2,<span class="org-string">"do free\n"</span>,strlen(<span class="org-string">"do free\n"</span>)+1);
-    <span class="org-keyword">static</span> <span class="org-type">void</span> (*<span class="org-function-name">pfree</span>)(<span class="org-type">void</span>* <span class="org-variable-name">p</span>)=0;
-    <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>pfree){
-        pfree=(<span class="org-type">void</span>(*)(<span class="org-type">void</span>* <span class="org-variable-name">p</span>))(dlsym(RTLD_NEXT,<span class="org-string">"free"</span>));
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">free</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">p</span>){
+    write(2,<span style="font-style: italic;">"do free\n"</span>,strlen(<span style="font-style: italic;">"do free\n"</span>)+1);
+    <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> (*<span style="font-weight: bold;">pfree</span>)(<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">p</span>)=0;
+    <span style="font-weight: bold;">if</span>(!pfree){
+        pfree=(<span style="font-weight: bold; text-decoration: underline;">void</span>(*)(<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">p</span>))(dlsym(RTLD_NEXT,<span style="font-style: italic;">"free"</span>));
     }
-    <span class="org-keyword">return</span> pfree(p);
+    <span style="font-weight: bold;">return</span> pfree(p);
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org35e2cef" class="outline-3">
-<h3 id="org35e2cef"><span class="section-number-3">2.3</span> undefined reference to static const class member</h3>
+<div id="outline-container-org3f3c8da" class="outline-3">
+<h3 id="org3f3c8da"><span class="section-number-3">2.3</span> undefined reference to static const class member</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 类型静态常量成员只允许是标量内容,而不允许是字符串数组或者是结构体等。但是下面代码会存在链接问题
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
-<span class="org-keyword">class</span> <span class="org-type">Foo</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">MEMBER</span> = 1;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;vector&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Foo</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold;">static</span> <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">MEMBER</span> = 1;
 };
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>(){
-  <span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">v</span>;
-  v.push_back( <span class="org-constant">Foo</span>::MEMBER );       <span class="org-comment-delimiter">// </span><span class="org-comment">undefined reference to `Foo::MEMBER'</span>
-  v.push_back( (<span class="org-type">int</span>) <span class="org-constant">Foo</span>::MEMBER ); <span class="org-comment-delimiter">// </span><span class="org-comment">OK</span>
-  <span class="org-keyword">return</span> 0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(){
+  <span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>&gt; <span style="font-weight: bold; font-style: italic;">v</span>;
+  v.push_back( <span style="font-weight: bold; text-decoration: underline;">Foo</span>::MEMBER );       <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">undefined reference to `Foo::MEMBER'</span>
+  v.push_back( (<span style="font-weight: bold; text-decoration: underline;">int</span>) <span style="font-weight: bold; text-decoration: underline;">Foo</span>::MEMBER ); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">OK</span>
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -586,15 +632,15 @@ hook函数调用有两种方式，一种是hook我们代码内部的函数，这
 </p>
 
 <p>
-大致解释是这样，对于第一种用法的话，因为push_back需要是一个const int&amp;,因为需要传入的内容存在地址。而这种情况下面MEMBER仅仅是一个constant,没有任何地址所以会出现链接错误。而对于第二种情况的话，因为强制转换之后那么就存在一个临时对象可以被引用。说到这里我们一定需要注意临时对象，好比下面这种用法
+大致解释是这样，对于第一种用法的话，因为push<sub>back需要是一个const</sub> int&amp;,因为需要传入的内容存在地址。而这种情况下面MEMBER仅仅是一个constant,没有任何地址所以会出现链接错误。而对于第二种情况的话，因为强制转换之后那么就存在一个临时对象可以被引用。说到这里我们一定需要注意临时对象，好比下面这种用法
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;string&gt;</span>
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-  <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">s1</span>=<span class="org-string">"h"</span>;
-  <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">s2</span>=<span class="org-string">"o"</span>;
-  <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">s</span>=(s1+s2).c_str();
-  <span class="org-keyword">return</span> 0;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;string&gt;</span>
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+  <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold; font-style: italic;">s1</span>=<span style="font-style: italic;">"h"</span>;
+  <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold; font-style: italic;">s2</span>=<span style="font-style: italic;">"o"</span>;
+  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">s</span>=(s1+s2).c_str();
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -604,8 +650,8 @@ hook函数调用有两种方式，一种是hook我们代码内部的函数，这
 </div>
 </div>
 
-<div id="outline-container-org0460e53" class="outline-3">
-<h3 id="org0460e53"><span class="section-number-3">2.4</span> malloc warmup performance</h3>
+<div id="outline-container-org43c3d18" class="outline-3">
+<h3 id="org43c3d18"><span class="section-number-3">2.4</span> malloc warmup performance</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 下面是我之前碰到的因为malloc warmup导致的性能差异巨大的问题。
@@ -619,61 +665,61 @@ hook函数调用有两种方式，一种是hook我们代码内部的函数，这
 <li>只运行action2</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
-<span class="org-comment"> * Copyright (C) dirlt</span>
-<span class="org-comment"> */</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">coding:utf-8</span>
+<span style="font-weight: bold; font-style: italic;"> * Copyright (C) dirlt</span>
+<span style="font-weight: bold; font-style: italic;"> */</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/time.h&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;map&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;sys/time.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;map&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;string&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
 
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-keyword">static</span> <span class="org-keyword">inline</span> <span class="org-type">double</span> <span class="org-function-name">gettime_ms</span>() {
-  <span class="org-keyword">struct</span> <span class="org-type">timeval</span> <span class="org-variable-name">tv</span>;
-  gettimeofday(&amp;tv, <span class="org-constant">NULL</span>);
-  <span class="org-keyword">return</span> tv.tv_sec * 1000.0 + tv.tv_usec * 0.001;
+<span style="font-weight: bold;">static</span> <span style="font-weight: bold;">inline</span> <span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold;">gettime_ms</span>() {
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">timeval</span> <span style="font-weight: bold; font-style: italic;">tv</span>;
+  gettimeofday(&amp;tv, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">return</span> tv.tv_sec * 1000.0 + tv.tv_usec * 0.001;
 }
 
-<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">NUMBER</span> = 10000000;
-<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">PREFIX</span> = <span class="org-string">"s"</span>;
+<span style="font-weight: bold;">static</span> <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">NUMBER</span> = 10000000;
+<span style="font-weight: bold;">static</span> <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">PREFIX</span> = <span style="font-style: italic;">"s"</span>;
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">action</span>() {
-  <span class="org-type">double</span> <span class="org-variable-name">start</span> = gettime_ms();
-  <span class="org-type">map</span>&lt;<span class="org-type">string</span>, <span class="org-type">long</span>&gt; <span class="org-variable-name">dict</span>;
-  <span class="org-type">char</span> <span class="org-variable-name">buf</span>[64];
-  <span class="org-type">char</span> <span class="org-variable-name">buf2</span>[64];
-  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; NUMBER; i++) {
-    snprintf(buf, <span class="org-keyword">sizeof</span>(buf), <span class="org-string">"%s%d"</span>, PREFIX, i);
+<span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">action</span>() {
+  <span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">start</span> = gettime_ms();
+  <span style="font-weight: bold; text-decoration: underline;">map</span>&lt;<span style="font-weight: bold; text-decoration: underline;">string</span>, <span style="font-weight: bold; text-decoration: underline;">long</span>&gt; <span style="font-weight: bold; font-style: italic;">dict</span>;
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">buf</span>[64];
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">buf2</span>[64];
+  <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; NUMBER; i++) {
+    snprintf(buf, <span style="font-weight: bold;">sizeof</span>(buf), <span style="font-style: italic;">"%s%d"</span>, PREFIX, i);
     dict[buf] = i;
   }
-  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; NUMBER; i++) {
-    snprintf(buf, <span class="org-keyword">sizeof</span>(buf), <span class="org-string">"%s%d"</span>, PREFIX, i);
-    snprintf(buf2, <span class="org-keyword">sizeof</span>(buf2), <span class="org-string">"%s%d"</span>, PREFIX, (i + 1000) % NUMBER);
+  <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; NUMBER; i++) {
+    snprintf(buf, <span style="font-weight: bold;">sizeof</span>(buf), <span style="font-style: italic;">"%s%d"</span>, PREFIX, i);
+    snprintf(buf2, <span style="font-weight: bold;">sizeof</span>(buf2), <span style="font-style: italic;">"%s%d"</span>, PREFIX, (i + 1000) % NUMBER);
     dict[buf] += dict[buf2];
   }
-  <span class="org-type">double</span> <span class="org-variable-name">end</span> = gettime_ms();
-  printf(<span class="org-string">"%.2lf\n"</span>, end - start);
+  <span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">end</span> = gettime_ms();
+  printf(<span style="font-style: italic;">"%.2lf\n"</span>, end - start);
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">action2</span>() {
-  <span class="org-type">double</span> <span class="org-variable-name">start</span> = gettime_ms();
-  <span class="org-type">map</span>&lt;<span class="org-type">int</span>, <span class="org-type">long</span>&gt; <span class="org-variable-name">dict</span>;
-  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; NUMBER; i++) {
+<span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">action2</span>() {
+  <span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">start</span> = gettime_ms();
+  <span style="font-weight: bold; text-decoration: underline;">map</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>, <span style="font-weight: bold; text-decoration: underline;">long</span>&gt; <span style="font-weight: bold; font-style: italic;">dict</span>;
+  <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; NUMBER; i++) {
     dict[i] = i;
   }
-  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; NUMBER; i++) {
+  <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; NUMBER; i++) {
     dict[i] += dict[(i + 1000) % NUMBER];
   }
-  <span class="org-type">double</span> <span class="org-variable-name">end</span> = gettime_ms();
-  printf(<span class="org-string">"%.2lf\n"</span>, end - start);
+  <span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">end</span> = gettime_ms();
+  printf(<span style="font-style: italic;">"%.2lf\n"</span>, end - start);
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
   action();
   action2();
-  <span class="org-keyword">return</span> 0;
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -735,12 +781,12 @@ tomb git:(master) ✗ g++ map_perf_test.cc -O2
 </div>
 </div>
 </div>
-<div id="outline-container-orga5b4854" class="outline-2">
-<h2 id="orga5b4854"><span class="section-number-2">3</span> library</h2>
+<div id="outline-container-org958e005" class="outline-2">
+<h2 id="org958e005"><span class="section-number-2">3</span> library</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org263ab05" class="outline-3">
-<h3 id="org263ab05"><span class="section-number-3">3.1</span> boost::bind</h3>
+<div id="outline-container-org54b5b51" class="outline-3">
+<h3 id="org54b5b51"><span class="section-number-3">3.1</span> boost::bind</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 之前看到陈硕同学在<a href="http://blog.csdn.net/solstice/">博客</a> 给出的C++工程实践推荐，使用boost::function和boost::bind代替虚函数。之所以我们需要使用虚函数，无非就是希望统一执行接口。统一接口通过虚函数是一种方法，而使用boost::function和boost::bind也可以达到相同的目的。
@@ -750,19 +796,19 @@ tomb git:(master) ✗ g++ map_perf_test.cc -O2
 首先我们假设存在一个Executor类，里面有一个执行队列，所有的Task首先被push进来然后遍历执行。对于这个Task我们本身只需要一个执行接口void fun(Executor*).如果通过虚函数实现的话，我们需要定义一个abstract class含有virtual函数，然后在具体的类里面实现它。但是如果很不幸的话我们原本定义的类不是这样的，而是
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">A</span>{
- <span class="org-keyword">public</span>:
-  <span class="org-type">void</span> <span class="org-function-name">fun</span>(<span class="org-type">Executor</span>* <span class="org-variable-name">x</span>,<span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">s</span>){
-    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"executor="</span> &lt;&lt; x &lt;&lt; <span class="org-string">", s="</span> &lt;&lt; s &lt;&lt; <span class="org-constant">std</span>::endl;
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">A</span>{
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">fun</span>(<span style="font-weight: bold; text-decoration: underline;">Executor</span>* <span style="font-weight: bold; font-style: italic;">x</span>,<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">string</span> <span style="font-weight: bold; font-style: italic;">s</span>){
+    <span style="font-weight: bold; text-decoration: underline;">std</span>::cout &lt;&lt; <span style="font-style: italic;">"executor="</span> &lt;&lt; x &lt;&lt; <span style="font-style: italic;">", s="</span> &lt;&lt; s &lt;&lt; <span style="font-weight: bold; text-decoration: underline;">std</span>::endl;
   }
-}; <span class="org-comment-delimiter">// </span><span class="org-comment">class A</span>
+}; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class A</span>
 
-<span class="org-keyword">class</span> <span class="org-type">B</span>{
- <span class="org-keyword">public</span>:
-  <span class="org-type">void</span> <span class="org-function-name">fun</span>(<span class="org-type">Executor</span>* <span class="org-variable-name">x</span>,<span class="org-type">int</span> <span class="org-variable-name">s</span>){
-    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"executor="</span> &lt;&lt; x &lt;&lt; <span class="org-string">", s="</span> &lt;&lt; s &lt;&lt; <span class="org-constant">std</span>::endl;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">B</span>{
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">fun</span>(<span style="font-weight: bold; text-decoration: underline;">Executor</span>* <span style="font-weight: bold; font-style: italic;">x</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">s</span>){
+    <span style="font-weight: bold; text-decoration: underline;">std</span>::cout &lt;&lt; <span style="font-style: italic;">"executor="</span> &lt;&lt; x &lt;&lt; <span style="font-style: italic;">", s="</span> &lt;&lt; s &lt;&lt; <span style="font-weight: bold; text-decoration: underline;">std</span>::endl;
   }
-}; <span class="org-comment-delimiter">// </span><span class="org-comment">class B</span>
+}; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">class B</span>
 </pre>
 </div>
 
@@ -774,15 +820,15 @@ tomb git:(master) ✗ g++ map_perf_test.cc -O2
 这是一种蹩脚的方法，类的个数会急剧膨胀。但是如果我们使用boost::function和boost::bind的话，可以不用添加新的Adapter类来解决这个问题。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">A</span>::fun,&amp;a,_1,<span class="org-string">"hello"</span>));
-x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">A</span>::fun,&amp;a,_1,<span class="org-string">"world"</span>));
-x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">B</span>::fun,&amp;b,_1,123));
-x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-constant">B</span>::fun,&amp;b,_1,456));
+<pre class="src src-C++">x.push(<span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">A</span>::fun,&amp;a,_1,<span style="font-style: italic;">"hello"</span>));
+x.push(<span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">A</span>::fun,&amp;a,_1,<span style="font-style: italic;">"world"</span>));
+x.push(<span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">B</span>::fun,&amp;b,_1,123));
+x.push(<span style="font-weight: bold; text-decoration: underline;">boost</span>::bind(&amp;<span style="font-weight: bold; text-decoration: underline;">B</span>::fun,&amp;b,_1,456));
 </pre>
 </div>
 
 <p>
-这里_1是boost::bind导出的符号表示占位符，这个参数表示接口中的第一个参数，这里不进行绑定。第一个参数表示函数地址，如果是成员函数的话那么需要传入对象地址（这里对于对象内存管理的话，可能需要智能指针的帮助。可以参考<a href="http://xuchaoqian.com/?p=797">http://xuchaoqian.com/?p=797</a>)。事实上稍微猜想一下boost::function和boost::bind实现，boost::function用于产生新的类型，boost::bind用于产生这个类型的对象，并且将指针以及所需要的closure context都绑定上去。我本来想实现的，但是发现基于模板的元编程，我确实不会:(
+这里<sub>1是boost</sub>::bind导出的符号表示占位符，这个参数表示接口中的第一个参数，这里不进行绑定。第一个参数表示函数地址，如果是成员函数的话那么需要传入对象地址（这里对于对象内存管理的话，可能需要智能指针的帮助。可以参考<a href="http://xuchaoqian.com/?p=797">http://xuchaoqian.com/?p=797</a>)。事实上稍微猜想一下boost::function和boost::bind实现，boost::function用于产生新的类型，boost::bind用于产生这个类型的对象，并且将指针以及所需要的closure context都绑定上去。我本来想实现的，但是发现基于模板的元编程，我确实不会:(
 </p>
 
 <p>
@@ -795,8 +841,8 @@ x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-const
 </div>
 </div>
 
-<div id="outline-container-orge401a76" class="outline-3">
-<h3 id="orge401a76"><span class="section-number-3">3.2</span> boost::spirit</h3>
+<div id="outline-container-orge7f7619" class="outline-3">
+<h3 id="orge7f7619"><span class="section-number-3">3.2</span> boost::spirit</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 今天被Dr. Yang推荐使用boost::spirit，模板编程实现的语法解析器。Dr. Yang推荐我看看hypertable里面实现的hql，里面就是使用spirit实现的hql(hypertable query language)，在src/cc/Hypertable/Lib/HqlParser.h里面。粗看一下功能还是非常强大的，对于很多使用flex/bison完成的工作都可以通过spirit来完成。看上去是LALR解析器，现在不太清楚就是如果出现shift/reduce或者是reduce/reduce冲突的话spirit是怎么解决的。#note:应该是LL(1)解析器
@@ -812,8 +858,8 @@ x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-const
 </div>
 </div>
 
-<div id="outline-container-orgdd87553" class="outline-3">
-<h3 id="orgdd87553"><span class="section-number-3">3.3</span> boost::property_tree</h3>
+<div id="outline-container-org7527e9d" class="outline-3">
+<h3 id="org7527e9d"><span class="section-number-3">3.3</span> boost::property<sub>tree</sub></h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="http://www.boost.org/doc/libs/1_58_0/doc/html/property_tree.html">http://www.boost.org/doc/libs/1_58_0/doc/html/property_tree.html</a>
@@ -825,8 +871,8 @@ x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-const
 </div>
 </div>
 
-<div id="outline-container-org3f45745" class="outline-3">
-<h3 id="org3f45745"><span class="section-number-3">3.4</span> boost::python</h3>
+<div id="outline-container-org457d12e" class="outline-3">
+<h3 id="org457d12e"><span class="section-number-3">3.4</span> boost::python</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <a href="http://www.boost.org/doc/libs/1_58_0/libs/python/doc/index.html">http://www.boost.org/doc/libs/1_58_0/libs/python/doc/index.html</a>
@@ -838,8 +884,8 @@ x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-const
 </div>
 </div>
 
-<div id="outline-container-orge48cac6" class="outline-3">
-<h3 id="orge48cac6"><span class="section-number-3">3.5</span> logging</h3>
+<div id="outline-container-org94927be" class="outline-3">
+<h3 id="org94927be"><span class="section-number-3">3.5</span> logging</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 @2015-07-26 最近一段时间使用C++编写Python扩展时候，发现原来的日志库(easyloggingpp)封装存在一些问题。修改完成日志库的封装之后，顺便就看了一下C/C++下面有什么可用的日志库。我粗略地看了下面几种，然后总结了一下优缺点以及自己的想法。
@@ -873,8 +919,8 @@ x.push(<span class="org-constant">boost</span>::bind(&amp;<span class="org-const
 </div>
 </div>
 
-<div id="outline-container-org0866968" class="outline-2">
-<h2 id="org0866968"><span class="section-number-2">4</span> c++11</h2>
+<div id="outline-container-orgf2b617f" class="outline-2">
+<h2 id="orgf2b617f"><span class="section-number-2">4</span> c++11</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在自己的主页上列出了这些改进的 <a href="http://www.stroustrup.com/C++11FAQ.html">细节</a>, 有位国内开发者把它翻译成了 <a href="http://www.chenlq.net/cpp11-faq-chs">中文</a> (非常感谢).
@@ -895,17 +941,17 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 <ul class="org-ul">
 <li>auto. auto是C的关键字，表示变量空间是自动分配的（相对应的是regsiter），但是实际上几乎所有的编译器都忽略这个关键字。在C++11里面给这个关键字赋予了新的语义，就是做类型推导。</li>
 <li>decltype. decltype(expression)可以返回expression的类型定义。在C++03的时候，如果想获得某个表达式的类型的话，只能使用g++扩展关键字typeof(expression).</li>
-<li>nullptr. C++11引入的空指针关键字，类型是std::nullptr_t. nullptr可以隐式转换为任意指针类型以及bool类型，但是却不能够转换为int类型了(之前NULL本身就是#define NULL (0)).</li>
+<li>nullptr. C++11引入的空指针关键字，类型是std::nullptr<sub>t</sub>. nullptr可以隐式转换为任意指针类型以及bool类型，但是却不能够转换为int类型了(之前NULL本身就是#define NULL (0)).</li>
 <li>strongly-typed enums. C++03会把enum class 1. 定义对象导出到外部作用域（可能会出现名字冲突）2. 隐式地将枚举对象转换为整数值 3. 不创建这个枚举类型。C++11取消了这些特殊处理。</li>
 <li>override/final. 这两个关键字只有出现在成员函数声明最后如void foo() [&#x2026;]才有用。override要解决的问题是，确保这个函数是重写(override)而不是重载(overload)子类中的某个虚函数. final则是希望某个虚函数不要被重写(override).</li>
 <li>default/delete. 这两个关键字同样要出现在成员函数声明之后入void foo() = [&#x2026;]. 通常作用在构造函数上。default告诉编译器为这个函数生成默认实现. delete则告诉编译器删除这个函数实现（禁止拷贝或赋值构造）</li>
-<li>static_assert/type_traits. type_traits提供一系列template function来对类型做判断. 在C++03做静态断言static_assert需要使用workaround办法，但是在C++11就直接提供了。</li>
+<li>static<sub>assert</sub>/type<sub>traits</sub>. type<sub>traits提供一系列template</sub> function来对类型做判断. 在C++03做静态断言static<sub>assert需要使用workaround办法</sub>，但是在C++11就直接提供了。</li>
 <li>delegating constructors. 代理构造函数.</li>
 <li>range-based for statement. 可以使用for(auto&amp; e: v)这种简洁的语法来编译容器</li>
 <li>uniform initialization syntax. 统一的初始化语法，全部使用{}来包含参数。比如构造函数是A(int a, float b)的话，可以使用A a{1, 2.3};来构造对象</li>
 <li>in-class member initializers. 类成员的内部初始化。类成员初始化可以不用在构造函数内完成，可以直接在类的内部完成初始化（必须是编译期可以确定的常量表达式）</li>
 <li>inline namespace. 内联名字空间。如果一个名字空间是inline namespace XXX定义的，并且被包含在namespace YYY里面的话，那么XXX内部成员f可以使用YYY::f引用，也可以使用YYY::XXX::f引用（可以处理代码向后兼容问题）</li>
-<li>initializer lists. 初始化列表。许多stl容器比如vector, map支持初始化列表，也就是说可以这样vector&lt;int&gt; a {1,2,3};来构造。初始化列表具体类型是std::initializer_list&lt;E&gt;.</li>
+<li>initializer lists. 初始化列表。许多stl容器比如vector, map支持初始化列表，也就是说可以这样vector&lt;int&gt; a {1,2,3};来构造。初始化列表具体类型是std::initializer<sub>list</sub>&lt;E&gt;.</li>
 <li>right-angle brackets. 右角括号这个问题在C++03非常恼人，就是写嵌套容器时必须这样vector&lt;vector&lt;A&gt; &gt;. C++11解决了这个问题</li>
 <li>除此之外还有suffix return type syntax, rvalue reference and move semantics, lambda expression等一些改进放在后面单独说</li>
 </ul>
@@ -920,9 +966,9 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 <b>suffix return type syntax(返回值类型后置语法)</b> 一开始我以为这个语法，是为了解决编写模板函数的时候，auto不能自动推导函数返回类型而设计的。比如下面这段程序
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">template</span>&lt;<span class="org-keyword">typename</span> <span class="org-type">T1</span>, <span class="org-keyword">typename</span> <span class="org-type">T2</span>&gt;
-<span class="org-keyword">auto</span> <span class="org-function-name">bar</span>(<span class="org-keyword">const</span> <span class="org-type">T1</span> <span class="org-variable-name">a</span>, <span class="org-keyword">const</span> <span class="org-type">T2</span> <span class="org-variable-name">b</span>) -&gt; <span class="org-keyword">decltype</span>(a + b) {
-    <span class="org-keyword">return</span> a + b;
+<pre class="src src-C++"><span style="font-weight: bold;">template</span>&lt;<span style="font-weight: bold;">typename</span> <span style="font-weight: bold; text-decoration: underline;">T1</span>, <span style="font-weight: bold;">typename</span> <span style="font-weight: bold; text-decoration: underline;">T2</span>&gt;
+<span style="font-weight: bold;">auto</span> <span style="font-weight: bold;">bar</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">T1</span> <span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">T2</span> <span style="font-weight: bold; font-style: italic;">b</span>) -&gt; <span style="font-weight: bold;">decltype</span>(a + b) {
+    <span style="font-weight: bold;">return</span> a + b;
 }
 </pre>
 </div>
@@ -934,14 +980,14 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 实际按照BS的 <a href="http://www.stroustrup.com/C++11FAQ.html#suffix-return">想法</a>, 一开始这个语法的引入，却是为了解决作用域问题的。比如下面这段程序
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">A</span> {
-  <span class="org-keyword">public</span>:
-    <span class="org-keyword">class</span> <span class="org-type">B</span> {};
-    <span class="org-type">B</span> <span class="org-function-name">foo</span>();
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">A</span> {
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">B</span> {};
+    <span style="font-weight: bold; text-decoration: underline;">B</span> <span style="font-weight: bold;">foo</span>();
 };
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">A::B A::foo() { return B(); }</span>
-<span class="org-keyword">auto</span> <span class="org-constant">A</span>::<span class="org-function-name">foo</span>() -&gt; <span class="org-type">B</span> { <span class="org-keyword">return</span> B(); }
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">A::B A::foo() { return B(); }</span>
+<span style="font-weight: bold;">auto</span> <span style="font-weight: bold; text-decoration: underline;">A</span>::<span style="font-weight: bold;">foo</span>() -&gt; <span style="font-weight: bold; text-decoration: underline;">B</span> { <span style="font-weight: bold;">return</span> B(); }
 </pre>
 </div>
 <p>
@@ -966,23 +1012,23 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 匿名函数类型是std::function&lt;[actual-type&gt;].(defined in &lt;functional&gt;). 比如[](int a, int b) { return a + b; }的类型就是std::function&lt;int(int,int)&gt;. 虽然匿名函数可以捕获变量，但是并不意味着实现了闭包。下面这个程序中，lambda引用了count，但是在调用的时候count已经被销毁了，所以会出现运行错误。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;functional&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;functional&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;iostream&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-constant">std</span>::<span class="org-type">function</span>&lt;<span class="org-type">int</span>()&gt; <span class="org-function-name">foo</span>() {
-    <span class="org-type">int</span> <span class="org-variable-name">count</span> = 0;
-    <span class="org-keyword">auto</span> <span class="org-variable-name">f</span> = [&amp;<span class="org-variable-name">count</span>]() {
+<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">function</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>()&gt; <span style="font-weight: bold;">foo</span>() {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">count</span> = 0;
+    <span style="font-weight: bold;">auto</span> <span style="font-weight: bold; font-style: italic;">f</span> = [&amp;<span style="font-weight: bold; font-style: italic;">count</span>]() {
         count += 1;
-        <span class="org-keyword">return</span> count;
+        <span style="font-weight: bold;">return</span> count;
     };
-    <span class="org-keyword">return</span> f;
+    <span style="font-weight: bold;">return</span> f;
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-keyword">auto</span> <span class="org-variable-name">f</span> = foo();
-    <span class="org-keyword">auto</span> <span class="org-variable-name">x</span> = f();
-    <span class="org-comment-delimiter">// </span><span class="org-comment">cout &lt;&lt; x &lt;&lt; endl;</span>
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+    <span style="font-weight: bold;">auto</span> <span style="font-weight: bold; font-style: italic;">f</span> = foo();
+    <span style="font-weight: bold;">auto</span> <span style="font-weight: bold; font-style: italic;">x</span> = f();
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">cout &lt;&lt; x &lt;&lt; endl;</span>
 }
 </pre>
 </div>
@@ -991,20 +1037,20 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 这里还想说一下就是，C++11也把bind纳入stl了（smart pointers, atomic, thread这些原来都在boost的组件都纳入stl了）.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;functional&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
-<span class="org-keyword">using</span> <span class="org-constant">std</span>::<span class="org-constant">placeholders</span>::<span class="org-type">_1</span>;
-<span class="org-keyword">using</span> <span class="org-constant">std</span>::<span class="org-constant">placeholders</span>::<span class="org-type">_2</span>;
-<span class="org-keyword">using</span> <span class="org-constant">std</span>::<span class="org-constant">placeholders</span>::<span class="org-type">_3</span>;
-<span class="org-type">int</span> <span class="org-function-name">foo</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>, <span class="org-type">int</span> <span class="org-variable-name">b</span>, <span class="org-type">int</span> <span class="org-variable-name">c</span>) {
-    <span class="org-keyword">return</span> a + b + c;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;functional&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;iostream&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">placeholders</span>::<span style="font-weight: bold; text-decoration: underline;">_1</span>;
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">placeholders</span>::<span style="font-weight: bold; text-decoration: underline;">_2</span>;
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">placeholders</span>::<span style="font-weight: bold; text-decoration: underline;">_3</span>;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">foo</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">b</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span>) {
+    <span style="font-weight: bold;">return</span> a + b + c;
 }
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-keyword">auto</span> <span class="org-variable-name">f1</span> = bind(foo, 1, 2, _1);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">f2</span> = bind(foo, _1, _2, 3);
-    cout &lt;&lt; f1(10) &lt;&lt; <span class="org-string">", "</span> &lt;&lt; f2(2,4) &lt;&lt; endl;
-    <span class="org-keyword">return</span> 0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+    <span style="font-weight: bold;">auto</span> <span style="font-weight: bold; font-style: italic;">f1</span> = bind(foo, 1, 2, _1);
+    <span style="font-weight: bold;">auto</span> <span style="font-weight: bold; font-style: italic;">f2</span> = bind(foo, _1, _2, 3);
+    cout &lt;&lt; f1(10) &lt;&lt; <span style="font-style: italic;">", "</span> &lt;&lt; f2(2,4) &lt;&lt; endl;
+    <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -1016,92 +1062,97 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 <b>rvalue references and move semantics(右值引用以及移动语义)</b>. 右值引用比较奇怪的一个地方是，你可以认为它是一个非常容易挥发的东西。因为一旦你使用A&amp;&amp; a = foo();获得右值引用的时候，其实你已经获得了左值a（并且发生了copy ctor或者是move ctor, 这个根据是否有move ctor决定的）. 只有在move ctor或者是move assignment时候我们才能够瞬间捕获到右值引用。想要把一个左值变为右值可以使用std::move函数。下面是我的实验代码，可以加深理解
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;iostream&gt;</span>
 
-<span class="org-preprocessor">#if</span> (__cplusplus &gt; 199711L)
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">cxx0x</span>
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold;">#if</span> (__cplusplus &gt; 199711L)
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">cxx0x</span>
+<span style="font-weight: bold;">#endif</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;memory&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;memory&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
 
-<span class="org-keyword">class</span> <span class="org-type">A</span> {
-  <span class="org-keyword">public</span>:
-    <span class="org-type">int</span> <span class="org-variable-name">v</span>;
-    <span class="org-function-name">A</span>(): v(123) {
-        cout &lt;&lt; <span class="org-string">"ctor"</span> &lt;&lt; endl;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">A</span> {
+  <span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">v</span>;
+    <span style="font-weight: bold;">A</span>(): v(123) {
+        cout &lt;&lt; <span style="font-style: italic;">"ctor"</span> &lt;&lt; endl;
     }
-    <span class="org-function-name">A</span>(<span class="org-keyword">const</span> <span class="org-type">A</span>&amp; <span class="org-variable-name">x</span>) {
-        cout &lt;&lt; <span class="org-string">"copy ctor"</span> &lt;&lt; endl;
-        cout &lt;&lt; &amp;x &lt;&lt; <span class="org-string">" -&gt; "</span> &lt;&lt; <span class="org-keyword">this</span> &lt;&lt; endl;
+    <span style="font-weight: bold;">A</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">A</span>&amp; <span style="font-weight: bold; font-style: italic;">x</span>) {
+        cout &lt;&lt; <span style="font-style: italic;">"copy ctor"</span> &lt;&lt; endl;
+        cout &lt;&lt; &amp;x &lt;&lt; <span style="font-style: italic;">" -&gt; "</span> &lt;&lt; <span style="font-weight: bold;">this</span> &lt;&lt; endl;
     }
-<span class="org-preprocessor">#ifdef</span> cxx0x
-    <span class="org-function-name">A</span>(<span class="org-type">A</span>&amp;&amp; <span class="org-variable-name">x</span>) {
-        cout &lt;&lt; <span class="org-string">"move ctor"</span> &lt;&lt; endl;
-        cout &lt;&lt; &amp;x &lt;&lt; <span class="org-string">" -&gt; "</span> &lt;&lt; <span class="org-keyword">this</span> &lt;&lt; endl;
+<span style="font-weight: bold;">#ifdef</span> cxx0x
+    <span style="font-weight: bold;">A</span>(<span style="font-weight: bold; text-decoration: underline;">A</span>&amp;&amp; <span style="font-weight: bold; font-style: italic;">x</span>) {
+        cout &lt;&lt; <span style="font-style: italic;">"move ctor"</span> &lt;&lt; endl;
+        cout &lt;&lt; &amp;x &lt;&lt; <span style="font-style: italic;">" -&gt; "</span> &lt;&lt; <span style="font-weight: bold;">this</span> &lt;&lt; endl;
     }
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold;">#endif</span>
 };
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#22686;&#21152;&#26465;&#20214;&#35821;&#21477;&#65292;&#21487;&#20197;&#20351;&#24471;&#32534;&#35793;&#22120;&#19981;&#20250;&#30452;&#25509;&#22312;&#36820;&#22238;&#22320;&#22336;&#19978;&#24320;&#36767;&#23545;&#35937;A</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">&#20174;&#32780;&#36798;&#21040;&#23454;&#39564;&#30446;&#30340;&#65292;&#21542;&#21017;&#21482;&#20250;&#35843;&#29992;&#19968;&#27425;ctor&#32780;&#19981;&#20250;&#35843;&#29992;copy ctor/move ctor.</span>
-<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">x</span> = 0;
-<span class="org-type">A</span> <span class="org-function-name">bar</span>() {
-    <span class="org-keyword">if</span> (x == 0) {
-        <span class="org-type">A</span> <span class="org-variable-name">a</span>;
-        cout &lt;&lt; <span class="org-string">"inside bar: "</span> &lt;&lt; &amp;a &lt;&lt; endl;
-        <span class="org-keyword">return</span> a;
-    } <span class="org-keyword">else</span> {
-        <span class="org-keyword">return</span> A();
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;&#22686;&#21152;&#26465;&#20214;&#35821;&#21477;&#65292;&#21487;&#20197;&#20351;&#24471;&#32534;&#35793;&#22120;&#19981;&#20250;&#30452;&#25509;&#22312;&#36820;&#22238;&#22320;&#22336;&#19978;&#24320;&#36767;&#23545;&#35937;A</span>
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20174;&#32780;&#36798;&#21040;&#23454;&#39564;&#30446;&#30340;&#65292;&#21542;&#21017;&#21482;&#20250;&#35843;&#29992;&#19968;&#27425;ctor&#32780;&#19981;&#20250;&#35843;&#29992;copy ctor/move ctor.</span>
+<span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">x</span> = 0;
+<span style="font-weight: bold; text-decoration: underline;">A</span> <span style="font-weight: bold;">bar</span>() {
+    <span style="font-weight: bold;">if</span> (x == 0) {
+        <span style="font-weight: bold; text-decoration: underline;">A</span> <span style="font-weight: bold; font-style: italic;">a</span>;
+        cout &lt;&lt; <span style="font-style: italic;">"inside bar: "</span> &lt;&lt; &amp;a &lt;&lt; endl;
+        <span style="font-weight: bold;">return</span> a;
+    } <span style="font-weight: bold;">else</span> {
+        <span style="font-weight: bold;">return</span> A();
     }
-    <span class="org-comment-delimiter">// </span><span class="org-comment">return A();</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">return A();</span>
 }
 
-<span class="org-preprocessor">#ifdef</span> cxx0x
-<span class="org-type">int</span> <span class="org-function-name">foo1</span>() {
-    cout &lt;&lt; <span class="org-string">"----- foo1(test c++0x) -----"</span> &lt;&lt; endl;
-    <span class="org-type">A</span>&amp;&amp; <span class="org-variable-name">pa</span> = bar();
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#34429;&#28982;&#36825;&#37324;&#20889;&#30340;&#26159;&amp;&amp;, &#20294;&#26159;&#23454;&#38469;&#19978;&#25928;&#26524;&#31561;&#21516;&#20110;A pa = bar();</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#20010;pa&#24050;&#32463;&#22312;stack&#19978;&#20998;&#37197;&#20986;&#26469;&#20102;. use move ctor.</span>
-    cout &lt;&lt; <span class="org-string">"pa = "</span> &lt;&lt; &amp;pa &lt;&lt; <span class="org-string">"/"</span> &lt;&lt; &amp;(pa.v) &lt;&lt; endl;
+<span style="font-weight: bold;">#ifdef</span> cxx0x
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">foo1</span>() {
+    cout &lt;&lt; <span style="font-style: italic;">"----- foo1(test c++0x) -----"</span> &lt;&lt; endl;
+    <span style="font-weight: bold; text-decoration: underline;">A</span>&amp;&amp; <span style="font-weight: bold; font-style: italic;">pa</span> = bar();
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#34429;&#28982;&#36825;&#37324;&#20889;&#30340;&#26159;&amp;&amp;, &#20294;&#26159;&#23454;&#38469;&#19978;&#25928;&#26524;&#31561;&#21516;&#20110;A pa = bar();</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#20010;pa&#24050;&#32463;&#22312;stack&#19978;&#20998;&#37197;&#20986;&#26469;&#20102;. use move ctor.</span>
+    cout &lt;&lt; <span style="font-style: italic;">"pa = "</span> &lt;&lt; &amp;pa &lt;&lt; <span style="font-style: italic;">"/"</span> &lt;&lt; &amp;(pa.v) &lt;&lt; endl;
 
-    cout &lt;&lt; <span class="org-string">"-----"</span> &lt;&lt; endl;
-    <span class="org-type">A</span> <span class="org-variable-name">pb</span> = pa; <span class="org-comment-delimiter">// </span><span class="org-comment">copy ctor.</span>
-    cout &lt;&lt; <span class="org-string">"pb = "</span> &lt;&lt; &amp;pb &lt;&lt; endl;
+    cout &lt;&lt; <span style="font-style: italic;">"-----"</span> &lt;&lt; endl;
+    <span style="font-weight: bold; text-decoration: underline;">A</span> <span style="font-weight: bold; font-style: italic;">pb</span> = pa; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">copy ctor.</span>
+    cout &lt;&lt; <span style="font-style: italic;">"pb = "</span> &lt;&lt; &amp;pb &lt;&lt; endl;
 
-    cout &lt;&lt; <span class="org-string">"-----"</span> &lt;&lt; endl;
-    <span class="org-type">A</span> <span class="org-variable-name">pc</span> = <span class="org-constant">std</span>::move(pb); <span class="org-comment-delimiter">// </span><span class="org-comment">move ctor.</span>
-    cout &lt;&lt; <span class="org-string">"pc = "</span> &lt;&lt; &amp;pc &lt;&lt; endl;
-    <span class="org-keyword">return</span> 0;
+    cout &lt;&lt; <span style="font-style: italic;">"-----"</span> &lt;&lt; endl;
+    <span style="font-weight: bold; text-decoration: underline;">A</span> <span style="font-weight: bold; font-style: italic;">pc</span> = <span style="font-weight: bold; text-decoration: underline;">std</span>::move(pb); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">move ctor.</span>
+    cout &lt;&lt; <span style="font-style: italic;">"pc = "</span> &lt;&lt; &amp;pc &lt;&lt; endl;
+    <span style="font-weight: bold;">return</span> 0;
 }
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold;">#endif</span>
 
-<span class="org-type">int</span> <span class="org-function-name">foo2</span>() {
-    cout &lt;&lt; <span class="org-string">"----- foo2(test c++03) ----"</span> &lt;&lt; endl;
-    <span class="org-comment-delimiter">// </span><span class="org-comment">move ctor in c++0x.</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">copy ctor in c++03.</span>
-    <span class="org-type">A</span> <span class="org-variable-name">pa</span> = bar();
-    cout &lt;&lt; <span class="org-string">"pa = "</span> &lt;&lt; &amp;pa &lt;&lt; <span class="org-string">"/"</span> &lt;&lt; &amp;(pa.v) &lt;&lt; endl;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">foo2</span>() {
+    cout &lt;&lt; <span style="font-style: italic;">"----- foo2(test c++03) ----"</span> &lt;&lt; endl;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">move ctor in c++0x.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">copy ctor in c++03.</span>
+    <span style="font-weight: bold; text-decoration: underline;">A</span> <span style="font-weight: bold; font-style: italic;">pa</span> = bar();
+    cout &lt;&lt; <span style="font-style: italic;">"pa = "</span> &lt;&lt; &amp;pa &lt;&lt; <span style="font-style: italic;">"/"</span> &lt;&lt; &amp;(pa.v) &lt;&lt; endl;
 
-    cout &lt;&lt; <span class="org-string">"-----"</span> &lt;&lt; endl;
-    <span class="org-type">A</span> <span class="org-variable-name">pb</span> = pa; <span class="org-comment-delimiter">// </span><span class="org-comment">copy ctor.</span>
-    cout &lt;&lt; <span class="org-string">"pb = "</span> &lt;&lt; &amp;pb &lt;&lt; endl;
-    <span class="org-keyword">return</span> 0;
+    cout &lt;&lt; <span style="font-style: italic;">"-----"</span> &lt;&lt; endl;
+    <span style="font-weight: bold; text-decoration: underline;">A</span> <span style="font-weight: bold; font-style: italic;">pb</span> = pa; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">copy ctor.</span>
+    cout &lt;&lt; <span style="font-style: italic;">"pb = "</span> &lt;&lt; &amp;pb &lt;&lt; endl;
+    <span style="font-weight: bold;">return</span> 0;
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-<span class="org-preprocessor">#ifdef</span> cxx0x
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+<span style="font-weight: bold;">#ifdef</span> cxx0x
     foo1();
     cout &lt;&lt; endl &lt;&lt; endl;
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold;">#endif</span>
     foo2();
 }
 </pre>
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/cpp.html';this.page.identifier = 'cpp.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

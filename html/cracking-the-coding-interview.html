@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cracking The Coding Interview</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Cracking The Coding Interview</h1>
@@ -16,57 +62,57 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7d010cc">1. Foreword</a></li>
-<li><a href="#orgd1df17b">2. Introduction</a></li>
-<li><a href="#org2c0ceca">3. Behind the Scenes</a>
+<li><a href="#orgfe90e7b">1. Foreword</a></li>
+<li><a href="#orgfd1bba0">2. Introduction</a></li>
+<li><a href="#org5d792b2">3. Behind the Scenes</a>
 <ul>
-<li><a href="#org5932390">3.1. The Microsoft Interview</a></li>
-<li><a href="#org5f6ee29">3.2. The Amazon Interview</a></li>
-<li><a href="#org0e92da4">3.3. The Google Interview</a></li>
-<li><a href="#orgc418586">3.4. The Apple Interview</a></li>
-<li><a href="#orgf345f6d">3.5. The Yahoo Interview</a></li>
+<li><a href="#org3cd8a59">3.1. The Microsoft Interview</a></li>
+<li><a href="#orgdbb111f">3.2. The Amazon Interview</a></li>
+<li><a href="#orgf30f898">3.3. The Google Interview</a></li>
+<li><a href="#orgb4c081f">3.4. The Apple Interview</a></li>
+<li><a href="#org2b548b8">3.5. The Yahoo Interview</a></li>
 </ul>
 </li>
-<li><a href="#org33c8cce">4. Interview War Stories</a></li>
-<li><a href="#org83ed96f">5. Before the Interview</a>
+<li><a href="#orga384b34">4. Interview War Stories</a></li>
+<li><a href="#org84653d8">5. Before the Interview</a>
 <ul>
-<li><a href="#org78101cd">5.1. Resume Advice</a></li>
-<li><a href="#org121fb8b">5.2. Behavioral Preparation</a></li>
-<li><a href="#org7657b31">5.3. Technical Preparation</a></li>
+<li><a href="#orgee027df">5.1. Resume Advice</a></li>
+<li><a href="#org8a5b0d0">5.2. Behavioral Preparation</a></li>
+<li><a href="#org42f6410">5.3. Technical Preparation</a></li>
 </ul>
 </li>
-<li><a href="#org3aeaac4">6. The Interview and Beyond</a>
+<li><a href="#org71e8268">6. The Interview and Beyond</a>
 <ul>
-<li><a href="#org7fd12f9">6.1. Handling Behavioral Questions</a></li>
-<li><a href="#orge45b8a1">6.2. Handling Technical Questions</a></li>
-<li><a href="#org4a4e0ec">6.3. Five Algorithm Approaches</a></li>
-<li><a href="#org736c532">6.4. The Offer and Beyond</a></li>
-<li><a href="#orgfb04e61">6.5. Top Ten Mistakes Candidates Make</a></li>
-<li><a href="#orgb5969ab">6.6. Frequently Asked Questions</a></li>
+<li><a href="#orgee3c1d2">6.1. Handling Behavioral Questions</a></li>
+<li><a href="#org2333115">6.2. Handling Technical Questions</a></li>
+<li><a href="#org59439b8">6.3. Five Algorithm Approaches</a></li>
+<li><a href="#orgf1905ab">6.4. The Offer and Beyond</a></li>
+<li><a href="#org191649b">6.5. Top Ten Mistakes Candidates Make</a></li>
+<li><a href="#orgfd150b8">6.6. Frequently Asked Questions</a></li>
 </ul>
 </li>
-<li><a href="#org2ce3051">7. Interview Questions</a>
+<li><a href="#org44a1a1a">7. Interview Questions</a>
 <ul>
-<li><a href="#orgcf738d8">7.1. Arrays and Strings</a></li>
-<li><a href="#org1165188">7.2. Linked Lists</a></li>
-<li><a href="#org8d927dc">7.3. Stacks and Queues</a></li>
-<li><a href="#orgabe73b2">7.4. Trees and Graphs</a></li>
-<li><a href="#orge409c8e">7.5. Bit Manipulation</a></li>
-<li><a href="#org8d509b3">7.6. Brain Teasers</a></li>
-<li><a href="#org03ef401">7.7. Object Oriented Design</a></li>
-<li><a href="#org06ff851">7.8. Recursion</a></li>
-<li><a href="#orgcbf045b">7.9. Sorting and Searching</a></li>
-<li><a href="#orgf1e423f">7.10. Mathematical</a></li>
-<li><a href="#orgdd3fc4d">7.11. System Design and Memory Limits</a></li>
-<li><a href="#org96e06d4">7.12. Testing</a></li>
-<li><a href="#orgf48529d">7.13. C++</a></li>
-<li><a href="#org6b8b2af">7.14. Java</a></li>
-<li><a href="#orgb11e03f">7.15. Databases</a></li>
-<li><a href="#org1b3f9a3">7.16. Low Level</a></li>
-<li><a href="#orgce540ef">7.17. Networking</a></li>
-<li><a href="#org0871ae8">7.18. Threads and Locks</a></li>
-<li><a href="#org1eb08ab">7.19. Moderate Additional Review Problems</a></li>
-<li><a href="#orgb658396">7.20. Hard Additional Review Problems</a></li>
+<li><a href="#org0d43fce">7.1. Arrays and Strings</a></li>
+<li><a href="#org394d89c">7.2. Linked Lists</a></li>
+<li><a href="#orgcad1668">7.3. Stacks and Queues</a></li>
+<li><a href="#orgd746f9b">7.4. Trees and Graphs</a></li>
+<li><a href="#org53ca72c">7.5. Bit Manipulation</a></li>
+<li><a href="#org5dc4169">7.6. Brain Teasers</a></li>
+<li><a href="#orgfce6b49">7.7. Object Oriented Design</a></li>
+<li><a href="#orge1bad2c">7.8. Recursion</a></li>
+<li><a href="#org706f0e6">7.9. Sorting and Searching</a></li>
+<li><a href="#orgb32a846">7.10. Mathematical</a></li>
+<li><a href="#org6cfe371">7.11. System Design and Memory Limits</a></li>
+<li><a href="#orgd05943f">7.12. Testing</a></li>
+<li><a href="#orgfb85e7a">7.13. C++</a></li>
+<li><a href="#orgace3581">7.14. Java</a></li>
+<li><a href="#org2dfd617">7.15. Databases</a></li>
+<li><a href="#orgf0abbf5">7.16. Low Level</a></li>
+<li><a href="#org9a5572d">7.17. Networking</a></li>
+<li><a href="#org0479872">7.18. Threads and Locks</a></li>
+<li><a href="#orgc436a7c">7.19. Moderate Additional Review Problems</a></li>
+<li><a href="#org9eb6dba">7.20. Hard Additional Review Problems</a></li>
 </ul>
 </li>
 </ul>
@@ -80,8 +126,8 @@
 <a href="https://www.careercup.com/book">https://www.careercup.com/book</a>
 </p>
 
-<div id="outline-container-org7d010cc" class="outline-2">
-<h2 id="org7d010cc"><span class="section-number-2">1</span> Foreword</h2>
+<div id="outline-container-orgfe90e7b" class="outline-2">
+<h2 id="orgfe90e7b"><span class="section-number-2">1</span> Foreword</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 As you get ready for your interviews, consider these suggestions:
@@ -99,16 +145,16 @@ Receiving an offer is not about solving questions flawlessly (very few candidate
 </div>
 </div>
 
-<div id="outline-container-orgd1df17b" class="outline-2">
-<h2 id="orgd1df17b"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orgfd1bba0" class="outline-2">
+<h2 id="orgfd1bba0"><span class="section-number-2">2</span> Introduction</h2>
 </div>
 
-<div id="outline-container-org2c0ceca" class="outline-2">
-<h2 id="org2c0ceca"><span class="section-number-2">3</span> Behind the Scenes</h2>
+<div id="outline-container-org5d792b2" class="outline-2">
+<h2 id="org5d792b2"><span class="section-number-2">3</span> Behind the Scenes</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org5932390" class="outline-3">
-<h3 id="org5932390"><span class="section-number-3">3.1</span> The Microsoft Interview</h3>
+<div id="outline-container-org3cd8a59" class="outline-3">
+<h3 id="org3cd8a59"><span class="section-number-3">3.1</span> The Microsoft Interview</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Microsoft wants smart people Geeks. People who are passionate about technology.</li>
@@ -129,8 +175,8 @@ In this question, Microsoft wants to see that you’re passionate about technolo
 </div>
 </div>
 
-<div id="outline-container-org5f6ee29" class="outline-3">
-<h3 id="org5f6ee29"><span class="section-number-3">3.2</span> The Amazon Interview</h3>
+<div id="outline-container-orgdbb111f" class="outline-3">
+<h3 id="orgdbb111f"><span class="section-number-3">3.2</span> The Amazon Interview</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>Amazon’s recruiting process usually begins with one or two phone screens in which you in- terview with a specific team. The engineer who interviews you will usually ask you to write simple code and read it aloud on the phone They will ask a broad set of questions to explore what areas of technology you’re familiar with.</li>
@@ -150,8 +196,8 @@ Definitely Prepare:
 </div>
 </div>
 
-<div id="outline-container-org0e92da4" class="outline-3">
-<h3 id="org0e92da4"><span class="section-number-3">3.3</span> The Google Interview</h3>
+<div id="outline-container-orgf30f898" class="outline-3">
+<h3 id="orgf30f898"><span class="section-number-3">3.3</span> The Google Interview</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>However, because Google HR can be a little disorganized, we recommend being proactive in communication.</li>
@@ -172,8 +218,8 @@ Definitely Prepare:
 </div>
 </div>
 
-<div id="outline-container-orgc418586" class="outline-3">
-<h3 id="orgc418586"><span class="section-number-3">3.4</span> The Apple Interview</h3>
+<div id="outline-container-orgb4c081f" class="outline-3">
+<h3 id="orgb4c081f"><span class="section-number-3">3.4</span> The Apple Interview</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Much like the company itself, Apple’s interview process has minimal beaucracy.</li>
@@ -196,8 +242,8 @@ Definitely Prepare:
 </div>
 </div>
 
-<div id="outline-container-orgf345f6d" class="outline-3">
-<h3 id="orgf345f6d"><span class="section-number-3">3.5</span> The Yahoo Interview</h3>
+<div id="outline-container-org2b548b8" class="outline-3">
+<h3 id="org2b548b8"><span class="section-number-3">3.5</span> The Yahoo Interview</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>While Yahoo tends to only recruit at the top 10 – 20 schools, other candidates can still get interviewed through Yahoo’s job board (or – better yet – if they can get an internal referral). If you’re one of the lucky ones selected, your interview process will start off with a phone screen. Your phone screen will be with a senior employee (tech lead, manager, etc)</li>
@@ -221,8 +267,8 @@ Definitely Prepare:
 </div>
 </div>
 
-<div id="outline-container-org33c8cce" class="outline-2">
-<h2 id="org33c8cce"><span class="section-number-2">4</span> Interview War Stories</h2>
+<div id="outline-container-orga384b34" class="outline-2">
+<h2 id="orga384b34"><span class="section-number-2">4</span> Interview War Stories</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 While the technical questions on computer science obviously are very important, the most important interview question is not covered in this guidebook. In fact, it’s often the single most question in your interviewers' minds as they grill you in that little room. Despite the questions on polymorphism and heaps and virtual machines, the question they really want an answer to is &#x2026; <b>Would I have a beer with this guy?</b>
@@ -238,12 +284,12 @@ While they may not literally be asking themselves “Would I have a beer with th
 </div>
 </div>
 
-<div id="outline-container-org83ed96f" class="outline-2">
-<h2 id="org83ed96f"><span class="section-number-2">5</span> Before the Interview</h2>
+<div id="outline-container-org84653d8" class="outline-2">
+<h2 id="org84653d8"><span class="section-number-2">5</span> Before the Interview</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org78101cd" class="outline-3">
-<h3 id="org78101cd"><span class="section-number-3">5.1</span> Resume Advice</h3>
+<div id="outline-container-orgee027df" class="outline-3">
+<h3 id="orgee027df"><span class="section-number-3">5.1</span> Resume Advice</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Resume screeners look for the same things that interviewers do:
@@ -282,8 +328,8 @@ Not everything you did will fit into this approach, but the principle is the sam
 </div>
 </div>
 
-<div id="outline-container-org121fb8b" class="outline-3">
-<h3 id="org121fb8b"><span class="section-number-3">5.2</span> Behavioral Preparation</h3>
+<div id="outline-container-org8a5b0d0" class="outline-3">
+<h3 id="org8a5b0d0"><span class="section-number-3">5.2</span> Behavioral Preparation</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Behavioral questions are asked for a variety of reasons
@@ -415,8 +461,8 @@ In each cell, put the corresponding story. We recommend reducing each story to j
 </div>
 </div>
 
-<div id="outline-container-org7657b31" class="outline-3">
-<h3 id="org7657b31"><span class="section-number-3">5.3</span> Technical Preparation</h3>
+<div id="outline-container-org42f6410" class="outline-3">
+<h3 id="org42f6410"><span class="section-number-3">5.3</span> Technical Preparation</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>Memorizing or trying to learn specific questions won’t help you!</li>
@@ -493,16 +539,16 @@ In each cell, put the corresponding story. We recommend reducing each story to j
 </div>
 </div>
 
-<div id="outline-container-org3aeaac4" class="outline-2">
-<h2 id="org3aeaac4"><span class="section-number-2">6</span> The Interview and Beyond</h2>
+<div id="outline-container-org71e8268" class="outline-2">
+<h2 id="org71e8268"><span class="section-number-2">6</span> The Interview and Beyond</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <a href="https://github.com/yangshun/tech-interview-handbook/tree/master/non-technical">https://github.com/yangshun/tech-interview-handbook/tree/master/non-technical</a>
 </p>
 </div>
 
-<div id="outline-container-org7fd12f9" class="outline-3">
-<h3 id="org7fd12f9"><span class="section-number-3">6.1</span> Handling Behavioral Questions</h3>
+<div id="outline-container-orgee3c1d2" class="outline-3">
+<h3 id="orgee3c1d2"><span class="section-number-3">6.1</span> Handling Behavioral Questions</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Be Specific, Not Arrogant # 将问题说的具体一些就不会显得傲慢</li>
@@ -524,8 +570,8 @@ Candidate #2 not only sounds more impressive, but she also appears less arrogant
 </div>
 </div>
 
-<div id="outline-container-orge45b8a1" class="outline-3">
-<h3 id="orge45b8a1"><span class="section-number-3">6.2</span> Handling Technical Questions</h3>
+<div id="outline-container-org2333115" class="outline-3">
+<h3 id="org2333115"><span class="section-number-3">6.2</span> Handling Technical Questions</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 A technical interview question can be solved utilizing a five step approach:
@@ -540,11 +586,11 @@ A technical interview question can be solved utilizing a five step approach:
 </div>
 </div>
 
-<div id="outline-container-org4a4e0ec" class="outline-3">
-<h3 id="org4a4e0ec"><span class="section-number-3">6.3</span> Five Algorithm Approaches</h3>
+<div id="outline-container-org59439b8" class="outline-3">
+<h3 id="org59439b8"><span class="section-number-3">6.3</span> Five Algorithm Approaches</h3>
 </div>
-<div id="outline-container-org736c532" class="outline-3">
-<h3 id="org736c532"><span class="section-number-3">6.4</span> The Offer and Beyond</h3>
+<div id="outline-container-orgf1905ab" class="outline-3">
+<h3 id="orgf1905ab"><span class="section-number-3">6.4</span> The Offer and Beyond</h3>
 <div class="outline-text-3" id="text-6-4">
 <ul class="org-ul">
 <li><b>Negotiating.</b> It’s Always Negotiable! Ok, maybe not always, but usually an offer is negotiable even if a recruiter tells you otherwise. It helps if you have a competing offer But, <b>don’t lie – Microsoft knows what Google offers, so it just won’t be realistic if you make up numbers.</b> Also, technol- ogy is a small world, and people talk. Be honest.</li>
@@ -562,8 +608,8 @@ A technical interview question can be solved utilizing a five step approach:
 </div>
 </div>
 
-<div id="outline-container-orgfb04e61" class="outline-3">
-<h3 id="orgfb04e61"><span class="section-number-3">6.5</span> Top Ten Mistakes Candidates Make</h3>
+<div id="outline-container-org191649b" class="outline-3">
+<h3 id="org191649b"><span class="section-number-3">6.5</span> Top Ten Mistakes Candidates Make</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li>Practicing on a Computer</li>
@@ -580,8 +626,8 @@ A technical interview question can be solved utilizing a five step approach:
 </div>
 </div>
 
-<div id="outline-container-orgb5969ab" class="outline-3">
-<h3 id="orgb5969ab"><span class="section-number-3">6.6</span> Frequently Asked Questions</h3>
+<div id="outline-container-orgfd150b8" class="outline-3">
+<h3 id="orgfd150b8"><span class="section-number-3">6.6</span> Frequently Asked Questions</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 <b>Should I tell my interviewer if I know a question?</b>
@@ -603,8 +649,8 @@ Here’s why we strongly recommend that you tell your interviewer that you’ve 
 </div>
 </div>
 
-<div id="outline-container-org2ce3051" class="outline-2">
-<h2 id="org2ce3051"><span class="section-number-2">7</span> Interview Questions</h2>
+<div id="outline-container-org44a1a1a" class="outline-2">
+<h2 id="org44a1a1a"><span class="section-number-2">7</span> Interview Questions</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Data Structures</li>
@@ -614,8 +660,8 @@ Here’s why we strongly recommend that you tell your interviewer that you’ve 
 </ul>
 </div>
 
-<div id="outline-container-orgcf738d8" class="outline-3">
-<h3 id="orgcf738d8"><span class="section-number-3">7.1</span> Arrays and Strings</h3>
+<div id="outline-container-org0d43fce" class="outline-3">
+<h3 id="org0d43fce"><span class="section-number-3">7.1</span> Arrays and Strings</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>1.1 Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?</li>
@@ -640,18 +686,18 @@ Here’s why we strongly recommend that you tell your interviewer that you’ve 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;vector&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-<span class="org-keyword">public</span>:
-    <span class="org-type">void</span> <span class="org-function-name">rotate</span>(<span class="org-type">vector</span>&lt;<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&gt;&amp; <span class="org-variable-name">matrix</span>) {
-        <span class="org-type">vector</span>&lt;<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&gt;&amp; <span class="org-variable-name">m</span> = matrix;
-        <span class="org-type">int</span> <span class="org-variable-name">N</span> = matrix.size();
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">r</span> = 0; r &lt; N/2; r++) {
-            <span class="org-type">int</span> <span class="org-variable-name">end</span> = N - 1 - r;
-            <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">c</span> = r; c &lt; end; c++) {
-                <span class="org-type">int</span> <span class="org-variable-name">tmp</span> = m[r][c];
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+<span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">rotate</span>(<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>&gt;&gt;&amp; <span style="font-weight: bold; font-style: italic;">matrix</span>) {
+        <span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>&gt;&gt;&amp; <span style="font-weight: bold; font-style: italic;">m</span> = matrix;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span> = matrix.size();
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">r</span> = 0; r &lt; N/2; r++) {
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">end</span> = N - 1 - r;
+            <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = r; c &lt; end; c++) {
+                <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = m[r][c];
                 m[r][c] = m[N-1-c][r];
                 m[N-1-c][r] = m[N-1-r][N-1-c];
                 m[N-1-r][N-1-c] = m[c][N-1-r];
@@ -668,33 +714,33 @@ Here’s why we strongly recommend that you tell your interviewer that you’ve 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;vector&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-<span class="org-keyword">public</span>:
-    <span class="org-type">void</span> <span class="org-function-name">setZeroes</span>(<span class="org-type">vector</span>&lt;<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&gt;&amp; <span class="org-variable-name">matrix</span>) {
-        <span class="org-type">int</span> <span class="org-variable-name">odd</span> = 78392356;
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">r</span> = 0; r &lt; matrix.size(); r++) {
-            <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">c</span> = 0; c &lt; matrix[r].size(); c++) {
-                <span class="org-keyword">if</span> (matrix[r][c] == 0) {
-                    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">k</span> = 0; k &lt; matrix.size(); k++) {
-                        <span class="org-keyword">if</span>(matrix[k][c] != 0) {
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+<span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">setZeroes</span>(<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>&gt;&gt;&amp; <span style="font-weight: bold; font-style: italic;">matrix</span>) {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">odd</span> = 78392356;
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">r</span> = 0; r &lt; matrix.size(); r++) {
+            <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = 0; c &lt; matrix[r].size(); c++) {
+                <span style="font-weight: bold;">if</span> (matrix[r][c] == 0) {
+                    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">k</span> = 0; k &lt; matrix.size(); k++) {
+                        <span style="font-weight: bold;">if</span>(matrix[k][c] != 0) {
                             matrix[k][c] = odd;
                         }
                     }
-                    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">k</span> = 0; k &lt; matrix[0].size();k++) {
-                        <span class="org-keyword">if</span> (matrix[r][k] != 0) {
+                    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">k</span> = 0; k &lt; matrix[0].size();k++) {
+                        <span style="font-weight: bold;">if</span> (matrix[r][k] != 0) {
                             matrix[r][k] = odd;
                         }
                     }
                 }
             }
         }
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">r</span> =0; r &lt; matrix.size(); r++) {
-            <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">c</span> = 0; c &lt; matrix[r].size();c ++) {
-                <span class="org-keyword">if</span>(matrix[r][c] == odd) {
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">r</span> =0; r &lt; matrix.size(); r++) {
+            <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = 0; c &lt; matrix[r].size();c ++) {
+                <span style="font-weight: bold;">if</span>(matrix[r][c] == odd) {
                     matrix[r][c] = 0;
                 }
             }
@@ -706,8 +752,8 @@ Here’s why we strongly recommend that you tell your interviewer that you’ve 
 </div>
 </div>
 
-<div id="outline-container-org1165188" class="outline-3">
-<h3 id="org1165188"><span class="section-number-3">7.2</span> Linked Lists</h3>
+<div id="outline-container-org394d89c" class="outline-3">
+<h3 id="org394d89c"><span class="section-number-3">7.2</span> Linked Lists</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 Questions:
@@ -739,37 +785,37 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-keyword">struct</span> <span class="org-type">ListNode</span> {
-    <span class="org-type">ListNode</span>* <span class="org-variable-name">next</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">ListNode</span> {
+    <span style="font-weight: bold; text-decoration: underline;">ListNode</span>* <span style="font-weight: bold; font-style: italic;">next</span>;
 };
 
-<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-<span class="org-keyword">public</span>:
-    <span class="org-type">ListNode</span>* <span class="org-function-name">detectCycle</span>(<span class="org-type">ListNode</span>* <span class="org-variable-name">head</span>) {
-        <span class="org-type">ListNode</span>* <span class="org-variable-name">p0</span> = head, *<span class="org-variable-name">p1</span> = head;
-        <span class="org-type">bool</span> <span class="org-variable-name">cycle</span> = <span class="org-constant">false</span>;
-        <span class="org-keyword">while</span>(p0 != <span class="org-constant">NULL</span> &amp;&amp; p1 != <span class="org-constant">NULL</span>) {
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+<span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; text-decoration: underline;">ListNode</span>* <span style="font-weight: bold;">detectCycle</span>(<span style="font-weight: bold; text-decoration: underline;">ListNode</span>* <span style="font-weight: bold; font-style: italic;">head</span>) {
+        <span style="font-weight: bold; text-decoration: underline;">ListNode</span>* <span style="font-weight: bold; font-style: italic;">p0</span> = head, *<span style="font-weight: bold; font-style: italic;">p1</span> = head;
+        <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">cycle</span> = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+        <span style="font-weight: bold;">while</span>(p0 != <span style="font-weight: bold; text-decoration: underline;">NULL</span> &amp;&amp; p1 != <span style="font-weight: bold; text-decoration: underline;">NULL</span>) {
             p0 = p0-&gt;next;
             p1 = p1-&gt;next;
-            <span class="org-keyword">if</span> (p1 == <span class="org-constant">NULL</span>) {
-                <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
+            <span style="font-weight: bold;">if</span> (p1 == <span style="font-weight: bold; text-decoration: underline;">NULL</span>) {
+                <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">NULL</span>;
             }
             p1 = p1-&gt;next;
-            <span class="org-keyword">if</span> (p0 == p1) {
-                cycle = <span class="org-constant">true</span>;
-                <span class="org-keyword">break</span>;
+            <span style="font-weight: bold;">if</span> (p0 == p1) {
+                cycle = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+                <span style="font-weight: bold;">break</span>;
             }
         }
-        <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>cycle) {
-            <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
+        <span style="font-weight: bold;">if</span>(!cycle) {
+            <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">NULL</span>;
         }
         p0 = head;
-        <span class="org-keyword">while</span>(p0 != p1) {
+        <span style="font-weight: bold;">while</span>(p0 != p1) {
             p0 = p0-&gt;next;
             p1 = p1-&gt;next;
         }
-        <span class="org-keyword">return</span> p1; <span class="org-comment-delimiter">// </span><span class="org-comment">or p0</span>
+        <span style="font-weight: bold;">return</span> p1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">or p0</span>
     }
 };
 </pre>
@@ -777,8 +823,8 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-org8d927dc" class="outline-3">
-<h3 id="org8d927dc"><span class="section-number-3">7.3</span> Stacks and Queues</h3>
+<div id="outline-container-orgcad1668" class="outline-3">
+<h3 id="orgcad1668"><span class="section-number-3">7.3</span> Stacks and Queues</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 Questions:
@@ -808,9 +854,9 @@ Questions:
 </p>
 <ul class="org-ul">
 <li>先移动R-3个盘子，</li>
-<li>剩余的plates需要 2^(N-R+3)-1</li>
+<li>剩余的plates需要 2<sup>(N-R+3)</sup>-1</li>
 <li>然后将开始R-3盘子移动到目的地</li>
-<li>所以总数是2*(R-3) + 2^(N-R+3) - 1</li>
+<li>所以总数是2*(R-3) + 2<sup>(N-R+3)</sup> - 1</li>
 </ul>
 
 <div class="org-src-container">
@@ -821,12 +867,12 @@ Questions:
 def find_solution(N):
     steps = []
     def move(n, r0, r1):
-        if (n == 0):
-            return
-        r2 = 3 - r0 - r1
-        move(n-1, r0, r2)
-        steps.append((n, r0, r1))
-        move(n-1, r2, r1)
+	if (n == 0):
+	    return
+	r2 = 3 - r0 - r1
+	move(n-1, r0, r2)
+	steps.append((n, r0, r1))
+	move(n-1, r2, r1)
     move(N, 0, 2)
     return steps
 
@@ -838,8 +884,8 @@ print(len(steps))
 </div>
 </div>
 
-<div id="outline-container-orgabe73b2" class="outline-3">
-<h3 id="orgabe73b2"><span class="section-number-3">7.4</span> Trees and Graphs</h3>
+<div id="outline-container-orgd746f9b" class="outline-3">
+<h3 id="orgd746f9b"><span class="section-number-3">7.4</span> Trees and Graphs</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 利用BUD(Bottlenecks, Unnecessary work, Duplicated work) 来优化算法
@@ -909,32 +955,32 @@ Questions:
 <pre class="src src-Python">""" Node is defined as
 class node:
     def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
+	self.data = data
+	self.left = None
+	self.right = None
 """
 
 def checkBST(root):
     def f(root):
-        if root is None: return True, None, None
-        data = root.data
-        min_value, max_value = data, data
+	if root is None: return True, None, None
+	data = root.data
+	min_value, max_value = data, data
 
-        if root.left:
-            lr, lmin, lmax = f(root.left)
-            if not lr or data &lt;= lmax:
-                return False, None, None
-            min_value = min(min_value, lmin)
-            max_value = max(max_value, lmax)
+	if root.left:
+	    lr, lmin, lmax = f(root.left)
+	    if not lr or data &lt;= lmax:
+		return False, None, None
+	    min_value = min(min_value, lmin)
+	    max_value = max(max_value, lmax)
 
-        if root.right:
-            rr, rmin, rmax = f(root.right)
-            if not rr or data &gt;= rmin:
-                return False, None, None
-            min_value = min(min_value, rmin)
-            max_value = max(max_value, rmax)
+	if root.right:
+	    rr, rmin, rmax = f(root.right)
+	    if not rr or data &gt;= rmin:
+		return False, None, None
+	    min_value = min(min_value, rmin)
+	    max_value = max(max_value, rmax)
 
-        return True, min_value, max_value
+	return True, min_value, max_value
     res, _, _ = f(root)
     return res
 
@@ -947,19 +993,19 @@ def checkBST(root):
 
 <div class="org-src-container">
 <pre class="src src-C++">
-<span class="org-type">boolean</span> <span class="org-function-name">isValid</span>(<span class="org-type">Node</span> <span class="org-variable-name">root</span>) {
-    <span class="org-keyword">return</span> isValidHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+<span style="font-weight: bold; text-decoration: underline;">boolean</span> <span style="font-weight: bold;">isValid</span>(<span style="font-weight: bold; text-decoration: underline;">Node</span> <span style="font-weight: bold; font-style: italic;">root</span>) {
+    <span style="font-weight: bold;">return</span> isValidHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 }
-<span class="org-type">boolean</span> <span class="org-function-name">isValidHelper</span>(<span class="org-type">Node</span> <span class="org-variable-name">curr</span>, <span class="org-type">int</span> <span class="org-variable-name">min</span>, <span class="org-type">int</span> <span class="org-variable-name">max</span>) {
-    <span class="org-keyword">if</span> (curr.left != null) {
-        <span class="org-keyword">if</span> (curr.left.value &lt; min || <span class="org-negation-char">!</span>isValidHelper(curr.left, min, curr.value))
-        <span class="org-keyword">return</span> <span class="org-constant">false</span>;
+<span style="font-weight: bold; text-decoration: underline;">boolean</span> <span style="font-weight: bold;">isValidHelper</span>(<span style="font-weight: bold; text-decoration: underline;">Node</span> <span style="font-weight: bold; font-style: italic;">curr</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">min</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">max</span>) {
+    <span style="font-weight: bold;">if</span> (curr.left != null) {
+        <span style="font-weight: bold;">if</span> (curr.left.value &lt; min || !isValidHelper(curr.left, min, curr.value))
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;
     }
-    <span class="org-keyword">if</span> (curr.right != null) {
-        <span class="org-keyword">if</span> (curr.right.value &gt; max || <span class="org-negation-char">!</span>isValidHelper(curr.right, curr.value, max))
-        <span class="org-keyword">return</span> <span class="org-constant">false</span>;
+    <span style="font-weight: bold;">if</span> (curr.right != null) {
+        <span style="font-weight: bold;">if</span> (curr.right.value &gt; max || !isValidHelper(curr.right, curr.value, max))
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;
     }
-    <span class="org-keyword">return</span> <span class="org-constant">true</span>;
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>;
 }
 
 </pre>
@@ -972,42 +1018,42 @@ def checkBST(root):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-keyword">struct</span> <span class="org-type">TreeNode</span> {
-    <span class="org-type">int</span> <span class="org-variable-name">val</span>;
-    <span class="org-type">TreeNode</span> *<span class="org-variable-name">left</span>;
-    <span class="org-type">TreeNode</span> *<span class="org-variable-name">right</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">val</span>;
+    <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">left</span>;
+    <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">right</span>;
 };
 
-<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-<span class="org-keyword">public</span>:
-    <span class="org-type">TreeNode</span>* <span class="org-function-name">find</span>(<span class="org-type">TreeNode</span> *<span class="org-variable-name">root</span>, <span class="org-type">TreeNode</span> *<span class="org-variable-name">p</span>, <span class="org-type">TreeNode</span> *<span class="org-variable-name">q</span>, <span class="org-type">int</span>* <span class="org-variable-name">covers</span>) {
-        <span class="org-keyword">if</span> (root == <span class="org-constant">NULL</span>) <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+<span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; text-decoration: underline;">TreeNode</span>* <span style="font-weight: bold;">find</span>(<span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">root</span>, <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">p</span>, <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">q</span>, <span style="font-weight: bold; text-decoration: underline;">int</span>* <span style="font-weight: bold; font-style: italic;">covers</span>) {
+        <span style="font-weight: bold;">if</span> (root == <span style="font-weight: bold; text-decoration: underline;">NULL</span>) <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">NULL</span>;
 
-        <span class="org-type">int</span> <span class="org-variable-name">c</span> = 0;
-        <span class="org-keyword">if</span>((root == p) || (root == q))
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = 0;
+        <span style="font-weight: bold;">if</span>((root == p) || (root == q))
             c += 1;
 
-        <span class="org-type">int</span> <span class="org-variable-name">c0</span> = 0, <span class="org-variable-name">c1</span> = 0;
-        <span class="org-type">TreeNode</span> *<span class="org-variable-name">t0</span> = find(root-&gt;left, p, q, &amp;c0);
-        <span class="org-keyword">if</span> (c0 == 2) {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c0</span> = 0, <span style="font-weight: bold; font-style: italic;">c1</span> = 0;
+        <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">t0</span> = find(root-&gt;left, p, q, &amp;c0);
+        <span style="font-weight: bold;">if</span> (c0 == 2) {
             *covers = 2;
-            <span class="org-keyword">return</span> t0;
+            <span style="font-weight: bold;">return</span> t0;
         }
-        <span class="org-type">TreeNode</span> *<span class="org-variable-name">t1</span> = find(root-&gt;right, p, q, &amp;c1);
-        <span class="org-keyword">if</span> (c1 == 2) {
+        <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">t1</span> = find(root-&gt;right, p, q, &amp;c1);
+        <span style="font-weight: bold;">if</span> (c1 == 2) {
             *covers = 2;
-            <span class="org-keyword">return</span> t1;
+            <span style="font-weight: bold;">return</span> t1;
         }
         c += (c0 + c1);
         *covers = c;
-        <span class="org-keyword">return</span> root;
+        <span style="font-weight: bold;">return</span> root;
     }
 
-    <span class="org-type">TreeNode</span>* <span class="org-function-name">lowestCommonAncestor</span>(<span class="org-type">TreeNode</span>* <span class="org-variable-name">root</span>, <span class="org-type">TreeNode</span>* <span class="org-variable-name">p</span>, <span class="org-type">TreeNode</span>* <span class="org-variable-name">q</span>) {
-        <span class="org-type">int</span> <span class="org-variable-name">covers</span> = 0;
-        <span class="org-type">TreeNode</span> *<span class="org-variable-name">t</span> = find(root, p, q, &amp;covers);
-        <span class="org-keyword">return</span> t;
+    <span style="font-weight: bold; text-decoration: underline;">TreeNode</span>* <span style="font-weight: bold;">lowestCommonAncestor</span>(<span style="font-weight: bold; text-decoration: underline;">TreeNode</span>* <span style="font-weight: bold; font-style: italic;">root</span>, <span style="font-weight: bold; text-decoration: underline;">TreeNode</span>* <span style="font-weight: bold; font-style: italic;">p</span>, <span style="font-weight: bold; text-decoration: underline;">TreeNode</span>* <span style="font-weight: bold; font-style: italic;">q</span>) {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">covers</span> = 0;
+        <span style="font-weight: bold; text-decoration: underline;">TreeNode</span> *<span style="font-weight: bold; font-style: italic;">t</span> = find(root, p, q, &amp;covers);
+        <span style="font-weight: bold;">return</span> t;
     }
 };
 </pre>
@@ -1015,8 +1061,8 @@ def checkBST(root):
 </div>
 </div>
 
-<div id="outline-container-orge409c8e" class="outline-3">
-<h3 id="orge409c8e"><span class="section-number-3">7.5</span> Bit Manipulation</h3>
+<div id="outline-container-org53ca72c" class="outline-3">
+<h3 id="org53ca72c"><span class="section-number-3">7.5</span> Bit Manipulation</h3>
 <div class="outline-text-3" id="text-7-5">
 
 <div class="figure">
@@ -1054,8 +1100,8 @@ Questions:
 def n_bits(v):
     c = 0
     while v:
-        c += (v &amp; 0x1)
-        v &gt;&gt;= 1
+	c += (v &amp; 0x1)
+	v &gt;&gt;= 1
     return c
 
 
@@ -1070,18 +1116,18 @@ def get_prev(v):
     c0, c1 = None, None
     least_ones = 0
     for i in range(32):
-        if ((v &gt;&gt; i) &amp; 0x1) == 0:
-            c0 = i
-            break
-        least_ones += 1
+	if ((v &gt;&gt; i) &amp; 0x1) == 0:
+	    c0 = i
+	    break
+	least_ones += 1
     if c0 is None:
-        return None
+	return None
     for i in range(c0, 32):
-        if ((v &gt;&gt; i) &amp; 0x1) == 1:
-            c1 = i
-            break
+	if ((v &gt;&gt; i) &amp; 0x1) == 1:
+	    c1 = i
+	    break
     if c1 is None:
-        return None
+	return None
 
     # 下面剩余的1需要进行重排列，尽可能放置在高位
     # 我们这里不设置bit, 而是进行重组
@@ -1089,9 +1135,9 @@ def get_prev(v):
     v = (v &lt;&lt; 1) + 1
     assert (least_ones &lt;= (c1 - 1))
     for i in range(0, least_ones):
-        v = (v &lt;&lt; 1) + 1
+	v = (v &lt;&lt; 1) + 1
     for i in range(least_ones, c1 - 1):
-        v = (v &lt;&lt; 1)
+	v = (v &lt;&lt; 1)
     return v
 
 
@@ -1101,25 +1147,25 @@ def get_next(v):
     c0, c1 = None, None
     least_zeros = 0
     for i in range(32):
-        if ((v &gt;&gt; i) &amp; 0x1) == 1:
-            c1 = i
-            break
-        least_zeros += 1
+	if ((v &gt;&gt; i) &amp; 0x1) == 1:
+	    c1 = i
+	    break
+	least_zeros += 1
     if c1 is None:
-        return None
+	return None
     for i in range(c1, 32):
-        if ((v &gt;&gt; i) &amp; 0x1) == 0:
-            c0 = i
-            break
+	if ((v &gt;&gt; i) &amp; 0x1) == 0:
+	    c0 = i
+	    break
     if c0 is None:
-        return None
+	return None
     v = ((v &gt;&gt; (c0 + 1)) &lt;&lt; 1) + 1
     v = (v &lt;&lt; 1)
     assert (least_zeros &lt;= (c0 - 1))
     for i in range(0, least_zeros):
-        v = (v &lt;&lt; 1)
+	v = (v &lt;&lt; 1)
     for i in range(least_zeros, c0 - 1):
-        v = (v &lt;&lt; 1) + 1
+	v = (v &lt;&lt; 1) + 1
     return v
 
 
@@ -1127,13 +1173,13 @@ def check_prev(n):
     prev = get_prev(n)
     print('n = {}, prev = {}'.format(n, prev))
     if prev is not None:
-        assert(prev &lt; n)
-        assert (same_n_bits(prev, n))
-        for x in range(prev + 1, n):
-            # if same_n_bits(x, n):
-            #     print('bad case: prev = {}, x = {}'.format(prev, x))
-            #     break
-            assert not same_n_bits(x, n)
+	assert(prev &lt; n)
+	assert (same_n_bits(prev, n))
+	for x in range(prev + 1, n):
+	    # if same_n_bits(x, n):
+	    #     print('bad case: prev = {}, x = {}'.format(prev, x))
+	    #     break
+	    assert not same_n_bits(x, n)
 
 
 for n in range(10, 2000):
@@ -1144,13 +1190,13 @@ def check_next(n):
     nextv = get_next(n)
     print('n = {}, next = {}'.format(n, nextv))
     if nextv is not None:
-        assert (nextv &gt; n)
-        assert (same_n_bits(nextv, n))
-        for x in range(n + 1, nextv):
-            if same_n_bits(x, n):
-                print('bad case: next = {}, x = {}'.format(nextv, x))
-                break
-            assert not same_n_bits(x, n)
+	assert (nextv &gt; n)
+	assert (same_n_bits(nextv, n))
+	for x in range(n + 1, nextv):
+	    if same_n_bits(x, n):
+		print('bad case: next = {}, x = {}'.format(nextv, x))
+		break
+	    assert not same_n_bits(x, n)
 
 
 for n in range(10, 2000):
@@ -1174,9 +1220,9 @@ def find_missing(arr, n):
     assert (len(arr) == n)
     exp = 0
     for x in range(0, n + 1):
-        exp ^= x
+	exp ^= x
     for x in arr:
-        exp ^= x
+	exp ^= x
     return exp
 
 
@@ -1191,8 +1237,8 @@ for n in (100, 200, 300, 400):
 </div>
 </div>
 
-<div id="outline-container-org8d509b3" class="outline-3">
-<h3 id="org8d509b3"><span class="section-number-3">7.6</span> Brain Teasers</h3>
+<div id="outline-container-org5dc4169" class="outline-3">
+<h3 id="org5dc4169"><span class="section-number-3">7.6</span> Brain Teasers</h3>
 <div class="outline-text-3" id="text-7-6">
 <ul class="org-ul">
 <li>Don’t panic when you get a brain teaser. Interviewers want to see how you tackle a problem; they don’t expect you to immediately know the answer. Start talking, and show the inter- viewer how you approach a problem</li>
@@ -1229,89 +1275,89 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
-<span class="org-comment"> * Copyright (C) dirlt</span>
-<span class="org-comment"> */</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">coding:utf-8</span>
+<span style="font-weight: bold; font-style: italic;"> * Copyright (C) dirlt</span>
+<span style="font-weight: bold; font-style: italic;"> */</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;algorithm&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;vector&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;algorithm&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">N</span> = 100;
-<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">R</span> = 2;
-<span class="org-type">int</span> <span class="org-variable-name">dp</span>[R][N+1][N+1];
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span> = 100;
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">R</span> = 2;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">dp</span>[R][N+1][N+1];
 
-<span class="org-type">int</span> <span class="org-function-name">fill_dp</span>(<span class="org-type">int</span> <span class="org-variable-name">t</span>, <span class="org-type">int</span> <span class="org-variable-name">s</span>, <span class="org-type">int</span> <span class="org-variable-name">e</span>) {
-    <span class="org-keyword">if</span>(s &gt; e) <span class="org-keyword">return</span> 0;
-    <span class="org-keyword">if</span>(dp[t][s][e] != 0) {
-        <span class="org-keyword">return</span> dp[t][s][e];
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">fill_dp</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">t</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">s</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">e</span>) {
+    <span style="font-weight: bold;">if</span>(s &gt; e) <span style="font-weight: bold;">return</span> 0;
+    <span style="font-weight: bold;">if</span>(dp[t][s][e] != 0) {
+        <span style="font-weight: bold;">return</span> dp[t][s][e];
     }
-    <span class="org-type">int</span> <span class="org-variable-name">v</span> = -1;
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = s; i &lt;= e; i++) {
-        <span class="org-type">int</span> <span class="org-variable-name">r</span> = 1 + max(fill_dp(t, i + 1, e), dp[t-1][s][i-1]);
-        <span class="org-keyword">if</span>(v == -1 || r &lt; v) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">v</span> = -1;
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = s; i &lt;= e; i++) {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">r</span> = 1 + max(fill_dp(t, i + 1, e), dp[t-1][s][i-1]);
+        <span style="font-weight: bold;">if</span>(v == -1 || r &lt; v) {
             v = r;
         }
     }
     dp[t][s][e] = v;
-    <span class="org-keyword">return</span> v;
+    <span style="font-weight: bold;">return</span> v;
 }
 
-<span class="org-type">void</span> <span class="org-function-name">solve</span>() {
-    memset(dp, 0, <span class="org-keyword">sizeof</span>(dp));
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 1; i &lt;= N; i++) {
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">j</span> = i; j &lt;= N; j++) {
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">solve</span>() {
+    memset(dp, 0, <span style="font-weight: bold;">sizeof</span>(dp));
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 1; i &lt;= N; i++) {
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = i; j &lt;= N; j++) {
             dp[0][i][j] = (j - i + 1);
         }
     }
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">t</span> = 1; t &lt; R; t++) {
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">s</span> = 1; s &lt;= N; s++) {
-            <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">e</span> = 1; e &lt;= N; e++) {
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">t</span> = 1; t &lt; R; t++) {
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">s</span> = 1; s &lt;= N; s++) {
+            <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">e</span> = 1; e &lt;= N; e++) {
                 fill_dp(t, s, e);
             }
         }
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">interpret</span>() {
-    <span class="org-type">int</span> <span class="org-variable-name">t</span> = R - 1;
-    <span class="org-type">int</span> <span class="org-variable-name">start</span> = 1;
-    <span class="org-type">int</span> <span class="org-variable-name">end</span> = N;
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">interpret</span>() {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">t</span> = R - 1;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">start</span> = 1;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">end</span> = N;
 
-    <span class="org-type">int</span> <span class="org-variable-name">v</span> = dp[t][start][end];
-    printf(<span class="org-string">"at most %d\n"</span>, v);
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">v</span> = dp[t][start][end];
+    printf(<span style="font-style: italic;">"at most %d\n"</span>, v);
 
-    <span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">tries</span>;
-    <span class="org-type">int</span> <span class="org-variable-name">s</span> = start;
-    <span class="org-type">int</span> <span class="org-variable-name">c</span> = 1;
+    <span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>&gt; <span style="font-weight: bold; font-style: italic;">tries</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">s</span> = start;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = 1;
 
-    <span class="org-type">bool</span> <span class="org-variable-name">more</span> = <span class="org-constant">true</span>;
-    <span class="org-keyword">while</span> (more) {
-        more = <span class="org-constant">false</span>;
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = s; i &lt;= end ; i++) {
-            <span class="org-comment-delimiter">// </span><span class="org-comment">search first point that egg breaks.</span>
-            <span class="org-comment-delimiter">// </span><span class="org-comment">and to my intuition, there will be only one point.</span>
-            <span class="org-keyword">if</span>(v &lt;= (c + dp[t-1][s][i-1])) {
+    <span style="font-weight: bold; text-decoration: underline;">bool</span> <span style="font-weight: bold; font-style: italic;">more</span> = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    <span style="font-weight: bold;">while</span> (more) {
+        more = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = s; i &lt;= end ; i++) {
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">search first point that egg breaks.</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">and to my intuition, there will be only one point.</span>
+            <span style="font-weight: bold;">if</span>(v &lt;= (c + dp[t-1][s][i-1])) {
                 tries.push_back(i);
                 s = i + 1;
                 c++;
-                more = <span class="org-constant">true</span>;
-                <span class="org-keyword">break</span>;
+                more = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+                <span style="font-weight: bold;">break</span>;
             }
         }
     }
 
-    printf(<span class="org-string">"tries are:\n"</span>);
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; tries.size(); i++) {
-        printf(<span class="org-string">"floor %d\n"</span>, tries[i]);
+    printf(<span style="font-style: italic;">"tries are:\n"</span>);
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; tries.size(); i++) {
+        printf(<span style="font-style: italic;">"floor %d\n"</span>, tries[i]);
     }
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
     solve();
     interpret();
-    <span class="org-keyword">return</span> 0;
+    <span style="font-weight: bold;">return</span> 0;
 }
 
 </pre>
@@ -1319,11 +1365,11 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-org03ef401" class="outline-3">
-<h3 id="org03ef401"><span class="section-number-3">7.7</span> Object Oriented Design</h3>
+<div id="outline-container-orgfce6b49" class="outline-3">
+<h3 id="orgfce6b49"><span class="section-number-3">7.7</span> Object Oriented Design</h3>
 </div>
-<div id="outline-container-org06ff851" class="outline-3">
-<h3 id="org06ff851"><span class="section-number-3">7.8</span> Recursion</h3>
+<div id="outline-container-orge1bad2c" class="outline-3">
+<h3 id="orge1bad2c"><span class="section-number-3">7.8</span> Recursion</h3>
 <div class="outline-text-3" id="text-7-8">
 <ul class="org-ul">
 <li>All problems that can be solved recursively can also be solved iteratively (though the code may be much more complicated). Before diving into a recursive code, ask yourself how hard it would be to implement this algorithm iteratively. Discuss the trade-offs with your interviewer.</li>
@@ -1379,39 +1425,39 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
-<span class="org-comment"> * Copyright (C) dirlt</span>
-<span class="org-comment"> */</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">coding:utf-8</span>
+<span style="font-weight: bold; font-style: italic;"> * Copyright (C) dirlt</span>
+<span style="font-weight: bold; font-style: italic;"> */</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;vector&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-<span class="org-keyword">public</span>:
-    <span class="org-type">void</span> <span class="org-function-name">nextPermutation</span>(<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&amp; <span class="org-variable-name">nums</span>) {
-        <span class="org-keyword">if</span>(nums.size() == 0) <span class="org-keyword">return</span>;
-        <span class="org-comment-delimiter">// </span><span class="org-comment">find swap position.</span>
-        <span class="org-type">int</span> <span class="org-variable-name">i</span> = nums.size() - 1;
-        <span class="org-keyword">for</span>(;i &gt;= 1; i--) {
-            <span class="org-keyword">if</span>(nums[i] &gt; nums[i-1]) {
-                <span class="org-keyword">break</span>;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+<span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">nextPermutation</span>(<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>&gt;&amp; <span style="font-weight: bold; font-style: italic;">nums</span>) {
+        <span style="font-weight: bold;">if</span>(nums.size() == 0) <span style="font-weight: bold;">return</span>;
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">find swap position.</span>
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = nums.size() - 1;
+        <span style="font-weight: bold;">for</span>(;i &gt;= 1; i--) {
+            <span style="font-weight: bold;">if</span>(nums[i] &gt; nums[i-1]) {
+                <span style="font-weight: bold;">break</span>;
             }
         }
-        <span class="org-keyword">if</span>(i == 0) {
+        <span style="font-weight: bold;">if</span>(i == 0) {
             sort(nums.begin(), nums.end());
-            <span class="org-keyword">return</span>;
+            <span style="font-weight: bold;">return</span>;
         }
-        <span class="org-comment-delimiter">// </span><span class="org-comment">find another swap position.</span>
-        <span class="org-type">int</span> <span class="org-variable-name">min_value</span> = nums[i];
-        <span class="org-type">int</span> <span class="org-variable-name">min_index</span> = i;
-        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">j</span> = i + 1; j &lt; nums.size(); j++) {
-            <span class="org-keyword">if</span> (nums[j] &lt;= nums[i-1]) <span class="org-keyword">continue</span>;
-            <span class="org-keyword">if</span> (nums[j] &lt; min_value) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">find another swap position.</span>
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">min_value</span> = nums[i];
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">min_index</span> = i;
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = i + 1; j &lt; nums.size(); j++) {
+            <span style="font-weight: bold;">if</span> (nums[j] &lt;= nums[i-1]) <span style="font-weight: bold;">continue</span>;
+            <span style="font-weight: bold;">if</span> (nums[j] &lt; min_value) {
                 min_value = nums[j];
                 min_index = j;
             }
         }
-        swap(<span class="org-type">nums</span>[min_index], <span class="org-type">nums</span>[i-1]);
+        swap(<span style="font-weight: bold; text-decoration: underline;">nums</span>[min_index], <span style="font-weight: bold; text-decoration: underline;">nums</span>[i-1]);
         sort(nums.begin() + i, nums.end());
     }
 };
@@ -1430,21 +1476,21 @@ def make_change(coins, n):
     m = len(coins)
     dp = []
     for i in range(n + 1):
-        dp.append([0] * (m + 1))
+	dp.append([0] * (m + 1))
 
     # init.
     for i in range(n+1):
-        dp[i][m] = 1
+	dp[i][m] = 1
     for i in range(m+1):
-        dp[0][i] = 1
+	dp[0][i] = 1
 
     for i in range(1, n+1):
-        for j in range(1, m+1):
-            c = coins[j-1]
-            value = dp[i][j-1]
-            if(i &gt;= c):
-                value += dp[i-c][j]
-            dp[i][j] = value
+	for j in range(1, m+1):
+	    c = coins[j-1]
+	    value = dp[i][j-1]
+	    if(i &gt;= c):
+		value += dp[i-c][j]
+	    dp[i][j] = value
     return dp[n][m]
 
 </pre>
@@ -1453,8 +1499,8 @@ def make_change(coins, n):
 </div>
 
 
-<div id="outline-container-orgcbf045b" class="outline-3">
-<h3 id="orgcbf045b"><span class="section-number-3">7.9</span> Sorting and Searching</h3>
+<div id="outline-container-org706f0e6" class="outline-3">
+<h3 id="org706f0e6"><span class="section-number-3">7.9</span> Sorting and Searching</h3>
 <div class="outline-text-3" id="text-7-9">
 <ul class="org-ul">
 <li>Bubble Sort</li>
@@ -1500,40 +1546,40 @@ Questions:
 
 <div class="org-src-container">
 <pre class="src src-C++">
-<span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
-<span class="org-comment"> * Copyright (C) dirlt</span>
-<span class="org-comment"> */</span>
+<span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">coding:utf-8</span>
+<span style="font-weight: bold; font-style: italic;"> * Copyright (C) dirlt</span>
+<span style="font-weight: bold; font-style: italic;"> */</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;vector&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-<span class="org-keyword">public</span>:
-    <span class="org-type">int</span> <span class="org-function-name">search</span>(<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&amp; <span class="org-variable-name">nums</span>, <span class="org-type">int</span> <span class="org-variable-name">target</span>) {
-        <span class="org-type">int</span> <span class="org-variable-name">size</span> = nums.size();
-        <span class="org-type">int</span> <span class="org-variable-name">s</span> = 0, <span class="org-variable-name">e</span> = size - 1;
-        <span class="org-keyword">while</span>(s &lt;= e) {
-            <span class="org-type">int</span> <span class="org-variable-name">m</span> = (s+e)/2;
-            <span class="org-keyword">if</span>(nums[m] == target) <span class="org-keyword">return</span> m;
-            <span class="org-keyword">if</span> (target &gt; nums[m]) {
-                <span class="org-keyword">if</span> (nums[m] &gt;= nums[s]) {
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Solution</span> {
+<span style="font-weight: bold;">public</span>:
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">search</span>(<span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">int</span>&gt;&amp; <span style="font-weight: bold; font-style: italic;">nums</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">target</span>) {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">size</span> = nums.size();
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">s</span> = 0, <span style="font-weight: bold; font-style: italic;">e</span> = size - 1;
+        <span style="font-weight: bold;">while</span>(s &lt;= e) {
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">m</span> = (s+e)/2;
+            <span style="font-weight: bold;">if</span>(nums[m] == target) <span style="font-weight: bold;">return</span> m;
+            <span style="font-weight: bold;">if</span> (target &gt; nums[m]) {
+                <span style="font-weight: bold;">if</span> (nums[m] &gt;= nums[s]) {
                     s = m + 1;
-                } <span class="org-keyword">else</span> <span class="org-keyword">if</span>(target &gt;= nums[s]) {
+                } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span>(target &gt;= nums[s]) {
                     e = m - 1;
-                } <span class="org-keyword">else</span> {
+                } <span style="font-weight: bold;">else</span> {
                     s = m + 1;
                 }
-            } <span class="org-keyword">else</span> {
-                <span class="org-keyword">if</span> (nums[m] &lt;= nums[s]) {
+            } <span style="font-weight: bold;">else</span> {
+                <span style="font-weight: bold;">if</span> (nums[m] &lt;= nums[s]) {
                     e = m - 1;
-                } <span class="org-keyword">else</span> <span class="org-keyword">if</span>(target &gt;= nums[s]) {
+                } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span>(target &gt;= nums[s]) {
                     e = m - 1;
-                } <span class="org-keyword">else</span> {
+                } <span style="font-weight: bold;">else</span> {
                     s = m + 1;
                 }
             }
         }
-        <span class="org-keyword">return</span> -1;
+        <span style="font-weight: bold;">return</span> -1;
     }
 };
 </pre>
@@ -1541,8 +1587,8 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-orgf1e423f" class="outline-3">
-<h3 id="orgf1e423f"><span class="section-number-3">7.10</span> Mathematical</h3>
+<div id="outline-container-orgb32a846" class="outline-3">
+<h3 id="orgb32a846"><span class="section-number-3">7.10</span> Mathematical</h3>
 <div class="outline-text-3" id="text-7-10">
 <p>
 Questions:
@@ -1571,8 +1617,8 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-orgdd3fc4d" class="outline-3">
-<h3 id="orgdd3fc4d"><span class="section-number-3">7.11</span> System Design and Memory Limits</h3>
+<div id="outline-container-org6cfe371" class="outline-3">
+<h3 id="org6cfe371"><span class="section-number-3">7.11</span> System Design and Memory Limits</h3>
 <div class="outline-text-3" id="text-7-11">
 <p>
 Data Structures
@@ -1590,7 +1636,7 @@ Questions:
 <li>11.1 If you were integrating a feed of end of day stock price information (open, high, low, and closing price) for 5,000 companies, how would you do it? You are responsible for the development, rollout and ongoing monitoring and maintenance of the feed. Describe the different methods you considered and why you would recommend your approach. The feed is delivered once per trading day in a comma-separated format via an FTP site. The feed will be used by 1000 daily users in a web application.</li>
 <li>11.2 How would you design the data structures for a very large social network (Facebook, LinkedIn, etc)? Describe how you would design an algorithm to show the connection, or path, between two people (e g , Me -&gt; Bob -&gt; Susan -&gt; Jason -&gt; You).
 <ul class="org-ul">
-<li>我觉得可以为每个人存储2度关系，这个应该是可以接受的。比如Me, Bob, Susan(2rd by Bob)，因为2度扩展出去的人数应该不是很多比如10^6.</li>
+<li>我觉得可以为每个人存储2度关系，这个应该是可以接受的。比如Me, Bob, Susan(2rd by Bob)，因为2度扩展出去的人数应该不是很多比如10<sup>6</sup>.</li>
 <li>然后如果要找到Me-&gt;You之间关系的话，因为You, Jason, Susan(2rd By Jason). 这样只需要做两个bit set的join即可找到共同联系人，拿You的2度bits和Me的2度bits做join即可。</li>
 <li>大部分情况下面使用这种方式都可以找到共同联系人，除非是这两个人关系特别特别远。</li>
 </ul></li>
@@ -1603,8 +1649,8 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-org96e06d4" class="outline-3">
-<h3 id="org96e06d4"><span class="section-number-3">7.12</span> Testing</h3>
+<div id="outline-container-orgd05943f" class="outline-3">
+<h3 id="orgd05943f"><span class="section-number-3">7.12</span> Testing</h3>
 <div class="outline-text-3" id="text-7-12">
 <p>
 Questions:
@@ -1627,14 +1673,14 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-orgf48529d" class="outline-3">
-<h3 id="orgf48529d"><span class="section-number-3">7.13</span> C++</h3>
+<div id="outline-container-orgfb85e7a" class="outline-3">
+<h3 id="orgfb85e7a"><span class="section-number-3">7.13</span> C++</h3>
 </div>
-<div id="outline-container-org6b8b2af" class="outline-3">
-<h3 id="org6b8b2af"><span class="section-number-3">7.14</span> Java</h3>
+<div id="outline-container-orgace3581" class="outline-3">
+<h3 id="orgace3581"><span class="section-number-3">7.14</span> Java</h3>
 </div>
-<div id="outline-container-orgb11e03f" class="outline-3">
-<h3 id="orgb11e03f"><span class="section-number-3">7.15</span> Databases</h3>
+<div id="outline-container-org2dfd617" class="outline-3">
+<h3 id="org2dfd617"><span class="section-number-3">7.15</span> Databases</h3>
 <div class="outline-text-3" id="text-7-15">
 <p>
 Questions:
@@ -1655,8 +1701,8 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-org1b3f9a3" class="outline-3">
-<h3 id="org1b3f9a3"><span class="section-number-3">7.16</span> Low Level</h3>
+<div id="outline-container-orgf0abbf5" class="outline-3">
+<h3 id="orgf0abbf5"><span class="section-number-3">7.16</span> Low Level</h3>
 <div class="outline-text-3" id="text-7-16">
 <p>
 Questions:
@@ -1685,8 +1731,8 @@ Questions:
 <li>(x) 16.8 A device boots with an empty FIFO queue. In the first 400 ns period after startup, and in each subsequent 400 ns period, a maximum of 80 words will be written to the queue. Each write takes 4 ns. A worker thread requires 3 ns to read a word, and 2 ns to process it before reading the next word. What is the shortest depth of the FIFO such that no data is lost?</li>
 <li>16.9 Write an aligned malloc &amp; free function that takes number of bytes and aligned byte (which is always power of 2). EXAMPLE:
 <ul class="org-ul">
-<li>align_malloc(1000,128) will return a memory address that is a multiple of 128 and that points to memory of size 1000 bytes.</li>
-<li>aligned_free(p) will free memory allocated by align_malloc.</li>
+<li>align<sub>malloc</sub>(1000,128) will return a memory address that is a multiple of 128 and that points to memory of size 1000 bytes.</li>
+<li>aligned<sub>free</sub>(p) will free memory allocated by align<sub>malloc</sub>.</li>
 </ul></li>
 <li>16.10 Write a function called my2DAlloc which allocates a two dimensional array. Minimize the number of calls to malloc and make sure that the memory is accessible by the notation arr[i][j].</li>
 </ul>
@@ -1707,25 +1753,25 @@ worker = None
 
 for t in range(0, 700):
     if t % 4 == 0 and t &lt; (160 * 4):
-        word, arrival = 'c#{}'.format(t // 4), t
-        print('T{:03d} ===&gt; +++ word: {}'.format(t, word))
-        queue.append((word, arrival))
-        max_size = max(max_size, len(queue))
+	word, arrival = 'c#{}'.format(t // 4), t
+	print('T{:03d} ===&gt; +++ word: {}'.format(t, word))
+	queue.append((word, arrival))
+	max_size = max(max_size, len(queue))
 
     if worker:
-        word, arrival = worker
-        # 5ns之后才能处理下个任务.
-        if t &gt;= (arrival + 5):
-            print('T{:03d} ===&gt; --- word: {}'.format(t, word))
-            worker = None
+	word, arrival = worker
+	# 5ns之后才能处理下个任务.
+	if t &gt;= (arrival + 5):
+	    print('T{:03d} ===&gt; --- word: {}'.format(t, word))
+	    worker = None
 
     if worker is None and queue:
-        word, arrival = queue[0]
-        # 4ns之后才能够读取
-        if(t &gt;= (arrival + 4)):
-            print('T{:03d} ===&gt; !!! word: {}'.format(t, word))
-            worker = (word, t)
-            queue = queue[1:]
+	word, arrival = queue[0]
+	# 4ns之后才能够读取
+	if(t &gt;= (arrival + 4)):
+	    print('T{:03d} ===&gt; !!! word: {}'.format(t, word))
+	    worker = (word, t)
+	    queue = queue[1:]
 
 print('max size = {}'.format(max_size))
 
@@ -1738,47 +1784,47 @@ print('max size = {}'.format(max_size))
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
-<span class="org-comment"> * Copyright (C) dirlt</span>
-<span class="org-comment"> */</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">coding:utf-8</span>
+<span style="font-weight: bold; font-style: italic;"> * Copyright (C) dirlt</span>
+<span style="font-weight: bold; font-style: italic;"> */</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;new&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;new&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;vector&gt;</span>
+<span style="font-weight: bold;">using</span> <span style="font-weight: bold;">namespace</span> <span style="font-weight: bold; text-decoration: underline;">std</span>;
 
-<span class="org-type">void</span>* <span class="org-function-name">align_malloc</span>(<span class="org-type">int</span> <span class="org-variable-name">size</span>, <span class="org-type">int</span> <span class="org-variable-name">alignment</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">sizeof(void*) + block(alignment-1) + block(size)</span>
-    <span class="org-type">int</span> <span class="org-variable-name">extra_size</span> = <span class="org-keyword">sizeof</span>(<span class="org-type">void</span>*) + alignment - 1;
-    <span class="org-type">void</span> *<span class="org-variable-name">p</span> = malloc(extra_size);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">align</span>
-    <span class="org-type">void</span> *<span class="org-variable-name">p1</span> = (<span class="org-type">void</span>*)((<span class="org-type">size_t</span>)p + extra_size);
-    <span class="org-type">void</span> **<span class="org-variable-name">p2</span> = (<span class="org-type">void</span>**)((<span class="org-type">size_t</span>)p1 &amp; (~(alignment - 1)));
-    <span class="org-comment-delimiter">// </span><span class="org-comment">printf("p = %p, p1 = %p, p2 = %p\n", p, p1, p2);</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold;">align_malloc</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">size</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">alignment</span>) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">sizeof(void*) + block(alignment-1) + block(size)</span>
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">extra_size</span> = <span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>*) + alignment - 1;
+    <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">p</span> = malloc(extra_size);
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">align</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">p1</span> = (<span style="font-weight: bold; text-decoration: underline;">void</span>*)((<span style="font-weight: bold; text-decoration: underline;">size_t</span>)p + extra_size);
+    <span style="font-weight: bold; text-decoration: underline;">void</span> **<span style="font-weight: bold; font-style: italic;">p2</span> = (<span style="font-weight: bold; text-decoration: underline;">void</span>**)((<span style="font-weight: bold; text-decoration: underline;">size_t</span>)p1 &amp; (~(alignment - 1)));
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">printf("p = %p, p1 = %p, p2 = %p\n", p, p1, p2);</span>
     p2[-1] = p;
-    <span class="org-keyword">return</span> (<span class="org-type">void</span>*)p2;
+    <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span>*)p2;
 }
 
 
-<span class="org-type">void</span> <span class="org-function-name">align_free</span>(<span class="org-type">void</span> *<span class="org-variable-name">p</span>) {
-    <span class="org-type">void</span> **<span class="org-variable-name">p1</span> = (<span class="org-type">void</span>**)p;
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">align_free</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">p</span>) {
+    <span style="font-weight: bold; text-decoration: underline;">void</span> **<span style="font-weight: bold; font-style: italic;">p1</span> = (<span style="font-weight: bold; text-decoration: underline;">void</span>**)p;
     free(p1[-1]);
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-type">vector</span>&lt;<span class="org-type">void</span>*&gt; <span class="org-variable-name">pts</span>;
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">size</span> = 10; size &lt; 100; size += 5) {
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">align</span> = 16; align &lt;= 128; align *= 2) {
-            <span class="org-type">void</span> *<span class="org-variable-name">p</span> = align_malloc(size, align);
-            <span class="org-type">size_t</span> <span class="org-variable-name">addr</span> = (<span class="org-type">size_t</span>)p;
-            <span class="org-keyword">if</span>((addr % align) != 0) {
-                printf(<span class="org-string">"!!! addr = %p, align = %d\n"</span>, p, align);
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+    <span style="font-weight: bold; text-decoration: underline;">vector</span>&lt;<span style="font-weight: bold; text-decoration: underline;">void</span>*&gt; <span style="font-weight: bold; font-style: italic;">pts</span>;
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">size</span> = 10; size &lt; 100; size += 5) {
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">align</span> = 16; align &lt;= 128; align *= 2) {
+            <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">p</span> = align_malloc(size, align);
+            <span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">addr</span> = (<span style="font-weight: bold; text-decoration: underline;">size_t</span>)p;
+            <span style="font-weight: bold;">if</span>((addr % align) != 0) {
+                printf(<span style="font-style: italic;">"!!! addr = %p, align = %d\n"</span>, p, align);
             }
             pts.push_back(p);
         }
     }
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; pts.size(); i++) {
-        <span class="org-type">void</span>* <span class="org-variable-name">p</span> = pts[i];
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; pts.size(); i++) {
+        <span style="font-weight: bold; text-decoration: underline;">void</span>* <span style="font-weight: bold; font-style: italic;">p</span> = pts[i];
         align_free(p);
     }
 }
@@ -1788,8 +1834,8 @@ print('max size = {}'.format(max_size))
 </div>
 </div>
 
-<div id="outline-container-orgce540ef" class="outline-3">
-<h3 id="orgce540ef"><span class="section-number-3">7.17</span> Networking</h3>
+<div id="outline-container-org9a5572d" class="outline-3">
+<h3 id="org9a5572d"><span class="section-number-3">7.17</span> Networking</h3>
 <div class="outline-text-3" id="text-7-17">
 <p>
 Questions:
@@ -1810,8 +1856,8 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-org0871ae8" class="outline-3">
-<h3 id="org0871ae8"><span class="section-number-3">7.18</span> Threads and Locks</h3>
+<div id="outline-container-org0479872" class="outline-3">
+<h3 id="org0479872"><span class="section-number-3">7.18</span> Threads and Locks</h3>
 <div class="outline-text-3" id="text-7-18">
 <p>
 Questions:
@@ -1826,8 +1872,8 @@ Questions:
 </div>
 </div>
 
-<div id="outline-container-org1eb08ab" class="outline-3">
-<h3 id="org1eb08ab"><span class="section-number-3">7.19</span> Moderate Additional Review Problems</h3>
+<div id="outline-container-orgc436a7c" class="outline-3">
+<h3 id="orgc436a7c"><span class="section-number-3">7.19</span> Moderate Additional Review Problems</h3>
 <div class="outline-text-3" id="text-7-19">
 <p>
 Questions:
@@ -1857,20 +1903,20 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">zeros</span>(<span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-  <span class="org-type">int</span> <span class="org-variable-name">c</span> = 0;
-  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">k</span> = 5; n &gt;= k; k *= 5) {
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">zeros</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>) {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = 0;
+  <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">k</span> = 5; n &gt;= k; k *= 5) {
     c += n / k;
   }
-  <span class="org-keyword">return</span> c;
+  <span style="font-weight: bold;">return</span> c;
 }
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb658396" class="outline-3">
-<h3 id="orgb658396"><span class="section-number-3">7.20</span> Hard Additional Review Problems</h3>
+<div id="outline-container-org9eb6dba" class="outline-3">
+<h3 id="org9eb6dba"><span class="section-number-3">7.20</span> Hard Additional Review Problems</h3>
 <div class="outline-text-3" id="text-7-20">
 <p>
 Questions:
@@ -1913,22 +1959,22 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
-<span class="org-comment"> * Copyright (C) dirlt</span>
-<span class="org-comment"> */</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">coding:utf-8</span>
+<span style="font-weight: bold; font-style: italic;"> * Copyright (C) dirlt</span>
+<span style="font-weight: bold; font-style: italic;"> */</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
 
-<span class="org-type">int</span> <span class="org-function-name">add2</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-type">int</span> <span class="org-variable-name">b</span>) {
-    <span class="org-type">int</span> <span class="org-variable-name">sum</span> = a ^ b;
-    <span class="org-type">int</span> <span class="org-variable-name">carry</span> = (a &amp; b) &lt;&lt; 1;
-    <span class="org-keyword">if</span>(carry == 0) <span class="org-keyword">return</span> sum;
-    <span class="org-keyword">return</span> add2(sum,carry);
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">add2</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">b</span>) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">sum</span> = a ^ b;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">carry</span> = (a &amp; b) &lt;&lt; 1;
+    <span style="font-weight: bold;">if</span>(carry == 0) <span style="font-weight: bold;">return</span> sum;
+    <span style="font-weight: bold;">return</span> add2(sum,carry);
 }
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    printf(<span class="org-string">"%d\n"</span>,add2(190,70));
-    <span class="org-keyword">return</span> 0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+    printf(<span style="font-style: italic;">"%d\n"</span>,add2(190,70));
+    <span style="font-weight: bold;">return</span> 0;
 }
 
 </pre>
@@ -1950,21 +1996,21 @@ Questions:
 
 def c2r(n, pw):
     if(n == 0):
-        return 0
+	return 0
     x = n // pw
     y = n % pw
     res = 0
     if (x == 2):
-        res += (y + 1)
+	res += (y + 1)
     elif (x &gt; 2):
-        res += pw
+	res += pw
     res += x * c2r(pw - 1, pw // 10) + c2x(y)
     return res
 
 def c2x(n):
     pw = 1
     while((pw * 10) &lt;= n):
-        pw *= 10
+	pw *= 10
     return c2r(n, pw)
 
 
@@ -1973,21 +2019,21 @@ def count2(n):
     pw = 1
     pc = 0
     while((pw * 10) &lt;= n):
-        pw *= 10
-        pc += 1
+	pw *= 10
+	pc += 1
     while(n):
-        x = n // pw
-        y = n % pw
-        if (x &gt;= 2):
-            if (x == 2):
-                res += (y+1)
-            else:
-                res += pw
-        res += x * pc * (pw // 10)
-        n = y
-        # print('pc = {}, pw = {}, res = {}, n = {}'.format(pc, pw, res, n))
-        pc -= 1
-        pw = pw // 10
+	x = n // pw
+	y = n % pw
+	if (x &gt;= 2):
+	    if (x == 2):
+		res += (y+1)
+	    else:
+		res += pw
+	res += x * pc * (pw // 10)
+	n = y
+	# print('pc = {}, pw = {}, res = {}, n = {}'.format(pc, pw, res, n))
+	pc -= 1
+	pw = pw // 10
     return res
 
 for n in (279, 379, 579, 2012, 2010, 2009, 2002):
@@ -2017,41 +2063,41 @@ import heapq
 class MedianFinder:
 
     def __init__(self):
-        """
-        initialize your data structure here.
-        """
-        self.lhq = []
-        self.rhq = []
+	"""
+	initialize your data structure here.
+	"""
+	self.lhq = []
+	self.rhq = []
 
     def addNum(self, num):
-        """
-        :type num: int
-        :rtype: void
-        """
-        # insert first.
-        if(self.rhq and num &gt;= self.rhq[0]):
-            heapq.heappush(self.rhq, num)
-        else:
-            heapq.heappush(self.lhq, -num)
-        # then balance.
-        if((len(self.rhq) - len(self.lhq)) == 2):
-            v = heapq.heappop(self.rhq)
-            heapq.heappush(self.lhq, -v)
-        elif((len(self.lhq) - len(self.rhq)) == 1):
-            v = heapq.heappop(self.lhq)
-            heapq.heappush(self.rhq, -v)
+	"""
+	:type num: int
+	:rtype: void
+	"""
+	# insert first.
+	if(self.rhq and num &gt;= self.rhq[0]):
+	    heapq.heappush(self.rhq, num)
+	else:
+	    heapq.heappush(self.lhq, -num)
+	# then balance.
+	if((len(self.rhq) - len(self.lhq)) == 2):
+	    v = heapq.heappop(self.rhq)
+	    heapq.heappush(self.lhq, -v)
+	elif((len(self.lhq) - len(self.rhq)) == 1):
+	    v = heapq.heappop(self.lhq)
+	    heapq.heappush(self.rhq, -v)
 
 
     def findMedian(self):
-        """
-        :rtype: float
-        """
-        if (len(self.rhq) == len(self.lhq)):
-            if len(self.lhq) == 0:
-                return 0.0
-            return (self.rhq[0] - self.lhq[0]) * 0.5
-        else:
-            return self.rhq[0]
+	"""
+	:rtype: float
+	"""
+	if (len(self.rhq) == len(self.lhq)):
+	    if len(self.lhq) == 0:
+		return 0.0
+	    return (self.rhq[0] - self.lhq[0]) * 0.5
+	else:
+	    return self.rhq[0]
 
 
 </pre>
@@ -2071,32 +2117,32 @@ class MedianFinder:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">int</span> <span class="org-variable-name">m</span>[N][N];
-<span class="org-type">int</span> <span class="org-variable-name">dp</span>[N][N]; <span class="org-comment-delimiter">// </span><span class="org-comment">dp[s][e] = sum from (0,0) to (s,e).</span>
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">m</span>[N][N];
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">dp</span>[N][N]; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">dp[s][e] = sum from (0,0) to (s,e).</span>
 
-<span class="org-type">int</span> <span class="org-variable-name">v</span> = INT_MIN;
-<span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">rs</span>=0;rs&lt;N;rs++) {
-  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">re</span>=rs;re&lt;N;re++) {
-    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">cs</span>=0;cs&lt;N;cs++) {
-      <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">ce</span>=0;ce&lt;N;ce++) {
-        <span class="org-type">int</span> <span class="org-variable-name">u</span> = sum(rs,cs,re,ce);
-        <span class="org-keyword">if</span>(u &gt; v) v = u;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">v</span> = INT_MIN;
+<span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">rs</span>=0;rs&lt;N;rs++) {
+  <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">re</span>=rs;re&lt;N;re++) {
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">cs</span>=0;cs&lt;N;cs++) {
+      <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">ce</span>=0;ce&lt;N;ce++) {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">u</span> = sum(rs,cs,re,ce);
+        <span style="font-weight: bold;">if</span>(u &gt; v) v = u;
       }
     }
   }
 }
 
-<span class="org-type">int</span> <span class="org-function-name">X</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-type">int</span> <span class="org-variable-name">b</span>) {
-  <span class="org-keyword">if</span>(a &lt; 0 || b &lt; 0) <span class="org-keyword">return</span> 0;
-  <span class="org-keyword">return</span> dp[a][b];
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">X</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">b</span>) {
+  <span style="font-weight: bold;">if</span>(a &lt; 0 || b &lt; 0) <span style="font-weight: bold;">return</span> 0;
+  <span style="font-weight: bold;">return</span> dp[a][b];
 }
 
-<span class="org-type">int</span> <span class="org-function-name">sum</span>(<span class="org-type">int</span> <span class="org-variable-name">rs</span>,<span class="org-type">int</span> <span class="org-variable-name">cs</span>,<span class="org-type">int</span> <span class="org-variable-name">re</span>,<span class="org-type">int</span> <span class="org-variable-name">ce</span>) {
-  <span class="org-type">int</span> <span class="org-variable-name">a</span> = X(rs-1,cs-1);
-  <span class="org-type">int</span> <span class="org-variable-name">b</span> = X(rs-1,ce) - X(rs-1,cs-1);
-  <span class="org-type">int</span> <span class="org-variable-name">c</span> = X(re,cs-1) - X(rs-1,cs-1);
-  <span class="org-type">int</span> <span class="org-variable-name">d</span> = X(re,ce);
-  <span class="org-keyword">return</span> d - a - b - c;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">sum</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">rs</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">cs</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">re</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">ce</span>) {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span> = X(rs-1,cs-1);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">b</span> = X(rs-1,ce) - X(rs-1,cs-1);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = X(re,cs-1) - X(rs-1,cs-1);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">d</span> = X(re,ce);
+  <span style="font-weight: bold;">return</span> d - a - b - c;
 }
 
 </pre>
@@ -2104,6 +2150,11 @@ class MedianFinder:
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/cracking-the-coding-interview.html';this.page.identifier = 'cracking-the-coding-interview.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

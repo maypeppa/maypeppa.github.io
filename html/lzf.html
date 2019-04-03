@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>lzf</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">lzf</h1>
@@ -16,9 +62,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org297cc40">1. Overview</a></li>
-<li><a href="#orgd80e8b2">2. Compress</a></li>
-<li><a href="#org02a8549">3. Decompress</a></li>
+<li><a href="#org195cbe0">1. Overview</a></li>
+<li><a href="#org6ffb9ee">2. Compress</a></li>
+<li><a href="#orgb8bd946">3. Decompress</a></li>
 </ul>
 </div>
 </div>
@@ -26,8 +72,8 @@
 <a href="http://oldhome.schmorp.de/marc/liblzf.html">http://oldhome.schmorp.de/marc/liblzf.html</a>
 </p>
 
-<div id="outline-container-org297cc40" class="outline-2">
-<h2 id="org297cc40"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-org195cbe0" class="outline-2">
+<h2 id="org195cbe0"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这个压缩库非常轻量
@@ -36,17 +82,17 @@
 <li>lzf.c 程序入口文件</li>
 <li>lzf.h 接口文件</li>
 <li>lzfP.h 配置文件</li>
-<li>lzf_c.c 压缩</li>
-<li>lzf_d.c 解压缩</li>
+<li>lzf<sub>c.c</sub> 压缩</li>
+<li>lzf<sub>d.c</sub> 解压缩</li>
 </ul>
 <p>
-其实主要的就是两个文件lzf_c.c和lzf_d.c
+其实主要的就是两个文件lzf<sub>c.c和lzf</sub><sub>d.c</sub>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd80e8b2" class="outline-2">
-<h2 id="orgd80e8b2"><span class="section-number-2">2</span> Compress</h2>
+<div id="outline-container-org6ffb9ee" class="outline-2">
+<h2 id="org6ffb9ee"><span class="section-number-2">2</span> Compress</h2>
 <div class="outline-text-2" id="text-2">
 <pre class="example">
 /*
@@ -76,7 +122,7 @@ lzf_compress (const void *const in_data,  unsigned int in_len,
 </pre>
 <ul class="org-ul">
 <li>in &amp; out的内存区间不能重叠</li>
-<li>如果out_len不够的话，返回0；否则返回压缩后大小。所以使用上可以out_len = in_len-1. 如果压缩之后空间变大的话那么直接使用原空间</li>
+<li>如果out<sub>len不够的话</sub>，返回0；否则返回压缩后大小。所以使用上可以out<sub>len</sub> = in<sub>len</sub>-1. 如果压缩之后空间变大的话那么直接使用原空间</li>
 <li>不同版本lzf压缩同一个数据得到的结果不一定相同，取决于寻找repeatable string方法。但是均可以使用同样的解压缩函数解压。</li>
 </ul>
 
@@ -99,146 +145,146 @@ lzf_compress (const void *const in_data,  unsigned int in_len,
 </p>
 <ul class="org-ul">
 <li>HLOG # 用于查找repeatable string的hashtable大小. 1 &lt;&lt; HLOG</li>
-<li>VERY_FAST / ULTRA_FAST # 控制查找repeatble string策略</li>
-<li>LZF_USE_OFFSETS # 决定hashtable存储偏移还是存储pointer. 为了方便阅读代码，这里我们假设存储偏移。
+<li>VERY<sub>FAST</sub> / ULTRA<sub>FAST</sub> # 控制查找repeatble string策略</li>
+<li>LZF<sub>USE</sub><sub>OFFSETS</sub> # 决定hashtable存储偏移还是存储pointer. 为了方便阅读代码，这里我们假设存储偏移。
 <ul class="org-ul">
-<li>define LZF_HSLOT_BIAS ((const u8 *)in_data)</li>
-<li>typedef unsigned int LZF_HSLOT;</li>
-<li>typedef LZF_HSLOT LZF_STATE[1 &lt;&lt; (HLOG)]; # hashtable定义</li>
+<li>define LZF<sub>HSLOT</sub><sub>BIAS</sub> ((const u8 *)in<sub>data</sub>)</li>
+<li>typedef unsigned int LZF<sub>HSLOT</sub>;</li>
+<li>typedef LZF<sub>HSLOT</sub> LZF<sub>STATE</sub>[1 &lt;&lt; (HLOG)]; # hashtable定义</li>
 </ul></li>
-<li>STRICT_ALIGN # input数据是否对齐</li>
+<li>STRICT<sub>ALIGN</sub> # input数据是否对齐</li>
 </ul>
 
 <p>
 压缩函数其实不长，所以这里我把代码稍作整理全部贴出来，然后附上相关注释
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> FRST
-<span class="org-preprocessor"># define</span> <span class="org-function-name">FRST</span>(<span class="org-variable-name">p</span>) (((p[0]) &lt;&lt; 8) | p[1])
-<span class="org-preprocessor"># define</span> <span class="org-function-name">NEXT</span>(<span class="org-variable-name">v</span>,<span class="org-variable-name">p</span>) (((v) &lt;&lt; 8) | p[2])
-<span class="org-comment-delimiter">// </span><span class="org-comment">&#21306;&#21035;&#22312;&#20110;&#20351;&#29992;hash&#20989;&#25968;&#19981;&#21516;. &#26222;&#36890;&#27169;&#24335;&#19979;&#36816;&#31639;&#37327;&#26356;&#22810;&#20294;&#26159;&#22343;&#21248;&#25928;&#26524;&#24212;&#35813;&#20250;&#26356;&#22909;</span>
-<span class="org-preprocessor"># if</span> ULTRA_FAST
-<span class="org-preprocessor">#  define</span> <span class="org-function-name">IDX</span>(<span class="org-variable-name">h</span>) ((( h             &gt;&gt; (3*8 - HLOG)) - h  ) &amp; (HSIZE - 1))
-<span class="org-preprocessor"># elif</span> VERY_FAST
-<span class="org-preprocessor">#  define</span> <span class="org-function-name">IDX</span>(<span class="org-variable-name">h</span>) ((( h             &gt;&gt; (3*8 - HLOG)) - h*5) &amp; (HSIZE - 1))
-<span class="org-preprocessor"># else</span>
-<span class="org-preprocessor">#  define</span> <span class="org-function-name">IDX</span>(<span class="org-variable-name">h</span>) ((((h ^ (h &lt;&lt; 5)) &gt;&gt; (3*8 - HLOG)) - h*5) &amp; (HSIZE - 1))
-<span class="org-preprocessor"># endif</span>
-<span class="org-preprocessor">#endif</span>
+<pre class="src src-C++"><span style="font-weight: bold;">#if</span><span style="font-weight: bold;">n</span><span style="font-weight: bold;">def</span> FRST
+<span style="font-weight: bold;"># define</span> <span style="font-weight: bold;">FRST</span>(<span style="font-weight: bold; font-style: italic;">p</span>) (((p[0]) &lt;&lt; 8) | p[1])
+<span style="font-weight: bold;"># define</span> <span style="font-weight: bold;">NEXT</span>(<span style="font-weight: bold; font-style: italic;">v</span>,<span style="font-weight: bold; font-style: italic;">p</span>) (((v) &lt;&lt; 8) | p[2])
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21306;&#21035;&#22312;&#20110;&#20351;&#29992;hash&#20989;&#25968;&#19981;&#21516;. &#26222;&#36890;&#27169;&#24335;&#19979;&#36816;&#31639;&#37327;&#26356;&#22810;&#20294;&#26159;&#22343;&#21248;&#25928;&#26524;&#24212;&#35813;&#20250;&#26356;&#22909;</span>
+<span style="font-weight: bold;"># if</span> ULTRA_FAST
+<span style="font-weight: bold;">#  define</span> <span style="font-weight: bold;">IDX</span>(<span style="font-weight: bold; font-style: italic;">h</span>) ((( h             &gt;&gt; (3*8 - HLOG)) - h  ) &amp; (HSIZE - 1))
+<span style="font-weight: bold;"># elif</span> VERY_FAST
+<span style="font-weight: bold;">#  define</span> <span style="font-weight: bold;">IDX</span>(<span style="font-weight: bold; font-style: italic;">h</span>) ((( h             &gt;&gt; (3*8 - HLOG)) - h*5) &amp; (HSIZE - 1))
+<span style="font-weight: bold;"># else</span>
+<span style="font-weight: bold;">#  define</span> <span style="font-weight: bold;">IDX</span>(<span style="font-weight: bold; font-style: italic;">h</span>) ((((h ^ (h &lt;&lt; 5)) &gt;&gt; (3*8 - HLOG)) - h*5) &amp; (HSIZE - 1))
+<span style="font-weight: bold;"># endif</span>
+<span style="font-weight: bold;">#endif</span>
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">literal&#26368;&#22823;&#38271;&#24230;</span>
-<span class="org-preprocessor">#define</span>        <span class="org-variable-name">MAX_LIT</span>        (1 &lt;&lt;  5)
-<span class="org-comment-delimiter">// </span><span class="org-comment">offset&#26368;&#22823;&#38271;&#24230;</span>
-<span class="org-preprocessor">#define</span>        <span class="org-variable-name">MAX_OFF</span>        (1 &lt;&lt; 13)
-<span class="org-comment-delimiter">// </span><span class="org-comment">ref&#26368;&#22823;&#38271;&#24230;. &#30475;long backref&#23450;&#20041;&#26159;L+8 ocets. &#32780;L&#26368;&#38271;&#21487;&#20197;&#26159;8bits.</span>
-<span class="org-preprocessor">#define</span>        <span class="org-variable-name">MAX_REF</span>        ((1 &lt;&lt; 8) + (1 &lt;&lt; 3))
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">literal&#26368;&#22823;&#38271;&#24230;</span>
+<span style="font-weight: bold;">#define</span>        <span style="font-weight: bold; font-style: italic;">MAX_LIT</span>        (1 &lt;&lt;  5)
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">offset&#26368;&#22823;&#38271;&#24230;</span>
+<span style="font-weight: bold;">#define</span>        <span style="font-weight: bold; font-style: italic;">MAX_OFF</span>        (1 &lt;&lt; 13)
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">ref&#26368;&#22823;&#38271;&#24230;. &#30475;long backref&#23450;&#20041;&#26159;L+8 ocets. &#32780;L&#26368;&#38271;&#21487;&#20197;&#26159;8bits.</span>
+<span style="font-weight: bold;">#define</span>        <span style="font-weight: bold; font-style: italic;">MAX_REF</span>        ((1 &lt;&lt; 8) + (1 &lt;&lt; 3))
 
-<span class="org-type">unsigned</span> <span class="org-type">int</span>
-<span class="org-function-name">lzf_compress</span> (<span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-keyword">const</span> <span class="org-variable-name">in_data</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">in_len</span>,
-              <span class="org-type">void</span> *<span class="org-variable-name">out_data</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">out_len</span>
+<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span>
+<span style="font-weight: bold;">lzf_compress</span> (<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">in_data</span>, <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">in_len</span>,
+              <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">out_data</span>, <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">out_len</span>
               )
 {
-    <span class="org-type">LZF_STATE</span> <span class="org-variable-name">htab</span>;
-    <span class="org-keyword">const</span> <span class="org-type">u8</span> *<span class="org-variable-name">ip</span> = (<span class="org-keyword">const</span> <span class="org-type">u8</span> *)in_data;
-    <span class="org-type">u8</span> *<span class="org-variable-name">op</span> = (<span class="org-type">u8</span> *)out_data;
-    <span class="org-keyword">const</span> <span class="org-type">u8</span> *<span class="org-variable-name">in_end</span>  = ip + in_len;
-    <span class="org-type">u8</span> *<span class="org-variable-name">out_end</span> = op + out_len;
-    <span class="org-keyword">const</span> <span class="org-type">u8</span> *<span class="org-variable-name">ref</span>;
+    <span style="font-weight: bold; text-decoration: underline;">LZF_STATE</span> <span style="font-weight: bold; font-style: italic;">htab</span>;
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">u8</span> *<span style="font-weight: bold; font-style: italic;">ip</span> = (<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">u8</span> *)in_data;
+    <span style="font-weight: bold; text-decoration: underline;">u8</span> *<span style="font-weight: bold; font-style: italic;">op</span> = (<span style="font-weight: bold; text-decoration: underline;">u8</span> *)out_data;
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">u8</span> *<span style="font-weight: bold; font-style: italic;">in_end</span>  = ip + in_len;
+    <span style="font-weight: bold; text-decoration: underline;">u8</span> *<span style="font-weight: bold; font-style: italic;">out_end</span> = op + out_len;
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">u8</span> *<span style="font-weight: bold; font-style: italic;">ref</span>;
 
-    <span class="org-type">unsigned</span> <span class="org-type">long</span> <span class="org-variable-name">off</span>;
-    <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">hval</span>;
-    <span class="org-type">int</span> <span class="org-variable-name">lit</span>;
+    <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">off</span>;
+    <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">hval</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">lit</span>;
 
-    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>in_len || <span class="org-negation-char">!</span>out_len)
-        <span class="org-keyword">return</span> 0;
+    <span style="font-weight: bold;">if</span> (!in_len || !out_len)
+        <span style="font-weight: bold;">return</span> 0;
 
-    memset (htab, 0, <span class="org-keyword">sizeof</span> (htab)); <span class="org-comment-delimiter">// </span><span class="org-comment">&#21021;&#22987;&#21270;hashtable.</span>
+    memset (htab, 0, <span style="font-weight: bold;">sizeof</span> (htab)); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21021;&#22987;&#21270;hashtable.</span>
 
-    lit = 0; op++; <span class="org-comment-delimiter">/* </span><span class="org-comment">start run */</span> <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#31354;&#20986;1&#23383;&#33410;&#26159;&#20026;&#20102;&#22788;&#29702;literal.</span>
+    lit = 0; op++; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">start run */</span> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;&#31354;&#20986;1&#23383;&#33410;&#26159;&#20026;&#20102;&#22788;&#29702;literal.</span>
 
     hval = FRST (ip);
-    <span class="org-keyword">while</span> (ip &lt; in_end - 2)
+    <span style="font-weight: bold;">while</span> (ip &lt; in_end - 2)
     {
-        <span class="org-type">LZ_HSLOT</span> *<span class="org-variable-name">hslot</span>;
+        <span style="font-weight: bold; text-decoration: underline;">LZ_HSLOT</span> *<span style="font-weight: bold; font-style: italic;">hslot</span>;
 
-        hval = NEXT (hval, ip); <span class="org-comment-delimiter">// </span><span class="org-comment">&#27492;&#26102;hval = (ip[-1] &lt;&lt; 24) | (ip[0] &lt;&lt; 16) | (ip[1] &lt;&lt; 8) | ip[2].</span>
+        hval = NEXT (hval, ip); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#27492;&#26102;hval = (ip[-1] &lt;&lt; 24) | (ip[0] &lt;&lt; 16) | (ip[1] &lt;&lt; 8) | ip[2].</span>
         hslot = htab + IDX (hval);
-        <span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#26597;&#25214;hashtable&#26159;&#21542;&#23384;&#22312;&#28508;&#22312;&#30456;&#21516;&#30340;&#20018;&#65292;&#35760;&#20026;ref; &#21516;&#26102;&#26356;&#26032;hashtable&#36825;&#20010;entry&#20026;ip.</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#26356;&#26032;hashtable entry&#38750;&#24120;&#37325;&#35201;&#65292;&#22240;&#20026;offset&#26159;&#26377;&#38480;&#21046;&#30340;&#12290;&#22914;&#26524;&#19981;&#26356;&#26032;&#30340;&#35805;&#65292;&#37027;&#20040;&#36229;&#36807;offset&#38271;&#24230;&#38480;&#21046;&#30340;&#20018;</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">&#20415;&#19981;&#33021;&#34987;&#21305;&#37197;&#20197;&#21450;&#21387;&#32553;&#20102;&#12290;</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#28982;&#21518;&#26597;&#25214;hashtable&#26159;&#21542;&#23384;&#22312;&#28508;&#22312;&#30456;&#21516;&#30340;&#20018;&#65292;&#35760;&#20026;ref; &#21516;&#26102;&#26356;&#26032;hashtable&#36825;&#20010;entry&#20026;ip.</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;&#26356;&#26032;hashtable entry&#38750;&#24120;&#37325;&#35201;&#65292;&#22240;&#20026;offset&#26159;&#26377;&#38480;&#21046;&#30340;&#12290;&#22914;&#26524;&#19981;&#26356;&#26032;&#30340;&#35805;&#65292;&#37027;&#20040;&#36229;&#36807;offset&#38271;&#24230;&#38480;&#21046;&#30340;&#20018;</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20415;&#19981;&#33021;&#34987;&#21305;&#37197;&#20197;&#21450;&#21387;&#32553;&#20102;&#12290;</span>
         ref = *hslot + LZF_HSLOT_BIAS; *hslot = ip - LZF_HSLOT_BIAS;
 
-        <span class="org-keyword">if</span> (1
-            &amp;&amp; ref &lt; ip <span class="org-comment-delimiter">/* </span><span class="org-comment">the next test will actually take care of this, but this is faster */</span>
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#30495;&#23454;&#20559;&#31227;&#26159;(off+1). &#20294;&#26159;&#21482;&#23384;&#20648;off.(see backref)</span>
+        <span style="font-weight: bold;">if</span> (1
+            &amp;&amp; ref &lt; ip <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">the next test will actually take care of this, but this is faster */</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;&#30495;&#23454;&#20559;&#31227;&#26159;(off+1). &#20294;&#26159;&#21482;&#23384;&#20648;off.(see backref)</span>
             &amp;&amp; (off = ip - ref - 1) &lt; MAX_OFF
-            &amp;&amp; ref &gt; (<span class="org-type">u8</span> *)in_data
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#26816;&#26597;ref&#21644;ip&#22836;&#19977;&#20010;&#23383;&#33410;&#26159;&#21542;&#30456;&#21516;. &#33267;&#23569;3&#20010;&#23383;&#33410;&#25165;&#20250;&#21387;&#32553;</span>
+            &amp;&amp; ref &gt; (<span style="font-weight: bold; text-decoration: underline;">u8</span> *)in_data
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#26816;&#26597;ref&#21644;ip&#22836;&#19977;&#20010;&#23383;&#33410;&#26159;&#21542;&#30456;&#21516;. &#33267;&#23569;3&#20010;&#23383;&#33410;&#25165;&#20250;&#21387;&#32553;</span>
             &amp;&amp; ref[2] == ip[2]
-<span class="org-preprocessor">#if</span> STRICT_ALIGN
+<span style="font-weight: bold;">#if</span> STRICT_ALIGN
             &amp;&amp; ((ref[1] &lt;&lt; 8) | ref[0]) == ((ip[1] &lt;&lt; 8) | ip[0])
-<span class="org-preprocessor">#else</span>
-            &amp;&amp; *(<span class="org-type">u16</span> *)ref == *(<span class="org-type">u16</span> *)ip
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold;">#else</span>
+            &amp;&amp; *(<span style="font-weight: bold; text-decoration: underline;">u16</span> *)ref == *(<span style="font-weight: bold; text-decoration: underline;">u16</span> *)ip
+<span style="font-weight: bold;">#endif</span>
             )
         {
-            <span class="org-comment-delimiter">/* </span><span class="org-comment">match found at *ref++ */</span>
-            <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">len</span> = 2;
-            <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">maxlen</span> = in_end - ip - len;
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#26368;&#38271;&#21487;&#20197;ref&#22810;&#23569;&#23383;&#33410;</span>
+            <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">match found at *ref++ */</span>
+            <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">len</span> = 2;
+            <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">maxlen</span> = in_end - ip - len;
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#26368;&#38271;&#21487;&#20197;ref&#22810;&#23569;&#23383;&#33410;</span>
             maxlen = maxlen &gt; MAX_REF ? MAX_REF : maxlen;
 
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#20445;&#23432;&#20272;&#35745;&#33267;&#23569;3&#20010;&#23383;&#33410;(long backref). &#36825;&#37324;+1&#20026;&#19979;&#19968;&#36718;&#26597;&#25214;literal&#20934;&#22791;</span>
-            <span class="org-keyword">if</span> (expect_false (op + 3 + 1 &gt;= out_end)) <span class="org-comment-delimiter">/* </span><span class="org-comment">first a faster conservative test */</span>
-                <span class="org-keyword">if</span> (op - <span class="org-negation-char">!</span>lit + 3 + 1 &gt;= out_end) <span class="org-comment-delimiter">/* </span><span class="org-comment">second the exact but rare test */</span>
-                    <span class="org-keyword">return</span> 0;
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20445;&#23432;&#20272;&#35745;&#33267;&#23569;3&#20010;&#23383;&#33410;(long backref). &#36825;&#37324;+1&#20026;&#19979;&#19968;&#36718;&#26597;&#25214;literal&#20934;&#22791;</span>
+            <span style="font-weight: bold;">if</span> (expect_false (op + 3 + 1 &gt;= out_end)) <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">first a faster conservative test */</span>
+                <span style="font-weight: bold;">if</span> (op - !lit + 3 + 1 &gt;= out_end) <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">second the exact but rare test */</span>
+                    <span style="font-weight: bold;">return</span> 0;
 
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#23558;&#20043;&#21069;&#30340;literal flush&#20986;&#26469;&#12290;&#36825;&#20010;&#21518;&#38754;&#20250;&#32473;&#20986;&#35299;&#37322;&#20026;&#20160;&#20040;&#21487;&#20197;&#36825;&#20040;&#20570;</span>
-            op [- lit - 1] = lit - 1; <span class="org-comment-delimiter">/* </span><span class="org-comment">stop run */</span>
-            op -= <span class="org-negation-char">!</span>lit; <span class="org-comment-delimiter">/* </span><span class="org-comment">undo run if length is zero */</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#23558;&#20043;&#21069;&#30340;literal flush&#20986;&#26469;&#12290;&#36825;&#20010;&#21518;&#38754;&#20250;&#32473;&#20986;&#35299;&#37322;&#20026;&#20160;&#20040;&#21487;&#20197;&#36825;&#20040;&#20570;</span>
+            op [- lit - 1] = lit - 1; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">stop run */</span>
+            op -= !lit; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">undo run if length is zero */</span>
 
-            <span class="org-keyword">for</span> (;;)
+            <span style="font-weight: bold;">for</span> (;;)
             {
-                <span class="org-keyword">if</span> (expect_true (maxlen &gt; 16))
+                <span style="font-weight: bold;">if</span> (expect_true (maxlen &gt; 16))
                 {
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
 
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
 
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
 
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
-                    len++; <span class="org-keyword">if</span> (ref [len] != ip [len]) <span class="org-keyword">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
+                    len++; <span style="font-weight: bold;">if</span> (ref [len] != ip [len]) <span style="font-weight: bold;">break</span>;
                 }
 
-                <span class="org-keyword">do</span>
+                <span style="font-weight: bold;">do</span>
                     len++;
-                <span class="org-keyword">while</span> (len &lt; maxlen &amp;&amp; ref[len] == ip[len]);
+                <span style="font-weight: bold;">while</span> (len &lt; maxlen &amp;&amp; ref[len] == ip[len]);
 
-                <span class="org-keyword">break</span>;
+                <span style="font-weight: bold;">break</span>;
             }
-            <span class="org-comment-delimiter">// </span><span class="org-comment">ip&#21644;ref&#20844;&#20849;&#20018;&#38271;&#24230;&#20026;len - 1.(&#27604;&#36739;tricky, &#38656;&#35201;&#32771;&#34385;&#19968;&#19979;)</span>
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#27880;&#24847;&#36825;&#37324;&#22914;&#26524;ip&#21644;ref&#23384;&#22312;overlapping&#20063;&#27809;&#26377;&#20219;&#20309;&#38382;&#39064;</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">ip&#21644;ref&#20844;&#20849;&#20018;&#38271;&#24230;&#20026;len - 1.(&#27604;&#36739;tricky, &#38656;&#35201;&#32771;&#34385;&#19968;&#19979;)</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#27880;&#24847;&#36825;&#37324;&#22914;&#26524;ip&#21644;ref&#23384;&#22312;overlapping&#20063;&#27809;&#26377;&#20219;&#20309;&#38382;&#39064;</span>
 
-            len -= 2; <span class="org-comment-delimiter">/* </span><span class="org-comment">len is now #octets - 1 */</span>
+            len -= 2; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">len is now #octets - 1 */</span>
             ip++;
 
-            <span class="org-keyword">if</span> (len &lt; 7) <span class="org-comment-delimiter">// </span><span class="org-comment">short backref</span>
+            <span style="font-weight: bold;">if</span> (len &lt; 7) <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">short backref</span>
             {
                 *op++ = (off &gt;&gt; 8) + (len &lt;&lt; 5);
             }
-            <span class="org-keyword">else</span> <span class="org-comment-delimiter">// </span><span class="org-comment">long backref.</span>
+            <span style="font-weight: bold;">else</span> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">long backref.</span>
             {
                 *op++ = (off &gt;&gt; 8) + (  7 &lt;&lt; 5);
                 *op++ = len - 7;
@@ -246,82 +292,82 @@ lzf_compress (const void *const in_data,  unsigned int in_len,
 
             *op++ = off;
 
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#33267;&#27492;&#19968;&#36718;repeatable string&#26597;&#25214;&#23436;&#27605;&#12290;&#20026;&#19979;&#19968;&#36718;literal&#20934;&#22791;.</span>
-            lit = 0; op++; <span class="org-comment-delimiter">/* </span><span class="org-comment">start run */</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#33267;&#27492;&#19968;&#36718;repeatable string&#26597;&#25214;&#23436;&#27605;&#12290;&#20026;&#19979;&#19968;&#36718;literal&#20934;&#22791;.</span>
+            lit = 0; op++; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">start run */</span>
 
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#36755;&#20837;&#20018;&#21521;&#21069;&#21069;&#36827;len+1&#23383;&#33410;</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36755;&#20837;&#20018;&#21521;&#21069;&#21069;&#36827;len+1&#23383;&#33410;</span>
             ip += len + 1;
 
-            <span class="org-keyword">if</span> (expect_false (ip &gt;= in_end - 2))
-                <span class="org-keyword">break</span>;
+            <span style="font-weight: bold;">if</span> (expect_false (ip &gt;= in_end - 2))
+                <span style="font-weight: bold;">break</span>;
 
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#26159;ULTRA_FAST&#22238;&#36864;&#19968;&#20010;&#23383;&#33410;&#20570;&#32034;&#24341;</span>
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#26159;VERY FAST&#22238;&#36864;&#20004;&#20010;&#23383;&#33410;</span>
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#26222;&#36890;&#27169;&#24335;&#30340;&#35805;&#20250;&#23545;&#36825;&#19968;&#20010;&#36755;&#20837;&#20018;&#20570;&#32034;&#24341;</span>
-<span class="org-preprocessor">#if</span> ULTRA_FAST || VERY_FAST
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#26159;ULTRA_FAST&#22238;&#36864;&#19968;&#20010;&#23383;&#33410;&#20570;&#32034;&#24341;</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#26159;VERY FAST&#22238;&#36864;&#20004;&#20010;&#23383;&#33410;</span>
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#26222;&#36890;&#27169;&#24335;&#30340;&#35805;&#20250;&#23545;&#36825;&#19968;&#20010;&#36755;&#20837;&#20018;&#20570;&#32034;&#24341;</span>
+<span style="font-weight: bold;">#if</span> ULTRA_FAST || VERY_FAST
             --ip;
-<span class="org-preprocessor"># if</span> VERY_FAST &amp;&amp; <span class="org-negation-char">!</span>ULTRA_FAST
+<span style="font-weight: bold;"># if</span> VERY_FAST &amp;&amp; !ULTRA_FAST
             --ip;
-<span class="org-preprocessor"># endif</span>
+<span style="font-weight: bold;"># endif</span>
             hval = FRST (ip);
 
             hval = NEXT (hval, ip);
             htab[IDX (hval)] = ip - LZF_HSLOT_BIAS;
             ip++;
 
-<span class="org-preprocessor"># if</span> VERY_FAST &amp;&amp; <span class="org-negation-char">!</span>ULTRA_FAST
+<span style="font-weight: bold;"># if</span> VERY_FAST &amp;&amp; !ULTRA_FAST
             hval = NEXT (hval, ip);
             htab[IDX (hval)] = ip - LZF_HSLOT_BIAS;
             ip++;
-<span class="org-preprocessor"># endif</span>
-<span class="org-preprocessor">#else</span>
+<span style="font-weight: bold;"># endif</span>
+<span style="font-weight: bold;">#else</span>
             ip -= len + 1;
 
-            <span class="org-keyword">do</span>
+            <span style="font-weight: bold;">do</span>
             {
                 hval = NEXT (hval, ip);
                 htab[IDX (hval)] = ip - LZF_HSLOT_BIAS;
                 ip++;
             }
-            <span class="org-keyword">while</span> (len--);
-<span class="org-preprocessor">#endif</span>
+            <span style="font-weight: bold;">while</span> (len--);
+<span style="font-weight: bold;">#endif</span>
         }
-        <span class="org-keyword">else</span> <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#27809;&#26377;&#25214;&#21040;&#20844;&#20849;&#20018;&#30340;&#35805;&#37027;&#20040;&#36755;&#20986;literal.</span>
+        <span style="font-weight: bold;">else</span> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#27809;&#26377;&#25214;&#21040;&#20844;&#20849;&#20018;&#30340;&#35805;&#37027;&#20040;&#36755;&#20986;literal.</span>
         {
-            <span class="org-comment-delimiter">/* </span><span class="org-comment">one more literal byte we must copy */</span>
-            <span class="org-keyword">if</span> (expect_false (op &gt;= out_end))
-                <span class="org-keyword">return</span> 0;
+            <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">one more literal byte we must copy */</span>
+            <span style="font-weight: bold;">if</span> (expect_false (op &gt;= out_end))
+                <span style="font-weight: bold;">return</span> 0;
 
             lit++; *op++ = *ip++;
 
-            <span class="org-comment-delimiter">// </span><span class="org-comment">&#21518;&#38754;&#20250;&#35762;&#35299;literal&#26159;&#24590;&#20040;&#22788;&#29702;&#30340;</span>
-            <span class="org-keyword">if</span> (expect_false (lit == MAX_LIT))
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21518;&#38754;&#20250;&#35762;&#35299;literal&#26159;&#24590;&#20040;&#22788;&#29702;&#30340;</span>
+            <span style="font-weight: bold;">if</span> (expect_false (lit == MAX_LIT))
             {
-                op [- lit - 1] = lit - 1; <span class="org-comment-delimiter">/* </span><span class="org-comment">stop run */</span>
-                lit = 0; op++; <span class="org-comment-delimiter">/* </span><span class="org-comment">start run */</span>
+                op [- lit - 1] = lit - 1; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">stop run */</span>
+                lit = 0; op++; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">start run */</span>
             }
         }
     }
 
-    <span class="org-keyword">if</span> (op + 3 &gt; out_end) <span class="org-comment-delimiter">/* </span><span class="org-comment">at most 3 bytes can be missing here */</span>
-        <span class="org-keyword">return</span> 0;
+    <span style="font-weight: bold;">if</span> (op + 3 &gt; out_end) <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">at most 3 bytes can be missing here */</span>
+        <span style="font-weight: bold;">return</span> 0;
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#21097;&#20313;&#20018;&#24456;&#30701;&#30340;&#35805;&#37027;&#20040;&#36890;&#29992;&#25353;&#29031;literal&#26469;&#22788;&#29702;&#12290;</span>
-    <span class="org-keyword">while</span> (ip &lt; in_end)
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22914;&#26524;&#21097;&#20313;&#20018;&#24456;&#30701;&#30340;&#35805;&#37027;&#20040;&#36890;&#29992;&#25353;&#29031;literal&#26469;&#22788;&#29702;&#12290;</span>
+    <span style="font-weight: bold;">while</span> (ip &lt; in_end)
     {
         lit++; *op++ = *ip++;
 
-        <span class="org-keyword">if</span> (expect_false (lit == MAX_LIT))
+        <span style="font-weight: bold;">if</span> (expect_false (lit == MAX_LIT))
         {
-            op [- lit - 1] = lit - 1; <span class="org-comment-delimiter">/* </span><span class="org-comment">stop run */</span>
-            lit = 0; op++; <span class="org-comment-delimiter">/* </span><span class="org-comment">start run */</span>
+            op [- lit - 1] = lit - 1; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">stop run */</span>
+            lit = 0; op++; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">start run */</span>
         }
     }
 
-    op [- lit - 1] = lit - 1; <span class="org-comment-delimiter">/* </span><span class="org-comment">end run */</span>
-    op -= <span class="org-negation-char">!</span>lit; <span class="org-comment-delimiter">/* </span><span class="org-comment">undo run if length is zero */</span>
+    op [- lit - 1] = lit - 1; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">end run */</span>
+    op -= !lit; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">undo run if length is zero */</span>
 
-    <span class="org-keyword">return</span> op - (<span class="org-type">u8</span> *)out_data;
+    <span style="font-weight: bold;">return</span> op - (<span style="font-weight: bold; text-decoration: underline;">u8</span> *)out_data;
 }
 </pre>
 </div>
@@ -332,7 +378,7 @@ literal处理比较有趣，大致方式如下
 <ul class="org-ul">
 <li>"lit = 0; op++". # 因为literal需要一个额外字节，这里op++空出一个字节</li>
 <li>可是有时候lit=0就退出了，这个时候op最后一个字节是废弃的，所以有"op -= !lit".</li>
-<li>当lit == MAX_LIT的时候或者是flush时候（假设lit!=0. lit=0的情况上面分析过了). 比如lit = 3
+<li>当lit == MAX<sub>LIT的时候或者是flush时候</sub>（假设lit!=0. lit=0的情况上面分析过了). 比如lit = 3
 <ul class="org-ul">
 <li>"op[-lit-1] = lit-1" 就是 "op[-4] = 2"</li>
 <li>op[-4]是literal开头的字节，而2+1则是literal长度</li>
@@ -341,136 +387,141 @@ literal处理比较有趣，大致方式如下
 </div>
 </div>
 
-<div id="outline-container-org02a8549" class="outline-2">
-<h2 id="org02a8549"><span class="section-number-2">3</span> Decompress</h2>
+<div id="outline-container-orgb8bd946" class="outline-2">
+<h2 id="orgb8bd946"><span class="section-number-2">3</span> Decompress</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 相对于压缩函数，解压缩函数就没有那么多策略，完全是数据驱动。同样我把代码稍作整理添加少注释
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">intel&#26377;rep movsb&#25351;&#20196;&#29992;&#26469;&#20570;memcpy. &#20043;&#21069;&#20570;&#36807;&#23454;&#39564;&#21457;&#29616;&#25928;&#26524;&#24182;&#19981;&#29702;&#24819;</span>
-<span class="org-preprocessor">#if</span> USE_REP_MOVSB <span class="org-comment-delimiter">/* </span><span class="org-comment">small win on amd, big loss on intel */</span>
-<span class="org-preprocessor">#if</span> (__i386 || __amd64) &amp;&amp; __GNUC__ &gt;= 3
-<span class="org-preprocessor"># define</span> <span class="org-function-name">lzf_movsb</span>(<span class="org-variable-name">dst</span>, <span class="org-variable-name">src</span>, <span class="org-variable-name">len</span>)               \
-    <span class="org-keyword">asm</span> (<span class="org-string">"rep movsb"</span>                            \
-         : <span class="org-string">"=D"</span> (dst), <span class="org-string">"=S"</span> (src), <span class="org-string">"=c"</span> (len)   \
-         :  <span class="org-string">"0"</span> (dst),  <span class="org-string">"1"</span> (src),  <span class="org-string">"2"</span> (len));
-<span class="org-preprocessor">#endif</span>
-<span class="org-preprocessor">#endif</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">intel&#26377;rep movsb&#25351;&#20196;&#29992;&#26469;&#20570;memcpy. &#20043;&#21069;&#20570;&#36807;&#23454;&#39564;&#21457;&#29616;&#25928;&#26524;&#24182;&#19981;&#29702;&#24819;</span>
+<span style="font-weight: bold;">#if</span> USE_REP_MOVSB <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">small win on amd, big loss on intel */</span>
+<span style="font-weight: bold;">#if</span> (__i386 || __amd64) &amp;&amp; __GNUC__ &gt;= 3
+<span style="font-weight: bold;"># define</span> <span style="font-weight: bold;">lzf_movsb</span>(<span style="font-weight: bold; font-style: italic;">dst</span>, <span style="font-weight: bold; font-style: italic;">src</span>, <span style="font-weight: bold; font-style: italic;">len</span>)               \
+    <span style="font-weight: bold;">asm</span> (<span style="font-style: italic;">"rep movsb"</span>                            \
+         : <span style="font-style: italic;">"=D"</span> (dst), <span style="font-style: italic;">"=S"</span> (src), <span style="font-style: italic;">"=c"</span> (len)   \
+         :  <span style="font-style: italic;">"0"</span> (dst),  <span style="font-style: italic;">"1"</span> (src),  <span style="font-style: italic;">"2"</span> (len));
+<span style="font-weight: bold;">#endif</span>
+<span style="font-weight: bold;">#endif</span>
 
-<span class="org-type">unsigned</span> <span class="org-type">int</span>
-<span class="org-function-name">lzf_decompress</span> (<span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-keyword">const</span> <span class="org-variable-name">in_data</span>,  <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">in_len</span>,
-                <span class="org-type">void</span>             *<span class="org-variable-name">out_data</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">out_len</span>)
+<span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span>
+<span style="font-weight: bold;">lzf_decompress</span> (<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">in_data</span>,  <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">in_len</span>,
+                <span style="font-weight: bold; text-decoration: underline;">void</span>             *<span style="font-weight: bold; font-style: italic;">out_data</span>, <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">out_len</span>)
 {
-    <span class="org-type">u8</span> <span class="org-keyword">const</span> *<span class="org-variable-name">ip</span> = (<span class="org-keyword">const</span> <span class="org-type">u8</span> *)in_data;
-    <span class="org-type">u8</span>       *<span class="org-variable-name">op</span> = (<span class="org-type">u8</span> *)out_data;
-    <span class="org-type">u8</span> <span class="org-keyword">const</span> *<span class="org-keyword">const</span> <span class="org-variable-name">in_end</span>  = ip + in_len;
-    <span class="org-type">u8</span>       *<span class="org-keyword">const</span> <span class="org-variable-name">out_end</span> = op + out_len;
+    <span style="font-weight: bold; text-decoration: underline;">u8</span> <span style="font-weight: bold;">const</span> *<span style="font-weight: bold; font-style: italic;">ip</span> = (<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">u8</span> *)in_data;
+    <span style="font-weight: bold; text-decoration: underline;">u8</span>       *<span style="font-weight: bold; font-style: italic;">op</span> = (<span style="font-weight: bold; text-decoration: underline;">u8</span> *)out_data;
+    <span style="font-weight: bold; text-decoration: underline;">u8</span> <span style="font-weight: bold;">const</span> *<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">in_end</span>  = ip + in_len;
+    <span style="font-weight: bold; text-decoration: underline;">u8</span>       *<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">out_end</span> = op + out_len;
 
-    <span class="org-keyword">do</span>
+    <span style="font-weight: bold;">do</span>
     {
-        <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">ctrl</span> = *ip++;
+        <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">ctrl</span> = *ip++;
 
-        <span class="org-keyword">if</span> (ctrl &lt; (1 &lt;&lt; 5)) <span class="org-comment-delimiter">/* </span><span class="org-comment">literal run */</span>
+        <span style="font-weight: bold;">if</span> (ctrl &lt; (1 &lt;&lt; 5)) <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">literal run */</span>
         {
             ctrl++;
 
-            <span class="org-keyword">if</span> (op + ctrl &gt; out_end)
+            <span style="font-weight: bold;">if</span> (op + ctrl &gt; out_end)
             {
                 SET_ERRNO (E2BIG);
-                <span class="org-keyword">return</span> 0;
+                <span style="font-weight: bold;">return</span> 0;
             }
 
-<span class="org-preprocessor">#ifdef</span> lzf_movsb
+<span style="font-weight: bold;">#ifdef</span> lzf_movsb
             lzf_movsb (op, ip, ctrl);
-<span class="org-preprocessor">#else</span>
-            <span class="org-keyword">switch</span> (ctrl)
+<span style="font-weight: bold;">#else</span>
+            <span style="font-weight: bold;">switch</span> (ctrl)
             {
-                <span class="org-keyword">case</span> 32: *op++ = *ip++; <span class="org-keyword">case</span> 31: *op++ = *ip++; <span class="org-keyword">case</span> 30: *op++ = *ip++; <span class="org-keyword">case</span> 29: *op++ = *ip++;
-                <span class="org-keyword">case</span> 28: *op++ = *ip++; <span class="org-keyword">case</span> 27: *op++ = *ip++; <span class="org-keyword">case</span> 26: *op++ = *ip++; <span class="org-keyword">case</span> 25: *op++ = *ip++;
-                <span class="org-keyword">case</span> 24: *op++ = *ip++; <span class="org-keyword">case</span> 23: *op++ = *ip++; <span class="org-keyword">case</span> 22: *op++ = *ip++; <span class="org-keyword">case</span> 21: *op++ = *ip++;
-                <span class="org-keyword">case</span> 20: *op++ = *ip++; <span class="org-keyword">case</span> 19: *op++ = *ip++; <span class="org-keyword">case</span> 18: *op++ = *ip++; <span class="org-keyword">case</span> 17: *op++ = *ip++;
-                <span class="org-keyword">case</span> 16: *op++ = *ip++; <span class="org-keyword">case</span> 15: *op++ = *ip++; <span class="org-keyword">case</span> 14: *op++ = *ip++; <span class="org-keyword">case</span> 13: *op++ = *ip++;
-                <span class="org-keyword">case</span> 12: *op++ = *ip++; <span class="org-keyword">case</span> 11: *op++ = *ip++; <span class="org-keyword">case</span> 10: *op++ = *ip++; <span class="org-keyword">case</span>  9: *op++ = *ip++;
-                <span class="org-keyword">case</span>  8: *op++ = *ip++; <span class="org-keyword">case</span>  7: *op++ = *ip++; <span class="org-keyword">case</span>  6: *op++ = *ip++; <span class="org-keyword">case</span>  5: *op++ = *ip++;
-                <span class="org-keyword">case</span>  4: *op++ = *ip++; <span class="org-keyword">case</span>  3: *op++ = *ip++; <span class="org-keyword">case</span>  2: *op++ = *ip++; <span class="org-keyword">case</span>  1: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span> 32: *op++ = *ip++; <span style="font-weight: bold;">case</span> 31: *op++ = *ip++; <span style="font-weight: bold;">case</span> 30: *op++ = *ip++; <span style="font-weight: bold;">case</span> 29: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span> 28: *op++ = *ip++; <span style="font-weight: bold;">case</span> 27: *op++ = *ip++; <span style="font-weight: bold;">case</span> 26: *op++ = *ip++; <span style="font-weight: bold;">case</span> 25: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span> 24: *op++ = *ip++; <span style="font-weight: bold;">case</span> 23: *op++ = *ip++; <span style="font-weight: bold;">case</span> 22: *op++ = *ip++; <span style="font-weight: bold;">case</span> 21: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span> 20: *op++ = *ip++; <span style="font-weight: bold;">case</span> 19: *op++ = *ip++; <span style="font-weight: bold;">case</span> 18: *op++ = *ip++; <span style="font-weight: bold;">case</span> 17: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span> 16: *op++ = *ip++; <span style="font-weight: bold;">case</span> 15: *op++ = *ip++; <span style="font-weight: bold;">case</span> 14: *op++ = *ip++; <span style="font-weight: bold;">case</span> 13: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span> 12: *op++ = *ip++; <span style="font-weight: bold;">case</span> 11: *op++ = *ip++; <span style="font-weight: bold;">case</span> 10: *op++ = *ip++; <span style="font-weight: bold;">case</span>  9: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span>  8: *op++ = *ip++; <span style="font-weight: bold;">case</span>  7: *op++ = *ip++; <span style="font-weight: bold;">case</span>  6: *op++ = *ip++; <span style="font-weight: bold;">case</span>  5: *op++ = *ip++;
+                <span style="font-weight: bold;">case</span>  4: *op++ = *ip++; <span style="font-weight: bold;">case</span>  3: *op++ = *ip++; <span style="font-weight: bold;">case</span>  2: *op++ = *ip++; <span style="font-weight: bold;">case</span>  1: *op++ = *ip++;
             }
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold;">#endif</span>
         }
-        <span class="org-keyword">else</span> <span class="org-comment-delimiter">/* </span><span class="org-comment">back reference */</span>
+        <span style="font-weight: bold;">else</span> <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">back reference */</span>
         {
-            <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">len</span> = ctrl &gt;&gt; 5;
+            <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">len</span> = ctrl &gt;&gt; 5;
 
-            <span class="org-type">u8</span> *<span class="org-variable-name">ref</span> = op - ((<span class="org-type">ctrl</span> &amp; 0x1f) &lt;&lt; 8) - 1;
+            <span style="font-weight: bold; text-decoration: underline;">u8</span> *<span style="font-weight: bold; font-style: italic;">ref</span> = op - ((<span style="font-weight: bold; text-decoration: underline;">ctrl</span> &amp; 0x1f) &lt;&lt; 8) - 1;
 
-            <span class="org-keyword">if</span> (len == 7)
+            <span style="font-weight: bold;">if</span> (len == 7)
             {
                 len += *ip++;
             }
 
             ref -= *ip++;
 
-            <span class="org-keyword">if</span> (op + len + 2 &gt; out_end)
+            <span style="font-weight: bold;">if</span> (op + len + 2 &gt; out_end)
             {
                 SET_ERRNO (E2BIG);
-                <span class="org-keyword">return</span> 0;
+                <span style="font-weight: bold;">return</span> 0;
             }
 
-            <span class="org-keyword">if</span> (ref &lt; (<span class="org-type">u8</span> *)out_data)
+            <span style="font-weight: bold;">if</span> (ref &lt; (<span style="font-weight: bold; text-decoration: underline;">u8</span> *)out_data)
             {
                 SET_ERRNO (EINVAL);
-                <span class="org-keyword">return</span> 0;
+                <span style="font-weight: bold;">return</span> 0;
             }
 
-<span class="org-preprocessor">#ifdef</span> lzf_movsb
+<span style="font-weight: bold;">#ifdef</span> lzf_movsb
             len += 2;
             lzf_movsb (op, ref, len);
-<span class="org-preprocessor">#else</span>
-            <span class="org-keyword">switch</span> (len)
+<span style="font-weight: bold;">#else</span>
+            <span style="font-weight: bold;">switch</span> (len)
             {
-                <span class="org-keyword">default</span>:
+                <span style="font-weight: bold;">default</span>:
                     len += 2;
-                    <span class="org-comment-delimiter">// </span><span class="org-comment">&#22788;&#29702;ip&#21644;ref&#20844;&#20849;&#20018;&#23384;&#22312;overlapping&#30340;&#24773;&#20917;</span>
-                    <span class="org-keyword">if</span> (op &gt;= ref + len)
+                    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#22788;&#29702;ip&#21644;ref&#20844;&#20849;&#20018;&#23384;&#22312;overlapping&#30340;&#24773;&#20917;</span>
+                    <span style="font-weight: bold;">if</span> (op &gt;= ref + len)
                     {
-                        <span class="org-comment-delimiter">/* </span><span class="org-comment">disjunct areas */</span>
+                        <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">disjunct areas */</span>
                         memcpy (op, ref, len);
                         op += len;
                     }
-                    <span class="org-keyword">else</span>
+                    <span style="font-weight: bold;">else</span>
                     {
-                        <span class="org-comment-delimiter">/* </span><span class="org-comment">overlapping, use octte by octte copying */</span>
-                        <span class="org-keyword">do</span>
+                        <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">overlapping, use octte by octte copying */</span>
+                        <span style="font-weight: bold;">do</span>
                             *op++ = *ref++;
-                        <span class="org-keyword">while</span> (--len);
+                        <span style="font-weight: bold;">while</span> (--len);
                     }
 
-                    <span class="org-keyword">break</span>;
+                    <span style="font-weight: bold;">break</span>;
 
-                <span class="org-keyword">case</span> 9: *op++ = *ref++;
-                <span class="org-keyword">case</span> 8: *op++ = *ref++;
-                <span class="org-keyword">case</span> 7: *op++ = *ref++;
-                <span class="org-keyword">case</span> 6: *op++ = *ref++;
-                <span class="org-keyword">case</span> 5: *op++ = *ref++;
-                <span class="org-keyword">case</span> 4: *op++ = *ref++;
-                <span class="org-keyword">case</span> 3: *op++ = *ref++;
-                <span class="org-keyword">case</span> 2: *op++ = *ref++;
-                <span class="org-keyword">case</span> 1: *op++ = *ref++;
-                <span class="org-keyword">case</span> 0: *op++ = *ref++; <span class="org-comment-delimiter">/* </span><span class="org-comment">two octets more */</span>
+                <span style="font-weight: bold;">case</span> 9: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 8: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 7: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 6: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 5: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 4: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 3: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 2: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 1: *op++ = *ref++;
+                <span style="font-weight: bold;">case</span> 0: *op++ = *ref++; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">two octets more */</span>
                     *op++ = *ref++;
             }
-<span class="org-preprocessor">#endif</span>
+<span style="font-weight: bold;">#endif</span>
         }
     }
-    <span class="org-keyword">while</span> (ip &lt; in_end);
+    <span style="font-weight: bold;">while</span> (ip &lt; in_end);
 
-    <span class="org-keyword">return</span> op - (<span class="org-type">u8</span> *)out_data;
+    <span style="font-weight: bold;">return</span> op - (<span style="font-weight: bold; text-decoration: underline;">u8</span> *)out_data;
 }
 </pre>
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/lzf.html';this.page.identifier = 'lzf.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

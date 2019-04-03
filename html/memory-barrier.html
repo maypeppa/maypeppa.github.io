@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Memory Barrier</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Memory Barrier</h1>
@@ -16,10 +62,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1ce18d5">1. 编译器内存屏障</a></li>
-<li><a href="#org6537500">2. CPU内存屏障</a></li>
-<li><a href="#org50c30f0">3. 再谈内存屏障</a></li>
-<li><a href="#org1fa63e3">4. C++11内存模型</a></li>
+<li><a href="#orgf5c1731">1. 编译器内存屏障</a></li>
+<li><a href="#org3c825ee">2. CPU内存屏障</a></li>
+<li><a href="#orgd12f659">3. 再谈内存屏障</a></li>
+<li><a href="#org0cb9baf">4. C++11内存模型</a></li>
 </ul>
 </div>
 </div>
@@ -36,12 +82,12 @@
 很早之前一直不理解内存屏障到底要解决什么问题，直到第一次编写lock-free queue的时候才稍微意识到。内存屏障这个问题在编写多线程和编写设备驱动时候是需要考虑的，只是通常我们使用已经封装之后的同步机制比如lock, mutex来解决多线程数据共享问题，所以不需要考虑内存屏障这件事情。内存屏障有两种，一种是关于和编译器相关的内存屏障，一种是和CPU相关的内存屏障。
 </p>
 
-<div id="outline-container-org1ce18d5" class="outline-2">
-<h2 id="org1ce18d5"><span class="section-number-2">1</span> 编译器内存屏障</h2>
+<div id="outline-container-orgf5c1731" class="outline-2">
+<h2 id="orgf5c1731"><span class="section-number-2">1</span> 编译器内存屏障</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">#define mfence_c() __asm__ __volatile__("": : :"memory")</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">barrier</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">""</span>: : :<span class="org-string">"memory"</span>)
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">#define mfence_c() __asm__ __volatile__("": : :"memory")</span>
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">barrier</span>() <span style="font-weight: bold;">__asm__</span> __volatile__(<span style="font-style: italic;">""</span>: : :<span style="font-style: italic;">"memory"</span>)
 
 </pre>
 </div>
@@ -50,13 +96,13 @@
 这个内存屏障的意思是:在这个操作之后，所有的原来分配在寄存器里面的变量全部失效，需要重新进行一次寄存器的分配（相当于变量需要全部重新载入）。之所以需要有这个操作，可以考虑这么一个情况。假设有两个值a,分配的内存地址分别是0x12345.我们有下面这样的代码
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-type">int</span> <span class="org-variable-name">a</span>=0;
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-  printf(<span class="org-string">"%p,%d\n"</span>,&amp;a,a);
-  *(<span class="org-type">int</span>*)(0x5009ac)=1; <span class="org-comment-delimiter">// </span><span class="org-comment">&#25105;&#20204;&#30693;&#36947;&amp;a&#30340;&#22320;&#22336;&#23601;&#26159;0x5009ac</span>
-  printf(<span class="org-string">"%p,%d\n"</span>,&amp;a,a);
-  <span class="org-keyword">return</span> 0;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>=0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+  printf(<span style="font-style: italic;">"%p,%d\n"</span>,&amp;a,a);
+  *(<span style="font-weight: bold; text-decoration: underline;">int</span>*)(0x5009ac)=1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25105;&#20204;&#30693;&#36947;&amp;a&#30340;&#22320;&#22336;&#23601;&#26159;0x5009ac</span>
+  printf(<span style="font-style: italic;">"%p,%d\n"</span>,&amp;a,a);
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -70,19 +116,19 @@
 </p>
 
 <p>
-barrier除了上面功能（强迫编译器刷新寄存器分配）之外，wyz还告诉我可能会阻止gcc进行instruction reorder.指令重排会出现很多问题。曾经在编写infpack遇到过这个问题，现在这段代码在compress.h这里，compress_uint64里面使用了mfence_c.加这个内存障碍是jjp告诉我的，当时这段代码除了问题加了这个barrier就好了，但是凭的是直觉也不太清楚为什么。
+barrier除了上面功能（强迫编译器刷新寄存器分配）之外，wyz还告诉我可能会阻止gcc进行instruction reorder.指令重排会出现很多问题。曾经在编写infpack遇到过这个问题，现在这段代码在compress.h这里，compress<sub>uint64里面使用了mfence</sub><sub>c.加这个内存障碍是jjp告诉我的</sub>，当时这段代码除了问题加了这个barrier就好了，但是凭的是直觉也不太清楚为什么。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6537500" class="outline-2">
-<h2 id="org6537500"><span class="section-number-2">2</span> CPU内存屏障</h2>
+<div id="outline-container-org3c825ee" class="outline-2">
+<h2 id="org3c825ee"><span class="section-number-2">2</span> CPU内存屏障</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">#define mfence_x86() __asm__ __volatile__("mfence":::"memory")</span>
-<span class="org-preprocessor">#define</span> <span class="org-function-name">rmb</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">"lfence"</span>:::<span class="org-string">"memory"</span>)
-<span class="org-preprocessor">#define</span> <span class="org-function-name">wmb</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">"sfence"</span>:::<span class="org-string">"memory"</span>)
-<span class="org-preprocessor">#define</span> <span class="org-function-name">mb</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">"mfence"</span>:::<span class="org-string">"memory"</span>)
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">#define mfence_x86() __asm__ __volatile__("mfence":::"memory")</span>
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">rmb</span>() <span style="font-weight: bold;">__asm__</span> __volatile__(<span style="font-style: italic;">"lfence"</span>:::<span style="font-style: italic;">"memory"</span>)
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">wmb</span>() <span style="font-weight: bold;">__asm__</span> __volatile__(<span style="font-style: italic;">"sfence"</span>:::<span style="font-style: italic;">"memory"</span>)
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold;">mb</span>() <span style="font-weight: bold;">__asm__</span> __volatile__(<span style="font-style: italic;">"mfence"</span>:::<span style="font-style: italic;">"memory"</span>)
 
 </pre>
 </div>
@@ -143,8 +189,8 @@ barrier除了上面功能（强迫编译器刷新寄存器分配）之外，wyz�
 </div>
 </div>
 
-<div id="outline-container-org50c30f0" class="outline-2">
-<h2 id="org50c30f0"><span class="section-number-2">3</span> 再谈内存屏障</h2>
+<div id="outline-container-orgd12f659" class="outline-2">
+<h2 id="orgd12f659"><span class="section-number-2">3</span> 再谈内存屏障</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 最近又有同事(wangyuanzheng)问起这个问题，提出了一些不同的看法。所以我重新看了一下以前文章里面留下的链接，并且大致地阅读了一下链接里面给出的文章，叫做《Memory Barriers a Hardware View for Software Hackers》。
@@ -204,8 +250,8 @@ The effect of this is that a read memory barrier orders only loads on the CPU th
 </div>
 </div>
 
-<div id="outline-container-org1fa63e3" class="outline-2">
-<h2 id="org1fa63e3"><span class="section-number-2">4</span> C++11内存模型</h2>
+<div id="outline-container-org0cb9baf" class="outline-2">
+<h2 id="org0cb9baf"><span class="section-number-2">4</span> C++11内存模型</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="http://wilburding.github.io/blog/2013/04/07/c-plus-plus-11-atomic-and-memory-model/">http://wilburding.github.io/blog/2013/04/07/c-plus-plus-11-atomic-and-memory-model/</a></li>
@@ -214,6 +260,11 @@ The effect of this is that a read memory barrier orders only loads on the CPU th
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/memory-barrier.html';this.page.identifier = 'memory-barrier.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

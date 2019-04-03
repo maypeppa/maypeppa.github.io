@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux System and Performance Monitoring</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Linux System and Performance Monitoring</h1>
@@ -16,13 +62,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge8157a4">1. Performance Monitoring Introduction</a></li>
-<li><a href="#org58de316">2. Installing Monitoring Tools</a></li>
-<li><a href="#orgb00b6d4">3. Introducing the CPU</a></li>
-<li><a href="#org89a0e42">4. Introducing Virtual Memory</a></li>
-<li><a href="#org5b7a584">5. Introducing I/O Monitoring</a></li>
-<li><a href="#org019427e">6. Monitoring I/O</a></li>
-<li><a href="#org797a53b">7. Introducing Network Monitoring</a></li>
+<li><a href="#org04e1612">1. Performance Monitoring Introduction</a></li>
+<li><a href="#orgc0f89d8">2. Installing Monitoring Tools</a></li>
+<li><a href="#orgec20435">3. Introducing the CPU</a></li>
+<li><a href="#org01ec98e">4. Introducing Virtual Memory</a></li>
+<li><a href="#org24797a0">5. Introducing I/O Monitoring</a></li>
+<li><a href="#org4ad902d">6. Monitoring I/O</a></li>
+<li><a href="#org839ae41">7. Introducing Network Monitoring</a></li>
 </ul>
 </div>
 </div>
@@ -34,8 +80,8 @@
 a.k.a "Extreme Linux Performance Monitoring and Tuning"
 </p>
 
-<div id="outline-container-orge8157a4" class="outline-2">
-<h2 id="orge8157a4"><span class="section-number-2">1</span> Performance Monitoring Introduction</h2>
+<div id="outline-container-org04e1612" class="outline-2">
+<h2 id="org04e1612"><span class="section-number-2">1</span> Performance Monitoring Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>sub-systems: CPU, Memory, IO, Network</li>
@@ -44,8 +90,8 @@ a.k.a "Extreme Linux Performance Monitoring and Tuning"
 </div>
 </div>
 
-<div id="outline-container-org58de316" class="outline-2">
-<h2 id="org58de316"><span class="section-number-2">2</span> Installing Monitoring Tools</h2>
+<div id="outline-container-orgc0f89d8" class="outline-2">
+<h2 id="orgc0f89d8"><span class="section-number-2">2</span> Installing Monitoring Tools</h2>
 <div class="outline-text-2" id="text-2">
 
 <div class="figure">
@@ -55,8 +101,8 @@ a.k.a "Extreme Linux Performance Monitoring and Tuning"
 </div>
 </div>
 
-<div id="outline-container-orgb00b6d4" class="outline-2">
-<h2 id="orgb00b6d4"><span class="section-number-2">3</span> Introducing the CPU</h2>
+<div id="outline-container-orgec20435" class="outline-2">
+<h2 id="orgec20435"><span class="section-number-2">3</span> Introducing the CPU</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The following list outlines the priorities from highest to lowest: # 调度优先级别，从高到低
@@ -98,8 +144,8 @@ Case Study
 </div>
 </div>
 
-<div id="outline-container-org89a0e42" class="outline-2">
-<h2 id="org89a0e42"><span class="section-number-2">4</span> Introducing Virtual Memory</h2>
+<div id="outline-container-org01ec98e" class="outline-2">
+<h2 id="org01ec98e"><span class="section-number-2">4</span> Introducing Virtual Memory</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Kernel Memory Paging. Memory paging is a normal activity not to be confused with memory swapping. Memory paging is the process of synching memory back to disk at normal intervals. Over time, applications will grow to consume all of memory. At some point, the kernel must scan memory and reclaim unused pages to be allocated to other applications. # memory paging和memory swapping不同的是, paging是系统的正常行为. 系统会定时将部分内存刷到磁盘上, 释放这部分内存出来分配给其他进程, 确保所有进程都把所有内存都用上
@@ -119,7 +165,7 @@ All but the “unreclaimable” pages may be reclaimed by the PFRA. There are tw
 </p>
 
 <p>
-The kswapd daemon is responsible for ensuring that memory stays free. It monitors the pages_high and pages_low watermarks in the kernel. If the amount of free memory is below pages_low, the kswapd process starts a scan to attempt to free 32 pages at a time. It repeats this process until the amount of free memory is above the pages_high watermark. The kswapd thread performs the following actions: # kswapd是一个守护进程，监控两个内核变量pages_high和pages_low. 如果当前可用内存低于pages_low的话，那么会以32pages为单位进行释放直到内存高于pages_high.
+The kswapd daemon is responsible for ensuring that memory stays free. It monitors the pages<sub>high</sub> and pages<sub>low</sub> watermarks in the kernel. If the amount of free memory is below pages<sub>low</sub>, the kswapd process starts a scan to attempt to free 32 pages at a time. It repeats this process until the amount of free memory is above the pages<sub>high</sub> watermark. The kswapd thread performs the following actions: # kswapd是一个守护进程，监控两个内核变量pages<sub>high和pages</sub><sub>low</sub>. 如果当前可用内存低于pages<sub>low的话</sub>，那么会以32pages为单位进行释放直到内存高于pages<sub>high</sub>.
 </p>
 <ul class="org-ul">
 <li>If the page is unmodified, it places the page on the free list.</li>
@@ -128,13 +174,13 @@ The kswapd daemon is responsible for ensuring that memory stays free. It monitor
 </ul>
 
 <p>
-The pdflush daemon is responsible for synchronizing any pages associated with a file on a filesystem back to disk. In other words, when a file is modified in memory, the pdflush daemon writes it back to disk. The pdflush daemon starts synchronizing dirty pages back to the filesystem when 10% of the pages in memory are dirty. This is due to a kernel tuning parameter called vm.dirty_background_ratio. The pdflush daemon works independently of the PFRA under most circumstances. When the kernel invokes the LMR algorithm, the LMR specifically forces pdflush to flush dirty pages in addition to other page freeing routines. # pdflush定期将脏页刷入到文件系统上, 确保脏页比例低于一定阈值. 但是内核也会主动出发pdflush.
+The pdflush daemon is responsible for synchronizing any pages associated with a file on a filesystem back to disk. In other words, when a file is modified in memory, the pdflush daemon writes it back to disk. The pdflush daemon starts synchronizing dirty pages back to the filesystem when 10% of the pages in memory are dirty. This is due to a kernel tuning parameter called vm.dirty<sub>background</sub><sub>ratio</sub>. The pdflush daemon works independently of the PFRA under most circumstances. When the kernel invokes the LMR algorithm, the LMR specifically forces pdflush to flush dirty pages in addition to other page freeing routines. # pdflush定期将脏页刷入到文件系统上, 确保脏页比例低于一定阈值. 但是内核也会主动出发pdflush.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5b7a584" class="outline-2">
-<h2 id="org5b7a584"><span class="section-number-2">5</span> Introducing I/O Monitoring</h2>
+<div id="outline-container-org24797a0" class="outline-2">
+<h2 id="org24797a0"><span class="section-number-2">5</span> Introducing I/O Monitoring</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 There are 3 types of memory pages in the Linux kernel. These pages are described below:
@@ -147,12 +193,17 @@ There are 3 types of memory pages in the Linux kernel. These pages are described
 </div>
 </div>
 
-<div id="outline-container-org019427e" class="outline-2">
-<h2 id="org019427e"><span class="section-number-2">6</span> Monitoring I/O</h2>
+<div id="outline-container-org4ad902d" class="outline-2">
+<h2 id="org4ad902d"><span class="section-number-2">6</span> Monitoring I/O</h2>
 </div>
-<div id="outline-container-org797a53b" class="outline-2">
-<h2 id="org797a53b"><span class="section-number-2">7</span> Introducing Network Monitoring</h2>
+<div id="outline-container-org839ae41" class="outline-2">
+<h2 id="org839ae41"><span class="section-number-2">7</span> Introducing Network Monitoring</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/linux-system-and-performance-monitoring.html';this.page.identifier = 'linux-system-and-performance-monitoring.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

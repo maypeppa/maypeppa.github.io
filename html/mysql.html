@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>mysql</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">mysql</h1>
@@ -16,79 +62,79 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge4b926d">1. Cheatsheet</a></li>
-<li><a href="#orgde1de71">2. 数据类型</a></li>
-<li><a href="#org7101f24">3. Index索引</a>
+<li><a href="#org24cdc31">1. Cheatsheet</a></li>
+<li><a href="#org11eafee">2. 数据类型</a></li>
+<li><a href="#org8bc99a4">3. Index索引</a>
 <ul>
-<li><a href="#org67ea8a5">3.1. 索引类型</a></li>
-<li><a href="#org7513eec">3.2. 索引特性</a></li>
-<li><a href="#orgb9e026b">3.3. 挑选索引</a></li>
+<li><a href="#org844d05d">3.1. 索引类型</a></li>
+<li><a href="#orgfd0fa4c">3.2. 索引特性</a></li>
+<li><a href="#orgc633f5c">3.3. 挑选索引</a></li>
 </ul>
 </li>
-<li><a href="#org78fd4b1">4. 存储引擎</a>
+<li><a href="#orge70e1a9">4. 存储引擎</a>
 <ul>
-<li><a href="#orgfe669e8">4.1. MyISAM</a></li>
-<li><a href="#orgb18a318">4.2. InnoDB</a></li>
+<li><a href="#orgf6845e2">4.1. MyISAM</a></li>
+<li><a href="#org5c57585">4.2. InnoDB</a></li>
 </ul>
 </li>
-<li><a href="#org06bc33d">5. 事务处理</a>
+<li><a href="#org6e1b80e">5. 事务处理</a>
 <ul>
-<li><a href="#orgdf5e7f3">5.1. ACID</a></li>
-<li><a href="#org0f63fb7">5.2. 隔离性</a></li>
+<li><a href="#org76d4ffd">5.1. ACID</a></li>
+<li><a href="#orgd08e3a2">5.2. 隔离性</a></li>
 </ul>
 </li>
-<li><a href="#orga35a640">6. 外键和引用完整性</a></li>
-<li><a href="#org443dd87">7. 存储过程</a></li>
-<li><a href="#org8296e59">8. 元数据</a>
+<li><a href="#org73c9063">6. 外键和引用完整性</a></li>
+<li><a href="#org9afd48a">7. 存储过程</a></li>
+<li><a href="#org1d2eca5">8. 元数据</a>
 <ul>
-<li><a href="#orgf864594">8.1. SHOW</a></li>
-<li><a href="#orgb6048ca">8.2. information_schema</a></li>
-<li><a href="#org3f9c7d2">8.3. mysql</a></li>
+<li><a href="#org5eaeb58">8.1. SHOW</a></li>
+<li><a href="#org3e53b42">8.2. information<sub>schema</sub></a></li>
+<li><a href="#orgdfb0a3f">8.3. mysql</a></li>
 </ul>
 </li>
-<li><a href="#org49e3a07">9. 数据目录</a>
+<li><a href="#org86ad61b">9. 数据目录</a>
 <ul>
-<li><a href="#org8789d3e">9.1. 目录位置</a></li>
-<li><a href="#org846acad">9.2. 层次结构</a></li>
+<li><a href="#org5c5f6c0">9.1. 目录位置</a></li>
+<li><a href="#org5cffc68">9.2. 层次结构</a></li>
 </ul>
 </li>
-<li><a href="#org1f574ce">10. 权限管理</a></li>
-<li><a href="#org484e34a">11. 查询优化</a>
+<li><a href="#orgf5f7ef4">10. 权限管理</a></li>
+<li><a href="#orge514df2">11. 查询优化</a>
 <ul>
-<li><a href="#org2976f28">11.1. 层级估算</a></li>
-<li><a href="#org20972dd">11.2. 优化索引</a></li>
-<li><a href="#org11aed2a">11.3. EXPLAIN</a></li>
-<li><a href="#org1ee3ece">11.4. 查询缓存</a></li>
+<li><a href="#orga251289">11.1. 层级估算</a></li>
+<li><a href="#org80cf9a3">11.2. 优化索引</a></li>
+<li><a href="#org7372a68">11.3. EXPLAIN</a></li>
+<li><a href="#orge44d23b">11.4. 查询缓存</a></li>
 </ul>
 </li>
-<li><a href="#org8e8b015">12. 备份复制</a>
+<li><a href="#org043229c">12. 备份复制</a>
 <ul>
-<li><a href="#orge0a1065">12.1. 检查修复</a></li>
-<li><a href="#orgf88e052">12.2. 数据备份</a></li>
-<li><a href="#org4144dde">12.3. 主从同步</a></li>
+<li><a href="#org92fd604">12.1. 检查修复</a></li>
+<li><a href="#org81ec7d5">12.2. 数据备份</a></li>
+<li><a href="#orgb6b5138">12.3. 主从同步</a></li>
 </ul>
 </li>
-<li><a href="#orgd4fd5cd">13. 配置文件</a></li>
-<li><a href="#org61003ee">14. 系统变量</a>
+<li><a href="#org305f4b7">13. 配置文件</a></li>
+<li><a href="#orgf00734f">14. 系统变量</a>
 <ul>
-<li><a href="#orgeb33df3">14.1. 日志相关</a></li>
-<li><a href="#org7a36715">14.2. 系统相关</a></li>
-<li><a href="#orgefc3452">14.3. 存储引擎</a></li>
+<li><a href="#org8bf2a23">14.1. 日志相关</a></li>
+<li><a href="#org1dba27b">14.2. 系统相关</a></li>
+<li><a href="#orgb8c9e26">14.3. 存储引擎</a></li>
 </ul>
 </li>
-<li><a href="#org4f7c530">15. 编程接口</a>
+<li><a href="#org453c897">15. 编程接口</a>
 <ul>
-<li><a href="#orgb79af2a">15.1. 超时重连</a></li>
-<li><a href="#org4d3d893">15.2. 连接数量</a></li>
+<li><a href="#org536bea3">15.1. 超时重连</a></li>
+<li><a href="#org9fbb3d7">15.2. 连接数量</a></li>
 </ul>
 </li>
-<li><a href="#org48190ad">16. 实用程序</a></li>
-<li><a href="#orgb4f6971">17. 其他信息</a>
+<li><a href="#org4914dc2">16. 实用程序</a></li>
+<li><a href="#org589bf08">17. 其他信息</a>
 <ul>
-<li><a href="#orgfb42adb">17.1. 安装环境</a></li>
-<li><a href="#org3b895d2">17.2. 版本选择</a></li>
-<li><a href="#org9b51e35">17.3. 测试套件</a></li>
-<li><a href="#orgc46c608">17.4. MySQL技术内幕</a></li>
+<li><a href="#org81b8ee1">17.1. 安装环境</a></li>
+<li><a href="#orgbdab38a">17.2. 版本选择</a></li>
+<li><a href="#org2a96355">17.3. 测试套件</a></li>
+<li><a href="#orgcc6b07c">17.4. MySQL技术内幕</a></li>
 </ul>
 </li>
 </ul>
@@ -101,23 +147,23 @@
 <li id="[[<a href="http://dev.mysql.com/doc/refman/5.6/en/index.html">http://dev.mysql.com/doc/refman/5.6/en/index.html</a>][MySQL">MySQL 5.6 Reference Manual]]</li>
 </ul>
 
-<div id="outline-container-orge4b926d" class="outline-2">
-<h2 id="orge4b926d"><span class="section-number-2">1</span> Cheatsheet</h2>
+<div id="outline-container-org24cdc31" class="outline-2">
+<h2 id="org24cdc31"><span class="section-number-2">1</span> Cheatsheet</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>alter table `userinfo` drop index `email`; &#x2013; 删除索引</li>
 <li>alter table `userinfo` add column `email` text not null; &#x2013; 添加列</li>
-<li>ALTER TABLE `userinfo` ADD INDEX `index_key` (`field1`, `field2`) &#x2013; 增加索引</li>
+<li>ALTER TABLE `userinfo` ADD INDEX `index<sub>key</sub>` (`field1`, `field2`) &#x2013; 增加索引</li>
 <li>show indexes in `userinfo`; &#x2013; 显示表索引</li>
-<li>alter table `userinfo` change `email` `email_ext` text; &#x2013; 修改列定义</li>
+<li>alter table `userinfo` change `email` `email<sub>ext</sub>` text; &#x2013; 修改列定义</li>
 <li>show variables like 'max_%'; &#x2013; 显示变量</li>
-<li>set global max_allowed_packet = 2 * 1024 * 1024; &#x2013; 设置变量</li>
+<li>set global max<sub>allowed</sub><sub>packet</sub> = 2 * 1024 * 1024; &#x2013; 设置变量</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgde1de71" class="outline-2">
-<h2 id="orgde1de71"><span class="section-number-2">2</span> 数据类型</h2>
+<div id="outline-container-org11eafee" class="outline-2">
+<h2 id="org11eafee"><span class="section-number-2">2</span> 数据类型</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 #todo:
@@ -125,12 +171,12 @@
 </div>
 </div>
 
-<div id="outline-container-org7101f24" class="outline-2">
-<h2 id="org7101f24"><span class="section-number-2">3</span> Index索引</h2>
+<div id="outline-container-org8bc99a4" class="outline-2">
+<h2 id="org8bc99a4"><span class="section-number-2">3</span> Index索引</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org67ea8a5" class="outline-3">
-<h3 id="org67ea8a5"><span class="section-number-3">3.1</span> 索引类型</h3>
+<div id="outline-container-org844d05d" class="outline-3">
+<h3 id="org844d05d"><span class="section-number-3">3.1</span> 索引类型</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>唯一索引 PRIMARY KEY &amp; UNIQUE
@@ -145,8 +191,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7513eec" class="outline-3">
-<h3 id="org7513eec"><span class="section-number-3">3.2</span> 索引特性</h3>
+<div id="outline-container-orgfd0fa4c" class="outline-3">
+<h3 id="orgfd0fa4c"><span class="section-number-3">3.2</span> 索引特性</h3>
 <div class="outline-text-3" id="text-3-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -234,8 +280,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb9e026b" class="outline-3">
-<h3 id="orgb9e026b"><span class="section-number-3">3.3</span> 挑选索引</h3>
+<div id="outline-container-orgc633f5c" class="outline-3">
+<h3 id="orgc633f5c"><span class="section-number-3">3.3</span> 挑选索引</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>尽量为用来搜索，分类或分组的数据列编制索引，不要为作为输出显示的数据列编制索引。</li>
@@ -260,8 +306,8 @@
 </div>
 </div>
 
-<div id="outline-container-org78fd4b1" class="outline-2">
-<h2 id="org78fd4b1"><span class="section-number-2">4</span> 存储引擎</h2>
+<div id="outline-container-orge70e1a9" class="outline-2">
+<h2 id="orge70e1a9"><span class="section-number-2">4</span> 存储引擎</h2>
 <div class="outline-text-2" id="text-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -348,8 +394,8 @@ SHOW TABLE STATUS; # 可以查看表格元信息包括使用的存储引擎
 </p>
 </div>
 
-<div id="outline-container-orgfe669e8" class="outline-3">
-<h3 id="orgfe669e8"><span class="section-number-3">4.1</span> MyISAM</h3>
+<div id="outline-container-orgf6845e2" class="outline-3">
+<h3 id="orgf6845e2"><span class="section-number-3">4.1</span> MyISAM</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>MySQL默认使用的存储引擎</li>
@@ -369,8 +415,8 @@ SHOW TABLE STATUS; # 可以查看表格元信息包括使用的存储引擎
 </div>
 </div>
 
-<div id="outline-container-orgb18a318" class="outline-3">
-<h3 id="orgb18a318"><span class="section-number-3">4.2</span> InnoDB</h3>
+<div id="outline-container-org5c57585" class="outline-3">
+<h3 id="org5c57585"><span class="section-number-3">4.2</span> InnoDB</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>最早是由Innobase Oy公司开发，后来被Oracle收购</li>
@@ -399,12 +445,12 @@ SHOW TABLE STATUS; # 可以查看表格元信息包括使用的存储引擎
 </div>
 </div>
 
-<div id="outline-container-org06bc33d" class="outline-2">
-<h2 id="org06bc33d"><span class="section-number-2">5</span> 事务处理</h2>
+<div id="outline-container-org6e1b80e" class="outline-2">
+<h2 id="org6e1b80e"><span class="section-number-2">5</span> 事务处理</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgdf5e7f3" class="outline-3">
-<h3 id="orgdf5e7f3"><span class="section-number-3">5.1</span> ACID</h3>
+<div id="outline-container-org76d4ffd" class="outline-3">
+<h3 id="org76d4ffd"><span class="section-number-3">5.1</span> ACID</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 事务机制的特性通常被概括为ACID，Atomic，Consistent，Isolated，Durable，他们分别代表事务机制应该具备的一个属性。
@@ -418,8 +464,8 @@ SHOW TABLE STATUS; # 可以查看表格元信息包括使用的存储引擎
 </div>
 </div>
 
-<div id="outline-container-org0f63fb7" class="outline-3">
-<h3 id="org0f63fb7"><span class="section-number-3">5.2</span> 隔离性</h3>
+<div id="outline-container-orgd08e3a2" class="outline-3">
+<h3 id="orgd08e3a2"><span class="section-number-3">5.2</span> 隔离性</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li><a href="http://en.wikipedia.org/wiki/Isolation_(database_systems)">http://en.wikipedia.org/wiki/Isolation_(database_systems)</a></li>
@@ -642,39 +688,39 @@ The default replication type in MySQL is statement-based replication, and this r
 </div>
 </div>
 
-<div id="outline-container-orga35a640" class="outline-2">
-<h2 id="orga35a640"><span class="section-number-2">6</span> 外键和引用完整性</h2>
+<div id="outline-container-org73c9063" class="outline-2">
+<h2 id="org73c9063"><span class="section-number-2">6</span> 外键和引用完整性</h2>
 </div>
-<div id="outline-container-org443dd87" class="outline-2">
-<h2 id="org443dd87"><span class="section-number-2">7</span> 存储过程</h2>
+<div id="outline-container-org9afd48a" class="outline-2">
+<h2 id="org9afd48a"><span class="section-number-2">7</span> 存储过程</h2>
 </div>
-<div id="outline-container-org8296e59" class="outline-2">
-<h2 id="org8296e59"><span class="section-number-2">8</span> 元数据</h2>
+<div id="outline-container-org1d2eca5" class="outline-2">
+<h2 id="org1d2eca5"><span class="section-number-2">8</span> 元数据</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orgf864594" class="outline-3">
-<h3 id="orgf864594"><span class="section-number-3">8.1</span> SHOW</h3>
+<div id="outline-container-org5eaeb58" class="outline-3">
+<h3 id="org5eaeb58"><span class="section-number-3">8.1</span> SHOW</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 #todo:
 </p>
 <ul class="org-ul">
 <li>SHOW DATABASES;</li>
-<li>SHOW CREATE DATABASE db_name;</li>
-<li>SHOW TABLES [FROM db_name];</li>
-<li>SHOW CREATE TABLE tbl_name;</li>
-<li>SHOW COLUMNS FROM tbl_name;</li>
-<li>SHOW INDEX FROM tbl_name;</li>
-<li>SHOW TABLE STATUS [FROM db_name];</li>
+<li>SHOW CREATE DATABASE db<sub>name</sub>;</li>
+<li>SHOW TABLES [FROM db<sub>name</sub>];</li>
+<li>SHOW CREATE TABLE tbl<sub>name</sub>;</li>
+<li>SHOW COLUMNS FROM tbl<sub>name</sub>;</li>
+<li>SHOW INDEX FROM tbl<sub>name</sub>;</li>
+<li>SHOW TABLE STATUS [FROM db<sub>name</sub>];</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb6048ca" class="outline-3">
-<h3 id="orgb6048ca"><span class="section-number-3">8.2</span> information_schema</h3>
+<div id="outline-container-org3e53b42" class="outline-3">
+<h3 id="org3e53b42"><span class="section-number-3">8.2</span> information<sub>schema</sub></h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
-可以将information_schema看作一个虚拟数据库，里面的数据表是不同数据库的元数据所构成的视图。各个存储引擎还会在这里面添加它们专用的数据表。
+可以将information<sub>schema看作一个虚拟数据库</sub>，里面的数据表是不同数据库的元数据所构成的视图。各个存储引擎还会在这里面添加它们专用的数据表。
 </p>
 
 <pre class="example">
@@ -727,8 +773,8 @@ mysql&gt; show tables in information_schema;
 </div>
 </div>
 
-<div id="outline-container-org3f9c7d2" class="outline-3">
-<h3 id="org3f9c7d2"><span class="section-number-3">8.3</span> mysql</h3>
+<div id="outline-container-orgdfb0a3f" class="outline-3">
+<h3 id="orgdfb0a3f"><span class="section-number-3">8.3</span> mysql</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 #todo:
@@ -769,12 +815,12 @@ mysql&gt; show tables in mysql;
 </div>
 </div>
 
-<div id="outline-container-org49e3a07" class="outline-2">
-<h2 id="org49e3a07"><span class="section-number-2">9</span> 数据目录</h2>
+<div id="outline-container-org86ad61b" class="outline-2">
+<h2 id="org86ad61b"><span class="section-number-2">9</span> 数据目录</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org8789d3e" class="outline-3">
-<h3 id="org8789d3e"><span class="section-number-3">9.1</span> 目录位置</h3>
+<div id="outline-container-org5c5f6c0" class="outline-3">
+<h3 id="org5c5f6c0"><span class="section-number-3">9.1</span> 目录位置</h3>
 <div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
 <li>源代码安装默认是 /usr/local/mysql/var</li>
@@ -785,8 +831,8 @@ mysql&gt; show tables in mysql;
 </div>
 </div>
 
-<div id="outline-container-org846acad" class="outline-3">
-<h3 id="org846acad"><span class="section-number-3">9.2</span> 层次结构</h3>
+<div id="outline-container-org5cffc68" class="outline-3">
+<h3 id="org5cffc68"><span class="section-number-3">9.2</span> 层次结构</h3>
 <div class="outline-text-3" id="text-9-2">
 <ul class="org-ul">
 <li>每个数据库对应一个目录
@@ -814,8 +860,8 @@ mysql&gt; show tables in mysql;
 <li>HOSTNAME-slow.log 慢查询日志
 <ul class="org-ul">
 <li>判断是否为慢查询和下面两个指标相关</li>
-<li>long_query_time（单位秒） # 判断多长时间为慢</li>
-<li>min_examined_row_limit # 只有被查询这么多次之后才有资格被记录到日志里面</li>
+<li>long<sub>query</sub><sub>time</sub>（单位秒） # 判断多长时间为慢</li>
+<li>min<sub>examined</sub><sub>row</sub><sub>limit</sub> # 只有被查询这么多次之后才有资格被记录到日志里面</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -823,8 +869,8 @@ mysql&gt; show tables in mysql;
 </div>
 </div>
 
-<div id="outline-container-org1f574ce" class="outline-2">
-<h2 id="org1f574ce"><span class="section-number-2">10</span> 权限管理</h2>
+<div id="outline-container-orgf5f7ef4" class="outline-2">
+<h2 id="orgf5f7ef4"><span class="section-number-2">10</span> 权限管理</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>GRANT ALL PRIVILEGES ON &lt;db&gt;(<b>).&lt;table&gt;(</b>) TO 'user'@'host' IDENTIFIED BY 'password' # 授权</li>
@@ -834,12 +880,12 @@ mysql&gt; show tables in mysql;
 </div>
 </div>
 
-<div id="outline-container-org484e34a" class="outline-2">
-<h2 id="org484e34a"><span class="section-number-2">11</span> 查询优化</h2>
+<div id="outline-container-orge514df2" class="outline-2">
+<h2 id="orge514df2"><span class="section-number-2">11</span> 查询优化</h2>
 <div class="outline-text-2" id="text-11">
 </div>
-<div id="outline-container-org2976f28" class="outline-3">
-<h3 id="org2976f28"><span class="section-number-3">11.1</span> 层级估算</h3>
+<div id="outline-container-orga251289" class="outline-3">
+<h3 id="orga251289"><span class="section-number-3">11.1</span> 层级估算</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 #note: credited to caole
@@ -851,8 +897,8 @@ mysql&gt; show tables in mysql;
 </div>
 </div>
 
-<div id="outline-container-org20972dd" class="outline-3">
-<h3 id="org20972dd"><span class="section-number-3">11.2</span> 优化索引</h3>
+<div id="outline-container-org80cf9a3" class="outline-3">
+<h3 id="org80cf9a3"><span class="section-number-3">11.2</span> 优化索引</h3>
 <div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>对数据表进行分析
@@ -866,12 +912,12 @@ mysql&gt; show tables in mysql;
 <li>提示优化器
 <ul class="org-ul">
 <li>FORCE INDEX, USE INDEX, IGNORE INDEX</li>
-<li>STRAIGHT_JOIN # 强制优化器按照特定顺序来做JOIN</li>
+<li>STRAIGHT<sub>JOIN</sub> # 强制优化器按照特定顺序来做JOIN</li>
 </ul></li>
 <li>尽量使用数据类型相同的数据列进行比较</li>
 <li>使带索引的数据列在比较表达式中单独出现
 <ul class="org-ul">
-<li>f(x) &lt; 4, 这样就需要遍历所有x并且作用f然后比较。所以最好是可以x &lt; f^-1(4)</li>
+<li>f(x) &lt; 4, 这样就需要遍历所有x并且作用f然后比较。所以最好是可以x &lt; f<sup>-1</sup>(4)</li>
 </ul></li>
 <li>不要在LIKE模式的开始位置使用通配符</li>
 <li>试验各种查询的变化格式，并且需要多次运行它们</li>
@@ -880,8 +926,8 @@ mysql&gt; show tables in mysql;
 </div>
 </div>
 
-<div id="outline-container-org11aed2a" class="outline-3">
-<h3 id="org11aed2a"><span class="section-number-3">11.3</span> EXPLAIN</h3>
+<div id="outline-container-org7372a68" class="outline-3">
+<h3 id="org7372a68"><span class="section-number-3">11.3</span> EXPLAIN</h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 EXPLAIN语句提供的信息可以帮助我们了解优化器为处理各种语句而生成的执行计划。这里以两个例子做说明。假设我们有t1,t2两个数据表，列分别为k(int)，v(int)，然后分别执行下面语句
@@ -924,11 +970,11 @@ mysql&gt; explain SELECT * from t1 WHERE k &lt; 20 AND k &gt; 10;
 +----+-------------+-------+------+---------------+------+---------+------+------+-------------+
 </pre>
 <ul class="org-ul">
-<li>select_type 简单选择 #todo: ???</li>
+<li>select<sub>type</sub> 简单选择 #todo: ???</li>
 <li>table 数据表</li>
 <li>type 优化器可以用来搜索的区间（ALL表示只能全部扫描）</li>
-<li>possible_keys 可以用来做搜索的keys</li>
-<li>key/key_len 最终选择用来做搜索的key和其长度</li>
+<li>possible<sub>keys</sub> 可以用来做搜索的keys</li>
+<li>key/key<sub>len</sub> 最终选择用来做搜索的key和其长度</li>
 <li>ref 是否参考其他数据表字段</li>
 <li>row 处理多少行数据</li>
 <li>Extra #todo: ???</li>
@@ -951,8 +997,8 @@ mysql&gt; explain SELECT * from t1 WHERE k &lt; 20 AND k &gt; 10;
 </pre>
 <ul class="org-ul">
 <li>type=range 表明可以有范围查询</li>
-<li>possible_keys 可以使用k来做搜索</li>
-<li>key/key_len 最后也是使用k来做搜索，并且长度为4字节</li>
+<li>possible<sub>keys</sub> 可以使用k来做搜索</li>
+<li>key/key<sub>len</sub> 最后也是使用k来做搜索，并且长度为4字节</li>
 <li>rows 只需要处理8个数据行</li>
 </ul>
 
@@ -975,34 +1021,34 @@ mysql&gt; explain SELECT * from t1 INNER JOIN t2 WHERE t1.k = t2.k;
 </div>
 </div>
 
-<div id="outline-container-org1ee3ece" class="outline-3">
-<h3 id="org1ee3ece"><span class="section-number-3">11.4</span> 查询缓存</h3>
+<div id="outline-container-orge44d23b" class="outline-3">
+<h3 id="orge44d23b"><span class="section-number-3">11.4</span> 查询缓存</h3>
 <div class="outline-text-3" id="text-11-4">
 <p>
 如果数据很少更新的话，那么开启查询缓存是有利的。如果数据表被更新的话，所有与之相关的查询缓存都会失效并且被删除。
 </p>
 <ul class="org-ul">
 <li>configure阶段 &#x2013;without-query-cache 可以构建不带查询缓存的服务器</li>
-<li>have_query_cache 是否支持查询缓存</li>
-<li>query_cache_type
+<li>have<sub>query</sub><sub>cache</sub> 是否支持查询缓存</li>
+<li>query<sub>cache</sub><sub>type</sub>
 <ul class="org-ul">
 <li>0 不使用查询缓存</li>
-<li>1 开启，但是不包括SELECT SQL_NO_CACHE开头的查询</li>
-<li>2 开启，但是只包括SELECT SQL_CACHE开头的查询</li>
+<li>1 开启，但是不包括SELECT SQL<sub>NO</sub><sub>CACHE开头的查询</sub></li>
+<li>2 开启，但是只包括SELECT SQL<sub>CACHE开头的查询</sub></li>
 </ul></li>
-<li>query_cache_size 查询缓存大小，字节为单位</li>
-<li>query_cache_limit 缓存最大结果集合大小，比这个值大的查询结果不能被缓存</li>
+<li>query<sub>cache</sub><sub>size</sub> 查询缓存大小，字节为单位</li>
+<li>query<sub>cache</sub><sub>limit</sub> 缓存最大结果集合大小，比这个值大的查询结果不能被缓存</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8e8b015" class="outline-2">
-<h2 id="org8e8b015"><span class="section-number-2">12</span> 备份复制</h2>
+<div id="outline-container-org043229c" class="outline-2">
+<h2 id="org043229c"><span class="section-number-2">12</span> 备份复制</h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-orge0a1065" class="outline-3">
-<h3 id="orge0a1065"><span class="section-number-3">12.1</span> 检查修复</h3>
+<div id="outline-container-org92fd604" class="outline-3">
+<h3 id="org92fd604"><span class="section-number-3">12.1</span> 检查修复</h3>
 <div class="outline-text-3" id="text-12-1">
 <ul class="org-ul">
 <li>CHECK TABLE</li>
@@ -1012,8 +1058,8 @@ mysql&gt; explain SELECT * from t1 INNER JOIN t2 WHERE t1.k = t2.k;
 </div>
 </div>
 
-<div id="outline-container-orgf88e052" class="outline-3">
-<h3 id="orgf88e052"><span class="section-number-3">12.2</span> 数据备份</h3>
+<div id="outline-container-org81ec7d5" class="outline-3">
+<h3 id="org81ec7d5"><span class="section-number-3">12.2</span> 数据备份</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 数据库备份按照它们的格式可以分为两大类
@@ -1034,11 +1080,11 @@ mysql&gt; explain SELECT * from t1 INNER JOIN t2 WHERE t1.k = t2.k;
 </div>
 </div>
 
-<div id="outline-container-org4144dde" class="outline-3">
-<h3 id="org4144dde"><span class="section-number-3">12.3</span> 主从同步</h3>
+<div id="outline-container-orgb6b5138" class="outline-3">
+<h3 id="orgb6b5138"><span class="section-number-3">12.3</span> 主从同步</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
-mysql实现上是所有操作都会写到binlog里面，然后slave有一个专门的io线程(IO_THREAD)不断地从master binlog里面取出增量数据，写到本地的relay-log.同时slave本地有一个执行线程(SQL_THREAD)，将这些realy-log执行修改自己的数据库，达到同步的目的。relay-log里面的内容和master binlog内容每条记录都是完全相同的，最后进入slave binlog记录和master binlog对应记录也是一样的。执行id是master id,执行时间是master binlog记录的时间，本地slave是不会进行任何修改的。主从同步要求不仅要求主从服务器在二进制日志的格式方面兼容，还要在功能上兼容（执行对应的语句）
+mysql实现上是所有操作都会写到binlog里面，然后slave有一个专门的io线程(IO<sub>THREAD</sub>)不断地从master binlog里面取出增量数据，写到本地的relay-log.同时slave本地有一个执行线程(SQL<sub>THREAD</sub>)，将这些realy-log执行修改自己的数据库，达到同步的目的。relay-log里面的内容和master binlog内容每条记录都是完全相同的，最后进入slave binlog记录和master binlog对应记录也是一样的。执行id是master id,执行时间是master binlog记录的时间，本地slave是不会进行任何修改的。主从同步要求不仅要求主从服务器在二进制日志的格式方面兼容，还要在功能上兼容（执行对应的语句）
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -1062,7 +1108,7 @@ mysql实现上是所有操作都会写到binlog里面，然后slave有一个专�
 </tr>
 
 <tr>
-<td class="org-left">relay_log_purge</td>
+<td class="org-left">relay<sub>log</sub><sub>purge</sub></td>
 <td class="org-left">删除无用的relaylog</td>
 </tr>
 
@@ -1072,17 +1118,17 @@ mysql实现上是所有操作都会写到binlog里面，然后slave有一个专�
 </tr>
 
 <tr>
-<td class="org-left">max_binlog_size</td>
+<td class="org-left">max<sub>binlog</sub><sub>size</sub></td>
 <td class="org-left">单个binlog文件最大大小</td>
 </tr>
 
 <tr>
-<td class="org-left">max_relay_log_size</td>
+<td class="org-left">max<sub>relay</sub><sub>log</sub><sub>size</sub></td>
 <td class="org-left">单个relaylog文件最大大小</td>
 </tr>
 
 <tr>
-<td class="org-left">expire_logs_days=n</td>
+<td class="org-left">expire<sub>logs</sub><sub>days</sub>=n</td>
 <td class="org-left">自动删除超过n天的binlog，并且更新索引文件</td>
 </tr>
 
@@ -1124,11 +1170,11 @@ binlog-format有三种选择
 <li>reset slave; # 清除所有relaylog</li>
 <li>start/stop slave # 启动停止复制
 <ul class="org-ul">
-<li>IO_THREAD 只启动停止IO线程</li>
-<li>SQL_THREAD 只启动停止SQL线程</li>
+<li>IO<sub>THREAD</sub> 只启动停止IO线程</li>
+<li>SQL<sub>THREAD</sub> 只启动停止SQL线程</li>
 </ul></li>
 <li>purge master/binary logs to 'log-bin.000012'; # 将log-bin.000012之前的binlog都删除</li>
-<li>change master to master_host='', master_user='', master_password='', master_log_file='', master_log_pos='' # 初始化复制坐标
+<li>change master to master<sub>host</sub>='', master<sub>user</sub>='', master<sub>password</sub>='', master<sub>log</sub><sub>file</sub>='', master<sub>log</sub><sub>pos</sub>='' # 初始化复制坐标
 <ul class="org-ul">
 <li>初始复制状态会记录在master.info文件，并且随着镜像工作进展而刷新这个文件</li>
 </ul></li>
@@ -1165,19 +1211,19 @@ GTID(global trx id)(since MySQL 5.6)
 需要使用下面参数
 </p>
 <ul class="org-ul">
-<li>gtid_mode=ON</li>
+<li>gtid<sub>mode</sub>=ON</li>
 <li>log-bin</li>
 <li>log-slave-updates</li>
 <li>enforce-gtid-consistency=true</li>
-<li>server_id</li>
+<li>server<sub>id</sub></li>
 <li>#note: much eaiser to handle master-slave replication and failover situation</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd4fd5cd" class="outline-2">
-<h2 id="orgd4fd5cd"><span class="section-number-2">13</span> 配置文件</h2>
+<div id="outline-container-org305f4b7" class="outline-2">
+<h2 id="org305f4b7"><span class="section-number-2">13</span> 配置文件</h2>
 <div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>~/.my.cnf overrides /etc/my.cnf</li>
@@ -1186,15 +1232,15 @@ GTID(global trx id)(since MySQL 5.6)
 <li>[mysqld] MySQL服务端程序选项组标记</li>
 <li>[mysqld-X.Y] MySQL服务端程序选项组标记，但是只有X.Y这个版本才会读取</li>
 <li>[mysqld&lt;nnnn&gt;] MySQL服务实例&lt;nnnn&gt;选项组标记，启动多实例时候有用</li>
-<li>[mysqld_safe] mysqld_safe程序选项组标记</li>
-<li>[mysqld_multi] mysqld_multi程序选项组标记</li>
-<li>[mysql_install_db] mysql_install_db程序选项组标记</li>
+<li>[mysqld<sub>safe</sub>] mysqld<sub>safe程序选项组标记</sub></li>
+<li>[mysqld<sub>multi</sub>] mysqld<sub>multi程序选项组标记</sub></li>
+<li>[mysql<sub>install</sub><sub>db</sub>] mysql<sub>install</sub><sub>db程序选项组标记</sub></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org61003ee" class="outline-2">
-<h2 id="org61003ee"><span class="section-number-2">14</span> 系统变量</h2>
+<div id="outline-container-orgf00734f" class="outline-2">
+<h2 id="orgf00734f"><span class="section-number-2">14</span> 系统变量</h2>
 <div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li><a href="http://www.mysqlperformanceblog.com/2014/01/28/10-mysql-settings-to-tune-after-installation/">http://www.mysqlperformanceblog.com/2014/01/28/10-mysql-settings-to-tune-after-installation/</a></li>
@@ -1204,7 +1250,7 @@ GTID(global trx id)(since MySQL 5.6)
 系统变量按照其作用范围的大小分为两个级别
 </p>
 <ul class="org-ul">
-<li>全局级 # 全面影响整个服务器的操作，比如key_buffer_size控制MyISAM的索引数据缓冲区大小</li>
+<li>全局级 # 全面影响整个服务器的操作，比如key<sub>buffer</sub><sub>size控制MyISAM的索引数据缓冲区大小</sub></li>
 <li>会话级 # 只印象服务器如何对待一个给定的客户链接，比如autocommit控制是否自动提交事务</li>
 </ul>
 <p>
@@ -1222,9 +1268,9 @@ GTID(global trx id)(since MySQL 5.6)
 在SQL语句变量先使用会话级别，然后再使用全局级别，也可以显式指定
 </p>
 <ul class="org-ul">
-<li>@@SESSION.var_name</li>
-<li>@@LOCAL.var_name</li>
-<li>@@GLOBAL.var_name</li>
+<li>@@SESSION.var<sub>name</sub></li>
+<li>@@LOCAL.var<sub>name</sub></li>
+<li>@@GLOBAL.var<sub>name</sub></li>
 </ul>
 
 <p>
@@ -1237,8 +1283,8 @@ MySQL服务器提供的状态变量使我们可以及时掌握它的实际运行
 </ul>
 </div>
 
-<div id="outline-container-orgeb33df3" class="outline-3">
-<h3 id="orgeb33df3"><span class="section-number-3">14.1</span> 日志相关</h3>
+<div id="outline-container-org8bf2a23" class="outline-3">
+<h3 id="org8bf2a23"><span class="section-number-3">14.1</span> 日志相关</h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 刷新日志
@@ -1342,16 +1388,16 @@ binlog &amp; relaylog
 </thead>
 <tbody>
 <tr>
-<td class="org-left">sync_binlog=n</td>
-<td class="org-left">每进行n次事务提交之后使用fsync等磁盘同步指令将binlog_cache中数据强制写入磁盘</td>
+<td class="org-left">sync<sub>binlog</sub>=n</td>
+<td class="org-left">每进行n次事务提交之后使用fsync等磁盘同步指令将binlog<sub>cache中数据强制写入磁盘</sub></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org7a36715" class="outline-3">
-<h3 id="org7a36715"><span class="section-number-3">14.2</span> 系统相关</h3>
+<div id="outline-container-org1dba27b" class="outline-3">
+<h3 id="org1dba27b"><span class="section-number-3">14.2</span> 系统相关</h3>
 <div class="outline-text-3" id="text-14-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1394,17 +1440,17 @@ binlog &amp; relaylog
 </tr>
 
 <tr>
-<td class="org-left">max_allowed_packet</td>
+<td class="org-left">max<sub>allowed</sub><sub>packet</sub></td>
 <td class="org-left">通信使用的缓冲区最大长度</td>
 </tr>
 
 <tr>
-<td class="org-left">max_connections</td>
+<td class="org-left">max<sub>connections</sub></td>
 <td class="org-left">同时处于打开状态的客户连接的最大个数</td>
 </tr>
 
 <tr>
-<td class="org-left">table_cache/table_open_cache</td>
+<td class="org-left">table<sub>cache</sub>/table<sub>open</sub><sub>cache</sub></td>
 <td class="org-left">数据表文件句柄最大数</td>
 </tr>
 </tbody>
@@ -1412,8 +1458,8 @@ binlog &amp; relaylog
 </div>
 </div>
 
-<div id="outline-container-orgefc3452" class="outline-3">
-<h3 id="orgefc3452"><span class="section-number-3">14.3</span> 存储引擎</h3>
+<div id="outline-container-orgb8c9e26" class="outline-3">
+<h3 id="orgb8c9e26"><span class="section-number-3">14.3</span> 存储引擎</h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 <a href="http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html">http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html</a>
@@ -1445,59 +1491,59 @@ binlog &amp; relaylog
 </tr>
 
 <tr>
-<td class="org-left">innodb_data_home_dir</td>
+<td class="org-left">innodb<sub>data</sub><sub>home</sub><sub>dir</sub></td>
 <td class="org-left">数据目录（默认是MySQL数据目录）</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_data_file_path</td>
+<td class="org-left">innodb<sub>data</sub><sub>file</sub><sub>path</sub></td>
 <td class="org-left">数据文件列表</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_autoextend_increment</td>
+<td class="org-left">innodb<sub>autoextend</sub><sub>increment</sub></td>
 <td class="org-left">扩展表空间时递增量（8MB）</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_buffer_pool_size</td>
+<td class="org-left">innodb<sub>buffer</sub><sub>pool</sub><sub>size</sub></td>
 <td class="org-left">数据和索引缓冲区大小</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_log_buffer_size</td>
+<td class="org-left">innodb<sub>log</sub><sub>buffer</sub><sub>size</sub></td>
 <td class="org-left">事务日志缓冲区</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_log_group_home_dir</td>
+<td class="org-left">innodb<sub>log</sub><sub>group</sub><sub>home</sub><sub>dir</sub></td>
 <td class="org-left">事务日志文件(ib_)存放目录（默认是数据目录）</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_log_file_size</td>
+<td class="org-left">innodb<sub>log</sub><sub>file</sub><sub>size</sub></td>
 <td class="org-left">单个事务日志文件长度</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_log_files_in_group</td>
+<td class="org-left">innodb<sub>log</sub><sub>files</sub><sub>in</sub><sub>group</sub></td>
 <td class="org-left">事务日志文件数量（？？？）</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_flush_log_at_trx_commit</td>
+<td class="org-left">innodb<sub>flush</sub><sub>log</sub><sub>at</sub><sub>trx</sub><sub>commit</sub></td>
 <td class="org-left">控制事务提交刷日志方式</td>
 </tr>
 
 <tr>
-<td class="org-left">innodb_flush_log_at_timeout</td>
+<td class="org-left">innodb<sub>flush</sub><sub>log</sub><sub>at</sub><sub>timeout</sub></td>
 <td class="org-left">控制刷日志时间间隔</td>
 </tr>
 </tbody>
 </table>
 
 <p>
-innodb_data_file_path的格式这里需要详细解释，每个文件之间通过;分隔，每个文件规格说明如下
+innodb<sub>data</sub><sub>file</sub><sub>path的格式这里需要详细解释</sub>，每个文件之间通过;分隔，每个文件规格说明如下
 </p>
 <ul class="org-ul">
 <li>path:size # 文件初始大小size字节，并且不可扩展</li>
@@ -1520,26 +1566,26 @@ InnoDB可以使用未经过格式化的硬盘分区，有几个理由值得考�
 </p>
 
 <p>
-innodb_flush_log_at_trx_commit 可以用来控制提交事务时写入磁盘的方式
+innodb<sub>flush</sub><sub>log</sub><sub>at</sub><sub>trx</sub><sub>commit</sub> 可以用来控制提交事务时写入磁盘的方式
 </p>
 <ul class="org-ul">
-<li>0. 隔段时间log_buffer会写入log_file并且刷入磁盘</li>
-<li>1（默认值). 每次提交事务都会将log_buffer写入log_file并且刷入磁盘</li>
-<li>2. 每次提交事务都会将log_buffer写入log_file, 但是隔段时间再刷入磁盘</li>
+<li>0. 隔段时间log<sub>buffer会写入log</sub><sub>file并且刷入磁盘</sub></li>
+<li>1（默认值). 每次提交事务都会将log<sub>buffer写入log</sub><sub>file并且刷入磁盘</sub></li>
+<li>2. 每次提交事务都会将log<sub>buffer写入log</sub><sub>file</sub>, 但是隔段时间再刷入磁盘</li>
 </ul>
 <p>
-间隔时间由 innodb_flush_log_at_timeout 控制，默认是1s
+间隔时间由 innodb<sub>flush</sub><sub>log</sub><sub>at</sub><sub>timeout</sub> 控制，默认是1s
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4f7c530" class="outline-2">
-<h2 id="org4f7c530"><span class="section-number-2">15</span> 编程接口</h2>
+<div id="outline-container-org453c897" class="outline-2">
+<h2 id="org453c897"><span class="section-number-2">15</span> 编程接口</h2>
 <div class="outline-text-2" id="text-15">
 </div>
-<div id="outline-container-orgb79af2a" class="outline-3">
-<h3 id="orgb79af2a"><span class="section-number-3">15.1</span> 超时重连</h3>
+<div id="outline-container-org536bea3" class="outline-3">
+<h3 id="org536bea3"><span class="section-number-3">15.1</span> 超时重连</h3>
 <div class="outline-text-3" id="text-15-1">
 <p>
 JDBC连接数据库出现如下问题
@@ -1547,20 +1593,20 @@ JDBC连接数据库出现如下问题
 <blockquote>
 <p>
 Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was 99,184,284 milliseconds ago.  The last packet sent successfully to the server was 99,184,284 milliseconds
- ago. is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts,
+ ago. is longer than the server configured value of 'wait<sub>timeout</sub>'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts,
  or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
 </p>
 </blockquote>
 
 <p>
-出现这个问题原因是因为，mysql服务对于长时间不活跃的连接会直接关闭掉，这样client的连接下次操作的时候会出现连接错误。按照上面给出的提示，一个方法是修改wait_timeout，另外一个方法是在JDBC uri里面指定autoReconnect=true这个选项支持自动重连。但是autoReconnect只是对MySQL4以及更老的版本适用，对于MySQL5不适用。接下来看看timeout这个参数。MySQL5手册中对两个变量有如下的说明：
+出现这个问题原因是因为，mysql服务对于长时间不活跃的连接会直接关闭掉，这样client的连接下次操作的时候会出现连接错误。按照上面给出的提示，一个方法是修改wait<sub>timeout</sub>，另外一个方法是在JDBC uri里面指定autoReconnect=true这个选项支持自动重连。但是autoReconnect只是对MySQL4以及更老的版本适用，对于MySQL5不适用。接下来看看timeout这个参数。MySQL5手册中对两个变量有如下的说明：
 </p>
 <ul class="org-ul">
-<li>interactive_timeout：服务器关闭交互式连接前等待活动的秒数。交互式客户端定义为在mysql_real_connect()中使用CLIENT_INTERACTIVE选项的客户端。又见wait_timeout</li>
-<li>wait_timeout:服务器关闭非交互连接之前等待活动的秒数。在线程启动时，根据全局wait_timeout值或全局interactive_timeout值初始化会话wait_timeout值，取决于客户端类型(由mysql_real_connect()的连接选项CLIENT_INTERACTIVE定义)，又见interactive_timeout</li>
+<li>interactive<sub>timeout</sub>：服务器关闭交互式连接前等待活动的秒数。交互式客户端定义为在mysql<sub>real</sub><sub>connect</sub>()中使用CLIENT<sub>INTERACTIVE选项的客户端</sub>。又见wait<sub>timeout</sub></li>
+<li>wait<sub>timeout</sub>:服务器关闭非交互连接之前等待活动的秒数。在线程启动时，根据全局wait<sub>timeout值或全局interactive</sub><sub>timeout值初始化会话wait</sub><sub>timeout值</sub>，取决于客户端类型(由mysql<sub>real</sub><sub>connect</sub>()的连接选项CLIENT<sub>INTERACTIVE定义</sub>)，又见interactive<sub>timeout</sub></li>
 </ul>
 <p>
-可见wait_timeout只要是用于非交互下面的connection超时时间。可以通过增大这个值然后重启服务来缓解这个问题。
+可见wait<sub>timeout只要是用于非交互下面的connection超时时间</sub>。可以通过增大这个值然后重启服务来缓解这个问题。
 </p>
 
 <p>
@@ -1574,15 +1620,15 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last pac
 </div>
 </div>
 
-<div id="outline-container-org4d3d893" class="outline-3">
-<h3 id="org4d3d893"><span class="section-number-3">15.2</span> 连接数量</h3>
+<div id="outline-container-org9fbb3d7" class="outline-3">
+<h3 id="org9fbb3d7"><span class="section-number-3">15.2</span> 连接数量</h3>
 <div class="outline-text-3" id="text-15-2">
 <ul class="org-ul">
 <li><a href="http://www.mysqlperformanceblog.com/2014/01/23/percona-server-improve-scalability-percona-thread-pool/">http://www.mysqlperformanceblog.com/2014/01/23/percona-server-improve-scalability-percona-thread-pool/</a></li>
 </ul>
 
 <p>
-mysql最大连接数目可以通过参数max_connections进行配置，默认的连接数目是比较低的，对于需要处理大量请求的web服务来说需要增大。 <b>修改之后需要重启</b>
+mysql最大连接数目可以通过参数max<sub>connections进行配置</sub>，默认的连接数目是比较低的，对于需要处理大量请求的web服务来说需要增大。 <b>修改之后需要重启</b>
 </p>
 
 <pre class="example">
@@ -1614,10 +1660,10 @@ mysql&gt; show status like '%connect%';
 对于status状态来说有下面几个和connection相关的数值
 </p>
 <ul class="org-ul">
-<li>Aborted_connects 尝试已经失败的MySQL服务器的连接的次数。</li>
+<li>Aborted<sub>connects</sub> 尝试已经失败的MySQL服务器的连接的次数。</li>
 <li>Connections 试图连接MySQL服务器的次数。</li>
-<li>Max_used_connections 同时使用的连接的最大数目。</li>
-<li>Threads_connected 当前打开的连接的数量。</li>
+<li>Max<sub>used</sub><sub>connections</sub> 同时使用的连接的最大数目。</li>
+<li>Threads<sub>connected</sub> 当前打开的连接的数量。</li>
 </ul>
 
 <p>
@@ -1661,8 +1707,8 @@ java.sql.SQLException: null,  message from server: "Can't create a new thread (e
 </div>
 </div>
 
-<div id="outline-container-org48190ad" class="outline-2">
-<h2 id="org48190ad"><span class="section-number-2">16</span> 实用程序</h2>
+<div id="outline-container-org4914dc2" class="outline-2">
+<h2 id="org4914dc2"><span class="section-number-2">16</span> 实用程序</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 MySQL（5.6） Installation Layout for Generic Unix/Linux Binary Package
@@ -1715,7 +1761,7 @@ MySQL（5.6） Installation Layout for Generic Unix/Linux Binary Package
 
 <tr>
 <td class="org-left">scripts</td>
-<td class="org-left">mysql_install_db</td>
+<td class="org-left">mysql<sub>install</sub><sub>db</sub></td>
 </tr>
 
 <tr>
@@ -1741,7 +1787,7 @@ MySQL（5.6） Installation Layout for Generic Unix/Linux Binary Package
 </table>
 
 <ul class="org-ul">
-<li>mysql_install_db # 初始化基本表
+<li>mysql<sub>install</sub><sub>db</sub> # 初始化基本表
 <ul class="org-ul">
 <li>&#x2013;user 用户</li>
 <li>&#x2013;datadir 数据目录</li>
@@ -1752,7 +1798,7 @@ MySQL（5.6） Installation Layout for Generic Unix/Linux Binary Package
 </ul></li>
 <li>mysqld # 服务端</li>
 <li>mysql # 客户端</li>
-<li>mysqld_safe # 启动脚本
+<li>mysqld<sub>safe</sub> # 启动脚本
 <ul class="org-ul">
 <li>&#x2013;skip-grant-tables # 忽略权限表 #note: 可以用来重置密码</li>
 <li>&#x2013;skip-networking # 不启动网络接口</li>
@@ -1760,10 +1806,10 @@ MySQL（5.6） Installation Layout for Generic Unix/Linux Binary Package
 </ul></li>
 <li>mysql.server # 启停脚本
 <ul class="org-ul">
-<li>对mysqld_safe的包装，不接受任何参数</li>
+<li>对mysqld<sub>safe的包装</sub>，不接受任何参数</li>
 <li>提供start/stop/restart方法</li>
 </ul></li>
-<li>mysqld_multi # 启动多个MySQL实例
+<li>mysqld<sub>multi</sub> # 启动多个MySQL实例
 <ul class="org-ul">
 <li>&#x2013;defaults-file # Read only this configuration file, do not read the standard system-wide and user-specific files</li>
 <li>&#x2013;defaults-extra-file # Read this configuration file in addition to the standard system-wide and user-specific files</li>
@@ -1779,12 +1825,12 @@ MySQL（5.6） Installation Layout for Generic Unix/Linux Binary Package
 </div>
 </div>
 
-<div id="outline-container-orgb4f6971" class="outline-2">
-<h2 id="orgb4f6971"><span class="section-number-2">17</span> 其他信息</h2>
+<div id="outline-container-org589bf08" class="outline-2">
+<h2 id="org589bf08"><span class="section-number-2">17</span> 其他信息</h2>
 <div class="outline-text-2" id="text-17">
 </div>
-<div id="outline-container-orgfb42adb" class="outline-3">
-<h3 id="orgfb42adb"><span class="section-number-3">17.1</span> 安装环境</h3>
+<div id="outline-container-org81b8ee1" class="outline-3">
+<h3 id="org81b8ee1"><span class="section-number-3">17.1</span> 安装环境</h3>
 <div class="outline-text-3" id="text-17-1">
 <p>
 Not all platforms are equally well-suited for running MySQL. How
@@ -1807,7 +1853,7 @@ process.</li>
 <li>The capability of the kernel and the thread library to run
 many threads that acquire and release a mutex over a short
 critical region frequently without excessive context switches.
-If the implementation of pthread_mutex_lock() is too anxious
+If the implementation of pthread<sub>mutex</sub><sub>lock</sub>() is too anxious
 to yield CPU time, this hurts MySQL tremendously. If this
 issue is not taken care of, adding extra CPUs actually makes
 MySQL slower.</li>
@@ -1835,8 +1881,8 @@ much smaller.</li>
 </div>
 </div>
 
-<div id="outline-container-org3b895d2" class="outline-3">
-<h3 id="org3b895d2"><span class="section-number-3">17.2</span> 版本选择</h3>
+<div id="outline-container-orgbdab38a" class="outline-3">
+<h3 id="orgbdab38a"><span class="section-number-3">17.2</span> 版本选择</h3>
 <div class="outline-text-3" id="text-17-2">
 <p>
 The naming scheme in MySQL 5.6 uses release names that consist of
@@ -1900,8 +1946,8 @@ critical bugfixes are applied to the release.</li>
 </div>
 </div>
 
-<div id="outline-container-org9b51e35" class="outline-3">
-<h3 id="org9b51e35"><span class="section-number-3">17.3</span> 测试套件</h3>
+<div id="outline-container-org2a96355" class="outline-3">
+<h3 id="org2a96355"><span class="section-number-3">17.3</span> 测试套件</h3>
 <div class="outline-text-3" id="text-17-3">
 <p>
 All releases of MySQL are run through our standard tests and
@@ -1939,8 +1985,8 @@ downgrade.
 </div>
 </div>
 
-<div id="outline-container-orgc46c608" class="outline-3">
-<h3 id="orgc46c608"><span class="section-number-3">17.4</span> MySQL技术内幕</h3>
+<div id="outline-container-orgcc6b07c" class="outline-3">
+<h3 id="orgcc6b07c"><span class="section-number-3">17.4</span> MySQL技术内幕</h3>
 <div class="outline-text-3" id="text-17-4">
 <p>
 MySQL基础知识
@@ -1974,6 +2020,11 @@ MySQL的系统管理
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/mysql.html';this.page.identifier = 'mysql.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

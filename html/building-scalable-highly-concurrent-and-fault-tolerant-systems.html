@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Building Scalable, Highly Concurrent &amp; Fault-Tolerant Systems: Lessons Learned</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Building Scalable, Highly Concurrent &amp; Fault-Tolerant Systems: Lessons Learned</h1>
@@ -16,23 +62,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd6973c3">1. It's All Trade-offs</a></li>
-<li><a href="#org58c3462">2. Go Concurrent</a></li>
-<li><a href="#orgab004ad">3. Go Fault-Tolerant</a></li>
-<li><a href="#orga456cdb">4. Go Faster &amp; Go More</a></li>
-<li><a href="#orgcdbce4f">5. Go Distributed</a></li>
-<li><a href="#org67b9643">6. Go Big</a>
+<li><a href="#org341cdfc">1. It's All Trade-offs</a></li>
+<li><a href="#org301c153">2. Go Concurrent</a></li>
+<li><a href="#orgea86d6b">3. Go Fault-Tolerant</a></li>
+<li><a href="#org6ea66a7">4. Go Faster &amp; Go More</a></li>
+<li><a href="#orgf749c22">5. Go Distributed</a></li>
+<li><a href="#orga56a4b6">6. Go Big</a>
 <ul>
-<li><a href="#org099f4e9">6.1. Data</a></li>
-<li><a href="#org1375edc">6.2. DB</a></li>
+<li><a href="#org0e1de20">6.1. Data</a></li>
+<li><a href="#orgdc3a068">6.2. DB</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd6973c3" class="outline-2">
-<h2 id="orgd6973c3"><span class="section-number-2">1</span> It's All Trade-offs</h2>
+<div id="outline-container-org341cdfc" class="outline-2">
+<h2 id="org341cdfc"><span class="section-number-2">1</span> It's All Trade-offs</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>How do I know if I have a performance problem? <b>If your system is slow for a single user</b></li>
@@ -43,8 +89,8 @@
 </div>
 </div>
 
-<div id="outline-container-org58c3462" class="outline-2">
-<h2 id="org58c3462"><span class="section-number-2">2</span> Go Concurrent</h2>
+<div id="outline-container-org301c153" class="outline-2">
+<h2 id="org301c153"><span class="section-number-2">2</span> Go Concurrent</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Shared mutable state Together with threads 线程使用共享可修改状态使得代码不稳定
@@ -78,7 +124,7 @@
 Lazy &amp; On-demand
 </p>
 <ul class="org-ul">
-<li>No difference between
+<li>No difference between 
 <ul class="org-ul">
 <li>Concurrent &amp;</li>
 <li>Sequential code</li>
@@ -106,11 +152,11 @@ Lazy &amp; On-demand
 </div>
 </div>
 
-<div id="outline-container-orgab004ad" class="outline-2">
-<h2 id="orgab004ad"><span class="section-number-2">3</span> Go Fault-Tolerant</h2>
+<div id="outline-container-orgea86d6b" class="outline-2">
+<h2 id="orgea86d6b"><span class="section-number-2">3</span> Go Fault-Tolerant</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
-<li>Failure management in Java/C/C# etc <b>在独立的线程里面必须进行错误处理，否则外部没有办法发现错误。这样在线程里面整个错误处理贯穿于逻辑本身</b>
+<li>Failure management in Java/C/C# etc <b>在独立的线程里面必须进行错误处理，否则外部没有办法发现错误。这样在线程里面整个错误处理贯穿于逻辑本身</b> 
 <ul class="org-ul">
 <li>You are given a SINGLE thread of control</li>
 <li>If this thread blows up you are screwed</li>
@@ -138,8 +184,8 @@ Lazy &amp; On-demand
 </div>
 </div>
 
-<div id="outline-container-orga456cdb" class="outline-2">
-<h2 id="orga456cdb"><span class="section-number-2">4</span> Go Faster &amp; Go More</h2>
+<div id="outline-container-org6ea66a7" class="outline-2">
+<h2 id="org6ea66a7"><span class="section-number-2">4</span> Go Faster &amp; Go More</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Never block
@@ -167,8 +213,8 @@ Lazy &amp; On-demand
 </div>
 </div>
 
-<div id="outline-container-orgcdbce4f" class="outline-2">
-<h2 id="orgcdbce4f"><span class="section-number-2">5</span> Go Distributed</h2>
+<div id="outline-container-orgf749c22" class="outline-2">
+<h2 id="orgf749c22"><span class="section-number-2">5</span> Go Distributed</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Werner Vogels’ Misconceptions about Reliable Distributed Computing
@@ -193,12 +239,12 @@ Werner Vogels’ Misconceptions about Reliable Distributed Computing
 </div>
 </div>
 
-<div id="outline-container-org67b9643" class="outline-2">
-<h2 id="org67b9643"><span class="section-number-2">6</span> Go Big</h2>
+<div id="outline-container-orga56a4b6" class="outline-2">
+<h2 id="orga56a4b6"><span class="section-number-2">6</span> Go Big</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org099f4e9" class="outline-3">
-<h3 id="org099f4e9"><span class="section-number-3">6.1</span> Data</h3>
+<div id="outline-container-org0e1de20" class="outline-3">
+<h3 id="org0e1de20"><span class="section-number-3">6.1</span> Data</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Imperative OO programming (a la Hadoop) doesn't cut it
@@ -217,8 +263,8 @@ Werner Vogels’ Misconceptions about Reliable Distributed Computing
 </ul>
 </div>
 </div>
-<div id="outline-container-org1375edc" class="outline-3">
-<h3 id="org1375edc"><span class="section-number-3">6.2</span> DB</h3>
+<div id="outline-container-orgdc3a068" class="outline-3">
+<h3 id="orgdc3a068"><span class="section-number-3">6.2</span> DB</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>Scaling reads to a RDBMS is hard</li>
@@ -227,6 +273,11 @@ Werner Vogels’ Misconceptions about Reliable Distributed Computing
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/building-scalable-highly-concurrent-and-fault-tolerant-systems.html';this.page.identifier = 'building-scalable-highly-concurrent-and-fault-tolerant-systems.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

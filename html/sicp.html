@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Structure and Interpretation of Computer Programs</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Structure and Interpretation of Computer Programs</h1>
@@ -16,12 +62,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc5d6800">1. 序言</a></li>
-<li><a href="#orga33b564">2. 构造抽象过程</a></li>
-<li><a href="#org65e896e">3. 构造数据抽象</a></li>
-<li><a href="#orgfa95bc0">4. 模块化，对象和状态</a></li>
-<li><a href="#org93e3ced">5. 元语言抽象</a></li>
-<li><a href="#org72f7f68">6. 寄存器机器里的计算</a></li>
+<li><a href="#org0fbbe0c">1. 序言</a></li>
+<li><a href="#org61b56fe">2. 构造抽象过程</a></li>
+<li><a href="#org1cc19ff">3. 构造数据抽象</a></li>
+<li><a href="#orgff0f76f">4. 模块化，对象和状态</a></li>
+<li><a href="#org6ec1a91">5. 元语言抽象</a></li>
+<li><a href="#orgb151f0b">6. 寄存器机器里的计算</a></li>
 </ul>
 </div>
 </div>
@@ -29,8 +75,8 @@
 <a href="http://mitpress.mit.edu/sicp/">http://mitpress.mit.edu/sicp/</a>
 </p>
 
-<div id="outline-container-orgc5d6800" class="outline-2">
-<h2 id="orgc5d6800"><span class="section-number-2">1</span> 序言</h2>
+<div id="outline-container-org0fbbe0c" class="outline-2">
+<h2 id="org0fbbe0c"><span class="section-number-2">1</span> 序言</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 你所知道的有关计算的东西，其他人也都能学到。绝不要认为似乎成功计算的钥匙就掌握在你的手里。你所掌握的，也是我认为并且希望的，也就是智慧：那种看到这一机器比你第一次站在它面前时能够做的更多的能力，这样你才能将它向前推进。
@@ -58,8 +104,8 @@ SICP1的封面和SICP2的 <a href="images/SICP2.jpg">封面</a>
 </div>
 </div>
 
-<div id="outline-container-orga33b564" class="outline-2">
-<h2 id="orga33b564"><span class="section-number-2">2</span> 构造抽象过程</h2>
+<div id="outline-container-org61b56fe" class="outline-2">
+<h2 id="org61b56fe"><span class="section-number-2">2</span> 构造抽象过程</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 心智的活动除了尽力产生各种简单的认识外，主要表现在(组合，对比，抽象):
@@ -88,7 +134,7 @@ SICP1的封面和SICP2的 <a href="images/SICP2.jpg">封面</a>
 (define test
   (lambda (x y)
     (cond ((zero? x) 0)
-          (else y))))
+	  (else y))))
 (test 0 (loop))
 </pre>
 </div>
@@ -111,8 +157,8 @@ Lisp不像其他程序设计语言，它给了过程完全的第一级状态。�
 </div>
 </div>
 
-<div id="outline-container-org65e896e" class="outline-2">
-<h2 id="org65e896e"><span class="section-number-2">3</span> 构造数据抽象</h2>
+<div id="outline-container-org1cc19ff" class="outline-2">
+<h2 id="org1cc19ff"><span class="section-number-2">3</span> 构造数据抽象</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 现在到了数学抽象中最关键的一步:让我们忘记这些符号所表示的对象。数学家不应该在这里停步，有许多操作可以应用于这些符号，而根本不必考虑它们代表什么。
@@ -139,8 +185,8 @@ car = Contents of Address part of Register. cdr = Contents of Decrement part of 
 </div>
 </div>
 
-<div id="outline-container-orgfa95bc0" class="outline-2">
-<h2 id="orgfa95bc0"><span class="section-number-2">4</span> 模块化，对象和状态</h2>
+<div id="outline-container-orgff0f76f" class="outline-2">
+<h2 id="orgff0f76f"><span class="section-number-2">4</span> 模块化，对象和状态</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 延迟求值需要环境提供两个函数delay和force. 其中delay传入函数f返回一个延迟对象，而force作用在这个延迟对象上就可以执行f. 很明显delay需要使用宏来实现
@@ -155,8 +201,8 @@ car = Contents of Address part of Register. cdr = Contents of Decrement part of 
 
 ;; an example
 (define x (delay (begin
-                   (display "hello")
-                   (newline))))
+		   (display "hello")
+		   (newline))))
 (force x)
 </pre>
 </div>
@@ -175,13 +221,13 @@ car = Contents of Address part of Register. cdr = Contents of Decrement part of 
 (define s-map
   (lambda (f . ss)
     (s-cons (apply f (map s-car ss))
-            (apply s-map (cons f (map s-cdr ss))))))
+	    (apply s-map (cons f (map s-cdr ss))))))
 (define s-nth
   (lambda (n s)
     (let recur ((n n) (s s))
       (cond
-        ((zero? n) (s-car s))
-        (else (recur (- n 1) (s-cdr s)))))))
+	((zero? n) (s-car s))
+	(else (recur (- n 1) (s-cdr s)))))))
 </pre>
 </div>
 
@@ -206,12 +252,12 @@ car = Contents of Address part of Register. cdr = Contents of Decrement part of 
   (lambda (f)
     (let ((already? #f) (cache #f))
       (lambda ()
-        (cond
-         (already? cache)
-         (else (begin
-                 (set! already? #t)
-                 (set! cache (f))
-                 cache)))))))
+	(cond
+	 (already? cache)
+	 (else (begin
+		 (set! already? #t)
+		 (set! cache (f))
+		 cache)))))))
 (define-syntax delay
   (syntax-rules ()
     ((delay exp)
@@ -229,8 +275,8 @@ car = Contents of Address part of Register. cdr = Contents of Decrement part of 
 </div>
 </div>
 
-<div id="outline-container-org93e3ced" class="outline-2">
-<h2 id="org93e3ced"><span class="section-number-2">5</span> 元语言抽象</h2>
+<div id="outline-container-org6ec1a91" class="outline-2">
+<h2 id="org6ec1a91"><span class="section-number-2">5</span> 元语言抽象</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 真正的魔力在于知道哪个咒语有用，在什么时候，用于做什么，其诀窍就在于学会有关的诀窍。而这些咒语也使用我们的字母表里面的字母拼出来的，这些字母表中不过是几十个可以用笔画话出来的弯弯曲线。这就是最关键的！而这些珍宝也是如此，如果我们能将它们拿到手的话。这就像是说，就像通向珍宝的钥匙是珍宝。
@@ -288,8 +334,8 @@ Scheme的变形：非确定性计算
 </div>
 </div>
 
-<div id="outline-container-org72f7f68" class="outline-2">
-<h2 id="org72f7f68"><span class="section-number-2">6</span> 寄存器机器里的计算</h2>
+<div id="outline-container-orgb151f0b" class="outline-2">
+<h2 id="orgb151f0b"><span class="section-number-2">6</span> 寄存器机器里的计算</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 我的目的是想说明，这一天空机器并不是一种天赐造物或者生命体，它只不过是钟表一类的机械装置（而那些相信中标有灵魂的人却将这一工作说成是其创造者的荣耀），在很大程度上，这里多种多样的运动都是由最简单的物质力量产生的，就像钟表里所有的活动都是由一个发条产生的一样。
@@ -326,10 +372,10 @@ Scheme的变形：非确定性计算
   (let ((s '()))
     (define (push x) (set! s (cons x s)) 'done)
     (define (pop) (if (null? s)
-                      (error "pop stack: empty!")
-                      (let ((top (car s)))
-                        (set! s (cdr s))
-                        top)))
+		      (error "pop stack: empty!")
+		      (let ((top (car s)))
+			(set! s (cdr s))
+			top)))
     (define (init) (set! s '()) 'done)
     (define (dispatch message)
       (cond
@@ -344,41 +390,41 @@ Scheme的变形：非确定性计算
 ;;; ----- machine -----
 (define (make-machine)
   (let ((pc (make-register 'pc))
-        (flag (make-register 'flag))
-        (stack (make-stack))
-        (inst-sequences '()))
+	(flag (make-register 'flag))
+	(stack (make-stack))
+	(inst-sequences '()))
     (let ((ops `((init-stack ,(lambda () (stack 'init)))))
-          (register-table `((pc ,pc) (flag ,flag))))
+	  (register-table `((pc ,pc) (flag ,flag))))
       (define (allocate-register name)
-        (if (assoc name register-table)
-            (error "multiple defined register:" name)
-            (set! register-table
-                  (cons (list name (make-register name)) register-table)))
-        'register-allocated)
+	(if (assoc name register-table)
+	    (error "multiple defined register:" name)
+	    (set! register-table
+		  (cons (list name (make-register name)) register-table)))
+	'register-allocated)
       (define (lookup-register name)
-        (let ((val (assoc name register-table)))
-          (if val
-              (cadr val)
-              (error "unknown register:" name))))
+	(let ((val (assoc name register-table)))
+	  (if val
+	      (cadr val)
+	      (error "unknown register:" name))))
       (define (execute) ;; 开始运行
-        (let ((insts (get-contents pc)))
-          (if (null? insts) 'done
-              (begin
-                ((inst-execute-proc (car insts))) ; update pc internally
-                (execute)))))
+	(let ((insts (get-contents pc)))
+	  (if (null? insts) 'done
+	      (begin
+		((inst-execute-proc (car insts))) ; update pc internally
+		(execute)))))
       (define (dispatch message)
-        (cond ((eq? message 'start)
-               (set-contents! pc inst-sequences)
-               (execute))
-              ((eq? message 'install-inst-sequences)
-               (lambda (aseqs) (set! inst-sequences aseqs)))
-              ((eq? message 'install-operations)
-               (lambda (aops) (set! ops (append aops ops))))
-              ((eq? message 'allocate-register) allocate-register)
-              ((eq? message 'get-register) lookup-register)
-              ((eq? message 'stack) stack)
-              ((eq? message 'operations) ops)
-              (else (error "unknown request on machine:" message))))
+	(cond ((eq? message 'start)
+	       (set-contents! pc inst-sequences)
+	       (execute))
+	      ((eq? message 'install-inst-sequences)
+	       (lambda (aseqs) (set! inst-sequences aseqs)))
+	      ((eq? message 'install-operations)
+	       (lambda (aops) (set! ops (append aops ops))))
+	      ((eq? message 'allocate-register) allocate-register)
+	      ((eq? message 'get-register) lookup-register)
+	      ((eq? message 'stack) stack)
+	      ((eq? message 'operations) ops)
+	      (else (error "unknown request on machine:" message))))
       dispatch)))
 
 (define (start machine) (machine 'start))
@@ -389,8 +435,8 @@ Scheme的变形：非确定性计算
 (define (new-machine register-names ops controller-text)
   (let ((machine (make-machine)))
     (for-each (lambda (register-name)
-                ((machine 'allocate-register) register-name))
-              register-names)
+		((machine 'allocate-register) register-name))
+	      register-names)
     ((machine 'install-operations) ops)
     ((machine 'install-inst-sequences)
      ;; 安装汇编程序处理之后的指令
@@ -406,26 +452,26 @@ Scheme的变形：非确定性计算
 <div class="org-src-container">
 <pre class="src src-Scheme">(define (assemble controller-text machine)
   (extract-labels controller-text
-                  ;; 这里用到了continuation.
-                  ;; 抽取指令和标签
-                  (lambda (insts labels)
-                    (update-insts! insts labels machine)
-                    insts)))
+		  ;; 这里用到了continuation.
+		  ;; 抽取指令和标签
+		  (lambda (insts labels)
+		    (update-insts! insts labels machine)
+		    insts)))
 
 ;; 指令格式(text, proc).
 (define (update-insts! insts labels machine)
   (let ((pc (get-register machine 'pc))
-        (flag (get-register machine 'flag))
-        (stack (machine 'stack))
-        (ops (machine 'operations)))
+	(flag (get-register machine 'flag))
+	(stack (machine 'stack))
+	(ops (machine 'operations)))
     (for-each (lambda (inst)
-                (set-inst-execute-proc!
-                 inst
-                 ;; inst-&gt;proc
-                 (make-inst-execute-proc
-                  (inst-text inst) labels machine
-                  pc flag stack ops)))
-              insts)
+		(set-inst-execute-proc!
+		 inst
+		 ;; inst-&gt;proc
+		 (make-inst-execute-proc
+		  (inst-text inst) labels machine
+		  pc flag stack ops)))
+	      insts)
     'done))
 (define (make-inst text) (cons text '()))
 (define (inst-text inst) (car inst))
@@ -446,11 +492,11 @@ Scheme的变形：非确定性计算
       (extract-labels
        (cdr text)
        (lambda (insts labels)
-         (let ((next-inst (car text)))
-           (if (symbol? next-inst)
-               ;; 如果是branch的话，那么将branch和下面一条指令关联起来
-               (cont insts (cons (make-label-entry next-inst insts) labels))
-               (cont (cons (make-inst next-inst) insts) labels)))))))
+	 (let ((next-inst (car text)))
+	   (if (symbol? next-inst)
+	       ;; 如果是branch的话，那么将branch和下面一条指令关联起来
+	       (cont insts (cons (make-label-entry next-inst insts) labels))
+	       (cont (cons (make-inst next-inst) insts) labels)))))))
 </pre>
 </div>
 
@@ -464,42 +510,42 @@ Scheme的变形：非确定性计算
 使用机器指令给出了一个停止-复制GC实现。感觉使用机器指令来描述这个过程就有点琐碎了，所以在这里就用C语言来描述一下。我们假设在老内存区域使用的内存都可以使用root追踪到。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">memory_cell</span> {
-    <span class="org-type">char</span> <span class="org-variable-name">mark</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">if it's already moved.</span>
-    <span class="org-keyword">struct</span> <span class="org-type">memory_cell</span>* <span class="org-variable-name">back</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">if moved, what's the new cell.</span>
-    <span class="org-type">T</span> <span class="org-variable-name">value</span>;
-    <span class="org-keyword">struct</span> <span class="org-type">memory_cell</span>* <span class="org-variable-name">refs</span>[10]; <span class="org-comment-delimiter">// </span><span class="org-comment">references.</span>
-} <span class="org-type">memory_cell_t</span>;
+<pre class="src src-C++"><span style="font-weight: bold;">typedef</span> <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">memory_cell</span> {
+    <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">mark</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">if it's already moved.</span>
+    <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">memory_cell</span>* <span style="font-weight: bold; font-style: italic;">back</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">if moved, what's the new cell.</span>
+    <span style="font-weight: bold; text-decoration: underline;">T</span> <span style="font-weight: bold; font-style: italic;">value</span>;
+    <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">memory_cell</span>* <span style="font-weight: bold; font-style: italic;">refs</span>[10]; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">references.</span>
+} <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>;
 
-<span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">memory</span> {
-    <span class="org-type">int</span> <span class="org-variable-name">free</span>;
-    <span class="org-type">int</span> <span class="org-variable-name">scan</span>;
-    <span class="org-type">memory_cell_t</span> <span class="org-variable-name">array</span>[10000];
-} <span class="org-type">memory_t</span>;
+<span style="font-weight: bold;">typedef</span> <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">memory</span> {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">free</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">scan</span>;
+    <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span> <span style="font-weight: bold; font-style: italic;">array</span>[10000];
+} <span style="font-weight: bold; text-decoration: underline;">memory_t</span>;
 
-<span class="org-type">memory_cell_t</span>* <span class="org-function-name">do_copy</span>(<span class="org-type">memory_t</span>* <span class="org-variable-name">mem</span>, <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">mc</span>) {
-    <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">av</span> = mem-&gt;array + mem-&gt;free;
-    mempcy(av, mc, <span class="org-keyword">sizeof</span>(*mc));
-    mc-&gt;mark = 1; <span class="org-comment-delimiter">// </span><span class="org-comment">mark moved already.</span>
-    mc-&gt;back = av; <span class="org-comment-delimiter">// </span><span class="org-comment">store new memory cell.</span>
-    mem-&gt;free += 1; <span class="org-comment-delimiter">// </span><span class="org-comment">increase free pointer.</span>
-    <span class="org-keyword">return</span> av;
+<span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>* <span style="font-weight: bold;">do_copy</span>(<span style="font-weight: bold; text-decoration: underline;">memory_t</span>* <span style="font-weight: bold; font-style: italic;">mem</span>, <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>* <span style="font-weight: bold; font-style: italic;">mc</span>) {
+    <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>* <span style="font-weight: bold; font-style: italic;">av</span> = mem-&gt;array + mem-&gt;free;
+    mempcy(av, mc, <span style="font-weight: bold;">sizeof</span>(*mc));
+    mc-&gt;mark = 1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">mark moved already.</span>
+    mc-&gt;back = av; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">store new memory cell.</span>
+    mem-&gt;free += 1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">increase free pointer.</span>
+    <span style="font-weight: bold;">return</span> av;
 }
 
-<span class="org-type">void</span> <span class="org-function-name">stop_and_copy</span>(<span class="org-type">memory_t</span>* <span class="org-variable-name">new_mem</span>, <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">root</span>) {
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">stop_and_copy</span>(<span style="font-weight: bold; text-decoration: underline;">memory_t</span>* <span style="font-weight: bold; font-style: italic;">new_mem</span>, <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>* <span style="font-weight: bold; font-style: italic;">root</span>) {
     new_mem-&gt;free = new_mem-&gt;scan = 0;
     do_copy(new_mem, root);
 
-    <span class="org-keyword">while</span> (new_mem-&gt;scan &lt; new_mem-&gt;free) {
-        <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">mc</span> = new_mem-&gt;array + mew_mem-&gt;scan;
-        <span class="org-comment-delimiter">// </span><span class="org-comment">mc is in new arena, but we are not sure if its references are.</span>
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 10; i++) {
-            <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">ref</span> = mc-&gt;refs[i];
-            <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>ref) <span class="org-keyword">break</span>;
-            <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">nref</span> = 0;
-            <span class="org-keyword">if</span> (ref-&gt;mark == 1) { <span class="org-comment-delimiter">// </span><span class="org-comment">already copied.</span>
+    <span style="font-weight: bold;">while</span> (new_mem-&gt;scan &lt; new_mem-&gt;free) {
+        <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>* <span style="font-weight: bold; font-style: italic;">mc</span> = new_mem-&gt;array + mew_mem-&gt;scan;
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">mc is in new arena, but we are not sure if its references are.</span>
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; 10; i++) {
+            <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>* <span style="font-weight: bold; font-style: italic;">ref</span> = mc-&gt;refs[i];
+            <span style="font-weight: bold;">if</span> (!ref) <span style="font-weight: bold;">break</span>;
+            <span style="font-weight: bold; text-decoration: underline;">memory_cell_t</span>* <span style="font-weight: bold; font-style: italic;">nref</span> = 0;
+            <span style="font-weight: bold;">if</span> (ref-&gt;mark == 1) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">already copied.</span>
                 nref = ref-&gt;back;
-            } <span class="org-keyword">else</span> {
+            } <span style="font-weight: bold;">else</span> {
                 nref = do_copy(new_mem, ref);
             }
             mc-&gt;refs[i] = nref;
@@ -611,36 +657,36 @@ OK. 很明显我们现在还需要拓展一下指令的表示：我们需要在�
     (make-inst-sequence
      ;; seq1 needed + (seq2 needed - seq1 modified)
      (list-union (registers-needed seq1)
-                 (list-diff (registers-needed seq2)
-                            (registers-modified seq1)))
+		 (list-diff (registers-needed seq2)
+			    (registers-modified seq1)))
      ;; seq1 modified + seq2 modified
      (list-union (registers-modified seq1)
-                 (registers-modified seq2))
+		 (registers-modified seq2))
      (append (statements seq1) (statements seq2))))
   (define (append-seq-list seqs)
     (if (null? seqs) (empty-inst-sequence)
-        (append-2-sequences (car seqs) (append-seq-list (cdr seqs)))))
+	(append-2-sequences (car seqs) (append-seq-list (cdr seqs)))))
   (append-seq-list seqs))
 
 (define (preserving regs seq1 seq2)
   (if (null? regs)
       (append-inst-sequences seq1 seq2)
       (let ((first-reg (car regs)))
-        (if (and (needs-register? seq2 first-reg)
-                 (modifies-register? seq1 first-reg))
-            (preserving
-             (cdr regs)
-             (make-inst-sequence
-              ;; 为什么生成这个指令序列？可以看看这个指令序列的statements部分
-              (list-union (list first-reg)
-                          (registers-needed seq1))
-              (list-diff (registers-modified seq1)
-                         (list first-reg))
-              (append `((save ,first-reg))
-                      (statements seq1)
-                      `((restore ,first-reg))))
-             seq2)
-            (preserving (cdr regs) seq1 seq2)))))
+	(if (and (needs-register? seq2 first-reg)
+		 (modifies-register? seq1 first-reg))
+	    (preserving
+	     (cdr regs)
+	     (make-inst-sequence
+	      ;; 为什么生成这个指令序列？可以看看这个指令序列的statements部分
+	      (list-union (list first-reg)
+			  (registers-needed seq1))
+	      (list-diff (registers-modified seq1)
+			 (list first-reg))
+	      (append `((save ,first-reg))
+		      (statements seq1)
+		      `((restore ,first-reg))))
+	     seq2)
+	    (preserving (cdr regs) seq1 seq2)))))
 </pre>
 </div>
 
@@ -656,18 +702,23 @@ OK. 很明显我们现在还需要拓展一下指令的表示：我们需要在�
 <div class="org-src-container">
 <pre class="src src-Scheme">(define (compile-linkage linkage)
   (cond ((eq? linkage 'return)
-         (make-inst-sequence
-          '(continue) '() '((goto (reg continue)))))
-        ((eq? linkage 'next) (empty-inst-sequence))
-        (else (make-inst-sequence '() '() `((goto (label ,linkage)))))))
+	 (make-inst-sequence
+	  '(continue) '() '((goto (reg continue)))))
+	((eq? linkage 'next) (empty-inst-sequence))
+	(else (make-inst-sequence '() '() `((goto (label ,linkage)))))))
 (define (end-with-linkage linkage inst-sequences)
   (preserving '(continue)
-              inst-sequences
-              (compile-linkage linkage)))
+	      inst-sequences
+	      (compile-linkage linkage)))
 </pre>
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/sicp.html';this.page.identifier = 'sicp.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

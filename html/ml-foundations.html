@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>机器学习基石 on Coursera</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">机器学习基石 on Coursera</h1>
@@ -64,7 +110,7 @@ L4-L7 学习可行性分析
 <li>通常一个模型model会对应很多参数，给定一个参数就对应一个hypothesis. 因此model实际上给出的是一个假设集合hypothesis-set, 我们记为H.</li>
 <li>从Hoeffding不等式，到H即hypothesis-set的effective-number/break-point，到更加正式的定义vc-dimension.</li>
 <li>vc-dimension只和H有关，或者说只和model有关。vc物理意义是：H处理二分类问题有多少自由度。vc越大说明H选择更多，能力越强，也说明越复杂。</li>
-<li>model/H进行训练效果满足不等式 P(|u-v| &gt; e) &lt;= 2 * (2N)^vc * exp(-2 * e^2 * N). 其中vc是H的vc-dimension.</li>
+<li>model/H进行训练效果满足不等式 P(|u-v| &gt; e) &lt;= 2 * (2N)<sup>vc</sup> * exp(-2 * e<sup>2</sup> * N). 其中vc是H的vc-dimension.</li>
 <li>从上面不等式可以看到，vc和N(数据集合大小)之间存在trade-off. vc越大H选择越多，但是需要更多的数据才能找到更好的假设。</li>
 </ul>
 
@@ -137,7 +183,7 @@ L13-L15 过拟合，正则化，验证
 <li>引入regularization非常有启发性：通过限制w'w &lt;= C，使用Lagrange Multiplier(拉格朗日乘子法), 推导出weight-decay regularization也就是ridge regression</li>
 <li>如果需要使用多项式变换的话，应该选用Legendre多项式，可以认为这些多项式之间是相互"正交"的。
 <ul class="org-ul">
-<li>因为如果我们只是用x^n来做多项式的话，那么高次方的x^n值通常很小，因此要求对应项的w很大。</li>
+<li>因为如果我们只是用x<sup>n来做多项式的话</sup>，那么高次方的x<sup>n值通常很小</sup>，因此要求对应项的w很大。</li>
 <li>而这与regularization相悖，因为正规化项要求w应该尽可能小。</li>
 </ul></li>
 <li>通常使用5~10-Fold来做CV. 训练像是初赛，CV则像是复赛，只有最终测试才是决赛。所以我们要关注应该是测试效果，而不是验证效果。</li>
@@ -168,6 +214,11 @@ Data Snooping（数据窥视）表明我们不能将测试数据加入训练/CV�
 <p>
 <img src="images/ntuml-ml-vs-dm.png" alt="ntuml-ml-vs-dm.png" /> <img src="images/ntuml-ml-vs-ai.png" alt="ntuml-ml-vs-ai.png" /> <img src="images/ntuml-ml-vs-st.png" alt="ntuml-ml-vs-st.png" />
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/ml-foundations.html';this.page.identifier = 'ml-foundations.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

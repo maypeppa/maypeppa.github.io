@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PIC(位置无关代码)</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">PIC(位置无关代码)</h1>
@@ -16,13 +62,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgef53d2a">1. 什么是PIC</a></li>
-<li><a href="#org45bef1d">2. 为什么需要PIC</a></li>
-<li><a href="#orgd7523e8">3. 动态库</a></li>
-<li><a href="#orgf414e35">4. GOT和PLT</a>
+<li><a href="#orge0bac37">1. 什么是PIC</a></li>
+<li><a href="#org5b9a6b3">2. 为什么需要PIC</a></li>
+<li><a href="#org611f333">3. 动态库</a></li>
+<li><a href="#orgfc47826">4. GOT和PLT</a>
 <ul>
-<li><a href="#orgf974dd9">4.1. 数据引用</a></li>
-<li><a href="#org3b256e0">4.2. 函数调用</a></li>
+<li><a href="#orgc6cd4ba">4.1. 数据引用</a></li>
+<li><a href="#org3a1a073">4.2. 函数调用</a></li>
 </ul>
 </li>
 </ul>
@@ -32,21 +78,21 @@
 内容基本都是来自于《深入理解计算机系统》这本书的
 </p>
 
-<div id="outline-container-orgef53d2a" class="outline-2">
-<h2 id="orgef53d2a"><span class="section-number-2">1</span> 什么是PIC</h2>
+<div id="outline-container-orge0bac37" class="outline-2">
+<h2 id="orge0bac37"><span class="section-number-2">1</span> 什么是PIC</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 pic的意思是position independent code(位置无关代码),就是指运行和放置地址无关的代码。
 其实这里pic是一个相对意思，因为生成代码或多或少都使用了位置无关代码这个概念，就好比跳转指令：
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>,<span class="org-type">char</span> <span class="org-keyword">const</span>* <span class="org-variable-name">argv</span>[]){
-    <span class="org-keyword">if</span>(argc&gt;=2){
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>,<span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold;">const</span>* <span style="font-weight: bold; font-style: italic;">argv</span>[]){
+    <span style="font-weight: bold;">if</span>(argc&gt;=2){
         argc++;
-    }<span class="org-keyword">else</span>{
+    }<span style="font-weight: bold;">else</span>{
         argc+=2;
     }
-    <span class="org-keyword">return</span> 0;
+    <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -86,21 +132,21 @@ pic的意思是position independent code(位置无关代码),就是指运行和�
 </div>
 </div>
 
-<div id="outline-container-org45bef1d" class="outline-2">
-<h2 id="org45bef1d"><span class="section-number-2">2</span> 为什么需要PIC</h2>
+<div id="outline-container-org5b9a6b3" class="outline-2">
+<h2 id="org5b9a6b3"><span class="section-number-2">2</span> 为什么需要PIC</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 考虑可执行程序使用静态库而言的话，最终使用的所有静态库符号，都会进行符号重定位的。因为在编译静态库的时候，
 汇编器不确定最终每个符号安排在什么位置上，所有从0x0这个地址开始依次安排每一个符号，不同的段是分开的：
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">int</span> <span class="org-variable-name">global_variable_data</span>=1;
-<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">global_variable_bss</span>;
-<span class="org-type">int</span> <span class="org-function-name">echo</span>(){
-    <span class="org-keyword">return</span> 0;
+<pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">global_variable_data</span>=1;
+<span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">global_variable_bss</span>;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">echo</span>(){
+    <span style="font-weight: bold;">return</span> 0;
 }
-<span class="org-type">int</span> <span class="org-function-name">main</span>(){
-    <span class="org-keyword">return</span> 0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(){
+    <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -145,8 +191,8 @@ GLIBC_2.0
 </div>
 </div>
 
-<div id="outline-container-orgd7523e8" class="outline-2">
-<h2 id="orgd7523e8"><span class="section-number-2">3</span> 动态库</h2>
+<div id="outline-container-org611f333" class="outline-2">
+<h2 id="org611f333"><span class="section-number-2">3</span> 动态库</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 可执行程序在和动态库链接的时候，不会将符号定义copy进入自身，相反是存下一个索引(GOT+PLT)来实现的，具体原理后面会说到。
@@ -164,7 +210,7 @@ g++ wrapper.o -L. -lmain -Xlinker -rpath .
 </pre>
 <p>
 第一种是最不推荐的方式，因为这样一来的话，所有在libmain.so里面的符号，在运行时候就会在/home/dirlt/libmain.so里面查找。
-第二种是最常见的方式，但是我们需要export LD_LIBRARY_PATH=.;$LD_LIBRARY_PATH之后运行时才正常，因为大部分情况下面加载目录是不包括当前目录的。
+第二种是最常见的方式，但是我们需要export LD<sub>LIBRARY</sub><sub>PATH</sub>=.;$LD<sub>LIBRARY</sub><sub>PATH之后运行时才正常</sub>，因为大部分情况下面加载目录是不包括当前目录的。
 第三种的话，联编时候就告诉加载器，在加载的时候就需要需要去.目录下面查找，是一种比较好的方式。
 </p>
 
@@ -237,22 +283,22 @@ ELF Header:
 假设main.cc编译出main，里面调用echo函数定义在libecho.so里面。main.o不需要是位置无关代码，所以不用-fPIC编译。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">==============================main.cc==============================</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-variable-name">global_variable</span>;
-<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-function-name">echo</span>();
-<span class="org-type">int</span> <span class="org-variable-name">global_variable</span>=0;
-<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">==============================main.cc==============================</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">extern</span> <span style="font-style: italic;">"C"</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">global_variable</span>;
+<span style="font-weight: bold;">extern</span> <span style="font-style: italic;">"C"</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">echo</span>();
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">global_variable</span>=0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(){
     echo();
-    <span class="org-keyword">return</span> 0;
+    <span style="font-weight: bold;">return</span> 0;
 }
-<span class="org-comment-delimiter">//</span><span class="org-comment">==============================echo.cc==============================</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
-<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-variable-name">global_variable</span>;
-<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-function-name">echo</span>();
-<span class="org-type">int</span> <span class="org-function-name">echo</span>(){
-    printf(<span class="org-string">"%d\n"</span>,global_variable);
-    <span class="org-keyword">return</span> 0;
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">==============================echo.cc==============================</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">extern</span> <span style="font-style: italic;">"C"</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">global_variable</span>;
+<span style="font-weight: bold;">extern</span> <span style="font-style: italic;">"C"</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">echo</span>();
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">echo</span>(){
+    printf(<span style="font-style: italic;">"%d\n"</span>,global_variable);
+    <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -335,16 +381,16 @@ ELF Header:
 </div>
 </div>
 
-<div id="outline-container-orgf414e35" class="outline-2">
-<h2 id="orgf414e35"><span class="section-number-2">4</span> GOT和PLT</h2>
+<div id="outline-container-orgfc47826" class="outline-2">
+<h2 id="orgfc47826"><span class="section-number-2">4</span> GOT和PLT</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 虽然上面说对于外部符号使用GOT+PLT方式来解决，但是对于全局变量和全局函数是使用两种不同的解析方法来获得的。
 </p>
 </div>
 
-<div id="outline-container-orgf974dd9" class="outline-3">
-<h3 id="orgf974dd9"><span class="section-number-3">4.1</span> 数据引用</h3>
+<div id="outline-container-orgc6cd4ba" class="outline-3">
+<h3 id="orgc6cd4ba"><span class="section-number-3">4.1</span> 数据引用</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 GOT是指全局偏移量表(global offset table).在数据引用里面的话，那么里面存放的就是全局变量的地址。
@@ -357,7 +403,7 @@ GOT是指全局偏移量表(global offset table).在数据引用里面的话，�
 </pre>
 
 <p>
-以上面一节代码为例，看看echo.cc是如何使用global_variable的：
+以上面一节代码为例，看看echo.cc是如何使用global<sub>variable的</sub>：
 </p>
 <pre class="example">
 000004f7 &lt;__i686.get_pc_thunk.bx&gt;:
@@ -391,8 +437,8 @@ GOT是指全局偏移量表(global offset table).在数据引用里面的话，�
 </div>
 </div>
 
-<div id="outline-container-org3b256e0" class="outline-3">
-<h3 id="org3b256e0"><span class="section-number-3">4.2</span> 函数调用</h3>
+<div id="outline-container-org3a1a073" class="outline-3">
+<h3 id="org3a1a073"><span class="section-number-3">4.2</span> 函数调用</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 PLT是指过程链接表(procedure linkage table).函数调用需要PLT和GOT配合来完成。需要注意的是GOT
@@ -523,6 +569,11 @@ PLT是指过程链接表(procedure linkage table).函数调用需要PLT和GOT配
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/pic-code.html';this.page.identifier = 'pic-code.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>极客时间|MySQL实战45讲 文章目录</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">极客时间|MySQL实战45讲 文章目录</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge8ad6de">开篇词 | 这一次，让我们一起来搞懂MySQL</a></li>
+<li><a href="#org1c81a39">01 | 基础架构：一条SQL查询语句是如何执行的？</a></li>
+<li><a href="#orgd5ee9cc">02  | 日志系统：一条SQL更新语句是如何执行的？</a></li>
+<li><a href="#orgd41cf13">03 | 事务隔离：为什么你改了我还看不见？</a></li>
+<li><a href="#org84fb7ac">04 | 深入浅出索引（上）</a></li>
+<li><a href="#orgeb4ad8c">05 | 深入浅出索引（下）</a></li>
+<li><a href="#org0b0c9aa">06 | 全局锁和表锁 ：给表加个字段怎么有这么多阻碍？</a></li>
+<li><a href="#org750be91">07 | 行锁功过：怎么减少行锁对性能的影响？</a></li>
+<li><a href="#orgd654a1d">08 | 事务到底是隔离的还是不隔离的？</a></li>
+<li><a href="#org371001e">09 | 普通索引和唯一索引，应该怎么选择？</a></li>
+<li><a href="#orgff25e00">10 | MySQL为什么有时候会选错索引？</a></li>
+<li><a href="#orgfa84af4">11 |  怎么给字符串字段加索引？</a></li>
+<li><a href="#org6fad29c">12 | 为什么我的MySQL会“抖”一下？</a></li>
+<li><a href="#orgaafd29c">13 | 为什么表数据删掉一半，表文件大小不变？</a></li>
+<li><a href="#org6c7bc22">14 | count(*)这么慢，我该怎么办？</a></li>
+<li><a href="#orgf29666e">15 | 答疑文章（一）：日志和索引相关问题</a></li>
+<li><a href="#orgff1e0c5">直播回顾 | 林晓斌：我的 MySQL 心路历程</a></li>
+<li><a href="#orgd1e1117">16 | “order by”是怎么工作的？</a></li>
+<li><a href="#org64f906b">17 | 如何正确地显示随机消息？</a></li>
+<li><a href="#org95a7cce">18 | 为什么这些SQL语句逻辑相同，性能却差异巨大？</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orge8ad6de" class="outline-2">
+<h2 id="orge8ad6de"><a href="https://time.geekbang.org/column/article/67888">开篇词 | 这一次，让我们一起来搞懂MySQL</a></h2>
+<div class="outline-text-2" id="text-orge8ad6de">
+<p>
+我希望这个专栏能够激发开发者对数据库原理的探索欲，从而更好地理解工作中遇到的问题，更能知道背后的为什么。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org1c81a39" class="outline-2">
+<h2 id="org1c81a39"><a href="https://time.geekbang.org/column/article/68319">01 | 基础架构：一条SQL查询语句是如何执行的？</a></h2>
+<div class="outline-text-2" id="text-org1c81a39">
+<p>
+今天我给你介绍了MySQL的逻辑架构，希望你对一个SQL语句完整执行流程的各个阶段能有一个初步的印象。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd5ee9cc" class="outline-2">
+<h2 id="orgd5ee9cc"><a href="https://time.geekbang.org/column/article/68633">02  | 日志系统：一条SQL更新语句是如何执行的？</a></h2>
+<div class="outline-text-2" id="text-orgd5ee9cc">
+<p>
+今天这篇文章，主要介绍了MySQL里面最重要的两个日志，即物理日志redo log和逻辑日志binlog。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd41cf13" class="outline-2">
+<h2 id="orgd41cf13"><a href="https://time.geekbang.org/column/article/68963">03 | 事务隔离：为什么你改了我还看不见？</a></h2>
+<div class="outline-text-2" id="text-orgd41cf13">
+<p>
+我介绍了MySQL的事务隔离级别的现象和实现，根据实现原理分析了长事务存在的风险，以及如何用正确的方式避免长&#x2026;
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org84fb7ac" class="outline-2">
+<h2 id="org84fb7ac"><a href="https://time.geekbang.org/column/article/69236">04 | 深入浅出索引（上）</a></h2>
+<div class="outline-text-2" id="text-org84fb7ac">
+<p>
+今天这篇文章，介绍了引擎的数据结构模型，帮助你理解MySQL为什么选择B+树结构来存储数据。同时，这篇文章还&#x2026;
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgeb4ad8c" class="outline-2">
+<h2 id="orgeb4ad8c"><a href="https://time.geekbang.org/column/article/69636">05 | 深入浅出索引（下）</a></h2>
+<div class="outline-text-2" id="text-orgeb4ad8c">
+<p>
+在满足语句需求的情况下， 尽量少地访问资源是数据库设计的重要原则之一。我们在使用数据库的时候，尤其是在设&#x2026;
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org0b0c9aa" class="outline-2">
+<h2 id="org0b0c9aa"><a href="https://time.geekbang.org/column/article/69862">06 | 全局锁和表锁 ：给表加个字段怎么有这么多阻碍？</a></h2>
+<div class="outline-text-2" id="text-org0b0c9aa">
+<p>
+今天，我跟你介绍了MySQL的全局锁和表级锁。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org750be91" class="outline-2">
+<h2 id="org750be91"><a href="https://time.geekbang.org/column/article/70215">07 | 行锁功过：怎么减少行锁对性能的影响？</a></h2>
+<div class="outline-text-2" id="text-org750be91">
+<p>
+今天，我和你介绍了MySQL的行锁，涉及了两阶段所协议、死锁和死锁检测这两大部分内容。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd654a1d" class="outline-2">
+<h2 id="orgd654a1d"><a href="https://time.geekbang.org/column/article/70562">08 | 事务到底是隔离的还是不隔离的？</a></h2>
+<div class="outline-text-2" id="text-orgd654a1d">
+<p>
+普通查询语句是一致性读，一致性读会根据row trx_id和up_limit_id的大小决定数据版本的可见性。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org371001e" class="outline-2">
+<h2 id="org371001e"><a href="https://time.geekbang.org/column/article/70848">09 | 普通索引和唯一索引，应该怎么选择？</a></h2>
+<div class="outline-text-2" id="text-org371001e">
+<p>
+我从普通索引和唯一索引的选择开始，和你分享了数据的查询和更新过程，然后说明了change buffer的机制以及应用&#x2026;
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgff25e00" class="outline-2">
+<h2 id="orgff25e00"><a href="https://time.geekbang.org/column/article/71173">10 | MySQL为什么有时候会选错索引？</a></h2>
+<div class="outline-text-2" id="text-orgff25e00">
+<p>
+今天，我要和你聊聊索引统计的更新机制，以及优化器选错索引了应该如何处理。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgfa84af4" class="outline-2">
+<h2 id="orgfa84af4"><a href="https://time.geekbang.org/column/article/71492">11 |  怎么给字符串字段加索引？</a></h2>
+<div class="outline-text-2" id="text-orgfa84af4">
+<p>
+在今天这篇文章中，我跟你聊了聊字符串字段创建索引的场景。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org6fad29c" class="outline-2">
+<h2 id="org6fad29c"><a href="https://time.geekbang.org/column/article/71806">12 | 为什么我的MySQL会“抖”一下？</a></h2>
+<div class="outline-text-2" id="text-org6fad29c">
+<p>
+我延续第2篇中介绍的WAL的概念，和你解释了这个机制后续需要的刷脏页操作和执行时机。利用WAL技术，数据库将随&#x2026;
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgaafd29c" class="outline-2">
+<h2 id="orgaafd29c"><a href="https://time.geekbang.org/column/article/72388">13 | 为什么表数据删掉一半，表文件大小不变？</a></h2>
+<div class="outline-text-2" id="text-orgaafd29c">
+<p>
+今天这篇文章，我和你讨论了数据库中回收表空间的方法。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org6c7bc22" class="outline-2">
+<h2 id="org6c7bc22"><a href="https://time.geekbang.org/column/article/72775">14 | count(*)这么慢，我该怎么办？</a></h2>
+<div class="outline-text-2" id="text-org6c7bc22">
+<p>
+今天，我和你聊了聊MySQL中获得表行数的几种方法。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgf29666e" class="outline-2">
+<h2 id="orgf29666e"><a href="https://time.geekbang.org/column/article/73161">15 | 答疑文章（一）：日志和索引相关问题</a></h2>
+<div class="outline-text-2" id="text-orgf29666e">
+<p>
+我针对前14篇文章，大家在评论区中的留言，从中摘取了关于日志和索引的相关问题，串成了今天这篇文章。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgff1e0c5" class="outline-2">
+<h2 id="orgff1e0c5"><a href="https://time.geekbang.org/column/article/73370">直播回顾 | 林晓斌：我的 MySQL 心路历程</a></h2>
+<div class="outline-text-2" id="text-orgff1e0c5">
+<p>
+在专栏上线后的11月21日，我来到极客时间做了一场主题是“我的MySQL心路历程”的直播。今天，我特意将这个直播&#x2026;
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd1e1117" class="outline-2">
+<h2 id="orgd1e1117"><a href="https://time.geekbang.org/column/article/73479">16 | “order by”是怎么工作的？</a></h2>
+<div class="outline-text-2" id="text-orgd1e1117">
+<p>
+今天这篇文章，我和你介绍了MySQL里面order by语句的几种算法流程。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org64f906b" class="outline-2">
+<h2 id="org64f906b"><a href="https://time.geekbang.org/column/article/73795">17 | 如何正确地显示随机消息？</a></h2>
+<div class="outline-text-2" id="text-org64f906b">
+<p>
+今天这篇文章，我是借着随机排序的需求，跟你介绍了MySQL对临时表排序的执行过程。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org95a7cce" class="outline-2">
+<h2 id="org95a7cce"><a href="https://time.geekbang.org/column/article/74059">18 | 为什么这些SQL语句逻辑相同，性能却差异巨大？</a></h2>
+<div class="outline-text-2" id="text-org95a7cce">
+<p>
+今天我给你举了三个例子，其实是在说同一件事儿，即：对索引字段做函数操作，可能会破坏索引值的有序性，因此优&#x2026;
+</p>
+</div>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/geekbang-mysql-practice.html';this.page.identifier = 'geekbang-mysql-practice.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

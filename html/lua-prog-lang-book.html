@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lua程序设计</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Lua程序设计</h1>
@@ -16,40 +62,40 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org81e150f">1. 第一部分(C1~C10)</a>
+<li><a href="#org2ab1bfa">1. 第一部分(C1~C10)</a>
 <ul>
-<li><a href="#org17e6bc6">1.1. 类型，表达式，语句</a></li>
-<li><a href="#orgc5c04af">1.2. 函数/深入函数/迭代器与泛型for</a></li>
-<li><a href="#org9de56e0">1.3. 编译执行与错误</a></li>
-<li><a href="#org10bcb0a">1.4. 协同程序(coroutine)</a></li>
+<li><a href="#org0104104">1.1. 类型，表达式，语句</a></li>
+<li><a href="#org3553afb">1.2. 函数/深入函数/迭代器与泛型for</a></li>
+<li><a href="#org889715d">1.3. 编译执行与错误</a></li>
+<li><a href="#org8204a33">1.4. 协同程序(coroutine)</a></li>
 </ul>
 </li>
-<li><a href="#org3ae71f3">2. 第二部分(C11~C17)</a>
+<li><a href="#org7fd9798">2. 第二部分(C11~C17)</a>
 <ul>
-<li><a href="#org22842bb">2.1. 数据结构/数据文件</a></li>
-<li><a href="#org6352390">2.2. 元表和元方法</a></li>
-<li><a href="#orgf9798ea">2.3. 环境</a></li>
-<li><a href="#orgd09c8aa">2.4. 模块与包</a></li>
-<li><a href="#org774fa8a">2.5. 面向对象编程</a></li>
-<li><a href="#orgdf9306b">2.6. 弱引用table</a></li>
+<li><a href="#orgcf71f3f">2.1. 数据结构/数据文件</a></li>
+<li><a href="#org324d76f">2.2. 元表和元方法</a></li>
+<li><a href="#org8ec75dd">2.3. 环境</a></li>
+<li><a href="#org24d826a">2.4. 模块与包</a></li>
+<li><a href="#orgd080695">2.5. 面向对象编程</a></li>
+<li><a href="#org24b8834">2.6. 弱引用table</a></li>
 </ul>
 </li>
-<li><a href="#org3f74dca">3. 第三部分(C18~C23)</a></li>
-<li><a href="#org0e9c355">4. 第四部分(C24~C31)</a></li>
+<li><a href="#org794c7c8">3. 第三部分(C18~C23)</a></li>
+<li><a href="#org7d8de3f">4. 第四部分(C24~C31)</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org81e150f" class="outline-2">
-<h2 id="org81e150f"><span class="section-number-2">1</span> 第一部分(C1~C10)</h2>
+<div id="outline-container-org2ab1bfa" class="outline-2">
+<h2 id="org2ab1bfa"><span class="section-number-2">1</span> 第一部分(C1~C10)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这个部分介绍基本语法以及简单地介绍Lua环境。
 </p>
 </div>
 
-<div id="outline-container-org17e6bc6" class="outline-3">
-<h3 id="org17e6bc6"><span class="section-number-3">1.1</span> 类型，表达式，语句</h3>
+<div id="outline-container-org0104104" class="outline-3">
+<h3 id="org0104104"><span class="section-number-3">1.1</span> 类型，表达式，语句</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Lua有8种基础类型，通过函数 `type` 来了解具体类型
@@ -130,8 +176,8 @@ table constructor(table构造式）很有趣，同时兼容key/value和array的�
 </div>
 </div>
 
-<div id="outline-container-orgc5c04af" class="outline-3">
-<h3 id="orgc5c04af"><span class="section-number-3">1.2</span> 函数/深入函数/迭代器与泛型for</h3>
+<div id="outline-container-org3553afb" class="outline-3">
+<h3 id="org3553afb"><span class="section-number-3">1.2</span> 函数/深入函数/迭代器与泛型for</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 lua的函数定义和scheme很像，默认地都是匿名函数，至于 `function a()` 不过是 `a = function()` 这种语法糖形式。
@@ -154,13 +200,13 @@ print(a, b)
 变长参数在C语言里面需要花费很大的力气才能解开，但是lua里面使用却很容易。
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span class="org-keyword">function</span> <span class="org-function-name">test_vargs</span>(a, b, ...)
-   <span class="org-builtin">print</span>(<span class="org-string">'a = '</span> .. a .. <span class="org-string">" , b = "</span> .. b)
-   <span class="org-keyword">for</span> <span class="org-variable-name">i</span> = 1, <span class="org-builtin">select</span>(<span class="org-string">'#'</span>, ...) <span class="org-keyword">do</span>
-      <span class="org-builtin">print</span>(<span class="org-string">'varg #'</span> .. i .. <span class="org-string">" = "</span> .. <span class="org-builtin">select</span>(i, ...))
-   <span class="org-keyword">end</span>
-<span class="org-keyword">end</span>
-test_vargs(10,20, <span class="org-builtin">table</span>.<span class="org-builtin">unpack</span>{30, 40 , 50})
+<pre class="src src-lua">function test_vargs(a, b, ...)
+   print('a = ' .. a .. " , b = " .. b)
+   for i = 1, select('#', ...) do
+      print('varg #' .. i .. " = " .. select(i, ...))
+   end
+end
+test_vargs(10,20, table.unpack{30, 40 , 50})
 </pre>
 </div>
 
@@ -197,13 +243,13 @@ get_named_args({height = 100, width = 200, depth = 50})
 </div>
 
 <p>
-所以实际上迭代可以通过 `_var`(控制变量) 控制，可以通过 `_s`(状态). 使用 `_var`得到的迭代器是无状态的迭代器，而使用 `_s`得到的迭代器是有状态的。尽可能使用无状态的迭代器。
+所以实际上迭代可以通过 `<sub>var</sub>`(控制变量) 控制，可以通过 `<sub>s</sub>`(状态). 使用 `<sub>var</sub>`得到的迭代器是无状态的迭代器，而使用 `<sub>s</sub>`得到的迭代器是有状态的。尽可能使用无状态的迭代器。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9de56e0" class="outline-3">
-<h3 id="org9de56e0"><span class="section-number-3">1.3</span> 编译执行与错误</h3>
+<div id="outline-container-org889715d" class="outline-3">
+<h3 id="org889715d"><span class="section-number-3">1.3</span> 编译执行与错误</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 `loadstring`可以载入外部代码，`loadfile`可以载入代码文件。两者返回的都是一个function对象。只有执行这个function对象代码才会变真正执行，在执行的时候也是可以传入参数的。
@@ -219,8 +265,8 @@ get_named_args({height = 100, width = 200, depth = 50})
 </div>
 </div>
 
-<div id="outline-container-org10bcb0a" class="outline-3">
-<h3 id="org10bcb0a"><span class="section-number-3">1.4</span> 协同程序(coroutine)</h3>
+<div id="outline-container-org8204a33" class="outline-3">
+<h3 id="org8204a33"><span class="section-number-3">1.4</span> 协同程序(coroutine)</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 coroutine的几个相关操作
@@ -246,37 +292,37 @@ coroutine的几个相关操作
 书里面producer/consumer的例子改写成为coroutine方式如下
 </p>
 <div class="org-src-container">
-<pre class="src src-lua"><span class="org-comment-delimiter">-- </span><span class="org-comment">function producer()</span>
-<span class="org-comment-delimiter">--    </span><span class="org-comment">while true do</span>
-<span class="org-comment-delimiter">--       </span><span class="org-comment">local x = io.read()</span>
-<span class="org-comment-delimiter">--       </span><span class="org-comment">send(x)</span>
-<span class="org-comment-delimiter">--    </span><span class="org-comment">end</span>
-<span class="org-comment-delimiter">-- </span><span class="org-comment">end</span>
+<pre class="src src-lua">-- function producer()
+--    while true do
+--       local x = io.read()
+--       send(x)
+--    end
+-- end
 
-producer = <span class="org-builtin">coroutine</span>.<span class="org-builtin">create</span>(
-   <span class="org-keyword">function</span>()
-      <span class="org-keyword">while</span> <span class="org-constant">true</span> <span class="org-keyword">do</span>
-         <span class="org-keyword">local</span> <span class="org-variable-name">x</span> = <span class="org-builtin">io</span>.<span class="org-builtin">read</span>()
-         send(x)
-      <span class="org-keyword">end</span>
-   <span class="org-keyword">end</span>
+producer = coroutine.create(
+   function()
+      while true do
+	 local x = io.read()
+	 send(x)
+      end
+   end
 )
 
-<span class="org-keyword">function</span> <span class="org-function-name">consumer</span>()
-   <span class="org-keyword">while</span> <span class="org-constant">true</span> <span class="org-keyword">do</span>
-      <span class="org-keyword">local</span> <span class="org-variable-name">x</span> = receive()
-      <span class="org-builtin">io</span>.<span class="org-builtin">write</span>(x, <span class="org-string">"\n"</span>)
-   <span class="org-keyword">end</span>
-<span class="org-keyword">end</span>
+function consumer()
+   while true do
+      local x = receive()
+      io.write(x, "\n")
+   end
+end
 
-<span class="org-keyword">function</span> <span class="org-function-name">receive</span>()
-   <span class="org-keyword">local</span> <span class="org-variable-name">status</span>, <span class="org-variable-name">value</span> = <span class="org-builtin">coroutine</span>.<span class="org-builtin">resume</span>(producer)
-   <span class="org-keyword">return</span> value
-<span class="org-keyword">end</span>
+function receive()
+   local status, value = coroutine.resume(producer)
+   return value
+end
 
-<span class="org-keyword">function</span> <span class="org-function-name">send</span>(x)
-   <span class="org-builtin">coroutine</span>.<span class="org-builtin">yield</span>(x)
-<span class="org-keyword">end</span>
+function send(x)
+   coroutine.yield(x)
+end
 
 consumer()
 </pre>
@@ -285,8 +331,8 @@ consumer()
 </div>
 </div>
 
-<div id="outline-container-org3ae71f3" class="outline-2">
-<h2 id="org3ae71f3"><span class="section-number-2">2</span> 第二部分(C11~C17)</h2>
+<div id="outline-container-org7fd9798" class="outline-2">
+<h2 id="org7fd9798"><span class="section-number-2">2</span> 第二部分(C11~C17)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 深入介绍Lua环境
@@ -297,21 +343,21 @@ TODO:
 </p>
 </div>
 
-<div id="outline-container-org22842bb" class="outline-3">
-<h3 id="org22842bb"><span class="section-number-3">2.1</span> 数据结构/数据文件</h3>
+<div id="outline-container-orgcf71f3f" class="outline-3">
+<h3 id="orgcf71f3f"><span class="section-number-3">2.1</span> 数据结构/数据文件</h3>
 </div>
-<div id="outline-container-org6352390" class="outline-3">
-<h3 id="org6352390"><span class="section-number-3">2.2</span> 元表和元方法</h3>
+<div id="outline-container-org324d76f" class="outline-3">
+<h3 id="org324d76f"><span class="section-number-3">2.2</span> 元表和元方法</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 元表(metatable)本质上是一个table，我们可以在这个table里面设置，然后来影响和扩展使用这个metatable的table的行为。在Lua代码里面只能设置table的metatable, 其他类型的metatable的设置只能在C代码里面完成。下面代码片段说明了metatable的使用
 </p>
 <ul class="org-ul">
-<li>`_m` 是 `make_obj`里面对象o的metatable</li>
-<li>__tostring 函数影响到如何输出这个对象</li>
-<li>__add 函数影响到如何叠加两个对象</li>
-<li>__index 函数影响到如何查找某个不断在的字段</li>
-<li>rawget 可以不理会 __index 这个函数</li>
+<li>`<sub>m</sub>` 是 `make<sub>obj</sub>`里面对象o的metatable</li>
+<li>_<sub>tostring</sub> 函数影响到如何输出这个对象</li>
+<li>_<sub>add</sub> 函数影响到如何叠加两个对象</li>
+<li>_<sub>index</sub> 函数影响到如何查找某个不断在的字段</li>
+<li>rawget 可以不理会 _<sub>index</sub> 这个函数</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-Lua">local _m = {
@@ -326,9 +372,9 @@ TODO:
       print(t == obj1, t == obj2, t == _m)
       print('request key = ' .. k)
       if k == 'e' then
-         return 10
+	 return 10
       else
-         return 20
+	 return 20
       end
    end
 }
@@ -371,33 +417,33 @@ nil	10
 </pre>
 
 <p>
-__index还可以是一个table对象。如果是table对象而非函数的话，那么直接在这个table对象里面查找。
+_<sub>index还可以是一个table对象</sub>。如果是table对象而非函数的话，那么直接在这个table对象里面查找。
 </p>
 
 <p>
-除了 __index 之外，还有个 __newindex 函数是影响如果某个字段不存在，如何给这个字段赋值。所以可以结合 __index 和 __newindex 两个函数，来实现追踪table的读写。
+除了 _<sub>index</sub> 之外，还有个 _<sub>newindex</sub> 函数是影响如果某个字段不存在，如何给这个字段赋值。所以可以结合 _<sub>index</sub> 和 _<sub>newindex</sub> 两个函数，来实现追踪table的读写。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf9798ea" class="outline-3">
-<h3 id="orgf9798ea"><span class="section-number-3">2.3</span> 环境</h3>
+<div id="outline-container-org8ec75dd" class="outline-3">
+<h3 id="org8ec75dd"><span class="section-number-3">2.3</span> 环境</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-Lua所有的全局变量都保存在一个table里面，这个table称为环境(environment). 可以使用 `_G` 来获得环境。结合上面元表(metatable)和元方法(metamethod), 可以做蛮多事情的。
+Lua所有的全局变量都保存在一个table里面，这个table称为环境(environment). 可以使用 `<sub>G</sub>` 来获得环境。结合上面元表(metatable)和元方法(metamethod), 可以做蛮多事情的。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd09c8aa" class="outline-3">
-<h3 id="orgd09c8aa"><span class="section-number-3">2.4</span> 模块与包</h3>
+<div id="outline-container-org24d826a" class="outline-3">
+<h3 id="org24d826a"><span class="section-number-3">2.4</span> 模块与包</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 模块可以通过 `require` 来加载。加载模块会有返回值，这个由模块来定义的，通常返回的是一个table.
 </p>
 
 <p>
-加载模块搜索路径存放在 `package.path` 里面，这个路径可以通过 LUA_PATH 环境变量控制。当loader没有办法找到对应Lua模块的时候，会去寻找C模块。C模块对应的路径分别是 `package.cpath` 和 `LUA_CPATH`. 一旦模块加载上来后，就会在 `package.loaded` 里面创建一个条目，之后再遇到 `require` 的话就从这里面读取。所以如果希望重新加载的话，可以将里面条目置nil.
+加载模块搜索路径存放在 `package.path` 里面，这个路径可以通过 LUA<sub>PATH</sub> 环境变量控制。当loader没有办法找到对应Lua模块的时候，会去寻找C模块。C模块对应的路径分别是 `package.cpath` 和 `LUA<sub>CPATH</sub>`. 一旦模块加载上来后，就会在 `package.loaded` 里面创建一个条目，之后再遇到 `require` 的话就从这里面读取。所以如果希望重新加载的话，可以将里面条目置nil.
 </p>
 
 <p>
@@ -446,8 +492,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org774fa8a" class="outline-3">
-<h3 id="org774fa8a"><span class="section-number-3">2.5</span> 面向对象编程</h3>
+<div id="outline-container-orgd080695" class="outline-3">
+<h3 id="orgd080695"><span class="section-number-3">2.5</span> 面向对象编程</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 面向对象上没有更多概念的引入，都是在利用metatable/metamethod在模拟面向对象的性质，但是非常巧妙。更加奇妙的是，class/instance没有明确的界限，类似于javascript里面的prototype.
@@ -459,13 +505,13 @@ end
 <ul class="org-ul">
 <li>Account 是个类(class)，字段 `balance` 默认值是0</li>
 <li>`new` 里面的o是一些new fields, 并且这个o就是返回对象(instance)</li>
-<li>`setmetatable` 以及 `self.__index` 在后面会用到</li>
+<li>`setmetatable` 以及 `self._<sub>index</sub>` 在后面会用到</li>
 <li>`account` 是个对象(instance), `new`出来的时候并没有`balance`字段</li>
-<li>第一次调用 `add_balance` 的时候，`account` 对象里面才创建了 `balance` 对象</li>
+<li>第一次调用 `add<sub>balance</sub>` 的时候，`account` 对象里面才创建了 `balance` 对象</li>
 </ul>
 
 <p>
-`self.__index = self` 这段代码并不会影响到self本身，而是会影响到其他对self为metatable的对象。
+`self._<sub>index</sub> = self` 这段代码并不会影响到self本身，而是会影响到其他对self为metatable的对象。
 </p>
 
 <div class="org-src-container">
@@ -495,11 +541,11 @@ print(account.balance)
 接下来创建子类：
 </p>
 <ul class="org-ul">
-<li>SubAccount 是个subclass，里面多了个属性 `add_level`</li>
+<li>SubAccount 是个subclass，里面多了个属性 `add<sub>level</sub>`</li>
 <li>`SubAccount:new` 里面注意
 <ul class="org-ul">
 <li>setmetatable(o, SubAccount)</li>
-<li>SubAccount.__index= SubAccount</li>
+<li>SubAccount._<sub>index</sub>= SubAccount</li>
 </ul></li>
 </ul>
 <div class="org-src-container">
@@ -518,7 +564,7 @@ print(sub_account.balance, sub_account.level)
 </div>
 
 <p>
-如果是多重继承的话，需要修改 `setmetatable(o, self)` 这段代码，需要传入所有的parent class, 然后在`__index`里面查找所有parent class. 书里面给了例子，我觉得写起来还挺有技巧性的，所以复制一份代码放在这里
+如果是多重继承的话，需要修改 `setmetatable(o, self)` 这段代码，需要传入所有的parent class, 然后在`_<sub>index</sub>`里面查找所有parent class. 书里面给了例子，我觉得写起来还挺有技巧性的，所以复制一份代码放在这里
 </p>
 <div class="org-src-container">
 <pre class="src src-Lua">local function search(k, plist)
@@ -532,7 +578,7 @@ function createClass(...)
    local c = {}
    local parents = { ... }
    setmetatable(c, {__index = function(t, k)
-                       return search(k, parents)
+		       return search(k, parents)
    end})
    c.__index = c
 
@@ -548,15 +594,15 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgdf9306b" class="outline-3">
-<h3 id="orgdf9306b"><span class="section-number-3">2.6</span> 弱引用table</h3>
+<div id="outline-container-org24b8834" class="outline-3">
+<h3 id="org24b8834"><span class="section-number-3">2.6</span> 弱引用table</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 弱引用的table，里面key或者是value，如果没有被外面访问的话，那么在gc阶段是会被回收的。Lua只会回收弱引用table中的对象，而不会回收值。
 </p>
 
 <p>
-将普通的table变成弱引用table的方式是修改metatable. `{__mode = 'k'}` 说明key是弱引用， `{__mode = 'v'}` 说明value是弱引用。
+将普通的table变成弱引用table的方式是修改metatable. `{_<sub>mode</sub> = 'k'}` 说明key是弱引用， `{_<sub>mode</sub> = 'v'}` 说明value是弱引用。
 </p>
 
 <div class="org-src-container">
@@ -597,8 +643,8 @@ c	table: 0x7fe6e9402b30
 </div>
 </div>
 
-<div id="outline-container-org3f74dca" class="outline-2">
-<h2 id="org3f74dca"><span class="section-number-2">3</span> 第三部分(C18~C23)</h2>
+<div id="outline-container-org794c7c8" class="outline-2">
+<h2 id="org794c7c8"><span class="section-number-2">3</span> 第三部分(C18~C23)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Lua各种库的使用方法。书里面介绍了下面这些库
@@ -636,15 +682,15 @@ Lua各种库的使用方法。书里面介绍了下面这些库
 </div>
 </div>
 
-<div id="outline-container-org0e9c355" class="outline-2">
-<h2 id="org0e9c355"><span class="section-number-2">4</span> 第四部分(C24~C31)</h2>
+<div id="outline-container-org7d8de3f" class="outline-2">
+<h2 id="org7d8de3f"><span class="section-number-2">4</span> 第四部分(C24~C31)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 如何将Lua和C混合编程，包括用C扩展Lua以及在C里面调用Lua代码。
 </p>
 
 <p>
-一个Lua线程的全部状态都存储在lua_State对象里面。Lua和C之间的交互，是通过栈(stack)来完成的，而每个lua_State只需要维护独立的栈，就可以实现多线程。至于这种多线程可以是原生(比如使用pthread), 也可以是协同的(coroutine).
+一个Lua线程的全部状态都存储在lua<sub>State对象里面</sub>。Lua和C之间的交互，是通过栈(stack)来完成的，而每个lua<sub>State只需要维护独立的栈</sub>，就可以实现多线程。至于这种多线程可以是原生(比如使用pthread), 也可以是协同的(coroutine).
 </p>
 
 <p>
@@ -659,10 +705,15 @@ Lua各种库的使用方法。书里面介绍了下面这些库
 </p>
 
 <p>
-用户自定义类型可以设置`__gc`字段，这个字段对应的函数会在对象被Lua执行GC的时候调用。
+用户自定义类型可以设置`_<sub>gc</sub>`字段，这个字段对应的函数会在对象被Lua执行GC的时候调用。
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/lua-prog-lang-book.html';this.page.identifier = 'lua-prog-lang-book.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

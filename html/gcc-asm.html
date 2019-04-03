@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GCC内嵌汇编</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">GCC内嵌汇编</h1>
@@ -38,68 +84,68 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf7e455e">1. 基本形式</a></li>
-<li><a href="#org8e771bf">2. 约束符</a></li>
-<li><a href="#org9cd1355">3. 修饰符</a></li>
-<li><a href="#org6744a18">4. 注意事项</a>
+<li><a href="#org977bd1e">1. 基本形式</a></li>
+<li><a href="#org37755cf">2. 约束符</a></li>
+<li><a href="#orgb16572b">3. 修饰符</a></li>
+<li><a href="#orgb3972d0">4. 注意事项</a>
 <ul>
-<li><a href="#orgee394ff">4.1. 值类型</a></li>
-<li><a href="#orgdeb594d">4.2. 跳转标签</a></li>
-<li><a href="#org5787919">4.3. 输入/输出使用同一个寄存器</a></li>
-<li><a href="#orgedd4108">4.4. 内存访问</a></li>
-<li><a href="#org455e0ab">4.5. 指令顺序调整</a></li>
-<li><a href="#org3168174">4.6. 关于Condition Code</a></li>
-<li><a href="#org09e53c9">4.7. 关于asm大小</a></li>
+<li><a href="#org7c1956f">4.1. 值类型</a></li>
+<li><a href="#org178468b">4.2. 跳转标签</a></li>
+<li><a href="#org6b1458a">4.3. 输入/输出使用同一个寄存器</a></li>
+<li><a href="#org534cfca">4.4. 内存访问</a></li>
+<li><a href="#org33bd4ef">4.5. 指令顺序调整</a></li>
+<li><a href="#org4f7873a">4.6. 关于Condition Code</a></li>
+<li><a href="#org8bfd52d">4.7. 关于asm大小</a></li>
 </ul>
 </li>
-<li><a href="#org35e4b2a">5. 其他文章</a>
+<li><a href="#org5269104">5. 其他文章</a>
 <ul>
-<li><a href="#orga4caf7e">5.1. gcc内嵌汇编码1</a></li>
-<li><a href="#org54d2911">5.2. gcc内嵌汇编码2</a></li>
-<li><a href="#orgc0b2c1e">5.3. 关于gcc的行内汇编(1)</a></li>
-<li><a href="#org196a4f3">5.4. 关于gcc的行内汇编(2)</a></li>
-<li><a href="#org5812544">5.5. 关于gcc的行内汇编(3)</a></li>
-<li><a href="#org88ee7bd">5.6. 关于gcc的行内汇编(4)</a></li>
+<li><a href="#orga209da1">5.1. gcc内嵌汇编码1</a></li>
+<li><a href="#orgdb35020">5.2. gcc内嵌汇编码2</a></li>
+<li><a href="#org72679b3">5.3. 关于gcc的行内汇编(1)</a></li>
+<li><a href="#org66ff7a6">5.4. 关于gcc的行内汇编(2)</a></li>
+<li><a href="#orgdc946a6">5.5. 关于gcc的行内汇编(3)</a></li>
+<li><a href="#org595dfd0">5.6. 关于gcc的行内汇编(4)</a></li>
 </ul>
 </li>
-<li><a href="#org9058c01">6. x86-64寄存器约定</a>
+<li><a href="#orga72e020">6. x86-64寄存器约定</a>
 <ul>
-<li><a href="#org7501b96">6.1. 各个寄存器作用</a></li>
-<li><a href="#org997ecd1">6.2. 寄存器保存约定</a></li>
-<li><a href="#orge8f181b">6.3. 传参数寄存器选择</a></li>
+<li><a href="#org8235ced">6.1. 各个寄存器作用</a></li>
+<li><a href="#org92556ab">6.2. 寄存器保存约定</a></li>
+<li><a href="#org2e59ee4">6.3. 传参数寄存器选择</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf7e455e" class="outline-2">
-<h2 id="orgf7e455e"><span class="section-number-2">1</span> 基本形式</h2>
+<div id="outline-container-org977bd1e" class="outline-2">
+<h2 id="org977bd1e"><span class="section-number-2">1</span> 基本形式</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__(
-    <span class="org-string">"xorps %%xmm0,%%xmm1\n\t"</span>
-    <span class="org-string">"1:\n\t"</span>
-    <span class="org-string">"movdqa %%xmm0,%%xmm1\n\t"</span>
-    <span class="org-string">"pcmpgtd (%1),%%xmm1\n\t"</span>
-    <span class="org-string">"andps %%xmm1,%%xmm0\n\t"</span>
-    <span class="org-string">"andnps (%1),%%xmm1\n\t"</span>
-    <span class="org-string">"orps %%xmm1,%%xmm0\n\t"</span>
-    <span class="org-string">"addq $16,%1\n\t"</span>
-    <span class="org-string">"subq $4,%2\n\t"</span>
-    <span class="org-string">"jnz 1b\n\t"</span>
-    <span class="org-string">"movdqu %%xmm0,(%3)\n\t"</span>
-    <span class="org-string">"movl (%3),%%eax\n\t"</span>
-    <span class="org-string">"cmpl 4(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmovll 4(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmpl 8(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmovll 8(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmpl 12(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmovll 12(%3),%%eax\n\t"</span>
-    <span class="org-string">"movl %%eax,%0\n\t"</span>
-    :<span class="org-string">"=m"</span>(mx)
-    :<span class="org-string">"r"</span>(a),<span class="org-string">"r"</span>((<span class="org-type">long</span> <span class="org-type">long</span>)N),<span class="org-string">"r"</span>(tmp)
-    :<span class="org-string">"eax"</span>);
+<pre class="src src-C++"><span style="font-weight: bold;">__asm__</span> __volatile__(
+    <span style="font-style: italic;">"xorps %%xmm0,%%xmm1\n\t"</span>
+    <span style="font-style: italic;">"1:\n\t"</span>
+    <span style="font-style: italic;">"movdqa %%xmm0,%%xmm1\n\t"</span>
+    <span style="font-style: italic;">"pcmpgtd (%1),%%xmm1\n\t"</span>
+    <span style="font-style: italic;">"andps %%xmm1,%%xmm0\n\t"</span>
+    <span style="font-style: italic;">"andnps (%1),%%xmm1\n\t"</span>
+    <span style="font-style: italic;">"orps %%xmm1,%%xmm0\n\t"</span>
+    <span style="font-style: italic;">"addq $16,%1\n\t"</span>
+    <span style="font-style: italic;">"subq $4,%2\n\t"</span>
+    <span style="font-style: italic;">"jnz 1b\n\t"</span>
+    <span style="font-style: italic;">"movdqu %%xmm0,(%3)\n\t"</span>
+    <span style="font-style: italic;">"movl (%3),%%eax\n\t"</span>
+    <span style="font-style: italic;">"cmpl 4(%3),%%eax\n\t"</span>
+    <span style="font-style: italic;">"cmovll 4(%3),%%eax\n\t"</span>
+    <span style="font-style: italic;">"cmpl 8(%3),%%eax\n\t"</span>
+    <span style="font-style: italic;">"cmovll 8(%3),%%eax\n\t"</span>
+    <span style="font-style: italic;">"cmpl 12(%3),%%eax\n\t"</span>
+    <span style="font-style: italic;">"cmovll 12(%3),%%eax\n\t"</span>
+    <span style="font-style: italic;">"movl %%eax,%0\n\t"</span>
+    :<span style="font-style: italic;">"=m"</span>(mx)
+    :<span style="font-style: italic;">"r"</span>(a),<span style="font-style: italic;">"r"</span>((<span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; text-decoration: underline;">long</span>)N),<span style="font-style: italic;">"r"</span>(tmp)
+    :<span style="font-style: italic;">"eax"</span>);
 </pre>
 </div>
 <p>
@@ -113,7 +159,7 @@
 </ul>
 
 <p>
-汇编扩展以__asm__开头表示后面部分为汇编,__volatile__严禁将此处的汇编语句和其他语句进行重组优化，就是希望gcc不要修改我们这个部分。
+汇编扩展以_<sub>asm</sub>_<sub>开头表示后面部分为汇编</sub>,_<sub>volatile</sub>_<sub>严禁将此处的汇编语句和其他语句进行重组优化</sub>，就是希望gcc不要修改我们这个部分。
 </p>
 <ul class="org-ul">
 <li>寄存器使用%%开头</li>
@@ -123,8 +169,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8e771bf" class="outline-2">
-<h2 id="org8e771bf"><span class="section-number-2">2</span> 约束符</h2>
+<div id="outline-container-org37755cf" class="outline-2">
+<h2 id="org37755cf"><span class="section-number-2">2</span> 约束符</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 约束符影响的内容包括
@@ -185,8 +231,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9cd1355" class="outline-2">
-<h2 id="org9cd1355"><span class="section-number-2">3</span> 修饰符</h2>
+<div id="outline-container-orgb16572b" class="outline-2">
+<h2 id="orgb16572b"><span class="section-number-2">3</span> 修饰符</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 修饰符包括[还有一些不是很理解]
@@ -197,7 +243,7 @@
 <li>&amp; 常用于输出限定符,表示某个寄存器不会被输入所使用.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"call func\n\tmovl %%ebx,%1"</span>,<span class="org-string">"=a"</span>(foo),<span class="org-string">"r"</span>(bar));
+<pre class="src src-C++"><span style="font-weight: bold;">__asm__</span> __volatile__ (<span style="font-style: italic;">"call func\n\tmovl %%ebx,%1"</span>,<span style="font-style: italic;">"=a"</span>(foo),<span style="font-style: italic;">"r"</span>(bar));
 </pre>
 </div>
 <p>
@@ -205,18 +251,18 @@
 所以foo最终是ebx寄存器结果.为了避免这个问题,我们可以使用&amp;修饰符.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"call func\n\tmovl %%ebx,%1"</span>,<span class="org-string">"=&amp;a"</span>(foo),<span class="org-string">"r"</span>(bar));
+<pre class="src src-C++"><span style="font-weight: bold;">__asm__</span> __volatile__ (<span style="font-style: italic;">"call func\n\tmovl %%ebx,%1"</span>,<span style="font-style: italic;">"=&amp;a"</span>(foo),<span style="font-style: italic;">"r"</span>(bar));
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6744a18" class="outline-2">
-<h2 id="org6744a18"><span class="section-number-2">4</span> 注意事项</h2>
+<div id="outline-container-orgb3972d0" class="outline-2">
+<h2 id="orgb3972d0"><span class="section-number-2">4</span> 注意事项</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgee394ff" class="outline-3">
-<h3 id="orgee394ff"><span class="section-number-3">4.1</span> 值类型</h3>
+<div id="outline-container-org7c1956f" class="outline-3">
+<h3 id="org7c1956f"><span class="section-number-3">4.1</span> 值类型</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 值的类型会影响寄存器的分配.比如这里"r"((long long)N).本来N是一个int类型的,
@@ -227,8 +273,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgdeb594d" class="outline-3">
-<h3 id="orgdeb594d"><span class="section-number-3">4.2</span> 跳转标签</h3>
+<div id="outline-container-org178468b" class="outline-3">
+<h3 id="org178468b"><span class="section-number-3">4.2</span> 跳转标签</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 对于跳转标签我们可以使用1,2,3来命名,然后在跳转的时候,需要在后面加上后缀.
@@ -237,15 +283,15 @@ b表示backward,f表示foreward.比如jnz 1b.使用1,2,3来命名的标签都是
 </div>
 </div>
 
-<div id="outline-container-org5787919" class="outline-3">
-<h3 id="org5787919"><span class="section-number-3">4.3</span> 输入/输出使用同一个寄存器</h3>
+<div id="outline-container-org6b1458a" class="outline-3">
+<h3 id="org6b1458a"><span class="section-number-3">4.3</span> 输入/输出使用同一个寄存器</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 如果想输入和输出使用同一个寄存器的话,存在两种方式.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"cpuid"</span>:<span class="org-string">"+r"</span>(a)::)
-<span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"cpuid"</span>:<span class="org-string">"=r"</span>(a):<span class="org-string">"0"</span>(a):)
+<pre class="src src-C++"><span style="font-weight: bold;">__asm__</span> __volatile__ (<span style="font-style: italic;">"cpuid"</span>:<span style="font-style: italic;">"+r"</span>(a)::)
+<span style="font-weight: bold;">__asm__</span> __volatile__ (<span style="font-style: italic;">"cpuid"</span>:<span style="font-style: italic;">"=r"</span>(a):<span style="font-style: italic;">"0"</span>(a):)
 </pre>
 </div>
 <p>
@@ -260,8 +306,8 @@ b表示backward,f表示foreward.比如jnz 1b.使用1,2,3来命名的标签都是
 </div>
 </div>
 
-<div id="outline-container-orgedd4108" class="outline-3">
-<h3 id="orgedd4108"><span class="section-number-3">4.4</span> 内存访问</h3>
+<div id="outline-container-org534cfca" class="outline-3">
+<h3 id="org534cfca"><span class="section-number-3">4.4</span> 内存访问</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 如果在指令中存在某种不可以预见的访问内存方式的话,那么最好在clobber部分写上"memory".
@@ -275,24 +321,24 @@ b表示backward,f表示foreward.比如jnz 1b.使用1,2,3来命名的标签都是
 内存状态.内存的状态可能发生修改,如果需要操作的话,需要重新把内存内容载入寄存器.比如
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">""</span>:::<span class="org-string">"memory"</span>)
+<pre class="src src-C++"><span style="font-weight: bold;">__asm__</span> __volatile__ (<span style="font-style: italic;">""</span>:::<span style="font-style: italic;">"memory"</span>)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org455e0ab" class="outline-3">
-<h3 id="org455e0ab"><span class="section-number-3">4.5</span> 指令顺序调整</h3>
+<div id="outline-container-org33bd4ef" class="outline-3">
+<h3 id="org33bd4ef"><span class="section-number-3">4.5</span> 指令顺序调整</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
-即使对于一条__asm__指令的话,可能被调整执行顺序.如果希望不被调整执行顺序的话,那么应该把
+即使对于一条_<sub>asm</sub>_<sub>指令的话,可能被调整执行顺序.如果希望不被调整执行顺序的话,那么应该把</sub>
 这些指令放在一个asm指令内部.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3168174" class="outline-3">
-<h3 id="org3168174"><span class="section-number-3">4.6</span> 关于Condition Code</h3>
+<div id="outline-container-org4f7873a" class="outline-3">
+<h3 id="org4f7873a"><span class="section-number-3">4.6</span> 关于Condition Code</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 如果load和store会改写的Condition Code的话,那么在刚进入asm第一条指令以及刚出asm第一条指令
@@ -303,8 +349,8 @@ b表示backward,f表示foreward.比如jnz 1b.使用1,2,3来命名的标签都是
 </div>
 </div>
 
-<div id="outline-container-org09e53c9" class="outline-3">
-<h3 id="org09e53c9"><span class="section-number-3">4.7</span> 关于asm大小</h3>
+<div id="outline-container-org8bfd52d" class="outline-3">
+<h3 id="org8bfd52d"><span class="section-number-3">4.7</span> 关于asm大小</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 asm大小是根据指令数量*最长指令来计算大小*的.所以如果内部使用macro来编写的话,可能会造成
@@ -314,12 +360,12 @@ asm大小计算错误,影响产生的代码.
 </div>
 </div>
 
-<div id="outline-container-org35e4b2a" class="outline-2">
-<h2 id="org35e4b2a"><span class="section-number-2">5</span> 其他文章</h2>
+<div id="outline-container-org5269104" class="outline-2">
+<h2 id="org5269104"><span class="section-number-2">5</span> 其他文章</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orga4caf7e" class="outline-3">
-<h3 id="orga4caf7e"><span class="section-number-3">5.1</span> gcc内嵌汇编码1</h3>
+<div id="outline-container-orga209da1" class="outline-3">
+<h3 id="orga209da1"><span class="section-number-3">5.1</span> gcc内嵌汇编码1</h3>
 <div class="outline-text-3" id="text-5-1">
 <pre class="example">
 信件标题： [转贴]gcc内嵌汇编码
@@ -716,8 +762,8 @@ AT&amp;T格式的汇编语言中，寄存器名以“%”作为前缀，为了�
 </div>
 </div>
 
-<div id="outline-container-org54d2911" class="outline-3">
-<h3 id="org54d2911"><span class="section-number-3">5.2</span> gcc内嵌汇编码2</h3>
+<div id="outline-container-orgdb35020" class="outline-3">
+<h3 id="orgdb35020"><span class="section-number-3">5.2</span> gcc内嵌汇编码2</h3>
 <div class="outline-text-3" id="text-5-2">
 <pre class="example">
 信件标题： [Forward]对 《gcc中的内嵌汇编语言》一文的补充说明
@@ -878,8 +924,8 @@ AT&amp;T格式的汇编语言中，寄存器名以“%”作为前缀，为了�
 </div>
 </div>
 
-<div id="outline-container-orgc0b2c1e" class="outline-3">
-<h3 id="orgc0b2c1e"><span class="section-number-3">5.3</span> 关于gcc的行内汇编(1)</h3>
+<div id="outline-container-org72679b3" class="outline-3">
+<h3 id="org72679b3"><span class="section-number-3">5.3</span> 关于gcc的行内汇编(1)</h3>
 <div class="outline-text-3" id="text-5-3">
 <pre class="example">
 信件标题： :关于gcc的行内汇编(1)
@@ -951,8 +997,8 @@ Intel:        [ebx + eax*8 + _array]
 </div>
 </div>
 
-<div id="outline-container-org196a4f3" class="outline-3">
-<h3 id="org196a4f3"><span class="section-number-3">5.4</span> 关于gcc的行内汇编(2)</h3>
+<div id="outline-container-org66ff7a6" class="outline-3">
+<h3 id="org66ff7a6"><span class="section-number-3">5.4</span> 关于gcc的行内汇编(2)</h3>
 <div class="outline-text-3" id="text-5-4">
 <pre class="example">
 信件标题： 关于gcc的行内汇编(2)
@@ -996,8 +1042,8 @@ asm("movl $0,_booga);
 </div>
 </div>
 
-<div id="outline-container-org5812544" class="outline-3">
-<h3 id="org5812544"><span class="section-number-3">5.5</span> 关于gcc的行内汇编(3)</h3>
+<div id="outline-container-orgdc946a6" class="outline-3">
+<h3 id="orgdc946a6"><span class="section-number-3">5.5</span> 关于gcc的行内汇编(3)</h3>
 <div class="outline-text-3" id="text-5-5">
 <pre class="example">
 信件标题： 关于gcc的行内汇编(3)
@@ -1090,8 +1136,8 @@ asm("leal (%%ebx,%%ebx,4),%0"
 </div>
 </div>
 
-<div id="outline-container-org88ee7bd" class="outline-3">
-<h3 id="org88ee7bd"><span class="section-number-3">5.6</span> 关于gcc的行内汇编(4)</h3>
+<div id="outline-container-org595dfd0" class="outline-3">
+<h3 id="org595dfd0"><span class="section-number-3">5.6</span> 关于gcc的行内汇编(4)</h3>
 <div class="outline-text-3" id="text-5-6">
 <pre class="example">
 信件标题： 关于gcc的行内汇编(4)
@@ -1134,16 +1180,16 @@ return -1; \
 </div>
 </div>
 
-<div id="outline-container-org9058c01" class="outline-2">
-<h2 id="org9058c01"><span class="section-number-2">6</span> x86-64寄存器约定</h2>
+<div id="outline-container-orga72e020" class="outline-2">
+<h2 id="orga72e020"><span class="section-number-2">6</span> x86-64寄存器约定</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 注: 很早之前整理的，不知道现在是否还正确。基本上开发是使用不到寄存器约定的，除非自己开发编译器。
 </p>
 </div>
 
-<div id="outline-container-org7501b96" class="outline-3">
-<h3 id="org7501b96"><span class="section-number-3">6.1</span> 各个寄存器作用</h3>
+<div id="outline-container-org8235ced" class="outline-3">
+<h3 id="org8235ced"><span class="section-number-3">6.1</span> 各个寄存器作用</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>%eax 返回使用的SSE寄存器的个数的上限，1th返回值的寄存器</li>
@@ -1172,8 +1218,8 @@ return -1; \
 </div>
 </div>
 
-<div id="outline-container-org997ecd1" class="outline-3">
-<h3 id="org997ecd1"><span class="section-number-3">6.2</span> 寄存器保存约定</h3>
+<div id="outline-container-org92556ab" class="outline-3">
+<h3 id="org92556ab"><span class="section-number-3">6.2</span> 寄存器保存约定</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 函数调用的时候分为调用函数的保存寄存器组(caller saved)和被调函数的保存寄存器组(callee saved)。对于callee saved保存的寄存器组有下面这些(这些都是如果被调函数需要使用的话那么需要自己进行保存):
@@ -1193,8 +1239,8 @@ return -1; \
 </div>
 </div>
 
-<div id="outline-container-orge8f181b" class="outline-3">
-<h3 id="orge8f181b"><span class="section-number-3">6.3</span> 传参数寄存器选择</h3>
+<div id="outline-container-org2e59ee4" class="outline-3">
+<h3 id="org2e59ee4"><span class="section-number-3">6.3</span> 传参数寄存器选择</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 确定了传入参数使用哪一类型寄存器之后，然后必须确定需要传入哪一个寄存器
@@ -1209,6 +1255,11 @@ return -1; \
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/gcc-asm.html';this.page.identifier = 'gcc-asm.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

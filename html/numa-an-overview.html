@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NUMA (Non-Uniform Memory Access): An Overview</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">NUMA (Non-Uniform Memory Access): An Overview</h1>
@@ -184,7 +230,7 @@ started.（Linux内核使用INTERLEAVE策略分配，避免在某个node上分�
 <p>
 The active memory allocation policies for all memory segments of a process (and information that
 shows how much memory was actually allocated from which node) can be seen by determining the
-process id and then looking at the contents of /proc/&lt;pid&gt;/numa_maps.
+process id and then looking at the contents of /proc/&lt;pid&gt;/numa<sub>maps</sub>.
 </p>
 
 <hr />
@@ -260,7 +306,7 @@ performance.（对于小NUMA系统比如2nodes来说偏向使用remote node, 而
 
 <p>
 There is a knob in the kernel that determines how the situation is to be treated in <i>proc/sys</i>
-vm/zone_reclaim. A value of 0 means that no local reclaim should take place. A value of 1 tells the
+vm/zone<sub>reclaim</sub>. A value of 0 means that no local reclaim should take place. A value of 1 tells the
 kernel that a reclaim pass should be run in order to avoid allocations from the other node. On boot-
 up a mode is chosen based on the largest NUMA distance in the system.
 </p>
@@ -268,7 +314,7 @@ up a mode is chosen based on the largest NUMA distance in the system.
 <p>
 If zone reclaim is switched on, the kernel still attempts to keep the reclaim pass as lightweight
 as possible. By default, reclaim will be restricted to unmapped page-cache pages. The frequency
-of reclaim passes can be further reduced by setting /proc/sys/vm/min_unmapped_ratio to the
+of reclaim passes can be further reduced by setting /proc/sys/vm/min<sub>unmapped</sub><sub>ratio</sub> to the
 percentage of memory that must contain unmapped pages for the system to run a reclaim pass. The
 default is 1 percent. （zone reclaim打开之后后台也会启动轻量回收线程，只回收那些没有被映射到进程空间的page，并且这种page占用内存比率超过一定数量才会开始回收）
 </p>
@@ -318,9 +364,9 @@ node   0
 ➜  utils  numactl --show
 policy: default
 preferred node: current
-physcpubind: 0 1 2 3 4 5 6 7
-cpubind: 0
-nodebind: 0
+physcpubind: 0 1 2 3 4 5 6 7 
+cpubind: 0 
+nodebind: 0 
 membind: 0
 </pre>
 
@@ -364,7 +410,7 @@ memory.
 <p>
 Linux has the capability to move memory. The virtual address of the memory in the process space
 stays the same. Only the physical location of the data is moved to a different node. The effect can be
-observed by looking at /proc/&lt;pid&gt;/numa_maps before and after a move.（虚拟地址保持不变而物理地址移动到其他node上去）
+observed by looking at /proc/&lt;pid&gt;/numa<sub>maps</sub> before and after a move.（虚拟地址保持不变而物理地址移动到其他node上去）
 </p>
 
 <p>
@@ -408,6 +454,11 @@ interfere with memory placement. Processes were often pinned to a specific set o
 taskset, or the system was partitioned using the cpusets feature to keep applications within the
 NUMA node boundaries.
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/numa-an-overview.html';this.page.identifier = 'numa-an-overview.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

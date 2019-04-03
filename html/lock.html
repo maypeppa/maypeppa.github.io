@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>lock</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">lock</h1>
@@ -16,16 +62,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org99d38b3">1. implementation</a></li>
-<li><a href="#org9975b99">2. lock-free</a></li>
-<li><a href="#org8ee6acf">3. futex</a></li>
-<li><a href="#org9676784">4. 使用自选锁来实现信号量</a></li>
+<li><a href="#orgdef7bc9">1. implementation</a></li>
+<li><a href="#orgb2ab80c">2. lock-free</a></li>
+<li><a href="#org9ac6d2e">3. futex</a></li>
+<li><a href="#orgc657e4c">4. 使用自选锁来实现信号量</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org99d38b3" class="outline-2">
-<h2 id="org99d38b3"><span class="section-number-2">1</span> implementation</h2>
+<div id="outline-container-orgdef7bc9" class="outline-2">
+<h2 id="orgdef7bc9"><span class="section-number-2">1</span> implementation</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="http://lwn.net/Articles/267968/">Ticket spinlocks</a></li>
@@ -40,8 +86,8 @@ update@201509: 通过xchg/cmpxchg这种原子指令可以很容易实现一个sp
 </div>
 </div>
 
-<div id="outline-container-org9975b99" class="outline-2">
-<h2 id="org9975b99"><span class="section-number-2">2</span> lock-free</h2>
+<div id="outline-container-orgb2ab80c" class="outline-2">
+<h2 id="orgb2ab80c"><span class="section-number-2">2</span> lock-free</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-lockfree/">透过 Linux 内核看无锁编程</a></li>
@@ -54,8 +100,8 @@ update@201509: 通过xchg/cmpxchg这种原子指令可以很容易实现一个sp
 </div>
 </div>
 
-<div id="outline-container-org8ee6acf" class="outline-2">
-<h2 id="org8ee6acf"><span class="section-number-2">3</span> futex</h2>
+<div id="outline-container-org9ac6d2e" class="outline-2">
+<h2 id="org9ac6d2e"><span class="section-number-2">3</span> futex</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="http://en.wikipedia.org/wiki/Futex">Wikipedia Futex</a></li>
@@ -69,51 +115,51 @@ update@201509: 通过xchg/cmpxchg这种原子指令可以很容易实现一个sp
 </ul>
 
 <p>
-futex(fast userspace mutex)快速用户态互斥锁，需要用户态和内核态配合来完成。首先用户态判断是否存在contented case（比如判断当前资源是否足够），如果没有的话就没有必要陷入内核态，用户态就可以搞定。如果出现conteted case，那么这个需要等待资源可用，那么调用futex(FUTEX_WAIT)陷入内核态挂起，并且等待唤醒。如果一旦有资源可用的话，首先会判断用户态是否有等待资源的请求，如果没有的话同样没有必要陷入内核态，用户态就可以搞定。如果出现有等待资源并且挂起的请求的话，那么调用futex(FUTEX_WAKE)就可以将请求唤醒。上面那个链接可以有代码参考, 此外还可以阅读glibc/ntpl下面的pthread_mutex的部分。不过大部分时候我们没有必要接触这个东西，pthread_mutex已经做得足够高效并且屏蔽了操作系统的细节了。
+futex(fast userspace mutex)快速用户态互斥锁，需要用户态和内核态配合来完成。首先用户态判断是否存在contented case（比如判断当前资源是否足够），如果没有的话就没有必要陷入内核态，用户态就可以搞定。如果出现conteted case，那么这个需要等待资源可用，那么调用futex(FUTEX<sub>WAIT</sub>)陷入内核态挂起，并且等待唤醒。如果一旦有资源可用的话，首先会判断用户态是否有等待资源的请求，如果没有的话同样没有必要陷入内核态，用户态就可以搞定。如果出现有等待资源并且挂起的请求的话，那么调用futex(FUTEX<sub>WAKE</sub>)就可以将请求唤醒。上面那个链接可以有代码参考, 此外还可以阅读glibc/ntpl下面的pthread<sub>mutex的部分</sub>。不过大部分时候我们没有必要接触这个东西，pthread<sub>mutex已经做得足够高效并且屏蔽了操作系统的细节了</sub>。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9676784" class="outline-2">
-<h2 id="org9676784"><span class="section-number-2">4</span> 使用自选锁来实现信号量</h2>
+<div id="outline-container-orgc657e4c" class="outline-2">
+<h2 id="orgc657e4c"><span class="section-number-2">4</span> 使用自选锁来实现信号量</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">sema</span>
+<pre class="src src-C++"><span style="font-weight: bold;">typedef</span> <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">sema</span>
 {
-  <span class="org-type">lock_t</span> <span class="org-variable-name">lock</span>;
-  <span class="org-type">int</span> <span class="org-variable-name">count</span>;
-  <span class="org-type">queue</span> <span class="org-variable-name">q</span>;
-} <span class="org-type">sema_t</span>;
+  <span style="font-weight: bold; text-decoration: underline;">lock_t</span> <span style="font-weight: bold; font-style: italic;">lock</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">count</span>;
+  <span style="font-weight: bold; text-decoration: underline;">queue</span> <span style="font-weight: bold; font-style: italic;">q</span>;
+} <span style="font-weight: bold; text-decoration: underline;">sema_t</span>;
 
-<span class="org-type">void</span> <span class="org-function-name">init_sema</span>(<span class="org-type">sema_t</span>* <span class="org-variable-name">sema</span>, <span class="org-type">int</span> <span class="org-variable-name">init_cnt</span>)
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">init_sema</span>(<span style="font-weight: bold; text-decoration: underline;">sema_t</span>* <span style="font-weight: bold; font-style: italic;">sema</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">init_cnt</span>)
 {
   init_lock(&amp;sema-&gt;lock);
   init_queue(&amp;sema-&gt;q);
   sema-&gt;count=init_cnt;
 }
 
-<span class="org-type">void</span> <span class="org-function-name">p</span>(<span class="org-type">sema_t</span>* <span class="org-variable-name">sema</span>)
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">p</span>(<span style="font-weight: bold; text-decoration: underline;">sema_t</span>* <span style="font-weight: bold; font-style: italic;">sema</span>)
 {
   lock(&amp;sema-&gt;lock);
   sema-&gt;count--;
-  <span class="org-keyword">if</span> (sema-&gt;count &lt; 0) {
+  <span style="font-weight: bold;">if</span> (sema-&gt;count &lt; 0) {
     q.push(current_process_context());
     unlock(&amp;sema-&gt;lock);
-    swtch(); <span class="org-comment-delimiter">// </span><span class="org-comment">switch to another process.</span>
-    <span class="org-keyword">return</span>;
+    swtch(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">switch to another process.</span>
+    <span style="font-weight: bold;">return</span>;
   }
   unlock(&amp;sema-&gt;lock);
 }
 
-<span class="org-type">void</span> <span class="org-function-name">v</span>(<span class="org-type">sema_t</span>* <span class="org-variable-name">sema</span>)
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">v</span>(<span style="font-weight: bold; text-decoration: underline;">sema_t</span>* <span style="font-weight: bold; font-style: italic;">sema</span>)
 {
   lock(&amp;sema-&gt;lock);
   sema-&gt;count++;
-  <span class="org-keyword">if</span> (sema-&gt;count &lt;= 0) {
-    <span class="org-type">pcs_ctx</span>* <span class="org-variable-name">ctx</span> = q.pop();
+  <span style="font-weight: bold;">if</span> (sema-&gt;count &lt;= 0) {
+    <span style="font-weight: bold; text-decoration: underline;">pcs_ctx</span>* <span style="font-weight: bold; font-style: italic;">ctx</span> = q.pop();
     unlock(&amp;sema-&gt;lock);
     enqueue(&amp;running_queue, ctx);
-    <span class="org-keyword">return</span> ;
+    <span style="font-weight: bold;">return</span> ;
   }
   unlock(&amp;sema-&gt;lock);
 }
@@ -121,6 +167,11 @@ futex(fast userspace mutex)快速用户态互斥锁，需要用户态和内核�
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/lock.html';this.page.identifier = 'lock.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

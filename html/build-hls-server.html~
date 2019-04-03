@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>搭建直播平台</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">搭建直播平台</h1>
+<p>
+在公众号看到 @陈利人 老师发了一篇 <a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649966092&amp;idx=1&amp;sn=aaba8cc1f2b34860669f5fbfa814cf60&amp;scene=1&amp;srcid=0907JWAGxxTKGNJ4JGwTxuPu&amp;from=groupmessage&amp;isappinstalled=0#wechat_redirect">文章</a> 说如何搭建自己的直播平台，里面还给了比较详细的步骤。
+</p>
+
+<p>
+之前也好奇直播平台到底是个什么原理，就按照文章里面的步骤试了一把，代码放在了 <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/misc/http-live-streaming">github</a> 上面。
+</p>
+
+<p>
+默认的nginx发布包里面是没有带 <a href="https://github.com/arut/nginx-rtmp-module">rtmp</a> 模块的话，所以还要自己编译一个有rtmp模块的nginx出来.
+</p>
+
+<p>
+HLS最新实现对mp3格式 <a href="https://github.com/arut/nginx-rtmp-module/issues/181">支持不好</a> ，所以使用文章里面的ffmpeg命令是没有audio的，换成aac格式就好了(-c:a libfdk_aac)
+</p>
+
+<p>
+<a href="https://github.com/dailymotion/hls.js">hls.js</a> 可以用来做播放器 <a href="http://dailymotion.github.io/hls.js/demo/?src=http://localhost:8888/hls/movie.m3u8&amp;enableStreaming=true&amp;autoRecoverError=true&amp;enableWorker=true&amp;levelCapping=-1&amp;defaultAudioCodec=undefined">watch it</a>
+</p>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/build-hls-server.html';this.page.identifier = 'build-hls-server.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

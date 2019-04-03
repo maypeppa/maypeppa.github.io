@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>galera代码分析</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">galera代码分析</h1>
@@ -16,23 +62,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfce6427">1. overview</a></li>
-<li><a href="#org24c0aff">2. wsrep-api</a>
+<li><a href="#orgc371819">1. overview</a></li>
+<li><a href="#org6b18b5c">2. wsrep-api</a>
 <ul>
-<li><a href="#org5019ab8">2.1. overview</a></li>
-<li><a href="#orgfbf92ca">2.2. concept</a></li>
-<li><a href="#org7994357">2.3. wsrep_init_args</a></li>
-<li><a href="#orgcce6dfb">2.4. wsrep_t</a></li>
+<li><a href="#orgba67c63">2.1. overview</a></li>
+<li><a href="#org5bde11c">2.2. concept</a></li>
+<li><a href="#orge742634">2.3. wsrep<sub>init</sub><sub>args</sub></a></li>
+<li><a href="#org9002c78">2.4. wsrep<sub>t</sub></a></li>
 </ul>
 </li>
-<li><a href="#orga423ce6">3. gcomm</a></li>
-<li><a href="#orge247f7e">4. tests</a></li>
+<li><a href="#org3fea446">3. gcomm</a></li>
+<li><a href="#org7fd922d">4. tests</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfce6427" class="outline-2">
-<h2 id="orgfce6427"><span class="section-number-2">1</span> overview</h2>
+<div id="outline-container-orgc371819" class="outline-2">
+<h2 id="orgc371819"><span class="section-number-2">1</span> overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 下面这些子目录:
@@ -64,27 +110,27 @@
 </div>
 </div>
 
-<div id="outline-container-org24c0aff" class="outline-2">
-<h2 id="org24c0aff"><span class="section-number-2">2</span> wsrep-api</h2>
+<div id="outline-container-org6b18b5c" class="outline-2">
+<h2 id="org6b18b5c"><span class="section-number-2">2</span> wsrep-api</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org5019ab8" class="outline-3">
-<h3 id="org5019ab8"><span class="section-number-3">2.1</span> overview</h3>
+<div id="outline-container-orgba67c63" class="outline-3">
+<h3 id="orgba67c63"><span class="section-number-3">2.1</span> overview</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 files:
 </p>
 <ul class="org-ul">
-<li>wsrep_api.h # header</li>
-<li>wsrep_loader # load/unload wsrep_t
+<li>wsrep<sub>api.h</sub> # header</li>
+<li>wsrep<sub>loader</sub> # load/unload wsrep<sub>t</sub>
 <ul class="org-ul">
-<li>symbol=wsrep_loader</li>
-<li>type=int wsrep_loader_fun(wsrep_t*)</li>
+<li>symbol=wsrep<sub>loader</sub></li>
+<li>type=int wsrep<sub>loader</sub><sub>fun</sub>(wsrep<sub>t</sub>*)</li>
 </ul></li>
-<li>wsrep_dummy # example or stub</li>
-<li>wsrep_uuid # uuid helper</li>
-<li>wsrep_gtid # gtid helper</li>
-<li>wsrep_listener # event dumper</li>
+<li>wsrep<sub>dummy</sub> # example or stub</li>
+<li>wsrep<sub>uuid</sub> # uuid helper</li>
+<li>wsrep<sub>gtid</sub> # gtid helper</li>
+<li>wsrep<sub>listener</sub> # event dumper</li>
 </ul>
 
 <p>
@@ -112,8 +158,8 @@ capabilities:
 </div>
 </div>
 
-<div id="outline-container-orgfbf92ca" class="outline-3">
-<h3 id="orgfbf92ca"><span class="section-number-3">2.2</span> concept</h3>
+<div id="outline-container-org5bde11c" class="outline-3">
+<h3 id="org5bde11c"><span class="section-number-3">2.2</span> concept</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>sst(snapshot state transfer)</li>
@@ -135,50 +181,50 @@ capabilities:
 </ul></li>
 <li>group member（节点成员信息）
 <ul class="org-ul">
-<li>member_status</li>
-<li>memver_info</li>
+<li>member<sub>status</sub></li>
+<li>memver<sub>info</sub></li>
 </ul></li>
 <li>group view(视图信息，比如整个集群有多少个节点，每个节点同步进度如何？）
 <ul class="org-ul">
-<li>view_status</li>
-<li>view_info</li>
+<li>view<sub>status</sub></li>
+<li>view<sub>info</sub></li>
 </ul></li>
-<li>wsrep_init_args(arguments)</li>
-<li>wsrep_t(interface)</li>
+<li>wsrep<sub>init</sub><sub>args</sub>(arguments)</li>
+<li>wsrep<sub>t</sub>(interface)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7994357" class="outline-3">
-<h3 id="org7994357"><span class="section-number-3">2.3</span> wsrep_init_args</h3>
+<div id="outline-container-orge742634" class="outline-3">
+<h3 id="orge742634"><span class="section-number-3">2.3</span> wsrep<sub>init</sub><sub>args</sub></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 #note: 这个应该是和上层相关的实现比如MySQL，如何apply, commit等
 </p>
 
 <ul class="org-ul">
-<li>(D)app_ctx 回调使用的context</li>
-<li>(D)node_name 当前节点/实例名称，对应变量wsrep_node_name</li>
-<li>(D)node_address 当前节点/实例地址，对应变量wsrep_node_address</li>
-<li>(D)node_incoming 对应变量wsrep_incoming_addresses <b>可以接受连接请求的节点</b></li>
-<li>(D)data_dir 当前数据库的目录，对应变量wsrep_data_home_dir</li>
+<li>(D)app<sub>ctx</sub> 回调使用的context</li>
+<li>(D)node<sub>name</sub> 当前节点/实例名称，对应变量wsrep<sub>node</sub><sub>name</sub></li>
+<li>(D)node<sub>address</sub> 当前节点/实例地址，对应变量wsrep<sub>node</sub><sub>address</sub></li>
+<li>(D)node<sub>incoming</sub> 对应变量wsrep<sub>incoming</sub><sub>addresses</sub> <b>可以接受连接请求的节点</b></li>
+<li>(D)data<sub>dir</sub> 当前数据库的目录，对应变量wsrep<sub>data</sub><sub>home</sub><sub>dir</sub></li>
 <li>(D)options 选项</li>
-<li>(D)proto_ver 协议版本</li>
-<li>(D)state_id 应用初始状态id</li>
+<li>(D)proto<sub>ver</sub> 协议版本</li>
+<li>(D)state<sub>id</sub> 应用初始状态id</li>
 <li>(D)state 应用初始状态数据</li>
-<li>logger_cb # mysql如何打印galera日志</li>
-<li>view_handler_cb # 新节点加入会比较本地状态uuid和集群状态uuid. 初始同步，joiner动作</li>
-<li>apply_cb # mysql如何执行binlog</li>
-<li>commit_cb # mysql如何提交事务</li>
-<li>unordered_cb #note：do nothing?</li>
-<li>sst_donate_cb # 初始同步，donor动作</li>
-<li>synced_cb # mysql启动等待状态一致之后会调用这个函数，修改变量wsrep_ready从OFF到ON</li>
+<li>logger<sub>cb</sub> # mysql如何打印galera日志</li>
+<li>view<sub>handler</sub><sub>cb</sub> # 新节点加入会比较本地状态uuid和集群状态uuid. 初始同步，joiner动作</li>
+<li>apply<sub>cb</sub> # mysql如何执行binlog</li>
+<li>commit<sub>cb</sub> # mysql如何提交事务</li>
+<li>unordered<sub>cb</sub> #note：do nothing?</li>
+<li>sst<sub>donate</sub><sub>cb</sub> # 初始同步，donor动作</li>
+<li>synced<sub>cb</sub> # mysql启动等待状态一致之后会调用这个函数，修改变量wsrep<sub>ready从OFF到ON</sub></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcce6dfb" class="outline-3">
-<h3 id="orgcce6dfb"><span class="section-number-3">2.4</span> wsrep_t</h3>
+<div id="outline-container-org9002c78" class="outline-3">
+<h3 id="org9002c78"><span class="section-number-3">2.4</span> wsrep<sub>t</sub></h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 #note: 这个应该是和下层相关的实现比如Galera，它定义了整个replication的逻辑
@@ -186,42 +232,42 @@ capabilities:
 
 <ul class="org-ul">
 <li>(D)version 版本</li>
-<li>init 初始化 wsrep_init_args</li>
+<li>init 初始化 wsrep<sub>init</sub><sub>args</sub></li>
 <li>capabilities 支持功能</li>
-<li>options_set 设置选项</li>
-<li>options_get 获取选项</li>
+<li>options<sub>set</sub> 设置选项</li>
+<li>options<sub>get</sub> 获取选项</li>
 <li>connect 建立和集群的连接</li>
 <li>disconnect 断开和集群的连接</li>
 <li>recv 开始接收replication event. 正常情况下这个函数一直运行，期间执行其他操作，如果返回的话那么表明出错或者是退出。</li>
-<li>pre_commit 事务提交之前</li>
-<li>post_commit 事务提交之后</li>
-<li>post_rollback 事务回滚之后</li>
-<li>replay_trx 回放事务(slave)</li>
-<li>abort_pre_commit 在事务提交之前终止</li>
-<li>append_key 将key添加到事务ws. 修改行对应的key，可以用来检测冲突。</li>
-<li>append_data 将data添加到事务ws. 修改行对应的value。</li>
-<li>casual_read  发起一致性读</li>
-<li>free_connection 释放链接</li>
-<li>to_execute_start 开始执行total order isolation事务（上锁）</li>
-<li>to_execute_end 结束执行total order isolation事务（解锁）</li>
-<li>preordered_collect 将预先排序的event收集到ws</li>
-<li>preordered_commit 将收集的ws commit到集群中</li>
-<li>sst_sent sst sst已经发送完毕</li>
-<li>sst_received sst已经接收完毕</li>
+<li>pre<sub>commit</sub> 事务提交之前</li>
+<li>post<sub>commit</sub> 事务提交之后</li>
+<li>post<sub>rollback</sub> 事务回滚之后</li>
+<li>replay<sub>trx</sub> 回放事务(slave)</li>
+<li>abort<sub>pre</sub><sub>commit</sub> 在事务提交之前终止</li>
+<li>append<sub>key</sub> 将key添加到事务ws. 修改行对应的key，可以用来检测冲突。</li>
+<li>append<sub>data</sub> 将data添加到事务ws. 修改行对应的value。</li>
+<li>casual<sub>read</sub>  发起一致性读</li>
+<li>free<sub>connection</sub> 释放链接</li>
+<li>to<sub>execute</sub><sub>start</sub> 开始执行total order isolation事务（上锁）</li>
+<li>to<sub>execute</sub><sub>end</sub> 结束执行total order isolation事务（解锁）</li>
+<li>preordered<sub>collect</sub> 将预先排序的event收集到ws</li>
+<li>preordered<sub>commit</sub> 将收集的ws commit到集群中</li>
+<li>sst<sub>sent</sub> sst sst已经发送完毕</li>
+<li>sst<sub>received</sub> sst已经接收完毕</li>
 <li>snapshot 请求产生snapshot</li>
-<li>stats_get 获取统计数据</li>
-<li>stats_free 释放统计数据</li>
-<li>stats_reset 重置统计数据</li>
+<li>stats<sub>get</sub> 获取统计数据</li>
+<li>stats<sub>free</sub> 释放统计数据</li>
+<li>stats<sub>reset</sub> 重置统计数据</li>
 <li>pause 停止提交</li>
 <li>resume 恢复提交</li>
 <li>desync 断开集群同步</li>
 <li>resync 建立集群同步</li>
 <li>lock 获取全局锁</li>
 <li>unlock 释放全局锁</li>
-<li>is_locked 检测全局锁</li>
-<li>(D)provider_name 名称</li>
-<li>(D)provider_version 版本</li>
-<li>(D)provider_vendor 厂商</li>
+<li>is<sub>locked</sub> 检测全局锁</li>
+<li>(D)provider<sub>name</sub> 名称</li>
+<li>(D)provider<sub>version</sub> 版本</li>
+<li>(D)provider<sub>vendor</sub> 厂商</li>
 <li>free 释放句柄</li>
 <li>(D)dlh dlopen句柄</li>
 <li>(D)ctx 私有句柄，内部使用</li>
@@ -230,8 +276,8 @@ capabilities:
 </div>
 </div>
 
-<div id="outline-container-orga423ce6" class="outline-2">
-<h2 id="orga423ce6"><span class="section-number-2">3</span> gcomm</h2>
+<div id="outline-container-org3fea446" class="outline-2">
+<h2 id="org3fea446"><span class="section-number-2">3</span> gcomm</h2>
 <div class="outline-text-2" id="text-3">
 <hr />
 <p>
@@ -250,12 +296,12 @@ Delivery Order
 在order.hpp里面定义了6种投递顺序
 </p>
 <ul class="org-ul">
-<li>O_DROP 协议内部使用(用来递增消息序列号)</li>
-<li>O_UNRELIABLE 协议内部使用</li>
-<li>O_FIFO 对于单个节点有序</li>
-<li>O_AGREED 对于整个集群有序</li>
-<li>O_SAFE 对于整个集群有序并且确保消息被所有节点都收到</li>
-<li>O_LOCAL_CAUSAL 只会在本地投递，作用类似barrier: "当应用看到这条消息时可以确保，在这条信息之前投递的消息(可以是从任意节点发起的)都已经传递给了应用层"</li>
+<li>O<sub>DROP</sub> 协议内部使用(用来递增消息序列号)</li>
+<li>O<sub>UNRELIABLE</sub> 协议内部使用</li>
+<li>O<sub>FIFO</sub> 对于单个节点有序</li>
+<li>O<sub>AGREED</sub> 对于整个集群有序</li>
+<li>O<sub>SAFE</sub> 对于整个集群有序并且确保消息被所有节点都收到</li>
+<li>O<sub>LOCAL</sub><sub>CAUSAL</sub> 只会在本地投递，作用类似barrier: "当应用看到这条消息时可以确保，在这条信息之前投递的消息(可以是从任意节点发起的)都已经传递给了应用层"</li>
 </ul>
 
 <p>
@@ -276,8 +322,8 @@ Delivery Order
 </div>
 </div>
 
-<div id="outline-container-orge247f7e" class="outline-2">
-<h2 id="orge247f7e"><span class="section-number-2">4</span> tests</h2>
+<div id="outline-container-org7fd922d" class="outline-2">
+<h2 id="org7fd922d"><span class="section-number-2">4</span> tests</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>conf # configure files</li>
@@ -285,38 +331,38 @@ Delivery Order
 <li>scripts # start/stop/check real cluster</li>
 <li>tap # TODO: ???</li>
 <li>t # test script of tap.</li>
-<li>test_causal # related to trac #688.</li>
-<li>test_cppcheck # c/c++ static code analyzer.</li>
-<li>test_dbt2 # not implemented.</li>
-<li>test_dots # not implemented.</li>
-<li>test_drupal # bugs related to drupal.</li>
-<li>test_insert #
+<li>test<sub>causal</sub> # related to trac #688.</li>
+<li>test<sub>cppcheck</sub> # c/c++ static code analyzer.</li>
+<li>test<sub>dbt2</sub> # not implemented.</li>
+<li>test<sub>dots</sub> # not implemented.</li>
+<li>test<sub>drupal</sub> # bugs related to drupal.</li>
+<li>test<sub>insert</sub> #
 <ul class="org-ul">
-<li>DMBS_PORT=3305 ./run.sh</li>
+<li>DMBS<sub>PORT</sub>=3305 ./run.sh</li>
 </ul></li>
-<li>test_memory
+<li>test<sub>memory</sub>
 <ul class="org-ul">
 <li>used memory between wsrep OFF and ON</li>
 <li>on a single node cluster</li>
 </ul></li>
-<li>test_mtr # mysql test run</li>
-<li>test_overhead
+<li>test<sub>mtr</sub> # mysql test run</li>
+<li>test<sub>overhead</sub>
 <ul class="org-ul">
 <li>insert/update time between wsrep OFF and ON</li>
 <li>on a single node cluster</li>
 </ul></li>
-<li>test_seesaw # similar to test_stopcont.</li>
-<li>test_segmentation # network traffic with segmentation.</li>
-<li>test_sqlgen # TODO: why tap ? obsolete now!</li>
-<li>test_startstop # start and stop</li>
-<li>test_stopcont #
+<li>test<sub>seesaw</sub> # similar to test<sub>stopcont</sub>.</li>
+<li>test<sub>segmentation</sub> # network traffic with segmentation.</li>
+<li>test<sub>sqlgen</sub> # TODO: why tap ? obsolete now!</li>
+<li>test<sub>startstop</sub> # start and stop</li>
+<li>test<sub>stopcont</sub> #
 <ul class="org-ul">
 <li>round robin to stop/cont each node (kill -STOP/CONT)</li>
 <li>wait node to be synced (mysql to query status)</li>
 <li>then check consistency (mysqldump | md5sum)</li>
 <li>while sqlgen keep updating db</li>
 </ul></li>
-<li>test_upgrade # rotate and upgrade nodes.</li>
+<li>test<sub>upgrade</sub> # rotate and upgrade nodes.</li>
 </ul>
 
 <hr />
@@ -331,6 +377,11 @@ how to setup setup test environment ?
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/galera-code.html';this.page.identifier = 'galera-code.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

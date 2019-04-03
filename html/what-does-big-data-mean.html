@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>What Does 'Big Data' Mean?</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">What Does 'Big Data' Mean?</h1>
@@ -23,7 +69,7 @@
 big data can mean one of four things:
 </p>
 <ul class="org-ul">
-<li>Big volumes of data, but "small analytics." Here the idea is to support SQL on very large data sets.  Nobody runs "Select*" from something big as this would overwhelm the recipient with terabytes of data. Instead, the focus is on running SQL analytics (count, sum, max, min, and avg with an optional group_by) on large amounts of data. I term this "small analytics" to distinguish this use case from the one which follows. # 大数据量简单分析. 比如生成数据报表.</li>
+<li>Big volumes of data, but "small analytics." Here the idea is to support SQL on very large data sets.  Nobody runs "Select*" from something big as this would overwhelm the recipient with terabytes of data. Instead, the focus is on running SQL analytics (count, sum, max, min, and avg with an optional group<sub>by</sub>) on large amounts of data. I term this "small analytics" to distinguish this use case from the one which follows. # 大数据量简单分析. 比如生成数据报表.</li>
 <li>Big analytics on big volumes of data. By big analytics, I mean data clustering, regressions, machine learning, and other much more complex analytics on very large amounts of data. At the present time users tend to run big analytics using statistical packages, such as R, SPSS and SAS.  Alternately, they use linear algebra packages such as ScalaPack or Arpack. Lastly, there is a fair amount of custom code (roll your own) used here. # 大数据量上复杂分析. 比如机器学习.</li>
 <li>Big velocity.  By this I mean being able to absorb and process a fire hose of incoming data for applications like electronic trading, real-time ad placement on Web pages, real-time customer targeting, and mobile social networking.  This use case is most prevalent in large Web properties and on Wall Street, both of whom tend to roll their own. # 快速实时处理</li>
 <li>Big variety. Many enterprises are faced with integrating a larger and larger number of data sources with diverse data (spreadsheets, Web sources, XML, traditional DBMSs).  Many enterprises view this as their number one headache. Historically, the extract, transform, and load (ETL) vendors serviced this market on modest numbers of data sources. # 柔和各种数据源</li>
@@ -95,6 +141,11 @@ This (very widely used) methodology has a number of disadvantages:
 <p>
 #note: 预先定义好global schema应该是技术上最大的问题.
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/what-does-big-data-mean.html';this.page.identifier = 'what-does-big-data-mean.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

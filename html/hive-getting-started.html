@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hive Getting Started</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Hive Getting Started</h1>
@@ -16,10 +62,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgab28acb">1. Configuration</a></li>
-<li><a href="#org751e239">2. Local Mode</a></li>
-<li><a href="#orgef58841">3. Metadata Store</a></li>
-<li><a href="#org72a8f8c">4. Example</a></li>
+<li><a href="#orgff3d3b9">1. Configuration</a></li>
+<li><a href="#orgecc1994">2. Local Mode</a></li>
+<li><a href="#org35f7bfc">3. Metadata Store</a></li>
+<li><a href="#orgc6a0294">4. Example</a></li>
 </ul>
 </div>
 </div>
@@ -31,13 +77,13 @@
 首先配置好hdfs/mapred(spark), 然后配置hive. hive使用hdfs做文件存储, 使用mapred(spark)做计算引擎
 </p>
 
-<div id="outline-container-orgab28acb" class="outline-2">
-<h2 id="orgab28acb"><span class="section-number-2">1</span> Configuration</h2>
+<div id="outline-container-orgff3d3b9" class="outline-2">
+<h2 id="orgff3d3b9"><span class="section-number-2">1</span> Configuration</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>默认配置文件是 &lt;install-dir&gt;/conf/hive-default.xml</li>
 <li>可以通过配置文件改写 &lt;install-dir&gt;/conf/hive-site.xml</li>
-<li>配置文件路径 HIVE_CONF_DIR</li>
+<li>配置文件路径 HIVE<sub>CONF</sub><sub>DIR</sub></li>
 <li>日志配置文件 &lt;install-dir&gt;/conf/hive-log4j.properties</li>
 <li>启动通过 bin/hive -hiveconf x1=y1 -hiveconf x2=y2 设置参数</li>
 <li>运行时候通过 SET mapred.job.tracker=myhost.mycompany.com:50030; 修改参数</li>
@@ -45,8 +91,8 @@
 </div>
 </div>
 
-<div id="outline-container-org751e239" class="outline-2">
-<h2 id="org751e239"><span class="section-number-2">2</span> Local Mode</h2>
+<div id="outline-container-orgecc1994" class="outline-2">
+<h2 id="orgecc1994"><span class="section-number-2">2</span> Local Mode</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这里所谓的local-mode主要是指运行的mapreduce是在local node上面完成的，至于数据源还是和hdfs/hbase本身配置相关。可以通过设置 SET mapred.job.tracker=local; 强制修改mapreduce本地完成。
@@ -63,8 +109,8 @@ hive0.7以后提供自动切换local-mode功能，设置 hive&gt; SET hive.exec.
 </div>
 </div>
 
-<div id="outline-container-orgef58841" class="outline-2">
-<h2 id="orgef58841"><span class="section-number-2">3</span> Metadata Store</h2>
+<div id="outline-container-org35f7bfc" class="outline-2">
+<h2 id="org35f7bfc"><span class="section-number-2">3</span> Metadata Store</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin">https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin</a>
@@ -79,7 +125,7 @@ metadata store主要是用来存储数据库的一些元数据信息，有下面
 </ul>
 
 <p>
-默认实现是在本地的derby db，默认存储位置是./metastore_db. metastore其他实现需要支持JPO（Java Persistent Object） Metastore can be stored in any database that is supported by JPOX. The database schema is defined in JDO metadata annotations file package.jdo at src/contrib/hive/metastore/src/model.
+默认实现是在本地的derby db，默认存储位置是./metastore<sub>db</sub>. metastore其他实现需要支持JPO（Java Persistent Object） Metastore can be stored in any database that is supported by JPOX. The database schema is defined in JDO metadata annotations file package.jdo at src/contrib/hive/metastore/src/model.
 </p>
 
 <p>
@@ -87,7 +133,7 @@ metadata store主要是用来存储数据库的一些元数据信息，有下面
 </p>
 
 <p>
-If you are using MySQL as the datastore for metadata, put MySQL client libraries in HIVE_HOME/lib before starting Hive Client or HiveMetastore Server. 或者如果使用ubuntu的话，可以直接使用 sudo apt-get install libmysql-java 安装，然后jar都在/usr/share/java下面。
+If you are using MySQL as the datastore for metadata, put MySQL client libraries in HIVE<sub>HOME</sub>/lib before starting Hive Client or HiveMetastore Server. 或者如果使用ubuntu的话，可以直接使用 sudo apt-get install libmysql-java 安装，然后jar都在/usr/share/java下面。
 </p>
 
 <p>
@@ -166,7 +212,7 @@ Client Configuration Parameters
 <tbody>
 <tr>
 <td class="org-left">hive.metastore.uris</td>
-<td class="org-left">thrift://&lt;host_name&gt;:&lt;port&gt;</td>
+<td class="org-left">thrift://&lt;host<sub>name</sub>&gt;:&lt;port&gt;</td>
 <td class="org-left">host and port for the thrift metastore server</td>
 </tr>
 
@@ -185,7 +231,7 @@ Client Configuration Parameters
 </table>
 
 <p>
-thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 端口可以通过-p选项来指定, 或是从环境变量METASTORE_PORT来获得(hive-env.sh里面可以设置).
+thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 端口可以通过-p选项来指定, 或是从环境变量METASTORE<sub>PORT来获得</sub>(hive-env.sh里面可以设置).
 </p>
 <pre class="example">
 13/03/07 18:06:34 INFO metastore.HiveMetaStore: Started the new metaserver on port [9083]...
@@ -240,8 +286,8 @@ thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 
 </div>
 </div>
 
-<div id="outline-container-org72a8f8c" class="outline-2">
-<h2 id="org72a8f8c"><span class="section-number-2">4</span> Example</h2>
+<div id="outline-container-orgc6a0294" class="outline-2">
+<h2 id="orgc6a0294"><span class="section-number-2">4</span> Example</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 数据默认是使用ctrl-a来做分割
@@ -295,6 +341,11 @@ Time taken: 5.787 seconds
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/hive-getting-started.html';this.page.identifier = 'hive-getting-started.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

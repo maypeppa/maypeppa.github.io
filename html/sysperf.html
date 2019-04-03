@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sysperf</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">sysperf</h1>
@@ -16,17 +62,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org123e10f">1. What Your Computer Does While You Wait</a></li>
-<li><a href="#orge370cf3">2. Numbers Everyone Should Know</a></li>
-<li><a href="#orga7e0a29">3. The Joys of Real Hardware</a></li>
-<li><a href="#orgf7aed20">4. 延迟和带宽</a></li>
-<li><a href="#org65800bb">5. 存储系统IOPS</a></li>
-<li><a href="#org68e5deb">6. 存储系统性能</a></li>
+<li><a href="#orgd9c86af">1. What Your Computer Does While You Wait</a></li>
+<li><a href="#orgbdce200">2. Numbers Everyone Should Know</a></li>
+<li><a href="#orgb394647">3. The Joys of Real Hardware</a></li>
+<li><a href="#orga6bbf05">4. 延迟和带宽</a></li>
+<li><a href="#orgea6d27a">5. 存储系统IOPS</a></li>
+<li><a href="#orgc9c498d">6. 存储系统性能</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org123e10f" class="outline-2">
-<h2 id="org123e10f"><span class="section-number-2">1</span> What Your Computer Does While You Wait</h2>
+<div id="outline-container-orgd9c86af" class="outline-2">
+<h2 id="orgd9c86af"><span class="section-number-2">1</span> What Your Computer Does While You Wait</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait">http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait</a>
@@ -171,8 +217,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge370cf3" class="outline-2">
-<h2 id="orge370cf3"><span class="section-number-2">2</span> Numbers Everyone Should Know</h2>
+<div id="outline-container-orgbdce200" class="outline-2">
+<h2 id="orgbdce200"><span class="section-number-2">2</span> Numbers Everyone Should Know</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="designs-lessons-and-advice-from-building-large-distributed-systems.html">Designs, Lessons and Advice from Building Large Distributed Systems</a> @ladis-2009 jeff dean
@@ -202,8 +248,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga7e0a29" class="outline-2">
-<h2 id="orga7e0a29"><span class="section-number-2">3</span> The Joys of Real Hardware</h2>
+<div id="outline-container-orgb394647" class="outline-2">
+<h2 id="orgb394647"><span class="section-number-2">3</span> The Joys of Real Hardware</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="designs-lessons-and-advice-from-building-large-distributed-systems.html">Designs, Lessons and Advice from Building Large Distributed Systems</a> @ladis-2009 jeff dean
@@ -231,15 +277,15 @@ Typical first year for a new cluster:
 </div>
 </div>
 
-<div id="outline-container-orgf7aed20" class="outline-2">
-<h2 id="orgf7aed20"><span class="section-number-2">4</span> 延迟和带宽</h2>
+<div id="outline-container-orga6bbf05" class="outline-2">
+<h2 id="orga6bbf05"><span class="section-number-2">4</span> 延迟和带宽</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 延迟指原子信息通过介质所需要的时间，带宽指信息在介质中传播的速度。如果我们以浏览Web页面为例的话，如果等待长时间才开始显示一个页面，但立刻就全部出现了，这说明网络的延迟比较大，带宽还不错。如果页面立刻开始出现，但是花了很长时间才全部显示出来，这说明网络的延迟还可以，但带宽较小。
 </p>
 
 <p>
-对于网络传输来说，网卡，传输线路以及交换机路由器本身都是有延迟和带宽指标的。我没有办法获得所有这些指标的具体数据，只能够就我所知道的稍微说说。对于网卡来说，延迟取决于系统负载和所处网络拥塞程度。更细程度考量的话可能就是从user buffer-&gt;kernel buffer-&gt;device buffer同时考虑系统完成这件事情调度时间比如TCP_NODELAY和TCP_CORK带来的影响，我猜想的:（。网卡带宽就是所谓的千兆网卡(1000Mbps)和万兆网卡(10000Mbps).对于传输线路来说，如果是光纤的话那么传播速度是光速，在光纤中传播距离可能是实际距离的1.1-1.2倍(估计，因为不可能走直线).假设天津机房和北京机房距离150km,那么延迟为150km / 光速(3*10^5km/s) * 1.2(实际距离比率) = 0.6ms.不过考虑同事告诉我说这样计算可能是不太准确的，撇开铺线的实际距离不谈，光纤每段上会加一个中继器来增强光信号，这样计算实际上是不准确的。他友好地给我说了一下北京机房&lt;-&gt;天津机房RTT大概10ms.最后就是交换机路由器。很少有人关注这个单项指标，因为这个取决于内部机房机架是怎么部署的，大家更关心的是从同机房两个机架上服务器延迟多少，带宽多少。而事实证明(实际上是同事告诉我的)延迟基本没有，带宽取决于服务器网卡带宽。
+对于网络传输来说，网卡，传输线路以及交换机路由器本身都是有延迟和带宽指标的。我没有办法获得所有这些指标的具体数据，只能够就我所知道的稍微说说。对于网卡来说，延迟取决于系统负载和所处网络拥塞程度。更细程度考量的话可能就是从user buffer-&gt;kernel buffer-&gt;device buffer同时考虑系统完成这件事情调度时间比如TCP<sub>NODELAY和TCP</sub><sub>CORK带来的影响</sub>，我猜想的:（。网卡带宽就是所谓的千兆网卡(1000Mbps)和万兆网卡(10000Mbps).对于传输线路来说，如果是光纤的话那么传播速度是光速，在光纤中传播距离可能是实际距离的1.1-1.2倍(估计，因为不可能走直线).假设天津机房和北京机房距离150km,那么延迟为150km / 光速(3*10<sup>5km</sup>/s) * 1.2(实际距离比率) = 0.6ms.不过考虑同事告诉我说这样计算可能是不太准确的，撇开铺线的实际距离不谈，光纤每段上会加一个中继器来增强光信号，这样计算实际上是不准确的。他友好地给我说了一下北京机房&lt;-&gt;天津机房RTT大概10ms.最后就是交换机路由器。很少有人关注这个单项指标，因为这个取决于内部机房机架是怎么部署的，大家更关心的是从同机房两个机架上服务器延迟多少，带宽多少。而事实证明(实际上是同事告诉我的)延迟基本没有，带宽取决于服务器网卡带宽。
 </p>
 
 <ul class="org-ul">
@@ -254,8 +300,8 @@ Typical first year for a new cluster:
 </div>
 </div>
 
-<div id="outline-container-org65800bb" class="outline-2">
-<h2 id="org65800bb"><span class="section-number-2">5</span> 存储系统IOPS</h2>
+<div id="outline-container-orgea6d27a" class="outline-2">
+<h2 id="orgea6d27a"><span class="section-number-2">5</span> 存储系统IOPS</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <a href="http://rickardnobel.se/storage-performance-iops-latency-throughput/">http://rickardnobel.se/storage-performance-iops-latency-throughput/</a>
@@ -290,14 +336,19 @@ note@ 015-05-21: iops的测算非常复杂，主要是涉及到的环境配置�
 </ul>
 </div>
 </div>
-<div id="outline-container-org68e5deb" class="outline-2">
-<h2 id="org68e5deb"><span class="section-number-2">6</span> 存储系统性能</h2>
+<div id="outline-container-orgc9c498d" class="outline-2">
+<h2 id="orgc9c498d"><span class="section-number-2">6</span> 存储系统性能</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 存储系统的性能主要包括两个维度：吞吐量和访问延迟。设计系统时要求能够在保证访问延迟的基础上，通过最低的成本实现尽可能高的吞吐量。磁盘和SSD的访问延迟差别很大，但是带宽差别不大。因此磁盘适合大块顺序访问的存储系统，SSD适合随机访问较多或者对延迟比较敏感的关键系统。二者也常常组合在一起进行混合存储，热数据（访问频繁）存储到SSD，冷数据（访问不频繁）存储到磁盘中。
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/sysperf.html';this.page.identifier = 'sysperf.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

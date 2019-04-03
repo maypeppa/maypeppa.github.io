@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Netty</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Netty</h1>
@@ -16,30 +62,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org549903d">1. architecture</a></li>
-<li><a href="#orgf66b07c">2. concepts</a>
+<li><a href="#org89ee799">1. architecture</a></li>
+<li><a href="#org193d033">2. concepts</a>
 <ul>
-<li><a href="#orgeb20ae2">2.1. Channel</a></li>
-<li><a href="#org2a12140">2.2. ChannelFactory</a></li>
-<li><a href="#orgb326b6f">2.3. ChannelHandler</a></li>
-<li><a href="#org219acbe">2.4. ChannelHandlerContext</a></li>
-<li><a href="#orgfe463e9">2.5. ChannelPipeline</a></li>
-<li><a href="#org3a90ce9">2.6. ChannelPipelineFactory</a></li>
-<li><a href="#org8a52070">2.7. ChannelEvent</a></li>
-<li><a href="#org98d890c">2.8. ChannelBuffer</a></li>
-<li><a href="#orgd226b4f">2.9. ChannelGroup</a></li>
+<li><a href="#orgc76c06a">2.1. Channel</a></li>
+<li><a href="#orga573c90">2.2. ChannelFactory</a></li>
+<li><a href="#org26a5031">2.3. ChannelHandler</a></li>
+<li><a href="#orgc20aedc">2.4. ChannelHandlerContext</a></li>
+<li><a href="#org4293c6b">2.5. ChannelPipeline</a></li>
+<li><a href="#orgeccadba">2.6. ChannelPipelineFactory</a></li>
+<li><a href="#org3046812">2.7. ChannelEvent</a></li>
+<li><a href="#org764fe06">2.8. ChannelBuffer</a></li>
+<li><a href="#orgd89959a">2.9. ChannelGroup</a></li>
 </ul>
 </li>
-<li><a href="#orgb311c75">3. notes</a>
+<li><a href="#org8d96715">3. notes</a>
 <ul>
-<li><a href="#org72206d2">3.1. boss/worker executor</a></li>
-<li><a href="#orga779c81">3.2. accept connection exception</a></li>
-<li><a href="#orge61154a">3.3. control timeout</a></li>
+<li><a href="#orgc67a4f8">3.1. boss/worker executor</a></li>
+<li><a href="#orge0cb5e7">3.2. accept connection exception</a></li>
+<li><a href="#orgc64a72b">3.3. control timeout</a></li>
 </ul>
 </li>
-<li><a href="#orgaec01fa">4. codes</a>
+<li><a href="#org75832a7">4. codes</a>
 <ul>
-<li><a href="#org2264b02">4.1. HashedWheelTimer</a></li>
+<li><a href="#org7470e2f">4.1. HashedWheelTimer</a></li>
 </ul>
 </li>
 </ul>
@@ -51,8 +97,8 @@
 <li>All documentation pages <a href="http://netty.io/wiki/all-documents.html">http://netty.io/wiki/all-documents.html</a></li>
 </ul>
 
-<div id="outline-container-org549903d" class="outline-2">
-<h2 id="org549903d"><span class="section-number-2">1</span> architecture</h2>
+<div id="outline-container-org89ee799" class="outline-2">
+<h2 id="org89ee799"><span class="section-number-2">1</span> architecture</h2>
 <div class="outline-text-2" id="text-1">
 
 <div class="figure">
@@ -62,12 +108,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgf66b07c" class="outline-2">
-<h2 id="orgf66b07c"><span class="section-number-2">2</span> concepts</h2>
+<div id="outline-container-org193d033" class="outline-2">
+<h2 id="org193d033"><span class="section-number-2">2</span> concepts</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgeb20ae2" class="outline-3">
-<h3 id="orgeb20ae2"><span class="section-number-3">2.1</span> Channel</h3>
+<div id="outline-container-orgc76c06a" class="outline-3">
+<h3 id="orgc76c06a"><span class="section-number-3">2.1</span> Channel</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 可以认为是一个connection，这个connection上面有socket fd可以所以进行读写。我们只能够控制是否可读，而不能够控制是否可写，因为事实上socket永远是可写的（只要write buffer有空余）。所以要注意，一旦如果在非IO线程发起写操作的话，那么在IO线程随时都会有writeComplete等事件发生，这点对于顺序的控制至关重要。
@@ -75,8 +121,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2a12140" class="outline-3">
-<h3 id="org2a12140"><span class="section-number-3">2.2</span> ChannelFactory</h3>
+<div id="outline-container-orga573c90" class="outline-3">
+<h3 id="orga573c90"><span class="section-number-3">2.2</span> ChannelFactory</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 创建Channel并且对Channel进行管理包括事件检测以及回调处理。涉及到管理那么就需要有线程池，这个线程池需要外部进行指定。
@@ -84,8 +130,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb326b6f" class="outline-3">
-<h3 id="orgb326b6f"><span class="section-number-3">2.3</span> ChannelHandler</h3>
+<div id="outline-container-org26a5031" class="outline-3">
+<h3 id="org26a5031"><span class="section-number-3">2.3</span> ChannelHandler</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 在这个connection上面的处理逻辑对象。总的来说有下面两种类型的handler
@@ -105,8 +151,8 @@
 </div>
 </div>
 
-<div id="outline-container-org219acbe" class="outline-3">
-<h3 id="org219acbe"><span class="section-number-3">2.4</span> ChannelHandlerContext</h3>
+<div id="outline-container-orgc20aedc" class="outline-3">
+<h3 id="orgc20aedc"><span class="section-number-3">2.4</span> ChannelHandlerContext</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 这个ChannelHandler对应的context. 实际上是这个context是包含了handler. context内部有prev,next字段能够将pipeline里面的context组成链表。
@@ -118,8 +164,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfe463e9" class="outline-3">
-<h3 id="orgfe463e9"><span class="section-number-3">2.5</span> ChannelPipeline</h3>
+<div id="outline-container-org4293c6b" class="outline-3">
+<h3 id="org4293c6b"><span class="section-number-3">2.5</span> ChannelPipeline</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 1 Channel  + N ChannelHandler，连接和这个连接上所有的处理逻辑对象。
@@ -131,8 +177,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3a90ce9" class="outline-3">
-<h3 id="org3a90ce9"><span class="section-number-3">2.6</span> ChannelPipelineFactory</h3>
+<div id="outline-container-orgeccadba" class="outline-3">
+<h3 id="orgeccadba"><span class="section-number-3">2.6</span> ChannelPipelineFactory</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 创建ChannelPipeline，主要是说明需要在这个Channel上面绑定哪些ChannelHandler.
@@ -140,8 +186,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8a52070" class="outline-3">
-<h3 id="org8a52070"><span class="section-number-3">2.7</span> ChannelEvent</h3>
+<div id="outline-container-org3046812" class="outline-3">
+<h3 id="org3046812"><span class="section-number-3">2.7</span> ChannelEvent</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 连接上所有触发的事件，可以是但是不仅限于下面几种类型
@@ -159,8 +205,8 @@
 </div>
 </div>
 
-<div id="outline-container-org98d890c" class="outline-3">
-<h3 id="org98d890c"><span class="section-number-3">2.8</span> ChannelBuffer</h3>
+<div id="outline-container-org764fe06" class="outline-3">
+<h3 id="org764fe06"><span class="section-number-3">2.8</span> ChannelBuffer</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 这个和Channel倒是没有太大关系，比较偏向buffer的管理，主要针对网络通信这种read/write交互场景进行优化。
@@ -168,8 +214,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd226b4f" class="outline-3">
-<h3 id="orgd226b4f"><span class="section-number-3">2.9</span> ChannelGroup</h3>
+<div id="outline-container-orgd89959a" class="outline-3">
+<h3 id="orgd89959a"><span class="section-number-3">2.9</span> ChannelGroup</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 线程安全的Channel集合，如果Channel关闭的话那么会自动从group里面移除，能够对Channel进行批量操作。
@@ -178,12 +224,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgb311c75" class="outline-2">
-<h2 id="orgb311c75"><span class="section-number-2">3</span> notes</h2>
+<div id="outline-container-org8d96715" class="outline-2">
+<h2 id="org8d96715"><span class="section-number-2">3</span> notes</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org72206d2" class="outline-3">
-<h3 id="org72206d2"><span class="section-number-3">3.1</span> boss/worker executor</h3>
+<div id="outline-container-orgc67a4f8" class="outline-3">
+<h3 id="orgc67a4f8"><span class="section-number-3">3.1</span> boss/worker executor</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 NioServerSocketChannelFactory构造函数需要指定boss/worker两个executor，有必要解释一下这两个对象的含义。
@@ -219,8 +265,8 @@ worker的数量如果没有指定的话，with 2 * the number of available proce
 </div>
 </div>
 
-<div id="outline-container-orga779c81" class="outline-3">
-<h3 id="orga779c81"><span class="section-number-3">3.2</span> accept connection exception</h3>
+<div id="outline-container-orge0cb5e7" class="outline-3">
+<h3 id="orge0cb5e7"><span class="section-number-3">3.2</span> accept connection exception</h3>
 <div class="outline-text-3" id="text-3-2">
 <pre class="example">
 Exception in thread "pool-2-thread-1" java.lang.InternalError
@@ -301,8 +347,8 @@ Got this error - Syahreza Pahlevi Ginting
 </div>
 </div>
 
-<div id="outline-container-orge61154a" class="outline-3">
-<h3 id="orge61154a"><span class="section-number-3">3.3</span> control timeout</h3>
+<div id="outline-container-orgc64a72b" class="outline-3">
+<h3 id="orgc64a72b"><span class="section-number-3">3.3</span> control timeout</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 网络上并没有太多如何关于netty读写超时信息的控制。下面是一篇相对来说比较有启发性的回答：
@@ -334,28 +380,28 @@ Got this error - Syahreza Pahlevi Ginting
 
 <div class="org-src-container">
 <pre class="src src-Java">private void fireReadTimedOut(final ChannelHandlerContext ctx) throws Exception {
-            ctx.getPipeline().execute(new Runnable() {
+	    ctx.getPipeline().execute(new Runnable() {
 
-                public void run() {
-                    try {
-                        readTimedOut(ctx);
-                    } catch (Throwable t) {
-                        fireExceptionCaught(ctx, t);
-                    }
-                }
-            });
-        }
+		public void run() {
+		    try {
+			readTimedOut(ctx);
+		    } catch (Throwable t) {
+			fireExceptionCaught(ctx, t);
+		    }
+		}
+	    });
+	}
 
 @Override
     public ChannelFuture execute(ChannelPipeline pipeline, final Runnable task) {
-        Channel ch = pipeline.getChannel();
-        if (ch instanceof AbstractNioChannel&lt;?&gt;) {
-            AbstractNioChannel&lt;?&gt; channel = (AbstractNioChannel&lt;?&gt;) ch;
-            ChannelRunnableWrapper wrapper = new ChannelRunnableWrapper(pipeline.getChannel(), task);
-            channel.worker.executeInIoThread(wrapper);
-            return wrapper;
-        }
-        return super.execute(pipeline, task);
+	Channel ch = pipeline.getChannel();
+	if (ch instanceof AbstractNioChannel&lt;?&gt;) {
+	    AbstractNioChannel&lt;?&gt; channel = (AbstractNioChannel&lt;?&gt;) ch;
+	    ChannelRunnableWrapper wrapper = new ChannelRunnableWrapper(pipeline.getChannel(), task);
+	    channel.worker.executeInIoThread(wrapper);
+	    return wrapper;
+	}
+	return super.execute(pipeline, task);
     }
 </pre>
 </div>
@@ -381,12 +427,12 @@ Got this error - Syahreza Pahlevi Ginting
 </div>
 </div>
 
-<div id="outline-container-orgaec01fa" class="outline-2">
-<h2 id="orgaec01fa"><span class="section-number-2">4</span> codes</h2>
+<div id="outline-container-org75832a7" class="outline-2">
+<h2 id="org75832a7"><span class="section-number-2">4</span> codes</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org2264b02" class="outline-3">
-<h3 id="org2264b02"><span class="section-number-3">4.1</span> HashedWheelTimer</h3>
+<div id="outline-container-org7470e2f" class="outline-3">
+<h3 id="org7470e2f"><span class="section-number-3">4.1</span> HashedWheelTimer</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 定时器的实现，相关其接口如下
@@ -437,7 +483,7 @@ public interface Timeout {
 <pre class="src src-Java">public class HashedWheelTimer implements Timer {
     private static final AtomicInteger id = new AtomicInteger(); // 用来为实例分配编号
     private static final SharedResourceMisuseDetector misuseDetector =
-        new SharedResourceMisuseDetector(HashedWheelTimer.class); // 用来限制创建实例
+	new SharedResourceMisuseDetector(HashedWheelTimer.class); // 用来限制创建实例
 
     private final Worker worker = new Worker(); // 后台线程
     final Thread workerThread;
@@ -469,8 +515,8 @@ public interface Timeout {
 </p>
 <div class="org-src-container">
 <pre class="src src-Java">public HashedWheelTimer(
-        ThreadFactory threadFactory,
-        long tickDuration, TimeUnit unit, int ticksPerWheel) {
+	ThreadFactory threadFactory,
+	long tickDuration, TimeUnit unit, int ticksPerWheel) {
     // Normalize ticksPerWheel to power of two and initialize the wheel.
     wheel = createWheel(ticksPerWheel); // 创建wheel
     iterators = createIterators(wheel); // 创建iterators
@@ -481,18 +527,18 @@ public interface Timeout {
     roundDuration = tickDuration * wheel.length;
 
     workerThread = threadFactory.newThread(new ThreadRenamingRunnable(
-                    worker, "Hashed wheel timer #" + id.incrementAndGet())); // 构造线程，但是注意没有启动
+		    worker, "Hashed wheel timer #" + id.incrementAndGet())); // 构造线程，但是注意没有启动
 
     // Misuse check
     misuseDetector.increase(); // 检测创建实例数量
 }
 
 private static Set&lt;HashedWheelTimeout&gt;[] createWheel(int ticksPerWheel) {
-        ticksPerWheel = normalizeTicksPerWheel(ticksPerWheel);
+	ticksPerWheel = normalizeTicksPerWheel(ticksPerWheel);
     Set&lt;HashedWheelTimeout&gt;[] wheel = new Set[ticksPerWheel];
     for (int i = 0; i &lt; wheel.length; i ++) {
-        wheel[i] = new MapBackedSet&lt;HashedWheelTimeout&gt;(
-                new ConcurrentIdentityHashMap&lt;HashedWheelTimeout, Boolean&gt;(16, 0.95f, 4));
+	wheel[i] = new MapBackedSet&lt;HashedWheelTimeout&gt;(
+		new ConcurrentIdentityHashMap&lt;HashedWheelTimeout, Boolean&gt;(16, 0.95f, 4));
     }
     return wheel;
 }
@@ -500,7 +546,7 @@ private static Set&lt;HashedWheelTimeout&gt;[] createWheel(int ticksPerWheel) {
 private static ReusableIterator&lt;HashedWheelTimeout&gt;[] createIterators(Set&lt;HashedWheelTimeout&gt;[] wheel) {
     ReusableIterator&lt;HashedWheelTimeout&gt;[] iterators = new ReusableIterator[wheel.length];
     for (int i = 0; i &lt; wheel.length; i ++) {
-        iterators[i] = (ReusableIterator&lt;HashedWheelTimeout&gt;) wheel[i].iterator();
+	iterators[i] = (ReusableIterator&lt;HashedWheelTimeout&gt;) wheel[i].iterator();
     }
     return iterators;
 }
@@ -508,7 +554,7 @@ private static ReusableIterator&lt;HashedWheelTimeout&gt;[] createIterators(Set&
 private static int normalizeTicksPerWheel(int ticksPerWheel) {
     int normalizedTicksPerWheel = 1;
     while (normalizedTicksPerWheel &lt; ticksPerWheel) {
-        normalizedTicksPerWheel &lt;&lt;= 1;
+	normalizedTicksPerWheel &lt;&lt;= 1;
     }
     return normalizedTicksPerWheel;
 }
@@ -533,16 +579,16 @@ private static int normalizeTicksPerWheel(int ticksPerWheel) {
 public void start() {
     switch (workerState.get()) {
     case 0:
-        if (workerState.compareAndSet(0, 1)) { // 确保只是启动一次
-            workerThread.start();
-        }
-        break;
+	if (workerState.compareAndSet(0, 1)) { // 确保只是启动一次
+	    workerThread.start();
+	}
+	break;
     case 1:
-        break;
+	break;
     case 2:
-        throw new IllegalStateException("cannot be started once stopped");
+	throw new IllegalStateException("cannot be started once stopped");
     default:
-        throw new Error();
+	throw new Error();
     }
 }
 
@@ -550,28 +596,28 @@ void scheduleTimeout(HashedWheelTimeout timeout, long delay) {
     // delay must be equal to or greater than tickDuration so that the
     // worker thread never misses the timeout.
     if (delay &lt; tickDuration) { // 如果delay时间过短的话那么修正到tickDuration.
-        delay = tickDuration;
+	delay = tickDuration;
     }
 
     // Prepare the required parameters to schedule the timeout object.
     final long lastRoundDelay = delay % roundDuration;
     final long lastTickDelay = delay % tickDuration;
     final long relativeIndex =
-        lastRoundDelay / tickDuration + (lastTickDelay != 0? 1 : 0); // 计算相距当前的wheelCursor偏移
+	lastRoundDelay / tickDuration + (lastTickDelay != 0? 1 : 0); // 计算相距当前的wheelCursor偏移
 
     final long remainingRounds =
-        delay / roundDuration - (delay % roundDuration == 0? 1 : 0); // 计算需要轮转多少次才会触发超时
+	delay / roundDuration - (delay % roundDuration == 0? 1 : 0); // 计算需要轮转多少次才会触发超时
 
     // Add the timeout to the wheel.
     lock.readLock().lock();
     try {
-        int stopIndex = (int) (wheelCursor + relativeIndex &amp; mask);
-        timeout.stopIndex = stopIndex;
-        timeout.remainingRounds = remainingRounds;
+	int stopIndex = (int) (wheelCursor + relativeIndex &amp; mask);
+	timeout.stopIndex = stopIndex;
+	timeout.remainingRounds = remainingRounds;
 
-        wheel[stopIndex].add(timeout);
+	wheel[stopIndex].add(timeout);
     } finally {
-        lock.readLock().unlock();
+	lock.readLock().unlock();
     }
 }
 </pre>
@@ -589,17 +635,17 @@ void scheduleTimeout(HashedWheelTimeout timeout, long delay) {
 <div class="org-src-container">
 <pre class="src src-Java">public void run() {
     List&lt;HashedWheelTimeout&gt; expiredTimeouts =
-        new ArrayList&lt;HashedWheelTimeout&gt;();
+	new ArrayList&lt;HashedWheelTimeout&gt;();
 
     startTime = System.currentTimeMillis();
     tick = 1; // 初始tick = 1
 
     while (workerState.get() == 1) { // 当前处于工作状态
-        final long deadline = waitForNextTick(); // 等待到下一个tick
-        if (deadline &gt; 0) { // 判断返回值，如果&gt;0表示deadline, 否则认为无效
-            fetchExpiredTimeouts(expiredTimeouts, deadline); // 判断那些Timeout需要触发，保存到expiredTimouts
-            notifyExpiredTimeouts(expiredTimeouts); // 触发expiredTimeouts里面的Timeout
-        }
+	final long deadline = waitForNextTick(); // 等待到下一个tick
+	if (deadline &gt; 0) { // 判断返回值，如果&gt;0表示deadline, 否则认为无效
+	    fetchExpiredTimeouts(expiredTimeouts, deadline); // 判断那些Timeout需要触发，保存到expiredTimouts
+	    notifyExpiredTimeouts(expiredTimeouts); // 触发expiredTimeouts里面的Timeout
+	}
     }
 }
 
@@ -607,28 +653,28 @@ private long waitForNextTick() { // 这个过程非常好理解，就是等待�
     long deadline = startTime + tickDuration * tick;
 
     for (;;) {
-        final long currentTime = System.currentTimeMillis();
-        long sleepTime = tickDuration * tick - (currentTime - startTime);
+	final long currentTime = System.currentTimeMillis();
+	long sleepTime = tickDuration * tick - (currentTime - startTime);
 
-        // Check if we run on windows, as if thats the case we will need
-        // to round the sleepTime as workaround for a bug that only affect
-        // the JVM if it runs on windows.
-        //
-        // See https://github.com/netty/netty/issues/356
-        if (DetectionUtil.isWindows()) {
-            sleepTime = sleepTime / 10 * 10;
-        }
+	// Check if we run on windows, as if thats the case we will need
+	// to round the sleepTime as workaround for a bug that only affect
+	// the JVM if it runs on windows.
+	//
+	// See https://github.com/netty/netty/issues/356
+	if (DetectionUtil.isWindows()) {
+	    sleepTime = sleepTime / 10 * 10;
+	}
 
-        if (sleepTime &lt;= 0) {
-            break;
-        }
-        try {
-            Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
-            if (workerState.get() != 1) { // 如果不是工作状态就返回-1
-                return -1;
-            }
-        }
+	if (sleepTime &lt;= 0) {
+	    break;
+	}
+	try {
+	    Thread.sleep(sleepTime);
+	} catch (InterruptedException e) {
+	    if (workerState.get() != 1) { // 如果不是工作状态就返回-1
+		return -1;
+	    }
+	}
     }
 
     // Increase the tick.
@@ -637,7 +683,7 @@ private long waitForNextTick() { // 这个过程非常好理解，就是等待�
 }
 
  private void fetchExpiredTimeouts(
-        List&lt;HashedWheelTimeout&gt; expiredTimeouts, long deadline) {
+	List&lt;HashedWheelTimeout&gt; expiredTimeouts, long deadline) {
 
     // Find the expired timeouts and decrease the round counter
     // if necessary.  Note that we don't send the notification
@@ -645,54 +691,54 @@ private long waitForNextTick() { // 这个过程非常好理解，就是等待�
     // an exclusive lock.
     lock.writeLock().lock();
     try {
-        int newWheelCursor = wheelCursor = wheelCursor + 1 &amp; mask;
-        ReusableIterator&lt;HashedWheelTimeout&gt; i = iterators[newWheelCursor];
-        fetchExpiredTimeouts(expiredTimeouts, i, deadline); // 检查当前unit下面的iterators是否存在超时
+	int newWheelCursor = wheelCursor = wheelCursor + 1 &amp; mask;
+	ReusableIterator&lt;HashedWheelTimeout&gt; i = iterators[newWheelCursor];
+	fetchExpiredTimeouts(expiredTimeouts, i, deadline); // 检查当前unit下面的iterators是否存在超时
     } finally {
-        lock.writeLock().unlock();
+	lock.writeLock().unlock();
     }
 }
 
 private void fetchExpiredTimeouts(
-        List&lt;HashedWheelTimeout&gt; expiredTimeouts,
-        ReusableIterator&lt;HashedWheelTimeout&gt; i, long deadline) {
+	List&lt;HashedWheelTimeout&gt; expiredTimeouts,
+	ReusableIterator&lt;HashedWheelTimeout&gt; i, long deadline) {
 
     List&lt;HashedWheelTimeout&gt; slipped = null;
     i.rewind();
     while (i.hasNext()) {
-        HashedWheelTimeout timeout = i.next();
-        if (timeout.remainingRounds &lt;= 0) { /
-            i.remove();
-            if (timeout.deadline &lt;= deadline) { // 判断超时之后需要检查deadline.
-                expiredTimeouts.add(timeout);
-            } else {
-                // Handle the case where the timeout is put into a wrong
-                // place, usually one tick earlier.  For now, just add
-                // it to a temporary list - we will reschedule it in a
-                // separate loop.
-                if (slipped == null) { // 有可能存在一些计时偏差情况，单独处理这种情况
-                    slipped = new ArrayList&lt;HashedWheelTimeout&gt;();
-                }
-                slipped.add(timeout);
-            }
-        } else {
-            timeout.remainingRounds --;
-        }
+	HashedWheelTimeout timeout = i.next();
+	if (timeout.remainingRounds &lt;= 0) { /
+	    i.remove();
+	    if (timeout.deadline &lt;= deadline) { // 判断超时之后需要检查deadline.
+		expiredTimeouts.add(timeout);
+	    } else {
+		// Handle the case where the timeout is put into a wrong
+		// place, usually one tick earlier.  For now, just add
+		// it to a temporary list - we will reschedule it in a
+		// separate loop.
+		if (slipped == null) { // 有可能存在一些计时偏差情况，单独处理这种情况
+		    slipped = new ArrayList&lt;HashedWheelTimeout&gt;();
+		}
+		slipped.add(timeout);
+	    }
+	} else {
+	    timeout.remainingRounds --;
+	}
     }
 
     // Reschedule the slipped timeouts.
     if (slipped != null) { // 将存在偏差的Timeout重新设置timeout.
-        for (HashedWheelTimeout timeout: slipped) {
-            scheduleTimeout(timeout, timeout.deadline - deadline);
-        }
+	for (HashedWheelTimeout timeout: slipped) {
+	    scheduleTimeout(timeout, timeout.deadline - deadline);
+	}
     }
 }
 
 private void notifyExpiredTimeouts(
-        List&lt;HashedWheelTimeout&gt; expiredTimeouts) { // 触发超时事件
+	List&lt;HashedWheelTimeout&gt; expiredTimeouts) { // 触发超时事件
     // Notify the expired timeouts.
     for (int i = expiredTimeouts.size() - 1; i &gt;= 0; i --) {
-        expiredTimeouts.get(i).expire();
+	expiredTimeouts.get(i).expire();
     }
 
     // Clean up the temporary list.
@@ -703,6 +749,11 @@ private void notifyExpiredTimeouts(
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/netty.html';this.page.identifier = 'netty.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

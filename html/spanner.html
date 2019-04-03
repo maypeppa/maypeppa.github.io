@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Spanner: Google's Globally-Distributed Database</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Spanner: Google's Globally-Distributed Database</h1>
@@ -16,28 +62,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4041bc8">1. Abstract</a></li>
-<li><a href="#org426ba19">2. Introduction</a></li>
-<li><a href="#org7d15c76">3. Implementation</a>
+<li><a href="#org5adb42c">1. Abstract</a></li>
+<li><a href="#org0596153">2. Introduction</a></li>
+<li><a href="#org2273acd">3. Implementation</a>
 <ul>
-<li><a href="#org3a01172">3.1. Spanserver Software Stack</a></li>
-<li><a href="#org1c30a20">3.2. Directories and Placement</a></li>
-<li><a href="#org8451f7b">3.3. Data Model</a></li>
+<li><a href="#orgd48be6b">3.1. Spanserver Software Stack</a></li>
+<li><a href="#org5e54d14">3.2. Directories and Placement</a></li>
+<li><a href="#org5effee0">3.3. Data Model</a></li>
 </ul>
 </li>
-<li><a href="#org3e37d2e">4. TrueTime</a></li>
-<li><a href="#org7fa64f8">5. Concurrency Control</a></li>
-<li><a href="#orgef53423">6. Evaluation</a>
+<li><a href="#org1e84292">4. TrueTime</a></li>
+<li><a href="#org1972aaf">5. Concurrency Control</a></li>
+<li><a href="#org18f0ba3">6. Evaluation</a>
 <ul>
-<li><a href="#org8138c00">6.1. Microbenchmarks</a></li>
-<li><a href="#org432b7dc">6.2. Availability</a></li>
-<li><a href="#orgff882f8">6.3. TrueTime</a></li>
-<li><a href="#org92cadf0">6.4. F1</a></li>
+<li><a href="#org00d3179">6.1. Microbenchmarks</a></li>
+<li><a href="#org32b9ce7">6.2. Availability</a></li>
+<li><a href="#org314a7e6">6.3. TrueTime</a></li>
+<li><a href="#org723b26b">6.4. F1</a></li>
 </ul>
 </li>
-<li><a href="#orgada659c">7. Related Work</a></li>
-<li><a href="#org0d0551c">8. Future Work</a></li>
-<li><a href="#org5d7b7c9">9. Conclusions</a></li>
+<li><a href="#org97739a1">7. Related Work</a></li>
+<li><a href="#org0417590">8. Future Work</a></li>
+<li><a href="#org6f3b002">9. Conclusions</a></li>
 </ul>
 </div>
 </div>
@@ -48,8 +94,8 @@
 <li>Google Spanner (中文版) <a href="http://dblab.xmu.edu.cn/node/230">http://dblab.xmu.edu.cn/node/230</a></li>
 </ul>
 
-<div id="outline-container-org4041bc8" class="outline-2">
-<h2 id="org4041bc8"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-org5adb42c" class="outline-2">
+<h2 id="org5adb42c"><span class="section-number-2">1</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Spanner is Google’s scalable, multi-version, globally-distributed, and synchronously-replicated database. It is the first system to distribute data at global scale and sup-port externally-consistent distributed transactions. (可扩展，多版本，全局分布式，同步复制的数据库系统，扩展性到全球级别，并且支持外部一致性的分布式事务）</li>
@@ -59,13 +105,13 @@
 </div>
 </div>
 
-<div id="outline-container-org426ba19" class="outline-2">
-<h2 id="org426ba19"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-org0596153" class="outline-2">
+<h2 id="org0596153"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>At the high-est level of abstraction, it is a database that shards data across many sets of Paxos state machines in data- centers spread all over the world. Replication is used for global availability and geographic locality; clients auto-matically failover between replicas. （数据是进行shard的，每个shard实例之间的同步都是通过paxos状态机来完成的，实例可能散步于世界的各个地方。replication主要是为了提供全球可用性以及地理位置上的局部性，client能够自动地在replicas之间做failover切换）</li>
 <li>Spanner automati-cally reshards data across machines as the amount of data or the number of servers changes, and it automatically migrates data across machines (even across datacenters) to balance load and in response to failures. （spanner对于data shard是自动完成的，当server数量变化的时候会reshard然后重新做balance)</li>
-<li>Spanner is designed to scale up to millions of machines across hun-dreds of datacenters and trillions of database rows.(扩展到百万机器，上百个数据中心，10^12 rows）</li>
+<li>Spanner is designed to scale up to millions of machines across hun-dreds of datacenters and trillions of database rows.(扩展到百万机器，上百个数据中心，10<sup>12</sup> rows）</li>
 <li>Spanner’s main focus is managing cross-datacenter replicated data, but we have also spent a great deal of time in designing and implementing important database features on top of our distributed-systems infrastructure（虽然spanner主要focus是在跨机房的数据replication上，但是也花了相当多的时间来在分布式结构上设计和实现很多database特性，
 <ul class="org-ul">
 <li>Bigtable不能够支持复杂并且变化的schema，并且对于wide-area下面不能够很好地实现强一致性</li>
@@ -106,8 +152,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7d15c76" class="outline-2">
-<h2 id="org7d15c76"><span class="section-number-2">3</span> Implementation</h2>
+<div id="outline-container-org2273acd" class="outline-2">
+<h2 id="org2273acd"><span class="section-number-2">3</span> Implementation</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>A Spanner deployment is called a universe. Given that Spanner manages data globally, there will be only a handful of running universes. We currently run a test/playground universe, a development/production uni-</li>
@@ -145,8 +191,8 @@ verse, and a production-only universe.（一个spanner实例称为universe）
 </ul>
 </div>
 
-<div id="outline-container-org3a01172" class="outline-3">
-<h3 id="org3a01172"><span class="section-number-3">3.1</span> Spanserver Software Stack</h3>
+<div id="outline-container-orgd48be6b" class="outline-3">
+<h3 id="orgd48be6b"><span class="section-number-3">3.1</span> Spanserver Software Stack</h3>
 <div class="outline-text-3" id="text-3-1">
 
 <div class="figure">
@@ -181,8 +227,8 @@ verse, and a production-only universe.（一个spanner实例称为universe）
 </div>
 </div>
 
-<div id="outline-container-org1c30a20" class="outline-3">
-<h3 id="org1c30a20"><span class="section-number-3">3.2</span> Directories and Placement</h3>
+<div id="outline-container-org5e54d14" class="outline-3">
+<h3 id="org5e54d14"><span class="section-number-3">3.2</span> Directories and Placement</h3>
 <div class="outline-text-3" id="text-3-2">
 
 <div class="figure">
@@ -208,8 +254,8 @@ verse, and a production-only universe.（一个spanner实例称为universe）
 </div>
 </div>
 
-<div id="outline-container-org8451f7b" class="outline-3">
-<h3 id="org8451f7b"><span class="section-number-3">3.3</span> Data Model</h3>
+<div id="outline-container-org5effee0" class="outline-3">
+<h3 id="org5effee0"><span class="section-number-3">3.3</span> Data Model</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Spanner exposes the following set of data features to applications: a data model based on schematized semi-relational tables, a query language, and general-purpose transactions（数据模型基于schema化的半关系表结构，有query语言，并且支持通用事务）
@@ -240,8 +286,8 @@ verse, and a production-only universe.（一个spanner实例称为universe）
 </div>
 </div>
 
-<div id="outline-container-org3e37d2e" class="outline-2">
-<h2 id="org3e37d2e"><span class="section-number-2">4</span> TrueTime</h2>
+<div id="outline-container-org1e84292" class="outline-2">
+<h2 id="org1e84292"><span class="section-number-2">4</span> TrueTime</h2>
 <div class="outline-text-2" id="text-4">
 
 <div class="figure">
@@ -286,8 +332,8 @@ links can result in occasional localized spikes.（但是如果出现故障的�
 </div>
 </div>
 
-<div id="outline-container-org7fa64f8" class="outline-2">
-<h2 id="org7fa64f8"><span class="section-number-2">5</span> Concurrency Control</h2>
+<div id="outline-container-org1972aaf" class="outline-2">
+<h2 id="org1972aaf"><span class="section-number-2">5</span> Concurrency Control</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 #todo:
@@ -295,18 +341,18 @@ links can result in occasional localized spikes.（但是如果出现故障的�
 </div>
 </div>
 
-<div id="outline-container-orgef53423" class="outline-2">
-<h2 id="orgef53423"><span class="section-number-2">6</span> Evaluation</h2>
+<div id="outline-container-org18f0ba3" class="outline-2">
+<h2 id="org18f0ba3"><span class="section-number-2">6</span> Evaluation</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org8138c00" class="outline-3">
-<h3 id="org8138c00"><span class="section-number-3">6.1</span> Microbenchmarks</h3>
+<div id="outline-container-org00d3179" class="outline-3">
+<h3 id="org00d3179"><span class="section-number-3">6.1</span> Microbenchmarks</h3>
 </div>
-<div id="outline-container-org432b7dc" class="outline-3">
-<h3 id="org432b7dc"><span class="section-number-3">6.2</span> Availability</h3>
+<div id="outline-container-org32b9ce7" class="outline-3">
+<h3 id="org32b9ce7"><span class="section-number-3">6.2</span> Availability</h3>
 </div>
-<div id="outline-container-orgff882f8" class="outline-3">
-<h3 id="orgff882f8"><span class="section-number-3">6.3</span> TrueTime</h3>
+<div id="outline-container-org314a7e6" class="outline-3">
+<h3 id="org314a7e6"><span class="section-number-3">6.3</span> TrueTime</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>Two questions must be answered with respect to True- Time: is e truly a bound on clock uncertainty, and how bad e does get?（两个关键的问题就是偏移是否可以按照我们估算范围给出上界，另外就是偏移最坏能到什么情况）</li>
@@ -326,19 +372,24 @@ links can result in occasional localized spikes.（但是如果出现故障的�
 </div>
 </div>
 
-<div id="outline-container-org92cadf0" class="outline-3">
-<h3 id="org92cadf0"><span class="section-number-3">6.4</span> F1</h3>
+<div id="outline-container-org723b26b" class="outline-3">
+<h3 id="org723b26b"><span class="section-number-3">6.4</span> F1</h3>
 </div>
 </div>
-<div id="outline-container-orgada659c" class="outline-2">
-<h2 id="orgada659c"><span class="section-number-2">7</span> Related Work</h2>
+<div id="outline-container-org97739a1" class="outline-2">
+<h2 id="org97739a1"><span class="section-number-2">7</span> Related Work</h2>
 </div>
-<div id="outline-container-org0d0551c" class="outline-2">
-<h2 id="org0d0551c"><span class="section-number-2">8</span> Future Work</h2>
+<div id="outline-container-org0417590" class="outline-2">
+<h2 id="org0417590"><span class="section-number-2">8</span> Future Work</h2>
 </div>
-<div id="outline-container-org5d7b7c9" class="outline-2">
-<h2 id="org5d7b7c9"><span class="section-number-2">9</span> Conclusions</h2>
+<div id="outline-container-org6f3b002" class="outline-2">
+<h2 id="org6f3b002"><span class="section-number-2">9</span> Conclusions</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/spanner.html';this.page.identifier = 'spanner.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

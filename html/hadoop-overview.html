@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hadoop Overview</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Hadoop Overview</h1>
@@ -16,18 +62,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4780aca">1. Hadoop可以用来做什么</a></li>
-<li><a href="#org43f7d64">2. Hadoop包括哪些组件</a></li>
-<li><a href="#orge16bfa7">3. CDH和Apache Hadoop的关系</a></li>
-<li><a href="#org2ee0786">4. CDH产品组件构成</a></li>
-<li><a href="#org4f42339">5. CDH产品组件端口分布和配置</a>
+<li><a href="#org449edcd">1. Hadoop可以用来做什么</a></li>
+<li><a href="#org71092f6">2. Hadoop包括哪些组件</a></li>
+<li><a href="#org917d572">3. CDH和Apache Hadoop的关系</a></li>
+<li><a href="#org9e5c893">4. CDH产品组件构成</a></li>
+<li><a href="#orgedc806d">5. CDH产品组件端口分布和配置</a>
 <ul>
-<li><a href="#org56ef9f1">5.1. Hadoop HDFS</a></li>
-<li><a href="#org4a0180c">5.2. Hadoop MRv1</a></li>
-<li><a href="#orge695640">5.3. Hadoop YARN</a></li>
-<li><a href="#orga554f8e">5.4. HBase</a></li>
-<li><a href="#orgfdebc93">5.5. Zookeeper</a></li>
-<li><a href="#org2bc6784">5.6. 其他组件</a></li>
+<li><a href="#org8aedc97">5.1. Hadoop HDFS</a></li>
+<li><a href="#orgcf07a45">5.2. Hadoop MRv1</a></li>
+<li><a href="#org9f06597">5.3. Hadoop YARN</a></li>
+<li><a href="#org9248229">5.4. HBase</a></li>
+<li><a href="#orgf900f8d">5.5. Zookeeper</a></li>
+<li><a href="#org1eed7b7">5.6. 其他组件</a></li>
 </ul>
 </li>
 </ul>
@@ -41,8 +87,8 @@
 <li>CDH Tutorial <a href="https://ccp.cloudera.com/display/SUPPORT/Hadoop+Tutorial">https://ccp.cloudera.com/display/SUPPORT/Hadoop+Tutorial</a></li>
 </ul>
 
-<div id="outline-container-org4780aca" class="outline-2">
-<h2 id="org4780aca"><span class="section-number-2">1</span> Hadoop可以用来做什么</h2>
+<div id="outline-container-org449edcd" class="outline-2">
+<h2 id="org449edcd"><span class="section-number-2">1</span> Hadoop可以用来做什么</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Why Hadoop? <a href="http://www.cloudera.com/why-hadoop/">http://www.cloudera.com/why-hadoop/</a>
@@ -59,8 +105,8 @@ Simply put, Hadoop can transform the way you store and process data throughout y
 </div>
 </div>
 
-<div id="outline-container-org43f7d64" class="outline-2">
-<h2 id="org43f7d64"><span class="section-number-2">2</span> Hadoop包括哪些组件</h2>
+<div id="outline-container-org71092f6" class="outline-2">
+<h2 id="org71092f6"><span class="section-number-2">2</span> Hadoop包括哪些组件</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Apache Hadoop包括了下面这些组件：
@@ -86,8 +132,8 @@ Apache Hadoop包括了下面这些组件：
 </div>
 </div>
 
-<div id="outline-container-orge16bfa7" class="outline-2">
-<h2 id="orge16bfa7"><span class="section-number-2">3</span> CDH和Apache Hadoop的关系</h2>
+<div id="outline-container-org917d572" class="outline-2">
+<h2 id="org917d572"><span class="section-number-2">3</span> CDH和Apache Hadoop的关系</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 CDH Hadoop FAQ <a href="https://ccp.cloudera.com/display/SUPPORT/Hadoop+FAQ">https://ccp.cloudera.com/display/SUPPORT/Hadoop+FAQ</a>
@@ -102,8 +148,8 @@ CDH Hadoop FAQ <a href="https://ccp.cloudera.com/display/SUPPORT/Hadoop+FAQ">htt
 </div>
 </div>
 
-<div id="outline-container-org2ee0786" class="outline-2">
-<h2 id="org2ee0786"><span class="section-number-2">4</span> CDH产品组件构成</h2>
+<div id="outline-container-org9e5c893" class="outline-2">
+<h2 id="org9e5c893"><span class="section-number-2">4</span> CDH产品组件构成</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <a href="http://www.cloudera.com/content/cloudera/en/products/cdh.html">http://www.cloudera.com/content/cloudera/en/products/cdh.html</a>
@@ -121,16 +167,16 @@ CDH Hadoop FAQ <a href="https://ccp.cloudera.com/display/SUPPORT/Hadoop+FAQ">htt
 </div>
 </div>
 
-<div id="outline-container-org4f42339" class="outline-2">
-<h2 id="org4f42339"><span class="section-number-2">5</span> CDH产品组件端口分布和配置</h2>
+<div id="outline-container-orgedc806d" class="outline-2">
+<h2 id="orgedc806d"><span class="section-number-2">5</span> CDH产品组件端口分布和配置</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The CDH4 components, and third parties such as Kerberos, use the ports listed in the tables that follow. Before you deploy CDH4, make sure these ports are open on each system.
 </p>
 </div>
 
-<div id="outline-container-org56ef9f1" class="outline-3">
-<h3 id="org56ef9f1"><span class="section-number-3">5.1</span> Hadoop HDFS</h3>
+<div id="outline-container-org8aedc97" class="outline-3">
+<h3 id="org8aedc97"><span class="section-number-3">5.1</span> Hadoop HDFS</h3>
 <div class="outline-text-3" id="text-5-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -286,8 +332,8 @@ The CDH4 components, and third parties such as Kerberos, use the ports listed in
 </div>
 </div>
 
-<div id="outline-container-org4a0180c" class="outline-3">
-<h3 id="org4a0180c"><span class="section-number-3">5.2</span> Hadoop MRv1</h3>
+<div id="outline-container-orgcf07a45" class="outline-3">
+<h3 id="orgcf07a45"><span class="section-number-3">5.2</span> Hadoop MRv1</h3>
 <div class="outline-text-3" id="text-5-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -373,8 +419,8 @@ The CDH4 components, and third parties such as Kerberos, use the ports listed in
 </div>
 </div>
 
-<div id="outline-container-orge695640" class="outline-3">
-<h3 id="orge695640"><span class="section-number-3">5.3</span> Hadoop YARN</h3>
+<div id="outline-container-org9f06597" class="outline-3">
+<h3 id="org9f06597"><span class="section-number-3">5.3</span> Hadoop YARN</h3>
 <div class="outline-text-3" id="text-5-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -510,8 +556,8 @@ The CDH4 components, and third parties such as Kerberos, use the ports listed in
 </div>
 </div>
 
-<div id="outline-container-orga554f8e" class="outline-3">
-<h3 id="orga554f8e"><span class="section-number-3">5.4</span> HBase</h3>
+<div id="outline-container-org9248229" class="outline-3">
+<h3 id="org9248229"><span class="section-number-3">5.4</span> HBase</h3>
 <div class="outline-text-3" id="text-5-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -646,8 +692,8 @@ The CDH4 components, and third parties such as Kerberos, use the ports listed in
 </table>
 </div>
 </div>
-<div id="outline-container-orgfdebc93" class="outline-3">
-<h3 id="orgfdebc93"><span class="section-number-3">5.5</span> Zookeeper</h3>
+<div id="outline-container-orgf900f8d" class="outline-3">
+<h3 id="orgf900f8d"><span class="section-number-3">5.5</span> Zookeeper</h3>
 <div class="outline-text-3" id="text-5-5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -757,8 +803,8 @@ As JMX port, ZooKeeper will also use another randomly selected port for RMI. In 
 </div>
 </div>
 
-<div id="outline-container-org2bc6784" class="outline-3">
-<h3 id="org2bc6784"><span class="section-number-3">5.6</span> 其他组件</h3>
+<div id="outline-container-org1eed7b7" class="outline-3">
+<h3 id="org1eed7b7"><span class="section-number-3">5.6</span> 其他组件</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 <b>Hive</b>
@@ -970,7 +1016,7 @@ As JMX port, ZooKeeper will also use another randomly selected port for RMI. In 
 <td class="org-right">11000</td>
 <td class="org-left">TCP</td>
 <td class="org-left">External</td>
-<td class="org-left">OOZIE_HTTP_PORT in oozie-env.sh</td>
+<td class="org-left">OOZIE<sub>HTTP</sub><sub>PORT</sub> in oozie-env.sh</td>
 <td class="org-left">HTTP</td>
 </tr>
 
@@ -980,7 +1026,7 @@ As JMX port, ZooKeeper will also use another randomly selected port for RMI. In 
 <td class="org-right">11001</td>
 <td class="org-left">TCP</td>
 <td class="org-left">localhost</td>
-<td class="org-left">OOZIE_ADMIN_PORT in oozie-env.sh</td>
+<td class="org-left">OOZIE<sub>ADMIN</sub><sub>PORT</sub> in oozie-env.sh</td>
 <td class="org-left">Shutdown port</td>
 </tr>
 </tbody>
@@ -1080,7 +1126,7 @@ As JMX port, ZooKeeper will also use another randomly selected port for RMI. In 
 <td class="org-right">88</td>
 <td class="org-left">UDP/TCP</td>
 <td class="org-left">External</td>
-<td class="org-left">kdc_ports and kdc_tcp_ports in either the [kdcdefaults] or [realms] sections of kdc.conf</td>
+<td class="org-left">kdc<sub>ports</sub> and kdc<sub>tcp</sub><sub>ports</sub> in either the [kdcdefaults] or [realms] sections of kdc.conf</td>
 <td class="org-left">By default only UDP</td>
 </tr>
 
@@ -1090,7 +1136,7 @@ As JMX port, ZooKeeper will also use another randomly selected port for RMI. In 
 <td class="org-right">749</td>
 <td class="org-left">TCP</td>
 <td class="org-left">Internal</td>
-<td class="org-left">kadmind_port in the [realms] section of kdc.conf</td>
+<td class="org-left">kadmind<sub>port</sub> in the [realms] section of kdc.conf</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
@@ -1098,6 +1144,11 @@ As JMX port, ZooKeeper will also use another randomly selected port for RMI. In 
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/hadoop-overview.html';this.page.identifier = 'hadoop-overview.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Hadoop Distributed File System</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">The Hadoop Distributed File System</h1>
@@ -16,37 +62,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org14ec8eb">1. INTRODUCTION AND RELATED WORK</a></li>
-<li><a href="#org153da07">2. ARCHITECTURE</a>
+<li><a href="#orge5ce1ce">1. INTRODUCTION AND RELATED WORK</a></li>
+<li><a href="#orgad6b365">2. ARCHITECTURE</a>
 <ul>
-<li><a href="#orgfa6186c">2.1. NameNode</a></li>
-<li><a href="#orgf49eb6c">2.2. DataNode</a></li>
-<li><a href="#orgd4ebd69">2.3. HDFS Client</a></li>
-<li><a href="#orgefebbec">2.4. Image and Journal</a></li>
-<li><a href="#org5e40bfa">2.5. CheckpointNode</a></li>
-<li><a href="#orgfb1c619">2.6. BackupNode</a></li>
-<li><a href="#org928cdc7">2.7. Upgrades, File Sytsems Snapshots</a></li>
+<li><a href="#org99a93b7">2.1. NameNode</a></li>
+<li><a href="#org7431eff">2.2. DataNode</a></li>
+<li><a href="#org36be759">2.3. HDFS Client</a></li>
+<li><a href="#org7443428">2.4. Image and Journal</a></li>
+<li><a href="#org55f0514">2.5. CheckpointNode</a></li>
+<li><a href="#org002b47f">2.6. BackupNode</a></li>
+<li><a href="#orgb520dba">2.7. Upgrades, File Sytsems Snapshots</a></li>
 </ul>
 </li>
-<li><a href="#orgb102769">3. FILE I/O OPERATIONS AND REPLICA MANGEMENT</a>
+<li><a href="#org0d249bd">3. FILE I/O OPERATIONS AND REPLICA MANGEMENT</a>
 <ul>
-<li><a href="#orgb261589">3.1. File Read and Write</a></li>
-<li><a href="#orgcb45ae0">3.2. Block Placement</a></li>
-<li><a href="#org49dfe6c">3.3. Replication management</a></li>
-<li><a href="#org6d5bd4d">3.4. Balancer</a></li>
-<li><a href="#orgfbfee3e">3.5. Block Scanner</a></li>
-<li><a href="#org12a2ee0">3.6. Decommissioing</a></li>
-<li><a href="#org0d5cead">3.7. Inter-Cluster Data Copy</a></li>
+<li><a href="#org9c653ca">3.1. File Read and Write</a></li>
+<li><a href="#org5b570ed">3.2. Block Placement</a></li>
+<li><a href="#org89f6b1a">3.3. Replication management</a></li>
+<li><a href="#orgd83c5a3">3.4. Balancer</a></li>
+<li><a href="#org4012dac">3.5. Block Scanner</a></li>
+<li><a href="#org9e8f5a8">3.6. Decommissioing</a></li>
+<li><a href="#org532bf39">3.7. Inter-Cluster Data Copy</a></li>
 </ul>
 </li>
-<li><a href="#orgf8fb69e">4. PRACTICE AT YAHOO!</a>
+<li><a href="#org4b47f92">4. PRACTICE AT YAHOO!</a>
 <ul>
-<li><a href="#orgc44243f">4.1. Durability of Data</a></li>
-<li><a href="#org23c27d6">4.2. Caring for the Commons</a></li>
-<li><a href="#org8d09072">4.3. Benchmarks</a></li>
+<li><a href="#orga353412">4.1. Durability of Data</a></li>
+<li><a href="#orge85ea3d">4.2. Caring for the Commons</a></li>
+<li><a href="#orgbd121a2">4.3. Benchmarks</a></li>
 </ul>
 </li>
-<li><a href="#orgad02d0c">5. FUTURE WORK</a></li>
+<li><a href="#org9241ac4">5. FUTURE WORK</a></li>
 </ul>
 </div>
 </div>
@@ -54,8 +100,8 @@
 <a href="http://storageconference.org/2010/Papers/MSST/Shvachko.pdf">http://storageconference.org/2010/Papers/MSST/Shvachko.pdf</a> @ 2010
 </p>
 
-<div id="outline-container-org14ec8eb" class="outline-2">
-<h2 id="org14ec8eb"><span class="section-number-2">1</span> INTRODUCTION AND RELATED WORK</h2>
+<div id="outline-container-orge5ce1ce" class="outline-2">
+<h2 id="orge5ce1ce"><span class="section-number-2">1</span> INTRODUCTION AND RELATED WORK</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Hadoop clus-ters at Yahoo! span 25 000 servers, and store 25 petabytes of application data, with the largest cluster being 3500 servers.(最大的集群有3.5k机器，所有机器共有25k，存储了25PB的数据）</li>
@@ -63,12 +109,12 @@
 </div>
 </div>
 
-<div id="outline-container-org153da07" class="outline-2">
-<h2 id="org153da07"><span class="section-number-2">2</span> ARCHITECTURE</h2>
+<div id="outline-container-orgad6b365" class="outline-2">
+<h2 id="orgad6b365"><span class="section-number-2">2</span> ARCHITECTURE</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgfa6186c" class="outline-3">
-<h3 id="orgfa6186c"><span class="section-number-3">2.1</span> NameNode</h3>
+<div id="outline-container-org99a93b7" class="outline-3">
+<h3 id="org99a93b7"><span class="section-number-3">2.1</span> NameNode</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>The file content is split into large blocks (typically 128 megabytes, but user selectable file-by-file) and each block of the file is inde-pendently replicated at multiple DataNodes (typically three, but user selectable file-by-file). （文件内容会切块默认是128MB但是对于每个文件可选，另外副本数目对于每个文件也是可选的默认是3）</li>
@@ -79,8 +125,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf49eb6c" class="outline-3">
-<h3 id="orgf49eb6c"><span class="section-number-3">2.2</span> DataNode</h3>
+<div id="outline-container-org7431eff" class="outline-3">
+<h3 id="org7431eff"><span class="section-number-3">2.2</span> DataNode</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Each block replica on a DataNode is represented by two files in the local host’s native file system. The first file contains the data itself and the second file is block’s metadata including checksums for the block data and the block’s generation stamp.（block存储上包含两个文件，一个是数据文件，另外一个就是checksum文件，并且包含block generation stamp。这个stamp可能就是用来标记old chunk的，类似于gfs里面的chunk version number）</li>
@@ -101,8 +147,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd4ebd69" class="outline-3">
-<h3 id="orgd4ebd69"><span class="section-number-3">2.3</span> HDFS Client</h3>
+<div id="outline-container-org36be759" class="outline-3">
+<h3 id="org36be759"><span class="section-number-3">2.3</span> HDFS Client</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>When an application reads a file, the HDFS client first asks the NameNode for the list of DataNodes that host replicas of the blocks of the file. It then contacts a DataNode directly and requests the transfer of the desired block. （选择任意一个datanode进行交互）</li>
@@ -122,8 +168,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgefebbec" class="outline-3">
-<h3 id="orgefebbec"><span class="section-number-3">2.4</span> Image and Journal</h3>
+<div id="outline-container-org7443428" class="outline-3">
+<h3 id="org7443428"><span class="section-number-3">2.4</span> Image and Journal</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>During startup the NameNode ini-tializes the namespace image from the checkpoint, and then replays changes from the journal until the image is up-to-date with the last state of the file system. A new checkpoint and empty journal are written back to the storage directories before the NameNode starts serving clients.（namenode启动的时候会读取checkpoint信息并且回放journal内容，之后会生成新的checkpoint然后才开始serve client）</li>
@@ -133,8 +179,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5e40bfa" class="outline-3">
-<h3 id="org5e40bfa"><span class="section-number-3">2.5</span> CheckpointNode</h3>
+<div id="outline-container-org55f0514" class="outline-3">
+<h3 id="org55f0514"><span class="section-number-3">2.5</span> CheckpointNode</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>The NameNode in HDFS, in addition to its primary role serving client requests, can alternatively execute either of two other roles, either a CheckpointNode or a BackupNode. The role is specified at the node startup.（checkpoint node和backup node是namenode一种，可以在启动的时候直接指定角色）</li>
@@ -146,8 +192,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfb1c619" class="outline-3">
-<h3 id="orgfb1c619"><span class="section-number-3">2.6</span> BackupNode</h3>
+<div id="outline-container-org002b47f" class="outline-3">
+<h3 id="org002b47f"><span class="section-number-3">2.6</span> BackupNode</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li>A recently introduced feature of HDFS is the BackupNode. Like a CheckpointNode, the BackupNode is capable of creating periodic checkpoints, but in addition it maintains an in-memory, up-to-date image of the file system namespace that is always synchronized with the state of the NameNode.（backupnode和chkpnode一样会进行checkpoint，但是backupnode和namenode保持的是一致的数据，因为不需要像chkp node一样进行download）</li>
@@ -156,8 +202,8 @@
 </div>
 </div>
 
-<div id="outline-container-org928cdc7" class="outline-3">
-<h3 id="org928cdc7"><span class="section-number-3">2.7</span> Upgrades, File Sytsems Snapshots</h3>
+<div id="outline-container-orgb520dba" class="outline-3">
+<h3 id="orgb520dba"><span class="section-number-3">2.7</span> Upgrades, File Sytsems Snapshots</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>During software upgrades the possibility of corrupting the system due to software bugs or human mistakes increases. The purpose of creating snapshots in HDFS is to minimize potential damage to the data stored in the system during upgrades.（创建snapshot的原因就是为了减少系统升级带来的风险）</li>
@@ -173,12 +219,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgb102769" class="outline-2">
-<h2 id="orgb102769"><span class="section-number-2">3</span> FILE I/O OPERATIONS AND REPLICA MANGEMENT</h2>
+<div id="outline-container-org0d249bd" class="outline-2">
+<h2 id="org0d249bd"><span class="section-number-2">3</span> FILE I/O OPERATIONS AND REPLICA MANGEMENT</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgb261589" class="outline-3">
-<h3 id="orgb261589"><span class="section-number-3">3.1</span> File Read and Write</h3>
+<div id="outline-container-org9c653ca" class="outline-3">
+<h3 id="org9c653ca"><span class="section-number-3">3.1</span> File Read and Write</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>HDFS im-plements a single-writer, multiple-reader model. The HDFS client that opens a file for writing is granted a lease for the file; no other client can write to the file. The writ-ing client periodically renews the lease by sending a heartbeat to the NameNode. When the file is closed, the lease is revoked. The lease duration is bound by a soft limit and a hard limit. Until the soft limit expires, the writer is certain of exclusive access to the file. If the soft limit expires and the client fails to close the file or renew the lease, another client can preempt the lease. If after the hard limit expires (one hour) and the client has failed to renew the lease, HDFS assumes that the client has quit and will automatically close the file on behalf of the writer, and recover the lease. The writer's lease does not prevent other clients from reading the file; a file may have many concurrent readers.（HDFS提供的的是single-writer/multi-reader的实现，和gfs一样提供了lease机制，但是这个lease机制仅仅针对writer来说的。从功能上看，hdfs相对于gfs来说确实简单）</li>
@@ -199,8 +245,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgcb45ae0" class="outline-3">
-<h3 id="orgcb45ae0"><span class="section-number-3">3.2</span> Block Placement</h3>
+<div id="outline-container-org5b570ed" class="outline-3">
+<h3 id="org5b570ed"><span class="section-number-3">3.2</span> Block Placement</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>HDFS estimates the network bandwidth between two nodes by their distance. The distance from a node to its parent node is assumed to be one. A distance between two nodes can be cal- culated by summing up their distances to their closest common ancestor. A shorter distance between two nodes means that the greater bandwidth they can utilize to transfer data.（node和node之间的距离用来评估之间的网络带宽。两个node距离是通常是通过计算两个点到共同祖先的距离。node到switch距离通常计算为1，这只是简单的算法）</li>
@@ -231,8 +277,8 @@
 </div>
 </div>
 
-<div id="outline-container-org49dfe6c" class="outline-3">
-<h3 id="org49dfe6c"><span class="section-number-3">3.3</span> Replication management</h3>
+<div id="outline-container-org89f6b1a" class="outline-3">
+<h3 id="org89f6b1a"><span class="section-number-3">3.3</span> Replication management</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>The NameNode detects that a block has become under- or over-replicated when a block report from a DataNode arrives.</li>
@@ -249,8 +295,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6d5bd4d" class="outline-3">
-<h3 id="org6d5bd4d"><span class="section-number-3">3.4</span> Balancer</h3>
+<div id="outline-container-orgd83c5a3" class="outline-3">
+<h3 id="orgd83c5a3"><span class="section-number-3">3.4</span> Balancer</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 在block replacement里面没有考虑磁盘利用率的情况，这样容易造成在一个节点上面过热如果这个节点是刚上来的话。但是这样也会造成inbalance的问题。
@@ -265,8 +311,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfbfee3e" class="outline-3">
-<h3 id="orgfbfee3e"><span class="section-number-3">3.5</span> Block Scanner</h3>
+<div id="outline-container-org4012dac" class="outline-3">
+<h3 id="org4012dac"><span class="section-number-3">3.5</span> Block Scanner</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 block scanner主要是用来发现corrupted chunk。每次扫描的时候，chunkserver会调整读取带宽确保可以在一定period内完成（可配）。对于在每次扫描的时候，校验的时间会记录到chunkserver的内存里面（这个作用应该是确保不会频繁地造成校验）。client如果读取一个block成功的话，也会通知datanode，这个通知也回被作为一次校验，更新校验时间。
@@ -278,8 +324,8 @@ Whenever a read client or a block scanner detects a corrupt block, it notifies t
 </div>
 </div>
 
-<div id="outline-container-org12a2ee0" class="outline-3">
-<h3 id="org12a2ee0"><span class="section-number-3">3.6</span> Decommissioing</h3>
+<div id="outline-container-org9e8f5a8" class="outline-3">
+<h3 id="org9e8f5a8"><span class="section-number-3">3.6</span> Decommissioing</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 decommission的作用主要就是为了让node下线。
@@ -292,8 +338,8 @@ decommission的作用主要就是为了让node下线。
 </div>
 </div>
 
-<div id="outline-container-org0d5cead" class="outline-3">
-<h3 id="org0d5cead"><span class="section-number-3">3.7</span> Inter-Cluster Data Copy</h3>
+<div id="outline-container-org532bf39" class="outline-3">
+<h3 id="org532bf39"><span class="section-number-3">3.7</span> Inter-Cluster Data Copy</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 使用distcp这样的mapreduce来运行集群上面的文件copy。
@@ -302,8 +348,8 @@ decommission的作用主要就是为了让node下线。
 </div>
 </div>
 
-<div id="outline-container-orgf8fb69e" class="outline-2">
-<h2 id="orgf8fb69e"><span class="section-number-2">4</span> PRACTICE AT YAHOO!</h2>
+<div id="outline-container-org4b47f92" class="outline-2">
+<h2 id="org4b47f92"><span class="section-number-2">4</span> PRACTICE AT YAHOO!</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Large HDFS clusters at Yahoo! include about 3500 nodes. A typical cluster node has:
@@ -311,7 +357,7 @@ Large HDFS clusters at Yahoo! include about 3500 nodes. A typical cluster node h
 <ul class="org-ul">
 <li>2 quad core Xeon processors @ 2.5ghz</li>
 <li>Red Hat Enterprise Linux Server Release 5.1</li>
-<li>Sun Java JDK 1.6.0_13-b03</li>
+<li>Sun Java JDK 1.6.0<sub>13</sub>-b03</li>
 <li>4 directly attached SATA drives (one terabyte each)</li>
 <li>16G RAM</li>
 <li>1-gigabit Ethernet</li>
@@ -337,8 +383,8 @@ Large HDFS clusters at Yahoo! include about 3500 nodes. A typical cluster node h
 </ul>
 </div>
 
-<div id="outline-container-orgc44243f" class="outline-3">
-<h3 id="orgc44243f"><span class="section-number-3">4.1</span> Durability of Data</h3>
+<div id="outline-container-orga353412" class="outline-3">
+<h3 id="orga353412"><span class="section-number-3">4.1</span> Durability of Data</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>for a large cluster, the prob-ability of losing a block during one year is less than .005</li>
@@ -359,8 +405,8 @@ Large HDFS clusters at Yahoo! include about 3500 nodes. A typical cluster node h
 </div>
 </div>
 
-<div id="outline-container-org23c27d6" class="outline-3">
-<h3 id="org23c27d6"><span class="section-number-3">4.2</span> Caring for the Commons</h3>
+<div id="outline-container-orge85ea3d" class="outline-3">
+<h3 id="orge85ea3d"><span class="section-number-3">4.2</span> Caring for the Commons</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>permission</li>
@@ -378,13 +424,13 @@ Large HDFS clusters at Yahoo! include about 3500 nodes. A typical cluster node h
 </div>
 </div>
 
-<div id="outline-container-org8d09072" class="outline-3">
-<h3 id="org8d09072"><span class="section-number-3">4.3</span> Benchmarks</h3>
+<div id="outline-container-orgbd121a2" class="outline-3">
+<h3 id="orgbd121a2"><span class="section-number-3">4.3</span> Benchmarks</h3>
 </div>
 </div>
 
-<div id="outline-container-orgad02d0c" class="outline-2">
-<h2 id="orgad02d0c"><span class="section-number-2">5</span> FUTURE WORK</h2>
+<div id="outline-container-org9241ac4" class="outline-2">
+<h2 id="org9241ac4"><span class="section-number-2">5</span> FUTURE WORK</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>NameNode的自动恢复。现在BackupNode已经算是Warm NameNode了，但是缺少block reports，所以如果切换到BackupNode的话还需要block reports比较耗时。如果BackupNode能够同时接收block reports的话，那么可以作为Hot NameNode存在。</li>
@@ -392,6 +438,11 @@ Large HDFS clusters at Yahoo! include about 3500 nodes. A typical cluster node h
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/the-hadoop-distributed-file-system.html';this.page.identifier = 'the-hadoop-distributed-file-system.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

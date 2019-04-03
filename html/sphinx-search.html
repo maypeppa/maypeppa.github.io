@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sphinx-search</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">sphinx-search</h1>
@@ -16,14 +62,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org30a8eb3">1. Introduction</a></li>
-<li><a href="#orgb5f9b4a">2. Index(索引)</a></li>
-<li><a href="#org2721b24">3. Search(检索)</a></li>
-<li><a href="#orgc816f33">4. Practices</a>
+<li><a href="#org3abdeaf">1. Introduction</a></li>
+<li><a href="#org0d9113b">2. Index(索引)</a></li>
+<li><a href="#org7d4d70d">3. Search(检索)</a></li>
+<li><a href="#org68d83a4">4. Practices</a>
 <ul>
-<li><a href="#orge809543">4.1. Sphinx in action</a></li>
-<li><a href="#org9883281">4.2. real-time-fulltext-search-with-sphinx</a></li>
-<li><a href="#orga22e113">4.3. Realtime Index Performance Basics</a></li>
+<li><a href="#org119c411">4.1. Sphinx in action</a></li>
+<li><a href="#org1c981e3">4.2. real-time-fulltext-search-with-sphinx</a></li>
+<li><a href="#org144f9d1">4.3. Realtime Index Performance Basics</a></li>
 </ul>
 </li>
 </ul>
@@ -37,8 +83,8 @@
 <li><a href="http://sphinxsearch.com/info/articles/">http://sphinxsearch.com/info/articles/</a></li>
 </ul>
 
-<div id="outline-container-org30a8eb3" class="outline-2">
-<h2 id="org30a8eb3"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org3abdeaf" class="outline-2">
+<h2 id="org3abdeaf"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="http://www.coreseek.cn/docs/coreseek_4.1-sphinx_2.0.1-beta.html#features">http://www.coreseek.cn/docs/coreseek_4.1-sphinx_2.0.1-beta.html#features</a>
@@ -69,8 +115,8 @@ Sphinx在与MySQL衔接方面做的非常好：
 </div>
 </div>
 
-<div id="outline-container-orgb5f9b4a" class="outline-2">
-<h2 id="orgb5f9b4a"><span class="section-number-2">2</span> Index(索引)</h2>
+<div id="outline-container-org0d9113b" class="outline-2">
+<h2 id="org0d9113b"><span class="section-number-2">2</span> Index(索引)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 对于索引程序来说，数据分为全文和属性两类。sphinx只会对全文进行索引，不会对属性索引，但是属性对于结果排序/过滤/分组都非常有用。
@@ -105,11 +151,11 @@ sphinx有两种索引方式，一种是基于磁盘索引（批量索引），�
 </p>
 
 <p>
-RT索引实现方式是: a. 将最新写入的数据缓存在内存并且建立索引 b. 当内存占用超过rt_mem_limit大小之后就会flush到磁盘上形成磁盘索引。为了确保提交到内存中的数据不会丢失，提交到内存之前会先写入二进制日志。每个二进制日志文件大小由binlog_max_log_size来限制(0表示没有限制)，日志刷新策略和MySQL几乎完全相同：
+RT索引实现方式是: a. 将最新写入的数据缓存在内存并且建立索引 b. 当内存占用超过rt<sub>mem</sub><sub>limit大小之后就会flush到磁盘上形成磁盘索引</sub>。为了确保提交到内存中的数据不会丢失，提交到内存之前会先写入二进制日志。每个二进制日志文件大小由binlog<sub>max</sub><sub>log</sub><sub>size来限制</sub>(0表示没有限制)，日志刷新策略和MySQL几乎完全相同：
 </p>
 <blockquote>
 <p>
-前有三种不同的二进制日志刷新策略，由binlog_flush选项来控制，设置为0表示每秒将日志刷新一次到操作系统和同步到磁盘，设置为1表示表示每次事务处理都刷新和同步，设置为2（默认模式）表示每次事务处理时刷新单每秒同步一次。同步相对而言是比较慢的，因为他需要将数据物理写入到磁盘，所以模式1是最安全的模式（每次提交的事物处理，都确保是写入到磁盘的）。刷新日志到操作系统是为了防止searchd崩溃时数据丢失，如果操作系统没有崩溃则数据可以安全写入到磁盘。模式2是默认的模式。
+前有三种不同的二进制日志刷新策略，由binlog<sub>flush选项来控制</sub>，设置为0表示每秒将日志刷新一次到操作系统和同步到磁盘，设置为1表示表示每次事务处理都刷新和同步，设置为2（默认模式）表示每次事务处理时刷新单每秒同步一次。同步相对而言是比较慢的，因为他需要将数据物理写入到磁盘，所以模式1是最安全的模式（每次提交的事物处理，都确保是写入到磁盘的）。刷新日志到操作系统是为了防止searchd崩溃时数据丢失，如果操作系统没有崩溃则数据可以安全写入到磁盘。模式2是默认的模式。
 </p>
 </blockquote>
 
@@ -118,18 +164,18 @@ RT索引实现方式是: a. 将最新写入的数据缓存在内存并且建立�
 </p>
 <blockquote>
 <p>
-可以通过rt_flush_period指令配置searchd来周期性刷新内存区块到磁盘以解决这个问题。当周期性刷新启用时，searchd会保留一个独立的线程用于检查RT索引的内存区块是否需要写回到磁盘。一旦写回到磁盘，各个二进制日志都可以（能够）安全的删除。
+可以通过rt<sub>flush</sub><sub>period指令配置searchd来周期性刷新内存区块到磁盘以解决这个问题</sub>。当周期性刷新启用时，searchd会保留一个独立的线程用于检查RT索引的内存区块是否需要写回到磁盘。一旦写回到磁盘，各个二进制日志都可以（能够）安全的删除。
 </p>
 
 <p>
-请注意rt_flush_period 仅控制检查发生的频率。但是这并不保证特别是内存区块一定会得到保存。例如，定期重新保存一个巨大的内存区块但是仅更新了寥寥数行是没有任何意义的。searchd守护进程将会通过某些启发式方法判断是否需要真的执行刷新。
+请注意rt<sub>flush</sub><sub>period</sub> 仅控制检查发生的频率。但是这并不保证特别是内存区块一定会得到保存。例如，定期重新保存一个巨大的内存区块但是仅更新了寥寥数行是没有任何意义的。searchd守护进程将会通过某些启发式方法判断是否需要真的执行刷新。
 </p>
 </blockquote>
 </div>
 </div>
 
-<div id="outline-container-org2721b24" class="outline-2">
-<h2 id="org2721b24"><span class="section-number-2">3</span> Search(检索)</h2>
+<div id="outline-container-org7d4d70d" class="outline-2">
+<h2 id="org7d4d70d"><span class="section-number-2">3</span> Search(检索)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 所有通过SphinxAPI提供的功能都可以通过SphinxQL访问，不过反过来则不行，例如对RT索引的写操作只能通过SphinxQL. 所以比较推荐尽可能使用SphinxQL，同时大部分语言都有MySQL library.SphinxQL详细语法可以看 <a href="http://www.coreseek.cn/docs/coreseek_4.1-sphinx_2.0.1-beta.html#sphinxql-reference">这里</a> . Sphinx提供的检索语法非常强大可以看 <a href="http://www.coreseek.cn/docs/coreseek_4.1-sphinx_2.0.1-beta.html#searching">这里</a>.
@@ -231,12 +277,12 @@ index dist1
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc816f33" class="outline-2">
-<h2 id="orgc816f33"><span class="section-number-2">4</span> Practices</h2>
+<div id="outline-container-org68d83a4" class="outline-2">
+<h2 id="org68d83a4"><span class="section-number-2">4</span> Practices</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orge809543" class="outline-3">
-<h3 id="orge809543"><span class="section-number-3">4.1</span> Sphinx in action</h3>
+<div id="outline-container-org119c411" class="outline-3">
+<h3 id="org119c411"><span class="section-number-3">4.1</span> Sphinx in action</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 <a href="http://www.ivinco.com/blog/tag/sphinx-in-action/">http://www.ivinco.com/blog/tag/sphinx-in-action/</a>
@@ -244,22 +290,22 @@ index dist1
 </div>
 </div>
 
-<div id="outline-container-org9883281" class="outline-3">
-<h3 id="org9883281"><span class="section-number-3">4.2</span> real-time-fulltext-search-with-sphinx</h3>
+<div id="outline-container-org1c981e3" class="outline-3">
+<h3 id="org1c981e3"><span class="section-number-3">4.2</span> real-time-fulltext-search-with-sphinx</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 <a href="http://www.slideshare.net/AdrianNuta1/real-time-fulltext-search-with-sphinx">http://www.slideshare.net/AdrianNuta1/real-time-fulltext-search-with-sphinx</a> 给了许多使用例子
 </p>
 
 <ul class="org-ul">
-<li>OPTIMIZE INDEX rt # 将所有disk shards合并称为一个shard. 这个合并过程可以通过参数rt_merge_iops/rt_merge_maxiosize来控制IO。</li>
+<li>OPTIMIZE INDEX rt # 将所有disk shards合并称为一个shard. 这个合并过程可以通过参数rt<sub>merge</sub><sub>iops</sub>/rt<sub>merge</sub><sub>maxiosize来控制IO</sub>。</li>
 <li>ATTACH INDEX classic TO RTINDEX rt # 将磁盘索引变为实时索引，实际内部操作就是重命名文件，所以耗时很短。also see <a href="http://www.ivinco.com/blog/converting-sphinx-original-indexes-to-real-time-indexes/">here</a>.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga22e113" class="outline-3">
-<h3 id="orga22e113"><span class="section-number-3">4.3</span> Realtime Index Performance Basics</h3>
+<div id="outline-container-org144f9d1" class="outline-3">
+<h3 id="org144f9d1"><span class="section-number-3">4.3</span> Realtime Index Performance Basics</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 <a href="http://sphinxsearch.com/blog/2014/02/12/rt_performance_basics/">http://sphinxsearch.com/blog/2014/02/12/rt_performance_basics/</a> RT索引性能调优
@@ -273,6 +319,11 @@ index dist1
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/sphinx-search.html';this.page.identifier = 'sphinx-search.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

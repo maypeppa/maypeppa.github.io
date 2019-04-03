@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>linux</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">linux</h1>
@@ -16,31 +62,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgae10c59">1. vmlinuz</a></li>
-<li><a href="#org75a02d3">2. linux io/storage stack</a></li>
-<li><a href="#org48c18a8">3. program exit code</a></li>
-<li><a href="#org33fd31c">4. dp8网卡问题</a></li>
-<li><a href="#org8565ed0">5. 修改资源限制</a></li>
-<li><a href="#orgb4c2402">6. CPU温度过高</a></li>
-<li><a href="#orga880ad9">7. sync hangup</a></li>
-<li><a href="#org61f98b4">8. upgrade glibc</a></li>
-<li><a href="#orgf7956a9">9. 允许不在tty上执行sudo</a></li>
-<li><a href="#org45df36d">10. ssh proxy</a></li>
-<li><a href="#orgb7662fa">11. 修改最大打开文件句柄数</a></li>
-<li><a href="#org32b4116">12. apt-get hang</a></li>
-<li><a href="#org7784c0f">13. syslog on cpu</a>
+<li><a href="#orge7e3b35">1. vmlinuz</a></li>
+<li><a href="#org65df897">2. linux io/storage stack</a></li>
+<li><a href="#orgca789b9">3. program exit code</a></li>
+<li><a href="#org53bd5f6">4. dp8网卡问题</a></li>
+<li><a href="#orge8ec3c8">5. 修改资源限制</a></li>
+<li><a href="#orgbb8adf3">6. CPU温度过高</a></li>
+<li><a href="#org03c12ef">7. sync hangup</a></li>
+<li><a href="#org73948f3">8. upgrade glibc</a></li>
+<li><a href="#org2a6b51e">9. 允许不在tty上执行sudo</a></li>
+<li><a href="#orga7d8f2c">10. ssh proxy</a></li>
+<li><a href="#org92bbe82">11. 修改最大打开文件句柄数</a></li>
+<li><a href="#org9a96a88">12. apt-get hang</a></li>
+<li><a href="#orgddd543f">13. syslog on cpu</a>
 <ul>
-<li><a href="#org02cb2ac">13.1. Core power limit notifaction</a></li>
-<li><a href="#org99c9c28">13.2. Package power limit notification</a></li>
-<li><a href="#org67556d7">13.3. below trip temperature. Throttling disabled</a></li>
+<li><a href="#org0f695d7">13.1. Core power limit notifaction</a></li>
+<li><a href="#orgbf72bd1">13.2. Package power limit notification</a></li>
+<li><a href="#org4527d3b">13.3. below trip temperature. Throttling disabled</a></li>
 </ul>
 </li>
-<li><a href="#org0cae832">14. linux kernel map</a></li>
+<li><a href="#org09a27ee">14. linux kernel map</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgae10c59" class="outline-2">
-<h2 id="orgae10c59"><span class="section-number-2">1</span> vmlinuz</h2>
+<div id="outline-container-orge7e3b35" class="outline-2">
+<h2 id="orge7e3b35"><span class="section-number-2">1</span> vmlinuz</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 vmlinuz是可引导的、压缩的内核。"vm"代表"Virtual Memory"。Linux 支持虚拟内存，不像老的操作系统比如DOS有640KB内存的限制。Linux能够使用硬盘空间作为虚拟内存，因此得名"vm"。vmlinuz是可执行的Linux内核，它位于/boot/vmlinuz，它一般是一个软链接。vmlinux是未压缩的内核，vmlinuz是vmlinux的压缩文件。
@@ -56,8 +102,8 @@ zImage(vmlinuz)和bzImage(vmlinuz)都是用gzip压缩的。它们不仅是一个
 </div>
 </div>
 
-<div id="outline-container-org75a02d3" class="outline-2">
-<h2 id="org75a02d3"><span class="section-number-2">2</span> linux io/storage stack</h2>
+<div id="outline-container-org65df897" class="outline-2">
+<h2 id="org65df897"><span class="section-number-2">2</span> linux io/storage stack</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <img src="images/Linux-io-stack-diagram.png" alt="Linux-io-stack-diagram.png" /> <img src="images/Linux-storage-stack-diagram.png" alt="Linux-storage-stack-diagram.png" />
@@ -65,8 +111,8 @@ zImage(vmlinuz)和bzImage(vmlinuz)都是用gzip压缩的。它们不仅是一个
 </div>
 </div>
 
-<div id="outline-container-org48c18a8" class="outline-2">
-<h2 id="org48c18a8"><span class="section-number-2">3</span> program exit code</h2>
+<div id="outline-container-orgca789b9" class="outline-2">
+<h2 id="orgca789b9"><span class="section-number-2">3</span> program exit code</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 首先看下面一段Java程序
@@ -121,8 +167,8 @@ exit(code)
 </div>
 </div>
 
-<div id="outline-container-org33fd31c" class="outline-2">
-<h2 id="org33fd31c"><span class="section-number-2">4</span> dp8网卡问题</h2>
+<div id="outline-container-org53bd5f6" class="outline-2">
+<h2 id="org53bd5f6"><span class="section-number-2">4</span> dp8网卡问题</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 当时dp8的网络流量从一个非常大的值变为非常小的值，检查/proc/net/netstat，以下几个统计数值dp8和其他机器差距较大（相差1-2个数量级）：
@@ -179,8 +225,8 @@ dp@dp8:~$ dmesg | grep eth0
 </div>
 </div>
 
-<div id="outline-container-org8565ed0" class="outline-2">
-<h2 id="org8565ed0"><span class="section-number-2">5</span> 修改资源限制</h2>
+<div id="outline-container-orge8ec3c8" class="outline-2">
+<h2 id="orge8ec3c8"><span class="section-number-2">5</span> 修改资源限制</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 临时的修改方式可以通过ulimit来进行修改，也可以通过修改文件/etc/security/limits.conf来永久修改
@@ -193,8 +239,8 @@ hadoop - nproc 40960
 </div>
 </div>
 
-<div id="outline-container-orgb4c2402" class="outline-2">
-<h2 id="orgb4c2402"><span class="section-number-2">6</span> CPU温度过高</h2>
+<div id="outline-container-orgbb8adf3" class="outline-2">
+<h2 id="orgbb8adf3"><span class="section-number-2">6</span> CPU温度过高</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 这个问题是我在Ubuntu PC上面遇到的，明显的感觉就是运行速度变慢。然后在syslog里面出现如下日志：
@@ -209,18 +255,18 @@ May  2 18:24:21 umeng-ubuntu-pc kernel: [ 1188.717622] CPU3: Package temperature
 </div>
 </div>
 
-<div id="outline-container-orga880ad9" class="outline-2">
-<h2 id="orga880ad9"><span class="section-number-2">7</span> sync hangup</h2>
+<div id="outline-container-org03c12ef" class="outline-2">
+<h2 id="org03c12ef"><span class="section-number-2">7</span> sync hangup</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>kill -KILL fails to kill process : <a href="http://lists.freebsd.org/pipermail/freebsd-questions/2008-September/182821.html">http://lists.freebsd.org/pipermail/freebsd-questions/2008-September/182821.html</a></li>
-<li>Linux-Kernel Archive: Bug: sync's hangup forever in call_rwsem_down_read_failed : <a href="http://lkml.indiana.edu/hypermail/linux/kernel/1011.2/04099.html">http://lkml.indiana.edu/hypermail/linux/kernel/1011.2/04099.html</a></li>
+<li>Linux-Kernel Archive: Bug: sync's hangup forever in call<sub>rwsem</sub><sub>down</sub><sub>read</sub><sub>failed</sub> : <a href="http://lkml.indiana.edu/hypermail/linux/kernel/1011.2/04099.html">http://lkml.indiana.edu/hypermail/linux/kernel/1011.2/04099.html</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org61f98b4" class="outline-2">
-<h2 id="org61f98b4"><span class="section-number-2">8</span> upgrade glibc</h2>
+<div id="outline-container-org73948f3" class="outline-2">
+<h2 id="org73948f3"><span class="section-number-2">8</span> upgrade glibc</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 linux - How to recover after deleting the symbolic link libc.so.6? - Stack Overflow : <a href="http://stackoverflow.com/questions/12249547/how-to-recover-after-deleting-the-symbolic-link-libc-so-6">http://stackoverflow.com/questions/12249547/how-to-recover-after-deleting-the-symbolic-link-libc-so-6</a>
@@ -270,14 +316,14 @@ A copy of the C library was found in an unexpected directory | Blog : <a href="h
 <ul class="org-ul">
 <li>sudo su - root # 首先切换到root账号下面</li>
 <li>mv libc.so librt.so  /root # 将glibc等相关的so移动到root账号下面，主要不要移动软连接文件。</li>
-<li>LD_PRELOAD=/root/libc.so:/root/librt.so bash # 这个时候如果执行bash是找不到glibc等so了，所以需要使用LD_PRELOAD来预先加载</li>
+<li>LD<sub>PRELOAD</sub>=/root/libc.so:/root/librt.so bash # 这个时候如果执行bash是找不到glibc等so了，所以需要使用LD<sub>PRELOAD来预先加载</sub></li>
 <li>apt-get install # 在这个bash下面使用apt-get来安装和升级glibc.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf7956a9" class="outline-2">
-<h2 id="orgf7956a9"><span class="section-number-2">9</span> 允许不在tty上执行sudo</h2>
+<div id="outline-container-org2a6b51e" class="outline-2">
+<h2 id="org2a6b51e"><span class="section-number-2">9</span> 允许不在tty上执行sudo</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 修改/etc/sudoers文件，注释掉
@@ -288,8 +334,8 @@ Defaults requiretty
 </div>
 </div>
 
-<div id="outline-container-org45df36d" class="outline-2">
-<h2 id="org45df36d"><span class="section-number-2">10</span> ssh proxy</h2>
+<div id="outline-container-orga7d8f2c" class="outline-2">
+<h2 id="orga7d8f2c"><span class="section-number-2">10</span> ssh proxy</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 <a href="http://serverfault.com/questions/37629/how-do-i-do-multihop-scp-transfers">http://serverfault.com/questions/37629/how-do-i-do-multihop-scp-transfers</a>
@@ -328,8 +374,8 @@ UPDATE @ 2016-08-26: 发现这个方法可以用来解决remote ipython notebook
 </div>
 </div>
 
-<div id="outline-container-orgb7662fa" class="outline-2">
-<h2 id="orgb7662fa"><span class="section-number-2">11</span> 修改最大打开文件句柄数</h2>
+<div id="outline-container-org92bbe82" class="outline-2">
+<h2 id="org92bbe82"><span class="section-number-2">11</span> 修改最大打开文件句柄数</h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li><a href="http://blog.csdn.net/superchanon/article/details/13303705">http://blog.csdn.net/superchanon/article/details/13303705</a></li>
@@ -342,7 +388,7 @@ UPDATE @ 2016-08-26: 发现这个方法可以用来解决remote ipython notebook
 </p>
 <ul class="org-ul">
 <li>/proc/sys/fs/file-max # 所有进程打开文件句柄数上限</li>
-<li>/proc/sys/fs/nr_open # 单个进程打开文件句柄数上限</li>
+<li>/proc/sys/fs/nr<sub>open</sub> # 单个进程打开文件句柄数上限</li>
 <li>/proc/sys/fs/file-nr # 系统当前打开文件句柄数</li>
 </ul>
 
@@ -356,8 +402,8 @@ UPDATE @ 2016-08-26: 发现这个方法可以用来解决remote ipython notebook
 </div>
 </div>
 
-<div id="outline-container-org32b4116" class="outline-2">
-<h2 id="org32b4116"><span class="section-number-2">12</span> apt-get hang</h2>
+<div id="outline-container-org9a96a88" class="outline-2">
+<h2 id="org9a96a88"><span class="section-number-2">12</span> apt-get hang</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 在使用ubuntu的apt-get时候，可能会出现一些异常的状况，我们直接终止了apt-get。但是这个时候apt-get软件本身出于一个不正常的状态，导致之后不能够启动apt-get。如果观察进程的话会出现下面一些可疑的进程
@@ -379,12 +425,12 @@ dp       30586  0.0  0.0   7628  1020 pts/2    S+   08:59   0:00 grep --color=au
 </ul>
 </div>
 </div>
-<div id="outline-container-org7784c0f" class="outline-2">
-<h2 id="org7784c0f"><span class="section-number-2">13</span> syslog on cpu</h2>
+<div id="outline-container-orgddd543f" class="outline-2">
+<h2 id="orgddd543f"><span class="section-number-2">13</span> syslog on cpu</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org02cb2ac" class="outline-3">
-<h3 id="org02cb2ac"><span class="section-number-3">13.1</span> Core power limit notifaction</h3>
+<div id="outline-container-org0f695d7" class="outline-3">
+<h3 id="org0f695d7"><span class="section-number-3">13.1</span> Core power limit notifaction</h3>
 <div class="outline-text-3" id="text-13-1">
 <pre class="example">
 May 12 12:29:12 dp57 kernel: CPU1: Core power limit notification (total events = 42322)
@@ -407,8 +453,8 @@ May 12 12:29:12 dp57 kernel: CPU31: Core power limit notification (total events 
 </div>
 </div>
 
-<div id="outline-container-org99c9c28" class="outline-3">
-<h3 id="org99c9c28"><span class="section-number-3">13.2</span> Package power limit notification</h3>
+<div id="outline-container-orgbf72bd1" class="outline-3">
+<h3 id="orgbf72bd1"><span class="section-number-3">13.2</span> Package power limit notification</h3>
 <div class="outline-text-3" id="text-13-2">
 <pre class="example">
 May 12 12:29:12 dp57 kernel: CPU17: Package power limit notification (total events = 42377)
@@ -431,8 +477,8 @@ May 12 12:29:12 dp57 kernel: CPU1: Package power limit notification (total event
 </div>
 </div>
 
-<div id="outline-container-org67556d7" class="outline-3">
-<h3 id="org67556d7"><span class="section-number-3">13.3</span> below trip temperature. Throttling disabled</h3>
+<div id="outline-container-org4527d3b" class="outline-3">
+<h3 id="org4527d3b"><span class="section-number-3">13.3</span> below trip temperature. Throttling disabled</h3>
 <div class="outline-text-3" id="text-13-3">
 <pre class="example">
 May 12 12:29:40 dp57 mcelog: Processor 17 below trip temperature. Throttling disabled
@@ -471,8 +517,8 @@ May 12 12:29:40 dp57 mcelog: Processor 1 below trip temperature. Throttling disa
 </div>
 </div>
 </div>
-<div id="outline-container-org0cae832" class="outline-2">
-<h2 id="org0cae832"><span class="section-number-2">14</span> linux kernel map</h2>
+<div id="outline-container-org09a27ee" class="outline-2">
+<h2 id="org09a27ee"><span class="section-number-2">14</span> linux kernel map</h2>
 <div class="outline-text-2" id="text-14">
 
 <div class="figure">
@@ -481,6 +527,11 @@ May 12 12:29:40 dp57 mcelog: Processor 1 below trip temperature. Throttling disa
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/linux.html';this.page.identifier = 'linux.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

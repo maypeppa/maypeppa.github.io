@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>scala</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">scala</h1>
@@ -38,58 +84,58 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9479984">1. 基础知识</a>
+<li><a href="#orgfcd1f8d">1. 基础知识</a>
 <ul>
-<li><a href="#org1f56058">1.1. 标识符</a></li>
-<li><a href="#orgc40a659">1.2. 原始类型</a></li>
-<li><a href="#org99d827c">1.3. 变量定义</a></li>
-<li><a href="#orga21f8fd">1.4. 函数定义</a></li>
-<li><a href="#org9b8aed8">1.5. 控制结构</a></li>
-<li><a href="#org15e01fb">1.6. 等值比较</a></li>
-<li><a href="#orgf8ccd76">1.7. operator</a></li>
-<li><a href="#org36b692a">1.8. 前提断言</a></li>
-<li><a href="#org9567ff5">1.9. package</a></li>
-<li><a href="#org2a2753f">1.10. 模式匹配</a></li>
-<li><a href="#orgaa856e2">1.11. annotation</a></li>
+<li><a href="#org112a74d">1.1. 标识符</a></li>
+<li><a href="#org4101497">1.2. 原始类型</a></li>
+<li><a href="#org700d20d">1.3. 变量定义</a></li>
+<li><a href="#org0640555">1.4. 函数定义</a></li>
+<li><a href="#orge45e9ab">1.5. 控制结构</a></li>
+<li><a href="#org66ce9f2">1.6. 等值比较</a></li>
+<li><a href="#orgfaa4f4c">1.7. operator</a></li>
+<li><a href="#orgda760b8">1.8. 前提断言</a></li>
+<li><a href="#org7c5d432">1.9. package</a></li>
+<li><a href="#org81e62d1">1.10. 模式匹配</a></li>
+<li><a href="#org037d156">1.11. annotation</a></li>
 </ul>
 </li>
-<li><a href="#orgc00b499">2. 面向对象</a>
+<li><a href="#orgc098dc4">2. 面向对象</a>
 <ul>
-<li><a href="#org4c4881f">2.1. 单例对象</a></li>
-<li><a href="#org7e00896">2.2. 构造函数</a></li>
-<li><a href="#orgbd903cf">2.3. override</a></li>
-<li><a href="#orgb21c1de">2.4. 隐式转换</a></li>
-<li><a href="#org6d4e2f2">2.5. 隐式参数</a></li>
-<li><a href="#orga182e10">2.6. ()method</a></li>
-<li><a href="#orga54fab3">2.7. 类型继承</a></li>
-<li><a href="#org9b034d4">2.8. 类型层次</a></li>
-<li><a href="#org8768661">2.9. Traits</a></li>
-<li><a href="#orga3aaca1">2.10. 访问权限</a></li>
-<li><a href="#org0a1c627">2.11. Enumeration</a></li>
+<li><a href="#org3e38b1e">2.1. 单例对象</a></li>
+<li><a href="#org4db53f4">2.2. 构造函数</a></li>
+<li><a href="#orgb6f1632">2.3. override</a></li>
+<li><a href="#org8e6e6d7">2.4. 隐式转换</a></li>
+<li><a href="#orgcd87f0f">2.5. 隐式参数</a></li>
+<li><a href="#orgfc63f0a">2.6. ()method</a></li>
+<li><a href="#orgcb9e0a8">2.7. 类型继承</a></li>
+<li><a href="#org2abef7d">2.8. 类型层次</a></li>
+<li><a href="#org100937d">2.9. Traits</a></li>
+<li><a href="#org2403bde">2.10. 访问权限</a></li>
+<li><a href="#orgba6fd8d">2.11. Enumeration</a></li>
 </ul>
 </li>
-<li><a href="#org2dc4be9">3. 面向函数</a>
+<li><a href="#orge71906c">3. 面向函数</a>
 <ul>
-<li><a href="#orga1d877e">3.1. 匿名函数</a></li>
-<li><a href="#orgfda234e">3.2. 偏应用函数</a></li>
-<li><a href="#orgdb859fa">3.3. closure</a></li>
-<li><a href="#orged16f51">3.4. 函数组合</a></li>
+<li><a href="#orgd781fc1">3.1. 匿名函数</a></li>
+<li><a href="#org15da49f">3.2. 偏应用函数</a></li>
+<li><a href="#orgeda11d9">3.3. closure</a></li>
+<li><a href="#orgd016f4d">3.4. 函数组合</a></li>
 </ul>
 </li>
-<li><a href="#orgedd2329">4. 面向泛型</a>
+<li><a href="#org521afee">4. 面向泛型</a>
 <ul>
-<li><a href="#org4ed06b5">4.1. 类型参数化</a></li>
-<li><a href="#org876eff0">4.2. variance(变性)</a></li>
-<li><a href="#orga052bab">4.3. bound(边界)</a></li>
+<li><a href="#org09cc056">4.1. 类型参数化</a></li>
+<li><a href="#org9f6d98b">4.2. variance(变性)</a></li>
+<li><a href="#org7c5e644">4.3. bound(边界)</a></li>
 </ul>
 </li>
-<li><a href="#org4e93b79">5. 互操作性</a>
+<li><a href="#org090c2ea">5. 互操作性</a>
 <ul>
-<li><a href="#orgbd71361">5.1. simplest example</a></li>
-<li><a href="#org41674e0">5.2. singleton object</a></li>
-<li><a href="#org9f7ef1f">5.3. traits as interfaces</a></li>
-<li><a href="#orgcfd5bb0">5.4. annotation</a></li>
-<li><a href="#org36e34d3">5.5. existential types</a></li>
+<li><a href="#org76ef5b1">5.1. simplest example</a></li>
+<li><a href="#org2b71105">5.2. singleton object</a></li>
+<li><a href="#org093f39f">5.3. traits as interfaces</a></li>
+<li><a href="#orgdb16c1b">5.4. annotation</a></li>
+<li><a href="#orgb73d7e1">5.5. existential types</a></li>
 </ul>
 </li>
 </ul>
@@ -104,12 +150,12 @@
 <li><a href="http://matt.might.net/articles/learning-scala-in-small-bites/">Learning Scala in small bites</a></li>
 </ul>
 
-<div id="outline-container-org9479984" class="outline-2">
-<h2 id="org9479984"><span class="section-number-2">1</span> 基础知识</h2>
+<div id="outline-container-orgfcd1f8d" class="outline-2">
+<h2 id="orgfcd1f8d"><span class="section-number-2">1</span> 基础知识</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1f56058" class="outline-3">
-<h3 id="org1f56058"><span class="section-number-3">1.1</span> 标识符</h3>
+<div id="outline-container-org112a74d" class="outline-3">
+<h3 id="org112a74d"><span class="section-number-3">1.1</span> 标识符</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 scala标识符分为3类：
@@ -118,7 +164,7 @@ scala标识符分为3类：
 <li>An <b>alphanumeric identifier</b> starts with a letter or underscore, which can be followed by further letters, digits, or underscores.
 <ul class="org-ul">
 <li>Identifiers in user programs should not contain ‘\(’ characters, even though it will compile; if they do this might lead to name clashes with iden- tifiers generated by the Scala compiler. （尽可能避免\)）</li>
-<li>Although underscores are legal in identifiers, they are not used that often in Scala programs, in part to be consistent with Java, but also because underscores have many other non-identifier uses in Scala code. As a result, it is best to avoid identifiers like <b>to_string, <span class="underline"><span class="underline">init</span></span>, or name_</b> . （尽可能避免_)</li>
+<li>Although underscores are legal in identifiers, they are not used that often in Scala programs, in part to be consistent with Java, but also because underscores have many other non-identifier uses in Scala code. As a result, it is best to avoid identifiers like <b>to<sub>string</sub>, <span class="underline"><span class="underline">init</span></span>, or name_</b> . （尽可能避免_)</li>
 <li>"val name_:Int = 1" 会被认为是定义"name_:"，所以必须在:之前添加空格 #note: 词法解析足够奇葩*</li>
 </ul></li>
 <li>An <b>operator identifier</b> consists of one or more operator characters. Oper- ator characters are printable ASCII characters such as +, :, ?, ~ or #.
@@ -138,8 +184,8 @@ scala标识符分为3类：
 </div>
 </div>
 
-<div id="outline-container-orgc40a659" class="outline-3">
-<h3 id="orgc40a659"><span class="section-number-3">1.2</span> 原始类型</h3>
+<div id="outline-container-org4101497" class="outline-3">
+<h3 id="org4101497"><span class="section-number-3">1.2</span> 原始类型</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 More generally, all of Java’s primitive types have corresponding classes in the scala package. And when you compile your Scala code to Java bytecodes, the Scala com- piler will use Java’s primitive types where possible to give you the perfor- mance benefits of the primitive types.
@@ -202,8 +248,8 @@ var id : Counter = 0;
 </div>
 </div>
 
-<div id="outline-container-org99d827c" class="outline-3">
-<h3 id="org99d827c"><span class="section-number-3">1.3</span> 变量定义</h3>
+<div id="outline-container-org700d20d" class="outline-3">
+<h3 id="org700d20d"><span class="section-number-3">1.3</span> 变量定义</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Scala has two kinds of variables, vals and vars. A val is similar to a final variable in Java. Once initialized, a val can never be reassigned. A var, by contrast, is similar to a non-final variable in Java. A var can be reassigned throughout its lifetime.
@@ -234,7 +280,7 @@ a: String = Hello
 </pre>
 
 <p>
-如果没有赋初值的话那么相当只是声明而非定义。如果对于初值不感兴趣的话，那么可以使用_这个特殊的initializor. <b>但是注意只对var有效，这是因为val其实上必须设置有效的初值</b>. 这个初始值语义上表示0,对于不同的类型有不同的初始值。比如int = 0, float = 0.0f, 引用类型 = null.
+如果没有赋初值的话那么相当只是声明而非定义。如果对于初值不感兴趣的话，那么可以使用<sub>这个特殊的initializor</sub>. <b>但是注意只对var有效，这是因为val其实上必须设置有效的初值</b>. 这个初始值语义上表示0,对于不同的类型有不同的初始值。比如int = 0, float = 0.0f, 引用类型 = null.
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">var a:Int = _;
@@ -246,8 +292,8 @@ println(b);
 </div>
 </div>
 
-<div id="outline-container-orga21f8fd" class="outline-3">
-<h3 id="orga21f8fd"><span class="section-number-3">1.4</span> 函数定义</h3>
+<div id="outline-container-org0640555" class="outline-3">
+<h3 id="org0640555"><span class="section-number-3">1.4</span> 函数定义</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 a function defines an expression that results in a value.
@@ -345,7 +391,7 @@ scala里面对应的表示如下,类型为String*
 </div>
 
 <p>
-但是和java不同的是没有办法直接传入数组，而必须使用:_*操作符展开。
+但是和java不同的是没有办法直接传入数组，而必须使用:<sub>*</sub>操作符展开。
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">val x = Array("Hello","World");
@@ -368,8 +414,8 @@ println(foo(y = 1, x = 1))
 </div>
 </div>
 
-<div id="outline-container-org9b8aed8" class="outline-3">
-<h3 id="org9b8aed8"><span class="section-number-3">1.5</span> 控制结构</h3>
+<div id="outline-container-orge45e9ab" class="outline-3">
+<h3 id="orge45e9ab"><span class="section-number-3">1.5</span> 控制结构</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 One thing you will notice is that almost all of Scala’s control structures result in some value. This is the approach taken by functional languages, in which programs are viewed as computing a value, thus the components of a program should also compute values.
@@ -491,8 +537,8 @@ val y =
 </div>
 </div>
 
-<div id="outline-container-org15e01fb" class="outline-3">
-<h3 id="org15e01fb"><span class="section-number-3">1.6</span> 等值比较</h3>
+<div id="outline-container-org66ce9f2" class="outline-3">
+<h3 id="org66ce9f2"><span class="section-number-3">1.6</span> 等值比较</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 scala下==的和java是不同的。 <b>在java下==是比较引用相等性，而scala下==则是比较值相等性，也就是说会调用equal来做比较</b>
@@ -512,8 +558,8 @@ println(c eq b)
 </div>
 </div>
 
-<div id="outline-container-orgf8ccd76" class="outline-3">
-<h3 id="orgf8ccd76"><span class="section-number-3">1.7</span> operator</h3>
+<div id="outline-container-orgfaa4f4c" class="outline-3">
+<h3 id="orgfaa4f4c"><span class="section-number-3">1.7</span> operator</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>a op b -&gt; a.op(b)</li>
@@ -552,8 +598,8 @@ a(0)=1;
 </div>
 </div>
 
-<div id="outline-container-org36b692a" class="outline-3">
-<h3 id="org36b692a"><span class="section-number-3">1.8</span> 前提断言</h3>
+<div id="outline-container-orgda760b8" class="outline-3">
+<h3 id="orgda760b8"><span class="section-number-3">1.8</span> 前提断言</h3>
 <div class="outline-text-3" id="text-1-8">
 <ul class="org-ul">
 <li>require(expression)</li>
@@ -563,11 +609,11 @@ a(0)=1;
 </div>
 </div>
 
-<div id="outline-container-org9567ff5" class="outline-3">
-<h3 id="org9567ff5"><span class="section-number-3">1.9</span> package</h3>
+<div id="outline-container-org7c5d432" class="outline-3">
+<h3 id="org7c5d432"><span class="section-number-3">1.9</span> package</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
-scala提供了两种定义package的方式，一种是java的，一种是类似C++ namespace的，关键字_root_来引用到最外层package
+scala提供了两种定义package的方式，一种是java的，一种是类似C++ namespace的，关键字<sub>root</sub><sub>来引用到最外层package</sub>
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">package A {
@@ -671,8 +717,8 @@ Implicitly imported into every compilation unit are, in that order:
 </div>
 </div>
 
-<div id="outline-container-org2a2753f" class="outline-3">
-<h3 id="org2a2753f"><span class="section-number-3">1.10</span> 模式匹配</h3>
+<div id="outline-container-org81e62d1" class="outline-3">
+<h3 id="org81e62d1"><span class="section-number-3">1.10</span> 模式匹配</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 模式匹配pattern matching在scala里面是一个重量级的功能，依赖于pm可以优雅地实现很多功能。大致格式如下
@@ -693,7 +739,7 @@ pattern总结起来大约以下几类：
 <li>Constant patterns // 常量</li>
 <li>Variable patterns // 变量</li>
 <li>Constructor patterns // 构造函数</li>
-<li>Sequence patterns // 比如List(<span class="underline">,</span>). 如果需要匹配剩余的话使用List(0,_*)</li>
+<li>Sequence patterns // 比如List(<span class="underline">,</span>). 如果需要匹配剩余的话使用List(0,<sub>*</sub>)</li>
 <li>Tuple patterns // (a,b,c)</li>
 <li>Typed patterns // 使用类型匹配 case a:Map[_,_]</li>
 </ol>
@@ -825,7 +871,7 @@ a match {
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">class A(val a:String,
-        val b:String) {
+	val b:String) {
 
 }
 
@@ -869,7 +915,7 @@ A.unapply(a) match {
 </div>
 
 <p>
-使用上面的unapply方法不能够匹配带有_*这种sequence variable的pattern.允许匹配这种pattern的话，那么需要实现unapplySeq方法，返回参数必须是Option[Seq[T]]这个类型
+使用上面的unapply方法不能够匹配带有<sub>*</sub>这种sequence variable的pattern.允许匹配这种pattern的话，那么需要实现unapplySeq方法，返回参数必须是Option[Seq[T]]这个类型
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">object A {
@@ -887,8 +933,8 @@ a match {
 </div>
 </div>
 
-<div id="outline-container-orgaa856e2" class="outline-3">
-<h3 id="orgaa856e2"><span class="section-number-3">1.11</span> annotation</h3>
+<div id="outline-container-org037d156" class="outline-3">
+<h3 id="org037d156"><span class="section-number-3">1.11</span> annotation</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 Unlike comments, they have structure, thus making them easier to machine process. There are many things you can do with a program other than compiling and running it. Some examples are:
@@ -941,12 +987,12 @@ annotation通常格式如下
 </div>
 </div>
 
-<div id="outline-container-orgc00b499" class="outline-2">
-<h2 id="orgc00b499"><span class="section-number-2">2</span> 面向对象</h2>
+<div id="outline-container-orgc098dc4" class="outline-2">
+<h2 id="orgc098dc4"><span class="section-number-2">2</span> 面向对象</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4c4881f" class="outline-3">
-<h3 id="org4c4881f"><span class="section-number-3">2.1</span> 单例对象</h3>
+<div id="outline-container-org3e38b1e" class="outline-3">
+<h3 id="org3e38b1e"><span class="section-number-3">2.1</span> 单例对象</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 单例对象很好地解决了Java的两个问题，一个是是单例模式没有集成到语言当中去导致代码编写冗余，一个是静态字段和静态方法嵌入在类定义中导致代码结构不清晰。下面是一段Java代码
@@ -1003,8 +1049,8 @@ When a singleton object shares the same name with a class, it is called that cla
 </div>
 </div>
 
-<div id="outline-container-org7e00896" class="outline-3">
-<h3 id="org7e00896"><span class="section-number-3">2.2</span> 构造函数</h3>
+<div id="outline-container-org4db53f4" class="outline-3">
+<h3 id="org4db53f4"><span class="section-number-3">2.2</span> 构造函数</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 scala将构造函数和类定义合并，相比java方式更加简洁。下面是一段Java代码
@@ -1083,8 +1129,8 @@ println(h.closure(2.0f));
 </div>
 </div>
 
-<div id="outline-container-orgbd903cf" class="outline-3">
-<h3 id="orgbd903cf"><span class="section-number-3">2.3</span> override</h3>
+<div id="outline-container-orgb6f1632" class="outline-3">
+<h3 id="orgb6f1632"><span class="section-number-3">2.3</span> override</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 scala提供了override这个关键字可以确保复写错误几率降低。对于java来说@Override这个注解是可选的，但是对于scala来说override关键字是必须的。如果B继承A复写其方法但是没有提供override关键字的话，就会出现编译错误，这样就强制要求在复写方法的时候提供override。一旦强制写override的话我们就能够发现一些我们原本希望复写某方法但是却没有复写的情况。
@@ -1130,8 +1176,8 @@ x.echoX(); // 1
 </div>
 </div>
 
-<div id="outline-container-orgb21c1de" class="outline-3">
-<h3 id="orgb21c1de"><span class="section-number-3">2.4</span> 隐式转换</h3>
+<div id="outline-container-org8e6e6d7" class="outline-3">
+<h3 id="org8e6e6d7"><span class="section-number-3">2.4</span> 隐式转换</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 scala可以通过提供隐式转换函数来完成，函数需要添加关键字implicit作为前缀. 注意这个隐式转换函数必须放在类外部来定义。
@@ -1203,7 +1249,7 @@ x op 10
 one error found
 </pre>
 <p>
-也就是说找不到隐式转换函数，因为隐式转换函数只能够以单个id存在，而现在需要使用X.intToC才能够使用。所以解决办法是import X._将intToC这个函数导入到外部。
+也就是说找不到隐式转换函数，因为隐式转换函数只能够以单个id存在，而现在需要使用X.intToC才能够使用。所以解决办法是import X.<sub>将intToC这个函数导入到外部</sub>。
 </p>
 
 <p>
@@ -1260,8 +1306,8 @@ val a = new A(2)
 </div>
 </div>
 
-<div id="outline-container-org6d4e2f2" class="outline-3">
-<h3 id="org6d4e2f2"><span class="section-number-3">2.5</span> 隐式参数</h3>
+<div id="outline-container-orgcd87f0f" class="outline-3">
+<h3 id="orgcd87f0f"><span class="section-number-3">2.5</span> 隐式参数</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 关于隐式参数有点类似C++的缺省参数，但是从实现上来看还不太一样。scala的隐式参数实现和隐式转换有点类似，要求隐式参数必须能够使用单个id访问到。下面是使用隐式参数例子
@@ -1335,8 +1381,8 @@ Because this pattern is common, Scala lets you leave out the name of this pa- ra
 </div>
 </div>
 
-<div id="outline-container-orga182e10" class="outline-3">
-<h3 id="orga182e10"><span class="section-number-3">2.6</span> ()method</h3>
+<div id="outline-container-orgfc63f0a" class="outline-3">
+<h3 id="orgfc63f0a"><span class="section-number-3">2.6</span> ()method</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 parameterless vs. empty-paren method. 对于函数来说如果没有任何参数的话，那么可以将()取消:
@@ -1380,7 +1426,7 @@ parameterless vs. empty-paren method. 对于函数来说如果没有任何参数
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">class Hello(private val n:Int,
-            private val d:Int) {
+	    private val d:Int) {
   def squareN = n * n;
   def doubleD = d * d;
 }
@@ -1393,8 +1439,8 @@ println(h.doubleD)
 </div>
 </div>
 
-<div id="outline-container-orga54fab3" class="outline-3">
-<h3 id="orga54fab3"><span class="section-number-3">2.7</span> 类型继承</h3>
+<div id="outline-container-orgcb9e0a8" class="outline-3">
+<h3 id="orgcb9e0a8"><span class="section-number-3">2.7</span> 类型继承</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 使用extends关键字来继承，然后在继承的声明里面可以对父类做初始化。父类实例使用super来引用。
@@ -1431,8 +1477,8 @@ val b = new B(10);
 </div>
 </div>
 
-<div id="outline-container-org9b034d4" class="outline-3">
-<h3 id="org9b034d4"><span class="section-number-3">2.8</span> 类型层次</h3>
+<div id="outline-container-org2abef7d" class="outline-3">
+<h3 id="org2abef7d"><span class="section-number-3">2.8</span> 类型层次</h3>
 <div class="outline-text-3" id="text-2-8">
 
 <div class="figure">
@@ -1533,8 +1579,8 @@ Option基本接口是这样的
 </div>
 </div>
 
-<div id="outline-container-org8768661" class="outline-3">
-<h3 id="org8768661"><span class="section-number-3">2.9</span> Traits</h3>
+<div id="outline-container-org100937d" class="outline-3">
+<h3 id="org100937d"><span class="section-number-3">2.9</span> Traits</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 所谓的traits就是特征，在面向对象里面就是指代这个类或者是这个对象的特征。scala trait和java interface非常相似，其引入都是为了解决多重继承的问题。 trait包含方法和字段，没有类参数（class parameter）和构造函数。(#note: 我觉得这点设计让trait回归到了本意，同时简化了设计和使用） trait的定义和class类似，mixin trait上也是通过关键字extends来完成的，如果需要mixin多个trait的话用with关键字
@@ -1563,49 +1609,49 @@ class C extends A with B {
 trait的引入解决了一些多重继承的问题，最重要的问题就是如何解释super. 多重继承里面最麻烦的就是菱形继承问题A-&gt;B,A-&gt;C,B-&gt;D,C-&gt;D. 下面是一段C++代码
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
-<span class="org-comment"> * Copyright (C) dirlt</span>
-<span class="org-comment"> */</span>
+<pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">coding:utf-8</span>
+<span style="font-weight: bold; font-style: italic;"> * Copyright (C) dirlt</span>
+<span style="font-weight: bold; font-style: italic;"> */</span>
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cstdio&gt;</span>
 
-<span class="org-keyword">class</span> <span class="org-type">A</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-type">void</span> <span class="org-function-name">foo</span>() {
-    printf(<span class="org-string">"A\n"</span>);
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">A</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>() {
+    printf(<span style="font-style: italic;">"A\n"</span>);
   }
 };
 
-<span class="org-keyword">class</span> <span class="org-type">B</span>:<span class="org-keyword">public</span> <span class="org-type">A</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-type">void</span> <span class="org-function-name">foo</span>() {
-    <span class="org-constant">A</span>::foo();
-    printf(<span class="org-string">"B\n"</span>);
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">B</span>:<span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">A</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>() {
+    <span style="font-weight: bold; text-decoration: underline;">A</span>::foo();
+    printf(<span style="font-style: italic;">"B\n"</span>);
   }
 };
 
-<span class="org-keyword">class</span> <span class="org-type">C</span>:<span class="org-keyword">public</span> <span class="org-type">A</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-type">void</span> <span class="org-function-name">foo</span>() {
-    <span class="org-constant">A</span>::foo();
-    printf(<span class="org-string">"C\n"</span>);
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">C</span>:<span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">A</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>() {
+    <span style="font-weight: bold; text-decoration: underline;">A</span>::foo();
+    printf(<span style="font-style: italic;">"C\n"</span>);
   }
 };
 
-<span class="org-keyword">class</span> <span class="org-type">D</span>:<span class="org-keyword">public</span> <span class="org-type">B</span>,
-        <span class="org-keyword">public</span> <span class="org-type">C</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-type">void</span> <span class="org-function-name">foo</span>() {
-    <span class="org-constant">B</span>::foo();
-    <span class="org-constant">C</span>::foo();
-    printf(<span class="org-string">"D\n"</span>);
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">D</span>:<span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">B</span>,
+        <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">C</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">foo</span>() {
+    <span style="font-weight: bold; text-decoration: underline;">B</span>::foo();
+    <span style="font-weight: bold; text-decoration: underline;">C</span>::foo();
+    printf(<span style="font-style: italic;">"D\n"</span>);
   }
 };
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-  <span class="org-type">D</span> <span class="org-variable-name">d</span>;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+  <span style="font-weight: bold; text-decoration: underline;">D</span> <span style="font-weight: bold; font-style: italic;">d</span>;
   d.foo();
-  <span class="org-keyword">return</span> 0;
+  <span style="font-weight: bold;">return</span> 0;
 }
 </pre>
 </div>
@@ -1725,8 +1771,8 @@ b.say
 </div>
 </div>
 
-<div id="outline-container-orga3aaca1" class="outline-3">
-<h3 id="orga3aaca1"><span class="section-number-3">2.10</span> 访问权限</h3>
+<div id="outline-container-org2403bde" class="outline-3">
+<h3 id="org2403bde"><span class="section-number-3">2.10</span> 访问权限</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 The way you make members public in Scala is by not explicitly specifying any access modifier. Put another way, where you’d say “public” in Java, you simply say nothing in Scala. Public is Scala’s default access level.
@@ -1763,8 +1809,8 @@ class B(private[this] val x:Int) {
 </div>
 </div>
 
-<div id="outline-container-org0a1c627" class="outline-3">
-<h3 id="org0a1c627"><span class="section-number-3">2.11</span> Enumeration</h3>
+<div id="outline-container-orgba6fd8d" class="outline-3">
+<h3 id="orgba6fd8d"><span class="section-number-3">2.11</span> Enumeration</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
 创建枚举类型非常简单.对于枚举类型来说通常都是单例所以直接使用object较多。You can find more information in the Scaladoc comments of class scala.Enumeration.
@@ -1800,12 +1846,12 @@ println(y.id + "," + y)
 </div>
 </div>
 
-<div id="outline-container-org2dc4be9" class="outline-2">
-<h2 id="org2dc4be9"><span class="section-number-2">3</span> 面向函数</h2>
+<div id="outline-container-orge71906c" class="outline-2">
+<h2 id="orge71906c"><span class="section-number-2">3</span> 面向函数</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orga1d877e" class="outline-3">
-<h3 id="orga1d877e"><span class="section-number-3">3.1</span> 匿名函数</h3>
+<div id="outline-container-orgd781fc1" class="outline-3">
+<h3 id="orgd781fc1"><span class="section-number-3">3.1</span> 匿名函数</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 #note: aka. function literal
@@ -1865,7 +1911,7 @@ This is called <b>target typing</b> , because the targeted usage of an expressio
 </p>
 
 <p>
-使用placeholder syntax也可以构造一些简单的函数，_相当于一个函数参数占位符。但是因为_之间没有办法做区分，所以就函数功能来说非常有限。
+使用placeholder syntax也可以构造一些简单的函数，<sub>相当于一个函数参数占位符</sub>。但是因为<sub>之间没有办法做区分</sub>，所以就函数功能来说非常有限。
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">val y = (0 to 4).filter(_ &gt; 2)
@@ -1875,8 +1921,8 @@ val f = (_:Int) + (_:Int) // (x:Int,y:Int) =&gt; x + y
 </div>
 </div>
 
-<div id="outline-container-orgfda234e" class="outline-3">
-<h3 id="orgfda234e"><span class="section-number-3">3.2</span> 偏应用函数</h3>
+<div id="outline-container-org15da49f" class="outline-3">
+<h3 id="org15da49f"><span class="section-number-3">3.2</span> 偏应用函数</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 偏应用函数(partially applied function)允许我们将部分参数作用在函数上形成特化函数。
@@ -1890,7 +1936,7 @@ val pFoo2 = (y:Int) =&gt; foo2(1,y)
 </div>
 
 <p>
-placeholder syntax提供了更简单的方法，并且_能够作为后续多个参数的占位符。
+placeholder syntax提供了更简单的方法，并且<sub>能够作为后续多个参数的占位符</sub>。
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">def foo1(x:Int)(y:Int) = x + y
@@ -1907,8 +1953,8 @@ val pFoo2 = foo2(1,_:Int)
 </div>
 </div>
 
-<div id="outline-container-orgdb859fa" class="outline-3">
-<h3 id="orgdb859fa"><span class="section-number-3">3.3</span> closure</h3>
+<div id="outline-container-orgeda11d9" class="outline-3">
+<h3 id="orgeda11d9"><span class="section-number-3">3.3</span> closure</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 function literal内部取值通常有三种：
@@ -1952,8 +1998,8 @@ println(foo(1)) // 1
 </div>
 </div>
 
-<div id="outline-container-orged16f51" class="outline-3">
-<h3 id="orged16f51"><span class="section-number-3">3.4</span> 函数组合</h3>
+<div id="outline-container-orgd016f4d" class="outline-3">
+<h3 id="orgd016f4d"><span class="section-number-3">3.4</span> 函数组合</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>compose # f compose g = f(g(x))</li>
@@ -1973,16 +2019,16 @@ println("bar_foo(2) = " + bar_foo(2))
 </div>
 </div>
 
-<div id="outline-container-orgedd2329" class="outline-2">
-<h2 id="orgedd2329"><span class="section-number-2">4</span> 面向泛型</h2>
+<div id="outline-container-org521afee" class="outline-2">
+<h2 id="org521afee"><span class="section-number-2">4</span> 面向泛型</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 静态类型的一个传统反对意见是，它有大量的语法开销。Scala通过类型推断(type inference)来缓解这个问题。在函数式编程语言中，类型推断的经典方法是 Hindley Milner算法，它最早是实现在ML中的。Scala类型推断系统的实现稍有不同，但本质类似：推断约束，并试图统一类型。
 </p>
 </div>
 
-<div id="outline-container-org4ed06b5" class="outline-3">
-<h3 id="org4ed06b5"><span class="section-number-3">4.1</span> 类型参数化</h3>
+<div id="outline-container-org09cc056" class="outline-3">
+<h3 id="org09cc056"><span class="section-number-3">4.1</span> 类型参数化</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 scala将类型参数化的语法为C[T]. <b>但是和Java不同的是，scala必须指定类型参数。</b>
@@ -2019,8 +2065,8 @@ scala对于类型参数化的检查也只是在compile阶段而非runtime阶段�
 </div>
 </div>
 
-<div id="outline-container-org876eff0" class="outline-3">
-<h3 id="org876eff0"><span class="section-number-3">4.2</span> variance(变性)</h3>
+<div id="outline-container-org9f6d98b" class="outline-3">
+<h3 id="org9f6d98b"><span class="section-number-3">4.2</span> variance(变性)</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 如果T1和T2存在某种关系的话，那么C[T1]和C[T2]之间存在的关系则称为C的variance. 对于Java和C++来说，C[T1]和C[T2]之间在编译期间是完全不兼容的类型，而scala则定义了三种关系：如果T1 extends T2的话
@@ -2193,8 +2239,8 @@ y.foo(new Y());
 </div>
 </div>
 
-<div id="outline-container-orga052bab" class="outline-3">
-<h3 id="orga052bab"><span class="section-number-3">4.3</span> bound(边界)</h3>
+<div id="outline-container-org7c5e644" class="outline-3">
+<h3 id="org7c5e644"><span class="section-number-3">4.3</span> bound(边界)</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 这里的bound主要就是指泛型中的类型限定，其实类型限定这个东西还是因为提供了泛型类型上的类型层次系统导致的。以C++实现泛型来说就没有类型限定，因为类型参数都是duck-type，所有类型检查都是在编译阶段将代码展开来完成的，所以差别最主要的原因还是因为实现考虑和折中。bound语法如下：
@@ -2235,8 +2281,8 @@ println(foo("200"))
 </div>
 </div>
 
-<div id="outline-container-org4e93b79" class="outline-2">
-<h2 id="org4e93b79"><span class="section-number-2">5</span> 互操作性</h2>
+<div id="outline-container-org090c2ea" class="outline-2">
+<h2 id="org090c2ea"><span class="section-number-2">5</span> 互操作性</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="http://twitter.github.io/scala_school/zh_cn/coll2.html#java">http://twitter.github.io/scala_school/zh_cn/coll2.html#java</a> Java和Scala集合之间相互转换.</li>
@@ -2261,8 +2307,8 @@ For these features that are mapped indirectly, the encoding is not fixed. There 
 </p>
 </div>
 
-<div id="outline-container-orgbd71361" class="outline-3">
-<h3 id="orgbd71361"><span class="section-number-3">5.1</span> simplest example</h3>
+<div id="outline-container-org76ef5b1" class="outline-3">
+<h3 id="org76ef5b1"><span class="section-number-3">5.1</span> simplest example</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 这个例子里面给出了 1. 类常量 2. 类变量 3. 类方法 4. 异常 使用方法
@@ -2305,8 +2351,8 @@ public class TestCase&lt;T&gt; {
 </div>
 </div>
 
-<div id="outline-container-org41674e0" class="outline-3">
-<h3 id="org41674e0"><span class="section-number-3">5.2</span> singleton object</h3>
+<div id="outline-container-org2b71105" class="outline-3">
+<h3 id="org2b71105"><span class="section-number-3">5.2</span> singleton object</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 For every Scala singleton object, the compiler will create a Java class for the object with a dollar sign added to the end. For a singleton object named App, the compiler produces a Java class named App$. This class has all the methods and fields of the Scala singleton object. The Java class also has a single static field named MODULE$ to hold the one instance of the class that is created at run time.
@@ -2364,11 +2410,11 @@ public class C {
 <div class="org-src-container">
 <pre class="src src-Java">class UseTestCase {
     public static void main(String[] args) {
-        C$.MODULE$.foo();
-        C$.MODULE$.bar();
-        C c = new C();
-        c.foo();
-        c.bar();
+	C$.MODULE$.foo();
+	C$.MODULE$.bar();
+	C c = new C();
+	c.foo();
+	c.bar();
     }
 }
 </pre>
@@ -2387,8 +2433,8 @@ C$::bar
 </div>
 </div>
 
-<div id="outline-container-org9f7ef1f" class="outline-3">
-<h3 id="org9f7ef1f"><span class="section-number-3">5.3</span> traits as interfaces</h3>
+<div id="outline-container-org093f39f" class="outline-3">
+<h3 id="org093f39f"><span class="section-number-3">5.3</span> traits as interfaces</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Implementing a trait in Java is another story. In the general case it is not practical. One special case is important, however. If you make a Scala trait that includes only abstract methods, then that trait will be translated directly to a Java interface, with no other code to worry about. Essentially this means that you can write a Java interface in Scala syntax if you like.
@@ -2421,8 +2467,8 @@ public interface TestCase {
 </div>
 </div>
 
-<div id="outline-container-orgcfd5bb0" class="outline-3">
-<h3 id="orgcfd5bb0"><span class="section-number-3">5.4</span> annotation</h3>
+<div id="outline-container-orgdb16c1b" class="outline-3">
+<h3 id="orgdb16c1b"><span class="section-number-3">5.4</span> annotation</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>@deprecated</li>
@@ -2438,8 +2484,8 @@ public interface TestCase {
 </div>
 </div>
 
-<div id="outline-container-org36e34d3" class="outline-3">
-<h3 id="org36e34d3"><span class="section-number-3">5.5</span> existential types</h3>
+<div id="outline-container-orgb73d7e1" class="outline-3">
+<h3 id="orgb73d7e1"><span class="section-number-3">5.5</span> existential types</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 大部分Java类型在scala里面都有对应表示，但是对于一些特殊类型没有对应表示比如
@@ -2479,6 +2525,11 @@ type forSome { declarations }
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/scala.html';this.page.identifier = 'scala.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

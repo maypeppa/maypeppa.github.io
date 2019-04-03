@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Apache Hadoop Goes Realtime at Facebook</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Apache Hadoop Goes Realtime at Facebook</h1>
@@ -16,84 +62,84 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1060ec7">1. ABSTRACT</a></li>
-<li><a href="#org1d3efea">2. INTRODUCTION</a></li>
-<li><a href="#org980d5be">3. WORKLOAD TYPES</a>
+<li><a href="#org86d5320">1. ABSTRACT</a></li>
+<li><a href="#orgf565d4b">2. INTRODUCTION</a></li>
+<li><a href="#org4a5f547">3. WORKLOAD TYPES</a>
 <ul>
-<li><a href="#org1ce8e2a">3.1. Facebook Messaging</a>
+<li><a href="#org57f84ed">3.1. Facebook Messaging</a>
 <ul>
-<li><a href="#orge62e8fe">3.1.1. High Write Throughput</a></li>
-<li><a href="#org3e0c7f7">3.1.2. Large Tables</a></li>
-<li><a href="#org6bc9cd9">3.1.3. Data Migration</a></li>
+<li><a href="#org2315fca">3.1.1. High Write Throughput</a></li>
+<li><a href="#org7cf2646">3.1.2. Large Tables</a></li>
+<li><a href="#org0b9a252">3.1.3. Data Migration</a></li>
 </ul>
 </li>
-<li><a href="#orge017235">3.2. Facebook Insights</a>
+<li><a href="#org6613a75">3.2. Facebook Insights</a>
 <ul>
-<li><a href="#org6162816">3.2.1. Realtime Analytics</a></li>
-<li><a href="#org3b0e62c">3.2.2. High Throughput Increments</a></li>
+<li><a href="#org88597e9">3.2.1. Realtime Analytics</a></li>
+<li><a href="#orgc290388">3.2.2. High Throughput Increments</a></li>
 </ul>
 </li>
-<li><a href="#orgd4a024b">3.3. Facebook Metrics System (ODS)</a>
+<li><a href="#orgf594f66">3.3. Facebook Metrics System (ODS)</a>
 <ul>
-<li><a href="#org01320e2">3.3.1. Automatic Sharding</a></li>
-<li><a href="#orgdc0d4e4">3.3.2. Fast Reads of Recent Data and Table Scans</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org15c9357">4. WHY HADOOP AND HBASE</a></li>
-<li><a href="#org72e1a46">5. REALTIME HDFS</a>
-<ul>
-<li><a href="#org2e6f069">5.1. High Availability - AvatarNode</a></li>
-<li><a href="#orgc6f785d">5.2. Hadoop RPC compatibility</a></li>
-<li><a href="#org089ccb0">5.3. Block Availability: Placement Policy</a></li>
-<li><a href="#org841d260">5.4. Performance Improvements for a Realtime Workload</a>
-<ul>
-<li><a href="#orgb933684">5.4.1. RPC Timeout</a></li>
-<li><a href="#org6a0c51a">5.4.2. Recover File Lease</a></li>
-<li><a href="#org6b1eb05">5.4.3. Reads from Local Replicas</a></li>
-</ul>
-</li>
-<li><a href="#org7957ca0">5.5. New Features</a>
-<ul>
-<li><a href="#orgbc785bd">5.5.1. HDFS sync</a></li>
-<li><a href="#org5bb8289">5.5.2. Concurrent Readers</a></li>
+<li><a href="#orgbd83a5f">3.3.1. Automatic Sharding</a></li>
+<li><a href="#orga999883">3.3.2. Fast Reads of Recent Data and Table Scans</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org979524c">6. PRODUCTION HBASE</a>
+<li><a href="#org07bc912">4. WHY HADOOP AND HBASE</a></li>
+<li><a href="#org64e000d">5. REALTIME HDFS</a>
 <ul>
-<li><a href="#org792d371">6.1. ACID Compliance</a></li>
-<li><a href="#org1e8ae11">6.2. Availability Improvements</a>
+<li><a href="#org91fe6c5">5.1. High Availability - AvatarNode</a></li>
+<li><a href="#orged531f7">5.2. Hadoop RPC compatibility</a></li>
+<li><a href="#org000d9e4">5.3. Block Availability: Placement Policy</a></li>
+<li><a href="#org1f53e6f">5.4. Performance Improvements for a Realtime Workload</a>
 <ul>
-<li><a href="#orgab6f1d4">6.2.1. HBase Master Rewrite</a></li>
-<li><a href="#orgeb4b61f">6.2.2. Online Upgrades</a></li>
-<li><a href="#org09d80cf">6.2.3. Distributed Log Splitting</a></li>
+<li><a href="#org24efa31">5.4.1. RPC Timeout</a></li>
+<li><a href="#orgd9b4178">5.4.2. Recover File Lease</a></li>
+<li><a href="#orgc6e30dc">5.4.3. Reads from Local Replicas</a></li>
 </ul>
 </li>
-<li><a href="#orgac8328c">6.3. Performance Improvements</a>
+<li><a href="#org1d83926">5.5. New Features</a>
 <ul>
-<li><a href="#orgb84850b">6.3.1. Compaction</a></li>
-<li><a href="#org3d1fadd">6.3.2. Read Optimizations</a></li>
+<li><a href="#org0b3147e">5.5.1. HDFS sync</a></li>
+<li><a href="#org805cf07">5.5.2. Concurrent Readers</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb10611b">7. DEPLOYMENT AND OPERATIONAL EXPERIENCES</a>
+<li><a href="#org01e7a69">6. PRODUCTION HBASE</a>
 <ul>
-<li><a href="#org7cf509d">7.1. Testing</a></li>
-<li><a href="#orgcf6f018">7.2. Monitoring and Tools</a></li>
-<li><a href="#org10407db">7.3. Manual versus Automatic Splitting</a></li>
-<li><a href="#org0c28df8">7.4. Dark Launch</a></li>
-<li><a href="#org50798d8">7.5. Dashboards/ODS integration</a></li>
-<li><a href="#org0d5df78">7.6. Backups at the Application layer</a></li>
-<li><a href="#org9f44c36">7.7. Schema Changes</a></li>
-<li><a href="#orga836130">7.8. Importing Data</a></li>
-<li><a href="#org21ada94">7.9. Reducing Network IO</a></li>
+<li><a href="#orgb339aca">6.1. ACID Compliance</a></li>
+<li><a href="#orgcf51594">6.2. Availability Improvements</a>
+<ul>
+<li><a href="#org357088b">6.2.1. HBase Master Rewrite</a></li>
+<li><a href="#orge97d018">6.2.2. Online Upgrades</a></li>
+<li><a href="#org08ef837">6.2.3. Distributed Log Splitting</a></li>
 </ul>
 </li>
-<li><a href="#org5ba5e68">8. FUTURE WORK</a></li>
+<li><a href="#org9e53f37">6.3. Performance Improvements</a>
+<ul>
+<li><a href="#org6659658">6.3.1. Compaction</a></li>
+<li><a href="#orgedc5a9e">6.3.2. Read Optimizations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org35c7520">7. DEPLOYMENT AND OPERATIONAL EXPERIENCES</a>
+<ul>
+<li><a href="#orge7570eb">7.1. Testing</a></li>
+<li><a href="#orgf7b5f91">7.2. Monitoring and Tools</a></li>
+<li><a href="#orgd7df8e3">7.3. Manual versus Automatic Splitting</a></li>
+<li><a href="#orgcfbd9a5">7.4. Dark Launch</a></li>
+<li><a href="#orgaa44bd6">7.5. Dashboards/ODS integration</a></li>
+<li><a href="#orgae4dc9d">7.6. Backups at the Application layer</a></li>
+<li><a href="#org94351b1">7.7. Schema Changes</a></li>
+<li><a href="#org77ab2df">7.8. Importing Data</a></li>
+<li><a href="#org224dad2">7.9. Reducing Network IO</a></li>
+</ul>
+</li>
+<li><a href="#org42c0b49">8. FUTURE WORK</a></li>
 </ul>
 </div>
 </div>
@@ -101,11 +147,11 @@
 <a href="http://borthakur.com/ftp/RealtimeHadoopSigmod2011.pdf">http://borthakur.com/ftp/RealtimeHadoopSigmod2011.pdf</a>
 </p>
 
-<div id="outline-container-org1060ec7" class="outline-2">
-<h2 id="org1060ec7"><span class="section-number-2">1</span> ABSTRACT</h2>
+<div id="outline-container-org86d5320" class="outline-2">
+<h2 id="org86d5320"><span class="section-number-2">1</span> ABSTRACT</h2>
 </div>
-<div id="outline-container-org1d3efea" class="outline-2">
-<h2 id="org1d3efea"><span class="section-number-2">2</span> INTRODUCTION</h2>
+<div id="outline-container-orgf565d4b" class="outline-2">
+<h2 id="orgf565d4b"><span class="section-number-2">2</span> INTRODUCTION</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>At Facebook, Hadoop has traditionally been used in conjunction with Hive for storage and analysis of large data sets. Most of this analysis occurs in offline batch jobs and the emphasis has been on maximizing throughput and efficiency. These workloads typically read and write large amounts of data from disk sequentially. As such, there has been less emphasis on making Hadoop performant for random access workloads by providing low latency access to HDFS. （早期Hadoop只是用于离线分析，顺序读写磁盘，没有关注通过降低访问HDFS的延迟来提升随机访问的性能）Instead, we have used a combination of large clusters of MySQL databases and caching tiers built using memcached. In many cases, results from Hadoop are uploaded into MySQL or memcached for consumption by the web tier.（对于在线数据访问是将Hadoop数据upload到MySQL, 然后配合memcached来完成的）</li>
@@ -118,38 +164,38 @@
 </div>
 </div>
 
-<div id="outline-container-org980d5be" class="outline-2">
-<h2 id="org980d5be"><span class="section-number-2">3</span> WORKLOAD TYPES</h2>
+<div id="outline-container-org4a5f547" class="outline-2">
+<h2 id="org4a5f547"><span class="section-number-2">3</span> WORKLOAD TYPES</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org1ce8e2a" class="outline-3">
-<h3 id="org1ce8e2a"><span class="section-number-3">3.1</span> Facebook Messaging</h3>
+<div id="outline-container-org57f84ed" class="outline-3">
+<h3 id="org57f84ed"><span class="section-number-3">3.1</span> Facebook Messaging</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 存储用户各种消息如email,chat,SMS等。
 </p>
 </div>
 
-<div id="outline-container-orge62e8fe" class="outline-4">
-<h4 id="orge62e8fe"><span class="section-number-4">3.1.1</span> High Write Throughput</h4>
+<div id="outline-container-org2315fca" class="outline-4">
+<h4 id="org2315fca"><span class="section-number-4">3.1.1</span> High Write Throughput</h4>
 </div>
-<div id="outline-container-org3e0c7f7" class="outline-4">
-<h4 id="org3e0c7f7"><span class="section-number-4">3.1.2</span> Large Tables</h4>
+<div id="outline-container-org7cf2646" class="outline-4">
+<h4 id="org7cf2646"><span class="section-number-4">3.1.2</span> Large Tables</h4>
 </div>
-<div id="outline-container-org6bc9cd9" class="outline-4">
-<h4 id="org6bc9cd9"><span class="section-number-4">3.1.3</span> Data Migration</h4>
+<div id="outline-container-org0b9a252" class="outline-4">
+<h4 id="org0b9a252"><span class="section-number-4">3.1.3</span> Data Migration</h4>
 </div>
 </div>
-<div id="outline-container-orge017235" class="outline-3">
-<h3 id="orge017235"><span class="section-number-3">3.2</span> Facebook Insights</h3>
+<div id="outline-container-org6613a75" class="outline-3">
+<h3 id="org6613a75"><span class="section-number-3">3.2</span> Facebook Insights</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 统计分析。
 </p>
 </div>
 
-<div id="outline-container-org6162816" class="outline-4">
-<h4 id="org6162816"><span class="section-number-4">3.2.1</span> Realtime Analytics</h4>
+<div id="outline-container-org88597e9" class="outline-4">
+<h4 id="org88597e9"><span class="section-number-4">3.2.1</span> Realtime Analytics</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 The insights teams wanted to make statistics available to their users within seconds of user  actions rather than the hours previously supported. This  would require a large-scale, asynchronous queuing system for user actions as well as systems to process, aggregate, and persist these events. All of these systems need to be fault-tolerant and support more than a million events per second.
@@ -157,28 +203,28 @@ The insights teams wanted to make statistics available to their users within sec
 </div>
 </div>
 
-<div id="outline-container-org3b0e62c" class="outline-4">
-<h4 id="org3b0e62c"><span class="section-number-4">3.2.2</span> High Throughput Increments</h4>
+<div id="outline-container-orgc290388" class="outline-4">
+<h4 id="orgc290388"><span class="section-number-4">3.2.2</span> High Throughput Increments</h4>
 </div>
 </div>
-<div id="outline-container-orgd4a024b" class="outline-3">
-<h3 id="orgd4a024b"><span class="section-number-3">3.3</span> Facebook Metrics System (ODS)</h3>
+<div id="outline-container-orgf594f66" class="outline-3">
+<h3 id="orgf594f66"><span class="section-number-3">3.3</span> Facebook Metrics System (ODS)</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 指标收集监控系统
 </p>
 </div>
 
-<div id="outline-container-org01320e2" class="outline-4">
-<h4 id="org01320e2"><span class="section-number-4">3.3.1</span> Automatic Sharding</h4>
+<div id="outline-container-orgbd83a5f" class="outline-4">
+<h4 id="orgbd83a5f"><span class="section-number-4">3.3.1</span> Automatic Sharding</h4>
 </div>
-<div id="outline-container-orgdc0d4e4" class="outline-4">
-<h4 id="orgdc0d4e4"><span class="section-number-4">3.3.2</span> Fast Reads of Recent Data and Table Scans</h4>
+<div id="outline-container-orga999883" class="outline-4">
+<h4 id="orga999883"><span class="section-number-4">3.3.2</span> Fast Reads of Recent Data and Table Scans</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org15c9357" class="outline-2">
-<h2 id="org15c9357"><span class="section-number-2">4</span> WHY HADOOP AND HBASE</h2>
+<div id="outline-container-org07bc912" class="outline-2">
+<h2 id="org07bc912"><span class="section-number-2">4</span> WHY HADOOP AND HBASE</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The requirements for the storage  system  from  the  workloads presented above can be summarized  as follows (in no particular order):
@@ -205,12 +251,12 @@ It is also worth pointing out non-requirements:
 </div>
 </div>
 
-<div id="outline-container-org72e1a46" class="outline-2">
-<h2 id="org72e1a46"><span class="section-number-2">5</span> REALTIME HDFS</h2>
+<div id="outline-container-org64e000d" class="outline-2">
+<h2 id="org64e000d"><span class="section-number-2">5</span> REALTIME HDFS</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org2e6f069" class="outline-3">
-<h3 id="org2e6f069"><span class="section-number-3">5.1</span> High Availability - AvatarNode</h3>
+<div id="outline-container-org91fe6c5" class="outline-3">
+<h3 id="org91fe6c5"><span class="section-number-3">5.1</span> High Availability - AvatarNode</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 NN hot standby.
@@ -223,8 +269,8 @@ NN hot standby.
 </div>
 </div>
 
-<div id="outline-container-orgc6f785d" class="outline-3">
-<h3 id="orgc6f785d"><span class="section-number-3">5.2</span> Hadoop RPC compatibility</h3>
+<div id="outline-container-orged531f7" class="outline-3">
+<h3 id="orged531f7"><span class="section-number-3">5.2</span> Hadoop RPC compatibility</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 在RPC层面上兼容多个Hadoop版本存在
@@ -232,8 +278,8 @@ NN hot standby.
 </div>
 </div>
 
-<div id="outline-container-org089ccb0" class="outline-3">
-<h3 id="org089ccb0"><span class="section-number-3">5.3</span> Block Availability: Placement Policy</h3>
+<div id="outline-container-org000d9e4" class="outline-3">
+<h3 id="org000d9e4"><span class="section-number-3">5.3</span> Block Availability: Placement Policy</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>The default HDFS block placement policy, while rack aware, is still minimally constrained. Placement decision for non-local replicas is random, it can be on any rack and within any node of the rack.</li>
@@ -244,16 +290,16 @@ NN hot standby.
 </div>
 </div>
 
-<div id="outline-container-org841d260" class="outline-3">
-<h3 id="org841d260"><span class="section-number-3">5.4</span> Performance Improvements for a Realtime Workload</h3>
+<div id="outline-container-org1f53e6f" class="outline-3">
+<h3 id="org1f53e6f"><span class="section-number-3">5.4</span> Performance Improvements for a Realtime Workload</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 HDFS is originally designed for high-throughput systems like MapReduce. <b>Many of its original design principles are to improve its throughput but do not focus much on response time.</b> For example, when dealing with errors, it favors retries or wait over fast failures. To support realtime applications, offering reasonable response time even in case of errors becomes the major challenge for HDFS.
 </p>
 </div>
 
-<div id="outline-container-orgb933684" class="outline-4">
-<h4 id="orgb933684"><span class="section-number-4">5.4.1</span> RPC Timeout</h4>
+<div id="outline-container-org24efa31" class="outline-4">
+<h4 id="org24efa31"><span class="section-number-4">5.4.1</span> RPC Timeout</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <ul class="org-ul">
 <li>When a RPC client detects a tcp-socket timeout, instead of declaring a RPC timeout, it sends a ping to the RPC server. If the server is still alive, the client continues to wait for a response. （原有RPC实现是检测发生超时的话那么会发送一个ping检查RPC server是否存在，如果存在的话，那么依然会等待响应结果）
@@ -270,8 +316,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org6a0c51a" class="outline-4">
-<h4 id="org6a0c51a"><span class="section-number-4">5.4.2</span> Recover File Lease</h4>
+<div id="outline-container-orgd9b4178" class="outline-4">
+<h4 id="orgd9b4178"><span class="section-number-4">5.4.2</span> Recover File Lease</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <ul class="org-ul">
 <li>Another enhancement is to revoke a writer‘s lease quickly. 加快回收writer的租赁时间
@@ -290,8 +336,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org6b1eb05" class="outline-4">
-<h4 id="org6b1eb05"><span class="section-number-4">5.4.3</span> Reads from Local Replicas</h4>
+<div id="outline-container-orgc6e30dc" class="outline-4">
+<h4 id="orgc6e30dc"><span class="section-number-4">5.4.3</span> Reads from Local Replicas</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <ul class="org-ul">
 <li>There are times when an application wants to store data in HDFS for scalability and performance reasons. However, the latency of reads and writes to an HDFS file is an order of magnitude greater than reading or writing to a local file on the machine.</li>
@@ -301,12 +347,12 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org7957ca0" class="outline-3">
-<h3 id="org7957ca0"><span class="section-number-3">5.5</span> New Features</h3>
+<div id="outline-container-org1d83926" class="outline-3">
+<h3 id="org1d83926"><span class="section-number-3">5.5</span> New Features</h3>
 <div class="outline-text-3" id="text-5-5">
 </div>
-<div id="outline-container-orgbc785bd" class="outline-4">
-<h4 id="orgbc785bd"><span class="section-number-4">5.5.1</span> HDFS sync</h4>
+<div id="outline-container-org0b3147e" class="outline-4">
+<h4 id="org0b3147e"><span class="section-number-4">5.5.1</span> HDFS sync</h4>
 <div class="outline-text-4" id="text-5-5-1">
 <ul class="org-ul">
 <li>Hflush/sync is an important operation for both HBase and Scribe. It pushes the written data buffered at the client side to the write pipeline, making the data visible to any new reader and increasing the data durability when either the client or any DataNode on the pipeline fails.（调用hflush/sync之后，之前所写的内容应该是全部都到了dn disk上面，能够被所有的reader读取到） #todo: 对hflush/sync这个语义至今比较模糊，一个比较主要的原因就是这个API历史上是调整过语义的</li>
@@ -316,8 +362,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org5bb8289" class="outline-4">
-<h4 id="org5bb8289"><span class="section-number-4">5.5.2</span> Concurrent Readers</h4>
+<div id="outline-container-org805cf07" class="outline-4">
+<h4 id="org805cf07"><span class="section-number-4">5.5.2</span> Concurrent Readers</h4>
 <div class="outline-text-4" id="text-5-5-2">
 <ul class="org-ul">
 <li>We have an application that requires the ability to read a file while it is being written to. The reader first talks to the NameNode to get the meta information of the file. Since the NameNode does not have the most updated information of its last block‘s length, the client fetches the information from one of the DataNodes where one of its replicas resides. It then starts to read the file.</li>
@@ -328,19 +374,19 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org979524c" class="outline-2">
-<h2 id="org979524c"><span class="section-number-2">6</span> PRODUCTION HBASE</h2>
+<div id="outline-container-org01e7a69" class="outline-2">
+<h2 id="org01e7a69"><span class="section-number-2">6</span> PRODUCTION HBASE</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org792d371" class="outline-3">
-<h3 id="org792d371"><span class="section-number-3">6.1</span> ACID Compliance</h3>
+<div id="outline-container-orgb339aca" class="outline-3">
+<h3 id="orgb339aca"><span class="section-number-3">6.1</span> ACID Compliance</h3>
 </div>
-<div id="outline-container-org1e8ae11" class="outline-3">
-<h3 id="org1e8ae11"><span class="section-number-3">6.2</span> Availability Improvements</h3>
+<div id="outline-container-orgcf51594" class="outline-3">
+<h3 id="orgcf51594"><span class="section-number-3">6.2</span> Availability Improvements</h3>
 <div class="outline-text-3" id="text-6-2">
 </div>
-<div id="outline-container-orgab6f1d4" class="outline-4">
-<h4 id="orgab6f1d4"><span class="section-number-4">6.2.1</span> HBase Master Rewrite</h4>
+<div id="outline-container-org357088b" class="outline-4">
+<h4 id="org357088b"><span class="section-number-4">6.2.1</span> HBase Master Rewrite</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <ul class="org-ul">
 <li>We originally uncovered numerous issues during kill testing where HBase regions would go offline. We soon identified the problem: the transient state of the cluster is stored in the memory of the currently active HBase master only. Upon losing the master, this state is lost.</li>
@@ -349,8 +395,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-orgeb4b61f" class="outline-4">
-<h4 id="orgeb4b61f"><span class="section-number-4">6.2.2</span> Online Upgrades</h4>
+<div id="outline-container-orge97d018" class="outline-4">
+<h4 id="orge97d018"><span class="section-number-4">6.2.2</span> Online Upgrades</h4>
 <div class="outline-text-4" id="text-6-2-2">
 <ul class="org-ul">
 <li>The largest cause of cluster  downtime was not random server deaths, but rather system maintenance. We had a number of problems to solve to minimize this downtime.  （系统维护是整个服务down掉的最主要的因素）</li>
@@ -363,16 +409,16 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org09d80cf" class="outline-4">
-<h4 id="org09d80cf"><span class="section-number-4">6.2.3</span> Distributed Log Splitting</h4>
+<div id="outline-container-org08ef837" class="outline-4">
+<h4 id="org08ef837"><span class="section-number-4">6.2.3</span> Distributed Log Splitting</h4>
 </div>
 </div>
-<div id="outline-container-orgac8328c" class="outline-3">
-<h3 id="orgac8328c"><span class="section-number-3">6.3</span> Performance Improvements</h3>
+<div id="outline-container-org9e53f37" class="outline-3">
+<h3 id="org9e53f37"><span class="section-number-3">6.3</span> Performance Improvements</h3>
 <div class="outline-text-3" id="text-6-3">
 </div>
-<div id="outline-container-orgb84850b" class="outline-4">
-<h4 id="orgb84850b"><span class="section-number-4">6.3.1</span> Compaction</h4>
+<div id="outline-container-org6659658" class="outline-4">
+<h4 id="org6659658"><span class="section-number-4">6.3.1</span> Compaction</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <ul class="org-ul">
 <li>The next task was improving the compaction algorithm. We  discovered  a  pathological  case where a 1 GB file would be regularly compacted with three 5 MB files to produce a slightly larger file. This network IO waste would continue until the compaction queue started to backlog. This problem occurred because the existing algorithm would unconditionally minor compact the first four HFiles, while triggering a minor compaction after 3 HFiles had been reached. The solution was to stop unconditionally compacting files above a certain size and skip compactions if enough candidate files could not be found. Afterwards,  our put latency dropped from 25 milliseconds to 3 milliseconds.</li>
@@ -381,8 +427,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org3d1fadd" class="outline-4">
-<h4 id="org3d1fadd"><span class="section-number-4">6.3.2</span> Read Optimizations</h4>
+<div id="outline-container-orgedc5a9e" class="outline-4">
+<h4 id="orgedc5a9e"><span class="section-number-4">6.3.2</span> Read Optimizations</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <ul class="org-ul">
 <li>As discussed, read performance hinges on keeping the number of files in a region low thus reducing random IO operations. In addition to utilizing comapctions to keep the number of files on disk low, it is also possible to skip certain files for some queries, similarly reducing IO operations.（减少sstable文件）</li>
@@ -395,12 +441,12 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-orgb10611b" class="outline-2">
-<h2 id="orgb10611b"><span class="section-number-2">7</span> DEPLOYMENT AND OPERATIONAL EXPERIENCES</h2>
+<div id="outline-container-org35c7520" class="outline-2">
+<h2 id="org35c7520"><span class="section-number-2">7</span> DEPLOYMENT AND OPERATIONAL EXPERIENCES</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org7cf509d" class="outline-3">
-<h3 id="org7cf509d"><span class="section-number-3">7.1</span> Testing</h3>
+<div id="outline-container-orge7570eb" class="outline-3">
+<h3 id="orge7570eb"><span class="section-number-3">7.1</span> Testing</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>From early on in our design of an HBase solution, we were worried about code stability. We first needed to test the stability and durability of the open source HBase code and additionally ensure the stability of our future changes. To this end, we wrote an HBase testing program. The testing program generated data to write into HBase, both deterministically and randomly. The tester will write data into the HBase cluster and simultaneously read and verify all the data it has added. （对于HBase读写做正确性验证）We further enhanced the tester to randomly select and kill processes in  the  cluster  and  verify  that successfully returned database transactions were indeed written. This helped catch a lot of issues, and is still our first method of testing changes（并且随机杀掉一些进程来验证数据是否正确）</li>
@@ -409,8 +455,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-orgcf6f018" class="outline-3">
-<h3 id="orgcf6f018"><span class="section-number-3">7.2</span> Monitoring and Tools</h3>
+<div id="outline-container-orgf7b5f91" class="outline-3">
+<h3 id="orgf7b5f91"><span class="section-number-3">7.2</span> Monitoring and Tools</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>As we gained more experience with production usage of HBase, it became clear that our primary problem was in consistent assignment of regions to RegionServers. Two RegionServers could end up serving the same region, or a region may be left unassigned.（region assignement不一致，会造成某个region被两个rs共同管理，或者是某个region没有rs来管理）
@@ -423,8 +469,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org10407db" class="outline-3">
-<h3 id="org10407db"><span class="section-number-3">7.3</span> Manual versus Automatic Splitting</h3>
+<div id="outline-container-orgd7df8e3" class="outline-3">
+<h3 id="orgd7df8e3"><span class="section-number-3">7.3</span> Manual versus Automatic Splitting</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 #note: manual splitting over automatic splitting是有一定前提假设的，不过确实带来了许多可控方面的好处
@@ -437,8 +483,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org0c28df8" class="outline-3">
-<h3 id="org0c28df8"><span class="section-number-3">7.4</span> Dark Launch</h3>
+<div id="outline-container-orgcfbd9a5" class="outline-3">
+<h3 id="orgcfbd9a5"><span class="section-number-3">7.4</span> Dark Launch</h3>
 <div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li>Migrating from a legacy messaging system offered one major advantage: real-world testing capability. At Facebook, we widely use a testing/rollout process called "Dark Launch" where critical back-end functionality is exercised by a subset of the user base without exposing any UI changes to them. We used this facility to double-write messaging traffic for some users to both the legacy infrastructure and HBase.（将一部分用户请求重写一份到新的集群上面）
@@ -451,20 +497,20 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org50798d8" class="outline-3">
-<h3 id="org50798d8"><span class="section-number-3">7.5</span> Dashboards/ODS integration</h3>
+<div id="outline-container-orgaa44bd6" class="outline-3">
+<h3 id="orgaa44bd6"><span class="section-number-3">7.5</span> Dashboards/ODS integration</h3>
 </div>
-<div id="outline-container-org0d5df78" class="outline-3">
-<h3 id="org0d5df78"><span class="section-number-3">7.6</span> Backups at the Application layer</h3>
+<div id="outline-container-orgae4dc9d" class="outline-3">
+<h3 id="orgae4dc9d"><span class="section-number-3">7.6</span> Backups at the Application layer</h3>
 </div>
-<div id="outline-container-org9f44c36" class="outline-3">
-<h3 id="org9f44c36"><span class="section-number-3">7.7</span> Schema Changes</h3>
+<div id="outline-container-org94351b1" class="outline-3">
+<h3 id="org94351b1"><span class="section-number-3">7.7</span> Schema Changes</h3>
 </div>
-<div id="outline-container-orga836130" class="outline-3">
-<h3 id="orga836130"><span class="section-number-3">7.8</span> Importing Data</h3>
+<div id="outline-container-org77ab2df" class="outline-3">
+<h3 id="org77ab2df"><span class="section-number-3">7.8</span> Importing Data</h3>
 </div>
-<div id="outline-container-org21ada94" class="outline-3">
-<h3 id="org21ada94"><span class="section-number-3">7.9</span> Reducing Network IO</h3>
+<div id="outline-container-org224dad2" class="outline-3">
+<h3 id="org224dad2"><span class="section-number-3">7.9</span> Reducing Network IO</h3>
 <div class="outline-text-3" id="text-7-9">
 <ul class="org-ul">
 <li>After running in production for a couple months, we quickly realized from our dashboards that we were network IO bound. We needed some way to analyze where our network IO traffic was coming from.</li>
@@ -478,8 +524,8 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </div>
 </div>
 
-<div id="outline-container-org5ba5e68" class="outline-2">
-<h2 id="org5ba5e68"><span class="section-number-2">8</span> FUTURE WORK</h2>
+<div id="outline-container-org42c0b49" class="outline-2">
+<h2 id="org42c0b49"><span class="section-number-2">8</span> FUTURE WORK</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>adding support for maintenance of secondary indices and summary views in HBase. In many use cases, such derived data and views can be maintained asynchronously （维护二级索引以及摘要等信息，这些信息通常都是可以异步维护的）</li>
@@ -489,6 +535,11 @@ HDFS is originally designed for high-throughput systems like MapReduce. <b>Many 
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/apache-hadoop-goes-realtime-at-facebook.html';this.page.identifier = 'apache-hadoop-goes-realtime-at-facebook.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

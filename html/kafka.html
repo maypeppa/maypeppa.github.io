@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kafka: a Distributed Messaging System for Log Processing</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Kafka: a Distributed Messaging System for Log Processing</h1>
@@ -16,20 +62,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf7a5552">1. ABSTRACT</a></li>
-<li><a href="#org9b33124">2. Introduction</a></li>
-<li><a href="#orgf8b69b9">3. Related Work</a></li>
-<li><a href="#orgd98ce5e">4. Kafka Architecture and Design Principles</a>
+<li><a href="#org691977e">1. ABSTRACT</a></li>
+<li><a href="#org53b7007">2. Introduction</a></li>
+<li><a href="#org06d31e0">3. Related Work</a></li>
+<li><a href="#orgbf78566">4. Kafka Architecture and Design Principles</a>
 <ul>
-<li><a href="#org6171a81">4.1. Efficiency on a Single Partition</a></li>
-<li><a href="#org8c9c6de">4.2. Distributed Coordination</a></li>
-<li><a href="#org0b3869a">4.3. Delivery Guarantees</a></li>
+<li><a href="#org8c17ae4">4.1. Efficiency on a Single Partition</a></li>
+<li><a href="#orgea89aa7">4.2. Distributed Coordination</a></li>
+<li><a href="#org25efb62">4.3. Delivery Guarantees</a></li>
 </ul>
 </li>
-<li><a href="#org38a5d0c">5. Kafka Usage at LinkedIn</a></li>
-<li><a href="#org2a35f30">6. Experimental Results</a></li>
-<li><a href="#org8ddbb15">7. Conclusion and Future Works</a></li>
-<li><a href="#org0e8a04e">8. Replication Since 0.8</a></li>
+<li><a href="#orgcebe337">5. Kafka Usage at LinkedIn</a></li>
+<li><a href="#orga348f83">6. Experimental Results</a></li>
+<li><a href="#org53b2c73">7. Conclusion and Future Works</a></li>
+<li><a href="#orgb44027f">8. Replication Since 0.8</a></li>
 </ul>
 </div>
 </div>
@@ -38,11 +84,11 @@
 <li><a href="http://research.microsoft.com/en-us/um/people/srikanth/netdb11/netdb11papers/netdb11-final12.pdf">http://research.microsoft.com/en-us/um/people/srikanth/netdb11/netdb11papers/netdb11-final12.pdf</a></li>
 </ul>
 
-<div id="outline-container-orgf7a5552" class="outline-2">
-<h2 id="orgf7a5552"><span class="section-number-2">1</span> ABSTRACT</h2>
+<div id="outline-container-org691977e" class="outline-2">
+<h2 id="org691977e"><span class="section-number-2">1</span> ABSTRACT</h2>
 </div>
-<div id="outline-container-org9b33124" class="outline-2">
-<h2 id="org9b33124"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-org53b7007" class="outline-2">
+<h2 id="org53b7007"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Many early systems for processing this kind of data relied on physically scraping log files off production servers for analysis. In recent years, several specialized distributed log aggregators have been built, including Facebook’s Scribe , Yahoo’s Data Highway , and Cloudera’s Flume. Those systems are primarily designed for collecting and loading the log data into a data warehouse or Hadoop for offline consumption. （一些现有的日志系统都是非实时系统，将数据导入到数据仓库或是Hadoop做离线处理）</li>
@@ -55,8 +101,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf8b69b9" class="outline-2">
-<h2 id="orgf8b69b9"><span class="section-number-2">3</span> Related Work</h2>
+<div id="outline-container-org06d31e0" class="outline-2">
+<h2 id="org06d31e0"><span class="section-number-2">3</span> Related Work</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Traditional enterprise messaging systems have existed for a long time and often play a critical role as an event bus for processing asynchronous data flows. However, there are a few reasons why they tend not to be a good fit for log processing. （传统的消息系统不适合做日志处理）
@@ -79,8 +125,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd98ce5e" class="outline-2">
-<h2 id="orgd98ce5e"><span class="section-number-2">4</span> Kafka Architecture and Design Principles</h2>
+<div id="outline-container-orgbf78566" class="outline-2">
+<h2 id="orgbf78566"><span class="section-number-2">4</span> Kafka Architecture and Design Principles</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>We first introduce the basic concepts in Kafka
@@ -128,8 +174,8 @@ for (message : streams[0]) {
 </div>
 </div>
 
-<div id="outline-container-org6171a81" class="outline-3">
-<h3 id="org6171a81"><span class="section-number-3">4.1</span> Efficiency on a Single Partition</h3>
+<div id="outline-container-org8c17ae4" class="outline-3">
+<h3 id="org8c17ae4"><span class="section-number-3">4.1</span> Efficiency on a Single Partition</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Simple storage
@@ -166,8 +212,8 @@ for (message : streams[0]) {
 </div>
 </div>
 
-<div id="outline-container-org8c9c6de" class="outline-3">
-<h3 id="org8c9c6de"><span class="section-number-3">4.2</span> Distributed Coordination</h3>
+<div id="outline-container-orgea89aa7" class="outline-3">
+<h3 id="orgea89aa7"><span class="section-number-3">4.2</span> Distributed Coordination</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>Each producer can publish a message to either a randomly selected partition or a partition semantically determined by a partitioning key and a partitioning function.（procuder可以根据指定partition算法或者是随机选择发送到哪个partition. 就现在来说每个partition只能够在某一个broker上面）</li>
@@ -221,8 +267,8 @@ The ownership registry has one path for every subscribed partition and the path 
 </div>
 </div>
 
-<div id="outline-container-org0b3869a" class="outline-3">
-<h3 id="org0b3869a"><span class="section-number-3">4.3</span> Delivery Guarantees</h3>
+<div id="outline-container-org25efb62" class="outline-3">
+<h3 id="org25efb62"><span class="section-number-3">4.3</span> Delivery Guarantees</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>In general, Kafka only guarantees at-least-once delivery. Exactly- once delivery typically requires two-phase commits and is not necessary for our applications.（至少保证一次投递）</li>
@@ -235,8 +281,8 @@ The ownership registry has one path for every subscribed partition and the path 
 </div>
 </div>
 
-<div id="outline-container-org38a5d0c" class="outline-2">
-<h2 id="org38a5d0c"><span class="section-number-2">5</span> Kafka Usage at LinkedIn</h2>
+<div id="outline-container-orgcebe337" class="outline-2">
+<h2 id="orgcebe337"><span class="section-number-2">5</span> Kafka Usage at LinkedIn</h2>
 <div class="outline-text-2" id="text-5">
 
 <div class="figure">
@@ -257,11 +303,11 @@ The ownership registry has one path for every subscribed partition and the path 
 </div>
 </div>
 
-<div id="outline-container-org2a35f30" class="outline-2">
-<h2 id="org2a35f30"><span class="section-number-2">6</span> Experimental Results</h2>
+<div id="outline-container-orga348f83" class="outline-2">
+<h2 id="orga348f83"><span class="section-number-2">6</span> Experimental Results</h2>
 </div>
-<div id="outline-container-org8ddbb15" class="outline-2">
-<h2 id="org8ddbb15"><span class="section-number-2">7</span> Conclusion and Future Works</h2>
+<div id="outline-container-org53b2c73" class="outline-2">
+<h2 id="org53b2c73"><span class="section-number-2">7</span> Conclusion and Future Works</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 There are a number of directions that we’d like to pursue in the future.
@@ -278,8 +324,8 @@ There are a number of directions that we’d like to pursue in the future.
 </div>
 </div>
 
-<div id="outline-container-org0e8a04e" class="outline-2">
-<h2 id="org0e8a04e"><span class="section-number-2">8</span> Replication Since 0.8</h2>
+<div id="outline-container-orgb44027f" class="outline-2">
+<h2 id="orgb44027f"><span class="section-number-2">8</span> Replication Since 0.8</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 据说从0.8开始支持replication. 粗略地阅读了一下主页上的 <a href="http://kafka.apache.org/documentation.html">documentation</a> , 把一些比较关键东西记录下来。
@@ -301,6 +347,11 @@ replication实现方式大致是这样的：
 </ol>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/kafka.html';this.page.identifier = 'kafka.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

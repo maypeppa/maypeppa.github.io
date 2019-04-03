@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>linux-tools</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">linux-tools</h1>
@@ -16,64 +62,64 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6160f91">1. Overview</a></li>
-<li><a href="#orgfce9c1f">2. CPU</a>
+<li><a href="#org0665b96">1. Overview</a></li>
+<li><a href="#org24ae036">2. CPU</a>
 <ul>
-<li><a href="#org1750241">2.1. mpstat</a></li>
-<li><a href="#org0eda67d">2.2. taskset</a></li>
-<li><a href="#org1f1df80">2.3. ps(process snapshot)</a></li>
+<li><a href="#org14eb9de">2.1. mpstat</a></li>
+<li><a href="#orgbd39b9f">2.2. taskset</a></li>
+<li><a href="#orga387a30">2.3. ps(process snapshot)</a></li>
 </ul>
 </li>
-<li><a href="#orgcad806d">3. VM</a>
+<li><a href="#org0c933cb">3. VM</a>
 <ul>
-<li><a href="#orgbfe0692">3.1. vmstat</a></li>
-<li><a href="#org1cd4f6b">3.2. free</a></li>
-<li><a href="#org845fcda">3.3. vmtouch</a></li>
+<li><a href="#org5420fc9">3.1. vmstat</a></li>
+<li><a href="#orga4d08b6">3.2. free</a></li>
+<li><a href="#org1fcd149">3.3. vmtouch</a></li>
 </ul>
 </li>
-<li><a href="#orgb470d79">4. DiskIO</a>
+<li><a href="#org3e79221">4. DiskIO</a>
 <ul>
-<li><a href="#org81f943b">4.1. iostat</a></li>
-<li><a href="#orga218640">4.2. iotop</a></li>
+<li><a href="#org7244d2a">4.1. iostat</a></li>
+<li><a href="#orgfa7df51">4.2. iotop</a></li>
 </ul>
 </li>
-<li><a href="#org7986dbe">5. NetworkIO</a>
+<li><a href="#org777b185">5. NetworkIO</a>
 <ul>
-<li><a href="#org4604f3e">5.1. ifconfig</a></li>
-<li><a href="#org4a875c6">5.2. netstat</a></li>
-<li><a href="#orge8eda30">5.3. ss(socket statistics)</a></li>
-<li><a href="#orgf1c0506">5.4. tc(traffic control)</a></li>
-<li><a href="#orgb470c3d">5.5. iftop</a></li>
-<li><a href="#orgaf2d599">5.6. iperf</a></li>
-<li><a href="#org64b0a83">5.7. mtr</a></li>
+<li><a href="#orgf73f7b2">5.1. ifconfig</a></li>
+<li><a href="#orgc79c8b1">5.2. netstat</a></li>
+<li><a href="#orgc1d57f4">5.3. ss(socket statistics)</a></li>
+<li><a href="#orgf90b8a8">5.4. tc(traffic control)</a></li>
+<li><a href="#org581322f">5.5. iftop</a></li>
+<li><a href="#orgbb6ef7d">5.6. iperf</a></li>
+<li><a href="#org764f248">5.7. mtr</a></li>
 </ul>
 </li>
-<li><a href="#org098f86b">6. System</a>
+<li><a href="#orga031c0c">6. System</a>
 <ul>
-<li><a href="#orgfee4f56">6.1. strace</a></li>
-<li><a href="#orge838fba">6.2. sysprof</a></li>
-<li><a href="#orgb82a749">6.3. sar</a></li>
-<li><a href="#org6815e92">6.4. pidstat</a></li>
-<li><a href="#orgd6007ae">6.5. dstat</a></li>
-<li><a href="#orgde5208b">6.6. collectl</a></li>
+<li><a href="#org9b804b8">6.1. strace</a></li>
+<li><a href="#orgfa00e17">6.2. sysprof</a></li>
+<li><a href="#org4c31676">6.3. sar</a></li>
+<li><a href="#org8271f91">6.4. pidstat</a></li>
+<li><a href="#orgcad4079">6.5. dstat</a></li>
+<li><a href="#orgefcc42f">6.6. collectl</a></li>
 </ul>
 </li>
-<li><a href="#org842d1c4">7. Admin</a>
+<li><a href="#org24030b1">7. Admin</a>
 <ul>
-<li><a href="#org37ca934">7.1. rsync</a></li>
-<li><a href="#orged31c8a">7.2. lsof</a></li>
-<li><a href="#org8380ad0">7.3. uptime</a></li>
-<li><a href="#orgc9e4485">7.4. crontab</a></li>
-<li><a href="#org5ce9efa">7.5. ntp</a></li>
-<li><a href="#orgf750e0d">7.6. iptables</a></li>
-<li><a href="#org1534672">7.7. ab</a></li>
+<li><a href="#org9d9d7f8">7.1. rsync</a></li>
+<li><a href="#org7b4a6f2">7.2. lsof</a></li>
+<li><a href="#org8b77c8a">7.3. uptime</a></li>
+<li><a href="#orgeba82a1">7.4. crontab</a></li>
+<li><a href="#orga4f001a">7.5. ntp</a></li>
+<li><a href="#org78cb404">7.6. iptables</a></li>
+<li><a href="#org4497848">7.7. ab</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6160f91" class="outline-2">
-<h2 id="org6160f91"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-org0665b96" class="outline-2">
+<h2 id="org0665b96"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 
 <div class="figure">
@@ -83,12 +129,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgfce9c1f" class="outline-2">
-<h2 id="orgfce9c1f"><span class="section-number-2">2</span> CPU</h2>
+<div id="outline-container-org24ae036" class="outline-2">
+<h2 id="org24ae036"><span class="section-number-2">2</span> CPU</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org1750241" class="outline-3">
-<h3 id="org1750241"><span class="section-number-3">2.1</span> mpstat</h3>
+<div id="outline-container-org14eb9de" class="outline-3">
+<h3 id="org14eb9de"><span class="section-number-3">2.1</span> mpstat</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ mpstat -P ALL 1
@@ -119,11 +165,11 @@ Linux 2.6.9_5-10-0-1 (tc-cm-et18.tc.baidu.com)  2011年09月20日
 </div>
 </div>
 
-<div id="outline-container-org0eda67d" class="outline-3">
-<h3 id="org0eda67d"><span class="section-number-3">2.2</span> taskset</h3>
+<div id="outline-container-orgbd39b9f" class="outline-3">
+<h3 id="orgbd39b9f"><span class="section-number-3">2.2</span> taskset</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-设置和获取进程的CPU亲和性. 对应的系统调用是sched_set(get)affinity/sched_getaffinity
+设置和获取进程的CPU亲和性. 对应的系统调用是sched<sub>set</sub>(get)affinity/sched<sub>getaffinity</sub>
 </p>
 <ul class="org-ul">
 <li>taskset -c 1,2,3 cmd # 程序只能运行在CPU #1,#2,#3上</li>
@@ -134,8 +180,8 @@ Linux 2.6.9_5-10-0-1 (tc-cm-et18.tc.baidu.com)  2011年09月20日
 </div>
 </div>
 
-<div id="outline-container-org1f1df80" class="outline-3">
-<h3 id="org1f1df80"><span class="section-number-3">2.3</span> ps(process snapshot)</h3>
+<div id="outline-container-orga387a30" class="outline-3">
+<h3 id="orga387a30"><span class="section-number-3">2.3</span> ps(process snapshot)</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>ps -ef f # 进程树结构</li>
@@ -157,19 +203,19 @@ Linux 2.6.9_5-10-0-1 (tc-cm-et18.tc.baidu.com)  2011年09月20日
 <li>N    low-priority (nice to other users)</li>
 <li>L    has pages locked into memory (for real-time and custom IO)</li>
 <li>s    is a session leader</li>
-<li>l    is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)</li>
+<li>l    is multi-threaded (using CLONE<sub>THREAD</sub>, like NPTL pthreads do)</li>
 <li>+    is in the foreground process group.</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgcad806d" class="outline-2">
-<h2 id="orgcad806d"><span class="section-number-2">3</span> VM</h2>
+<div id="outline-container-org0c933cb" class="outline-2">
+<h2 id="org0c933cb"><span class="section-number-2">3</span> VM</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgbfe0692" class="outline-3">
-<h3 id="orgbfe0692"><span class="section-number-3">3.1</span> vmstat</h3>
+<div id="outline-container-org5420fc9" class="outline-3">
+<h3 id="org5420fc9"><span class="section-number-3">3.1</span> vmstat</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>vmstat 1 # 虚拟内存使用情况</li>
@@ -235,8 +281,8 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 </div>
 </div>
 
-<div id="outline-container-org1cd4f6b" class="outline-3">
-<h3 id="org1cd4f6b"><span class="section-number-3">3.2</span> free</h3>
+<div id="outline-container-orga4d08b6" class="outline-3">
+<h3 id="orga4d08b6"><span class="section-number-3">3.2</span> free</h3>
 <div class="outline-text-3" id="text-3-2">
 <pre class="example">
 [zhangyan04@tc-hpc-dev.tc.baidu.com]$ free -t
@@ -266,8 +312,8 @@ Total:     9212084    4519868    4692216
 </div>
 </div>
 
-<div id="outline-container-org845fcda" class="outline-3">
-<h3 id="org845fcda"><span class="section-number-3">3.3</span> vmtouch</h3>
+<div id="outline-container-org1fcd149" class="outline-3">
+<h3 id="org1fcd149"><span class="section-number-3">3.3</span> vmtouch</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="https://github.com/hoytech/vmtouch">https://github.com/hoytech/vmtouch</a> 用来warmup数据
@@ -275,18 +321,18 @@ Total:     9212084    4519868    4692216
 <ul class="org-ul">
 <li>mlock/munlock 将进程部分内存lock住而不会切换到swap分区上面</li>
 <li>mlockall/munlockall 将进程所有内存都lock住而不会切换到swap分区上面</li>
-<li>posix_fadvise 告诉系统对文件数据访问模式(有助于系统进行IO优化)</li>
+<li>posix<sub>fadvise</sub> 告诉系统对文件数据访问模式(有助于系统进行IO优化)</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb470d79" class="outline-2">
-<h2 id="orgb470d79"><span class="section-number-2">4</span> DiskIO</h2>
+<div id="outline-container-org3e79221" class="outline-2">
+<h2 id="org3e79221"><span class="section-number-2">4</span> DiskIO</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org81f943b" class="outline-3">
-<h3 id="org81f943b"><span class="section-number-3">4.1</span> iostat</h3>
+<div id="outline-container-org7244d2a" class="outline-3">
+<h3 id="org7244d2a"><span class="section-number-3">4.1</span> iostat</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 dirlt@dirlt-virtual-machine:~$ iostat -dx 1
@@ -307,10 +353,10 @@ sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0
 <ul class="org-ul">
 <li>Device 设备名</li>
 <li>tps number of transfers per second.对于IO device多个请求可能会合并成为一个transfer.不过似乎没有太大意义。</li>
-<li>Blk_read/s(kB_read/s, MB_read/s). 读速度，这里Block相当于一个扇区占据512bytes.</li>
-<li>Blk_wrtn/s(kB_wrtn/s, MB_wrtn/s). 写速度。</li>
-<li>Blk_read(kb_read, MB_read). 读总量</li>
-<li>Blk_wrtn(kB_wrtn, MB_wrtn). 写总量</li>
+<li>Blk<sub>read</sub>/s(kB<sub>read</sub>/s, MB<sub>read</sub>/s). 读速度，这里Block相当于一个扇区占据512bytes.</li>
+<li>Blk<sub>wrtn</sub>/s(kB<sub>wrtn</sub>/s, MB<sub>wrtn</sub>/s). 写速度。</li>
+<li>Blk<sub>read</sub>(kb<sub>read</sub>, MB<sub>read</sub>). 读总量</li>
+<li>Blk<sub>wrtn</sub>(kB<sub>wrtn</sub>, MB<sub>wrtn</sub>). 写总量</li>
 <li>rrqm/s 每秒多少个读请求被merge.当系统调用需要读取数据的时候，VFS将请求发到各个FS，如果FS发现不同的读取请求读取的是相同Block的数据，FS会将这个请求合并Merge</li>
 <li>wrqm/s 每秒多少个些请求被merge</li>
 <li>r/s 每秒多少个读请求(after merged)</li>
@@ -320,16 +366,16 @@ sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0
 <li>avgrq-sz 提交到这个device queue上面请求的平均大小(in sectors)</li>
 <li>avgqu-sz 提交到这个device queue上面请求的平均长度</li>
 <li>await 提交到这个device上面请求处理的平均时间(ms)</li>
-<li>r_await 提交到这个device上面读请求处理的平均时间</li>
-<li>w_await 提交到这个device上面写请求处理的平均时间</li>
+<li>r<sub>await</sub> 提交到这个device上面读请求处理的平均时间</li>
+<li>w<sub>await</sub> 提交到这个device上面写请求处理的平均时间</li>
 <li>svctm #todo: not used any more</li>
 <li>%util CPU在处理IO请求时的百分比.可以认为是IO设备使用率.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga218640" class="outline-3">
-<h3 id="orga218640"><span class="section-number-3">4.2</span> iotop</h3>
+<div id="outline-container-orgfa7df51" class="outline-3">
+<h3 id="orgfa7df51"><span class="section-number-3">4.2</span> iotop</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 `iotop -ao [-P]`
@@ -343,12 +389,12 @@ sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0
 </div>
 </div>
 
-<div id="outline-container-org7986dbe" class="outline-2">
-<h2 id="org7986dbe"><span class="section-number-2">5</span> NetworkIO</h2>
+<div id="outline-container-org777b185" class="outline-2">
+<h2 id="org777b185"><span class="section-number-2">5</span> NetworkIO</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org4604f3e" class="outline-3">
-<h3 id="org4604f3e"><span class="section-number-3">5.1</span> ifconfig</h3>
+<div id="outline-container-orgf73f7b2" class="outline-3">
+<h3 id="orgf73f7b2"><span class="section-number-3">5.1</span> ifconfig</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>ifconfig &lt;eth-x&gt; &lt;ip&gt; # 创建网卡绑定IP</li>
@@ -390,7 +436,7 @@ lo        Link encap:Local Loopback
 <ul class="org-ul">
 <li>encap # 网卡连接网络类型. Ethernet(以太网), Local Loopback(本地环路)</li>
 <li>HWaddr # 网卡物理地址(MAC)</li>
-<li>inet_addr # 绑定IP地址</li>
+<li>inet<sub>addr</sub> # 绑定IP地址</li>
 <li>Bcast # IP的广播地址</li>
 <li>Mask # 子网掩码</li>
 <li>UP(打开) BROADCAST(广播) MULTICAST(多播) RUNNING(运行)</li>
@@ -409,8 +455,8 @@ lo        Link encap:Local Loopback
 </div>
 </div>
 
-<div id="outline-container-org4a875c6" class="outline-3">
-<h3 id="org4a875c6"><span class="section-number-3">5.2</span> netstat</h3>
+<div id="outline-container-orgc79c8b1" class="outline-3">
+<h3 id="orgc79c8b1"><span class="section-number-3">5.2</span> netstat</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>netstat -s [&#x2013;tcp|&#x2013;udp|&#x2013;raw] # 各种协议统计数据</li>
@@ -422,8 +468,8 @@ lo        Link encap:Local Loopback
 </div>
 </div>
 
-<div id="outline-container-orge8eda30" class="outline-3">
-<h3 id="orge8eda30"><span class="section-number-3">5.3</span> ss(socket statistics)</h3>
+<div id="outline-container-orgc1d57f4" class="outline-3">
+<h3 id="orgc1d57f4"><span class="section-number-3">5.3</span> ss(socket statistics)</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 `ss -s` 系统所有socket使用情况汇总
@@ -444,8 +490,8 @@ FRAG	  0         0         0
 </div>
 </div>
 
-<div id="outline-container-orgf1c0506" class="outline-3">
-<h3 id="orgf1c0506"><span class="section-number-3">5.4</span> tc(traffic control)</h3>
+<div id="outline-container-orgf90b8a8" class="outline-3">
+<h3 id="orgf90b8a8"><span class="section-number-3">5.4</span> tc(traffic control)</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 tc - show / manipulate traffic control settings.
@@ -468,18 +514,18 @@ netem (network emulation) <a href="http://www.linuxfoundation.org/collaborate/wo
 specification
 </p>
 <ul class="org-ul">
-<li>delay 100ms 10ms 25%.  延迟分布在[100-10,100+10]. next_delay = random(90,110) * 0.75 + last_delay * 0.25</li>
+<li>delay 100ms 10ms 25%.  延迟分布在[100-10,100+10]. next<sub>delay</sub> = random(90,110) * 0.75 + last<sub>delay</sub> * 0.25</li>
 <li>delay 100ms 10ms distribution normal 延迟正态分布[100-10,100+10]</li>
 <li>loss 1%       #丢包概率1%</li>
-<li>loss 1% 25%   #丢包概率在random(1%) * 0.75 + last_loss * 0.25</li>
+<li>loss 1% 25%   #丢包概率在random(1%) * 0.75 + last<sub>loss</sub> * 0.25</li>
 <li>duplicate 1%  #重复概率1%</li>
 <li>corrupt 1%    #坏包概率1%</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb470c3d" class="outline-3">
-<h3 id="orgb470c3d"><span class="section-number-3">5.5</span> iftop</h3>
+<div id="outline-container-org581322f" class="outline-3">
+<h3 id="org581322f"><span class="section-number-3">5.5</span> iftop</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 <a href="http://www.ex-parrot.com/~pdw/iftop/">http://www.ex-parrot.com/~pdw/iftop/</a>
@@ -504,8 +550,8 @@ specification
 </div>
 </div>
 
-<div id="outline-container-orgaf2d599" class="outline-3">
-<h3 id="orgaf2d599"><span class="section-number-3">5.6</span> iperf</h3>
+<div id="outline-container-orgbb6ef7d" class="outline-3">
+<h3 id="orgbb6ef7d"><span class="section-number-3">5.6</span> iperf</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 <a href="https://iperf.fr/">https://iperf.fr/</a> 测量网络吞吐
@@ -513,8 +559,8 @@ specification
 </div>
 </div>
 
-<div id="outline-container-org64b0a83" class="outline-3">
-<h3 id="org64b0a83"><span class="section-number-3">5.7</span> mtr</h3>
+<div id="outline-container-org764f248" class="outline-3">
+<h3 id="org764f248"><span class="section-number-3">5.7</span> mtr</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 my traceroute. ping和traceroute两个工具的合体. 两种工作方式, 一种是实时查看, 一种是生成报表.
@@ -549,12 +595,12 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-org098f86b" class="outline-2">
-<h2 id="org098f86b"><span class="section-number-2">6</span> System</h2>
+<div id="outline-container-orga031c0c" class="outline-2">
+<h2 id="orga031c0c"><span class="section-number-2">6</span> System</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgfee4f56" class="outline-3">
-<h3 id="orgfee4f56"><span class="section-number-3">6.1</span> strace</h3>
+<div id="outline-container-org9b804b8" class="outline-3">
+<h3 id="org9b804b8"><span class="section-number-3">6.1</span> strace</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 `strace -C -ttt -T -r [-p pid | args]`
@@ -568,8 +614,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-orge838fba" class="outline-3">
-<h3 id="orge838fba"><span class="section-number-3">6.2</span> sysprof</h3>
+<div id="outline-container-orgfa00e17" class="outline-3">
+<h3 id="orgfa00e17"><span class="section-number-3">6.2</span> sysprof</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 <a href="http://sysprof.com/">http://sysprof.com/</a> a statistical, system-wide profiler for Linux.
@@ -577,8 +623,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-orgb82a749" class="outline-3">
-<h3 id="orgb82a749"><span class="section-number-3">6.3</span> sar</h3>
+<div id="outline-container-org4c31676" class="outline-3">
+<h3 id="org4c31676"><span class="section-number-3">6.3</span> sar</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 `sar -n DEV 1` 网卡流量
@@ -599,8 +645,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-org6815e92" class="outline-3">
-<h3 id="org6815e92"><span class="section-number-3">6.4</span> pidstat</h3>
+<div id="outline-container-org8271f91" class="outline-3">
+<h3 id="org8271f91"><span class="section-number-3">6.4</span> pidstat</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 `pidstat [-d | -r | -s | -u | -v | -w] [-p pid] 1`
@@ -617,8 +663,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-orgd6007ae" class="outline-3">
-<h3 id="orgd6007ae"><span class="section-number-3">6.5</span> dstat</h3>
+<div id="outline-container-orgcad4079" class="outline-3">
+<h3 id="orgcad4079"><span class="section-number-3">6.5</span> dstat</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li><a href="https://github.com/dagwieers/dstat">https://github.com/dagwieers/dstat</a></li>
@@ -627,8 +673,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-orgde5208b" class="outline-3">
-<h3 id="orgde5208b"><span class="section-number-3">6.6</span> collectl</h3>
+<div id="outline-container-orgefcc42f" class="outline-3">
+<h3 id="orgefcc42f"><span class="section-number-3">6.6</span> collectl</h3>
 <div class="outline-text-3" id="text-6-6">
 
 <div class="figure">
@@ -639,12 +685,12 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-org842d1c4" class="outline-2">
-<h2 id="org842d1c4"><span class="section-number-2">7</span> Admin</h2>
+<div id="outline-container-org24030b1" class="outline-2">
+<h2 id="org24030b1"><span class="section-number-2">7</span> Admin</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org37ca934" class="outline-3">
-<h3 id="org37ca934"><span class="section-number-3">7.1</span> rsync</h3>
+<div id="outline-container-org9d9d7f8" class="outline-3">
+<h3 id="org9d9d7f8"><span class="section-number-3">7.1</span> rsync</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>`rsync -avrz <i>dir</i> user@host:/dir/` # 注意目录后面需要加上/</li>
@@ -653,8 +699,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-orged31c8a" class="outline-3">
-<h3 id="orged31c8a"><span class="section-number-3">7.2</span> lsof</h3>
+<div id="outline-container-org7b4a6f2" class="outline-3">
+<h3 id="org7b4a6f2"><span class="section-number-3">7.2</span> lsof</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>lsof -nP | grep "delete" # 已被删除但是依然被某些进程打开的文件</li>
@@ -663,8 +709,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-org8380ad0" class="outline-3">
-<h3 id="org8380ad0"><span class="section-number-3">7.3</span> uptime</h3>
+<div id="outline-container-org8b77c8a" class="outline-3">
+<h3 id="org8b77c8a"><span class="section-number-3">7.3</span> uptime</h3>
 <div class="outline-text-3" id="text-7-3">
 <pre class="example">
 ➜  notes git:(master) ✗ uptime
@@ -679,8 +725,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-orgc9e4485" class="outline-3">
-<h3 id="orgc9e4485"><span class="section-number-3">7.4</span> crontab</h3>
+<div id="outline-container-orgeba82a1" class="outline-3">
+<h3 id="orgeba82a1"><span class="section-number-3">7.4</span> crontab</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 `crontab -e` 编辑crontab配置文件
@@ -719,8 +765,8 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </div>
 </div>
 
-<div id="outline-container-org5ce9efa" class="outline-3">
-<h3 id="org5ce9efa"><span class="section-number-3">7.5</span> ntp</h3>
+<div id="outline-container-orga4f001a" class="outline-3">
+<h3 id="orga4f001a"><span class="section-number-3">7.5</span> ntp</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 <a href="http://www.ntp.org/">http://www.ntp.org/</a>
@@ -762,8 +808,8 @@ ntp(network time protocol)是用来做机器时间同步的，包含下面几个
 </div>
 </div>
 
-<div id="outline-container-orgf750e0d" class="outline-3">
-<h3 id="orgf750e0d"><span class="section-number-3">7.6</span> iptables</h3>
+<div id="outline-container-org78cb404" class="outline-3">
+<h3 id="org78cb404"><span class="section-number-3">7.6</span> iptables</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 `iptables -S` 列举所有规则
@@ -814,8 +860,8 @@ sudo iptables -A INPUT -s "192.168.100.104" -d "192.168.100.105" -j DROP
 </div>
 </div>
 
-<div id="outline-container-org1534672" class="outline-3">
-<h3 id="org1534672"><span class="section-number-3">7.7</span> ab</h3>
+<div id="outline-container-org4497848" class="outline-3">
+<h3 id="org4497848"><span class="section-number-3">7.7</span> ab</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 ab(apache benchmarking)
@@ -865,6 +911,11 @@ Percentage of the requests served within a certain time (ms)
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/linux-tools.html';this.page.identifier = 'linux-tools.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

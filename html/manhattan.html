@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>oManhattan, our real-time, multi-tenant distributed database for Twitter scale</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">oManhattan, our real-time, multi-tenant distributed database for Twitter scale</h1>
@@ -16,14 +62,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org502eb6d">1. Layers</a></li>
-<li><a href="#orgaaec310">2. Core</a></li>
-<li><a href="#orgf730eee">3. Consistency model</a></li>
-<li><a href="#orgd4f6711">4. Achieving consistency</a></li>
-<li><a href="#org3b995d3">5. Storage engines</a></li>
-<li><a href="#org8227dce">6. Storage Services</a></li>
-<li><a href="#orgf0c199a">7. Interfaces</a></li>
-<li><a href="#orgc83efd4">8. Multi-Tenancy and QoS (Quality of Service)</a></li>
+<li><a href="#org3487ebe">1. Layers</a></li>
+<li><a href="#orgfe37bd9">2. Core</a></li>
+<li><a href="#org0d3ee25">3. Consistency model</a></li>
+<li><a href="#org52fc67e">4. Achieving consistency</a></li>
+<li><a href="#org064699f">5. Storage engines</a></li>
+<li><a href="#orgf768bcc">6. Storage Services</a></li>
+<li><a href="#org84bb6da">7. Interfaces</a></li>
+<li><a href="#org5910089">8. Multi-Tenancy and QoS (Quality of Service)</a></li>
 </ul>
 </div>
 </div>
@@ -31,8 +77,8 @@
 <a href="https://blog.twitter.com/2014/manhattan-our-real-time-multi-tenant-distributed-database-for-twitter-scale">https://blog.twitter.com/2014/manhattan-our-real-time-multi-tenant-distributed-database-for-twitter-scale</a>
 </p>
 
-<div id="outline-container-org502eb6d" class="outline-2">
-<h2 id="org502eb6d"><span class="section-number-2">1</span> Layers</h2>
+<div id="outline-container-org3487ebe" class="outline-2">
+<h2 id="org3487ebe"><span class="section-number-2">1</span> Layers</h2>
 <div class="outline-text-2" id="text-1">
 
 <div class="figure">
@@ -42,8 +88,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgaaec310" class="outline-2">
-<h2 id="orgaaec310"><span class="section-number-2">2</span> Core</h2>
+<div id="outline-container-orgfe37bd9" class="outline-2">
+<h2 id="orgfe37bd9"><span class="section-number-2">2</span> Core</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>The core is the most critical aspect of the storage system: it is highly stable and robust. It handles failure, eventual consistency, routing, topology management, intra- and inter-datacenter replication, and conflict resolution. Within the core of the system, crucial pieces of architecture are completely pluggable so we can iterate quickly on designs and improvements, as well as unit test effectively.</li>
@@ -53,8 +99,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf730eee" class="outline-2">
-<h2 id="orgf730eee"><span class="section-number-2">3</span> Consistency model</h2>
+<div id="outline-container-org0d3ee25" class="outline-2">
+<h2 id="org0d3ee25"><span class="section-number-2">3</span> Consistency model</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Many of Twitter’s applications fit very well into the eventually consistent model. We favor high availability over consistency in almost all use cases, so it was natural to build Manhattan as an eventually consistent system at its core.</li>
@@ -63,8 +109,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd4f6711" class="outline-2">
-<h2 id="orgd4f6711"><span class="section-number-2">4</span> Achieving consistency</h2>
+<div id="outline-container-org52fc67e" class="outline-2">
+<h2 id="org52fc67e"><span class="section-number-2">4</span> Achieving consistency</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>To achieve consistency in an eventually consistent system you need a required mechanism which we call replica reconciliation. This mechanism needs to be incremental, and an always running process that reconciles data across replicas. It helps in the face of bitrot, software bugs, missed writes (nodes going down for long periods of time) and network partitions between datacenters.</li>
@@ -73,8 +119,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3b995d3" class="outline-2">
-<h2 id="org3b995d3"><span class="section-number-2">5</span> Storage engines</h2>
+<div id="outline-container-org064699f" class="outline-2">
+<h2 id="org064699f"><span class="section-number-2">5</span> Storage engines</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>seadb, our read-only file format for batch processed data from hadoop</li>
@@ -85,8 +131,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8227dce" class="outline-2">
-<h2 id="org8227dce"><span class="section-number-2">6</span> Storage Services</h2>
+<div id="outline-container-orgf768bcc" class="outline-2">
+<h2 id="orgf768bcc"><span class="section-number-2">6</span> Storage Services</h2>
 <div class="outline-text-2" id="text-6">
 
 <div class="figure">
@@ -107,7 +153,7 @@ We have created additional services that sit on top of the core of Manhattan tha
 <ul class="org-ul">
 <li>The Strong Consistency service allows customers to have strong consistency when doing certain sets of operations.</li>
 <li>We use a consensus algorithm paired with a replicated log to guarantee in-order events reach all replicas. This enables us to do operations like Check-And-Set (CAS), strong read, and strong write.</li>
-<li>We support two modes today called LOCAL_CAS and GLOBAL_CAS. Global CAS enables developers to do strongly consistent operations <b>across a quorum of our datacenters</b>, whereas a Local CAS operation is coordinated only within the datacenter it was issued.</li>
+<li>We support two modes today called LOCAL<sub>CAS</sub> and GLOBAL<sub>CAS</sub>. Global CAS enables developers to do strongly consistent operations <b>across a quorum of our datacenters</b>, whereas a Local CAS operation is coordinated only within the datacenter it was issued.</li>
 <li>Both operations have different tradeoffs when it comes to latency and data modeling for the application.</li>
 </ul></li>
 <li>Timeseries Counters service</li>
@@ -115,8 +161,8 @@ We have created additional services that sit on top of the core of Manhattan tha
 </div>
 </div>
 
-<div id="outline-container-orgf0c199a" class="outline-2">
-<h2 id="orgf0c199a"><span class="section-number-2">7</span> Interfaces</h2>
+<div id="outline-container-org84bb6da" class="outline-2">
+<h2 id="org84bb6da"><span class="section-number-2">7</span> Interfaces</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 The interface layer is how a customer interacts with our storage system. Currently we expose a key/value interface to our customers, and we are working on additional interfaces such as a graph based interface to interact with edges.
@@ -124,8 +170,8 @@ The interface layer is how a customer interacts with our storage system. Current
 </div>
 </div>
 
-<div id="outline-container-orgc83efd4" class="outline-2">
-<h2 id="orgc83efd4"><span class="section-number-2">8</span> Multi-Tenancy and QoS (Quality of Service)</h2>
+<div id="outline-container-org5910089" class="outline-2">
+<h2 id="org5910089"><span class="section-number-2">8</span> Multi-Tenancy and QoS (Quality of Service)</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Supporting multi-tenancy — allowing many different applications to share the same resources — was a key requirement from the beginning. In previous systems we managed at Twitter, we were building out clusters for every feature. This was increasing operator burden, wasting resources, and slowing customers from rolling out new features quickly.
@@ -140,6 +186,11 @@ We monitor and, if needed, throttle resource usage across many metrics to ensure
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/manhattan.html';this.page.identifier = 'manhattan.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Distributed Algorithms in NoSQL Databases</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Distributed Algorithms in NoSQL Databases</h1>
@@ -16,20 +62,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1d68853">1. 引言</a></li>
-<li><a href="#org03e1103">2. 数据一致性</a></li>
-<li><a href="#org6b2e735">3. 数据放置</a>
+<li><a href="#org49b9590">1. 引言</a></li>
+<li><a href="#org6a89f70">2. 数据一致性</a></li>
+<li><a href="#orgf6d7c29">3. 数据放置</a>
 <ul>
-<li><a href="#orgc6b58e6">3.1. 均衡数据</a></li>
-<li><a href="#orga3f5632">3.2. 动态环境中的数据分片和复制</a></li>
-<li><a href="#org19e1dfb">3.3. 按照多个属性的数据分片</a></li>
-<li><a href="#org4f145b8">3.4. 钝化副本</a></li>
+<li><a href="#org4dfefff">3.1. 均衡数据</a></li>
+<li><a href="#org3961b3f">3.2. 动态环境中的数据分片和复制</a></li>
+<li><a href="#orgc606d97">3.3. 按照多个属性的数据分片</a></li>
+<li><a href="#orgfef678f">3.4. 钝化副本</a></li>
 </ul>
 </li>
-<li><a href="#orgc82b387">4. 系统协调</a>
+<li><a href="#orgc4f2b9a">4. 系统协调</a>
 <ul>
-<li><a href="#org10b251c">4.1. 故障检测</a></li>
-<li><a href="#org0a5b34e">4.2. 协调者竞选</a></li>
+<li><a href="#org735070b">4.1. 故障检测</a></li>
+<li><a href="#orgc88882b">4.2. 协调者竞选</a></li>
 </ul>
 </li>
 </ul>
@@ -40,8 +86,8 @@
 <li><a href="http://blog.nosqlfan.com/html/4139.html">http://blog.nosqlfan.com/html/4139.html</a></li>
 </ul>
 
-<div id="outline-container-org1d68853" class="outline-2">
-<h2 id="org1d68853"><span class="section-number-2">1</span> 引言</h2>
+<div id="outline-container-org49b9590" class="outline-2">
+<h2 id="org49b9590"><span class="section-number-2">1</span> 引言</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>数据一致性。NoSQL需要在分布式系统的一致性，容错性和性能，低延迟及高可用之间作出权衡，一般来说，数据一致性是一个必选项，所以这一节主要是关于数据复制和数据恢复。</li>
@@ -51,8 +97,8 @@
 </div>
 </div>
 
-<div id="outline-container-org03e1103" class="outline-2">
-<h2 id="org03e1103"><span class="section-number-2">2</span> 数据一致性</h2>
+<div id="outline-container-org6a89f70" class="outline-2">
+<h2 id="org6a89f70"><span class="section-number-2">2</span> 数据一致性</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 我们注意到分布式系统的一致性问题是由数据隔离和复制引起的，所以我们将从研究复制的特点开始：
@@ -167,12 +213,12 @@
 </div>
 </div>
 
-<div id="outline-container-org6b2e735" class="outline-2">
-<h2 id="org6b2e735"><span class="section-number-2">3</span> 数据放置</h2>
+<div id="outline-container-orgf6d7c29" class="outline-2">
+<h2 id="orgf6d7c29"><span class="section-number-2">3</span> 数据放置</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc6b58e6" class="outline-3">
-<h3 id="orgc6b58e6"><span class="section-number-3">3.1</span> 均衡数据</h3>
+<div id="outline-container-org4dfefff" class="outline-3">
+<h3 id="org4dfefff"><span class="section-number-3">3.1</span> 均衡数据</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 尽管数据库能够监控到每一条记录，包括MongoDB, Oracle Coherence, 和还在开发中的 Redis Cluster 在内的许多系统仍然使用的是自动均衡技术。也即，将数据分片并把每个数据分片作为迁移的最小单位，这是基于效率的考虑。很明显分片数会比节点数多，数据分片可以在各节点间平均分布。按照一种简单的协议即可实现无缝数据迁移，这个协议可以在迁移数据分片的时候重定向客户的数据迁出节点和迁入节点。
@@ -180,8 +226,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga3f5632" class="outline-3">
-<h3 id="orga3f5632"><span class="section-number-3">3.2</span> 动态环境中的数据分片和复制</h3>
+<div id="outline-container-org3961b3f" class="outline-3">
+<h3 id="org3961b3f"><span class="section-number-3">3.2</span> 动态环境中的数据分片和复制</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 们关注的另一个问题是怎么把记录映射到物理节点。比较直接的方法是用一张表来记录每个范围的key与节点的映射关系，一个范围的key对应到一个节点，或者用key的hash值与节点数取模得到的值作为节点ID。但是hash取模的方法在集群发生更改的情况下就不是很好用，因为增加或者减少节点都会引起集群内的数据彻底重排。导致很难进行复制和故障恢复。
@@ -197,8 +243,8 @@
 </div>
 </div>
 
-<div id="outline-container-org19e1dfb" class="outline-3">
-<h3 id="org19e1dfb"><span class="section-number-3">3.3</span> 按照多个属性的数据分片</h3>
+<div id="outline-container-orgc606d97" class="outline-3">
+<h3 id="orgc606d97"><span class="section-number-3">3.3</span> 按照多个属性的数据分片</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 当只需要通过主键来访问数据的时候，一致性hash的数据放置策略很有效，但是当需要按照多个属性来查询的时候事情就会复杂得多。一种简单的做法（MongoDB使用的）是用主键来分布数据而不考虑其他属性。这样做的结果是依据主键的查询可以被路由到接个合适的节点上，但是对其他查询的处理就要遍历集群的所有节点。查询效率的不均衡造成下面的问题：
@@ -218,8 +264,8 @@ HyperDex数据库提供了一种解决方案。基本思想是把每个属性视
 </div>
 </div>
 
-<div id="outline-container-org4f145b8" class="outline-3">
-<h3 id="org4f145b8"><span class="section-number-3">3.4</span> 钝化副本</h3>
+<div id="outline-container-orgfef678f" class="outline-3">
+<h3 id="orgfef678f"><span class="section-number-3">3.4</span> 钝化副本</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 #todo: 不是很明白
@@ -228,8 +274,8 @@ HyperDex数据库提供了一种解决方案。基本思想是把每个属性视
 </div>
 </div>
 
-<div id="outline-container-orgc82b387" class="outline-2">
-<h2 id="orgc82b387"><span class="section-number-2">4</span> 系统协调</h2>
+<div id="outline-container-orgc4f2b9a" class="outline-2">
+<h2 id="orgc4f2b9a"><span class="section-number-2">4</span> 系统协调</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 在这部分我们将讨论与系统协调相关的两种技术。分布式协调是一个比较大的领域，数十年以来有很多人对此进行了深入的研究。这篇文章里只涉及两种已经投入实用的技术。关于分布式锁，consensus协议以及其他一些基础技术的内容可以在很多书或者网络资源中找到，也可以去看参考资料
@@ -243,8 +289,8 @@ HyperDex数据库提供了一种解决方案。基本思想是把每个属性视
 </ul>
 </div>
 
-<div id="outline-container-org10b251c" class="outline-3">
-<h3 id="org10b251c"><span class="section-number-3">4.1</span> 故障检测</h3>
+<div id="outline-container-org735070b" class="outline-3">
+<h3 id="org735070b"><span class="section-number-3">4.1</span> 故障检测</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>N. Hayashibara, A. Cherif, T. Katayama. Failure Detectors for Large-Scale Distributed Systems <a href="http://ddg.jaist.ac.jp/pub/HCK02.pdf">http://ddg.jaist.ac.jp/pub/HCK02.pdf</a></li>
@@ -266,7 +312,7 @@ HyperDex数据库提供了一种解决方案。基本思想是把每个属性视
 <ul class="org-ul">
 <li>对于每一个被监控资源，检测器记录心跳信息到达时间Ti。</li>
 <li>计算在统计预测范围内的到达时间的均值和方差。</li>
-<li>假定到达时间的分布已知（下图包括一个正态分布的公式），我们可以计算心跳延迟（当前时间t_now和上一次到达时间Tc之间的差值） 的概率，用这个概率来判断是否发生故障。如 <a href="http://cassandra-shawn.googlecode.com/files/The%20Phi%20Accrual%20Failure%20Detector.pdf">参考资料</a> 中所建议的，可以使用对数函数来调整它以提高可用性。在这种情况下，输出1意味着判断错误（认为节点失效）的概率是10%，2意味着1%，以此类推。</li>
+<li>假定到达时间的分布已知（下图包括一个正态分布的公式），我们可以计算心跳延迟（当前时间t<sub>now和上一次到达时间Tc之间的差值</sub>） 的概率，用这个概率来判断是否发生故障。如 <a href="http://cassandra-shawn.googlecode.com/files/The%20Phi%20Accrual%20Failure%20Detector.pdf">参考资料</a> 中所建议的，可以使用对数函数来调整它以提高可用性。在这种情况下，输出1意味着判断错误（认为节点失效）的概率是10%，2意味着1%，以此类推。</li>
 </ul>
 
 <p>
@@ -275,8 +321,8 @@ HyperDex数据库提供了一种解决方案。基本思想是把每个属性视
 </div>
 </div>
 
-<div id="outline-container-org0a5b34e" class="outline-3">
-<h3 id="org0a5b34e"><span class="section-number-3">4.2</span> 协调者竞选</h3>
+<div id="outline-container-orgc88882b" class="outline-3">
+<h3 id="orgc88882b"><span class="section-number-3">4.2</span> 协调者竞选</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 协调者竞选是用于强一致性数据库的一个重要技术。首先，它可以组织主从结构的系统中主节点的故障恢复。其次，在网络隔离的情况下，它可以断开处于少数的那部分节点，以避免写冲突。
@@ -288,6 +334,11 @@ HyperDex数据库提供了一种解决方案。基本思想是把每个属性视
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/distributed-algorithms-in-nosql-databases.html';this.page.identifier = 'distributed-algorithms-in-nosql-databases.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

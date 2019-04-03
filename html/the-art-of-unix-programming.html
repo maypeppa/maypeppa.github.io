@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Unix程序设计艺术(The Art of Unix Programming)</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Unix程序设计艺术(The Art of Unix Programming)</h1>
@@ -65,7 +111,7 @@
 
 <hr />
 <p>
-Unix programmers tend to be good at writing references,and most Unix documentation has the flavor of a reference or aide memoire for someone who thinks like the document-writer but is not yet an expert at his or her software.The results often look much more cryptic and sparse than they actuallt are.Read every word carefully,because whatever you want to know will probably be there,or deducible from what’s there.Read every word carefully,because you will seldom be told anything twice.
+Unix programmers tend to be good at writing references,and most Unix documentation has the flavor of a reference or aide memoire for someone who thinks like the document-writer but is not yet an expert at his or her software.The results often look much more cryptic and sparse than they actuallt are.Read every word carefully,because whatever you want to know will probably be there,or deducible from what’s there.Read every word carefully,because you will seldom be told anything twice. 
 </p>
 
 <p>
@@ -89,7 +135,7 @@ functional details because you frear they might be confusing,nor warnings about 
 
 <hr />
 <p>
-release early,release often.a rapid release tempo means quick and effective feedback,when each increamental release is small,changing course in repsonse to read-world feedback is eaiser
+release early,release often.a rapid release tempo means quick and effective feedback,when each increamental release is small,changing course in repsonse to read-world feedback is eaiser 
 </p>
 
 <p>
@@ -139,7 +185,7 @@ spend your time on design quality,not the low-level details,and automate away ev
 
 <hr />
 <p>
-Reinventing the wheel is bad not only because is wastes time,but because reinvernted wheels are often square.There is an almost iresstible temptation to economize on reinvention time by taking a shortcut to a crude and poorly-thought-out version,which in the long run often turns out to be false economy.
+Reinventing the wheel is bad not only because is wastes time,but because reinvernted wheels are often square.There is an almost iresstible temptation to economize on reinvention time by taking a shortcut to a crude and poorly-thought-out version,which in the long run often turns out to be false economy. 
 </p>
 
 <p>
@@ -226,6 +272,11 @@ the (re)invention of open source has has a significant impact on the standards p
 <p>
 规范只是一个DNA，我们允许在DNA上面进行扩展，但是关键部分还是需要坚持规范。
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/the-art-of-unix-programming.html';this.page.identifier = 'the-art-of-unix-programming.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

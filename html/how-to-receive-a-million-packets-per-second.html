@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>How to receive a million packets per second</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">How to receive a million packets per second</h1>
@@ -170,8 +216,8 @@ While a 10% penalty for running on a different NUMA node may not sound too bad, 
 除了使用多队列的方式外，我们还可以使用多IP来避免单个processor来处理中断。
 </p>
 <pre class="example">
-sender$ taskset -c 1,2 ./udpsender 192.168.254.1:4321 192.168.254.2:4321
-receiver$ watch 'sudo ethtool -S eth2 |grep rx'
+sender$ taskset -c 1,2 ./udpsender 192.168.254.1:4321 192.168.254.2:4321  
+receiver$ watch 'sudo ethtool -S eth2 |grep rx'  
      rx-0.rx_packets:     8.0/s
      rx-1.rx_packets:     0.0/s
      rx-2.rx_packets:     0.0/s
@@ -183,7 +229,7 @@ receiver$ watch 'sudo ethtool -S eth2 |grep rx'
      rx-8.rx_packets:     0.0/s
      rx-9.rx_packets:     0.0/s
      rx-10.rx_packets:    0.0/s
-receiver$ taskset -c 1 ./udpreceiver1 0.0.0.0:4321
+receiver$ taskset -c 1 ./udpreceiver1 0.0.0.0:4321  
   0.609M pps  18.599MiB / 156.019Mb
   0.657M pps  20.039MiB / 168.102Mb
   0.649M pps  19.803MiB / 166.120Mb
@@ -193,11 +239,11 @@ receiver$ taskset -c 1 ./udpreceiver1 0.0.0.0:4321
 </p>
 
 <p>
-如果我们继续增加发送IP数量的话，接收pps不再上升，rx_nodesc_drop_cnt也不增加。netstat能够看到接收错误
+如果我们继续增加发送IP数量的话，接收pps不再上升，rx<sub>nodesc</sub><sub>drop</sub><sub>cnt也不增加</sub>。netstat能够看到接收错误
 </p>
 <pre class="example">
-receiver$ watch 'netstat -s --udp'
-Udp:
+receiver$ watch 'netstat -s --udp'  
+Udp:  
       437.0k/s packets received
         0.0/s packets to unknown port received.
       386.9k/s packet receive errors
@@ -220,11 +266,11 @@ Udp:
 </p>
 
 <p>
-可以使用 <a href="https://lwn.net/Articles/542629/">SO_REUSEPORT</a> 来解决这个问题. SO_REUSEPORT允许多个进程/线程绑定同一个端口(不同fd)来读取写入数据（底层实现是根据&lt;src-ip, src-port, dst-ip, dst-port&gt;做hash放入不同的bucket, 上层fd会在不同bucket里面取出链接来处理。如果某个fd进程挂掉的话，那么这个bucket里面所有packets都会作废）
+可以使用 <a href="https://lwn.net/Articles/542629/">SO<sub>REUSEPORT</sub></a> 来解决这个问题. SO<sub>REUSEPORT允许多个进程</sub>/线程绑定同一个端口(不同fd)来读取写入数据（底层实现是根据&lt;src-ip, src-port, dst-ip, dst-port&gt;做hash放入不同的bucket, 上层fd会在不同bucket里面取出链接来处理。如果某个fd进程挂掉的话，那么这个bucket里面所有packets都会作废）
 </p>
 
 <pre class="example">
-receiver$ taskset -c 1,2,3,4 ./udpreceiver1 0.0.0.0:4321 4 1
+receiver$ taskset -c 1,2,3,4 ./udpreceiver1 0.0.0.0:4321 4 1  
   1.114M pps  34.007MiB / 285.271Mb
   1.147M pps  34.990MiB / 293.518Mb
   1.126M pps  34.374MiB / 288.354Mb
@@ -239,7 +285,7 @@ receiver$ taskset -c 1,2,3,4 ./udpreceiver1 0.0.0.0:4321 4 1
 To sum up, if you want a perfect performance you need to:
 </p>
 <ul class="org-ul">
-<li>Ensure traffic is distributed evenly across many RX queues and SO_REUSEPORT processes. In practice, the load usually is well distributed as long as there are a large number of connections (or flows).</li>
+<li>Ensure traffic is distributed evenly across many RX queues and SO<sub>REUSEPORT</sub> processes. In practice, the load usually is well distributed as long as there are a large number of connections (or flows).</li>
 <li>You need to have enough spare CPU capacity to actually pick up the packets from the kernel.</li>
 <li>To make the things harder, both RX queues and receiver processes should be on a single NUMA node.</li>
 </ul>
@@ -247,6 +293,11 @@ To sum up, if you want a perfect performance you need to:
 <p>
 While we had shown that it is technically possible to receive 1Mpps on a Linux machine, the application was not doing any actual processing of received packets - it didn't even look at the content of the traffic. Don't expect performance like that for any practical application without a lot more work.（注意这个实验里面没有对packet做任何处理）
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/how-to-receive-a-million-packets-per-second.html';this.page.identifier = 'how-to-receive-a-million-packets-per-second.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

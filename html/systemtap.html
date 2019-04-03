@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>systemtap</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">systemtap</h1>
@@ -16,42 +62,42 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org576233d">1. Links</a></li>
-<li><a href="#org8c5f3ac">2. Getting Started</a></li>
-<li><a href="#org72bf7ce">3. Architecture of systemtap a Linux trace probe tool</a>
+<li><a href="#orga8bc120">1. Links</a></li>
+<li><a href="#org123c7b7">2. Getting Started</a></li>
+<li><a href="#org4058293">3. Architecture of systemtap a Linux trace probe tool</a>
 <ul>
-<li><a href="#orgd248866">3.1. Motivation</a></li>
-<li><a href="#org8d1841e">3.2. Systemtap processing steps</a></li>
-<li><a href="#org58fed3d">3.3. Programming</a>
+<li><a href="#org3c26fe0">3.1. Motivation</a></li>
+<li><a href="#org7eb6152">3.2. Systemtap processing steps</a></li>
+<li><a href="#org4e74fb1">3.3. Programming</a>
 <ul>
-<li><a href="#orgd359dc2">3.3.1. Probe points</a></li>
-<li><a href="#orgcd20372">3.3.2. Language Elements</a></li>
-<li><a href="#org918f204">3.3.3. Statements</a></li>
-<li><a href="#org3040651">3.3.4. Expressions</a></li>
-<li><a href="#org4e12fd9">3.3.5. Auxiliary functions</a></li>
+<li><a href="#org6028bb2">3.3.1. Probe points</a></li>
+<li><a href="#org6f77000">3.3.2. Language Elements</a></li>
+<li><a href="#org6e62858">3.3.3. Statements</a></li>
+<li><a href="#org5633072">3.3.4. Expressions</a></li>
+<li><a href="#orgf892d42">3.3.5. Auxiliary functions</a></li>
 </ul>
 </li>
-<li><a href="#orgaa50f03">3.4. Tapsets</a>
+<li><a href="#orgf654afa">3.4. Tapsets</a>
 <ul>
-<li><a href="#orgd7932f9">3.4.1. Script tapsets</a></li>
-<li><a href="#org9f93159">3.4.2. C tapsets</a></li>
+<li><a href="#org1147a7e">3.4.1. Script tapsets</a></li>
+<li><a href="#org02a6936">3.4.2. C tapsets</a></li>
 </ul>
 </li>
-<li><a href="#orgf016524">3.5. Safety</a></li>
-<li><a href="#orge5dbb2f">3.6. Lower layer issues</a>
+<li><a href="#org5e8204e">3.5. Safety</a></li>
+<li><a href="#org5db3361">3.6. Lower layer issues</a>
 <ul>
-<li><a href="#orge97d388">3.6.1. Kernel-to-user transport</a></li>
-<li><a href="#orgef9d9bc">3.6.2. Output</a></li>
+<li><a href="#org0d168f8">3.6.1. Kernel-to-user transport</a></li>
+<li><a href="#orgd1ef4dc">3.6.2. Output</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org005713b">4. probe &amp; lang</a></li>
+<li><a href="#org1105c69">4. probe &amp; lang</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org576233d" class="outline-2">
-<h2 id="org576233d"><span class="section-number-2">1</span> Links</h2>
+<div id="outline-container-orga8bc120" class="outline-2">
+<h2 id="orga8bc120"><span class="section-number-2">1</span> Links</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>SystemTap <a href="http://sourceware.org/systemtap/">http://sourceware.org/systemtap/</a> 文档 <a href="http://sourceware.org/systemtap/documentation.html">http://sourceware.org/systemtap/documentation.html</a></li>
@@ -63,8 +109,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8c5f3ac" class="outline-2">
-<h2 id="org8c5f3ac"><span class="section-number-2">2</span> Getting Started</h2>
+<div id="outline-container-org123c7b7" class="outline-2">
+<h2 id="org123c7b7"><span class="section-number-2">2</span> Getting Started</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 systemtap的工作原理是使用linux提供的kprobe接口，将用户需要观测linux系统的行为转换成为c（使用kprobe)并且编译成为kernel object然后运行。systemtap使用一种触发式的工作方式，通过安装探针（probe）来监控系统的行为，一旦探针事件出现的话就会触发对应的代码。代码使用自己定义的语言，和C语言非常类似。
@@ -126,12 +172,12 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 </div>
 </div>
 
-<div id="outline-container-org72bf7ce" class="outline-2">
-<h2 id="org72bf7ce"><span class="section-number-2">3</span> Architecture of systemtap a Linux trace probe tool</h2>
+<div id="outline-container-org4058293" class="outline-2">
+<h2 id="org4058293"><span class="section-number-2">3</span> Architecture of systemtap a Linux trace probe tool</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgd248866" class="outline-3">
-<h3 id="orgd248866"><span class="section-number-3">3.1</span> Motivation</h3>
+<div id="outline-container-org3c26fe0" class="outline-3">
+<h3 id="org3c26fe0"><span class="section-number-3">3.1</span> Motivation</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>A tracing and probing tool gives knowledgeable users a deep insight into what is going on inside the operat-ing system, going well beyond isolated tools like netstat, ps, top, iostat 了解当前系统运行状况的工具</li>
@@ -139,8 +185,8 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 </div>
 </div>
 
-<div id="outline-container-org8d1841e" class="outline-3">
-<h3 id="org8d1841e"><span class="section-number-3">3.2</span> Systemtap processing steps</h3>
+<div id="outline-container-org7eb6152" class="outline-3">
+<h3 id="org7eb6152"><span class="section-number-3">3.2</span> Systemtap processing steps</h3>
 <div class="outline-text-3" id="text-3-2">
 
 <div class="figure">
@@ -199,8 +245,8 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 </div>
 </div>
 
-<div id="outline-container-org58fed3d" class="outline-3">
-<h3 id="org58fed3d"><span class="section-number-3">3.3</span> Programming</h3>
+<div id="outline-container-org4e74fb1" class="outline-3">
+<h3 id="org4e74fb1"><span class="section-number-3">3.3</span> Programming</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>A systemtap script file has the suffix “.stp”</li>
@@ -220,44 +266,50 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 </ul>
 </div>
 
-<div id="outline-container-orgd359dc2" class="outline-4">
-<h4 id="orgd359dc2"><span class="section-number-4">3.3.1</span> Probe points</h4>
+<div id="outline-container-org6028bb2" class="outline-4">
+<h4 id="org6028bb2"><span class="section-number-4">3.3.1</span> Probe points</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>A probe definition gives probe points in a comma-separated list, and an associated action in the form of a statement block.（使用，分割多个probe points）</li>
 <li>Each probe point specification has a “dotted-functor” syntax such as kernel.function("foo").return（probe point通过.来表示层级）
 <ol class="org-ol">
 <li>kernel or module("foo") kernel或者是foo.ko模块</li>
-<li>functions
-<ul class="org-ul">
 <li><p>
-function("fn")
+functions
 </p>
 <ul class="org-ul">
+<li>function("fn")
+<ul class="org-ul">
 <li>fn可以使用?,*做通配</li>
+</ul></li>
 </ul>
 <ul class="org-ul">
-<li>function("fn@filename")</li>
-</ul></li>
-<li>function("fn@filename:lineno")</li>
-<li>function(0x1f) PC address located.
+<li>function("fn@filename")
 <ul class="org-ul">
-<li>.callees 可以指定这个fn所有调用的函数</li>
+<li>function("fn@filename:lineno")</li>
+<li>function(0x1f) PC address located.</li>
 </ul></li>
+<li>.callees 可以指定这个fn所有调用的函数
+<ul class="org-ul">
 <li>.return fn返回时候触发，默认是.entry</li>
 </ul></li>
-<li>statements
-<ul class="org-ul">
-<li>statement("fn") 函数fn入口
-<ul class="org-ul">
-<li>statement("fn@filename")</li>
 </ul></li>
+<li><p>
+statements
+</p>
+<ul class="org-ul">
+<li>statement("fn") 函数fn入口</li>
+</ul>
+<ul class="org-ul">
+<li>statement("fn@filename")
+<ul class="org-ul">
 <li>statement("fn@filename:lineno")</li>
-<li>.relative(0x1f) 偏移定位
-<ul class="org-ul">
-<li>.label("need_resched") 标签定位</li>
+<li>.relative(0x1f) 偏移定位</li>
 </ul></li>
+<li>.label("need<sub>resched</sub>") 标签定位
+<ul class="org-ul">
 <li>statement(0x1f) PC address located.</li>
+</ul></li>
 </ul></li>
 <li>events
 <ul class="org-ul">
@@ -285,8 +337,8 @@ kernel.function(0xffffffff802202dc).return
 </div>
 </div>
 
-<div id="outline-container-orgcd20372" class="outline-4">
-<h4 id="orgcd20372"><span class="section-number-4">3.3.2</span> Language Elements</h4>
+<div id="outline-container-org6f77000" class="outline-4">
+<h4 id="org6f77000"><span class="section-number-4">3.3.2</span> Language Elements</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <ul class="org-ul">
 <li>Identifiers
@@ -305,11 +357,11 @@ kernel.function(0xffffffff802202dc).return
 </div>
 </div>
 
-<div id="outline-container-org918f204" class="outline-4">
-<h4 id="org918f204"><span class="section-number-4">3.3.3</span> Statements</h4>
+<div id="outline-container-org6e62858" class="outline-4">
+<h4 id="org6e62858"><span class="section-number-4">3.3.3</span> Statements</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <ul class="org-ul">
-<li>foreach ( &lt;names&gt; in &lt;array_name&gt; ) &lt;stmt&gt;</li>
+<li>foreach ( &lt;names&gt; in &lt;array<sub>name</sub>&gt; ) &lt;stmt&gt;</li>
 <li>next 执行下个handler</li>
 <li>delete &lt;expression&gt; 删除关联数组或者是其中元素
 <ul class="org-ul">
@@ -320,8 +372,8 @@ kernel.function(0xffffffff802202dc).return
 </div>
 </div>
 
-<div id="outline-container-org3040651" class="outline-4">
-<h4 id="org3040651"><span class="section-number-4">3.3.4</span> Expressions</h4>
+<div id="outline-container-org5633072" class="outline-4">
+<h4 id="org5633072"><span class="section-number-4">3.3.4</span> Expressions</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <ul class="org-ul">
 <li>statistics accumulation: &lt;&lt;&lt; 统计类型输入</li>
@@ -333,8 +385,8 @@ kernel.function(0xffffffff802202dc).return
 </div>
 </div>
 
-<div id="outline-container-org4e12fd9" class="outline-4">
-<h4 id="org4e12fd9"><span class="section-number-4">3.3.5</span> Auxiliary functions</h4>
+<div id="outline-container-orgf892d42" class="outline-4">
+<h4 id="orgf892d42"><span class="section-number-4">3.3.5</span> Auxiliary functions</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <ul class="org-ul">
 <li>function(arglist) 自动推导类型</li>
@@ -343,12 +395,12 @@ kernel.function(0xffffffff802202dc).return
 </div>
 </div>
 
-<div id="outline-container-orgaa50f03" class="outline-3">
-<h3 id="orgaa50f03"><span class="section-number-3">3.4</span> Tapsets</h3>
+<div id="outline-container-orgf654afa" class="outline-3">
+<h3 id="orgf654afa"><span class="section-number-3">3.4</span> Tapsets</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-orgd7932f9" class="outline-4">
-<h4 id="orgd7932f9"><span class="section-number-4">3.4.1</span> Script tapsets</h4>
+<div id="outline-container-org1147a7e" class="outline-4">
+<h4 id="org1147a7e"><span class="section-number-4">3.4.1</span> Script tapsets</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <ul class="org-ul">
 <li>The simplest kind of tapset is one that uses the ordinary script language to define new probes, auxiliary functions, global variables, for invocation by an end-user script or another tapset. （可以用来定义新的probe,辅助函数以及全局变量）</li>
@@ -394,19 +446,19 @@ trace ("OOM for pid " . string (victim_pid))
 </div>
 </div>
 
-<div id="outline-container-org9f93159" class="outline-4">
-<h4 id="org9f93159"><span class="section-number-4">3.4.2</span> C tapsets</h4>
+<div id="outline-container-org02a6936" class="outline-4">
+<h4 id="org02a6936"><span class="section-number-4">3.4.2</span> C tapsets</h4>
 </div>
 </div>
-<div id="outline-container-orgf016524" class="outline-3">
-<h3 id="orgf016524"><span class="section-number-3">3.5</span> Safety</h3>
+<div id="outline-container-org5e8204e" class="outline-3">
+<h3 id="org5e8204e"><span class="section-number-3">3.5</span> Safety</h3>
 </div>
-<div id="outline-container-orge5dbb2f" class="outline-3">
-<h3 id="orge5dbb2f"><span class="section-number-3">3.6</span> Lower layer issues</h3>
+<div id="outline-container-org5db3361" class="outline-3">
+<h3 id="org5db3361"><span class="section-number-3">3.6</span> Lower layer issues</h3>
 <div class="outline-text-3" id="text-3-6">
 </div>
-<div id="outline-container-orge97d388" class="outline-4">
-<h4 id="orge97d388"><span class="section-number-4">3.6.1</span> Kernel-to-user transport</h4>
+<div id="outline-container-org0d168f8" class="outline-4">
+<h4 id="org0d168f8"><span class="section-number-4">3.6.1</span> Kernel-to-user transport</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <ul class="org-ul">
 <li>Data collected from systemtap in the kernel must somehow be transmitted to userspace. This transport must have high performance and minimal performance impact on the monitored system. 在内核态收集的数据必须发送到用户态空间，这个传输过程必须满足高性能。</li>
@@ -426,8 +478,8 @@ trace ("OOM for pid " . string (victim_pid))
 </div>
 </div>
 
-<div id="outline-container-orgef9d9bc" class="outline-4">
-<h4 id="orgef9d9bc"><span class="section-number-4">3.6.2</span> Output</h4>
+<div id="outline-container-orgd1ef4dc" class="outline-4">
+<h4 id="orgd1ef4dc"><span class="section-number-4">3.6.2</span> Output</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <ul class="org-ul">
 <li>Depending on the primitives used in the systemtap script, output may flow gradually via logging streams (printk, netlink, etc.), or in large batches (relayfs files).</li>
@@ -437,9 +489,14 @@ trace ("OOM for pid " . string (victim_pid))
 </div>
 </div>
 
-<div id="outline-container-org005713b" class="outline-2">
-<h2 id="org005713b"><span class="section-number-2">4</span> probe &amp; lang</h2>
+<div id="outline-container-org1105c69" class="outline-2">
+<h2 id="org1105c69"><span class="section-number-2">4</span> probe &amp; lang</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/systemtap.html';this.page.identifier = 'systemtap.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

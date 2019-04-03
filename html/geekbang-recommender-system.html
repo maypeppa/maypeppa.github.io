@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>极客时间|推荐系统36式 文章目录</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">极客时间|推荐系统36式 文章目录</h1>
@@ -16,53 +62,53 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5188d20">开篇词 | 用知识去对抗技术不平等</a></li>
-<li><a href="#orga09f090">【概念篇】你真的需要个性化推荐系统吗?</a></li>
-<li><a href="#orgfb78191">【概念篇】个性化推荐系统那些绕不开的经典问题</a></li>
-<li><a href="#org83860f7">【概念篇】这些你必须应该具备的思维模式</a></li>
-<li><a href="#orgdf6799a">【内容推荐】画鬼容易画人难：用户画像的“能”和“不能”</a></li>
-<li><a href="#orgf953172">【内容推荐】从文本到用户画像有多远</a></li>
-<li><a href="#org468e428">【内容推荐】超越标签的内容推荐系统</a></li>
-<li><a href="#orgb25836b">【近邻推荐】人以群分，你是什么人就看到什么世界</a></li>
-<li><a href="#orgd5bbffd">【近邻推荐】解密“看了又看”和“买了又买”</a></li>
-<li><a href="#orgd0e5d3e">【近邻推荐】协同过滤中的相似度计算方法有哪些</a></li>
-<li><a href="#orgfee662f">【矩阵分解】那些在Netflix Prize中大放异彩的推荐算法</a></li>
-<li><a href="#org32ab966">【矩阵分解】Facebook是怎么为十亿人互相推荐好友的</a></li>
-<li><a href="#org87463f4">【矩阵分解】如果关注排序效果，那么这个模型可以帮到你</a></li>
-<li><a href="#org7eedab1">【模型融合】经典模型融合办法：线性模型和树模型的组合拳</a></li>
-<li><a href="#orgf19761d">【模型融合】一网打尽协同过滤、矩阵分解和线性模型</a></li>
-<li><a href="#orge8b1ed4">【模型融合】深度和宽度兼具的融合模型 Wide and Deep</a></li>
-<li><a href="#org4442b49">【MAB问题】简单却有效的Bandit算法</a></li>
-<li><a href="#org945a286">【MAB问题】结合上下文信息的Bandit算法</a></li>
-<li><a href="#org3bb9fa9">【MAB问题】如何将Bandit算法与协同过滤结合使用</a></li>
-<li><a href="#orgc4b36ab">【深度学习】深度学习在推荐系统中的应用有哪些?</a></li>
-<li><a href="#orgab7405f">【深度学习】用RNN构建个性化音乐播单</a></li>
-<li><a href="#orgf8a82d7">【其他应用算法】构建一个科学的排行榜体系</a></li>
-<li><a href="#org34bdd49">【其他应用算法】实用的加权采样算法</a></li>
-<li><a href="#org0f87e37">【其他应用算法】推荐候选池的去重策略</a></li>
-<li><a href="#org50bdae2">【常见架构】典型的信息流架构是什么样的</a></li>
-<li><a href="#org061802f">【常见架构】Netflix个性化推荐架构</a></li>
-<li><a href="#org8c63ec9">【常见架构】总览推荐架构和搜索、广告的关系</a></li>
-<li><a href="#org1d255ea">【关键模块】巧妇难为无米之炊：数据采集关键要素</a></li>
-<li><a href="#org6d7b8e8">【关键模块】让你的推荐系统反应更快：实时推荐</a></li>
-<li><a href="#orgc873319">【关键模块】让数据驱动落地，你需要一个实验平台</a></li>
-<li><a href="#orgc4f005e">【关键模块】 推荐系统服务化、存储选型及API设计</a></li>
-<li><a href="#org53ea720">【效果保证】推荐系统的测试方法及常用指标介绍</a></li>
-<li><a href="#org79a7e0e">【效果保证】道高一尺魔高一丈：推荐系统的攻防</a></li>
-<li><a href="#org00cdad9">【开源工具】和推荐系统有关的开源工具及框架介绍</a></li>
-<li><a href="#orgfec4c0f">【产品篇】推荐系统在互联网产品商业链条中的地位</a></li>
-<li><a href="#org1eb32c4">【产品篇】说说信息流的前世今生</a></li>
-<li><a href="#org27de5fd">【团队篇】组建推荐团队及工程师的学习路径</a></li>
-<li><a href="#org582189f">推荐系统的参考阅读</a></li>
-<li><a href="#org5cf9c01">【尾声】遇“荐”之后，江湖再见</a></li>
+<li><a href="#org5c47154">开篇词 | 用知识去对抗技术不平等</a></li>
+<li><a href="#orgf2389d3">【概念篇】你真的需要个性化推荐系统吗?</a></li>
+<li><a href="#org05f6d8e">【概念篇】个性化推荐系统那些绕不开的经典问题</a></li>
+<li><a href="#org194cc10">【概念篇】这些你必须应该具备的思维模式</a></li>
+<li><a href="#orged36274">【内容推荐】画鬼容易画人难：用户画像的“能”和“不能”</a></li>
+<li><a href="#org0478bc0">【内容推荐】从文本到用户画像有多远</a></li>
+<li><a href="#org6fcd71b">【内容推荐】超越标签的内容推荐系统</a></li>
+<li><a href="#org18e0da8">【近邻推荐】人以群分，你是什么人就看到什么世界</a></li>
+<li><a href="#org0b4ce62">【近邻推荐】解密“看了又看”和“买了又买”</a></li>
+<li><a href="#org45cc2e8">【近邻推荐】协同过滤中的相似度计算方法有哪些</a></li>
+<li><a href="#org76a1976">【矩阵分解】那些在Netflix Prize中大放异彩的推荐算法</a></li>
+<li><a href="#orgefda392">【矩阵分解】Facebook是怎么为十亿人互相推荐好友的</a></li>
+<li><a href="#org7a9eb54">【矩阵分解】如果关注排序效果，那么这个模型可以帮到你</a></li>
+<li><a href="#org70c2f33">【模型融合】经典模型融合办法：线性模型和树模型的组合拳</a></li>
+<li><a href="#orgafd3583">【模型融合】一网打尽协同过滤、矩阵分解和线性模型</a></li>
+<li><a href="#org9a4fe14">【模型融合】深度和宽度兼具的融合模型 Wide and Deep</a></li>
+<li><a href="#orgdd7454c">【MAB问题】简单却有效的Bandit算法</a></li>
+<li><a href="#org76ed65a">【MAB问题】结合上下文信息的Bandit算法</a></li>
+<li><a href="#org402474b">【MAB问题】如何将Bandit算法与协同过滤结合使用</a></li>
+<li><a href="#org493d715">【深度学习】深度学习在推荐系统中的应用有哪些?</a></li>
+<li><a href="#orgeed69d2">【深度学习】用RNN构建个性化音乐播单</a></li>
+<li><a href="#org040ac2f">【其他应用算法】构建一个科学的排行榜体系</a></li>
+<li><a href="#org90e1612">【其他应用算法】实用的加权采样算法</a></li>
+<li><a href="#org4537217">【其他应用算法】推荐候选池的去重策略</a></li>
+<li><a href="#org9d0b94e">【常见架构】典型的信息流架构是什么样的</a></li>
+<li><a href="#orgd000c35">【常见架构】Netflix个性化推荐架构</a></li>
+<li><a href="#org87a34d2">【常见架构】总览推荐架构和搜索、广告的关系</a></li>
+<li><a href="#org1edeb0a">【关键模块】巧妇难为无米之炊：数据采集关键要素</a></li>
+<li><a href="#orgc94c660">【关键模块】让你的推荐系统反应更快：实时推荐</a></li>
+<li><a href="#orgfc9597d">【关键模块】让数据驱动落地，你需要一个实验平台</a></li>
+<li><a href="#org7ea5c25">【关键模块】 推荐系统服务化、存储选型及API设计</a></li>
+<li><a href="#org6fecaba">【效果保证】推荐系统的测试方法及常用指标介绍</a></li>
+<li><a href="#org0238c87">【效果保证】道高一尺魔高一丈：推荐系统的攻防</a></li>
+<li><a href="#orgc325619">【开源工具】和推荐系统有关的开源工具及框架介绍</a></li>
+<li><a href="#org023aa15">【产品篇】推荐系统在互联网产品商业链条中的地位</a></li>
+<li><a href="#org254e404">【产品篇】说说信息流的前世今生</a></li>
+<li><a href="#orgd1223c5">【团队篇】组建推荐团队及工程师的学习路径</a></li>
+<li><a href="#org0cb5ffe">推荐系统的参考阅读</a></li>
+<li><a href="#org55a4937">【尾声】遇“荐”之后，江湖再见</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org5188d20" class="outline-2">
-<h2 id="org5188d20"><a href="https://time.geekbang.org/column/article/3599">开篇词 | 用知识去对抗技术不平等</a></h2>
-<div class="outline-text-2" id="text-org5188d20">
+<div id="outline-container-org5c47154" class="outline-2">
+<h2 id="org5c47154"><a href="https://time.geekbang.org/column/article/3599">开篇词 | 用知识去对抗技术不平等</a></h2>
+<div class="outline-text-2" id="text-org5c47154">
 <p>
 推荐系统的技术实践中，大厂们一骑绝尘，然而更普遍的是：太多中小厂、工程师们还不知道一个推荐系统如何才能从&#x2026;
 </p>
@@ -70,9 +116,9 @@
 </div>
 
 
-<div id="outline-container-orga09f090" class="outline-2">
-<h2 id="orga09f090"><a href="https://time.geekbang.org/column/article/4318">【概念篇】你真的需要个性化推荐系统吗?</a></h2>
-<div class="outline-text-2" id="text-orga09f090">
+<div id="outline-container-orgf2389d3" class="outline-2">
+<h2 id="orgf2389d3"><a href="https://time.geekbang.org/column/article/4318">【概念篇】你真的需要个性化推荐系统吗?</a></h2>
+<div class="outline-text-2" id="text-orgf2389d3">
 <p>
 在问“该怎么做”之前，先来回答一下“要不要做”，我先帮你更加透彻地理解“推荐系统”这个概念，只有彻底理解&#x2026;
 </p>
@@ -80,9 +126,9 @@
 </div>
 
 
-<div id="outline-container-orgfb78191" class="outline-2">
-<h2 id="orgfb78191"><a href="https://time.geekbang.org/column/article/4340">【概念篇】个性化推荐系统那些绕不开的经典问题</a></h2>
-<div class="outline-text-2" id="text-orgfb78191">
+<div id="outline-container-org05f6d8e" class="outline-2">
+<h2 id="org05f6d8e"><a href="https://time.geekbang.org/column/article/4340">【概念篇】个性化推荐系统那些绕不开的经典问题</a></h2>
+<div class="outline-text-2" id="text-org05f6d8e">
 <p>
 推荐系统发展到了今天，已经出现了一些常见的问题，一部分已经有很好的解决方案，另外一部分却还没有通用解决方&#x2026;
 </p>
@@ -90,9 +136,9 @@
 </div>
 
 
-<div id="outline-container-org83860f7" class="outline-2">
-<h2 id="org83860f7"><a href="https://time.geekbang.org/column/article/4417">【概念篇】这些你必须应该具备的思维模式</a></h2>
-<div class="outline-text-2" id="text-org83860f7">
+<div id="outline-container-org194cc10" class="outline-2">
+<h2 id="org194cc10"><a href="https://time.geekbang.org/column/article/4417">【概念篇】这些你必须应该具备的思维模式</a></h2>
+<div class="outline-text-2" id="text-org194cc10">
 <p>
 我主要带你认识两方面的内容：一个是重新认识推荐系统关键元素的重要性，另一个是要建立起两个思维模式。
 </p>
@@ -100,9 +146,9 @@
 </div>
 
 
-<div id="outline-container-orgdf6799a" class="outline-2">
-<h2 id="orgdf6799a"><a href="https://time.geekbang.org/column/article/4574">【内容推荐】画鬼容易画人难：用户画像的“能”和“不能”</a></h2>
-<div class="outline-text-2" id="text-orgdf6799a">
+<div id="outline-container-orged36274" class="outline-2">
+<h2 id="orged36274"><a href="https://time.geekbang.org/column/article/4574">【内容推荐】画鬼容易画人难：用户画像的“能”和“不能”</a></h2>
+<div class="outline-text-2" id="text-orged36274">
 <p>
 用户画像比较抽象，就像每个人都听说过鬼，但很少有人见过。事实上，它也没有那么神秘，只是大家对它有误解，要&#x2026;
 </p>
@@ -110,9 +156,9 @@
 </div>
 
 
-<div id="outline-container-orgf953172" class="outline-2">
-<h2 id="orgf953172"><a href="https://time.geekbang.org/column/article/4635">【内容推荐】从文本到用户画像有多远</a></h2>
-<div class="outline-text-2" id="text-orgf953172">
+<div id="outline-container-org0478bc0" class="outline-2">
+<h2 id="org0478bc0"><a href="https://time.geekbang.org/column/article/4635">【内容推荐】从文本到用户画像有多远</a></h2>
+<div class="outline-text-2" id="text-org0478bc0">
 <p>
 对于一个早期的推荐系统来说，基于内容推荐离不开为用户构建一个初级的画像，从大量文本数据中挖掘用户画像会常&#x2026;
 </p>
@@ -120,9 +166,9 @@
 </div>
 
 
-<div id="outline-container-org468e428" class="outline-2">
-<h2 id="org468e428"><a href="https://time.geekbang.org/column/article/4674">【内容推荐】超越标签的内容推荐系统</a></h2>
-<div class="outline-text-2" id="text-org468e428">
+<div id="outline-container-org6fcd71b" class="outline-2">
+<h2 id="org6fcd71b"><a href="https://time.geekbang.org/column/article/4674">【内容推荐】超越标签的内容推荐系统</a></h2>
+<div class="outline-text-2" id="text-org6fcd71b">
 <p>
 所谓的基于内容推荐，通俗一点来讲，就是一个包装成推荐系统的信息检索系统。这听上去有点残酷，但通常一个复杂&#x2026;
 </p>
@@ -130,9 +176,9 @@
 </div>
 
 
-<div id="outline-container-orgb25836b" class="outline-2">
-<h2 id="orgb25836b"><a href="https://time.geekbang.org/column/article/4802">【近邻推荐】人以群分，你是什么人就看到什么世界</a></h2>
-<div class="outline-text-2" id="text-orgb25836b">
+<div id="outline-container-org18e0da8" class="outline-2">
+<h2 id="org18e0da8"><a href="https://time.geekbang.org/column/article/4802">【近邻推荐】人以群分，你是什么人就看到什么世界</a></h2>
+<div class="outline-text-2" id="text-org18e0da8">
 <p>
 把用户按照兴趣口味聚类成不同的群体，给用户产生的推荐就来自这个群体的平均值；所以要做好这个推荐，关键是如&#x2026;
 </p>
@@ -140,9 +186,9 @@
 </div>
 
 
-<div id="outline-container-orgd5bbffd" class="outline-2">
-<h2 id="orgd5bbffd"><a href="https://time.geekbang.org/column/article/4856">【近邻推荐】解密“看了又看”和“买了又买”</a></h2>
-<div class="outline-text-2" id="text-orgd5bbffd">
+<div id="outline-container-org0b4ce62" class="outline-2">
+<h2 id="org0b4ce62"><a href="https://time.geekbang.org/column/article/4856">【近邻推荐】解密“看了又看”和“买了又买”</a></h2>
+<div class="outline-text-2" id="text-org0b4ce62">
 <p>
 如果做推荐系统不知道“基于物品的协同过滤”，那等同于做程序员不懂得冒泡排序。这个朴素的算法，就像是乔峰大&#x2026;
 </p>
@@ -150,9 +196,9 @@
 </div>
 
 
-<div id="outline-container-orgd0e5d3e" class="outline-2">
-<h2 id="orgd0e5d3e"><a href="https://time.geekbang.org/column/article/4859">【近邻推荐】协同过滤中的相似度计算方法有哪些</a></h2>
-<div class="outline-text-2" id="text-orgd0e5d3e">
+<div id="outline-container-org45cc2e8" class="outline-2">
+<h2 id="org45cc2e8"><a href="https://time.geekbang.org/column/article/4859">【近邻推荐】协同过滤中的相似度计算方法有哪些</a></h2>
+<div class="outline-text-2" id="text-org45cc2e8">
 <p>
 推荐系统中，推荐算法分为两个门派，一个是机器学习派，另一个就是相似度门派。机器学习派是后起之秀，而相似度&#x2026;
 </p>
@@ -160,9 +206,9 @@
 </div>
 
 
-<div id="outline-container-orgfee662f" class="outline-2">
-<h2 id="orgfee662f"><a href="https://time.geekbang.org/column/article/5030">【矩阵分解】那些在Netflix Prize中大放异彩的推荐算法</a></h2>
-<div class="outline-text-2" id="text-orgfee662f">
+<div id="outline-container-org76a1976" class="outline-2">
+<h2 id="org76a1976"><a href="https://time.geekbang.org/column/article/5030">【矩阵分解】那些在Netflix Prize中大放异彩的推荐算法</a></h2>
+<div class="outline-text-2" id="text-org76a1976">
 <p>
 评分预测问题之所以虽然小众却十分重要，这一点得益于十多年前 Netflix Prize 的那一百万美元的悬赏效应。
 </p>
@@ -170,9 +216,9 @@
 </div>
 
 
-<div id="outline-container-org32ab966" class="outline-2">
-<h2 id="org32ab966"><a href="https://time.geekbang.org/column/article/5033">【矩阵分解】Facebook是怎么为十亿人互相推荐好友的</a></h2>
-<div class="outline-text-2" id="text-org32ab966">
+<div id="outline-container-orgefda392" class="outline-2">
+<h2 id="orgefda392"><a href="https://time.geekbang.org/column/article/5033">【矩阵分解】Facebook是怎么为十亿人互相推荐好友的</a></h2>
+<div class="outline-text-2" id="text-orgefda392">
 <p>
 在实际应用中，交替最小二乘更常用一些，这也是社交巨头 Facebook 在他们的推荐系统中选择的主要矩阵分解方法&#x2026;
 </p>
@@ -180,9 +226,9 @@
 </div>
 
 
-<div id="outline-container-org87463f4" class="outline-2">
-<h2 id="org87463f4"><a href="https://time.geekbang.org/column/article/5055">【矩阵分解】如果关注排序效果，那么这个模型可以帮到你</a></h2>
-<div class="outline-text-2" id="text-org87463f4">
+<div id="outline-container-org7a9eb54" class="outline-2">
+<h2 id="org7a9eb54"><a href="https://time.geekbang.org/column/article/5055">【矩阵分解】如果关注排序效果，那么这个模型可以帮到你</a></h2>
+<div class="outline-text-2" id="text-org7a9eb54">
 <p>
 矩阵分解在推荐系统中的地位非常崇高，恐怕本专栏介绍的其他算法模型都不能轻易地撼动它。它既有协同过滤的血统&#x2026;
 </p>
@@ -190,9 +236,9 @@
 </div>
 
 
-<div id="outline-container-org7eedab1" class="outline-2">
-<h2 id="org7eedab1"><a href="https://time.geekbang.org/column/article/5365">【模型融合】经典模型融合办法：线性模型和树模型的组合拳</a></h2>
-<div class="outline-text-2" id="text-org7eedab1">
+<div id="outline-container-org70c2f33" class="outline-2">
+<h2 id="org70c2f33"><a href="https://time.geekbang.org/column/article/5365">【模型融合】经典模型融合办法：线性模型和树模型的组合拳</a></h2>
+<div class="outline-text-2" id="text-org70c2f33">
 <p>
 挖掘的工作就是对用户和物品做非常深入的结构化分析，庖丁解牛一样，各个角度各个层面的特征都被呈现出来，并且&#x2026;
 </p>
@@ -200,9 +246,9 @@
 </div>
 
 
-<div id="outline-container-orgf19761d" class="outline-2">
-<h2 id="orgf19761d"><a href="https://time.geekbang.org/column/article/5387">【模型融合】一网打尽协同过滤、矩阵分解和线性模型</a></h2>
-<div class="outline-text-2" id="text-orgf19761d">
+<div id="outline-container-orgafd3583" class="outline-2">
+<h2 id="orgafd3583"><a href="https://time.geekbang.org/column/article/5387">【模型融合】一网打尽协同过滤、矩阵分解和线性模型</a></h2>
+<div class="outline-text-2" id="text-orgafd3583">
 <p>
 因子分解机最早提出在 2010 年，在一些数据挖掘比赛中都取得了很好的成绩，后来被引入工业界做模型融合，也表&#x2026;
 </p>
@@ -210,9 +256,9 @@
 </div>
 
 
-<div id="outline-container-orge8b1ed4" class="outline-2">
-<h2 id="orge8b1ed4"><a href="https://time.geekbang.org/column/article/5406">【模型融合】深度和宽度兼具的融合模型 Wide and Deep</a></h2>
-<div class="outline-text-2" id="text-orge8b1ed4">
+<div id="outline-container-org9a4fe14" class="outline-2">
+<h2 id="org9a4fe14"><a href="https://time.geekbang.org/column/article/5406">【模型融合】深度和宽度兼具的融合模型 Wide and Deep</a></h2>
+<div class="outline-text-2" id="text-org9a4fe14">
 <p>
 将传统的“宽模型”和新的“深模型”结合，虽然更多的是一种工程上的创新，但是非常有实用性，模型也容易很理解&#x2026;
 </p>
@@ -220,9 +266,9 @@
 </div>
 
 
-<div id="outline-container-org4442b49" class="outline-2">
-<h2 id="org4442b49"><a href="https://time.geekbang.org/column/article/5594">【MAB问题】简单却有效的Bandit算法</a></h2>
-<div class="outline-text-2" id="text-org4442b49">
+<div id="outline-container-orgdd7454c" class="outline-2">
+<h2 id="orgdd7454c"><a href="https://time.geekbang.org/column/article/5594">【MAB问题】简单却有效的Bandit算法</a></h2>
+<div class="outline-text-2" id="text-orgdd7454c">
 <p>
 Bandit 算法把每个用户看成一个多变的环境，待推荐的物品就如同赌场里老虎机的摇臂，如果推荐了符合用户心目中&#x2026;
 </p>
@@ -230,9 +276,9 @@ Bandit 算法把每个用户看成一个多变的环境，待推荐的物品就�
 </div>
 
 
-<div id="outline-container-org945a286" class="outline-2">
-<h2 id="org945a286"><a href="https://time.geekbang.org/column/article/5607">【MAB问题】结合上下文信息的Bandit算法</a></h2>
-<div class="outline-text-2" id="text-org945a286">
+<div id="outline-container-org76ed65a" class="outline-2">
+<h2 id="org76ed65a"><a href="https://time.geekbang.org/column/article/5607">【MAB问题】结合上下文信息的Bandit算法</a></h2>
+<div class="outline-text-2" id="text-org76ed65a">
 <p>
 Bandit 算法用的是一种“走一步看一步”的思路，这一点看上去非常佛系，似乎一点都不如机器学习深度学习那样厚&#x2026;
 </p>
@@ -240,9 +286,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org3bb9fa9" class="outline-2">
-<h2 id="org3bb9fa9"><a href="https://time.geekbang.org/column/article/5610">【MAB问题】如何将Bandit算法与协同过滤结合使用</a></h2>
-<div class="outline-text-2" id="text-org3bb9fa9">
+<div id="outline-container-org402474b" class="outline-2">
+<h2 id="org402474b"><a href="https://time.geekbang.org/column/article/5610">【MAB问题】如何将Bandit算法与协同过滤结合使用</a></h2>
+<div class="outline-text-2" id="text-org402474b">
 <p>
 整个专栏的 Bandit 算法系列，主要是解决推荐系统中的冷启动和 EE 问题。Bandit 算法是公认的一种比较好的&#x2026;
 </p>
@@ -250,9 +296,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-orgc4b36ab" class="outline-2">
-<h2 id="orgc4b36ab"><a href="https://time.geekbang.org/column/article/5843">【深度学习】深度学习在推荐系统中的应用有哪些?</a></h2>
-<div class="outline-text-2" id="text-orgc4b36ab">
+<div id="outline-container-org493d715" class="outline-2">
+<h2 id="org493d715"><a href="https://time.geekbang.org/column/article/5843">【深度学习】深度学习在推荐系统中的应用有哪些?</a></h2>
+<div class="outline-text-2" id="text-org493d715">
 <p>
 经过这些年学界和业界的不断尝试，深度学习在推荐系统中已经有了很多成功的应用。那么，到底深度学习在推荐系统&#x2026;
 </p>
@@ -260,9 +306,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-orgab7405f" class="outline-2">
-<h2 id="orgab7405f"><a href="https://time.geekbang.org/column/article/5916">【深度学习】用RNN构建个性化音乐播单</a></h2>
-<div class="outline-text-2" id="text-orgab7405f">
+<div id="outline-container-orgeed69d2" class="outline-2">
+<h2 id="orgeed69d2"><a href="https://time.geekbang.org/column/article/5916">【深度学习】用RNN构建个性化音乐播单</a></h2>
+<div class="outline-text-2" id="text-orgeed69d2">
 <p>
 在深度学习大火之后，对时间序列建模被提上议事日程，业界有很多尝试，今天以Spotify的音乐推荐为例，介绍循环&#x2026;
 </p>
@@ -270,9 +316,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-orgf8a82d7" class="outline-2">
-<h2 id="orgf8a82d7"><a href="https://time.geekbang.org/column/article/5933">【其他应用算法】构建一个科学的排行榜体系</a></h2>
-<div class="outline-text-2" id="text-orgf8a82d7">
+<div id="outline-container-org040ac2f" class="outline-2">
+<h2 id="org040ac2f"><a href="https://time.geekbang.org/column/article/5933">【其他应用算法】构建一个科学的排行榜体系</a></h2>
+<div class="outline-text-2" id="text-org040ac2f">
 <p>
 一个新用户来了，什么数据都还没有，推荐系统对其一无所知。这时候，你就需要一个排行榜了。
 </p>
@@ -280,9 +326,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org34bdd49" class="outline-2">
-<h2 id="org34bdd49"><a href="https://time.geekbang.org/column/article/6177">【其他应用算法】实用的加权采样算法</a></h2>
-<div class="outline-text-2" id="text-org34bdd49">
+<div id="outline-container-org90e1612" class="outline-2">
+<h2 id="org90e1612"><a href="https://time.geekbang.org/column/article/6177">【其他应用算法】实用的加权采样算法</a></h2>
+<div class="outline-text-2" id="text-org90e1612">
 <p>
 今天介绍的算法非常简单，但是在推荐系统中有很多的用途。尤其是面对的数据需要采样、需要有所变化时，加权采样&#x2026;
 </p>
@@ -290,9 +336,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org0f87e37" class="outline-2">
-<h2 id="org0f87e37"><a href="https://time.geekbang.org/column/article/6186">【其他应用算法】推荐候选池的去重策略</a></h2>
-<div class="outline-text-2" id="text-org0f87e37">
+<div id="outline-container-org4537217" class="outline-2">
+<h2 id="org4537217"><a href="https://time.geekbang.org/column/article/6186">【其他应用算法】推荐候选池的去重策略</a></h2>
+<div class="outline-text-2" id="text-org4537217">
 <p>
 推荐系统中，虽然我们十分关心推荐匹配的效果，但是别忘了，对原始内容的挖掘和清洗往往更加重要。这其中就包括&#x2026;
 </p>
@@ -300,9 +346,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org50bdae2" class="outline-2">
-<h2 id="org50bdae2"><a href="https://time.geekbang.org/column/article/6195">【常见架构】典型的信息流架构是什么样的</a></h2>
-<div class="outline-text-2" id="text-org50bdae2">
+<div id="outline-container-org9d0b94e" class="outline-2">
+<h2 id="org9d0b94e"><a href="https://time.geekbang.org/column/article/6195">【常见架构】典型的信息流架构是什么样的</a></h2>
+<div class="outline-text-2" id="text-org9d0b94e">
 <p>
 从今天起，我们不再单独介绍推荐算法的原理，而是开始进入一个新的模块——工程篇。
 </p>
@@ -310,9 +356,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org061802f" class="outline-2">
-<h2 id="org061802f"><a href="https://time.geekbang.org/column/article/6495">【常见架构】Netflix个性化推荐架构</a></h2>
-<div class="outline-text-2" id="text-org061802f">
+<div id="outline-container-orgd000c35" class="outline-2">
+<h2 id="orgd000c35"><a href="https://time.geekbang.org/column/article/6495">【常见架构】Netflix个性化推荐架构</a></h2>
+<div class="outline-text-2" id="text-orgd000c35">
 <p>
 实际上，工程实现才是推荐系统的骨架，如果没有很好的软件实现，算法不能落地产生效果，更不能让推荐系统往更好&#x2026;
 </p>
@@ -320,9 +366,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org8c63ec9" class="outline-2">
-<h2 id="org8c63ec9"><a href="https://time.geekbang.org/column/article/6499">【常见架构】总览推荐架构和搜索、广告的关系</a></h2>
-<div class="outline-text-2" id="text-org8c63ec9">
+<div id="outline-container-org87a34d2" class="outline-2">
+<h2 id="org87a34d2"><a href="https://time.geekbang.org/column/article/6499">【常见架构】总览推荐架构和搜索、广告的关系</a></h2>
+<div class="outline-text-2" id="text-org87a34d2">
 <p>
 今天我们提到了推荐架构和搜索、广告的关系，并将三者分别作了对比。这三者有统一的可能性，而且不低。如果要统&#x2026;
 </p>
@@ -330,9 +376,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org1d255ea" class="outline-2">
-<h2 id="org1d255ea"><a href="https://time.geekbang.org/column/article/6506">【关键模块】巧妇难为无米之炊：数据采集关键要素</a></h2>
-<div class="outline-text-2" id="text-org1d255ea">
+<div id="outline-container-org1edeb0a" class="outline-2">
+<h2 id="org1edeb0a"><a href="https://time.geekbang.org/column/article/6506">【关键模块】巧妇难为无米之炊：数据采集关键要素</a></h2>
+<div class="outline-text-2" id="text-org1edeb0a">
 <p>
 采集数据需要首先梳理好自己的数据有哪些，本文不是帮你梳理你的自己的产品中有哪些数据，而是告诉你看推荐系统&#x2026;
 </p>
@@ -340,9 +386,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org6d7b8e8" class="outline-2">
-<h2 id="org6d7b8e8"><a href="https://time.geekbang.org/column/article/6630">【关键模块】让你的推荐系统反应更快：实时推荐</a></h2>
-<div class="outline-text-2" id="text-org6d7b8e8">
+<div id="outline-container-orgc94c660" class="outline-2">
+<h2 id="orgc94c660"><a href="https://time.geekbang.org/column/article/6630">【关键模块】让你的推荐系统反应更快：实时推荐</a></h2>
+<div class="outline-text-2" id="text-orgc94c660">
 <p>
 实时推荐有三个层次，很多非工程师的朋友们常常脑海里想象的实时推荐实际上只是第二层次，也就是实时更新特征，&#x2026;
 </p>
@@ -350,9 +396,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-orgc873319" class="outline-2">
-<h2 id="orgc873319"><a href="https://time.geekbang.org/column/article/6799">【关键模块】让数据驱动落地，你需要一个实验平台</a></h2>
-<div class="outline-text-2" id="text-orgc873319">
+<div id="outline-container-orgfc9597d" class="outline-2">
+<h2 id="orgfc9597d"><a href="https://time.geekbang.org/column/article/6799">【关键模块】让数据驱动落地，你需要一个实验平台</a></h2>
+<div class="outline-text-2" id="text-orgfc9597d">
 <p>
 实验平台是推荐系统要做到数据驱动必不可少的东西，但是如何做到科学高效快速地做实验呢？
 </p>
@@ -360,9 +406,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-orgc4f005e" class="outline-2">
-<h2 id="orgc4f005e"><a href="https://time.geekbang.org/column/article/6803">【关键模块】 推荐系统服务化、存储选型及API设计</a></h2>
-<div class="outline-text-2" id="text-orgc4f005e">
+<div id="outline-container-org7ea5c25" class="outline-2">
+<h2 id="org7ea5c25"><a href="https://time.geekbang.org/column/article/6803">【关键模块】 推荐系统服务化、存储选型及API设计</a></h2>
+<div class="outline-text-2" id="text-org7ea5c25">
 <p>
 对于认识一个推荐系统来说，还差最后一个问题需要解决，那就是：万事俱备，如何给用户提供一个真正的在线推荐服&#x2026;
 </p>
@@ -370,9 +416,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org53ea720" class="outline-2">
-<h2 id="org53ea720"><a href="https://time.geekbang.org/column/article/7181">【效果保证】推荐系统的测试方法及常用指标介绍</a></h2>
-<div class="outline-text-2" id="text-org53ea720">
+<div id="outline-container-org6fecaba" class="outline-2">
+<h2 id="org6fecaba"><a href="https://time.geekbang.org/column/article/7181">【效果保证】推荐系统的测试方法及常用指标介绍</a></h2>
+<div class="outline-text-2" id="text-org6fecaba">
 <p>
 面对推荐系统这样一个有诸多复杂因素联动起作用的系统，要时时刻刻知道它好不好，健不健康，你同样需要掌握一些&#x2026;
 </p>
@@ -380,9 +426,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org79a7e0e" class="outline-2">
-<h2 id="org79a7e0e"><a href="https://time.geekbang.org/column/article/7188">【效果保证】道高一尺魔高一丈：推荐系统的攻防</a></h2>
-<div class="outline-text-2" id="text-org79a7e0e">
+<div id="outline-container-org0238c87" class="outline-2">
+<h2 id="org0238c87"><a href="https://time.geekbang.org/column/article/7188">【效果保证】道高一尺魔高一丈：推荐系统的攻防</a></h2>
+<div class="outline-text-2" id="text-org0238c87">
 <p>
 推荐系统也是一种软件，只要是软件，就一定有安全问题，推荐系统也不能免俗。
 </p>
@@ -390,9 +436,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org00cdad9" class="outline-2">
-<h2 id="org00cdad9"><a href="https://time.geekbang.org/column/article/7204">【开源工具】和推荐系统有关的开源工具及框架介绍</a></h2>
-<div class="outline-text-2" id="text-org00cdad9">
+<div id="outline-container-orgc325619" class="outline-2">
+<h2 id="orgc325619"><a href="https://time.geekbang.org/column/article/7204">【开源工具】和推荐系统有关的开源工具及框架介绍</a></h2>
+<div class="outline-text-2" id="text-orgc325619">
 <p>
 有别于介绍一个笼统的“推荐系统”，我更倾向于把粒度和焦点再缩小一下，本文按照专栏的目录给你梳理一遍各个模&#x2026;
 </p>
@@ -400,9 +446,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-orgfec4c0f" class="outline-2">
-<h2 id="orgfec4c0f"><a href="https://time.geekbang.org/column/article/7623">【产品篇】推荐系统在互联网产品商业链条中的地位</a></h2>
-<div class="outline-text-2" id="text-orgfec4c0f">
+<div id="outline-container-org023aa15" class="outline-2">
+<h2 id="org023aa15"><a href="https://time.geekbang.org/column/article/7623">【产品篇】推荐系统在互联网产品商业链条中的地位</a></h2>
+<div class="outline-text-2" id="text-org023aa15">
 <p>
 一个完整的推荐系统一定是置身商业世界中，而不是只在学术界撒野，在商业世界里，就应该带一点“功利”的眼光看&#x2026;
 </p>
@@ -410,9 +456,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org1eb32c4" class="outline-2">
-<h2 id="org1eb32c4"><a href="https://time.geekbang.org/column/article/7653">【产品篇】说说信息流的前世今生</a></h2>
-<div class="outline-text-2" id="text-org1eb32c4">
+<div id="outline-container-org254e404" class="outline-2">
+<h2 id="org254e404"><a href="https://time.geekbang.org/column/article/7653">【产品篇】说说信息流的前世今生</a></h2>
+<div class="outline-text-2" id="text-org254e404">
 <p>
 在今天，最厉害的注意力存储器就是信息流，尤其是个性化信息流，也叫做兴趣Feed，这也是推荐系统的一种。
 </p>
@@ -420,9 +466,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org27de5fd" class="outline-2">
-<h2 id="org27de5fd"><a href="https://time.geekbang.org/column/article/7657">【团队篇】组建推荐团队及工程师的学习路径</a></h2>
-<div class="outline-text-2" id="text-org27de5fd">
+<div id="outline-container-orgd1223c5" class="outline-2">
+<h2 id="orgd1223c5"><a href="https://time.geekbang.org/column/article/7657">【团队篇】组建推荐团队及工程师的学习路径</a></h2>
+<div class="outline-text-2" id="text-orgd1223c5">
 <p>
 推荐系统工程师的能力，一共有三个层次，建设起来由易到难，需要不断刻意练习才可能有较大的能力进步，这一点我&#x2026;
 </p>
@@ -430,9 +476,9 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org582189f" class="outline-2">
-<h2 id="org582189f"><a href="https://time.geekbang.org/column/article/8113">推荐系统的参考阅读</a></h2>
-<div class="outline-text-2" id="text-org582189f">
+<div id="outline-container-org0cb5ffe" class="outline-2">
+<h2 id="org0cb5ffe"><a href="https://time.geekbang.org/column/article/8113">推荐系统的参考阅读</a></h2>
+<div class="outline-text-2" id="text-org0cb5ffe">
 <p>
 专栏主体内容已经结束了，在专栏写作的过程中，我阅读了很多业界公开的资料，我觉得有必要整理出来，供想要阅读&#x2026;
 </p>
@@ -440,14 +486,19 @@ Bandit 算法用的是一种“走一步看一步”的思路，这一点看上�
 </div>
 
 
-<div id="outline-container-org5cf9c01" class="outline-2">
-<h2 id="org5cf9c01"><a href="https://time.geekbang.org/column/article/8117">【尾声】遇“荐”之后，江湖再见</a></h2>
-<div class="outline-text-2" id="text-org5cf9c01">
+<div id="outline-container-org55a4937" class="outline-2">
+<h2 id="org55a4937"><a href="https://time.geekbang.org/column/article/8117">【尾声】遇“荐”之后，江湖再见</a></h2>
+<div class="outline-text-2" id="text-org55a4937">
 <p>
 如果要说整个写专栏过程中的一些感悟和心路，那就概括为三个“如”字吧。这三个“如”字，是三种痛苦，同时，也&#x2026;
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/geekbang-recommender-system.html';this.page.identifier = 'geekbang-recommender-system.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

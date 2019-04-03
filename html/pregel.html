@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pregel: A System for Large-Scale Graph Processing</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Pregel: A System for Large-Scale Graph Processing</h1>
@@ -16,36 +62,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1f1793a">1. Miscellaneous</a></li>
-<li><a href="#orgaaf6995">2. Abstract</a></li>
-<li><a href="#org28abac3">3. Introduction</a></li>
-<li><a href="#org1f8c7ef">4. Model of Computation</a></li>
-<li><a href="#orgf3bc281">5. The C++ API</a>
+<li><a href="#org6fed494">1. Miscellaneous</a></li>
+<li><a href="#org48302e8">2. Abstract</a></li>
+<li><a href="#orgd3b0145">3. Introduction</a></li>
+<li><a href="#org266d613">4. Model of Computation</a></li>
+<li><a href="#org57a8a8c">5. The C++ API</a>
 <ul>
-<li><a href="#orgf8fc47c">5.1. Message Passing</a></li>
-<li><a href="#org533fb49">5.2. Combiners</a></li>
-<li><a href="#orgfa0e85e">5.3. Aggregators</a></li>
-<li><a href="#orgc330f9b">5.4. Topology Mutations</a></li>
-<li><a href="#org5ee23e7">5.5. Input and Output</a></li>
+<li><a href="#org549c2cf">5.1. Message Passing</a></li>
+<li><a href="#org7928d85">5.2. Combiners</a></li>
+<li><a href="#org6c6e976">5.3. Aggregators</a></li>
+<li><a href="#org0f5b5d0">5.4. Topology Mutations</a></li>
+<li><a href="#org21a59b8">5.5. Input and Output</a></li>
 </ul>
 </li>
-<li><a href="#org1e4614a">6. Implementation</a>
+<li><a href="#org2c41173">6. Implementation</a>
 <ul>
-<li><a href="#org709e83a">6.1. Basic architecture</a></li>
-<li><a href="#org9d41bd2">6.2. Fault tolerance</a></li>
-<li><a href="#org244903f">6.3. Worker implementation</a></li>
-<li><a href="#org3e3ddd0">6.4. Master implementation</a></li>
-<li><a href="#org59706da">6.5. Aggregators</a></li>
+<li><a href="#org7b8b583">6.1. Basic architecture</a></li>
+<li><a href="#orgacda25a">6.2. Fault tolerance</a></li>
+<li><a href="#org92206be">6.3. Worker implementation</a></li>
+<li><a href="#org4c7592f">6.4. Master implementation</a></li>
+<li><a href="#org5a1af12">6.5. Aggregators</a></li>
 </ul>
 </li>
-<li><a href="#org311c473">7. Applications</a>
+<li><a href="#org7ed652c">7. Applications</a>
 <ul>
-<li><a href="#org5ba4b56">7.1. PageRank</a></li>
+<li><a href="#orgb8dd1f9">7.1. PageRank</a></li>
 </ul>
 </li>
-<li><a href="#org2df1fee">8. Experiments</a></li>
-<li><a href="#org6846218">9. Related Work</a></li>
-<li><a href="#orgd50efa1">10. Conclusion and Future Work</a></li>
+<li><a href="#org30cb74c">8. Experiments</a></li>
+<li><a href="#orgf54a7a6">9. Related Work</a></li>
+<li><a href="#orgb0bae1e">10. Conclusion and Future Work</a></li>
 </ul>
 </div>
 </div>
@@ -57,8 +103,8 @@
 The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his famous theorem, spanned the Pregel river(Euler回路起源就是Konigsberg桥问题，而这个桥就在Pregel River上面)
 </p>
 
-<div id="outline-container-org1f1793a" class="outline-2">
-<h2 id="org1f1793a"><span class="section-number-2">1</span> Miscellaneous</h2>
+<div id="outline-container-org6fed494" class="outline-2">
+<h2 id="org6fed494"><span class="section-number-2">1</span> Miscellaneous</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>JPregel @ GitHub <a href="http://kowshik.github.com/JPregel/">http://kowshik.github.com/JPregel/</a></li>
@@ -70,8 +116,8 @@ The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his fa
 </div>
 </div>
 
-<div id="outline-container-orgaaf6995" class="outline-2">
-<h2 id="orgaaf6995"><span class="section-number-2">2</span> Abstract</h2>
+<div id="outline-container-org48302e8" class="outline-2">
+<h2 id="org48302e8"><span class="section-number-2">2</span> Abstract</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Programs are expressed as a sequence of iterations, in each of which a vertex can receive messages sent in the previous iteration, send mes-sages to other vertices, and modify its own state and that of its outgoing edges or mutate graph topology. (主要是为了解决大规模图算法的问题。程序分为多次迭代地执行，每次迭代在顶点上面处理上次迭代接受到的消息，产生消息发送到其他节点，并且修改自身的状态，或者修改其出边，或者是修改整个图的拓扑结构)</li>
@@ -79,8 +125,8 @@ The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his fa
 </div>
 </div>
 
-<div id="outline-container-org28abac3" class="outline-2">
-<h2 id="org28abac3"><span class="section-number-2">3</span> Introduction</h2>
+<div id="outline-container-orgd3b0145" class="outline-2">
+<h2 id="orgd3b0145"><span class="section-number-2">3</span> Introduction</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>The Internet made the Web graph a popular object of analysis and research. Web 2.0 fueled interest in social net-works. Other large graphs—for example induced by trans-portation routes, similarity of newspaper articles, paths of disease outbreaks, or citation relationships among published scientific work—have been processed for decades. （相当数量大规模图算法的应用）</li>
@@ -107,8 +153,8 @@ The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his fa
 </div>
 </div>
 
-<div id="outline-container-org1f8c7ef" class="outline-2">
-<h2 id="org1f8c7ef"><span class="section-number-2">4</span> Model of Computation</h2>
+<div id="outline-container-org266d613" class="outline-2">
+<h2 id="org266d613"><span class="section-number-2">4</span> Model of Computation</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>The input to a Pregel computation is a directed graph in which each vertex is uniquely identified by a string vertex identifier. Each vertex is associated with a modifiable, user defined value. The directed edges are associated with their source vertices, and each edge consists of a modifiable, user defined value and a target vertex identifier.（pregel的输入就是一个有向图，每个节点都有一个唯一标识，并且有一个相应的自定义可修改数据。edge对应了source和target vertex，并且上面也有自定义数据） 。 但是注意 <b>Edges are not first-class citizens in this model, having no associated computation.</b> 对于edge来说并不是first-class，pregel是vertex-centric模式，edge上面没有对应任何计算。</li>
@@ -131,24 +177,24 @@ The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his fa
 </div>
 </div>
 
-<div id="outline-container-orgf3bc281" class="outline-2">
-<h2 id="orgf3bc281"><span class="section-number-2">5</span> The C++ API</h2>
+<div id="outline-container-org57a8a8c" class="outline-2">
+<h2 id="org57a8a8c"><span class="section-number-2">5</span> The C++ API</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">VertexValue</span>,
-          <span class="org-keyword">typename</span> <span class="org-type">EdgeValue</span>,
-          <span class="org-keyword">typename</span> <span class="org-type">MessageValue</span>&gt;
-<span class="org-keyword">class</span> <span class="org-type">Vertex</span> {
- <span class="org-keyword">public</span>:
-  <span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">Compute</span>(<span class="org-type">MessageIterator</span>* <span class="org-variable-name">msgs</span>) = 0; <span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#20197;&#36845;&#20195;&#21457;&#36865;&#32473;&#36825;&#20010;&#33410;&#28857;&#30340;&#28040;&#24687;</span>
-  <span class="org-keyword">const</span> <span class="org-type">string</span>&amp; <span class="org-function-name">vertex_id</span>() <span class="org-keyword">const</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#33258;&#36523;</span>
-  <span class="org-type">int64</span> <span class="org-function-name">superstep</span>() <span class="org-keyword">const</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#36845;&#20195;&#27425;&#25968;</span>
-  <span class="org-keyword">const</span> <span class="org-type">VertexValue</span>&amp; <span class="org-function-name">GetValue</span>(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#33258;&#36523;hold value&#65292;custom&#12290;</span>
-  <span class="org-type">VertexValue</span>* <span class="org-function-name">MutableValue</span>();
-  <span class="org-type">OutEdgeIterator</span> <span class="org-function-name">GetOutEdgeIterator</span>(); <span class="org-comment-delimiter">// </span><span class="org-comment">out going vertices&#12290;&#36825;&#20010;&#20063;&#31639;&#26159;vertex hold value&#65292;builtin&#12290;</span>
-  <span class="org-type">void</span> <span class="org-function-name">SendMessageTo</span>(<span class="org-keyword">const</span> <span class="org-type">string</span>&amp; <span class="org-variable-name">dest_vertex</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#32473;&#26576;&#20010;&#33410;&#28857;&#21457;&#36865;&#28040;&#24687;</span>
-                     <span class="org-keyword">const</span> <span class="org-type">MessageValue</span>&amp; <span class="org-variable-name">message</span>);
-  <span class="org-type">void</span> <span class="org-function-name">VoteToHalt</span>(); <span class="org-comment-delimiter">// </span><span class="org-comment">vote to halt</span>
+<pre class="src src-C++"><span style="font-weight: bold;">template</span> &lt;<span style="font-weight: bold;">typename</span> <span style="font-weight: bold; text-decoration: underline;">VertexValue</span>,
+          <span style="font-weight: bold;">typename</span> <span style="font-weight: bold; text-decoration: underline;">EdgeValue</span>,
+          <span style="font-weight: bold;">typename</span> <span style="font-weight: bold; text-decoration: underline;">MessageValue</span>&gt;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Vertex</span> {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">Compute</span>(<span style="font-weight: bold; text-decoration: underline;">MessageIterator</span>* <span style="font-weight: bold; font-style: italic;">msgs</span>) = 0; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21487;&#20197;&#36845;&#20195;&#21457;&#36865;&#32473;&#36825;&#20010;&#33410;&#28857;&#30340;&#28040;&#24687;</span>
+  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">string</span>&amp; <span style="font-weight: bold;">vertex_id</span>() <span style="font-weight: bold;">const</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#33258;&#36523;</span>
+  <span style="font-weight: bold; text-decoration: underline;">int64</span> <span style="font-weight: bold;">superstep</span>() <span style="font-weight: bold;">const</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36845;&#20195;&#27425;&#25968;</span>
+  <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">VertexValue</span>&amp; <span style="font-weight: bold;">GetValue</span>(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#33258;&#36523;hold value&#65292;custom&#12290;</span>
+  <span style="font-weight: bold; text-decoration: underline;">VertexValue</span>* <span style="font-weight: bold;">MutableValue</span>();
+  <span style="font-weight: bold; text-decoration: underline;">OutEdgeIterator</span> <span style="font-weight: bold;">GetOutEdgeIterator</span>(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">out going vertices&#12290;&#36825;&#20010;&#20063;&#31639;&#26159;vertex hold value&#65292;builtin&#12290;</span>
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">SendMessageTo</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">string</span>&amp; <span style="font-weight: bold; font-style: italic;">dest_vertex</span>, <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#32473;&#26576;&#20010;&#33410;&#28857;&#21457;&#36865;&#28040;&#24687;</span>
+                     <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">MessageValue</span>&amp; <span style="font-weight: bold; font-style: italic;">message</span>);
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">VoteToHalt</span>(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">vote to halt</span>
 };
 </pre>
 </div>
@@ -157,8 +203,8 @@ The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his fa
 </ul>
 </div>
 
-<div id="outline-container-orgf8fc47c" class="outline-3">
-<h3 id="orgf8fc47c"><span class="section-number-3">5.1</span> Message Passing</h3>
+<div id="outline-container-org549c2cf" class="outline-3">
+<h3 id="org549c2cf"><span class="section-number-3">5.1</span> Message Passing</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 When the destination vertex of any message does not ex-ist, we execute user-defined handlers. A handler could, for example, create the missing vertex or remove the dangling edge from its source vertex.
@@ -166,8 +212,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org533fb49" class="outline-3">
-<h3 id="org533fb49"><span class="section-number-3">5.2</span> Combiners</h3>
+<div id="outline-container-org7928d85" class="outline-3">
+<h3 id="org7928d85"><span class="section-number-3">5.2</span> Combiners</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>这个概念和MR里面非常类似，能够有效地减少数据传输量。我猜想combiner工作集合应该是节点发送给某个节点所有消息。</li>
@@ -178,8 +224,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-orgfa0e85e" class="outline-3">
-<h3 id="orgfa0e85e"><span class="section-number-3">5.3</span> Aggregators</h3>
+<div id="outline-container-org6c6e976" class="outline-3">
+<h3 id="org6c6e976"><span class="section-number-3">5.3</span> Aggregators</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>Pregel aggregators are a mechanism for global communica-tion, monitoring, and data. Each vertex can provide a value to an aggregator in superstep S, the system combines those values using a reduction operator, and the resulting value is made available to all vertices in superstep S + 1. （通过将S的所有节点数据全部聚合起来，然后在S+1散播给所有的节点）
@@ -193,8 +239,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-orgc330f9b" class="outline-3">
-<h3 id="orgc330f9b"><span class="section-number-3">5.4</span> Topology Mutations</h3>
+<div id="outline-container-org0f5b5d0" class="outline-3">
+<h3 id="org0f5b5d0"><span class="section-number-3">5.4</span> Topology Mutations</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>Multiple vertices may issue conflicting requests in the same superstep (e.g., two requests to add a vertex V , with dif-ferent initial values). We use two mechanisms to achieve determinism: partial ordering and handlers.（拓扑结构的修改在同一个superstep可能会出现冲突，比如用一个value创建两个不同的节点），我们通过下面两个机制达到确定性：偏序和handlers</li>
@@ -215,8 +261,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org5ee23e7" class="outline-3">
-<h3 id="org5ee23e7"><span class="section-number-3">5.5</span> Input and Output</h3>
+<div id="outline-container-org21a59b8" class="outline-3">
+<h3 id="org21a59b8"><span class="section-number-3">5.5</span> Input and Output</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 定义了常用的输入输出格式，也提供了读写接口来进行扩展。
@@ -225,12 +271,12 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org1e4614a" class="outline-2">
-<h2 id="org1e4614a"><span class="section-number-2">6</span> Implementation</h2>
+<div id="outline-container-org2c41173" class="outline-2">
+<h2 id="org2c41173"><span class="section-number-2">6</span> Implementation</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org709e83a" class="outline-3">
-<h3 id="org709e83a"><span class="section-number-3">6.1</span> Basic architecture</h3>
+<div id="outline-container-org7b8b583" class="outline-3">
+<h3 id="org7b8b583"><span class="section-number-3">6.1</span> Basic architecture</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>The Pregel library divides a graph into partitions, each consisting of a set of vertices and all of those vertices’ out-going edges. Assignment of a vertex to a partition depends solely on the vertex ID, which implies it is possible to know which partition a given vertex belongs to even if the vertex is owned by a different machine, or even if the vertex does not yet exist. The default partitioning function is just hash(ID) mod N , where N is the number of partitions, but users can replace it.（pregel library首先将输入切割成为多份称为partition，每个partition应该对应每个调度单位可能对应进程，这样多个节点的处理就分摊到一个进程上面执行了。但是parition算法仅仅是以来与vertex id,因此如何分布事先就可以知道。默认的算法就是取模，但是用户可以进行简单的替换）</li>
@@ -249,8 +295,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org9d41bd2" class="outline-3">
-<h3 id="org9d41bd2"><span class="section-number-3">6.2</span> Fault tolerance</h3>
+<div id="outline-container-orgacda25a" class="outline-3">
+<h3 id="orgacda25a"><span class="section-number-3">6.2</span> Fault tolerance</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>Fault tolerance is achieved through checkpointing. At the beginning of a superstep, the master instructs the workers to save the state of their partitions to persistent storage, including vertex values, edge values, and incoming messages; the master separately saves the aggregator values.（通过chkp来完成容错的。在superstep之前，master会协调所有的worker将他们的状态进行持久化，包括节点，边以及将要处理的消息等，而master单独保存聚合内容）</li>
@@ -267,8 +313,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org244903f" class="outline-3">
-<h3 id="org244903f"><span class="section-number-3">6.3</span> Worker implementation</h3>
+<div id="outline-container-org92206be" class="outline-3">
+<h3 id="org92206be"><span class="section-number-3">6.3</span> Worker implementation</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>A worker machine maintains the state of its portion of the graph in memory. Conceptually this can be thought of as a map from vertex ID to the state of each vertex, where the state of each vertex consists of its current value, a list of its outgoing edges (the vertex ID for the edge’s target, and the edge’s current value), a queue containing incoming messages, and a flag specifying whether the vertex is active. （本质上来说一个worker保存的内容就是map，key为vertex id，而value为这个vertex需要保存的状态，包括value，edges，message queue以及active flag）</li>
@@ -286,8 +332,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org3e3ddd0" class="outline-3">
-<h3 id="org3e3ddd0"><span class="section-number-3">6.4</span> Master implementation</h3>
+<div id="outline-container-org4c7592f" class="outline-3">
+<h3 id="org4c7592f"><span class="section-number-3">6.4</span> Master implementation</h3>
 <div class="outline-text-3" id="text-6-4">
 <ul class="org-ul">
 <li>The master is primarily responsible for coordinating the activities of workers. Each worker is assigned a unique iden-tifier at the time of its registration. The master maintains a list of all workers currently known to be alive, including the worker’s unique identifier, its addressing information, and which portion of the graph it has been assigned.（master为每个worker分配了id,并且保存了那些alive的worker节点信息，包括id，地址信息，以及哪些partition分配在上面）</li>
@@ -298,8 +344,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org59706da" class="outline-3">
-<h3 id="org59706da"><span class="section-number-3">6.5</span> Aggregators</h3>
+<div id="outline-container-org5a1af12" class="outline-3">
+<h3 id="org5a1af12"><span class="section-number-3">6.5</span> Aggregators</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li>Each worker maintains a collection of ag-gregator instances, identified by a type name and instance name. When a worker executes a superstep for any partition of the graph, the worker combines all of the values supplied to an aggregator instance into a single local value: an ag-gregator that is partially reduced over all of the worker’s vertices in the partition. （每个worker上面都会维护聚合操作实例。在一个superstep执行的时候会将节点的值进行聚合/考虑到不确定哪一个vertex先完成，因此聚合操作必须满足交换律。而最后聚合操作会聚合所有worker上的value，因此也必须满足结合律）</li>
@@ -310,29 +356,29 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org311c473" class="outline-2">
-<h2 id="org311c473"><span class="section-number-2">7</span> Applications</h2>
+<div id="outline-container-org7ed652c" class="outline-2">
+<h2 id="org7ed652c"><span class="section-number-2">7</span> Applications</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org5ba4b56" class="outline-3">
-<h3 id="org5ba4b56"><span class="section-number-3">7.1</span> PageRank</h3>
+<div id="outline-container-orgb8dd1f9" class="outline-3">
+<h3 id="orgb8dd1f9"><span class="section-number-3">7.1</span> PageRank</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">PageRankVertex</span>
-    : <span class="org-keyword">public</span> <span class="org-type">Vertex</span>&lt;<span class="org-type">double</span>, <span class="org-type">void</span>, <span class="org-type">double</span>&gt; {
- <span class="org-keyword">public</span>:
-  <span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">Compute</span>(<span class="org-type">MessageIterator</span>* <span class="org-variable-name">msgs</span>) {
-    <span class="org-keyword">if</span> (superstep() &gt;= 1) {
-      <span class="org-type">double</span> <span class="org-variable-name">sum</span> = 0;
-      <span class="org-keyword">for</span> (; <span class="org-negation-char">!</span>msgs-&gt;Done(); msgs-&gt;Next())
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">PageRankVertex</span>
+    : <span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">Vertex</span>&lt;<span style="font-weight: bold; text-decoration: underline;">double</span>, <span style="font-weight: bold; text-decoration: underline;">void</span>, <span style="font-weight: bold; text-decoration: underline;">double</span>&gt; {
+ <span style="font-weight: bold;">public</span>:
+  <span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">Compute</span>(<span style="font-weight: bold; text-decoration: underline;">MessageIterator</span>* <span style="font-weight: bold; font-style: italic;">msgs</span>) {
+    <span style="font-weight: bold;">if</span> (superstep() &gt;= 1) {
+      <span style="font-weight: bold; text-decoration: underline;">double</span> <span style="font-weight: bold; font-style: italic;">sum</span> = 0;
+      <span style="font-weight: bold;">for</span> (; !msgs-&gt;Done(); msgs-&gt;Next())
         sum += msgs-&gt;Value();
       *MutableValue() =
           0.15 / NumVertices() + 0.85 * sum;
     }
-    <span class="org-keyword">if</span> (superstep() &lt; 30) {
-      <span class="org-keyword">const</span> <span class="org-type">int64</span> <span class="org-variable-name">n</span> = GetOutEdgeIterator().size();
+    <span style="font-weight: bold;">if</span> (superstep() &lt; 30) {
+      <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">int64</span> <span style="font-weight: bold; font-style: italic;">n</span> = GetOutEdgeIterator().size();
       SendMessageToAllNeighbors(GetValue() / n);
-    } <span class="org-keyword">else</span> {
+    } <span style="font-weight: bold;">else</span> {
       VoteToHalt();
     }
   }
@@ -352,14 +398,14 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org2df1fee" class="outline-2">
-<h2 id="org2df1fee"><span class="section-number-2">8</span> Experiments</h2>
+<div id="outline-container-org30cb74c" class="outline-2">
+<h2 id="org30cb74c"><span class="section-number-2">8</span> Experiments</h2>
 </div>
-<div id="outline-container-org6846218" class="outline-2">
-<h2 id="org6846218"><span class="section-number-2">9</span> Related Work</h2>
+<div id="outline-container-orgf54a7a6" class="outline-2">
+<h2 id="orgf54a7a6"><span class="section-number-2">9</span> Related Work</h2>
 </div>
-<div id="outline-container-orgd50efa1" class="outline-2">
-<h2 id="orgd50efa1"><span class="section-number-2">10</span> Conclusion and Future Work</h2>
+<div id="outline-container-orgb0bae1e" class="outline-2">
+<h2 id="orgb0bae1e"><span class="section-number-2">10</span> Conclusion and Future Work</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Other usability aspects of Pregel motivated by user experience include a set of status pages with detailed information about the progress of Pregel programs, a unittesting framework, and a single-machine mode which helps with rapid prototyping and debugging.（其他可用性上面还有整个pregel的详细运行信息 via HTTP Server，单测框架，用来方便进行原型开发以及debug的单机框架）</li>
@@ -371,6 +417,11 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/pregel.html';this.page.identifier = 'pregel.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

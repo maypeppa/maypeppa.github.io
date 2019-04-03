@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>折腾ububtu小记-请放弃linux作为desktop</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">折腾ububtu小记-请放弃linux作为desktop</h1>
@@ -22,7 +68,7 @@
 </p>
 
 <p>
-首先因为公司内部使用baidu hi这个聊天工具进行通信，而这个工具又没有linux客户端只有web hi.web hi非常的烂，容易掉线同时没有办法保存消息，并且致命的缺点就是没有办法像windows客户端一样有notify机制(事实上还是有机制的，那就是声音和里面小tab闪动。对于声音我们必须带上耳机才能够知道，而大部分时候听歌的声音更大。而对于小tab闪动，我们通常都喜欢浏览器全屏，终端全屏，这样只能够放在不同的workspace下面。而放在同步workspace下面是没有办法看到的)，只有我们一遍遍地轮询查看是否有新的消息到来。hi离开了baidu可能就不用了，QQ你躲不了吧。家里人，同学们都在用QQ.web qq比web hi好多了，不容易掉线并且保存记录，而且web qq已经可以说是一个成型的web OS了。但是web qq依然缺乏友好的通知机制。写到这里，同学肯定问我啥算是好的通知机制，好吧，pidgin就算是有非常好的通知机制。好比消息来了的话，可以类似调用notify-send这样的命令的效果。接着就是网银了只能够用IE。如果说web hi和web qq是可以忍受的话，那么网银则不是忍不忍的问题，而是有没有的问题。而这一切的一切，只需要我们有一个windows虚拟机即可。在linux下面比较靠谱点的虚拟机就三个vmware,virtualbox和wine.我从同学拿到了vmware7.0的bundle，开始安装，遇到了很多问题，有 <a href="http://hi.baidu.com/xinglianfeng/item/007828172a8087781009b59a">这里</a> ，<a href="http://www.backtrack-linux.org/forums/showthread.php?t=40276">这里</a> ，还有一些没有记录下来，最后在编译VMCI(virtual machine communication interface)时候，因为我的内核版本比较高，在include/linux下面缺少smp_lock.h所以编译失败，后面就没有再高了。安装wine在apt-get帮助下面非常舒服，首先拿QQ试试，安装啥的都没有问题，运行的时候缺少一大堆DLL.接着virtualbox没有安装我就怕了，后面就没有在折腾。失败！！！但是我忍！！！
+首先因为公司内部使用baidu hi这个聊天工具进行通信，而这个工具又没有linux客户端只有web hi.web hi非常的烂，容易掉线同时没有办法保存消息，并且致命的缺点就是没有办法像windows客户端一样有notify机制(事实上还是有机制的，那就是声音和里面小tab闪动。对于声音我们必须带上耳机才能够知道，而大部分时候听歌的声音更大。而对于小tab闪动，我们通常都喜欢浏览器全屏，终端全屏，这样只能够放在不同的workspace下面。而放在同步workspace下面是没有办法看到的)，只有我们一遍遍地轮询查看是否有新的消息到来。hi离开了baidu可能就不用了，QQ你躲不了吧。家里人，同学们都在用QQ.web qq比web hi好多了，不容易掉线并且保存记录，而且web qq已经可以说是一个成型的web OS了。但是web qq依然缺乏友好的通知机制。写到这里，同学肯定问我啥算是好的通知机制，好吧，pidgin就算是有非常好的通知机制。好比消息来了的话，可以类似调用notify-send这样的命令的效果。接着就是网银了只能够用IE。如果说web hi和web qq是可以忍受的话，那么网银则不是忍不忍的问题，而是有没有的问题。而这一切的一切，只需要我们有一个windows虚拟机即可。在linux下面比较靠谱点的虚拟机就三个vmware,virtualbox和wine.我从同学拿到了vmware7.0的bundle，开始安装，遇到了很多问题，有 <a href="http://hi.baidu.com/xinglianfeng/item/007828172a8087781009b59a">这里</a> ，<a href="http://www.backtrack-linux.org/forums/showthread.php?t=40276">这里</a> ，还有一些没有记录下来，最后在编译VMCI(virtual machine communication interface)时候，因为我的内核版本比较高，在include/linux下面缺少smp<sub>lock.h所以编译失败</sub>，后面就没有再高了。安装wine在apt-get帮助下面非常舒服，首先拿QQ试试，安装啥的都没有问题，运行的时候缺少一大堆DLL.接着virtualbox没有安装我就怕了，后面就没有在折腾。失败！！！但是我忍！！！
 </p>
 
 <p>
@@ -46,6 +92,11 @@
 <p>
 update@20120804: 当时折腾完了之后<a href="switch-back-to-windows.html">切换回windows了</a> 。但是现在开始使用ubuntu了，并且发现其实还是非常好用的，几个问题都基本搞定了，多谢身边同事的指导。how life changes！
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/struggle-with-ubuntu.html';this.page.identifier = 'struggle-with-ubuntu.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

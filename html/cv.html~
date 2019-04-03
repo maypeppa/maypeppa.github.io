@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My CV</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="maypeppa" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">My CV</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org90e9b65">1. Contact</a></li>
+<li><a href="#orgdef3e96">2. Summary</a></li>
+<li><a href="#org93d566b">3. Experience</a>
+<ul>
+<li><a href="#orgeed1936">3.1. Software Engineer, Head of Backend Development, CastBox.FM, 2016.4 - Present</a></li>
+<li><a href="#orgc29585d">3.2. Software Engineer, Logzilla, 2015.4 - 2015.8 (Remote, as Consultant)</a></li>
+<li><a href="#org7bee7b9">3.3. Software Engineer, Galera, 2014.4 - 2014.11 (Remote, as Consultant)</a></li>
+<li><a href="#org27ea1ff">3.4. Software Architect, Data Platform, Umeng, 2012.6 - 2016.4</a></li>
+<li><a href="#org55696cb">3.5. Senior Software Engineer, Baidu, 2008.7 - 2012.6</a></li>
+</ul>
+</li>
+<li><a href="#orgd448c06">4. Projects</a></li>
+<li><a href="#org963a1b9">5. Education</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org90e9b65" class="outline-2">
+<h2 id="org90e9b65"><span class="section-number-2">1</span> Contact</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Yan Zhang, maypeppa1987 AT gmail DOT com</li>
+<li>GitHub: <a href="https://github.com/maypeppa/">https://github.com/maypeppa/</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/maypeppa">https://www.linkedin.com/in/maypeppa</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdef3e96" class="outline-2">
+<h2 id="orgdef3e96"><span class="section-number-2">2</span> Summary</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Extensive experience in:
+</p>
+<ul class="org-ul">
+<li>large-scale distributed system design and implementation.</li>
+<li>network programming framework design and implementation.</li>
+<li>storage system design and implementation.</li>
+<li>performance optimization and tuning for systems and applications.</li>
+<li>big data process and analysis, data mining and machine learning.</li>
+</ul>
+
+<p>
+Specialties:
+</p>
+<ul class="org-ul">
+<li>proficient in C/C++, Python, Java, Scala.</li>
+<li>solid knowledge of data structure and algorithm.</li>
+<li>extremely familiar with system development on Linux.</li>
+<li>good understanding of compiler technique and related tools.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org93d566b" class="outline-2">
+<h2 id="org93d566b"><span class="section-number-2">3</span> Experience</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgeed1936" class="outline-3">
+<h3 id="orgeed1936"><span class="section-number-3">3.1</span> Software Engineer, Head of Backend Development, <a href="http://castbox.fm/">CastBox.FM</a>, 2016.4 - Present</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>crawler system. It crawls podcasts available on the internet and notifies uses once new episodes are available. The software stacks include Python, Requests, Beautifulsoup, FeedParser, Squid, Redis, MongoDB etc. By collecting RSS feeds submitted by users and search query, the number of podcasts in the database has been increased from 200K to 600K, and the number of episodes has been increased from 20M to 40M. By applying machine learning algorithm on the released date of episodes in the past, we predict the future released date and increase responsiveness, that new episodes can be fetched by our crawler in 5 minutes after they are released by podcasters, and users on the app will be notified just in time. Meanwhile, we optimize images of episodes by compression and cropping, reduce the size of images from MB to less than 300KB without much loss on image quality, which saves network traffic and reduces image loading time on the mobile app.</li>
+
+<li>search system. Users can search for podcasts and episodes by keywords and be provided keyword suggestions. It's developed on ElasticSearch and supports up to 12 languages including English, Portuguese, Spanish, German, Dutch, CJK etc. Data shows us more than 1/3 users subscription comes from the search system, so we put many efforts on improving and optimizing search system from following aspects.
+<ul class="org-ul">
+<li>index freshness. Once an episode is fetched by our crawler system, a message will be put into the message queue(Redis) and triggers the indexing system. The latency of the whole pipeline is less than 10 seconds and more than 20k episodes are indexed per day.</li>
+<li>search latency. By using cache effectively and fine-tuning Elasticsearch, we control the latency of search API under 200ms and the latency of suggestion API under 10ms.</li>
+<li>search relevance. Besides document relevance score returned by Elasticsearch, we add many signals including play numbers and subscription numbers in the past in recent days, to get a better relevance score.</li>
+</ul></li>
+
+<li>recommender system. By analysis user subscription data and applying collaborative filtering algorithm, we can recommend users podcasts that they may like and find similar podcasts. We use LightFM python library and apply WARP algorithm on user subscription data in recent 3 months. With fine tuning of parameters and A/B Testing, we raise CTR of user recommended podcasts from 2.16% to 4.52%, and CTR of similar podcasts from 1.90% to 3.19%.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc29585d" class="outline-3">
+<h3 id="orgc29585d"><span class="section-number-3">3.2</span> Software Engineer, <a href="http://logzilla.net/">Logzilla</a>, 2015.4 - 2015.8 (Remote, as Consultant)</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+A real-time event analytical platform.
+</p>
+
+<ul class="org-ul">
+<li>performance tuning to support ~200K eps(event per second).</li>
+<li>implement a new event storage engine to support ~1M eps(event per second).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7bee7b9" class="outline-3">
+<h3 id="org7bee7b9"><span class="section-number-3">3.3</span> Software Engineer, <a href="http://galeracluster.com/">Galera</a>, 2014.4 - 2014.11 (Remote, as Consultant)</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+A drop-in plugin of MySQL multi-master.
+</p>
+
+<p>
+Optimize cluster recovery process regarding data center outage case, and reduce recovery time from the 30s to less than 3s.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org27ea1ff" class="outline-3">
+<h3 id="org27ea1ff"><span class="section-number-3">3.4</span> Software Architect, Data Platform, <a href="https://www.umeng.com/">Umeng</a>, 2012.6 - 2016.4</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>design Umeng internal Realtime+Batch Architecture. (aka. Lambda Architecture <a href="http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html">http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html</a>)</li>
+
+<li>kvproxy, an asynchronous high-performance HTTP server for easily accessing various database systems such as HBase, MySQL, Riak etc. It's written in Scala and Finagle, use Google Protocol-Buffers as data exchange format and Google Guava LRUCache as the application-level cache. Since Finagle wraps an asynchronous function in a concept of 'Future' and encourages the developer to take server as a function(Your Server as a Function. <a href="http://monkey.org/~marius/funsrv.pdf">http://monkey.org/~marius/funsrv.pdf</a>), so kvproxy could be used not only as a server but also a library that could be easily embedded into other applications.</li>
+
+<li>performance tuning of MapReduce jobs and Hadoop cluster usage from perspectives of
+<ol class="org-ol">
+<li>application. use HBase bulk-loading instead of writing data to HBase directly for better throughput and stability.</li>
+<li>algorithm. use HyperLogLog algorithm instead of using set to calculate cardinality for better performance and any-time-range query ability.</li>
+<li>system. turn off MapReduce speculative mode when reading data from HBase.</li>
+<li>language. use JNI instead of pure Java code to accelerate CPU computation.</li>
+<li>kernel. configure kernel parameters like /proc/sys/vm/zone_reclaim_mode and /sys/kernel/mm/redhat_transparent_hugepage/enabled.</li>
+</ol></li>
+
+<li>FastHBaseRest, an asynchronous high-performance HTTP server written in Netty for easily accessing HBase in multiple languages by using Google Protocol-Buffers. Since HBase only provides underlying block cache, FastHBaseRest implements item cache on application level using Google Guava for better read performance. Comparing to HBase embedded HTTP server('hbase rest'), the access latency is 20% lower and transfer size is 40% lower. Meanwhile, it has more capabilities like request rewriting.</li>
+
+<li>usched, an internal job scheduler system to arrange jobs which are codependent. It defines and implements a DSL called JDL(Job Description Language) which is used to describe dependencies between jobs and properties of jobs. It runs as an HTTP server and provides a web-console to manage jobs including submissions and running status dashboard etc. Thousand MapReduce jobs are scheduled by USched each day while the latency is below 5sec.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org55696cb" class="outline-3">
+<h3 id="org55696cb"><span class="section-number-3">3.5</span> <a href="images/baidu-inf-com-2010q4.jpg">Senior Software Engineer</a>, <a href="https://www.baidu.com/">Baidu</a>, 2008.7 - 2012.6</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>dstream, an in-house distributed real-time stream processing system in C++ like Twitter's Storm and Yahoo!'s S4. The alpha version of 10 nodes cluster can process 1 million tuples per second while keeping the latency less than 100ms.</li>
+
+<li>comake2, an in-house build system in Python, takes advantages of some open-source build systems such as SCons, CMake, Google's GYP, Boost's Jam etc. It has been wildly used in Baidu for continuous integration.</li>
+
+<li>infpack, an in-house data exchange format in C++. Comparing to Google's Protocol-Buffers and Facebook's Thrift, the speed of serialization and deserialization is about 20~30% faster while size is 10~20% smaller. The generated code is carefully hand-tuned so implementation is very efficient.</li>
+
+<li>ddbs(distributed database system), an in-house distributed relational database system. I mainly worked on SQL parser to extend syntax for more capability and implementing a SPASS(single point automatic switch system) for its fault-tolerant feature.</li>
+
+<li>maintainer and developer of Baidu common libraries including BSL(Baidu standard library), ullib(wraps socket io, file io, and some Linux syscalls etc.), comdb(an embedded high-performance key-value storage system), memory allocator, character encoding, regular expression, signature and hash algorithm, URL handling, HTTP client, lock-free data structures and algorithms etc.</li>
+
+<li>vitamin, an in-house tool to detect the potential bugs in C/C++ source code by static analyzation. It reports thousands of valuable warnings by scanning the whole of Baidu's code repository while keeping the rate of fake warnings relatively low.</li>
+
+<li>IDL compiler, an in-house compiler translates a DSL(domain specified language) to the code that supports data exchange between C/C++ struct/class and Mcpack(an in-house data pack like Google's Protocol-Buffers) using Flex and Bison.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd448c06" class="outline-2">
+<h2 id="orgd448c06"><span class="section-number-2">4</span> Projects</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>itachi, an open-source high-performance asynchronous network programming framework in C++. <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/cc/itachi">GitHub</a></li>
+<li>nasty, a simple lisp-syntax parser in C++ using Flex and Bison. <a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/cc/nasty">GitHub</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org963a1b9" class="outline-2">
+<h2 id="org963a1b9"><span class="section-number-2">5</span> Education</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>MS. Computer Science. <a href="http://www.sdu.edu.cn/">Shandong University</a></li>
+<li>BE. Electronic Engineering. <a href="http://www.sdu.edu.cn/">Shandong University</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/cv.html';this.page.identifier = 'cv.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

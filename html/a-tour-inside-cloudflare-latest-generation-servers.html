@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A Tour Inside CloudFlare's Latest Generation Servers</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">A Tour Inside CloudFlare's Latest Generation Servers</h1>
@@ -16,12 +62,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2525958">1. Introduction</a></li>
-<li><a href="#org9eb9bd2">2. Generation 3</a></li>
-<li><a href="#org0fa4e58">3. Storage</a></li>
-<li><a href="#org4198a46">4. CPU</a></li>
-<li><a href="#org3398ed2">5. Network</a></li>
-<li><a href="#orgf3740bb">6. Designed to Our Unique Needs</a></li>
+<li><a href="#orgdb23905">1. Introduction</a></li>
+<li><a href="#orga0e113f">2. Generation 3</a></li>
+<li><a href="#org52cdfbd">3. Storage</a></li>
+<li><a href="#org33e62fa">4. CPU</a></li>
+<li><a href="#org93ec21f">5. Network</a></li>
+<li><a href="#org43b955f">6. Designed to Our Unique Needs</a></li>
 </ul>
 </div>
 </div>
@@ -29,8 +75,8 @@
 <a href="http://blog.cloudflare.com/a-tour-inside-cloudflares-latest-generation-servers">http://blog.cloudflare.com/a-tour-inside-cloudflares-latest-generation-servers</a>
 </p>
 
-<div id="outline-container-org2525958" class="outline-2">
-<h2 id="org2525958"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orgdb23905" class="outline-2">
+<h2 id="orgdb23905"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>CloudFlare operates at a significant scale, handling more than a trillion requests through our network every month. To ensure this is as efficient as possible, we own and operate all the equipment in our 23 locations around the world in order to process the volume of traffic that flows through our network.（cloudflare主要是做CDN）</li>
@@ -46,8 +92,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9eb9bd2" class="outline-2">
-<h2 id="org9eb9bd2"><span class="section-number-2">2</span> Generation 3</h2>
+<div id="outline-container-orga0e113f" class="outline-2">
+<h2 id="orga0e113f"><span class="section-number-2">2</span> Generation 3</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Before looking at G4 it's important to understand what we learned about our previous generation of servers.
@@ -121,8 +167,8 @@ We liked the build quality and reliability of the HP gear and it continues to po
 </div>
 </div>
 
-<div id="outline-container-org0fa4e58" class="outline-2">
-<h2 id="org0fa4e58"><span class="section-number-2">3</span> Storage</h2>
+<div id="outline-container-org52cdfbd" class="outline-2">
+<h2 id="org52cdfbd"><span class="section-number-2">3</span> Storage</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 CloudFlare uses SSDs exclusively at the edge of our network. SSDs give us three advantages. (SSD优势）
@@ -147,8 +193,8 @@ While disk performance is important, in the case of frequently requested files i
 </div>
 </div>
 
-<div id="outline-container-org4198a46" class="outline-2">
-<h2 id="org4198a46"><span class="section-number-2">4</span> CPU</h2>
+<div id="outline-container-org33e62fa" class="outline-2">
+<h2 id="org33e62fa"><span class="section-number-2">4</span> CPU</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 With our G3 equipment we were not CPU bound under normal circumstances. When we mitigate large Layer 4 DDoS attacks (e.g., SYN floods) our CPUs would, from time to time, become overwhelmed with excessive processor interrupts. In our tests, increasing or decreasing the clockspeed of the CPU did little to change this problem. Adding more cores to a CPU did help mitigate this and we tested some of the high core count AMD CPUs, but ultimately decided against going that direction.（通常情况下面CPU并不是bound, 但是在DDoS情况下面会出现非常多的CPU中断。改善CPU时钟频率并且添加core虽然有作用但是却不大。可以从下面的Network这节看到他们从kernel处理层面改善interrupt这个问题）
@@ -164,8 +210,8 @@ We were willing to sacrifice a bit of clockspeed and spend a bit more on chips t
 </div>
 </div>
 
-<div id="outline-container-org3398ed2" class="outline-2">
-<h2 id="org3398ed2"><span class="section-number-2">5</span> Network</h2>
+<div id="outline-container-org93ec21f" class="outline-2">
+<h2 id="org93ec21f"><span class="section-number-2">5</span> Network</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 This biggest change from our G3 to G4 servers was the jump from 1Gbps to 10Gbps network interfaces. With our G3 servers, we would sometimes max out the 6Gbps of network capacity per server when under certain high-volume Layer 7 attacks. We knew we wanted to jump to 10Gbps on each server, but we also wanted to pick the right network controller card. We ended up testing a very wide range of network cards, spending more time optimizing this component in the servers than any other. In the end, we settled on the network cards from a company called <a href="http://solarflare.com/">Solarflare</a>. (It didn't hurt that their name was similar to ours.) (升级到了万兆网卡)
@@ -181,14 +227,19 @@ Beyond the hardware, we're working with Solarflare to take advantage of some of 
 </div>
 </div>
 
-<div id="outline-container-orgf3740bb" class="outline-2">
-<h2 id="orgf3740bb"><span class="section-number-2">6</span> Designed to Our Unique Needs</h2>
+<div id="outline-container-org43b955f" class="outline-2">
+<h2 id="org43b955f"><span class="section-number-2">6</span> Designed to Our Unique Needs</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 While we talked to these OEMs in the bakeoff we ran to select the vendor for our G4 servers, in the end we chose to work with what is known as an original design manufacturer (ODM) that built the servers exactly to our spec. We choose a Taiwanese company called <a href="http://www.quantatw.com/Quanta/english/Default.aspx">Quanta</a> which has built custom designed servers for companies like Facebook and Rackspace.
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/a-tour-inside-cloudflare-latest-generation-servers.html';this.page.identifier = 'a-tour-inside-cloudflare-latest-generation-servers.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

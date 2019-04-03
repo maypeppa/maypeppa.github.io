@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>On Designing and Deploying Internet-Scale Services</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">On Designing and Deploying Internet-Scale Services</h1>
@@ -16,18 +62,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org43784ce">1. Introduction</a></li>
-<li><a href="#orgb55c7bd">2. Recommendations</a></li>
-<li><a href="#org63c11eb">3. Overall Application Design</a></li>
-<li><a href="#org8662fff">4. Automatic Management and Provisioning</a></li>
-<li><a href="#org28e8d2e">5. Dependency Management</a></li>
-<li><a href="#org772ee50">6. Release Cycle and Testing</a></li>
-<li><a href="#orgc712b3d">7. Hardware Selection and Standardization</a></li>
-<li><a href="#org53b9f5d">8. Operations and Capacity Planning</a></li>
-<li><a href="#org9c4f827">9. Auditing, Monitoring and Alerting</a></li>
-<li><a href="#org456df3d">10. Graceful Degradation and Admission Control</a></li>
-<li><a href="#orgd6afd52">11. Customer and Press Communication Plan</a></li>
-<li><a href="#org566793e">12. Customer Self-Provisioning and Self-Help</a></li>
+<li><a href="#orgb86de02">1. Introduction</a></li>
+<li><a href="#org0dba75e">2. Recommendations</a></li>
+<li><a href="#orgee96c95">3. Overall Application Design</a></li>
+<li><a href="#orga051982">4. Automatic Management and Provisioning</a></li>
+<li><a href="#org658e82a">5. Dependency Management</a></li>
+<li><a href="#org2f6f3e3">6. Release Cycle and Testing</a></li>
+<li><a href="#org602e41b">7. Hardware Selection and Standardization</a></li>
+<li><a href="#org47c8fb5">8. Operations and Capacity Planning</a></li>
+<li><a href="#org86404a8">9. Auditing, Monitoring and Alerting</a></li>
+<li><a href="#org4ef0d90">10. Graceful Degradation and Admission Control</a></li>
+<li><a href="#org0a6cc03">11. Customer and Press Communication Plan</a></li>
+<li><a href="#org8cf2809">12. Customer Self-Provisioning and Self-Help</a></li>
 </ul>
 </div>
 </div>
@@ -36,8 +82,8 @@
 <li><a href="http://www.mvdirona.com/jrh/TalksAndPapers/JamesRH_Lisa.pdf">http://www.mvdirona.com/jrh/TalksAndPapers/JamesRH_Lisa.pdf</a></li>
 </ul>
 
-<div id="outline-container-org43784ce" class="outline-2">
-<h2 id="org43784ce"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orgb86de02" class="outline-2">
+<h2 id="orgb86de02"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 a set of three simple tenets worth considering up front:
@@ -50,11 +96,11 @@ a set of three simple tenets worth considering up front:
 </div>
 </div>
 
-<div id="outline-container-orgb55c7bd" class="outline-2">
-<h2 id="orgb55c7bd"><span class="section-number-2">2</span> Recommendations</h2>
+<div id="outline-container-org0dba75e" class="outline-2">
+<h2 id="org0dba75e"><span class="section-number-2">2</span> Recommendations</h2>
 </div>
-<div id="outline-container-org63c11eb" class="outline-2">
-<h2 id="org63c11eb"><span class="section-number-2">3</span> Overall Application Design</h2>
+<div id="outline-container-orgee96c95" class="outline-2">
+<h2 id="orgee96c95"><span class="section-number-2">3</span> Overall Application Design</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Throughout the sections that follow, a consensus emerges that firm separation of development, test, and operations isn’t the most effective approach in the ser-vices world. The trend we’ve seen when looking across many services is that low-cost administration correlates highly with how closely the development, test, and operations teams work together.
@@ -110,8 +156,8 @@ the main source tree, and tracked on the same schedule and with the same testing
 </div>
 </div>
 
-<div id="outline-container-org8662fff" class="outline-2">
-<h2 id="org8662fff"><span class="section-number-2">4</span> Automatic Management and Provisioning</h2>
+<div id="outline-container-orga051982" class="outline-2">
+<h2 id="orga051982"><span class="section-number-2">4</span> Automatic Management and Provisioning</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Automating administration of a service after de-sign and deployment can be very difficult. Successful automation requires simplicity and clear, easy-to-make operational decisions. This in turn depends on a care-ful service design that, when necessary, sacrifices some latency and throughput to ease automation. The trade-off is often difficult to make, but the administra-tive savings can be more than an order of magnitude in high-scale services. In fact, the current spread be-tween the most manual and the most automated ser-vice we’ve looked at is a full two orders of magnitude in people costs.(为了更加容易自动化可能会牺牲一些延迟和吞吐，但是能够节省不止一个量级的运维管理成本)
@@ -135,8 +181,8 @@ Best practices in designing for automation include:
 </div>
 </div>
 
-<div id="outline-container-org28e8d2e" class="outline-2">
-<h2 id="org28e8d2e"><span class="section-number-2">5</span> Dependency Management</h2>
+<div id="outline-container-org658e82a" class="outline-2">
+<h2 id="org658e82a"><span class="section-number-2">5</span> Dependency Management</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Dependencies do make sense when
@@ -163,8 +209,8 @@ some best practices for manag-ing them are:
 </div>
 </div>
 
-<div id="outline-container-org772ee50" class="outline-2">
-<h2 id="org772ee50"><span class="section-number-2">6</span> Release Cycle and Testing</h2>
+<div id="outline-container-org2f6f3e3" class="outline-2">
+<h2 id="org2f6f3e3"><span class="section-number-2">6</span> Release Cycle and Testing</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 We instead recommend taking new service re-leases through standard unit, functional, and produc-tion test lab testing and then going into limited pro-duction as the final test phase. Clearly we don’t want software going into production that doesn’t work or puts data integrity at risk, so this has to be done care-fully. The following rules must be followed:（整个新服务部署是过渡地完成的，在期间必须遵循一下几点）
@@ -203,8 +249,8 @@ Some best practices for release cycle and testing include:
 </div>
 </div>
 
-<div id="outline-container-orgc712b3d" class="outline-2">
-<h2 id="orgc712b3d"><span class="section-number-2">7</span> Hardware Selection and Standardization</h2>
+<div id="outline-container-org602e41b" class="outline-2">
+<h2 id="org602e41b"><span class="section-number-2">7</span> Hardware Selection and Standardization</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 The usual argument for SKU standardization is that bulk purchases can save considerable money. This is inarguably true. The larger need for hardware stan-dardization is that it allows for faster service deploy-ment and growth. If each service is purchasing their own private infrastructure, then each service has to
@@ -230,8 +276,8 @@ Best practices for hardware selection include:
 </div>
 </div>
 
-<div id="outline-container-org53b9f5d" class="outline-2">
-<h2 id="org53b9f5d"><span class="section-number-2">8</span> Operations and Capacity Planning</h2>
+<div id="outline-container-org47c8fb5" class="outline-2">
+<h2 id="org47c8fb5"><span class="section-number-2">8</span> Operations and Capacity Planning</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 The recovery scripts need to be tested in produc-tion. <b>The general rule is that nothing works if it isn’t tested frequently so don’t implement anything the team doesn’t have the courage to use. If testing in pro- duction is too risky, the script isn’t ready or safe for use in an emergency.</b> The key point here is that disas-ters happen and it’s amazing how frequently a small disaster becomes a big disaster as a consequence of a recovery step that doesn’t work as expected. Antici-pate these events and engineer automated actions to get the service back on line without further loss of da-ta or up time.
@@ -246,8 +292,8 @@ The recovery scripts need to be tested in produc-tion. <b>The general rule is th
 </div>
 </div>
 
-<div id="outline-container-org9c4f827" class="outline-2">
-<h2 id="org9c4f827"><span class="section-number-2">9</span> Auditing, Monitoring and Alerting</h2>
+<div id="outline-container-org86404a8" class="outline-2">
+<h2 id="org86404a8"><span class="section-number-2">9</span> Auditing, Monitoring and Alerting</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Any time there is a configuration change, the ex-act change, who did it, and when it was done needs to be logged in the audit log. When production problems begin, the first question to answer is what changes have been made recently. Without a configuration au-dit trail, the answer is always ‘‘nothing’’ has changed and it’s almost always the case that what was forgotten was the change that led to the question.
@@ -286,8 +332,8 @@ To get alerting levels correct, two metrics can help and are worth tracking: 1) 
 </div>
 </div>
 
-<div id="outline-container-org456df3d" class="outline-2">
-<h2 id="org456df3d"><span class="section-number-2">10</span> Graceful Degradation and Admission Control</h2>
+<div id="outline-container-org4ef0d90" class="outline-2">
+<h2 id="org4ef0d90"><span class="section-number-2">10</span> Graceful Degradation and Admission Control</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Support a ‘‘big red switch.’’The concept of a big red switch is to keep the vi-tal processing progressing while shedding or de-laying some non-critical workload. By design, this should never happen but it’s good to have recourse when it does. Trying to figure these out when the service is on fire is risky. If there is some load that can be queued and processed lat-er, it’s a candidate for a big red switch. If it’s possible to continue to operate the transaction system while disabling advance querying, that’s also a good candidate. The key thing is deter-mining what is minimally required if the system is in trouble, and implementing and testing the option to shut off the non-essential services when that happens. Note that a correct big red switch is reversible. Resetting the switch should be tested to ensure that the full service returns to operation, including all batch jobs and other pre-viously halted non-critical work.（关闭或者是延迟响应部分高级或者是non-critical功能来应对workload）</li>
@@ -297,8 +343,8 @@ To get alerting levels correct, two metrics can help and are worth tracking: 1) 
 </div>
 </div>
 
-<div id="outline-container-orgd6afd52" class="outline-2">
-<h2 id="orgd6afd52"><span class="section-number-2">11</span> Customer and Press Communication Plan</h2>
+<div id="outline-container-org0a6cc03" class="outline-2">
+<h2 id="org0a6cc03"><span class="section-number-2">11</span> Customer and Press Communication Plan</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Systems fail, and there will be times when laten-cy or other issues must be communicated to cus-tomers. Communications should be made available through multiple channels in an opt-in basis: RSS, web, instant messages, email, etc. For those services with clients, the ability for the service to communicate with the user through the client can be very useful. The client can be asked to back off until some specific time or for some duration. The client can be asked to run in disconnected, cached mode if supported. The client can show the user the system status and when full functionality is expected to be available again.（client可以返回当前服务状态信息，如果服务状态异常的话可以back off一段时间或者是工作在离线模式，并且可以让用户知道大约在什么时候可以恢复）
@@ -314,14 +360,19 @@ Certain types of events will bring press coverage. The service will be much bett
 </div>
 </div>
 
-<div id="outline-container-org566793e" class="outline-2">
-<h2 id="org566793e"><span class="section-number-2">12</span> Customer Self-Provisioning and Self-Help</h2>
+<div id="outline-container-org8cf2809" class="outline-2">
+<h2 id="org8cf2809"><span class="section-number-2">12</span> Customer Self-Provisioning and Self-Help</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Customer self-provisioning substantially reduces costs and also increases customer satisfaction. If a cus-tomer can go to the web, enter the needed data and just start using the service, they are happier than if they had to waste time in a call processing queue. We’ve always felt that the major cell phone carriers miss an opportunity to both save and improve cus-tomer satisfaction by not allowing self-service for those that don’t want to call the customer support group.（客户可以通过自助服务来提出自己需求启动服务）
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/on-designing-and-deploying-internet-scale-services.html';this.page.identifier = 'on-designing-and-deploying-internet-scale-services.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

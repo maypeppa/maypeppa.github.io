@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Chubby lock service for loosely-coupled distributed systems</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">The Chubby lock service for loosely-coupled distributed systems</h1>
@@ -16,43 +62,43 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdccc3bd">1. Abstract</a></li>
-<li><a href="#org17836bc">2. Introduction</a></li>
-<li><a href="#org7a863d5">3. Design</a>
+<li><a href="#orgf5e25d6">1. Abstract</a></li>
+<li><a href="#orga40e923">2. Introduction</a></li>
+<li><a href="#orgdaabf6c">3. Design</a>
 <ul>
-<li><a href="#orgc990549">3.1. Rationale</a></li>
-<li><a href="#orgdc5b0f8">3.2. System structure</a></li>
-<li><a href="#orgb1b0371">3.3. Files, directories and handles</a></li>
-<li><a href="#orgd57b3f8">3.4. Locks and sequencers</a></li>
-<li><a href="#org63b1173">3.5. Events</a></li>
-<li><a href="#orgcff95e4">3.6. API</a></li>
-<li><a href="#orgb30d985">3.7. Caching</a></li>
-<li><a href="#orge4a72c2">3.8. Sessions and KeepAlives</a></li>
-<li><a href="#org3f8ba0d">3.9. Fail-overs</a></li>
-<li><a href="#orgc323e98">3.10. Database implementation</a></li>
-<li><a href="#orge370773">3.11. Backup</a></li>
-<li><a href="#orgc5836ef">3.12. Mirroring</a></li>
+<li><a href="#orgffee2ef">3.1. Rationale</a></li>
+<li><a href="#org2699988">3.2. System structure</a></li>
+<li><a href="#org46d54e3">3.3. Files, directories and handles</a></li>
+<li><a href="#org40142b7">3.4. Locks and sequencers</a></li>
+<li><a href="#org554c009">3.5. Events</a></li>
+<li><a href="#orga789c02">3.6. API</a></li>
+<li><a href="#org6561884">3.7. Caching</a></li>
+<li><a href="#org76a40d5">3.8. Sessions and KeepAlives</a></li>
+<li><a href="#orgd6d84e2">3.9. Fail-overs</a></li>
+<li><a href="#org94a3f76">3.10. Database implementation</a></li>
+<li><a href="#org06348e2">3.11. Backup</a></li>
+<li><a href="#org27da65f">3.12. Mirroring</a></li>
 </ul>
 </li>
-<li><a href="#org033467d">4. Mechanism for scaling</a>
+<li><a href="#org92eedff">4. Mechanism for scaling</a>
 <ul>
-<li><a href="#orgd2aa12f">4.1. Proxy</a></li>
-<li><a href="#org078bb48">4.2. Parititioning</a></li>
+<li><a href="#org5a8e4ed">4.1. Proxy</a></li>
+<li><a href="#org061630d">4.2. Parititioning</a></li>
 </ul>
 </li>
-<li><a href="#orgf3d391a">5. Use, surprises and design errors</a>
+<li><a href="#orgec4d0da">5. Use, surprises and design errors</a>
 <ul>
-<li><a href="#org8a8ef5e">5.1. Use and behaviour</a></li>
-<li><a href="#org72a837b">5.2. Java clients</a></li>
-<li><a href="#org9194b0f">5.3. Use as a name service</a></li>
-<li><a href="#orgcd9f639">5.4. Problem with fail-over</a></li>
-<li><a href="#org8d4baf3">5.5. Abusive clients</a></li>
+<li><a href="#org8a02ae2">5.1. Use and behaviour</a></li>
+<li><a href="#orge2f7a06">5.2. Java clients</a></li>
+<li><a href="#org7028b39">5.3. Use as a name service</a></li>
+<li><a href="#orgfb8f9c4">5.4. Problem with fail-over</a></li>
+<li><a href="#orgd1aad78">5.5. Abusive clients</a></li>
 </ul>
 </li>
-<li><a href="#org76800c0">6. Lessons learned</a></li>
-<li><a href="#org3fc1d5a">7. Comparison with related work</a></li>
-<li><a href="#org6226158">8. Summary</a></li>
-<li><a href="#org16fb754">9. Q&amp;A</a></li>
+<li><a href="#org72b7eec">6. Lessons learned</a></li>
+<li><a href="#org7ea9a7c">7. Comparison with related work</a></li>
+<li><a href="#orgc6c8c6c">8. Summary</a></li>
+<li><a href="#org0ba3e02">9. Q&amp;A</a></li>
 </ul>
 </div>
 </div>
@@ -60,8 +106,8 @@
 <a href="http://research.google.com/archive/chubby.html">http://research.google.com/archive/chubby.html</a> @ 2006
 </p>
 
-<div id="outline-container-orgdccc3bd" class="outline-2">
-<h2 id="orgdccc3bd"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-orgf5e25d6" class="outline-2">
+<h2 id="orgf5e25d6"><span class="section-number-2">1</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>lock service to allow its clients to sync activities and agree on basic information about their environment.</li>
@@ -76,8 +122,8 @@
 </div>
 </div>
 
-<div id="outline-container-org17836bc" class="outline-2">
-<h2 id="org17836bc"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orga40e923" class="outline-2">
+<h2 id="orga40e923"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>loosely-coupled dist system consisting of moderately large numbers of small machines connected by a high-speed network.</li>
@@ -102,16 +148,16 @@
 </div>
 </div>
 
-<div id="outline-container-org7a863d5" class="outline-2">
-<h2 id="org7a863d5"><span class="section-number-2">3</span> Design</h2>
+<div id="outline-container-orgdaabf6c" class="outline-2">
+<h2 id="orgdaabf6c"><span class="section-number-2">3</span> Design</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 对于Abstracr以及Introduction这两节来说的话，使用原文list item的方式就可以有比较好的总结了。而对于其他部分的话，使用这种描述方法似乎就有点不太适合。因为相对Abstracr以及Introduction来说的话，其他section信息量会相对较大。合适的方式应该任然是list item,但是不能够使用原文而应该自己总结。并且这些list item可能会比较长，因为需要将一些聚合性的内容放在一个item内部。当然可以在list item内部引述一些原文信息。
 </p>
 </div>
 
-<div id="outline-container-orgc990549" class="outline-3">
-<h3 id="orgc990549"><span class="section-number-3">3.1</span> Rationale</h3>
+<div id="outline-container-orgffee2ef" class="outline-3">
+<h3 id="orgffee2ef"><span class="section-number-3">3.1</span> Rationale</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>library vs. service(库和服务之间的选择对比)
@@ -148,8 +194,8 @@ coarse-grained vs. find-grained.(粗粒度锁和细粒度锁之间的选择对�
 </div>
 </div>
 
-<div id="outline-container-orgdc5b0f8" class="outline-3">
-<h3 id="orgdc5b0f8"><span class="section-number-3">3.2</span> System structure</h3>
+<div id="outline-container-org2699988" class="outline-3">
+<h3 id="org2699988"><span class="section-number-3">3.2</span> System structure</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>Chubby has two main components that communicate via RPC: a server, and a library that client applications.(chubby主要提供的就是service以及访问service所需要的protocol实现)</li>
@@ -171,8 +217,8 @@ failed replica with that of the new one. The current mas-ter polls the DNS perio
 </div>
 </div>
 
-<div id="outline-container-orgb1b0371" class="outline-3">
-<h3 id="orgb1b0371"><span class="section-number-3">3.3</span> Files, directories and handles</h3>
+<div id="outline-container-org46d54e3" class="outline-3">
+<h3 id="org46d54e3"><span class="section-number-3">3.3</span> Files, directories and handles</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>interface simliar to unix file system but simpler. consists of a strict tree of files and directories in the usual way with name components separated by slashes.</li>
@@ -200,8 +246,8 @@ failed replica with that of the new one. The current mas-ter polls the DNS perio
 </div>
 </div>
 
-<div id="outline-container-orgd57b3f8" class="outline-3">
-<h3 id="orgd57b3f8"><span class="section-number-3">3.4</span> Locks and sequencers</h3>
+<div id="outline-container-org40142b7" class="outline-3">
+<h3 id="org40142b7"><span class="section-number-3">3.4</span> Locks and sequencers</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Each Chubby file and directory can act as a reader-writer lock.</li>
@@ -224,8 +270,8 @@ failed replica with that of the new one. The current mas-ter polls the DNS perio
 </div>
 </div>
 
-<div id="outline-container-org63b1173" class="outline-3">
-<h3 id="org63b1173"><span class="section-number-3">3.5</span> Events</h3>
+<div id="outline-container-org554c009" class="outline-3">
+<h3 id="org554c009"><span class="section-number-3">3.5</span> Events</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>Chubby clients may subscribe to a range of events when they create a handle. These events are delivered to the client asynchronously via an up-call from the Chubby li-brary.(client可以在handle上面订阅一系列的事件，而这些事件的通知是通过异步方式完成的). 允许订阅的事件包括下面这些：
@@ -244,8 +290,8 @@ failed replica with that of the new one. The current mas-ter polls the DNS perio
 </div>
 </div>
 
-<div id="outline-container-orgcff95e4" class="outline-3">
-<h3 id="orgcff95e4"><span class="section-number-3">3.6</span> API</h3>
+<div id="outline-container-orga789c02" class="outline-3">
+<h3 id="orga789c02"><span class="section-number-3">3.6</span> API</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 API似乎和zookeeper有点不太相同。zookeeper API连接上server之后可以按照node name进行操作。对于不同的handle来说，server可以认为是不同的client.
@@ -283,8 +329,8 @@ API似乎和zookeeper有点不太相同。zookeeper API连接上server之后可�
 </div>
 </div>
 
-<div id="outline-container-orgb30d985" class="outline-3">
-<h3 id="orgb30d985"><span class="section-number-3">3.7</span> Caching</h3>
+<div id="outline-container-org6561884" class="outline-3">
+<h3 id="org6561884"><span class="section-number-3">3.7</span> Caching</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 对于cache这件事情来说非常神奇，因为我们很少会去定义一个时序。假设AB两个节点，A在t1时刻发起操作F=1,B在t2时刻读取到F=1并且cache,C在t3时刻发起操作F=2的话，
@@ -327,8 +373,8 @@ conflicting lock, allowing the holder to release the lock just when it is needed
 </div>
 </div>
 
-<div id="outline-container-orge4a72c2" class="outline-3">
-<h3 id="orge4a72c2"><span class="section-number-3">3.8</span> Sessions and KeepAlives</h3>
+<div id="outline-container-org76a40d5" class="outline-3">
+<h3 id="org76a40d5"><span class="section-number-3">3.8</span> Sessions and KeepAlives</h3>
 <div class="outline-text-3" id="text-3-8">
 <ul class="org-ul">
 <li>A Chubby session is a relationship between a Chubby cell and a Chubby client; it exists for some interval of time, and is maintained by periodic handshakes called KeepAlives.(cell和client之间的关系称为session.session通常会持续一段时间，session会通过KeepAlives这种周期性的握手协议来保持)</li>
@@ -354,8 +400,8 @@ KeepAlive reply spent in flight, and the rate at which the master's clock is adv
 </div>
 </div>
 
-<div id="outline-container-org3f8ba0d" class="outline-3">
-<h3 id="org3f8ba0d"><span class="section-number-3">3.9</span> Fail-overs</h3>
+<div id="outline-container-orgd6d84e2" class="outline-3">
+<h3 id="orgd6d84e2"><span class="section-number-3">3.9</span> Fail-overs</h3>
 <div class="outline-text-3" id="text-3-9">
 
 <div class="figure">
@@ -386,8 +432,8 @@ KeepAlive reply spent in flight, and the rate at which the master's clock is adv
 </div>
 </div>
 
-<div id="outline-container-orgc323e98" class="outline-3">
-<h3 id="orgc323e98"><span class="section-number-3">3.10</span> Database implementation</h3>
+<div id="outline-container-org94a3f76" class="outline-3">
+<h3 id="org94a3f76"><span class="section-number-3">3.10</span> Database implementation</h3>
 <div class="outline-text-3" id="text-3-10">
 <ul class="org-ul">
 <li>The first version of Chubby used the replicated version of Berkeley DB as its database. Berkeley DB pro-vides B-trees that map byte-string keys to arbitrary byte-string values.(第一版使用BDB来做底层存储)</li>
@@ -399,8 +445,8 @@ KeepAlive reply spent in flight, and the rate at which the master's clock is adv
 </div>
 </div>
 
-<div id="outline-container-orge370773" class="outline-3">
-<h3 id="orge370773"><span class="section-number-3">3.11</span> Backup</h3>
+<div id="outline-container-org06348e2" class="outline-3">
+<h3 id="org06348e2"><span class="section-number-3">3.11</span> Backup</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 chubby cell定期会使用snapshot将数据库全部dump到GFS上面进行备份。对于GFS而言的话，building A下面的GFS只会使用building A下面的chubby cell.
@@ -411,8 +457,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-orgc5836ef" class="outline-3">
-<h3 id="orgc5836ef"><span class="section-number-3">3.12</span> Mirroring</h3>
+<div id="outline-container-org27da65f" class="outline-3">
+<h3 id="org27da65f"><span class="section-number-3">3.12</span> Mirroring</h3>
 <div class="outline-text-3" id="text-3-12">
 <ul class="org-ul">
 <li>Chubby allows a collection of files to be mirrored from one cell to another.</li>
@@ -428,8 +474,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org033467d" class="outline-2">
-<h2 id="org033467d"><span class="section-number-2">4</span> Mechanism for scaling</h2>
+<div id="outline-container-org92eedff" class="outline-2">
+<h2 id="org92eedff"><span class="section-number-2">4</span> Mechanism for scaling</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>we have seen 90,000 clients communicating directly with a Chubby master - far more than the number of machines involved. Because there is just one master per cell, and its machine is identical to those of the clients, the clients can overwhelm the master by a huge margin.(对于一个chubby cell可以处理9w个clients.并且因为master机器和client机器基本是相同的，对于master来说负担还是比较重的)</li>
@@ -451,8 +497,8 @@ newly replaced replica without placing load on replicas that are in service.
 </ul>
 </div>
 
-<div id="outline-container-orgd2aa12f" class="outline-3">
-<h3 id="orgd2aa12f"><span class="section-number-3">4.1</span> Proxy</h3>
+<div id="outline-container-org5a8e4ed" class="outline-3">
+<h3 id="org5a8e4ed"><span class="section-number-3">4.1</span> Proxy</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Chubby's protocol can be proxied (using the same pro-tocol on both sides) by trusted processes that pass re-quests from other clients to a Chubby cell.A proxy can reduce server load by handling both KeepAlive and read requests; it cannot reduce write traffic, which passes through the proxy's cache.(proxy在client和server之间做一个代理。通过处理KeepAlive以及读请求来减少服务端的压力。proxy不会减少写压力，所有写操作都是直接转发给server).</li>
@@ -464,8 +510,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org078bb48" class="outline-3">
-<h3 id="org078bb48"><span class="section-number-3">4.2</span> Parititioning</h3>
+<div id="outline-container-org061630d" class="outline-3">
+<h3 id="org061630d"><span class="section-number-3">4.2</span> Parititioning</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>通过对path component进行hash然后再paritition number进行取模来进行parititioning</li>
@@ -483,12 +529,12 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-orgf3d391a" class="outline-2">
-<h2 id="orgf3d391a"><span class="section-number-2">5</span> Use, surprises and design errors</h2>
+<div id="outline-container-orgec4d0da" class="outline-2">
+<h2 id="orgec4d0da"><span class="section-number-2">5</span> Use, surprises and design errors</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org8a8ef5e" class="outline-3">
-<h3 id="org8a8ef5e"><span class="section-number-3">5.1</span> Use and behaviour</h3>
+<div id="outline-container-org8a02ae2" class="outline-3">
+<h3 id="org8a02ae2"><span class="section-number-3">5.1</span> Use and behaviour</h3>
 <div class="outline-text-3" id="text-5-1">
 
 <div class="figure">
@@ -538,8 +584,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org72a837b" class="outline-3">
-<h3 id="org72a837b"><span class="section-number-3">5.2</span> Java clients</h3>
+<div id="outline-container-orge2f7a06" class="outline-3">
+<h3 id="orge2f7a06"><span class="section-number-3">5.2</span> Java clients</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 大部分的google inf都是使用C++编写的，但是Java编写系统也逐渐增加。对于chubby来说server,library也都是使用C++编写的，并且协议本身以及client library都比较复杂。Java最通常调用其他语言的库就是使用JNI,但是在G里面大部分程序员不太喜欢，觉得太慢并且蹩脚。因此在G里面他们将很多库都转换成为了Java版本并且维护他们。chubby C++ library大约在7k左右并且协议非常精巧，因此转换成为Java代码就必须非常仔细，如果没有cache实现的话都会加重chubby server的负担。因为他们编写了一个protocol-conversion server更加简单的协议，但是依然保持chubby类似的client API.
@@ -547,8 +593,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org9194b0f" class="outline-3">
-<h3 id="org9194b0f"><span class="section-number-3">5.3</span> Use as a name service</h3>
+<div id="outline-container-org7028b39" class="outline-3">
+<h3 id="org7028b39"><span class="section-number-3">5.3</span> Use as a name service</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>Even though Chubby was designed as a lock service, we found that its most popular use was as a name server.(虽然chubby定位为lock service,但是非常流行的用法是用来作为name server)</li>
@@ -561,8 +607,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-orgcd9f639" class="outline-3">
-<h3 id="orgcd9f639"><span class="section-number-3">5.4</span> Problem with fail-over</h3>
+<div id="outline-container-orgfb8f9c4" class="outline-3">
+<h3 id="orgfb8f9c4"><span class="section-number-3">5.4</span> Problem with fail-over</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>The original design for master fail-over requires the master to write new sessions to the database as they are created.(原始设计里面对于创建所有的session都是立刻保存到db的)</li>
@@ -582,8 +628,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org8d4baf3" class="outline-3">
-<h3 id="org8d4baf3"><span class="section-number-3">5.5</span> Abusive clients</h3>
+<div id="outline-container-orgd1aad78" class="outline-3">
+<h3 id="orgd1aad78"><span class="section-number-3">5.5</span> Abusive clients</h3>
 <div class="outline-text-3" id="text-5-5">
 <ul class="org-ul">
 <li>Google's project teams are free to set up their own Chubby cells, but doing so adds to their maintenance bur-den, and consumes additional hardware resources.(允许搭建自己的chubby cell,但是需要自己维护并且耗费额外的硬件资源)</li>
@@ -601,8 +647,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org76800c0" class="outline-2">
-<h2 id="org76800c0"><span class="section-number-2">6</span> Lessons learned</h2>
+<div id="outline-container-org72b7eec" class="outline-2">
+<h2 id="org72b7eec"><span class="section-number-2">6</span> Lessons learned</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Here we list lessons, and miscellaneous design changes we might make if we have the opportunity:
@@ -622,8 +668,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org3fc1d5a" class="outline-2">
-<h2 id="org3fc1d5a"><span class="section-number-2">7</span> Comparison with related work</h2>
+<div id="outline-container-org7ea9a7c" class="outline-2">
+<h2 id="org7ea9a7c"><span class="section-number-2">7</span> Comparison with related work</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Chubby differs from a distributed file system such as Echo or AFS in its performance and storage aspira-tions: Clients do not read, write, or store large amounts of data, and they do not expect high throughput or even low-latency unless the data is cached. They do ex-pect consistency, availability, and reliability, but these attributes are easier to achieve when performance is less important.(chubby和文件系统设计差别主要在性能以及存储大小上面。chubby并没有提供向文件系统那样提供读写存储大容量的数据，强调高吞吐和低延迟，虽然chubby在使用cache时候可以达到低延迟。相反chubby主要注重一致性，可用性以及可靠性，而在牺牲性能情况下的话比较容易做到)</li>
@@ -634,8 +680,8 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org6226158" class="outline-2">
-<h2 id="org6226158"><span class="section-number-2">8</span> Summary</h2>
+<div id="outline-container-orgc6c8c6c" class="outline-2">
+<h2 id="orgc6c8c6c"><span class="section-number-2">8</span> Summary</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>Chubby is a distributed lock service intended for coarse-grained synchronization of activities within Google's distributed systems;</li>
@@ -647,9 +693,14 @@ newly replaced replica without placing load on replicas that are in service.
 </div>
 </div>
 
-<div id="outline-container-org16fb754" class="outline-2">
-<h2 id="org16fb754"><span class="section-number-2">9</span> Q&amp;A</h2>
+<div id="outline-container-org0ba3e02" class="outline-2">
+<h2 id="org0ba3e02"><span class="section-number-2">9</span> Q&amp;A</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/chubby.html';this.page.identifier = 'chubby.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

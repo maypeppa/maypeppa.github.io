@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SIMD</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">SIMD</h1>
@@ -16,33 +62,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge234cbb">1. 指令集</a>
+<li><a href="#orgfbdc6d7">1. 指令集</a>
 <ul>
-<li><a href="#org1dfd29c">1.1. MMX</a></li>
-<li><a href="#org151bf9f">1.2. SSE.</a></li>
-<li><a href="#orgfbf76a3">1.3. SSE2</a></li>
-<li><a href="#orgf05b28b">1.4. SSE3</a></li>
-<li><a href="#org789b05f">1.5. SSSE3</a></li>
-<li><a href="#org1de154f">1.6. SSE4</a></li>
-<li><a href="#orgcf31519">1.7. 检测代码</a></li>
+<li><a href="#orgbb903a2">1.1. MMX</a></li>
+<li><a href="#org24db94d">1.2. SSE.</a></li>
+<li><a href="#org2f6e894">1.3. SSE2</a></li>
+<li><a href="#org648feb2">1.4. SSE3</a></li>
+<li><a href="#org00de47d">1.5. SSSE3</a></li>
+<li><a href="#org2c732cf">1.6. SSE4</a></li>
+<li><a href="#org6394eda">1.7. 检测代码</a></li>
 </ul>
 </li>
-<li><a href="#org48a08c9">2. 基本概念</a>
+<li><a href="#org69f88aa">2. 基本概念</a>
 <ul>
-<li><a href="#org6582278">2.1. %mm寄存器</a></li>
-<li><a href="#org6018457">2.2. %xmm寄存器</a></li>
-<li><a href="#org69f4063">2.3. %mxcsr寄存器</a></li>
-<li><a href="#org4c1fc83">2.4. Saturation &amp; Wraparound</a></li>
-<li><a href="#orgb266ee9">2.5. General Purpose Register(GPR)</a></li>
-<li><a href="#orge9df57a">2.6. X87 FPU</a></li>
-<li><a href="#orgd0075a0">2.7. Packed &amp; Scalar Instructions</a></li>
-<li><a href="#org8ecc42d">2.8. Temporal &amp; NonTemporal Data</a></li>
-<li><a href="#org7bdc8c0">2.9. Alignment</a></li>
-<li><a href="#orgdf1bcbe">2.10. Asymmetric &amp; Horizontal Processing</a></li>
-<li><a href="#orgc38c18f">2.11. Zero Fill &amp; Truncated</a></li>
+<li><a href="#org765af5e">2.1. %mm寄存器</a></li>
+<li><a href="#orga84c8f8">2.2. %xmm寄存器</a></li>
+<li><a href="#orgd1b3402">2.3. %mxcsr寄存器</a></li>
+<li><a href="#orgac6412e">2.4. Saturation &amp; Wraparound</a></li>
+<li><a href="#org64c3708">2.5. General Purpose Register(GPR)</a></li>
+<li><a href="#orgd5c1ac7">2.6. X87 FPU</a></li>
+<li><a href="#org80cbd5d">2.7. Packed &amp; Scalar Instructions</a></li>
+<li><a href="#org120fd20">2.8. Temporal &amp; NonTemporal Data</a></li>
+<li><a href="#org69535fc">2.9. Alignment</a></li>
+<li><a href="#orgc44e04c">2.10. Asymmetric &amp; Horizontal Processing</a></li>
+<li><a href="#orgf12ef5a">2.11. Zero Fill &amp; Truncated</a></li>
 </ul>
 </li>
-<li><a href="#org5d77641">3. 指令</a></li>
+<li><a href="#orgde43566">3. 指令</a></li>
 </ul>
 </div>
 </div>
@@ -50,12 +96,12 @@
 Intel® 64 and IA-32 Architectures Software Developer Manuals | Intel® Software - <a href="https://software.intel.com/en-us/articles/intel-sdm">https://software.intel.com/en-us/articles/intel-sdm</a>
 </p>
 
-<div id="outline-container-orge234cbb" class="outline-2">
-<h2 id="orge234cbb"><span class="section-number-2">1</span> 指令集</h2>
+<div id="outline-container-orgfbdc6d7" class="outline-2">
+<h2 id="orgfbdc6d7"><span class="section-number-2">1</span> 指令集</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1dfd29c" class="outline-3">
-<h3 id="org1dfd29c"><span class="section-number-3">1.1</span> MMX</h3>
+<div id="outline-container-orgbb903a2" class="outline-3">
+<h3 id="orgbb903a2"><span class="section-number-3">1.1</span> MMX</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Multimedia Extensions.[PII &amp; PMMX]</li>
@@ -64,8 +110,8 @@ Intel® 64 and IA-32 Architectures Software Developer Manuals | Intel® Software
 </div>
 </div>
 
-<div id="outline-container-org151bf9f" class="outline-3">
-<h3 id="org151bf9f"><span class="section-number-3">1.2</span> SSE.</h3>
+<div id="outline-container-org24db94d" class="outline-3">
+<h3 id="org24db94d"><span class="section-number-3">1.2</span> SSE.</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Streaming SIMD Extensions.[PIII]</li>
@@ -74,8 +120,8 @@ Intel® 64 and IA-32 Architectures Software Developer Manuals | Intel® Software
 </div>
 </div>
 
-<div id="outline-container-orgfbf76a3" class="outline-3">
-<h3 id="orgfbf76a3"><span class="section-number-3">1.3</span> SSE2</h3>
+<div id="outline-container-org2f6e894" class="outline-3">
+<h3 id="org2f6e894"><span class="section-number-3">1.3</span> SSE2</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Streaming SIMD Extensions2.[P4 &amp; Xeon]</li>
@@ -84,8 +130,8 @@ Intel® 64 and IA-32 Architectures Software Developer Manuals | Intel® Software
 </div>
 </div>
 
-<div id="outline-container-orgf05b28b" class="outline-3">
-<h3 id="orgf05b28b"><span class="section-number-3">1.4</span> SSE3</h3>
+<div id="outline-container-org648feb2" class="outline-3">
+<h3 id="org648feb2"><span class="section-number-3">1.4</span> SSE3</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Streaming SIMD Extensions3.[P4(HT)]</li>
@@ -94,8 +140,8 @@ Intel® 64 and IA-32 Architectures Software Developer Manuals | Intel® Software
 </div>
 </div>
 
-<div id="outline-container-org789b05f" class="outline-3">
-<h3 id="org789b05f"><span class="section-number-3">1.5</span> SSSE3</h3>
+<div id="outline-container-org00de47d" class="outline-3">
+<h3 id="org00de47d"><span class="section-number-3">1.5</span> SSSE3</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Supplemental Stream SIMD Extensions3.[Xeon(5100) &amp; Core2]</li>
@@ -104,122 +150,122 @@ Intel® 64 and IA-32 Architectures Software Developer Manuals | Intel® Software
 </div>
 </div>
 
-<div id="outline-container-org1de154f" class="outline-3">
-<h3 id="org1de154f"><span class="section-number-3">1.6</span> SSE4</h3>
+<div id="outline-container-org2c732cf" class="outline-3">
+<h3 id="org2c732cf"><span class="section-number-3">1.6</span> SSE4</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li>Streaming SIMD Extensions4.[Xeon(5400) &amp; Core2Ex(QX9650)]</li>
-<li>SSE4.1.(CPUID.01H:ECX.SSE4_1[bit 19]=1)</li>
-<li>SSE4.2.(CPUID.01H:ECX.SSE4_2[bit 20]=1)</li>
+<li>SSE4.1.(CPUID.01H:ECX.SSE4<sub>1</sub>[bit 19]=1)</li>
+<li>SSE4.2.(CPUID.01H:ECX.SSE4<sub>2</sub>[bit 20]=1)</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcf31519" class="outline-3">
-<h3 id="orgcf31519"><span class="section-number-3">1.7</span> 检测代码</h3>
+<div id="outline-container-org6394eda" class="outline-3">
+<h3 id="org6394eda"><span class="section-number-3">1.7</span> 检测代码</h3>
 <div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
-<span class="org-type">int</span> <span class="org-function-name">check_support_mmx</span>(){
-    <span class="org-type">int</span> <span class="org-variable-name">res</span>=0;
-    <span class="org-keyword">__asm__</span> __volatile__(
-        <span class="org-string">"movl $1,%%eax\n\t"</span>
-        <span class="org-string">"cpuid\n\t"</span>
-        <span class="org-string">"test $0x800000,%%edx\n\t"</span>
-        <span class="org-string">"jz 1f\n\t"</span>
-        <span class="org-string">"movl $1,%0\n\t"</span>
-        <span class="org-string">"1:\n\t"</span>
-        :<span class="org-string">"=m"</span>(res)
-        ::<span class="org-string">"eax"</span>,<span class="org-string">"edx"</span>);
-    <span class="org-keyword">return</span> res;
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">check_support_mmx</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">res</span>=0;
+    <span style="font-weight: bold;">__asm__</span> __volatile__(
+        <span style="font-style: italic;">"movl $1,%%eax\n\t"</span>
+        <span style="font-style: italic;">"cpuid\n\t"</span>
+        <span style="font-style: italic;">"test $0x800000,%%edx\n\t"</span>
+        <span style="font-style: italic;">"jz 1f\n\t"</span>
+        <span style="font-style: italic;">"movl $1,%0\n\t"</span>
+        <span style="font-style: italic;">"1:\n\t"</span>
+        :<span style="font-style: italic;">"=m"</span>(res)
+        ::<span style="font-style: italic;">"eax"</span>,<span style="font-style: italic;">"edx"</span>);
+    <span style="font-weight: bold;">return</span> res;
 }
-<span class="org-type">int</span> <span class="org-function-name">check_support_sse</span>(){
-    <span class="org-type">int</span> <span class="org-variable-name">res</span>=0;
-    <span class="org-keyword">__asm__</span> __volatile__(
-        <span class="org-string">"movl $1,%%eax\n\t"</span>
-        <span class="org-string">"cpuid\n\t"</span>
-        <span class="org-string">"test $0x02000000,%%edx\n\t"</span>
-        <span class="org-string">"jz 1f\n\t"</span>
-        <span class="org-string">"movl $1,%0\n\t"</span>
-        <span class="org-string">"1:\n\t"</span>
-        :<span class="org-string">"=m"</span>(res)
-        ::<span class="org-string">"eax"</span>,<span class="org-string">"edx"</span>);
-    <span class="org-keyword">return</span> res;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">check_support_sse</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">res</span>=0;
+    <span style="font-weight: bold;">__asm__</span> __volatile__(
+        <span style="font-style: italic;">"movl $1,%%eax\n\t"</span>
+        <span style="font-style: italic;">"cpuid\n\t"</span>
+        <span style="font-style: italic;">"test $0x02000000,%%edx\n\t"</span>
+        <span style="font-style: italic;">"jz 1f\n\t"</span>
+        <span style="font-style: italic;">"movl $1,%0\n\t"</span>
+        <span style="font-style: italic;">"1:\n\t"</span>
+        :<span style="font-style: italic;">"=m"</span>(res)
+        ::<span style="font-style: italic;">"eax"</span>,<span style="font-style: italic;">"edx"</span>);
+    <span style="font-weight: bold;">return</span> res;
 }
-<span class="org-type">int</span> <span class="org-function-name">check_support_sse2</span>(){
-    <span class="org-type">int</span> <span class="org-variable-name">res</span>=0;
-    <span class="org-keyword">__asm__</span> __volatile__(
-        <span class="org-string">"movl $1,%%eax\n\t"</span>
-        <span class="org-string">"cpuid\n\t"</span>
-        <span class="org-string">"test $0x04000000,%%edx\n\t"</span>
-        <span class="org-string">"jz 1f\n\t"</span>
-        <span class="org-string">"movl $1,%0\n\t"</span>
-        <span class="org-string">"1:\n\t"</span>
-        :<span class="org-string">"=m"</span>(res)
-        ::<span class="org-string">"eax"</span>,<span class="org-string">"edx"</span>);
-    <span class="org-keyword">return</span> res;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">check_support_sse2</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">res</span>=0;
+    <span style="font-weight: bold;">__asm__</span> __volatile__(
+        <span style="font-style: italic;">"movl $1,%%eax\n\t"</span>
+        <span style="font-style: italic;">"cpuid\n\t"</span>
+        <span style="font-style: italic;">"test $0x04000000,%%edx\n\t"</span>
+        <span style="font-style: italic;">"jz 1f\n\t"</span>
+        <span style="font-style: italic;">"movl $1,%0\n\t"</span>
+        <span style="font-style: italic;">"1:\n\t"</span>
+        :<span style="font-style: italic;">"=m"</span>(res)
+        ::<span style="font-style: italic;">"eax"</span>,<span style="font-style: italic;">"edx"</span>);
+    <span style="font-weight: bold;">return</span> res;
 }
-<span class="org-type">int</span> <span class="org-function-name">check_support_sse3</span>(){
-    <span class="org-type">int</span> <span class="org-variable-name">res</span>=0;
-    <span class="org-keyword">__asm__</span> __volatile__(
-        <span class="org-string">"movl $1,%%eax\n\t"</span>
-        <span class="org-string">"cpuid\n\t"</span>
-        <span class="org-string">"test $0x1,%%ecx\n\t"</span>
-        <span class="org-string">"jz 1f\n\t"</span>
-        <span class="org-string">"movl $1,%0\n\t"</span>
-        <span class="org-string">"1:\n\t"</span>
-        :<span class="org-string">"=m"</span>(res)
-        ::<span class="org-string">"eax"</span>,<span class="org-string">"edx"</span>);
-    <span class="org-keyword">return</span> res;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">check_support_sse3</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">res</span>=0;
+    <span style="font-weight: bold;">__asm__</span> __volatile__(
+        <span style="font-style: italic;">"movl $1,%%eax\n\t"</span>
+        <span style="font-style: italic;">"cpuid\n\t"</span>
+        <span style="font-style: italic;">"test $0x1,%%ecx\n\t"</span>
+        <span style="font-style: italic;">"jz 1f\n\t"</span>
+        <span style="font-style: italic;">"movl $1,%0\n\t"</span>
+        <span style="font-style: italic;">"1:\n\t"</span>
+        :<span style="font-style: italic;">"=m"</span>(res)
+        ::<span style="font-style: italic;">"eax"</span>,<span style="font-style: italic;">"edx"</span>);
+    <span style="font-weight: bold;">return</span> res;
 }
-<span class="org-type">int</span> <span class="org-function-name">check_support_ssse3</span>(){
-    <span class="org-type">int</span> <span class="org-variable-name">res</span>=0;
-    <span class="org-keyword">__asm__</span> __volatile__(
-        <span class="org-string">"movl $1,%%eax\n\t"</span>
-        <span class="org-string">"cpuid\n\t"</span>
-        <span class="org-string">"test $0x0200,%%ecx\n\t"</span>
-        <span class="org-string">"jz 1f\n\t"</span>
-        <span class="org-string">"movl $1,%0\n\t"</span>
-        <span class="org-string">"1:\n\t"</span>
-        :<span class="org-string">"=m"</span>(res)
-        ::<span class="org-string">"eax"</span>,<span class="org-string">"edx"</span>);
-    <span class="org-keyword">return</span> res;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">check_support_ssse3</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">res</span>=0;
+    <span style="font-weight: bold;">__asm__</span> __volatile__(
+        <span style="font-style: italic;">"movl $1,%%eax\n\t"</span>
+        <span style="font-style: italic;">"cpuid\n\t"</span>
+        <span style="font-style: italic;">"test $0x0200,%%ecx\n\t"</span>
+        <span style="font-style: italic;">"jz 1f\n\t"</span>
+        <span style="font-style: italic;">"movl $1,%0\n\t"</span>
+        <span style="font-style: italic;">"1:\n\t"</span>
+        :<span style="font-style: italic;">"=m"</span>(res)
+        ::<span style="font-style: italic;">"eax"</span>,<span style="font-style: italic;">"edx"</span>);
+    <span style="font-weight: bold;">return</span> res;
 }
-<span class="org-type">int</span> <span class="org-function-name">check_support_sse4_1</span>(){
-    <span class="org-type">int</span> <span class="org-variable-name">res</span>=0;
-    <span class="org-keyword">__asm__</span> __volatile__(
-        <span class="org-string">"movl $1,%%eax\n\t"</span>
-        <span class="org-string">"cpuid\n\t"</span>
-        <span class="org-string">"test $0x80000,%%ecx\n\t"</span>
-        <span class="org-string">"jz 1f\n\t"</span>
-        <span class="org-string">"movl $1,%0\n\t"</span>
-        <span class="org-string">"1:\n\t"</span>
-        :<span class="org-string">"=m"</span>(res)
-        ::<span class="org-string">"eax"</span>,<span class="org-string">"edx"</span>);
-    <span class="org-keyword">return</span> res;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">check_support_sse4_1</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">res</span>=0;
+    <span style="font-weight: bold;">__asm__</span> __volatile__(
+        <span style="font-style: italic;">"movl $1,%%eax\n\t"</span>
+        <span style="font-style: italic;">"cpuid\n\t"</span>
+        <span style="font-style: italic;">"test $0x80000,%%ecx\n\t"</span>
+        <span style="font-style: italic;">"jz 1f\n\t"</span>
+        <span style="font-style: italic;">"movl $1,%0\n\t"</span>
+        <span style="font-style: italic;">"1:\n\t"</span>
+        :<span style="font-style: italic;">"=m"</span>(res)
+        ::<span style="font-style: italic;">"eax"</span>,<span style="font-style: italic;">"edx"</span>);
+    <span style="font-weight: bold;">return</span> res;
 }
-<span class="org-type">int</span> <span class="org-function-name">check_support_sse4_2</span>(){
-    <span class="org-type">int</span> <span class="org-variable-name">res</span>=0;
-    <span class="org-keyword">__asm__</span> __volatile__(
-        <span class="org-string">"movl $1,%%eax\n\t"</span>
-        <span class="org-string">"cpuid\n\t"</span>
-        <span class="org-string">"test $0x0100000,%%ecx\n\t"</span>
-        <span class="org-string">"jz 1f\n\t"</span>
-        <span class="org-string">"movl $1,%0\n\t"</span>
-        <span class="org-string">"1:\n\t"</span>
-        :<span class="org-string">"=m"</span>(res)
-        ::<span class="org-string">"eax"</span>,<span class="org-string">"edx"</span>);
-    <span class="org-keyword">return</span> res;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">check_support_sse4_2</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">res</span>=0;
+    <span style="font-weight: bold;">__asm__</span> __volatile__(
+        <span style="font-style: italic;">"movl $1,%%eax\n\t"</span>
+        <span style="font-style: italic;">"cpuid\n\t"</span>
+        <span style="font-style: italic;">"test $0x0100000,%%ecx\n\t"</span>
+        <span style="font-style: italic;">"jz 1f\n\t"</span>
+        <span style="font-style: italic;">"movl $1,%0\n\t"</span>
+        <span style="font-style: italic;">"1:\n\t"</span>
+        :<span style="font-style: italic;">"=m"</span>(res)
+        ::<span style="font-style: italic;">"eax"</span>,<span style="font-style: italic;">"edx"</span>);
+    <span style="font-weight: bold;">return</span> res;
 }
-<span class="org-type">int</span> <span class="org-function-name">main</span>(){
-    printf(<span class="org-string">"MMX[%s]\n"</span>,check_support_mmx()?<span class="org-string">"OK"</span>:<span class="org-string">"FAILED"</span>);
-    printf(<span class="org-string">"SSE[%s]\n"</span>,check_support_sse()?<span class="org-string">"OK"</span>:<span class="org-string">"FAILED"</span>);
-    printf(<span class="org-string">"SSE2[%s]\n"</span>,check_support_sse2()?<span class="org-string">"OK"</span>:<span class="org-string">"FAILED"</span>);
-    printf(<span class="org-string">"SSE3[%s]\n"</span>,check_support_sse3()?<span class="org-string">"OK"</span>:<span class="org-string">"FAILED"</span>);
-    printf(<span class="org-string">"SSSE3[%s]\n"</span>,check_support_ssse3()?<span class="org-string">"OK"</span>:<span class="org-string">"FAILED"</span>);
-    printf(<span class="org-string">"SSE4.1[%s]\n"</span>,check_support_sse4_1()?<span class="org-string">"OK"</span>:<span class="org-string">"FAILED"</span>);
-    printf(<span class="org-string">"SSE4.2[%s]\n"</span>,check_support_sse4_2()?<span class="org-string">"OK"</span>:<span class="org-string">"FAILED"</span>);
-    <span class="org-keyword">return</span> 0;
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(){
+    printf(<span style="font-style: italic;">"MMX[%s]\n"</span>,check_support_mmx()?<span style="font-style: italic;">"OK"</span>:<span style="font-style: italic;">"FAILED"</span>);
+    printf(<span style="font-style: italic;">"SSE[%s]\n"</span>,check_support_sse()?<span style="font-style: italic;">"OK"</span>:<span style="font-style: italic;">"FAILED"</span>);
+    printf(<span style="font-style: italic;">"SSE2[%s]\n"</span>,check_support_sse2()?<span style="font-style: italic;">"OK"</span>:<span style="font-style: italic;">"FAILED"</span>);
+    printf(<span style="font-style: italic;">"SSE3[%s]\n"</span>,check_support_sse3()?<span style="font-style: italic;">"OK"</span>:<span style="font-style: italic;">"FAILED"</span>);
+    printf(<span style="font-style: italic;">"SSSE3[%s]\n"</span>,check_support_ssse3()?<span style="font-style: italic;">"OK"</span>:<span style="font-style: italic;">"FAILED"</span>);
+    printf(<span style="font-style: italic;">"SSE4.1[%s]\n"</span>,check_support_sse4_1()?<span style="font-style: italic;">"OK"</span>:<span style="font-style: italic;">"FAILED"</span>);
+    printf(<span style="font-style: italic;">"SSE4.2[%s]\n"</span>,check_support_sse4_2()?<span style="font-style: italic;">"OK"</span>:<span style="font-style: italic;">"FAILED"</span>);
+    <span style="font-weight: bold;">return</span> 0;
 }
 
 </pre>
@@ -228,12 +274,12 @@ Intel® 64 and IA-32 Architectures Software Developer Manuals | Intel® Software
 </div>
 </div>
 
-<div id="outline-container-org48a08c9" class="outline-2">
-<h2 id="org48a08c9"><span class="section-number-2">2</span> 基本概念</h2>
+<div id="outline-container-org69f88aa" class="outline-2">
+<h2 id="org69f88aa"><span class="section-number-2">2</span> 基本概念</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org6582278" class="outline-3">
-<h3 id="org6582278"><span class="section-number-3">2.1</span> %mm寄存器</h3>
+<div id="outline-container-org765af5e" class="outline-3">
+<h3 id="org765af5e"><span class="section-number-3">2.1</span> %mm寄存器</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 %mm寄存器是64bit,共有8个%mm寄存器.需要注意的是,%mm0-%mm7是X87 FPU寄存器的alias,
@@ -272,8 +318,8 @@ EMMS指令会清除MMX的状态,将FPU tag word进行清空,表示所有的FPU r
 </div>
 </div>
 
-<div id="outline-container-org6018457" class="outline-3">
-<h3 id="org6018457"><span class="section-number-3">2.2</span> %xmm寄存器</h3>
+<div id="outline-container-orga84c8f8" class="outline-3">
+<h3 id="orga84c8f8"><span class="section-number-3">2.2</span> %xmm寄存器</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 %xmm寄存器是128bit.
@@ -283,8 +329,8 @@ IA-32架构下只允许访问8个%xmm寄存器.
 </div>
 </div>
 
-<div id="outline-container-org69f4063" class="outline-3">
-<h3 id="org69f4063"><span class="section-number-3">2.3</span> %mxcsr寄存器</h3>
+<div id="outline-container-orgd1b3402" class="outline-3">
+<h3 id="orgd1b3402"><span class="section-number-3">2.3</span> %mxcsr寄存器</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 %mxcsr是32bit.%mxcsr寄存器是在SSE指令集引入的,用来控制作用在%xmm寄存器操作的行为,
@@ -322,8 +368,8 @@ IA-32架构下只允许访问8个%xmm寄存器.
 </div>
 </div>
 
-<div id="outline-container-org4c1fc83" class="outline-3">
-<h3 id="org4c1fc83"><span class="section-number-3">2.4</span> Saturation &amp; Wraparound</h3>
+<div id="outline-container-orgac6412e" class="outline-3">
+<h3 id="orgac6412e"><span class="section-number-3">2.4</span> Saturation &amp; Wraparound</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 在进行整数运算的时候,可能会存在out-of-range的情况,结果不能够被目标数所表示.对于
@@ -355,8 +401,8 @@ IA-32架构下只允许访问8个%xmm寄存器.
 </div>
 </div>
 
-<div id="outline-container-orgb266ee9" class="outline-3">
-<h3 id="orgb266ee9"><span class="section-number-3">2.5</span> General Purpose Register(GPR)</h3>
+<div id="outline-container-org64c3708" class="outline-3">
+<h3 id="org64c3708"><span class="section-number-3">2.5</span> General Purpose Register(GPR)</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 通用寄存器,包括EAX/RAX,EBX/RBX,ECX/RCX等.这些通用寄存器和%mm和%xmm之间的差别是,
@@ -365,8 +411,8 @@ IA-32架构下只允许访问8个%xmm寄存器.
 </div>
 </div>
 
-<div id="outline-container-orge9df57a" class="outline-3">
-<h3 id="orge9df57a"><span class="section-number-3">2.6</span> X87 FPU</h3>
+<div id="outline-container-orgd5c1ac7" class="outline-3">
+<h3 id="orgd5c1ac7"><span class="section-number-3">2.6</span> X87 FPU</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 X87 FPU是浮点运算部件,共有8个寄存器,组织方式是堆栈.通常来说对于SIMD并不需要关心
@@ -422,8 +468,8 @@ X87 FPU这个部件.但是因为SIMD使用的%mm寄存器是FPU寄存器的alias
 </div>
 </div>
 
-<div id="outline-container-orgd0075a0" class="outline-3">
-<h3 id="orgd0075a0"><span class="section-number-3">2.7</span> Packed &amp; Scalar Instructions</h3>
+<div id="outline-container-org80cbd5d" class="outline-3">
+<h3 id="org80cbd5d"><span class="section-number-3">2.7</span> Packed &amp; Scalar Instructions</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 对于SIMD提供了操作packed和scalar指令.我们假设存在两个操作数,
@@ -458,8 +504,8 @@ X87 FPU这个部件.但是因为SIMD使用的%mm寄存器是FPU寄存器的alias
 </div>
 </div>
 
-<div id="outline-container-org8ecc42d" class="outline-3">
-<h3 id="org8ecc42d"><span class="section-number-3">2.8</span> Temporal &amp; NonTemporal Data</h3>
+<div id="outline-container-org120fd20" class="outline-3">
+<h3 id="org120fd20"><span class="section-number-3">2.8</span> Temporal &amp; NonTemporal Data</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 待续.需要阅读Intel Vol.3A Memory &amp; Cache Control这节.在Intel Vol.1 10.4.6.2也有介绍.
@@ -467,8 +513,8 @@ X87 FPU这个部件.但是因为SIMD使用的%mm寄存器是FPU寄存器的alias
 </div>
 </div>
 
-<div id="outline-container-org7bdc8c0" class="outline-3">
-<h3 id="org7bdc8c0"><span class="section-number-3">2.9</span> Alignment</h3>
+<div id="outline-container-org69535fc" class="outline-3">
+<h3 id="org69535fc"><span class="section-number-3">2.9</span> Alignment</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 关于对齐方面,如果使用128bit Memory Operand必须进行16字节的对齐.但是有些例外
@@ -482,8 +528,8 @@ X87 FPU这个部件.但是因为SIMD使用的%mm寄存器是FPU寄存器的alias
 </div>
 </div>
 
-<div id="outline-container-orgdf1bcbe" class="outline-3">
-<h3 id="orgdf1bcbe"><span class="section-number-3">2.10</span> Asymmetric &amp; Horizontal Processing</h3>
+<div id="outline-container-orgc44e04c" class="outline-3">
+<h3 id="orgc44e04c"><span class="section-number-3">2.10</span> Asymmetric &amp; Horizontal Processing</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 分别是对称处理和水平处理.假设存在操作数(a0,a1,a2,a3)以及(b0,b1,b2,b3).
@@ -493,8 +539,8 @@ X87 FPU这个部件.但是因为SIMD使用的%mm寄存器是FPU寄存器的alias
 </div>
 </div>
 
-<div id="outline-container-orgc38c18f" class="outline-3">
-<h3 id="orgc38c18f"><span class="section-number-3">2.11</span> Zero Fill &amp; Truncated</h3>
+<div id="outline-container-orgf12ef5a" class="outline-3">
+<h3 id="orgf12ef5a"><span class="section-number-3">2.11</span> Zero Fill &amp; Truncated</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
 对于从内存/寄存器载入到寄存器的话,如果位数不够,通常是占用寄存器的低字节,
@@ -509,8 +555,8 @@ X87 FPU这个部件.但是因为SIMD使用的%mm寄存器是FPU寄存器的alias
 </div>
 </div>
 
-<div id="outline-container-org5d77641" class="outline-2">
-<h2 id="org5d77641"><span class="section-number-2">3</span> 指令</h2>
+<div id="outline-container-orgde43566" class="outline-2">
+<h2 id="orgde43566"><span class="section-number-2">3</span> 指令</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 为了方便表示,我们定义下面缩写和操作.
@@ -953,6 +999,11 @@ X87 FPU这个部件.但是因为SIMD使用的%mm寄存器是FPU寄存器的alias
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/simd.html';this.page.identifier = 'simd.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

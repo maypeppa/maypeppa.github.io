@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tensorflow Neural Art</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Tensorflow Neural Art</h1>
@@ -37,23 +83,23 @@ If you know that the kernel source packages are installed and set up correctly, 
 </blockquote>
 
 <p>
-我确认了一下linux kernel headers是已经安装了的 <b>sudo apt-get install linux-headers-$(uname -r)</b>. 之后不放心还把linux-kernel-source也安装上了，但是问题依然存在。盲从地做了几次尝试之后，我终于记起了要看看log. 里面信息非常明确，就是缺少一些drm_*符号. 问题一下就明了了，很可能就是headers安装补全。
+我确认了一下linux kernel headers是已经安装了的 <b>sudo apt-get install linux-headers-$(uname -r)</b>. 之后不放心还把linux-kernel-source也安装上了，但是问题依然存在。盲从地做了几次尝试之后，我终于记起了要看看log. 里面信息非常明确，就是缺少一些drm<sub>*</sub>符号. 问题一下就明了了，很可能就是headers安装补全。
 </p>
 <blockquote>
 <p>
-[ 1520.822063] nvidia_drm: Unknown symbol drm_open (err 0)
+[ 1520.822063] nvidia<sub>drm</sub>: Unknown symbol drm<sub>open</sub> (err 0)
 </p>
 
 <p>
-[ 1520.822066] nvidia_drm: Unknown symbol drm_poll (err 0)
+[ 1520.822066] nvidia<sub>drm</sub>: Unknown symbol drm<sub>poll</sub> (err 0)
 </p>
 
 <p>
-[ 1520.822069] nvidia_drm: Unknown symbol drm_ut_debug_printk (err 0)
+[ 1520.822069] nvidia<sub>drm</sub>: Unknown symbol drm<sub>ut</sub><sub>debug</sub><sub>printk</sub> (err 0)
 </p>
 
 <p>
-[ 1520.822075] nvidia_drm: Unknown symbol drm_gem_prime_handle_to_fd (err 0)
+[ 1520.822075] nvidia<sub>drm</sub>: Unknown symbol drm<sub>gem</sub><sub>prime</sub><sub>handle</sub><sub>to</sub><sub>fd</sub> (err 0)
 </p>
 </blockquote>
 
@@ -69,7 +115,7 @@ If you know that the kernel source packages are installed and set up correctly, 
 <ul class="org-ul">
 <li>train data大约提供了8w张图片，但是实际上使用6w张跑一轮下来就能得到比较好的效果了。</li>
 <li>存储模型的时候，如果已经知道graph定义的话，那么没有必要保存meta文件（模型参数文件大小15MB，而meta就有190MB）</li>
-<li>此外存储模型的时候，最好指定global_step, 这样就知道训练到了第几轮。</li>
+<li>此外存储模型的时候，最好指定global<sub>step</sub>, 这样就知道训练到了第几轮。</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-Python">import os
@@ -92,17 +138,17 @@ saver.save(sess, save_path, global_step, write_meta_graph = False)
 
     # rotate if necessary
     if hasattr(im, '_getexif'): # only present in JPEGs
-        for orientation in ExifTags.TAGS.keys():
-            if ExifTags.TAGS[orientation]=='Orientation':
-                break
-        e = im._getexif()
-        if e is not None:
-            exif=dict(e.items())
-            if orientation in exif:
-                orientation = exif[orientation]
-                if orientation == 3:   im = im.transpose(Image.ROTATE_180)
-                elif orientation == 6: im = im.transpose(Image.ROTATE_270)
-                elif orientation == 8: im = im.transpose(Image.ROTATE_90)
+	for orientation in ExifTags.TAGS.keys():
+	    if ExifTags.TAGS[orientation]=='Orientation':
+		break
+	e = im._getexif()
+	if e is not None:
+	    exif=dict(e.items())
+	    if orientation in exif:
+		orientation = exif[orientation]
+		if orientation == 3:   im = im.transpose(Image.ROTATE_180)
+		elif orientation == 6: im = im.transpose(Image.ROTATE_270)
+		elif orientation == 8: im = im.transpose(Image.ROTATE_90)
 
     # scale it.
     (w, h) = im.size
@@ -129,6 +175,11 @@ saver.save(sess, save_path, global_step, write_meta_graph = False)
 <p>
 <img src="images/tf-neural-art-udnie0.jpg" alt="tf-neural-art-udnie0.jpg" /> <img src="images/tf-neural-art-udnie.jpg" alt="tf-neural-art-udnie.jpg" />
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/tensorflow-neural-art.html';this.page.identifier = 'tensorflow-neural-art.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

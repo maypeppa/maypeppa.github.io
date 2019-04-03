@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Designs, Lessons and Advice from Building Large Distributed Systems</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Designs, Lessons and Advice from Building Large Distributed Systems</h1>
@@ -16,11 +62,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2910280">1. Architectural view of the storage hierarchy</a></li>
-<li><a href="#org8155356">2. Reliability &amp; Availability</a></li>
-<li><a href="#org551572f">3. Making Applications Robust Against Failures</a></li>
-<li><a href="#org40295fe">4. Add Sufficient Monitoring/Status/Debugging Hooks</a></li>
-<li><a href="#org706b3d8">5. BigTable: What’s New Since OSDI’06?</a></li>
+<li><a href="#org2e1bedf">1. Architectural view of the storage hierarchy</a></li>
+<li><a href="#org207ff24">2. Reliability &amp; Availability</a></li>
+<li><a href="#org31738bf">3. Making Applications Robust Against Failures</a></li>
+<li><a href="#org42e83ce">4. Add Sufficient Monitoring/Status/Debugging Hooks</a></li>
+<li><a href="#org4c6ecf8">5. BigTable: What’s New Since OSDI’06?</a></li>
 </ul>
 </div>
 </div>
@@ -30,8 +76,8 @@
 </ul>
 
 
-<div id="outline-container-org2910280" class="outline-2">
-<h2 id="org2910280"><span class="section-number-2">1</span> Architectural view of the storage hierarchy</h2>
+<div id="outline-container-org2e1bedf" class="outline-2">
+<h2 id="org2e1bedf"><span class="section-number-2">1</span> Architectural view of the storage hierarchy</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 对于分布式系统来说，存储层次扩展到了rack,cluster,datacenter级别
@@ -50,18 +96,18 @@
 </div>
 </div>
 
-<div id="outline-container-org8155356" class="outline-2">
-<h2 id="org8155356"><span class="section-number-2">2</span> Reliability &amp; Availability</h2>
+<div id="outline-container-org207ff24" class="outline-2">
+<h2 id="org207ff24"><span class="section-number-2">2</span> Reliability &amp; Availability</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>Things will crash. Deal with it! （就是MTBF有30年，但是如果有上万节点的话，那么每年也会挂掉一台，所以设计fault-tolerant软件是必要的）
+<li>Things will crash. Deal with it! （就是MTBF有30年，但是如果有上万节点的话，那么每年也会挂掉一台，所以设计fault-tolerant软件是必要的） 
 <ul class="org-ul">
 <li>Assume you could start with super reliable servers (MTBF of 30 years)</li>
 <li>Build computing system with 10 thousand of those</li>
 <li>Watch one fail per day</li>
 </ul></li>
 <li>Fault-tolerant software is inevitable</li>
-<li>Typical yearly flakiness metrics
+<li>Typical yearly flakiness metrics 
 <ul class="org-ul">
 <li>1-5% of your disk drives will die</li>
 <li>Servers will crash at least twice (2-4% failure rate)</li>
@@ -70,8 +116,8 @@
 </div>
 </div>
 
-<div id="outline-container-org551572f" class="outline-2">
-<h2 id="org551572f"><span class="section-number-2">3</span> Making Applications Robust Against Failures</h2>
+<div id="outline-container-org31738bf" class="outline-2">
+<h2 id="org31738bf"><span class="section-number-2">3</span> Making Applications Robust Against Failures</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Canary requests</li>
@@ -86,8 +132,8 @@
 </div>
 </div>
 
-<div id="outline-container-org40295fe" class="outline-2">
-<h2 id="org40295fe"><span class="section-number-2">4</span> Add Sufficient Monitoring/Status/Debugging Hooks</h2>
+<div id="outline-container-org42e83ce" class="outline-2">
+<h2 id="org42e83ce"><span class="section-number-2">4</span> Add Sufficient Monitoring/Status/Debugging Hooks</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>All our servers:
@@ -107,8 +153,8 @@
 </div>
 </div>
 
-<div id="outline-container-org706b3d8" class="outline-2">
-<h2 id="org706b3d8"><span class="section-number-2">5</span> BigTable: What’s New Since OSDI’06?</h2>
+<div id="outline-container-org4c6ecf8" class="outline-2">
+<h2 id="org4c6ecf8"><span class="section-number-2">5</span> BigTable: What’s New Since OSDI’06?</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 bigtable相对于原始论文的改进
@@ -154,6 +200,11 @@ bigtable相对于原始论文的改进
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/designs-lessons-and-advice-from-building-large-distributed-systems.html';this.page.identifier = 'designs-lessons-and-advice-from-building-large-distributed-systems.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

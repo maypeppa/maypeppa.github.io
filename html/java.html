@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Java</h1>
@@ -16,64 +62,64 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd55a889">1. 基本语法</a>
+<li><a href="#org4320936">1. 基本语法</a>
 <ul>
-<li><a href="#org8b9c694">1.1. 标签跳转</a></li>
-<li><a href="#org77979bb">1.2. final</a></li>
-<li><a href="#orgd1a9bb4">1.3. assert</a></li>
-<li><a href="#org15e35b7">1.4. 位移操作</a></li>
+<li><a href="#orgfa9e759">1.1. 标签跳转</a></li>
+<li><a href="#orgd2b666e">1.2. final</a></li>
+<li><a href="#org6720810">1.3. assert</a></li>
+<li><a href="#org8e6a070">1.4. 位移操作</a></li>
 </ul>
 </li>
-<li><a href="#org054dea8">2. 面向对象</a>
+<li><a href="#orgf1d271a">2. 面向对象</a>
 <ul>
-<li><a href="#org8fe81b5">2.1. 构造和析构</a></li>
-<li><a href="#org49369c3">2.2. 内部类</a>
+<li><a href="#orga6acd01">2.1. 构造和析构</a></li>
+<li><a href="#org14a7379">2.2. 内部类</a>
 <ul>
-<li><a href="#orgadc16c4">2.2.1. 内部类</a></li>
-<li><a href="#orga098a78">2.2.2. 静态内部类</a></li>
-<li><a href="#orgb6d839d">2.2.3. 局部类</a></li>
-<li><a href="#org999bee3">2.2.4. 匿名类</a></li>
+<li><a href="#orga9a536a">2.2.1. 内部类</a></li>
+<li><a href="#org4a12f33">2.2.2. 静态内部类</a></li>
+<li><a href="#org0cc556c">2.2.3. 局部类</a></li>
+<li><a href="#orgacc1a03">2.2.4. 匿名类</a></li>
 </ul>
 </li>
-<li><a href="#org8153600">2.3. 访问修饰符</a></li>
-<li><a href="#orgf815dd8">2.4. 静态导入</a></li>
-<li><a href="#org07bf30d">2.5. equals编写</a></li>
-<li><a href="#orgefa83a2">2.6. import顺序</a></li>
+<li><a href="#orge96e183">2.3. 访问修饰符</a></li>
+<li><a href="#org40c41c7">2.4. 静态导入</a></li>
+<li><a href="#org26f55b2">2.5. equals编写</a></li>
+<li><a href="#org0206fd4">2.6. import顺序</a></li>
 </ul>
 </li>
-<li><a href="#orgad59fb9">3. 面向泛型</a></li>
-<li><a href="#org8498436">4. JDK</a>
+<li><a href="#org279ac58">3. 面向泛型</a></li>
+<li><a href="#org283d2a8">4. JDK</a>
 <ul>
-<li><a href="#org9771690">4.1. 浮点运算</a></li>
-<li><a href="#org3bf595b">4.2. Date &amp; Calendar</a></li>
-<li><a href="#orgd4575fb">4.3. Exception</a></li>
-<li><a href="#org8a0a226">4.4. StackTrace</a></li>
-<li><a href="#orga810a01">4.5. Proxy</a></li>
-<li><a href="#org92c34e1">4.6. Class</a></li>
-<li><a href="#org4d298a5">4.7. Reflection</a></li>
-<li><a href="#org5d37800">4.8. Runnable &amp; Thread</a></li>
-<li><a href="#orgbaed497">4.9. Collection</a></li>
-<li><a href="#org2b58edb">4.10. JMX</a></li>
-<li><a href="#orgb7d3189">4.11. Future</a></li>
+<li><a href="#org06140f4">4.1. 浮点运算</a></li>
+<li><a href="#orgbec756b">4.2. Date &amp; Calendar</a></li>
+<li><a href="#org52446e3">4.3. Exception</a></li>
+<li><a href="#orga8d50ed">4.4. StackTrace</a></li>
+<li><a href="#orgcd57e18">4.5. Proxy</a></li>
+<li><a href="#org730ca09">4.6. Class</a></li>
+<li><a href="#org926a4e0">4.7. Reflection</a></li>
+<li><a href="#orgdb86e13">4.8. Runnable &amp; Thread</a></li>
+<li><a href="#org0b264e8">4.9. Collection</a></li>
+<li><a href="#orgfc8f8f6">4.10. JMX</a></li>
+<li><a href="#org8914880">4.11. Future</a></li>
 </ul>
 </li>
-<li><a href="#org2b2063c">5. Tool</a>
+<li><a href="#orgd31b42e">5. Tool</a>
 <ul>
-<li><a href="#org6238ea8">5.1. jvisualvm</a></li>
-<li><a href="#org0029642">5.2. hprof</a></li>
-<li><a href="#org4565744">5.3. jmap</a></li>
-<li><a href="#org060c9be">5.4. BTrace</a></li>
+<li><a href="#org374b0d9">5.1. jvisualvm</a></li>
+<li><a href="#org2ccbd96">5.2. hprof</a></li>
+<li><a href="#org7b8c908">5.3. jmap</a></li>
+<li><a href="#org86f995c">5.4. BTrace</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd55a889" class="outline-2">
-<h2 id="orgd55a889"><span class="section-number-2">1</span> 基本语法</h2>
+<div id="outline-container-org4320936" class="outline-2">
+<h2 id="org4320936"><span class="section-number-2">1</span> 基本语法</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org8b9c694" class="outline-3">
-<h3 id="org8b9c694"><span class="section-number-3">1.1</span> 标签跳转</h3>
+<div id="outline-container-orgfa9e759" class="outline-3">
+<h3 id="orgfa9e759"><span class="section-number-3">1.1</span> 标签跳转</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 label break/continue似乎非常必要，这种情况尤其见于多重循环，如果想直接调到最外层循环(break),或者是从外层循环继续执行(continue).缺少这种机制的话，外层循环只能够使用蹩脚的标记，一层层地逐层跳出。
@@ -86,9 +132,9 @@ label break/continue似乎非常必要，这种情况尤其见于多重循环，
  out:
     for(i=0;i&lt;10;i++){
       for(j=0;j&lt;10;j++){
-        if((i+j)==15){
-          break out;
-        }
+	if((i+j)==15){
+	  break out;
+	}
       }
     }
     System.out.println(i+","+j);
@@ -99,8 +145,8 @@ label break/continue似乎非常必要，这种情况尤其见于多重循环，
 </div>
 </div>
 
-<div id="outline-container-org77979bb" class="outline-3">
-<h3 id="org77979bb"><span class="section-number-3">1.2</span> final</h3>
+<div id="outline-container-orgd2b666e" class="outline-3">
+<h3 id="orgd2b666e"><span class="section-number-3">1.2</span> final</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 final关键字应该是有下面几个用途：
@@ -113,11 +159,11 @@ final关键字应该是有下面几个用途：
 </div>
 </div>
 
-<div id="outline-container-orgd1a9bb4" class="outline-3">
-<h3 id="orgd1a9bb4"><span class="section-number-3">1.3</span> assert</h3>
+<div id="outline-container-org6720810" class="outline-3">
+<h3 id="org6720810"><span class="section-number-3">1.3</span> assert</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
-java关键字assert可以用来进行断言，和C++一样。但是天煞的java虚拟机必须指定标记才会开启assert特性。java -ea断言才会生效。java -ea:package_name…可以指定名字空间下所有类断言打开，java -ea:classname可以指定某个类断言打开。如果不带任何参数的话那么是将所有断言打开。同样使用-da可以禁用某个特定类或者是包的断言。 #note: 其实想想觉得这个还是很不错的，在运行时控制而不是在编译时控制，会让更多的人喜欢使用assertion.但是我觉得默认的话，应该是开启的除非显示关闭。
+java关键字assert可以用来进行断言，和C++一样。但是天煞的java虚拟机必须指定标记才会开启assert特性。java -ea断言才会生效。java -ea:package<sub>name</sub>…可以指定名字空间下所有类断言打开，java -ea:classname可以指定某个类断言打开。如果不带任何参数的话那么是将所有断言打开。同样使用-da可以禁用某个特定类或者是包的断言。 #note: 其实想想觉得这个还是很不错的，在运行时控制而不是在编译时控制，会让更多的人喜欢使用assertion.但是我觉得默认的话，应该是开启的除非显示关闭。
 </p>
 
 <p>
@@ -138,8 +184,8 @@ java断言可以指定检查表达式以及出错表达式，asser 条件：表�
 </div>
 </div>
 
-<div id="outline-container-org15e35b7" class="outline-3">
-<h3 id="org15e35b7"><span class="section-number-3">1.4</span> 位移操作</h3>
+<div id="outline-container-org8e6a070" class="outline-3">
+<h3 id="org8e6a070"><span class="section-number-3">1.4</span> 位移操作</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 java提供了三种位移操作符：
@@ -167,12 +213,12 @@ java提供了三种位移操作符：
 </div>
 </div>
 
-<div id="outline-container-org054dea8" class="outline-2">
-<h2 id="org054dea8"><span class="section-number-2">2</span> 面向对象</h2>
+<div id="outline-container-orgf1d271a" class="outline-2">
+<h2 id="orgf1d271a"><span class="section-number-2">2</span> 面向对象</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8fe81b5" class="outline-3">
-<h3 id="org8fe81b5"><span class="section-number-3">2.1</span> 构造和析构</h3>
+<div id="outline-container-orga6acd01" class="outline-3">
+<h3 id="orga6acd01"><span class="section-number-3">2.1</span> 构造和析构</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 java相对于C++来说，在对象构造上面，需要多考虑初始化块这个概念（包括静态初始化块）。所谓初始化块，可以在对象执行构造函数之前执行的一块代码。而静态初始化块，当引用到这个类的时候第一次就会执行。有了这个特性之后，我们就可以创建不需要使用main就可以运行的例子
@@ -208,8 +254,8 @@ java提供了一个finalize方法，但是这个方法并不是在析构时候�
 </div>
 </div>
 
-<div id="outline-container-org49369c3" class="outline-3">
-<h3 id="org49369c3"><span class="section-number-3">2.2</span> 内部类</h3>
+<div id="outline-container-org14a7379" class="outline-3">
+<h3 id="org14a7379"><span class="section-number-3">2.2</span> 内部类</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 引入内部类(inner class)主要有下面三个原因：
@@ -231,8 +277,8 @@ java提供了一个finalize方法，但是这个方法并不是在析构时候�
 </ol>
 </div>
 
-<div id="outline-container-orgadc16c4" class="outline-4">
-<h4 id="orgadc16c4"><span class="section-number-4">2.2.1</span> 内部类</h4>
+<div id="outline-container-orga9a536a" class="outline-4">
+<h4 id="orga9a536a"><span class="section-number-4">2.2.1</span> 内部类</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-Java">class X{
@@ -276,8 +322,8 @@ class X$Y extends java.lang.Object{
 </div>
 </div>
 
-<div id="outline-container-orga098a78" class="outline-4">
-<h4 id="orga098a78"><span class="section-number-4">2.2.2</span> 静态内部类</h4>
+<div id="outline-container-org4a12f33" class="outline-4">
+<h4 id="org4a12f33"><span class="section-number-4">2.2.2</span> 静态内部类</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 但是并不是所有内部类都需要访问外围实例的。如果没有这样需求的话，我们就可以使用静态内部类static class Y.可以使用X.Y进行引用。
@@ -285,8 +331,8 @@ class X$Y extends java.lang.Object{
 </div>
 </div>
 
-<div id="outline-container-orgb6d839d" class="outline-4">
-<h4 id="orgb6d839d"><span class="section-number-4">2.2.3</span> 局部类</h4>
+<div id="outline-container-org0cc556c" class="outline-4">
+<h4 id="org0cc556c"><span class="section-number-4">2.2.3</span> 局部类</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 局部类是在方法中定义的内部类，生成类的规则就是X$1Y.class.1使用数字来标记区分不同的方法。
@@ -298,7 +344,7 @@ class X$Y extends java.lang.Object{
   void foo(final int y){
     class Y{
       void foo(int z){
-        System.out.println(x+","+y+","+z);
+	System.out.println(x+","+y+","+z);
       }
     }
     Y iy=new Y();
@@ -328,8 +374,8 @@ class X$Y extends java.lang.Object{
 </div>
 </div>
 
-<div id="outline-container-org999bee3" class="outline-4">
-<h4 id="org999bee3"><span class="section-number-4">2.2.4</span> 匿名类</h4>
+<div id="outline-container-orgacc1a03" class="outline-4">
+<h4 id="orgacc1a03"><span class="section-number-4">2.2.4</span> 匿名类</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 匿名类编写回调或者是特定的接口扩展非常方便，当然也可以容易地扩展一个类。
@@ -339,11 +385,11 @@ class X$Y extends java.lang.Object{
 <pre class="src src-Java">class X{
   public static void main(String[] args) throws InterruptedException {
     Thread y=new Thread() { // 这个地方需要传入基类的构造参数。
-        public void run() {
-          for(int i=0;i&lt;10;i++){
-            System.out.println("run...");
-          }
-        }
+	public void run() {
+	  for(int i=0;i&lt;10;i++){
+	    System.out.println("run...");
+	  }
+	}
       };
     y.start();
     y.join();
@@ -367,8 +413,8 @@ class X$Y extends java.lang.Object{
 </div>
 </div>
 
-<div id="outline-container-org8153600" class="outline-3">
-<h3 id="org8153600"><span class="section-number-3">2.3</span> 访问修饰符</h3>
+<div id="outline-container-orge96e183" class="outline-3">
+<h3 id="orge96e183"><span class="section-number-3">2.3</span> 访问修饰符</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 java有下面4个访问修饰符可以用来控制可见性：
@@ -385,8 +431,8 @@ java有下面4个访问修饰符可以用来控制可见性：
 </div>
 </div>
 
-<div id="outline-container-orgf815dd8" class="outline-3">
-<h3 id="orgf815dd8"><span class="section-number-3">2.4</span> 静态导入</h3>
+<div id="outline-container-org40c41c7" class="outline-3">
+<h3 id="org40c41c7"><span class="section-number-3">2.4</span> 静态导入</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 所谓静态导入，就是可以导入某个类下面的静态方法以及静态域，通常来说这样可以使得代码更容易阅读，比如
@@ -403,8 +449,8 @@ class App {
 </div>
 </div>
 
-<div id="outline-container-org07bf30d" class="outline-3">
-<h3 id="org07bf30d"><span class="section-number-3">2.5</span> equals编写</h3>
+<div id="outline-container-org26f55b2" class="outline-3">
+<h3 id="org26f55b2"><span class="section-number-3">2.5</span> equals编写</h3>
 <div class="outline-text-3" id="text-2-5">
 <ol class="org-ol">
 <li>对于参数必须是Object arg. boolean equals(Object arg)</li>
@@ -417,8 +463,8 @@ class App {
 </div>
 </div>
 
-<div id="outline-container-orgefa83a2" class="outline-3">
-<h3 id="orgefa83a2"><span class="section-number-3">2.6</span> import顺序</h3>
+<div id="outline-container-org0206fd4" class="outline-3">
+<h3 id="org0206fd4"><span class="section-number-3">2.6</span> import顺序</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 有时候import顺序还是比较重要的，比如下面这个程序com/dirlt/X.java
@@ -474,8 +520,8 @@ location: class com.dirlt.X
 </div>
 </div>
 
-<div id="outline-container-orgad59fb9" class="outline-2">
-<h2 id="orgad59fb9"><span class="section-number-2">3</span> 面向泛型</h2>
+<div id="outline-container-org279ac58" class="outline-2">
+<h2 id="org279ac58"><span class="section-number-2">3</span> 面向泛型</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 #todo:
@@ -483,19 +529,19 @@ location: class com.dirlt.X
 </div>
 </div>
 
-<div id="outline-container-org8498436" class="outline-2">
-<h2 id="org8498436"><span class="section-number-2">4</span> JDK</h2>
+<div id="outline-container-org283d2a8" class="outline-2">
+<h2 id="org283d2a8"><span class="section-number-2">4</span> JDK</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org9771690" class="outline-3">
-<h3 id="org9771690"><span class="section-number-3">4.1</span> 浮点运算</h3>
+<div id="outline-container-org06140f4" class="outline-3">
+<h3 id="org06140f4"><span class="section-number-3">4.1</span> 浮点运算</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 float类型数值常量后面加上F比如3.042F,而double类型数值常量后面加上D比如3.402D.所有浮点数值计算都遵循IEEE 752规范。java提供了三种表示溢出或者计算错误的三种特殊浮点数值：
 </p>
 <ol class="org-ol">
-<li>正无穷大 Double.POSITIVE_INFINITY</li>
-<li>负无穷大 Double.NEGATIVE_INFINITY</li>
+<li>正无穷大 Double.POSITIVE<sub>INFINITY</sub></li>
+<li>负无穷大 Double.NEGATIVE<sub>INFINITY</sub></li>
 <li>NaN(不是数字) Double.NaN. 浮点数/0的话就会得到NaN.判断是否为NaN不应该使用==因为和一个NaN比较始终都是false,而应该使用Double.isNaN(x)</li>
 </ol>
 <p>
@@ -508,8 +554,8 @@ java虚拟机规范强调可移植性，对于在任何机器上来说相同的�
 </div>
 </div>
 
-<div id="outline-container-org3bf595b" class="outline-3">
-<h3 id="org3bf595b"><span class="section-number-3">4.2</span> Date &amp; Calendar</h3>
+<div id="outline-container-orgbec756b" class="outline-3">
+<h3 id="orgbec756b"><span class="section-number-3">4.2</span> Date &amp; Calendar</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 其实一开始Date是想做成日历的。所谓日历就是说能够处理年月日这些信息。但是Date本身处理比较差，没有考虑闰秒这种东西，另外因为日历仅仅是历法其中的一种，虽然广泛使用。因此有必要将历法单独形成一个类称为Calendar,而日历是历法的一种实现在Java里面是GregorianCalendar.而现在Date仅仅用于保存一个绝对的时间点就是时刻，保存的方法就是相对于某一固定时间点的毫秒数，而这个时间点就称为纪元(epoch),它是UTC 1970.1.1 00:00:00。
@@ -521,8 +567,8 @@ java虚拟机规范强调可移植性，对于在任何机器上来说相同的�
 </div>
 </div>
 
-<div id="outline-container-orgd4575fb" class="outline-3">
-<h3 id="orgd4575fb"><span class="section-number-3">4.3</span> Exception</h3>
+<div id="outline-container-org52446e3" class="outline-3">
+<h3 id="org52446e3"><span class="section-number-3">4.3</span> Exception</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 java里面异常都是派生于Throwable，但是分解成为两个分支：
@@ -553,8 +599,8 @@ java语言规范将派生于Error或者是RuntimeException的所有异常称为�
 </div>
 </div>
 
-<div id="outline-container-org8a0a226" class="outline-3">
-<h3 id="org8a0a226"><span class="section-number-3">4.4</span> StackTrace</h3>
+<div id="outline-container-orga8d50ed" class="outline-3">
+<h3 id="orga8d50ed"><span class="section-number-3">4.4</span> StackTrace</h3>
 <div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>使用Thread.getStackTrace获得某个线程的堆栈信息</li>
@@ -564,8 +610,8 @@ java语言规范将派生于Error或者是RuntimeException的所有异常称为�
 </div>
 </div>
 
-<div id="outline-container-orga810a01" class="outline-3">
-<h3 id="orga810a01"><span class="section-number-3">4.5</span> Proxy</h3>
+<div id="outline-container-orgcd57e18" class="outline-3">
+<h3 id="orgcd57e18"><span class="section-number-3">4.5</span> Proxy</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 使用代理可以动态地生成一些类或者是接口（但是不是动态生成代码）。创建一个代理对象，使用Proxy类的newProxyInstance方法，有下面三个参数：
@@ -584,21 +630,21 @@ import java.lang.reflect.*;
 class X{
   public static void main(String[] args) throws InterruptedException {
     final Runnable r=new Runnable() {
-        public void run() {
-          for(int i=0;i&lt;10;i++){
-            System.out.println("run...");
-          }
-        }
+	public void run() {
+	  for(int i=0;i&lt;10;i++){
+	    System.out.println("run...");
+	  }
+	}
       };
     Runnable proxy=(Runnable)Proxy.newProxyInstance(r.getClass().getClassLoader(),new Class[]{Runnable.class}, new InvocationHandler() {
-        public Object invoke(Object proxy, Method m, Object[] args){
-          System.out.println("entering...");
-          try {
-            return m.invoke(r,args);
-          } catch(Exception ex){
-            return null;
-          }
-        }
+	public Object invoke(Object proxy, Method m, Object[] args){
+	  System.out.println("entering...");
+	  try {
+	    return m.invoke(r,args);
+	  } catch(Exception ex){
+	    return null;
+	  }
+	}
       });
     Thread t=new Thread(proxy);
     t.start();
@@ -616,8 +662,8 @@ class X{
 </div>
 </div>
 
-<div id="outline-container-org92c34e1" class="outline-3">
-<h3 id="org92c34e1"><span class="section-number-3">4.6</span> Class</h3>
+<div id="outline-container-org730ca09" class="outline-3">
+<h3 id="org730ca09"><span class="section-number-3">4.6</span> Class</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Class类本身表示这个类的一些元信息。通常拿到这个类的元信息之后，就可以完成一些动态事情比如反射。java有三种方式可以获得Class类：
@@ -641,11 +687,11 @@ Class类本身表示这个类的一些元信息。通常拿到这个类的元信
 </div>
 </div>
 
-<div id="outline-container-org4d298a5" class="outline-3">
-<h3 id="org4d298a5"><span class="section-number-3">4.7</span> Reflection</h3>
+<div id="outline-container-org926a4e0" class="outline-3">
+<h3 id="org926a4e0"><span class="section-number-3">4.7</span> Reflection</h3>
 </div>
-<div id="outline-container-org5d37800" class="outline-3">
-<h3 id="org5d37800"><span class="section-number-3">4.8</span> Runnable &amp; Thread</h3>
+<div id="outline-container-orgdb86e13" class="outline-3">
+<h3 id="orgdb86e13"><span class="section-number-3">4.8</span> Runnable &amp; Thread</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 线程包括下面6种状态，并且切换关系如下：
@@ -706,8 +752,8 @@ volatile关键字为 <b>实例字段</b> 的同步访问提供了一种免锁机
 </div>
 </div>
 
-<div id="outline-container-orgbaed497" class="outline-3">
-<h3 id="orgbaed497"><span class="section-number-3">4.9</span> Collection</h3>
+<div id="outline-container-org0b264e8" class="outline-3">
+<h3 id="org0b264e8"><span class="section-number-3">4.9</span> Collection</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 #todo:
@@ -715,8 +761,8 @@ volatile关键字为 <b>实例字段</b> 的同步访问提供了一种免锁机
 </div>
 </div>
 
-<div id="outline-container-org2b58edb" class="outline-3">
-<h3 id="org2b58edb"><span class="section-number-3">4.10</span> JMX</h3>
+<div id="outline-container-orgfc8f8f6" class="outline-3">
+<h3 id="orgfc8f8f6"><span class="section-number-3">4.10</span> JMX</h3>
 <div class="outline-text-3" id="text-4-10">
 <ul class="org-ul">
 <li>jmxtrans/jmxtrans · GitHub <a href="https://github.com/jmxtrans/jmxtrans">https://github.com/jmxtrans/jmxtrans</a></li>
@@ -741,8 +787,8 @@ jmx似乎是一个标准，在JDK里面有默认的实现。通过jmx可以暴�
 </div>
 </div>
 
-<div id="outline-container-orgb7d3189" class="outline-3">
-<h3 id="orgb7d3189"><span class="section-number-3">4.11</span> Future</h3>
+<div id="outline-container-org8914880" class="outline-3">
+<h3 id="org8914880"><span class="section-number-3">4.11</span> Future</h3>
 <div class="outline-text-3" id="text-4-11">
 <hr />
 <p>
@@ -761,12 +807,12 @@ jmx似乎是一个标准，在JDK里面有默认的实现。通过jmx可以暴�
 </div>
 </div>
 
-<div id="outline-container-org2b2063c" class="outline-2">
-<h2 id="org2b2063c"><span class="section-number-2">5</span> Tool</h2>
+<div id="outline-container-orgd31b42e" class="outline-2">
+<h2 id="orgd31b42e"><span class="section-number-2">5</span> Tool</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org6238ea8" class="outline-3">
-<h3 id="org6238ea8"><span class="section-number-3">5.1</span> jvisualvm</h3>
+<div id="outline-container-org374b0d9" class="outline-3">
+<h3 id="org374b0d9"><span class="section-number-3">5.1</span> jvisualvm</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>远程调试需要程序启动的时候加上下面这些选项：
@@ -791,8 +837,8 @@ jmx似乎是一个标准，在JDK里面有默认的实现。通过jmx可以暴�
 </div>
 </div>
 
-<div id="outline-container-org0029642" class="outline-3">
-<h3 id="org0029642"><span class="section-number-3">5.2</span> hprof</h3>
+<div id="outline-container-org2ccbd96" class="outline-3">
+<h3 id="org2ccbd96"><span class="section-number-3">5.2</span> hprof</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 HPROF: A Heap/CPU Profiling Tool
@@ -904,8 +950,8 @@ How Does HPROF Work?
 </div>
 </div>
 
-<div id="outline-container-org4565744" class="outline-3">
-<h3 id="org4565744"><span class="section-number-3">5.3</span> jmap</h3>
+<div id="outline-container-org7b8c908" class="outline-3">
+<h3 id="org7b8c908"><span class="section-number-3">5.3</span> jmap</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 #todo:
@@ -913,8 +959,8 @@ How Does HPROF Work?
 </div>
 </div>
 
-<div id="outline-container-org060c9be" class="outline-3">
-<h3 id="org060c9be"><span class="section-number-3">5.4</span> BTrace</h3>
+<div id="outline-container-org86f995c" class="outline-3">
+<h3 id="org86f995c"><span class="section-number-3">5.4</span> BTrace</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 #todo:
@@ -922,6 +968,11 @@ How Does HPROF Work?
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/java.html';this.page.identifier = 'java.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

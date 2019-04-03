@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sklearn</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">sklearn</h1>
@@ -38,33 +84,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb6fd055">1. Overview</a></li>
-<li><a href="#org78725fb">2. Building Blocks</a>
+<li><a href="#orgb5ac2d7">1. Overview</a></li>
+<li><a href="#org562257e">2. Building Blocks</a>
 <ul>
-<li><a href="#orgcf34782">2.1. NumPy</a></li>
-<li><a href="#org3b4961c">2.2. Matplotlib</a></li>
-<li><a href="#orgb8e7c4f">2.3. SciPy</a></li>
-<li><a href="#orgb261d20">2.4. Pandas</a></li>
+<li><a href="#org9a48598">2.1. NumPy</a></li>
+<li><a href="#orgd8efbaa">2.2. Matplotlib</a></li>
+<li><a href="#orgea9d7ed">2.3. SciPy</a></li>
+<li><a href="#org2b8469a">2.4. Pandas</a></li>
 </ul>
 </li>
-<li><a href="#org8400c62">3. Supervised Learning</a>
+<li><a href="#org8e8ab98">3. Supervised Learning</a>
 <ul>
-<li><a href="#org8e26625">3.1. Generalized Linear Models</a></li>
-<li><a href="#orgc7a7545">3.2. Kernel Ridge Regression</a></li>
-<li><a href="#org2907d79">3.3. Support Vector Machines</a></li>
-<li><a href="#orga45f4fd">3.4. Stochastic Gradient Descent</a></li>
-<li><a href="#orgd2153a7">3.5. Nearest Neighbors</a></li>
-<li><a href="#org4748e6f">3.6. Naive Bayes</a></li>
-<li><a href="#orge7f48c2">3.7. Decision Trees</a></li>
-<li><a href="#org6469fa4">3.8. Ensemble methods</a></li>
+<li><a href="#orgc5588ef">3.1. Generalized Linear Models</a></li>
+<li><a href="#org6fa85d6">3.2. Kernel Ridge Regression</a></li>
+<li><a href="#org78a6e50">3.3. Support Vector Machines</a></li>
+<li><a href="#org82eacb2">3.4. Stochastic Gradient Descent</a></li>
+<li><a href="#org55929cb">3.5. Nearest Neighbors</a></li>
+<li><a href="#orgd93caa0">3.6. Naive Bayes</a></li>
+<li><a href="#org1e20614">3.7. Decision Trees</a></li>
+<li><a href="#orgba605d5">3.8. Ensemble methods</a></li>
 </ul>
 </li>
-<li><a href="#orgc55eb9e">4. Model selection and evaluation</a>
+<li><a href="#orgac0a631">4. Model selection and evaluation</a>
 <ul>
-<li><a href="#orgc35886f">4.1. Cross-validation: evaluating estimator performance</a></li>
-<li><a href="#org350eac4">4.2. Grid Search: searching for estimator parameters</a></li>
-<li><a href="#org07c313c">4.3. Model evaluation: quantifying the quality of predictions</a></li>
-<li><a href="#org7141779">4.4. Validation curves: plotting scores to evaluate models</a></li>
+<li><a href="#org885ab67">4.1. Cross-validation: evaluating estimator performance</a></li>
+<li><a href="#org5ccf6da">4.2. Grid Search: searching for estimator parameters</a></li>
+<li><a href="#orgc9b5a31">4.3. Model evaluation: quantifying the quality of predictions</a></li>
+<li><a href="#org0d58ddb">4.4. Validation curves: plotting scores to evaluate models</a></li>
 </ul>
 </li>
 </ul>
@@ -75,8 +121,8 @@
 <li>docs <a href="http://scikit-learn.org/stable/documentation.html">http://scikit-learn.org/stable/documentation.html</a></li>
 </ul>
 
-<div id="outline-container-orgb6fd055" class="outline-2">
-<h2 id="orgb6fd055"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-orgb5ac2d7" class="outline-2">
+<h2 id="orgb5ac2d7"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>supervised learning
@@ -97,16 +143,16 @@
 </div>
 </div>
 
-<div id="outline-container-org78725fb" class="outline-2">
-<h2 id="org78725fb"><span class="section-number-2">2</span> Building Blocks</h2>
+<div id="outline-container-org562257e" class="outline-2">
+<h2 id="org562257e"><span class="section-number-2">2</span> Building Blocks</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="http://scipy-lectures.github.io/">http://scipy-lectures.github.io/</a> sklearn底层使用的三驾马车numpy, scipy, matplotlib.
 </p>
 </div>
 
-<div id="outline-container-orgcf34782" class="outline-3">
-<h3 id="orgcf34782"><span class="section-number-3">2.1</span> NumPy</h3>
+<div id="outline-container-org9a48598" class="outline-3">
+<h3 id="org9a48598"><span class="section-number-3">2.1</span> NumPy</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 numpy (<code>import numpy as np</code>) 用于矩阵运算
@@ -153,8 +199,8 @@ numpy index array:
 </div>
 </div>
 
-<div id="outline-container-org3b4961c" class="outline-3">
-<h3 id="org3b4961c"><span class="section-number-3">2.2</span> Matplotlib</h3>
+<div id="outline-container-orgd8efbaa" class="outline-3">
+<h3 id="orgd8efbaa"><span class="section-number-3">2.2</span> Matplotlib</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 matplotlib (<code>import matplotlib.pyplot as plt</code>) 用于绘图. <a href="http://matplotlib.org/users/pyplot_tutorial.html">A pyplot tutorial</a>
@@ -166,8 +212,8 @@ matplotlib (<code>import matplotlib.pyplot as plt</code>) 用于绘图. <a href=
 </div>
 </div>
 
-<div id="outline-container-orgb8e7c4f" class="outline-3">
-<h3 id="orgb8e7c4f"><span class="section-number-3">2.3</span> SciPy</h3>
+<div id="outline-container-orgea9d7ed" class="outline-3">
+<h3 id="orgea9d7ed"><span class="section-number-3">2.3</span> SciPy</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 scipy (<code>import scipy</code>) 复杂的科学计算
@@ -180,8 +226,8 @@ The scipy package contains various toolboxes dedicated to common issues in scien
 </div>
 </div>
 
-<div id="outline-container-orgb261d20" class="outline-3">
-<h3 id="orgb261d20"><span class="section-number-3">2.4</span> Pandas</h3>
+<div id="outline-container-org2b8469a" class="outline-3">
+<h3 id="org2b8469a"><span class="section-number-3">2.4</span> Pandas</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 另外了解一下 <a href="http://pandas.pydata.org/pandas-docs/stable/10min.html">pandas</a> 也是很有必要的 (<a href="http://pandas.pydata.org/pandas-docs/stable/cookbook.html">cookbook</a>)
@@ -236,7 +282,7 @@ The scipy package contains various toolboxes dedicated to common issues in scien
 
 <tr>
 <td class="org-left">Select rows by boolean vector</td>
-<td class="org-left">df[bool_vec]</td>
+<td class="org-left">df[bool<sub>vec</sub>]</td>
 <td class="org-left">DataFrame</td>
 </tr>
 </tbody>
@@ -245,15 +291,15 @@ The scipy package contains various toolboxes dedicated to common issues in scien
 </div>
 </div>
 
-<div id="outline-container-org8400c62" class="outline-2">
-<h2 id="org8400c62"><span class="section-number-2">3</span> Supervised Learning</h2>
+<div id="outline-container-org8e8ab98" class="outline-2">
+<h2 id="org8e8ab98"><span class="section-number-2">3</span> Supervised Learning</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org8e26625" class="outline-3">
-<h3 id="org8e26625"><span class="section-number-3">3.1</span> Generalized Linear Models</h3>
+<div id="outline-container-orgc5588ef" class="outline-3">
+<h3 id="orgc5588ef"><span class="section-number-3">3.1</span> Generalized Linear Models</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-LinearRegression求解Ordinary Least Squares(<code>|y-Y|^2</code>). 假设X矩阵是(n, p), 时间复杂度是O(n * p^2). 对于输入数据要求是对于Xi, Xj来说两者不能线性相关，否则噪声会让训练结果有high variance.
+LinearRegression求解Ordinary Least Squares(<code>|y-Y|^2</code>). 假设X矩阵是(n, p), 时间复杂度是O(n * p<sup>2</sup>). 对于输入数据要求是对于Xi, Xj来说两者不能线性相关，否则噪声会让训练结果有high variance.
 </p>
 
 <p>
@@ -307,8 +353,8 @@ The classes SGDClassifier and SGDRegressor provide functionality to fit linear m
 </div>
 </div>
 
-<div id="outline-container-orgc7a7545" class="outline-3">
-<h3 id="orgc7a7545"><span class="section-number-3">3.2</span> Kernel Ridge Regression</h3>
+<div id="outline-container-org6fa85d6" class="outline-3">
+<h3 id="org6fa85d6"><span class="section-number-3">3.2</span> Kernel Ridge Regression</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Ridge Regression with kernel tricks.
@@ -316,8 +362,8 @@ Ridge Regression with kernel tricks.
 </div>
 </div>
 
-<div id="outline-container-org2907d79" class="outline-3">
-<h3 id="org2907d79"><span class="section-number-3">3.3</span> Support Vector Machines</h3>
+<div id="outline-container-org78a6e50" class="outline-3">
+<h3 id="org78a6e50"><span class="section-number-3">3.3</span> Support Vector Machines</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="http://scikit-learn.org/stable/modules/svm.html">http://scikit-learn.org/stable/modules/svm.html</a>
@@ -351,19 +397,19 @@ The disadvantages of support vector machines include:
 </p>
 
 <p>
-classification有三种分类器分别是SVC, NuSVC, LinearSVC. 其中LinearSVC相同于我SVC使用'linear'核方法，区别在于SVC底层使用libsvm, 而LinearSVC则使用liblinear. 另外LinearSVC得到的结果最后也不会返回support_(支持向量).
+classification有三种分类器分别是SVC, NuSVC, LinearSVC. 其中LinearSVC相同于我SVC使用'linear'核方法，区别在于SVC底层使用libsvm, 而LinearSVC则使用liblinear. 另外LinearSVC得到的结果最后也不会返回support<sub>(支持向量)</sub>.
 </p>
 
 <p>
-对于多分类问题SVC使用one-vs-one来生成分类器，也就是说需要构造C(n,2)个分类器。LinearSVC使用one-vs-rest来生成分类器，也就是构造n个分类器。LinearSVC也有比较复杂的算法(cranmer_singer)只构造一个分类器就可以进行多分类，但是ovr总体看起来还是更加高效一些。regression有两种回归器分别是SVR和NuSVR. classifier和regressor都允许直接输出概率值(predict_proba), 但是开销非常大，所以最好使用decision_function来计算概率。
+对于多分类问题SVC使用one-vs-one来生成分类器，也就是说需要构造C(n,2)个分类器。LinearSVC使用one-vs-rest来生成分类器，也就是构造n个分类器。LinearSVC也有比较复杂的算法(cranmer<sub>singer</sub>)只构造一个分类器就可以进行多分类，但是ovr总体看起来还是更加高效一些。regression有两种回归器分别是SVR和NuSVR. classifier和regressor都允许直接输出概率值(predict<sub>proba</sub>), 但是开销非常大，所以最好使用decision<sub>function来计算概率</sub>。
 </p>
 
 <p>
-kernel函数支持 1.linear 2. polynomial 3. rbf 4. sigmoid(tanh). 对于unbalanced的问题，sklearn实现允许指定 1.class_weight 2.sample_weight. 其中class_weight表示每个class对应的权重，这个在构造classifier时候就需要设置。如果不确定的话就设置成为'auto'。sample_weight则表示每个实例对应的权重，这个可以在调用训练方法fit的时候传入。另外一个比较重要的参数是C(惩罚代价), 通常来说设置成为1.0就够了。但是如果数据中太多噪音的话那么最好减小一些。
+kernel函数支持 1.linear 2. polynomial 3. rbf 4. sigmoid(tanh). 对于unbalanced的问题，sklearn实现允许指定 1.class<sub>weight</sub> 2.sample<sub>weight</sub>. 其中class<sub>weight表示每个class对应的权重</sub>，这个在构造classifier时候就需要设置。如果不确定的话就设置成为'auto'。sample<sub>weight则表示每个实例对应的权重</sub>，这个可以在调用训练方法fit的时候传入。另外一个比较重要的参数是C(惩罚代价), 通常来说设置成为1.0就够了。但是如果数据中太多噪音的话那么最好减小一些。
 </p>
 
 <p>
-在计算效率方面，SVM是通过QP来求解的。基于libsvm的实现时间复杂度在O(d * n^2) ~ O(d * n^3)之间，变化取决于如何使用cache. 所以如果我们内存足够的话那么可以调大cache_size来加快计算速度。其中d表示feature大小，如果数据集合比较稀疏的话，那么可以认为d是non-zero的feature平均数量。libsvm处理数据集合大小最好不要超过10k. 相比之下，liblinear的效率则要好得多，可以很容易训练million级别的数据集合。
+在计算效率方面，SVM是通过QP来求解的。基于libsvm的实现时间复杂度在O(d * n<sup>2</sup>) ~ O(d * n<sup>3</sup>)之间，变化取决于如何使用cache. 所以如果我们内存足够的话那么可以调大cache<sub>size来加快计算速度</sub>。其中d表示feature大小，如果数据集合比较稀疏的话，那么可以认为d是non-zero的feature平均数量。libsvm处理数据集合大小最好不要超过10k. 相比之下，liblinear的效率则要好得多，可以很容易训练million级别的数据集合。
 </p>
 
 <div class="org-src-container">
@@ -391,15 +437,15 @@ print(classification_report(y_true, y_pred))
 </div>
 </div>
 
-<div id="outline-container-orga45f4fd" class="outline-3">
-<h3 id="orga45f4fd"><span class="section-number-3">3.4</span> Stochastic Gradient Descent</h3>
+<div id="outline-container-org82eacb2" class="outline-3">
+<h3 id="org82eacb2"><span class="section-number-3">3.4</span> Stochastic Gradient Descent</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Stochastic Gradient Descent (SGD) is a simple yet very efficient approach to discriminative learning of linear classifiers under convex loss functions such as (linear) Support Vector Machines and Logistic Regression. <i><b>Even though SGD has been around in the machine learning community for a long time, it has received a considerable amount of attention just recently in the context of large-scale learning.</b></i>
 </p>
 
 <p>
-<i><b>SGD has been successfully applied to large-scale and sparse machine learning problems often encountered in text classification and natural language processing. Given that the data is sparse, the classifiers in this module easily scale to problems with more than 10^5 training examples and more than 10^5 features.</b></i>
+<i><b>SGD has been successfully applied to large-scale and sparse machine learning problems often encountered in text classification and natural language processing. Given that the data is sparse, the classifiers in this module easily scale to problems with more than 10<sup>5</sup> training examples and more than 10<sup>5</sup> features.</b></i>
 </p>
 
 <p>
@@ -428,8 +474,8 @@ Recent theoretical results, however, show that the runtime to get some desired o
 </div>
 </div>
 
-<div id="outline-container-orgd2153a7" class="outline-3">
-<h3 id="orgd2153a7"><span class="section-number-3">3.5</span> Nearest Neighbors</h3>
+<div id="outline-container-org55929cb" class="outline-3">
+<h3 id="org55929cb"><span class="section-number-3">3.5</span> Nearest Neighbors</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 <a href="http://scikit-learn.org/stable/modules/neighbors.html">http://scikit-learn.org/stable/modules/neighbors.html</a>
@@ -444,7 +490,7 @@ NN可以同时用来做监督和非监督学习。其中非监督学习的NN是�
 </p>
 
 <p>
-如果数据量比较小的话那么1比2,3要好，所以在实现上kd-tree/ball-tree发现如果数据集合较小的话就会改用brute-force来做。这个阈值称为leaf_size. leaf_size大小会影响到 1. 构建索引时间(反比) 2. 查询时间(合适的leaf_size可以达到最优) 3. 内存大小(反比). 所以尽可能地增大leaf_size但是确保不会影响查询时间。
+如果数据量比较小的话那么1比2,3要好，所以在实现上kd-tree/ball-tree发现如果数据集合较小的话就会改用brute-force来做。这个阈值称为leaf<sub>size</sub>. leaf<sub>size大小会影响到</sub> 1. 构建索引时间(反比) 2. 查询时间(合适的leaf<sub>size可以达到最优</sub>) 3. 内存大小(反比). 所以尽可能地增大leaf<sub>size但是确保不会影响查询时间</sub>。
 </p>
 
 <p>
@@ -477,8 +523,8 @@ print(classification_report(y_true, y_pred))
 </div>
 </div>
 
-<div id="outline-container-org4748e6f" class="outline-3">
-<h3 id="org4748e6f"><span class="section-number-3">3.6</span> Naive Bayes</h3>
+<div id="outline-container-orgd93caa0" class="outline-3">
+<h3 id="orgd93caa0"><span class="section-number-3">3.6</span> Naive Bayes</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 <a href="http://scikit-learn.org/stable/modules/naive_bayes.html">http://scikit-learn.org/stable/modules/naive_bayes.html</a>
@@ -520,8 +566,8 @@ print(classification_report(y_true, y_pred))
 </div>
 </div>
 
-<div id="outline-container-orge7f48c2" class="outline-3">
-<h3 id="orge7f48c2"><span class="section-number-3">3.7</span> Decision Trees</h3>
+<div id="outline-container-org1e20614" class="outline-3">
+<h3 id="org1e20614"><span class="section-number-3">3.7</span> Decision Trees</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 Some advantages of decision trees are:
@@ -554,15 +600,15 @@ Tips on practical use:
 <ul class="org-ul">
 <li>Decision trees tend to overfit on data with a large number of features. Getting the right ratio of samples to number of features is important, since a tree with few samples in high dimensional space is very likely to overfit.</li>
 <li>Consider performing dimensionality reduction (PCA, ICA, or Feature selection) beforehand to give your tree a better chance of finding features that are discriminative.</li>
-<li>Use min_samples_split or min_samples_leaf to control the number of samples at a leaf node. A very small number will usually mean the tree will overfit, whereas a large number will prevent the tree from learning the data. Try min_samples_leaf=5 as an initial value. If the sample size varies greatly, a float number can be used as percentage in these two parameters. The main difference between the two is that min_samples_leaf guarantees a minimum number of samples in a leaf, while min_samples_split can create arbitrary small leaves, though min_samples_split is more common in the literature.</li>
+<li>Use min<sub>samples</sub><sub>split</sub> or min<sub>samples</sub><sub>leaf</sub> to control the number of samples at a leaf node. A very small number will usually mean the tree will overfit, whereas a large number will prevent the tree from learning the data. Try min<sub>samples</sub><sub>leaf</sub>=5 as an initial value. If the sample size varies greatly, a float number can be used as percentage in these two parameters. The main difference between the two is that min<sub>samples</sub><sub>leaf</sub> guarantees a minimum number of samples in a leaf, while min<sub>samples</sub><sub>split</sub> can create arbitrary small leaves, though min<sub>samples</sub><sub>split</sub> is more common in the literature.</li>
 <li>All decision trees use np.float32 arrays internally. If training data is not in this format, a copy of the dataset will be made.</li>
-<li>If the input matrix X is very sparse, it is recommended to convert to sparse csc_matrix before calling fit and sparse csr_matrix before calling predict. Training time can be orders of magnitude faster for a sparse matrix input compared to a dense matrix when features have zero values in most of the samples.</li>
+<li>If the input matrix X is very sparse, it is recommended to convert to sparse csc<sub>matrix</sub> before calling fit and sparse csr<sub>matrix</sub> before calling predict. Training time can be orders of magnitude faster for a sparse matrix input compared to a dense matrix when features have zero values in most of the samples.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6469fa4" class="outline-3">
-<h3 id="org6469fa4"><span class="section-number-3">3.8</span> Ensemble methods</h3>
+<div id="outline-container-orgba605d5" class="outline-3">
+<h3 id="orgba605d5"><span class="section-number-3">3.8</span> Ensemble methods</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 <a href="http://scikit-learn.org/stable/modules/ensemble.html">http://scikit-learn.org/stable/modules/ensemble.html</a>
@@ -621,21 +667,21 @@ print(classification_report(y_true, y_pred))
 </div>
 </div>
 
-<div id="outline-container-orgc55eb9e" class="outline-2">
-<h2 id="orgc55eb9e"><span class="section-number-2">4</span> Model selection and evaluation</h2>
+<div id="outline-container-orgac0a631" class="outline-2">
+<h2 id="orgac0a631"><span class="section-number-2">4</span> Model selection and evaluation</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgc35886f" class="outline-3">
-<h3 id="orgc35886f"><span class="section-number-3">4.1</span> Cross-validation: evaluating estimator performance</h3>
+<div id="outline-container-org885ab67" class="outline-3">
+<h3 id="org885ab67"><span class="section-number-3">4.1</span> Cross-validation: evaluating estimator performance</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 <a href="http://scikit-learn.org/stable/modules/cross_validation.html">http://scikit-learn.org/stable/modules/cross_validation.html</a>
 </p>
 
 <ul class="org-ul">
-<li>使用train_test_split分开training_set和test_set.</li>
-<li>使用k-fold等方式从training_set中分出validation_set做cross_validation.</li>
-<li>使用cross_val_score来进行cross_validation并且计算cross_validation效果.</li>
+<li>使用train<sub>test</sub><sub>split分开training</sub><sub>set和test</sub><sub>set</sub>.</li>
+<li>使用k-fold等方式从training<sub>set中分出validation</sub><sub>set做cross</sub><sub>validation</sub>.</li>
+<li>使用cross<sub>val</sub><sub>score来进行cross</sub><sub>validation并且计算cross</sub><sub>validation效果</sub>.</li>
 </ul>
 
 <div class="org-src-container">
@@ -668,8 +714,8 @@ print(np.mean(clf.predict(X_test) == y_test))
 </div>
 </div>
 
-<div id="outline-container-org350eac4" class="outline-3">
-<h3 id="org350eac4"><span class="section-number-3">4.2</span> Grid Search: searching for estimator parameters</h3>
+<div id="outline-container-org5ccf6da" class="outline-3">
+<h3 id="org5ccf6da"><span class="section-number-3">4.2</span> Grid Search: searching for estimator parameters</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 <a href="http://scikit-learn.org/stable/modules/grid_search.html">http://scikit-learn.org/stable/modules/grid_search.html</a>
@@ -680,7 +726,7 @@ print(np.mean(clf.predict(X_test) == y_test))
 </p>
 
 <p>
-我们这里以暴力搜索为例。我们只需要以字典方式提供搜索参数的可选列表即可。因为搜索代码内部会使用cross_validation来做验证，所以我们只需提供cross_validatio参数即可。下面代码摘自这个 <a href="http://scikit-learn.org/stable/auto_examples/grid_search_digits.html">例子</a> 。
+我们这里以暴力搜索为例。我们只需要以字典方式提供搜索参数的可选列表即可。因为搜索代码内部会使用cross<sub>validation来做验证</sub>，所以我们只需提供cross<sub>validatio参数即可</sub>。下面代码摘自这个 <a href="http://scikit-learn.org/stable/auto_examples/grid_search_digits.html">例子</a> 。
 </p>
 
 <div class="org-src-container">
@@ -712,8 +758,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_
 # Set the parameters by cross-validation
 # 提供参数的可选列表
 tuned_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
-                     'C': [1, 10, 100, 1000]},
-                    {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
+		     'C': [1, 10, 100, 1000]},
+		    {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
 
 # 链接中给的代码还对cross_validation效果评价方式(scoring)进行了搜索
 clf = GridSearchCV(SVC(), tuned_parameters, cv=5) # 使用k-fold划分出validation_set. k = 5
@@ -724,7 +770,7 @@ print(clf.best_estimator_)
 print("Grid scores on development set:")
 for params, mean_score, scores in clf.grid_scores_:
     print("%0.3f (+/-%0.03f) for %r"
-        % (mean_score, scores.std() / 2, params))
+	% (mean_score, scores.std() / 2, params))
 print("Detailed classification report:")
 print("The model is trained on the full development set.")
 print("The scores are computed on the full evaluation set.")
@@ -734,7 +780,7 @@ print(classification_report(y_true, y_pred))
 </div>
 
 <p>
-代码最后使用最优模型作用在测试数据上，然后使用classification_report打印评分结果.
+代码最后使用最优模型作用在测试数据上，然后使用classification<sub>report打印评分结果</sub>.
 </p>
 <pre class="example">
 Best parameters set found on development set:
@@ -775,8 +821,8 @@ avg / total       0.99      0.99      0.99       719
 </div>
 </div>
 
-<div id="outline-container-org07c313c" class="outline-3">
-<h3 id="org07c313c"><span class="section-number-3">4.3</span> Model evaluation: quantifying the quality of predictions</h3>
+<div id="outline-container-orgc9b5a31" class="outline-3">
+<h3 id="orgc9b5a31"><span class="section-number-3">4.3</span> Model evaluation: quantifying the quality of predictions</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 <a href="http://scikit-learn.org/stable/modules/model_evaluation.html">http://scikit-learn.org/stable/modules/model_evaluation.html</a>
@@ -787,8 +833,8 @@ There are 3 different approaches to evaluate the quality of predictions of a mod
 </p>
 <ol class="org-ol">
 <li>Estimator score method: Estimators have a score method providing a default evaluation criterion for the problem they are designed to solve. # 模型自身内部的评价比如损失函数等</li>
-<li>Scoring parameter: Model-evaluation tools using cross-validation (such as cross_validation.cross_val_score and grid_search.GridSearchCV) rely on an internal scoring strategy. # cv的评价，通常是数值表示. 比如'f1'.</li>
-<li>Metric functions: The metrics module implements functions assessing prediction errors for specific purposes. # 作用在测试数据的评价，可以是数值表示，也可以是文本图像等表示. 比如'classification_report'.</li>
+<li>Scoring parameter: Model-evaluation tools using cross-validation (such as cross<sub>validation.cross</sub><sub>val</sub><sub>score</sub> and grid<sub>search.GridSearchCV</sub>) rely on an internal scoring strategy. # cv的评价，通常是数值表示. 比如'f1'.</li>
+<li>Metric functions: The metrics module implements functions assessing prediction errors for specific purposes. # 作用在测试数据的评价，可以是数值表示，也可以是文本图像等表示. 比如'classification<sub>report</sub>'.</li>
 </ol>
 
 <p>
@@ -806,7 +852,7 @@ DummyClassifier implements three such simple strategies for classification:
 </p>
 <ul class="org-ul">
 <li>'stratified' generates randomly predictions by respecting the training set's class distribution,</li>
-<li>'most_frequent' always predicts the most frequent label in the training set,</li>
+<li>'most<sub>frequent</sub>' always predicts the most frequent label in the training set,</li>
 <li>'uniform' generates predictions uniformly at random.</li>
 <li>'constant' always predicts a constant label that is provided by the user.</li>
 </ul>
@@ -822,8 +868,8 @@ DummyRegressor also implements three simple rules of thumb for regression:
 </div>
 </div>
 
-<div id="outline-container-org7141779" class="outline-3">
-<h3 id="org7141779"><span class="section-number-3">4.4</span> Validation curves: plotting scores to evaluate models</h3>
+<div id="outline-container-org0d58ddb" class="outline-3">
+<h3 id="org0d58ddb"><span class="section-number-3">4.4</span> Validation curves: plotting scores to evaluate models</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 <a href="http://scikit-learn.org/stable/modules/learning_curve.html">http://scikit-learn.org/stable/modules/learning_curve.html</a>
@@ -834,7 +880,7 @@ Every estimator has its advantages and drawbacks. Its generalization error can b
 </p>
 
 <p>
-#note: 这个特性应该是从0.15才有的。之前我用apt-get安装的sklearn-0.14.1没有learning_curve这个模块。
+#note: 这个特性应该是从0.15才有的。之前我用apt-get安装的sklearn-0.14.1没有learning<sub>curve这个模块</sub>。
 </p>
 
 <hr />
@@ -843,7 +889,7 @@ validation curve
 </p>
 
 <p>
-观察模型某个参数变化对于training_set和validation_set结果影响，来确定是否underfitting或者overfitting. 参考这个 <a href="http://scikit-learn.org/stable/auto_examples/plot_validation_curve.html">例子</a> 绘图
+观察模型某个参数变化对于training<sub>set和validation</sub><sub>set结果影响</sub>，来确定是否underfitting或者overfitting. 参考这个 <a href="http://scikit-learn.org/stable/auto_examples/plot_validation_curve.html">例子</a> 绘图
 </p>
 
 <p>
@@ -851,7 +897,7 @@ If the training score and the validation score are both low, the estimator will 
 </p>
 
 <p>
-可以看到gamma在5 * 10^{-4}附近cross-validation score开始下滑，但是training score还是不错的，说明overfitting.
+可以看到gamma在5 * 10<sup>-4</sup>附近cross-validation score开始下滑，但是training score还是不错的，说明overfitting.
 </p>
 
 
@@ -879,6 +925,11 @@ learning curve
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/sklearn.html';this.page.identifier = 'sklearn.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

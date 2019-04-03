@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OSTEP / Concurrency-Lock</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">OSTEP / Concurrency-Lock</h1>
@@ -25,69 +71,69 @@ ticket lock是一种spinlock实现，解决了公平性问题。可以确保即�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">__lock_t</span> {
-  <span class="org-type">int</span> <span class="org-variable-name">ticket</span>;
-  <span class="org-type">int</span> <span class="org-variable-name">turn</span>;
-} <span class="org-type">lock_t</span>;
+<pre class="src src-C"><span style="font-weight: bold;">typedef</span> <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">__lock_t</span> {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">ticket</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">turn</span>;
+} <span style="font-weight: bold; text-decoration: underline;">lock_t</span>;
 
-<span class="org-type">void</span> <span class="org-function-name">lock_init</span>(<span class="org-type">lock_t</span> *<span class="org-variable-name">lock</span>) {
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">lock_init</span>(<span style="font-weight: bold; text-decoration: underline;">lock_t</span> *<span style="font-weight: bold; font-style: italic;">lock</span>) {
   lock-&gt;ticket = 0;
   lock-&gt;turn = 0;
 }
 
-<span class="org-type">void</span> <span class="org-function-name">lock</span>(<span class="org-type">lock_t</span> *<span class="org-variable-name">lock</span>) {
-  <span class="org-type">int</span> <span class="org-variable-name">myturn</span> = FetchAndAdd(&amp;lock-&gt;ticket);
-  <span class="org-keyword">while</span> (lock-&gt;turn != myturn)
-    ; <span class="org-comment-delimiter">// </span><span class="org-comment">spin</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">lock</span>(<span style="font-weight: bold; text-decoration: underline;">lock_t</span> *<span style="font-weight: bold; font-style: italic;">lock</span>) {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">myturn</span> = FetchAndAdd(&amp;lock-&gt;ticket);
+  <span style="font-weight: bold;">while</span> (lock-&gt;turn != myturn)
+    ; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">spin</span>
 }
 
-<span class="org-type">void</span> <span class="org-function-name">unlock</span>(<span class="org-type">lock_t</span> *<span class="org-variable-name">lock</span>) {
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">unlock</span>(<span style="font-weight: bold; text-decoration: underline;">lock_t</span> *<span style="font-weight: bold; font-style: italic;">lock</span>) {
   FetchAndAdd(&amp;lock-&gt;turn);
 }
 </pre>
 </div>
 
 <p>
-如果争抢者在一定时间内抢占不到的话，不如放弃CPU让其他进程/线程处理，这样可以在一定程度上改进性能，避免CPU空转。实现上只要在spin部分加上sched_yield即可，非常简单。可是这没有完全解决性能问题，设想如果有100个线程抢占同一个spinlock的话，那么99个线程都会调用sched_yield，然后把控制权交出，造成99次cs(context switch), 而这些cs是完全无用的。
+如果争抢者在一定时间内抢占不到的话，不如放弃CPU让其他进程/线程处理，这样可以在一定程度上改进性能，避免CPU空转。实现上只要在spin部分加上sched<sub>yield即可</sub>，非常简单。可是这没有完全解决性能问题，设想如果有100个线程抢占同一个spinlock的话，那么99个线程都会调用sched<sub>yield</sub>，然后把控制权交出，造成99次cs(context switch), 而这些cs是完全无用的。
 </p>
 
 <p>
-为了彻底解决性能问题，正确做法应该是将这些线程挂起进入block状态。下面是书中给出的实现。每一个lock上会有一个Q, 上面挂着有哪些因为竞争这个lock而block住的线程。注意在lock的park()和unlock的unpark()会有race condition，这个和park/unpark实现相关，或者在m-&gt;guard=0之前加上set_park()设置park标记。
+为了彻底解决性能问题，正确做法应该是将这些线程挂起进入block状态。下面是书中给出的实现。每一个lock上会有一个Q, 上面挂着有哪些因为竞争这个lock而block住的线程。注意在lock的park()和unlock的unpark()会有race condition，这个和park/unpark实现相关，或者在m-&gt;guard=0之前加上set<sub>park</sub>()设置park标记。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">__lock_t</span> {
-    <span class="org-type">int</span> <span class="org-variable-name">flag</span>;
-    <span class="org-type">int</span> <span class="org-variable-name">guard</span>;
-    <span class="org-type">queue_t</span> *<span class="org-variable-name">q</span>;
-} <span class="org-type">lock_t</span>;
+<pre class="src src-C"><span style="font-weight: bold;">typedef</span> <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">__lock_t</span> {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">flag</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">guard</span>;
+    <span style="font-weight: bold; text-decoration: underline;">queue_t</span> *<span style="font-weight: bold; font-style: italic;">q</span>;
+} <span style="font-weight: bold; text-decoration: underline;">lock_t</span>;
 
-<span class="org-type">void</span> <span class="org-function-name">lock_init</span>(<span class="org-type">lock_t</span> *<span class="org-variable-name">m</span>) {
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">lock_init</span>(<span style="font-weight: bold; text-decoration: underline;">lock_t</span> *<span style="font-weight: bold; font-style: italic;">m</span>) {
     m-&gt;flag = 0;
     m-&gt;guard = 0;
     queue_init(m-&gt;q);
 }
 
-<span class="org-type">void</span> <span class="org-function-name">lock</span>(<span class="org-type">lock_t</span> *<span class="org-variable-name">m</span>) {
-    <span class="org-keyword">while</span> (TestAndSet(&amp;m-&gt;guard, 1) == 1)
-        ; <span class="org-comment-delimiter">//</span><span class="org-comment">acquire guard lock by spinning</span>
-    <span class="org-keyword">if</span> (m-&gt;flag == 0) {
-        m-&gt;flag = 1; <span class="org-comment-delimiter">// </span><span class="org-comment">lock is acquired</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">lock</span>(<span style="font-weight: bold; text-decoration: underline;">lock_t</span> *<span style="font-weight: bold; font-style: italic;">m</span>) {
+    <span style="font-weight: bold;">while</span> (TestAndSet(&amp;m-&gt;guard, 1) == 1)
+        ; <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">acquire guard lock by spinning</span>
+    <span style="font-weight: bold;">if</span> (m-&gt;flag == 0) {
+        m-&gt;flag = 1; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">lock is acquired</span>
         m-&gt;guard = 0;
-    } <span class="org-keyword">else</span> {
+    } <span style="font-weight: bold;">else</span> {
         queue_add(m-&gt;q, gettid());
         m-&gt;guard = 0;
         park();
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">unlock</span>(<span class="org-type">lock_t</span> *<span class="org-variable-name">m</span>) {
-    <span class="org-keyword">while</span> (TestAndSet(&amp;m-&gt;guard, 1) == 1)
-        ; <span class="org-comment-delimiter">//</span><span class="org-comment">acquire guard lock by spinning</span>
-    <span class="org-keyword">if</span> (queue_empty(m-&gt;q))
-        m-&gt;flag = 0; <span class="org-comment-delimiter">// </span><span class="org-comment">let go of lock; no one wants it</span>
-    <span class="org-keyword">else</span>
-        unpark(queue_remove(m-&gt;q)); <span class="org-comment-delimiter">// </span><span class="org-comment">hold lock (for next thread!)</span>
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">unlock</span>(<span style="font-weight: bold; text-decoration: underline;">lock_t</span> *<span style="font-weight: bold; font-style: italic;">m</span>) {
+    <span style="font-weight: bold;">while</span> (TestAndSet(&amp;m-&gt;guard, 1) == 1)
+        ; <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">acquire guard lock by spinning</span>
+    <span style="font-weight: bold;">if</span> (queue_empty(m-&gt;q))
+        m-&gt;flag = 0; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">let go of lock; no one wants it</span>
+    <span style="font-weight: bold;">else</span>
+        unpark(queue_remove(m-&gt;q)); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">hold lock (for next thread!)</span>
     m-&gt;guard = 0;
 }
 </pre>
@@ -97,46 +143,51 @@ ticket lock是一种spinlock实现，解决了公平性问题。可以确保即�
 linux下lock实现依赖于futex. 这里介绍两个调用：
 </p>
 <ul class="org-ul">
-<li>futex_wait(address, value). 如果*address == value, 那么就等待直到其他线程调用futex_wake(address)，然后继续比较。</li>
-<li>futex_wake(address). 唤醒在这个address上等待的线程。</li>
+<li>futex<sub>wait</sub>(address, value). 如果*address == value, 那么就等待直到其他线程调用futex<sub>wake</sub>(address)，然后继续比较。</li>
+<li>futex<sub>wake</sub>(address). 唤醒在这个address上等待的线程。</li>
 </ul>
 <p>
 书中给了一个使用futex实现mutex的例子。这个mutex最高位表示是否lock, 而剩余31位表示有多少个waiter.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-type">void</span> <span class="org-function-name">mutex_lock</span> (<span class="org-type">int</span> *<span class="org-variable-name">mutex</span>) {
-    <span class="org-type">int</span> <span class="org-variable-name">v</span>;
-    <span class="org-comment-delimiter">/* </span><span class="org-comment">Bit 31 was clear, we got the mutex (this is the fastpath) </span><span class="org-comment-delimiter">*/</span>
-    <span class="org-keyword">if</span> (atomic_bit_test_set (mutex, 31) == 0)
-        <span class="org-keyword">return</span>;
+<pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">mutex_lock</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">mutex</span>) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">v</span>;
+    <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">Bit 31 was clear, we got the mutex (this is the fastpath) </span><span style="font-weight: bold; font-style: italic;">*/</span>
+    <span style="font-weight: bold;">if</span> (atomic_bit_test_set (mutex, 31) == 0)
+        <span style="font-weight: bold;">return</span>;
     atomic_increment (mutex);
-    <span class="org-keyword">while</span> (1) {
-        <span class="org-keyword">if</span> (atomic_bit_test_set (mutex, 31) == 0) {
+    <span style="font-weight: bold;">while</span> (1) {
+        <span style="font-weight: bold;">if</span> (atomic_bit_test_set (mutex, 31) == 0) {
             atomic_decrement (mutex);
-            <span class="org-keyword">return</span>;
+            <span style="font-weight: bold;">return</span>;
         }
-        <span class="org-comment-delimiter">/* </span><span class="org-comment">We have to wait now. First make sure the futex value</span>
-<span class="org-comment">           we are monitoring is truly negative (i.e. locked). </span><span class="org-comment-delimiter">*/</span>
+        <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">We have to wait now. First make sure the futex value</span>
+<span style="font-weight: bold; font-style: italic;">           we are monitoring is truly negative (i.e. locked). </span><span style="font-weight: bold; font-style: italic;">*/</span>
         v = *mutex;
-        <span class="org-keyword">if</span> (v &gt;= 0)
-            <span class="org-keyword">continue</span>;
+        <span style="font-weight: bold;">if</span> (v &gt;= 0)
+            <span style="font-weight: bold;">continue</span>;
         futex_wait (mutex, v);
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">mutex_unlock</span> (<span class="org-type">int</span> *<span class="org-variable-name">mutex</span>) {
-    <span class="org-comment-delimiter">/* </span><span class="org-comment">Adding 0x80000000 to the counter results in 0 if and only if</span>
-<span class="org-comment">       there are not other interested threads </span><span class="org-comment-delimiter">*/</span>
-    <span class="org-keyword">if</span> (atomic_add_zero (mutex, 0x80000000))
-        <span class="org-keyword">return</span>;
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">mutex_unlock</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">mutex</span>) {
+    <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">Adding 0x80000000 to the counter results in 0 if and only if</span>
+<span style="font-weight: bold; font-style: italic;">       there are not other interested threads </span><span style="font-weight: bold; font-style: italic;">*/</span>
+    <span style="font-weight: bold;">if</span> (atomic_add_zero (mutex, 0x80000000))
+        <span style="font-weight: bold;">return</span>;
 
-    <span class="org-comment-delimiter">/* </span><span class="org-comment">There are other threads waiting for this mutex,</span>
-<span class="org-comment">       wake one of them up. </span><span class="org-comment-delimiter">*/</span>
+    <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">There are other threads waiting for this mutex,</span>
+<span style="font-weight: bold; font-style: italic;">       wake one of them up. </span><span style="font-weight: bold; font-style: italic;">*/</span>
     futex_wake (mutex);
 }
 </pre>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/ostep-con-lock.html';this.page.identifier = 'ostep-con-lock.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

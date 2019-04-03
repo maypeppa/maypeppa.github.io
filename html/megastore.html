@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Megastore: Providing Scalable, Highly Available Storage for Interactive Services</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Megastore: Providing Scalable, Highly Available Storage for Interactive Services</h1>
@@ -16,37 +62,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdd96bcd">1. ABSTRACT</a></li>
-<li><a href="#orgd8c8ea5">2. INTRODUCTION</a></li>
-<li><a href="#org3115433">3. TOWARD AVAILABILITY AND SCALE</a>
+<li><a href="#org2f799db">1. ABSTRACT</a></li>
+<li><a href="#orgbb453bf">2. INTRODUCTION</a></li>
+<li><a href="#orgf18ee7b">3. TOWARD AVAILABILITY AND SCALE</a>
 <ul>
-<li><a href="#orgfa46766">3.1. Replication</a></li>
-<li><a href="#org047fe8e">3.2. Partitioning and Locality</a></li>
+<li><a href="#orgaf3cdfc">3.1. Replication</a></li>
+<li><a href="#orge095b08">3.2. Partitioning and Locality</a></li>
 </ul>
 </li>
-<li><a href="#org1a88378">4. A TOUR OF MEGASTORE</a>
+<li><a href="#org18afeb9">4. A TOUR OF MEGASTORE</a>
 <ul>
-<li><a href="#orgd2d0839">4.1. API Design Philosophy</a></li>
-<li><a href="#org3afdae1">4.2. Data Model</a>
+<li><a href="#org1d93f08">4.1. API Design Philosophy</a></li>
+<li><a href="#org7f9b603">4.2. Data Model</a>
 <ul>
-<li><a href="#orga539b2a">4.2.1. Pre-Joining with Keys</a></li>
-<li><a href="#org673516f">4.2.2. Indexes</a></li>
-<li><a href="#org2392dc1">4.2.3. Mapping to Bigtable</a></li>
+<li><a href="#orgd8b2926">4.2.1. Pre-Joining with Keys</a></li>
+<li><a href="#org54d4bdd">4.2.2. Indexes</a></li>
+<li><a href="#orgedd9c5d">4.2.3. Mapping to Bigtable</a></li>
 </ul>
 </li>
-<li><a href="#orgcb9d241">4.3. Transactions and Concurrency Control</a>
+<li><a href="#orgfffad2f">4.3. Transactions and Concurrency Control</a>
 <ul>
-<li><a href="#orgd74386e">4.3.1. Queues</a></li>
-<li><a href="#orgf254661">4.3.2. Two-Phase Commit</a></li>
+<li><a href="#org7e7e7d7">4.3.1. Queues</a></li>
+<li><a href="#org3e114df">4.3.2. Two-Phase Commit</a></li>
 </ul>
 </li>
-<li><a href="#org31a536b">4.4. Other Features</a></li>
+<li><a href="#orgc600780">4.4. Other Features</a></li>
 </ul>
 </li>
-<li><a href="#org5d3e9cb">5. REPLICATION</a></li>
-<li><a href="#org23207da">6. EXPERIENCE</a></li>
-<li><a href="#orgaeef653">7. RELATED WORK</a></li>
-<li><a href="#org8f97f3a">8. CONCLUSION</a></li>
+<li><a href="#orgd95dc29">5. REPLICATION</a></li>
+<li><a href="#org8aa53b7">6. EXPERIENCE</a></li>
+<li><a href="#org76df492">7. RELATED WORK</a></li>
+<li><a href="#org78b7fe0">8. CONCLUSION</a></li>
 </ul>
 </div>
 </div>
@@ -54,8 +100,8 @@
 <a href="http://research.google.com/pubs/pub36971.html">http://research.google.com/pubs/pub36971.html</a> @ 2011
 </p>
 
-<div id="outline-container-orgdd96bcd" class="outline-2">
-<h2 id="orgdd96bcd"><span class="section-number-2">1</span> ABSTRACT</h2>
+<div id="outline-container-org2f799db" class="outline-2">
+<h2 id="org2f799db"><span class="section-number-2">1</span> ABSTRACT</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Megastore is a storage system developed to meet the re-quirements of today’s interactive online services. Megas-tore blends the scalability of a NoSQL datastore with the convenience of a traditional RDBMS in a novel way, and provides both strong consistency guarantees and high avail-ability. （只要是为了满足现在交互式在线服务的存储需求，融合了NoSQL扩展性以及RDBMS的方便性，同时提供了强一致性以及高可用性）</li>
@@ -64,8 +110,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd8c8ea5" class="outline-2">
-<h2 id="orgd8c8ea5"><span class="section-number-2">2</span> INTRODUCTION</h2>
+<div id="outline-container-orgbb453bf" class="outline-2">
+<h2 id="orgbb453bf"><span class="section-number-2">2</span> INTRODUCTION</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>We accomplish this by taking a middle ground in the RDBMS vs. NoSQL design space: we partition the data-store and replicate each partition separately, providing full ACID semantics within partitions, but only limited con-sistency guarantees across them. We provide traditional database features, such as secondary indexes, but only those features that can scale within user-tolerable latency limits, and only with the semantics that our partitioning scheme can support.
@@ -78,8 +124,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3115433" class="outline-2">
-<h2 id="org3115433"><span class="section-number-2">3</span> TOWARD AVAILABILITY AND SCALE</h2>
+<div id="outline-container-orgf18ee7b" class="outline-2">
+<h2 id="orgf18ee7b"><span class="section-number-2">3</span> TOWARD AVAILABILITY AND SCALE</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>To do so, we have taken a two-pronged approach:
@@ -90,8 +136,8 @@
 </ul>
 </div>
 
-<div id="outline-container-orgfa46766" class="outline-3">
-<h3 id="orgfa46766"><span class="section-number-3">3.1</span> Replication</h3>
+<div id="outline-container-orgaf3cdfc" class="outline-3">
+<h3 id="orgaf3cdfc"><span class="section-number-3">3.1</span> Replication</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>For cloud storage to meet availability demands, service providers must replicate data over a wide geographic area.（对于云存储必须满足可用性的需求，服务提供商必须跨地域进行replication），We evaluated common strategies for wide-area replication：（下面几个常见的跨地域replication解决方案）
@@ -110,8 +156,8 @@
 </div>
 </div>
 
-<div id="outline-container-org047fe8e" class="outline-3">
-<h3 id="org047fe8e"><span class="section-number-3">3.2</span> Partitioning and Locality</h3>
+<div id="outline-container-orge095b08" class="outline-3">
+<h3 id="orge095b08"><span class="section-number-3">3.2</span> Partitioning and Locality</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>To scale throughput and localize outages, we partition our data into a collection of entity groups, each indepen-dently and synchronously replicated over a wide area. The underlying data is stored in a scalable NoSQL datastore in each datacenter (see Figure 1) 划分的每个单元称为entity group. <b>后面简称EG</b>  #note: 所谓的entity group就是单位实体，在这个单位实体内所有的数据都是关联的，好比一个用户的blog，如果我们按照用户来划分entity group的话，那么这个blog里面所有的文章以及tag等数据形成一个entity group
@@ -150,12 +196,12 @@
 </div>
 </div>
 
-<div id="outline-container-org1a88378" class="outline-2">
-<h2 id="org1a88378"><span class="section-number-2">4</span> A TOUR OF MEGASTORE</h2>
+<div id="outline-container-org18afeb9" class="outline-2">
+<h2 id="org18afeb9"><span class="section-number-2">4</span> A TOUR OF MEGASTORE</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgd2d0839" class="outline-3">
-<h3 id="orgd2d0839"><span class="section-number-3">4.1</span> API Design Philosophy</h3>
+<div id="outline-container-org1d93f08" class="outline-3">
+<h3 id="org1d93f08"><span class="section-number-3">4.1</span> API Design Philosophy</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Normalized relational schemas rely on joins at query time to service user operations. This is not the right model for Megastore applications for several reasons:（不推荐在mega内部使用normalized relational schema这种方案）
@@ -169,8 +215,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3afdae1" class="outline-3">
-<h3 id="org3afdae1"><span class="section-number-3">4.2</span> Data Model</h3>
+<div id="outline-container-org7f9b603" class="outline-3">
+<h3 id="org7f9b603"><span class="section-number-3">4.2</span> Data Model</h3>
 <div class="outline-text-3" id="text-4-2">
 
 <div class="figure">
@@ -179,13 +225,13 @@
 </div>
 
 <ul class="org-ul">
-<li>As in an RDBMS, the data model is de-clared in a schema and is strongly typed. Each schema has a set of tables, each containing a set of entities, which in turn contain a set of properties. Properties are named and typed values. The types can be strings, various flavors of numbers, or Google’s Protocol Buffers. They can be re-quired, optional, or repeated (allowing a list of values in a single property). All entities in a table have the same set of allowable properties. A sequence of properties is used to form the primary key of the entity, and the primary keys must be unique within the table. Figure 3 shows an example schema for a simple photo storage application. （datamodel和RDBMS非常类似，schema也是由很多table来组成，每个table包含很多entity，而每个entity包含很多property。对于property有类型包括字符串，整数以及protobuf本身，并且本身可以是required，optional以及repeated的。多个property组成primary key，而primary key的内容也是由这些property value组合起来的。比如上面就是(user_id, photo_id) ）</li>
+<li>As in an RDBMS, the data model is de-clared in a schema and is strongly typed. Each schema has a set of tables, each containing a set of entities, which in turn contain a set of properties. Properties are named and typed values. The types can be strings, various flavors of numbers, or Google’s Protocol Buffers. They can be re-quired, optional, or repeated (allowing a list of values in a single property). All entities in a table have the same set of allowable properties. A sequence of properties is used to form the primary key of the entity, and the primary keys must be unique within the table. Figure 3 shows an example schema for a simple photo storage application. （datamodel和RDBMS非常类似，schema也是由很多table来组成，每个table包含很多entity，而每个entity包含很多property。对于property有类型包括字符串，整数以及protobuf本身，并且本身可以是required，optional以及repeated的。多个property组成primary key，而primary key的内容也是由这些property value组合起来的。比如上面就是(user<sub>id</sub>, photo<sub>id</sub>) ）</li>
 <li>Megastore tables are either entity group root tables or child tables. Each child table must declare a single distin-guished foreign key referencing a root table, illustrated by the ENTITY GROUP KEY annotation in Figure 3. Thus each child entity references a particular entity in its root table (called the root entity). An entity group consists of a root entity along with all entities in child tables that reference it. A Megastore instance can have several root tables, resulting in different classes of entity groups.（tables分为root table和child table，root table存在PRIMARY KEY，而child table必须使用一个foreign key来引用root table。这样对于每一个root table entry来说，可能会存在很多child entry来引用它。这里root table entry也叫做root entity)</li>
 </ul>
 </div>
 
-<div id="outline-container-orga539b2a" class="outline-4">
-<h4 id="orga539b2a"><span class="section-number-4">4.2.1</span> Pre-Joining with Keys</h4>
+<div id="outline-container-orgd8b2926" class="outline-4">
+<h4 id="orgd8b2926"><span class="section-number-4">4.2.1</span> Pre-Joining with Keys</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>Each entity is mapped into a single Bigtable row; the primary key values are concatenated to form the Bigtable row key, and each remaining property occupies its own Bigtable column.（每一个entity占据了bigtable的一行，rowkey使用primary key拼接而成，而剩余的property则对应到bigtable的column）</li>
@@ -195,8 +241,8 @@
 </div>
 </div>
 
-<div id="outline-container-org673516f" class="outline-4">
-<h4 id="org673516f"><span class="section-number-4">4.2.2</span> Indexes</h4>
+<div id="outline-container-org54d4bdd" class="outline-4">
+<h4 id="org54d4bdd"><span class="section-number-4">4.2.2</span> Indexes</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 #note: 索引这个部分主要突出了数据如何存放并且使之能够有效地进行存取
@@ -220,8 +266,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2392dc1" class="outline-4">
-<h4 id="org2392dc1"><span class="section-number-4">4.2.3</span> Mapping to Bigtable</h4>
+<div id="outline-container-orgedd9c5d" class="outline-4">
+<h4 id="orgedd9c5d"><span class="section-number-4">4.2.3</span> Mapping to Bigtable</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <ul class="org-ul">
 <li>The Bigtable column name is a concatenation of the Mega-store table name and the property name, allowing entities from different Megastore tables to be mapped into the same Bigtable row without collision. （column name使用了table name和property name的组合，这样如何映射到一行的话不会出现冲突）</li>
@@ -238,8 +284,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgcb9d241" class="outline-3">
-<h3 id="orgcb9d241"><span class="section-number-3">4.3</span> Transactions and Concurrency Control</h3>
+<div id="outline-container-orgfffad2f" class="outline-3">
+<h3 id="orgfffad2f"><span class="section-number-3">4.3</span> Transactions and Concurrency Control</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>Each Megastore entity group functions as a mini-database that provides serializable ACID semantics. A transaction writes its mutations into the entity group’s write-ahead log, then the mutations are applied to the data.（每个EG都类似小型的数据库满足ACID，每个transaction都先写WAL然后修改数据）</li>
@@ -265,8 +311,8 @@
 </ul>
 </div>
 
-<div id="outline-container-orgd74386e" class="outline-4">
-<h4 id="orgd74386e"><span class="section-number-4">4.3.1</span> Queues</h4>
+<div id="outline-container-org7e7e7d7" class="outline-4">
+<h4 id="org7e7e7d7"><span class="section-number-4">4.3.1</span> Queues</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ul class="org-ul">
 <li>Queues provide transactional messaging between entity groups. They can be used for cross-group operations, to batch multiple updates into a single transaction, or to de-fer work. A transaction on an entity group can atomically send or receive multiple messages in addition to updatingits entities. Each message has a single sending and receiving entity group; if they differ, delivery is asynchronous.（Queue主要用来在EG之间传递事务消息的，能够将多个mutation进行聚合成为single transaction以及延迟操作，这样对于发送者和接收者都可以原子地发送和读取transaction或者是多个消息。对于每个message有sender和receiver entity group，如果是不同的EG的话那么消息传递是异步的）</li>
@@ -275,8 +321,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf254661" class="outline-4">
-<h4 id="orgf254661"><span class="section-number-4">4.3.2</span> Two-Phase Commit</h4>
+<div id="outline-container-org3e114df" class="outline-4">
+<h4 id="org3e114df"><span class="section-number-4">4.3.2</span> Two-Phase Commit</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <ul class="org-ul">
 <li>Megastore supports two-phase commit for atomic updates across entity groups. Since these transactions have much higher latency and increase the risk of contention, we gener-ally discourage applications from using the feature in favor of queues. Nevertheless, they can be useful in simplifying application code for unique secondary key enforcement.（跨EG的操作也可以实现原子更新通过使用两阶段提交，但是延迟会非常高并且容易出现冲突）</li>
@@ -285,8 +331,8 @@
 </div>
 </div>
 
-<div id="outline-container-org31a536b" class="outline-3">
-<h3 id="org31a536b"><span class="section-number-3">4.4</span> Other Features</h3>
+<div id="outline-container-orgc600780" class="outline-3">
+<h3 id="orgc600780"><span class="section-number-3">4.4</span> Other Features</h3>
 <div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>We have built a tight integration with Bigtable’s full-text index in which updates and searches participate in Megas-tore’s transactions and multiversion concurrency. A full-text index declared in a Megastore schema can index a table’s text or other application-generated attributes.</li>
@@ -297,8 +343,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5d3e9cb" class="outline-2">
-<h2 id="org5d3e9cb"><span class="section-number-2">5</span> REPLICATION</h2>
+<div id="outline-container-orgd95dc29" class="outline-2">
+<h2 id="orgd95dc29"><span class="section-number-2">5</span> REPLICATION</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 This section details the heart of our synchronous replica-tion scheme: a low-latency implementation of Paxos.
@@ -306,8 +352,8 @@ This section details the heart of our synchronous replica-tion scheme: a low-lat
 </div>
 </div>
 
-<div id="outline-container-org23207da" class="outline-2">
-<h2 id="org23207da"><span class="section-number-2">6</span> EXPERIENCE</h2>
+<div id="outline-container-org8aa53b7" class="outline-2">
+<h2 id="org8aa53b7"><span class="section-number-2">6</span> EXPERIENCE</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>But the most effective bug-finding tool was our network simulator: the pseudo-random test framework. It is capable of exploring the space of all possible orderings and delays of communications between simulated nodes or threads, and deterministically reproducing the same behav-ior given the same seed. Bugs were exposed by finding a problematic sequence of events triggering an assertion fail-ure (or incorrect result), often with enough log and trace information to diagnose the problem, which was then added to the suite of unit tests. While an exhaustive search of the scheduling state space is impossible, the pseudo-random simulation explores more than is practical by other means. Through running thousands of simulated hours of operation each night, the tests have found many surprising problems （伪随机测试框架可以用来枚举所有节点以及线程之间的通信顺序以及之间的延迟）</li>
@@ -320,8 +366,8 @@ This section details the heart of our synchronous replica-tion scheme: a low-lat
 </div>
 </div>
 
-<div id="outline-container-orgaeef653" class="outline-2">
-<h2 id="orgaeef653"><span class="section-number-2">7</span> RELATED WORK</h2>
+<div id="outline-container-org76df492" class="outline-2">
+<h2 id="org76df492"><span class="section-number-2">7</span> RELATED WORK</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Recently, there has been increasing interest in NoSQL data storage systems to meet the demand of large web ap-plications. Representative work includes Bigtable, Cas-sandra, and Yahoo PNUTS. In these systems, scal-ability is achieved by sacrificing one or more properties of traditional RDBMS systems, e.g., transactions, schema sup-port, query capability. 都通过牺牲一些传统的RDBMS的特性来达到扩展性比如事务，schema，以及query能力（复杂的SQL查询以及运算等） These systems often reduce the scope of transactions to the granularity of single key access and thus place a significant hurdle to building appli-cations （事务粒度仅仅是到了row级别，这样为应用程序造成了一定的负担）Some systems extend the scope of transac-tions to multiple rows within a single table, for example the Amazon SimpleDB uses the concept of domain as the transactional unit. （而另外一些系统级别则放宽到了多列比如Amazon SimpleDB使用domain来作为事务单元） Yet such efforts are still limited because transactions cannot cross tables or scale arbitrarily.（但是依然不能够跨表来完成事务） More-over, most current scalable data storage systems lack the rich data model of an RDBMS, which increases the burden on developers. （更重要的是缺乏丰富的data model以及query能力给开发人员造成的负担）</li>
@@ -330,14 +376,19 @@ This section details the heart of our synchronous replica-tion scheme: a low-lat
 </div>
 </div>
 
-<div id="outline-container-org8f97f3a" class="outline-2">
-<h2 id="org8f97f3a"><span class="section-number-2">8</span> CONCLUSION</h2>
+<div id="outline-container-org78b7fe0" class="outline-2">
+<h2 id="org78b7fe0"><span class="section-number-2">8</span> CONCLUSION</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 &lt;大规模分布式存储系统&gt;: Megastore主要创新点包括：1) 提出实体组的数据模型。通过实体组划分数据，实体组内部维持关系数据库的ACID特性，实体组之间维持类似NoSQL的弱一致性，有效地融合了SQL和NoSQL两者的优势。另外实体组的定义方式也在很大程度上规避了影响性能和可扩展性的Join操作。 2) 通过Paxos协议同时保证高可靠性和高可用性，既把数据强同步到多个机房，又做到发生故障时自动切换不影响读写服务。另外通过协调者和优化Paxos协议使得读写操作都比较高效。当然Megastore也有一些问题，其中一些问题来源于bigtable比如单副本服务，SSD支持较弱导致Megastore在线实时服务能力上有一定的改进空间，整体架构过于复杂，协调者对读写服务和运维复杂度的影响。
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/megastore.html';this.page.identifier = 'megastore.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

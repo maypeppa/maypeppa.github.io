@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>coroutine</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">coroutine</h1>
@@ -36,7 +82,7 @@ implementation
 
 <hr />
 <p>
-libpcl里面的co_exit/co_exit_to/co_resume里面存放了caller和restarget这两个变量，表示调用者和应该恢复到的coroutine.但是一旦使用这种实现的话，那么调用者只能够按照stack的方式来调用coroutine,不然函数调用完成返回之后是会存在问题的，但是这样也就失去了coroutine意义了。而co_call还使用了co_exit这个函数，导致整个libpcl可以说不是很可用。不过里面设计上考虑了多线程环境使用了specific,并且使用了co_runner来做trampoline,这个在实现上面是非常巧妙的。此外文档也说了在处理线程的时候需要调用sigaltstack不然信号处理部分可能会和和你的coroutine的stack重合。其实只需要pth里面这些接口即可，create/delete/switch/exit(这个语义通知另外一个coroutine选择另外一个coroutine执行).pth可以看看但是比较大但是仅仅是覆盖thread部分内容(第三推荐)，而libtask涵盖了线程IO网络各个部分也可以看看(第二推荐)。
+libpcl里面的co<sub>exit</sub>/co<sub>exit</sub><sub>to</sub>/co<sub>resume里面存放了caller和restarget这两个变量</sub>，表示调用者和应该恢复到的coroutine.但是一旦使用这种实现的话，那么调用者只能够按照stack的方式来调用coroutine,不然函数调用完成返回之后是会存在问题的，但是这样也就失去了coroutine意义了。而co<sub>call还使用了co</sub><sub>exit这个函数</sub>，导致整个libpcl可以说不是很可用。不过里面设计上考虑了多线程环境使用了specific,并且使用了co<sub>runner来做trampoline,这个在实现上面是非常巧妙的</sub>。此外文档也说了在处理线程的时候需要调用sigaltstack不然信号处理部分可能会和和你的coroutine的stack重合。其实只需要pth里面这些接口即可，create/delete/switch/exit(这个语义通知另外一个coroutine选择另外一个coroutine执行).pth可以看看但是比较大但是仅仅是覆盖thread部分内容(第三推荐)，而libtask涵盖了线程IO网络各个部分也可以看看(第二推荐)。
 </p>
 
 <hr />
@@ -52,12 +98,12 @@ coroutine，windows编程里面的纤程（fiber）,绿色线程（green thread�
 <hr />
 
 <p>
-coroutine框架必须在每个线程可以启动一个调度coroutine.然后create_fiber之后将coroutine丢到随机的一个线程coroutine的等待Q里面。调度coroutine的动作非常简单，检查哪些coroutine ready了然后switch到对应的coroutine上面去。这些工作的coroutine触发出来的时机可能有下面几个：
+coroutine框架必须在每个线程可以启动一个调度coroutine.然后create<sub>fiber之后将coroutine丢到随机的一个线程coroutine的等待Q里面</sub>。调度coroutine的动作非常简单，检查哪些coroutine ready了然后switch到对应的coroutine上面去。这些工作的coroutine触发出来的时机可能有下面几个：
 </p>
 <ul class="org-ul">
 <li>read/write阻塞.对于fd需要判断如果为net的话那么丢入epoll,disk的话丢入nativeio或者是自己的线程池。</li>
-<li>futex_wait锁的等待. // 这个可以让系统禁用或者什么的</li>
-<li>定时器 // sleep或者是futex_wait使用的定时器。</li>
+<li>futex<sub>wait锁的等待</sub>. // 这个可以让系统禁用或者什么的</li>
+<li>定时器 // sleep或者是futex<sub>wait使用的定时器</sub>。</li>
 </ul>
 <p>
 还有相当多的系统调用会阻塞住，枚举出来也是非常麻烦的。关于coroutine可以参考GNU portable thread实现. (GNU portable thread似乎没有没有维护了，然后今天看到一个比较振奋的消息，就是GNU出了一个<a href="http://opensource.solidot.org/article.pl?sid=12/05/09/0723228">new portable thread/nPth</a>. 有时间的话可以尝试使用一下并且分析一下代码)
@@ -77,6 +123,11 @@ coroutine这种user thread只是做到的了cooperative thread, 而preemptive th
 <p><img src="images/libaco_model.png" alt="libaco_model.png" />
 </p>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/coroutine.html';this.page.identifier = 'coroutine.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

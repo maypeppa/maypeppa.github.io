@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>How to Read a Paper</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">How to Read a Paper</h1>
@@ -16,18 +62,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf8a4dc1">1. Abstract</a></li>
-<li><a href="#orgdb4572b">2. Introduction</a></li>
-<li><a href="#orgdf84ea8">3. The Three-Pass Approach</a>
+<li><a href="#org481df84">1. Abstract</a></li>
+<li><a href="#orgb96c953">2. Introduction</a></li>
+<li><a href="#org73aee5d">3. The Three-Pass Approach</a>
 <ul>
-<li><a href="#orgfb1b662">3.1. The first pass</a></li>
-<li><a href="#org354100d">3.2. The Second Pass</a></li>
-<li><a href="#orgd4add5f">3.3. The Third Pass</a></li>
+<li><a href="#org6225789">3.1. The first pass</a></li>
+<li><a href="#org6a0e87d">3.2. The Second Pass</a></li>
+<li><a href="#org9eb2e8e">3.3. The Third Pass</a></li>
 </ul>
 </li>
-<li><a href="#orgf16ce9b">4. Doing a Literature Survey</a></li>
-<li><a href="#org2d933aa">5. Related Work</a></li>
-<li><a href="#orgc81be54">6. References</a></li>
+<li><a href="#org4d4ff11">4. Doing a Literature Survey</a></li>
+<li><a href="#orgc97060c">5. Related Work</a></li>
+<li><a href="#org6804b97">6. References</a></li>
 </ul>
 </div>
 </div>
@@ -35,18 +81,18 @@
 <a href="http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf">http://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf</a>
 </p>
 
-<div id="outline-container-orgf8a4dc1" class="outline-2">
-<h2 id="orgf8a4dc1"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-org481df84" class="outline-2">
+<h2 id="org481df84"><span class="section-number-2">1</span> Abstract</h2>
 </div>
-<div id="outline-container-orgdb4572b" class="outline-2">
-<h2 id="orgdb4572b"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orgb96c953" class="outline-2">
+<h2 id="orgb96c953"><span class="section-number-2">2</span> Introduction</h2>
 </div>
-<div id="outline-container-orgdf84ea8" class="outline-2">
-<h2 id="orgdf84ea8"><span class="section-number-2">3</span> The Three-Pass Approach</h2>
+<div id="outline-container-org73aee5d" class="outline-2">
+<h2 id="org73aee5d"><span class="section-number-2">3</span> The Three-Pass Approach</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgfb1b662" class="outline-3">
-<h3 id="orgfb1b662"><span class="section-number-3">3.1</span> The first pass</h3>
+<div id="outline-container-org6225789" class="outline-3">
+<h3 id="org6225789"><span class="section-number-3">3.1</span> The first pass</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The first pass is a quick scan to get a bird’s-eye view of the paper. You can also decide whether you need to do any more passes. This pass should take about five to ten minutes and consists of the following steps: (快速浏览掌握大意)
@@ -76,8 +122,8 @@ Using this information, you may choose not to read fur- ther (and not print it o
 </div>
 </div>
 
-<div id="outline-container-org354100d" class="outline-3">
-<h3 id="org354100d"><span class="section-number-3">3.2</span> The Second Pass</h3>
+<div id="outline-container-org6a0e87d" class="outline-3">
+<h3 id="org6a0e87d"><span class="section-number-3">3.2</span> The Second Pass</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 In the second pass, read the paper with greater care, but ignore details such as proofs. It helps to jot down the key points, or to make comments in the margins, as you read. Dominik Grusemann from Uni Augsburg suggests that you “note down terms you didn’t understand, or questions you may want to ask the author.” If you are acting as a paper referee, these comments will help you when you are writing your review, and to back up your review during the program committee meeting.(仔细阅读内容但是忽略具体细节比如证明等，同时在margin部分做comment)
@@ -93,8 +139,8 @@ Sometimes you won’t understand a paper even at the end of the second pass. Thi
 </div>
 </div>
 
-<div id="outline-container-orgd4add5f" class="outline-3">
-<h3 id="orgd4add5f"><span class="section-number-3">3.3</span> The Third Pass</h3>
+<div id="outline-container-org9eb2e8e" class="outline-3">
+<h3 id="org9eb2e8e"><span class="section-number-3">3.3</span> The Third Pass</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 To fully understand a paper, particularly if you are re- viewer, requires a third pass. The key to the third pass is to attempt to virtually re-implement the paper: that is, making the same assumptions as the authors, re-create the work. By comparing this re-creation with the actual paper, you can easily identify not only a paper’s innovations, but also its hidden failings and assumptions.(third-pass关键是假设自己来实现，使用相同的前提条件来完成相同的目的。这样不仅能够理解作者的创新之处，也能够发现一些陷阱或者是不太容易注意到的地方)
@@ -111,8 +157,8 @@ This pass can take many hours for beginners and more than an hour or two even fo
 </div>
 </div>
 
-<div id="outline-container-orgf16ce9b" class="outline-2">
-<h2 id="orgf16ce9b"><span class="section-number-2">4</span> Doing a Literature Survey</h2>
+<div id="outline-container-org4d4ff11" class="outline-2">
+<h2 id="org4d4ff11"><span class="section-number-2">4</span> Doing a Literature Survey</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Paper reading skills are put to the test in doing a literature survey. This will require you to read tens of papers, perhaps in an unfamiliar field. What papers should you read? Here is how you can use the three-pass approach to help.(引用频率高的文章，作者牛X的文章，以及高质量会议的文章)
@@ -125,12 +171,17 @@ Paper reading skills are put to the test in doing a literature survey. This will
 </div>
 </div>
 
-<div id="outline-container-org2d933aa" class="outline-2">
-<h2 id="org2d933aa"><span class="section-number-2">5</span> Related Work</h2>
+<div id="outline-container-orgc97060c" class="outline-2">
+<h2 id="orgc97060c"><span class="section-number-2">5</span> Related Work</h2>
 </div>
-<div id="outline-container-orgc81be54" class="outline-2">
-<h2 id="orgc81be54"><span class="section-number-2">6</span> References</h2>
+<div id="outline-container-org6804b97" class="outline-2">
+<h2 id="org6804b97"><span class="section-number-2">6</span> References</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/how-to-read-a-paper.html';this.page.identifier = 'how-to-read-a-paper.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

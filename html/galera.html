@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>galera</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">galera</h1>
@@ -16,49 +62,49 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org93575e3">1. Links &amp; Abbr.</a></li>
-<li><a href="#org137121d">2. Replicator Architecture</a></li>
-<li><a href="#orgb545a57">3. Synchonization Mechanism</a>
+<li><a href="#orgb09e0b3">1. Links &amp; Abbr.</a></li>
+<li><a href="#org2468fb4">2. Replicator Architecture</a></li>
+<li><a href="#org1d409c1">3. Synchonization Mechanism</a>
 <ul>
-<li><a href="#org8be75df">3.1. Virtual Synchrony</a></li>
-<li><a href="#orgb8c56e9">3.2. Finite State Machine</a></li>
-<li><a href="#org510fb87">3.3. Flow Control</a></li>
-<li><a href="#org590d1f5">3.4. Writeset Cache</a></li>
-<li><a href="#org6a4bbae">3.5. Snapshot Transfer</a></li>
-<li><a href="#org8ca0355">3.6. Parallel Applying</a></li>
-<li><a href="#org256f823">3.7. Primary Component</a></li>
-<li><a href="#org2c780c4">3.8. Online Schema Upgrade</a></li>
+<li><a href="#org540aa39">3.1. Virtual Synchrony</a></li>
+<li><a href="#orgb8e732b">3.2. Finite State Machine</a></li>
+<li><a href="#org01234c6">3.3. Flow Control</a></li>
+<li><a href="#org646f320">3.4. Writeset Cache</a></li>
+<li><a href="#org3b7447d">3.5. Snapshot Transfer</a></li>
+<li><a href="#org53c7a82">3.6. Parallel Applying</a></li>
+<li><a href="#orgbe6763b">3.7. Primary Component</a></li>
+<li><a href="#org83f6331">3.8. Online Schema Upgrade</a></li>
 </ul>
 </li>
-<li><a href="#orgf01213b">4. Certification Based Replication</a>
+<li><a href="#orgd33c76f">4. Certification Based Replication</a>
 <ul>
-<li><a href="#org01a4a43">4.1. Introduction</a></li>
-<li><a href="#orgef8d0f4">4.2. Consistent read(read causality)</a></li>
-<li><a href="#org016bd83">4.3. Multi-Master Conflicts</a></li>
+<li><a href="#orgacf8463">4.1. Introduction</a></li>
+<li><a href="#org33ede11">4.2. Consistent read(read causality)</a></li>
+<li><a href="#org1410684">4.3. Multi-Master Conflicts</a></li>
 </ul>
 </li>
-<li><a href="#org50cd4f1">5. Best Backup Practices</a></li>
-<li><a href="#org6c2e800">6. Miscellaneous</a>
+<li><a href="#org83e8866">5. Best Backup Practices</a></li>
+<li><a href="#orgf61fa70">6. Miscellaneous</a>
 <ul>
-<li><a href="#orge9052c0">6.1. Parameters</a></li>
-<li><a href="#org0ada8d8">6.2. Status Variables</a></li>
-<li><a href="#org72e2b98">6.3. Notification</a></li>
-<li><a href="#org8d7a929">6.4. Limitations</a></li>
+<li><a href="#orgd5da000">6.1. Parameters</a></li>
+<li><a href="#org9460158">6.2. Status Variables</a></li>
+<li><a href="#org3320090">6.3. Notification</a></li>
+<li><a href="#orgd2c881c">6.4. Limitations</a></li>
 </ul>
 </li>
-<li><a href="#org3f77771">7. Related Articles</a>
+<li><a href="#orgc5b996f">7. Related Articles</a>
 <ul>
-<li><a href="#org6749f82">7.1. Commercial Story</a></li>
-<li><a href="#org98c17ce">7.2. Tech Issue</a></li>
-<li><a href="#org42187c4">7.3. Bechmark &amp; Performance</a></li>
-<li><a href="#orge9e4f24">7.4. Presentation</a></li>
+<li><a href="#org221d816">7.1. Commercial Story</a></li>
+<li><a href="#org14f0a6d">7.2. Tech Issue</a></li>
+<li><a href="#orgeda0b81">7.3. Bechmark &amp; Performance</a></li>
+<li><a href="#orgee1e2e9">7.4. Presentation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org93575e3" class="outline-2">
-<h2 id="org93575e3"><span class="section-number-2">1</span> Links &amp; Abbr.</h2>
+<div id="outline-container-orgb09e0b3" class="outline-2">
+<h2 id="orgb09e0b3"><span class="section-number-2">1</span> Links &amp; Abbr.</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Code
@@ -140,8 +186,8 @@ Info.(@2012)
 </div>
 </div>
 
-<div id="outline-container-org137121d" class="outline-2">
-<h2 id="org137121d"><span class="section-number-2">2</span> Replicator Architecture</h2>
+<div id="outline-container-org2468fb4" class="outline-2">
+<h2 id="org2468fb4"><span class="section-number-2">2</span> Replicator Architecture</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <img src="images/galera-overview.png" alt="galera-overview.png" /> <img src="images/galera-library.png" alt="galera-library.png" />
@@ -187,7 +233,7 @@ Info.(@2012)
 </p>
 
 <p>
-在数据库事务提交时，会使用2阶段提交方式，在ha_trans_commit中，首先会针对每一个存储引擎执行一个ht-&gt;prepare函数，而对于Galera，在内部实现也是当作一个内嵌的存储引擎使用的，所以它执行的是wsrep_prepare，这个函数的功能是将在执行过程中产生的binlog通过下面会介绍到的接口append_data传到其它节点上面去（或者没有传过去，只是将这些数据对象存储在本地，等待提交操作），然后再通过下面这个接口pre_commit去与其它节点的Galera通讯检查有没有冲突，这个过程也就是在 <b>介绍Galera的文章中说到的certification阶段</b> 。 <b>note:是在本地先提交吗？</b>
+在数据库事务提交时，会使用2阶段提交方式，在ha<sub>trans</sub><sub>commit中</sub>，首先会针对每一个存储引擎执行一个ht-&gt;prepare函数，而对于Galera，在内部实现也是当作一个内嵌的存储引擎使用的，所以它执行的是wsrep<sub>prepare</sub>，这个函数的功能是将在执行过程中产生的binlog通过下面会介绍到的接口append<sub>data传到其它节点上面去</sub>（或者没有传过去，只是将这些数据对象存储在本地，等待提交操作），然后再通过下面这个接口pre<sub>commit去与其它节点的Galera通讯检查有没有冲突</sub>，这个过程也就是在 <b>介绍Galera的文章中说到的certification阶段</b> 。 <b>note:是在本地先提交吗？</b>
 </p>
 <ul class="org-ul">
 <li>Transactions process independently in each cluster node</li>
@@ -197,12 +243,12 @@ Info.(@2012)
 </div>
 </div>
 
-<div id="outline-container-orgb545a57" class="outline-2">
-<h2 id="orgb545a57"><span class="section-number-2">3</span> Synchonization Mechanism</h2>
+<div id="outline-container-org1d409c1" class="outline-2">
+<h2 id="org1d409c1"><span class="section-number-2">3</span> Synchonization Mechanism</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org8be75df" class="outline-3">
-<h3 id="org8be75df"><span class="section-number-3">3.1</span> Virtual Synchrony</h3>
+<div id="outline-container-org540aa39" class="outline-3">
+<h3 id="org540aa39"><span class="section-number-3">3.1</span> Virtual Synchrony</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <a href="http://en.wikipedia.org/wiki/Virtual_synchrony">http://en.wikipedia.org/wiki/Virtual_synchrony</a>
@@ -210,8 +256,8 @@ Info.(@2012)
 </div>
 </div>
 
-<div id="outline-container-orgb8c56e9" class="outline-3">
-<h3 id="orgb8c56e9"><span class="section-number-3">3.2</span> Finite State Machine</h3>
+<div id="outline-container-orgb8e732b" class="outline-3">
+<h3 id="orgb8e732b"><span class="section-number-3">3.2</span> Finite State Machine</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><a href="http://www.codership.com/wiki/doku.php?id=galera_node_fsm">http://www.codership.com/wiki/doku.php?id=galera_node_fsm</a></li>
@@ -229,7 +275,7 @@ Info.(@2012)
 <li>Node establishes connection to a primary component.</li>
 <li>Node succeeds in state transfer request. It starts to cache the writesets.</li>
 <li>Node receives state snapshot. Now it has all cluster data and can start applying the cached writesets. <b>Flow control</b> is turned on to ensure eventual slave queue decrease.</li>
-<li>Node completes catching up with the cluster (slave queue is empty). <b>Flow control</b> is turned on to keep slave queue empty. In MySQL wsrep_ready status variable is set to 1 and the node is allowed to process transactions.</li>
+<li>Node completes catching up with the cluster (slave queue is empty). <b>Flow control</b> is turned on to keep slave queue empty. In MySQL wsrep<sub>ready</sub> status variable is set to 1 and the node is allowed to process transactions.</li>
 <li>Node receives state transfer request. <b>Flow control</b> is relaxed as for JOINER. The node caches the writesets it can't apply.</li>
 <li>Node completes state transfer to joiner.</li>
 </ol>
@@ -246,32 +292,32 @@ For clarity the following transitions were omitted from the graph:
 options:
 </p>
 <ul class="org-ul">
-<li>wsrep_new_cluster # setup a new cluster</li>
-<li>wsrep_cluster_address=gcomm://192.168.0.1 # Once you have a cluster running and you want to add/reconnect another node to it, you must supply an address of one of the cluster members in the cluster address （只需要指定任意一个地址即可） The new node only needs to connect to one of the existing members. It will automatically retrieve the cluster map and reconnect to the rest of the nodes.</li>
+<li>wsrep<sub>new</sub><sub>cluster</sub> # setup a new cluster</li>
+<li>wsrep<sub>cluster</sub><sub>address</sub>=gcomm://192.168.0.1 # Once you have a cluster running and you want to add/reconnect another node to it, you must supply an address of one of the cluster members in the cluster address （只需要指定任意一个地址即可） The new node only needs to connect to one of the existing members. It will automatically retrieve the cluster map and reconnect to the rest of the nodes.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org510fb87" class="outline-3">
-<h3 id="org510fb87"><span class="section-number-3">3.3</span> Flow Control</h3>
+<div id="outline-container-org01234c6" class="outline-3">
+<h3 id="org01234c6"><span class="section-number-3">3.3</span> Flow Control</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <a href="http://www.codership.com/wiki/doku.php?id=flow_control">http://www.codership.com/wiki/doku.php?id=flow_control</a>
 </p>
 
 <ul class="org-ul">
-<li>wsrep_flow_control_sent = #times node has begged for flow control</li>
-<li>wsrep_flow_control_recvd = #times node received flow control stop signal</li>
-<li>wsrep_flow_control_paused = fraction of time the node had to pause for flow control</li>
-<li>wsrep_local_recv_queue = length of slave queue</li>
-<li>Gcs.fc_limit = high water mark for the flow control, FC stop will be sent when this is reached</li>
-<li>Gcs.fc_factor = limit * factor is the low water mark, FC continue will be sent when slave queue returned down to this mark</li>
+<li>wsrep<sub>flow</sub><sub>control</sub><sub>sent</sub> = #times node has begged for flow control</li>
+<li>wsrep<sub>flow</sub><sub>control</sub><sub>recvd</sub> = #times node received flow control stop signal</li>
+<li>wsrep<sub>flow</sub><sub>control</sub><sub>paused</sub> = fraction of time the node had to pause for flow control</li>
+<li>wsrep<sub>local</sub><sub>recv</sub><sub>queue</sub> = length of slave queue</li>
+<li>Gcs.fc<sub>limit</sub> = high water mark for the flow control, FC stop will be sent when this is reached</li>
+<li>Gcs.fc<sub>factor</sub> = limit * factor is the low water mark, FC continue will be sent when slave queue returned down to this mark</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org590d1f5" class="outline-3">
-<h3 id="org590d1f5"><span class="section-number-3">3.4</span> Writeset Cache</h3>
+<div id="outline-container-org646f320" class="outline-3">
+<h3 id="org646f320"><span class="section-number-3">3.4</span> Writeset Cache</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <a href="http://www.codership.com/wiki/doku.php?id=gcache">http://www.codership.com/wiki/doku.php?id=gcache</a>
@@ -293,15 +339,15 @@ Writeset caching during state transfer. When a node is receiving a state transfe
 To control memory usage for writeset caching, check Galera parameters: <b>note：by flow control</b>
 </p>
 <ul class="org-ul">
-<li>gcs.recv_q_hard_limit,</li>
-<li>gcs.recv_q_soft_limit,</li>
-<li>gcs.max_throttle.</li>
+<li>gcs.recv<sub>q</sub><sub>hard</sub><sub>limit</sub>,</li>
+<li>gcs.recv<sub>q</sub><sub>soft</sub><sub>limit</sub>,</li>
+<li>gcs.max<sub>throttle</sub>.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6a4bbae" class="outline-3">
-<h3 id="org6a4bbae"><span class="section-number-3">3.5</span> Snapshot Transfer</h3>
+<div id="outline-container-org3b7447d" class="outline-3">
+<h3 id="org3b7447d"><span class="section-number-3">3.5</span> Snapshot Transfer</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 <b>(SST)State Snapshot Transfer</b>
@@ -318,28 +364,28 @@ To control memory usage for writeset caching, check Galera parameters: <b>note�
 </ul>
 
 <p>
-三种方式sst,通过wsrep_sst_method变量配置
+三种方式sst,通过wsrep<sub>sst</sub><sub>method变量配置</sub>
 </p>
 <ul class="org-ul">
-<li>mysqldump =&gt; wsrep_sst_mysqldump
+<li>mysqldump =&gt; wsrep<sub>sst</sub><sub>mysqldump</sub>
 <ul class="org-ul">
 <li>Logical backup</li>
 <li>Slowest method</li>
 <li>Configure authentication
 <ul class="org-ul">
-<li>wsrep_sst_auth=”root:rootpass”</li>
+<li>wsrep<sub>sst</sub><sub>auth</sub>=”root:rootpass”</li>
 <li>Super privilege needed</li>
 </ul></li>
 <li>Make sure SST user in donor node can take mysqldump from donor and load it over the network to joiner node(You can try this manually beforehand)</li>
 </ul></li>
-<li>rsync =&gt; wsrep_sst_rsync
+<li>rsync =&gt; wsrep<sub>sst</sub><sub>rsync</sub>
 <ul class="org-ul">
 <li>Physical backup</li>
 <li>Fast method</li>
 <li>Can only be used when node is starting</li>
 <li>Rsyncing datadirectory under running InnoDB is not possible</li>
 </ul></li>
-<li>xtrabackup =&gt; wsrep_sst_xtrabackup
+<li>xtrabackup =&gt; wsrep<sub>sst</sub><sub>xtrabackup</sub>
 <ul class="org-ul">
 <li>Contributed by Percona</li>
 <li>Probably the fastest method</li>
@@ -353,8 +399,8 @@ There are two conceptually different ways to transfer a state from one MySQL ser
 </p>
 <ul class="org-ul">
 <li>Using mysqldump. This requires the receiving server to be fully initialized and ready to accept connections <b>before</b> the transfer. This method is by definition blocking, in that it blocks donor server from modifying its own state for the duration of transfer. It is also the slowest of all, and in the loaded cluster that might be an issue in a loaded cluster.（使用mysqldump。要求在transfer之前配置好。会阻塞donor操作，速度比较慢，高负载情况下会有问题）</li>
-<li>Copying data files directly. This requires that the receiving server is initialized <b>after</b> the transfer. rsync, xtrabackup and other methods fall into this category. These methods a much faster than mysqldump, but they have certain limitations, like they can be used only on server startup and receiving server must be configured very similarly to the donor (e.g. innodb_file_per_table should be the same and so on). Some of these methods, e.g. xtrabackup, can be potentially made non-blocking on donor.（直接copy文件。要求transfer之后配置好？？速度比较快，但是要求配置源和目的配置相同。使用xtrabackup不会阻塞donor)</li>
-<li><b>Xtrabackup and rsync SST cannot be used for a running server.</b> It is not possible to copy datafiles under running InnoDB. Having wsrep_address set to a list of node addresses and starting replication on a running node can lead to node crash. <del>#todo: Xtrabackup需要停机处理吗？</del>  #note: xtrabackup不需要停机处理</li>
+<li>Copying data files directly. This requires that the receiving server is initialized <b>after</b> the transfer. rsync, xtrabackup and other methods fall into this category. These methods a much faster than mysqldump, but they have certain limitations, like they can be used only on server startup and receiving server must be configured very similarly to the donor (e.g. innodb<sub>file</sub><sub>per</sub><sub>table</sub> should be the same and so on). Some of these methods, e.g. xtrabackup, can be potentially made non-blocking on donor.（直接copy文件。要求transfer之后配置好？？速度比较快，但是要求配置源和目的配置相同。使用xtrabackup不会阻塞donor)</li>
+<li><b>Xtrabackup and rsync SST cannot be used for a running server.</b> It is not possible to copy datafiles under running InnoDB. Having wsrep<sub>address</sub> set to a list of node addresses and starting replication on a running node can lead to node crash. <del>#todo: Xtrabackup需要停机处理吗？</del>  #note: xtrabackup不需要停机处理</li>
 </ul>
 
 <p>
@@ -363,7 +409,7 @@ SST Donor
 <ul class="org-ul">
 <li>All SST methods cause some disturbance for donor node</li>
 <li>By default donor accepts client connections, although committing will be prohibited for a while</li>
-<li>If wsrep_sst_donor_rejects_queries is set, donor gives unknown command error to clients</li>
+<li>If wsrep<sub>sst</sub><sub>donor</sub><sub>rejects</sub><sub>queries</sub> is set, donor gives unknown command error to clients</li>
 <li>Best practice is to dedicate a reference node for donor and backup activities（使用单独一台机器来做参照节点，这个机器上面没有负载，可以用作备份以及donor)</li>
 </ul>
 
@@ -378,8 +424,8 @@ IST(Very effective)
 </div>
 </div>
 
-<div id="outline-container-org8ca0355" class="outline-3">
-<h3 id="org8ca0355"><span class="section-number-3">3.6</span> Parallel Applying</h3>
+<div id="outline-container-org53c7a82" class="outline-3">
+<h3 id="org53c7a82"><span class="section-number-3">3.6</span> Parallel Applying</h3>
 <div class="outline-text-3" id="text-3-6">
 
 <div class="figure">
@@ -391,18 +437,18 @@ IST(Very effective)
 <li>Galera assigns non-conflicting WS tasks to parallel appliers</li>
 <li>Works not on database, not on table, but on row level</li>
 <li>Applier threads launched at MySQL startup.</li>
-<li>wsrep_slave_threads=n</li>
+<li>wsrep<sub>slave</sub><sub>threads</sub>=n</li>
 <li>Optimal applier count depends on work load
 <ul class="org-ul">
-<li>Monitor wsrep_cert_deps_distance</li>
+<li>Monitor wsrep<sub>cert</sub><sub>deps</sub><sub>distance</sub></li>
 <li>Max ~4 * #CPUcores</li>
 </ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org256f823" class="outline-3">
-<h3 id="org256f823"><span class="section-number-3">3.7</span> Primary Component</h3>
+<div id="outline-container-orgbe6763b" class="outline-3">
+<h3 id="orgbe6763b"><span class="section-number-3">3.7</span> Primary Component</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li><a href="http://www.codership.com/wiki/doku.php?id=galera_arbitrator">http://www.codership.com/wiki/doku.php?id=galera_arbitrator</a></li>
@@ -416,8 +462,8 @@ IST(Very effective)
 </div>
 </div>
 
-<div id="outline-container-org2c780c4" class="outline-3">
-<h3 id="org2c780c4"><span class="section-number-3">3.8</span> Online Schema Upgrade</h3>
+<div id="outline-container-org83f6331" class="outline-3">
+<h3 id="org83f6331"><span class="section-number-3">3.8</span> Online Schema Upgrade</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 <a href="http://www.codership.com/wiki/doku.php?id=rolling_schema_upgrade">http://www.codership.com/wiki/doku.php?id=rolling_schema_upgrade</a>
@@ -431,7 +477,7 @@ DDL is non-transactional, and therefore bad for replication. Galera has two meth
 <li>RSU, Rolling Schema Upgrade</li>
 </ul>
 <p>
-Use wsrep_osu_method to choose either option. <b>ALTER TABLE to create new autoinc column will cause issues. Every node has different autoinc incrementand offset settings.</b>
+Use wsrep<sub>osu</sub><sub>method</sub> to choose either option. <b>ALTER TABLE to create new autoinc column will cause issues. Every node has different autoinc incrementand offset settings.</b>
 </p>
 
 <p>
@@ -465,12 +511,12 @@ Use wsrep_osu_method to choose either option. <b>ALTER TABLE to create new autoi
 </div>
 </div>
 
-<div id="outline-container-orgf01213b" class="outline-2">
-<h2 id="orgf01213b"><span class="section-number-2">4</span> Certification Based Replication</h2>
+<div id="outline-container-orgd33c76f" class="outline-2">
+<h2 id="orgd33c76f"><span class="section-number-2">4</span> Certification Based Replication</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org01a4a43" class="outline-3">
-<h3 id="org01a4a43"><span class="section-number-3">4.1</span> Introduction</h3>
+<div id="outline-container-orgacf8463" class="outline-3">
+<h3 id="orgacf8463"><span class="section-number-3">4.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Certification based replication uses group communication and transaction ordering techniques to achieve synchronous replication. Transactions execute optimistically in a single node (or replica) and, at commit time, run a coordinated certification process to enforce global consistency. Global coordination is achieved with the help of a broadcast service, that establishes a global total order among concurrent transactions. (基于 <b>组通信</b> 以及 <b>事务顺序化</b> 技术来达到同步备份。事务首先是乐观地在本地执行，然后提交给其他节点做验证来保证全局一致性）
@@ -507,8 +553,8 @@ Certification based replication (or more precisely, certification-based conflict
 </div>
 </div>
 
-<div id="outline-container-orgef8d0f4" class="outline-3">
-<h3 id="orgef8d0f4"><span class="section-number-3">4.2</span> Consistent read(read causality)</h3>
+<div id="outline-container-org33ede11" class="outline-3">
+<h3 id="org33ede11"><span class="section-number-3">4.2</span> Consistent read(read causality)</h3>
 <div class="outline-text-3" id="text-4-2">
 
 <div class="figure">
@@ -524,13 +570,13 @@ There is causal dependency between operations on two database connections:
 <li>And some other thread is expecting to see the values of earlier write</li>
 </ul>
 <p>
-<b>wsrep_causal_reads=ON</b> Every read (select, show) will wait until slave queue has been fully applied. There is timeout for max causal read wait: <b>replicator.causal_read_keepalive</b>
+<b>wsrep<sub>causal</sub><sub>reads</sub>=ON</b> Every read (select, show) will wait until slave queue has been fully applied. There is timeout for max causal read wait: <b>replicator.causal<sub>read</sub><sub>keepalive</sub></b>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org016bd83" class="outline-3">
-<h3 id="org016bd83"><span class="section-number-3">4.3</span> Multi-Master Conflicts</h3>
+<div id="outline-container-org1410684" class="outline-3">
+<h3 id="org1410684"><span class="section-number-3">4.3</span> Multi-Master Conflicts</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Galera uses optimistic concurrency control:
@@ -544,14 +590,14 @@ Galera uses optimistic concurrency control:
 Diagnosing Multi-Master Conflicts:
 </p>
 <ul class="org-ul">
-<li>wsrep_log_conflicts will print info of each cluster conflict in mysql error log</li>
-<li>Cert.log_conflicts to print out information of the conflicting transaction</li>
+<li>wsrep<sub>log</sub><sub>conflicts</sub> will print info of each cluster conflict in mysql error log</li>
+<li>Cert.log<sub>conflicts</sub> to print out information of the conflicting transaction</li>
 <li>Status variables to monitor:
 <ul class="org-ul">
-<li>wsrep_local_bf_aborts</li>
-<li>wsrep_local_cert_failures</li>
+<li>wsrep<sub>local</sub><sub>bf</sub><sub>aborts</sub></li>
+<li>wsrep<sub>local</sub><sub>cert</sub><sub>failures</sub></li>
 </ul></li>
-<li>by using wsrep_debug configuration, all conflicts (&#x2026;and plenty of other information) will be logged</li>
+<li>by using wsrep<sub>debug</sub> configuration, all conflicts (&#x2026;and plenty of other information) will be logged</li>
 </ul>
 
 <p>
@@ -560,15 +606,15 @@ Retry Autocommit:
 <ul class="org-ul">
 <li>Galera can retry autocommit transaction on behalf of the client application, inside of the MySQL server</li>
 <li>MySQL will not return deadlock error, but will silently retry the transaction</li>
-<li>wsrep_retry_autocommit=n will retry the transaction n times before giving up and returning deadlock error</li>
+<li>wsrep<sub>retry</sub><sub>autocommit</sub>=n will retry the transaction n times before giving up and returning deadlock error</li>
 <li>Retrying applies only to autocommit transactions, as retrying is not safe for multi-statement transactions</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org50cd4f1" class="outline-2">
-<h2 id="org50cd4f1"><span class="section-number-2">5</span> Best Backup Practices</h2>
+<div id="outline-container-org83e8866" class="outline-2">
+<h2 id="org83e8866"><span class="section-number-2">5</span> Best Backup Practices</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Best practices:
@@ -619,12 +665,12 @@ Possible methods:
 </div>
 </div>
 
-<div id="outline-container-org6c2e800" class="outline-2">
-<h2 id="org6c2e800"><span class="section-number-2">6</span> Miscellaneous</h2>
+<div id="outline-container-orgf61fa70" class="outline-2">
+<h2 id="orgf61fa70"><span class="section-number-2">6</span> Miscellaneous</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orge9052c0" class="outline-3">
-<h3 id="orge9052c0"><span class="section-number-3">6.1</span> Parameters</h3>
+<div id="outline-container-orgd5da000" class="outline-3">
+<h3 id="orgd5da000"><span class="section-number-3">6.1</span> Parameters</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li><a href="http://www.codership.com/wiki/doku.php?id=galera_parameters">http://www.codership.com/wiki/doku.php?id=galera_parameters</a></li>
@@ -636,19 +682,19 @@ Possible methods:
 <hr />
 
 <ul class="org-ul">
-<li>wsrep_provider # a path to Galera library.</li>
-<li>wsrep_cluster_address # cluster connection URL.</li>
-<li>binlog_format=ROW #</li>
-<li>default_storage_engine=InnoDB</li>
-<li>innodb_autoinc_lock_mode=2 #todo: ??</li>
-<li>innodb_flush_log_at_trx_commit=2 #todo: ??</li>
-<li>innodb_doublewrite=1 #todo: ??</li>
+<li>wsrep<sub>provider</sub> # a path to Galera library.</li>
+<li>wsrep<sub>cluster</sub><sub>address</sub> # cluster connection URL.</li>
+<li>binlog<sub>format</sub>=ROW #</li>
+<li>default<sub>storage</sub><sub>engine</sub>=InnoDB</li>
+<li>innodb<sub>autoinc</sub><sub>lock</sub><sub>mode</sub>=2 #todo: ??</li>
+<li>innodb<sub>flush</sub><sub>log</sub><sub>at</sub><sub>trx</sub><sub>commit</sub>=2 #todo: ??</li>
+<li>innodb<sub>doublewrite</sub>=1 #todo: ??</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0ada8d8" class="outline-3">
-<h3 id="org0ada8d8"><span class="section-number-3">6.2</span> Status Variables</h3>
+<div id="outline-container-org9460158" class="outline-3">
+<h3 id="org9460158"><span class="section-number-3">6.2</span> Status Variables</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li><a href="http://www.codership.com/wiki/doku.php?id=galera_status_0.8">http://www.codership.com/wiki/doku.php?id=galera_status_0.8</a></li>
@@ -658,8 +704,8 @@ Possible methods:
 </div>
 </div>
 
-<div id="outline-container-org72e2b98" class="outline-3">
-<h3 id="org72e2b98"><span class="section-number-3">6.3</span> Notification</h3>
+<div id="outline-container-org3320090" class="outline-3">
+<h3 id="org3320090"><span class="section-number-3">6.3</span> Notification</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Cluster can trigger notifications. Use for:
@@ -669,13 +715,13 @@ Cluster can trigger notifications. Use for:
 <li>monitoring</li>
 </ul>
 <p>
-wsrep_notify_cmd defines the script to handle notifications.
+wsrep<sub>notify</sub><sub>cmd</sub> defines the script to handle notifications.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8d7a929" class="outline-3">
-<h3 id="org8d7a929"><span class="section-number-3">6.4</span> Limitations</h3>
+<div id="outline-container-orgd2c881c" class="outline-3">
+<h3 id="orgd2c881c"><span class="section-number-3">6.4</span> Limitations</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 <a href="http://www.codership.com/wiki/doku.php?id=limitations">http://www.codership.com/wiki/doku.php?id=limitations</a>
@@ -684,12 +730,12 @@ wsrep_notify_cmd defines the script to handle notifications.
 </div>
 </div>
 
-<div id="outline-container-org3f77771" class="outline-2">
-<h2 id="org3f77771"><span class="section-number-2">7</span> Related Articles</h2>
+<div id="outline-container-orgc5b996f" class="outline-2">
+<h2 id="orgc5b996f"><span class="section-number-2">7</span> Related Articles</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org6749f82" class="outline-3">
-<h3 id="org6749f82"><span class="section-number-3">7.1</span> Commercial Story</h3>
+<div id="outline-container-org221d816" class="outline-3">
+<h3 id="org221d816"><span class="section-number-3">7.1</span> Commercial Story</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>User Stories | Codership : <a href="http://www.codership.com/user-stories">http://www.codership.com/user-stories</a></li>
@@ -699,8 +745,8 @@ wsrep_notify_cmd defines the script to handle notifications.
 </div>
 </div>
 
-<div id="outline-container-org98c17ce" class="outline-3">
-<h3 id="org98c17ce"><span class="section-number-3">7.2</span> Tech Issue</h3>
+<div id="outline-container-org14f0a6d" class="outline-3">
+<h3 id="org14f0a6d"><span class="section-number-3">7.2</span> Tech Issue</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>Dealing with Locking Sessions | Codership : <a href="http://www.codership.com/content/dealing-locking-sessions">http://www.codership.com/content/dealing-locking-sessions</a></li>
@@ -721,8 +767,8 @@ wsrep_notify_cmd defines the script to handle notifications.
 </div>
 </div>
 
-<div id="outline-container-org42187c4" class="outline-3">
-<h3 id="org42187c4"><span class="section-number-3">7.3</span> Bechmark &amp; Performance</h3>
+<div id="outline-container-orgeda0b81" class="outline-3">
+<h3 id="orgeda0b81"><span class="section-number-3">7.3</span> Bechmark &amp; Performance</h3>
 <div class="outline-text-3" id="text-7-3">
 <ul class="org-ul">
 <li>How Much Can Galera Sysbench? | Codership : <a href="http://www.codership.com/content/galera-sysbench">http://www.codership.com/content/galera-sysbench</a></li>
@@ -739,8 +785,8 @@ wsrep_notify_cmd defines the script to handle notifications.
 </div>
 </div>
 
-<div id="outline-container-orge9e4f24" class="outline-3">
-<h3 id="orge9e4f24"><span class="section-number-3">7.4</span> Presentation</h3>
+<div id="outline-container-orgee1e2e9" class="outline-3">
+<h3 id="orgee1e2e9"><span class="section-number-3">7.4</span> Presentation</h3>
 <div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li><a href="http://www.codership.com/files/presentations/UC11_galera.pdf">http://www.codership.com/files/presentations/UC11_galera.pdf</a></li>
@@ -755,6 +801,11 @@ wsrep_notify_cmd defines the script to handle notifications.
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/galera.html';this.page.identifier = 'galera.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

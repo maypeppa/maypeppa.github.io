@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>oDremel: Interactive Analysis of Web-Scale Datasets</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">oDremel: Interactive Analysis of Web-Scale Datasets</h1>
@@ -16,17 +62,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfe5447d">1. Abstract</a></li>
-<li><a href="#org89b6636">2. Introduction</a></li>
-<li><a href="#orgdcde982">3. Background</a></li>
-<li><a href="#orgef3ee5f">4. Data Model</a></li>
-<li><a href="#org4032452">5. Nested Columnar Storage</a></li>
-<li><a href="#org21a543d">6. Query Language</a></li>
-<li><a href="#org181e7e0">7. Query Execution</a></li>
-<li><a href="#org7c5a6d9">8. Experiments</a></li>
-<li><a href="#orgf9413cc">9. Observations</a></li>
-<li><a href="#org1983f67">10. Related Work</a></li>
-<li><a href="#org94cd969">11. Conclusion</a></li>
+<li><a href="#org8ff39bb">1. Abstract</a></li>
+<li><a href="#org052b493">2. Introduction</a></li>
+<li><a href="#org98f0803">3. Background</a></li>
+<li><a href="#org7888ef0">4. Data Model</a></li>
+<li><a href="#org44317f0">5. Nested Columnar Storage</a></li>
+<li><a href="#orgcb63de5">6. Query Language</a></li>
+<li><a href="#org198d2c2">7. Query Execution</a></li>
+<li><a href="#org8a67223">8. Experiments</a></li>
+<li><a href="#org656d609">9. Observations</a></li>
+<li><a href="#org03dda96">10. Related Work</a></li>
+<li><a href="#org3282a66">11. Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -35,8 +81,8 @@
 <li><a href="http://www.yankay.com/google-dremel-rationale">http://www.yankay.com/google-dremel-rationale</a></li>
 </ul>
 
-<div id="outline-container-orgfe5447d" class="outline-2">
-<h2 id="orgfe5447d"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-org8ff39bb" class="outline-2">
+<h2 id="org8ff39bb"><span class="section-number-2">1</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Dremel is a scalable, interactive ad-hoc query system for analy-sis of read-only nested data. （着重处理只读的嵌套数据，主要针对交互式的ad-hoc查询，并且有良好的可扩展性）</li>
@@ -46,8 +92,8 @@
 </div>
 </div>
 
-<div id="outline-container-org89b6636" class="outline-2">
-<h2 id="org89b6636"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-org052b493" class="outline-2">
+<h2 id="org052b493"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>This paper describes a system called Dremel1 that supports inter-active analysis of very large datasets over shared clusters of com-modity machines. （允许在廉价的集群上面进行大规模数据的交互式分析）</li>
@@ -88,8 +134,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgdcde982" class="outline-2">
-<h2 id="orgdcde982"><span class="section-number-2">3</span> Background</h2>
+<div id="outline-container-org98f0803" class="outline-2">
+<h2 id="org98f0803"><span class="section-number-2">3</span> Background</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 下图表示行式存储和列式存储的区别
@@ -103,8 +149,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgef3ee5f" class="outline-2">
-<h2 id="orgef3ee5f"><span class="section-number-2">4</span> Data Model</h2>
+<div id="outline-container-org7888ef0" class="outline-2">
+<h2 id="org7888ef0"><span class="section-number-2">4</span> Data Model</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 in a short word, "protobuf"
@@ -112,8 +158,8 @@ in a short word, "protobuf"
 </div>
 </div>
 
-<div id="outline-container-org4032452" class="outline-2">
-<h2 id="org4032452"><span class="section-number-2">5</span> Nested Columnar Storage</h2>
+<div id="outline-container-org44317f0" class="outline-2">
+<h2 id="org44317f0"><span class="section-number-2">5</span> Nested Columnar Storage</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这节讲的内容主要就是说，如何在行式存储和为列式存储之间无损地进行转换。
@@ -168,11 +214,11 @@ in a short word, "protobuf"
 </div>
 </div>
 
-<div id="outline-container-org21a543d" class="outline-2">
-<h2 id="org21a543d"><span class="section-number-2">6</span> Query Language</h2>
+<div id="outline-container-orgcb63de5" class="outline-2">
+<h2 id="orgcb63de5"><span class="section-number-2">6</span> Query Language</h2>
 </div>
-<div id="outline-container-org181e7e0" class="outline-2">
-<h2 id="org181e7e0"><span class="section-number-2">7</span> Query Execution</h2>
+<div id="outline-container-org198d2c2" class="outline-2">
+<h2 id="org198d2c2"><span class="section-number-2">7</span> Query Execution</h2>
 <div class="outline-text-2" id="text-7">
 <hr />
 
@@ -211,11 +257,11 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 </div>
 </div>
 
-<div id="outline-container-org7c5a6d9" class="outline-2">
-<h2 id="org7c5a6d9"><span class="section-number-2">8</span> Experiments</h2>
+<div id="outline-container-org8a67223" class="outline-2">
+<h2 id="org8a67223"><span class="section-number-2">8</span> Experiments</h2>
 </div>
-<div id="outline-container-orgf9413cc" class="outline-2">
-<h2 id="orgf9413cc"><span class="section-number-2">9</span> Observations</h2>
+<div id="outline-container-org656d609" class="outline-2">
+<h2 id="org656d609"><span class="section-number-2">9</span> Observations</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Dremel scans quadrillions of records per month. Figure 15 shows the query response time distribution in a typical monthly workload of one Dremel system, on a logarithmic scale. As the figure indi-cates, most queries are processed under 10 seconds, well within the interactive range. Some queries achieve a scan throughput close to 100 billion records per second on a shared cluster, and even higher on dedicated machines. （可以看到大部分的读取时间都非常小，没有长尾）
@@ -241,12 +287,17 @@ Dremel scans quadrillions of records per month. Figure 15 shows the query respon
 </div>
 </div>
 
-<div id="outline-container-org1983f67" class="outline-2">
-<h2 id="org1983f67"><span class="section-number-2">10</span> Related Work</h2>
+<div id="outline-container-org03dda96" class="outline-2">
+<h2 id="org03dda96"><span class="section-number-2">10</span> Related Work</h2>
 </div>
-<div id="outline-container-org94cd969" class="outline-2">
-<h2 id="org94cd969"><span class="section-number-2">11</span> Conclusion</h2>
+<div id="outline-container-org3282a66" class="outline-2">
+<h2 id="org3282a66"><span class="section-number-2">11</span> Conclusion</h2>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/dremel.html';this.page.identifier = 'dremel.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

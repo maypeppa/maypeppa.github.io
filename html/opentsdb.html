@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OpenTSDB</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">OpenTSDB</h1>
@@ -16,9 +62,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org05296b2">1. Overview</a></li>
-<li><a href="#org1278c8f">2. Schema</a></li>
-<li><a href="#org537bf43">3. Query</a></li>
+<li><a href="#org447a966">1. Overview</a></li>
+<li><a href="#org595f3e8">2. Schema</a></li>
+<li><a href="#org8d0ae6a">3. Query</a></li>
 </ul>
 </div>
 </div>
@@ -28,8 +74,8 @@
 <li>Manual: <a href="http://opentsdb.net/manual.html">http://opentsdb.net/manual.html</a></li>
 </ul>
 
-<div id="outline-container-org05296b2" class="outline-2">
-<h2 id="org05296b2"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-org447a966" class="outline-2">
+<h2 id="org447a966"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 
 <div class="figure">
@@ -70,14 +116,14 @@ mysql.bytes_sent     1287333321 5506469130707 schema=foo host=db2
 </p>
 <blockquote>
 <p>
-New tags, on the other hand, are automatically registered whenever they're used for the first time. Right now OpenTSDB only allows you to have up to 2^24 = 16777216 different metrics, 16777216 different tag names and 16777216 different tag values. This is because each one of those is assigned a UID on 3 bytes. Metric names, tag names and tag values have their own UID spaces, which is why you can have 16777216 of each kind. The size of each space is configurable but there is no knob that exposes this configuration parameter right now. So bear in mind that using user ID or event ID as a tag value will not work right now if you have a large site.
+New tags, on the other hand, are automatically registered whenever they're used for the first time. Right now OpenTSDB only allows you to have up to 2<sup>24</sup> = 16777216 different metrics, 16777216 different tag names and 16777216 different tag values. This is because each one of those is assigned a UID on 3 bytes. Metric names, tag names and tag values have their own UID spaces, which is why you can have 16777216 of each kind. The size of each space is configurable but there is no knob that exposes this configuration parameter right now. So bear in mind that using user ID or event ID as a tag value will not work right now if you have a large site.
 </p>
 </blockquote>
 </div>
 </div>
 
-<div id="outline-container-org1278c8f" class="outline-2">
-<h2 id="org1278c8f"><span class="section-number-2">2</span> Schema</h2>
+<div id="outline-container-org595f3e8" class="outline-2">
+<h2 id="org595f3e8"><span class="section-number-2">2</span> Schema</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 以下面的data point为例
@@ -147,8 +193,8 @@ $ ./tsdb scan 2010/11/07-23:00 sum test
 </div>
 </div>
 
-<div id="outline-container-org537bf43" class="outline-2">
-<h2 id="org537bf43"><span class="section-number-2">3</span> Query</h2>
+<div id="outline-container-org8d0ae6a" class="outline-2">
+<h2 id="org8d0ae6a"><span class="section-number-2">3</span> Query</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 下面是整个query的过程：
@@ -179,6 +225,11 @@ $ ./tsdb scan 2010/11/07-23:00 sum test
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/opentsdb.html';this.page.identifier = 'opentsdb.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

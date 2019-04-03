@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>计算广告</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">计算广告</h1>
@@ -16,115 +62,115 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6209682">1. 在线广告综述</a>
+<li><a href="#org7d1e742">1. 在线广告综述</a>
 <ul>
-<li><a href="#org8e078a0">1.1. 广告的定义与目的</a></li>
-<li><a href="#org34ab80f">1.2. 在线广告类型</a></li>
-<li><a href="#org6717b2d">1.3. 在线广告简史</a></li>
-<li><a href="#orgbb4aa33">1.4. 广告有效性原理</a></li>
-<li><a href="#org91f0601">1.5. 在线广告相关行业协会</a></li>
+<li><a href="#org55a3750">1.1. 广告的定义与目的</a></li>
+<li><a href="#org1f43299">1.2. 在线广告类型</a></li>
+<li><a href="#org673ab24">1.3. 在线广告简史</a></li>
+<li><a href="#org44027cf">1.4. 广告有效性原理</a></li>
+<li><a href="#orgae81337">1.5. 在线广告相关行业协会</a></li>
 </ul>
 </li>
-<li><a href="#org5c5e5fa">2. 计算广告基础</a>
+<li><a href="#org7bd353f">2. 计算广告基础</a>
 <ul>
-<li><a href="#org9b9d29a">2.1. 在线广告的技术特点</a></li>
-<li><a href="#orgc40dcd2">2.2. 计算广告核心问题</a>
+<li><a href="#org737b905">2.1. 在线广告的技术特点</a></li>
+<li><a href="#orgf883fc7">2.2. 计算广告核心问题</a>
 <ul>
-<li><a href="#orgbd7d9fe">2.2.1. 在线广告技术课题</a></li>
-<li><a href="#org0317809">2.2.2. 在线广告计费模式</a></li>
+<li><a href="#org00d2d1c">2.2.1. 在线广告技术课题</a></li>
+<li><a href="#org9c64b84">2.2.2. 在线广告计费模式</a></li>
 </ul>
 </li>
-<li><a href="#org54b6fb2">2.3. 计算广告系统架构</a></li>
-<li><a href="#orgc28a91f">2.4. 基础知识准备</a>
+<li><a href="#org07b87df">2.3. 计算广告系统架构</a></li>
+<li><a href="#org1d11887">2.4. 基础知识准备</a>
 <ul>
-<li><a href="#orgbf16dc1">2.4.1. 信息检索</a></li>
-<li><a href="#org22ca519">2.4.2. 最优化方法</a></li>
-<li><a href="#org0020747">2.4.3. 统计机器学习</a></li>
+<li><a href="#orge8edcd8">2.4.1. 信息检索</a></li>
+<li><a href="#orgc2b1d61">2.4.2. 最优化方法</a></li>
+<li><a href="#org203c85a">2.4.3. 统计机器学习</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgf58ef3c">3. 合约广告</a>
+<li><a href="#org2fc9ec4">3. 合约广告</a>
 <ul>
-<li><a href="#orge71af99">3.1. 广告位售卖和排期系统</a></li>
-<li><a href="#org4a69c2e">3.2. 担保式投送</a></li>
-<li><a href="#org9265295">3.3. 在线分配问题</a></li>
-<li><a href="#org93e2950">3.4. 流量预测</a></li>
-<li><a href="#org474783f">3.5. 频次控制</a></li>
-<li><a href="#orga845d49">3.6. 合约广告的优缺点</a></li>
+<li><a href="#orge472b82">3.1. 广告位售卖和排期系统</a></li>
+<li><a href="#org4c7d363">3.2. 担保式投送</a></li>
+<li><a href="#orgc2bb486">3.3. 在线分配问题</a></li>
+<li><a href="#orgabd12f1">3.4. 流量预测</a></li>
+<li><a href="#orgeb35141">3.5. 频次控制</a></li>
+<li><a href="#org9fec5ce">3.6. 合约广告的优缺点</a></li>
 </ul>
 </li>
-<li><a href="#orgdbcb128">4. 受众定向</a>
+<li><a href="#org8485452">4. 受众定向</a>
 <ul>
-<li><a href="#org3bc8780">4.1. 定向方法综述</a></li>
-<li><a href="#org8d9b422">4.2. 上下文定向</a></li>
-<li><a href="#orgfdea3db">4.3. 行为定向</a></li>
-<li><a href="#org7ca1eaa">4.4. 行为定向数据来源</a></li>
-<li><a href="#orge294ac2">4.5. 文本主题挖掘</a></li>
-<li><a href="#orge8c5d36">4.6. 数据加工与交易</a></li>
-<li><a href="#orge1286a6">4.7. 数据管理平台(DMP)</a></li>
+<li><a href="#org5493eb2">4.1. 定向方法综述</a></li>
+<li><a href="#org08ff9db">4.2. 上下文定向</a></li>
+<li><a href="#orgb43de0d">4.3. 行为定向</a></li>
+<li><a href="#orgbaf9adb">4.4. 行为定向数据来源</a></li>
+<li><a href="#orgfa19ac7">4.5. 文本主题挖掘</a></li>
+<li><a href="#orgf0f88a4">4.6. 数据加工与交易</a></li>
+<li><a href="#org435fb9c">4.7. 数据管理平台(DMP)</a></li>
 </ul>
 </li>
-<li><a href="#org3ee6484">5. 竞价广告</a>
+<li><a href="#orgcf42a8d">5. 竞价广告</a>
 <ul>
-<li><a href="#org7dd11bc">5.1. 位置拍卖市场</a></li>
-<li><a href="#orgae3f00d">5.2. 广告网络(Ad Network)</a></li>
-<li><a href="#org95e63a2">5.3. 广告检索</a></li>
-<li><a href="#org1a48f14">5.4. 智能频次控制</a></li>
-<li><a href="#org018512e">5.5. 媒体采买平台</a></li>
+<li><a href="#orgfc788e6">5.1. 位置拍卖市场</a></li>
+<li><a href="#org18600be">5.2. 广告网络(Ad Network)</a></li>
+<li><a href="#org113a3da">5.3. 广告检索</a></li>
+<li><a href="#org087081e">5.4. 智能频次控制</a></li>
+<li><a href="#org28ccecb">5.5. 媒体采买平台</a></li>
 </ul>
 </li>
-<li><a href="#orgf4a8e9e">6. eCPM估计</a>
+<li><a href="#org2b04123">6. eCPM估计</a>
 <ul>
-<li><a href="#org0ddfccb">6.1. eCPM的分解与估计问题</a></li>
-<li><a href="#org8e28cdc">6.2. 点击率(CTR)预测</a></li>
-<li><a href="#orga6ec792">6.3. 探索与利用(E&amp;E)</a></li>
-<li><a href="#orga042a18">6.4. 点击价值估计</a></li>
+<li><a href="#orgfb943f4">6.1. eCPM的分解与估计问题</a></li>
+<li><a href="#org3dd2df5">6.2. 点击率(CTR)预测</a></li>
+<li><a href="#org2bbf892">6.3. 探索与利用(E&amp;E)</a></li>
+<li><a href="#org3977c11">6.4. 点击价值估计</a></li>
 </ul>
 </li>
-<li><a href="#org0207b4a">7. 搜索广告</a>
+<li><a href="#org66420ef">7. 搜索广告</a>
 <ul>
-<li><a href="#org431de4c">7.1. 搜索广告概览</a></li>
-<li><a href="#orgcdca84c">7.2. 查询扩展</a></li>
-<li><a href="#org7aa1c41">7.3. 广告条数个性化</a></li>
-<li><a href="#org511bba1">7.4. 短时行为反馈</a></li>
-<li><a href="#orgb1f00fa">7.5. 流式计算平台</a></li>
-<li><a href="#org252ffb9">7.6. 搜索引擎营销</a></li>
+<li><a href="#orgabcd845">7.1. 搜索广告概览</a></li>
+<li><a href="#org3dbc23e">7.2. 查询扩展</a></li>
+<li><a href="#orga707f5a">7.3. 广告条数个性化</a></li>
+<li><a href="#org923c010">7.4. 短时行为反馈</a></li>
+<li><a href="#orgb7aaa3b">7.5. 流式计算平台</a></li>
+<li><a href="#org19d9869">7.6. 搜索引擎营销</a></li>
 </ul>
 </li>
-<li><a href="#orgde51cc5">8. 广告交易市场</a>
+<li><a href="#org52c7ad3">8. 广告交易市场</a>
 <ul>
-<li><a href="#org6e53854">8.1. 广告交易平台(Ad Exchange)</a>
+<li><a href="#org1247aa7">8.1. 广告交易平台(Ad Exchange)</a>
 <ul>
-<li><a href="#org2c931d2">8.1.1. 实时竞价</a></li>
-<li><a href="#orga985e24">8.1.2. Cookie Mapping</a></li>
-<li><a href="#org1355bdb">8.1.3. 询价优化</a></li>
+<li><a href="#org4ff36ac">8.1.1. 实时竞价</a></li>
+<li><a href="#org821f243">8.1.2. Cookie Mapping</a></li>
+<li><a href="#org28fa095">8.1.3. 询价优化</a></li>
 </ul>
 </li>
-<li><a href="#orgb1c502f">8.2. 需求方平台</a></li>
-<li><a href="#orgf319dcd">8.3. 广告程序交易谱系</a></li>
-<li><a href="#orgdb9acf9">8.4. 供给方平台</a></li>
+<li><a href="#org73541fa">8.2. 需求方平台</a></li>
+<li><a href="#org2e4e9c3">8.3. 广告程序交易谱系</a></li>
+<li><a href="#org150eb75">8.4. 供给方平台</a></li>
 </ul>
 </li>
-<li><a href="#org40b3fbe">9. 广告相关技术</a>
+<li><a href="#orgc29c338">9. 广告相关技术</a>
 <ul>
-<li><a href="#orgda7e926">9.1. 创意优化</a></li>
-<li><a href="#orgfafd0c1">9.2. 流量保护和效果监测</a>
+<li><a href="#org9e5f9f2">9.1. 创意优化</a></li>
+<li><a href="#orgea40e1a">9.2. 流量保护和效果监测</a>
 <ul>
-<li><a href="#orgb75d32c">9.2.1. 爬虫流量去除</a></li>
-<li><a href="#org9b9b63c">9.2.2. 反作弊</a></li>
-<li><a href="#org15bbe4c">9.2.3. 效果监测</a></li>
-<li><a href="#org1cda99e">9.2.4. 广告安全</a></li>
+<li><a href="#orgbb0321b">9.2.1. 爬虫流量去除</a></li>
+<li><a href="#org9241346">9.2.2. 反作弊</a></li>
+<li><a href="#org563d69e">9.2.3. 效果监测</a></li>
+<li><a href="#org4bb9c4d">9.2.4. 广告安全</a></li>
 </ul>
 </li>
-<li><a href="#org65c053e">9.3. 隐私保护和数据安全</a>
+<li><a href="#org1c3335a">9.3. 隐私保护和数据安全</a>
 <ul>
-<li><a href="#orgdd6ef67">9.3.1. 用户身份标识</a></li>
-<li><a href="#orgfcac20b">9.3.2. 去匿名化技术及应用</a></li>
-<li><a href="#orgd000a3f">9.3.3. RTB中的数据安全问题</a></li>
+<li><a href="#orgd5186eb">9.3.1. 用户身份标识</a></li>
+<li><a href="#orgdea0e91">9.3.2. 去匿名化技术及应用</a></li>
+<li><a href="#org6bbce67">9.3.3. RTB中的数据安全问题</a></li>
 </ul>
 </li>
-<li><a href="#org120b37d">9.4. SoLoMo时代的广告</a></li>
+<li><a href="#org892c0f7">9.4. SoLoMo时代的广告</a></li>
 </ul>
 </li>
 </ul>
@@ -146,12 +192,12 @@
 update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazon.cn/%E8%AE%A1%E7%AE%97%E5%B9%BF%E5%91%8A-%E4%BA%92%E8%81%94%E7%BD%91%E5%95%86%E4%B8%9A%E5%8F%98%E7%8E%B0%E7%9A%84%E5%B8%82%E5%9C%BA%E4%B8%8E%E6%8A%80%E6%9C%AF-%E5%88%98%E9%B9%8F-%E7%8E%8B%E8%B6%85/dp/B0151280VW/ref=sr_1_1?ie=UTF8&amp;qid=1442883183&amp;sr=8-1&amp;keywords=%E8%AE%A1%E7%AE%97%E5%B9%BF%E5%91%8A">计算广告</a>. 我当时看的计算广告学讲义应该就是这本书的原型, 讲义里面有许多小节里面内容是空缺的, 在这本书里面都补上了. 推荐此书.
 </p>
 
-<div id="outline-container-org6209682" class="outline-2">
-<h2 id="org6209682"><span class="section-number-2">1</span> 在线广告综述</h2>
+<div id="outline-container-org7d1e742" class="outline-2">
+<h2 id="org7d1e742"><span class="section-number-2">1</span> 在线广告综述</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org8e078a0" class="outline-3">
-<h3 id="org8e078a0"><span class="section-number-3">1.1</span> 广告的定义与目的</h3>
+<div id="outline-container-org55a3750" class="outline-3">
+<h3 id="org55a3750"><span class="section-number-3">1.1</span> 广告的定义与目的</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>参与方
@@ -205,8 +251,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-org34ab80f" class="outline-3">
-<h3 id="org34ab80f"><span class="section-number-3">1.2</span> 在线广告类型</h3>
+<div id="outline-container-org1f43299" class="outline-3">
+<h3 id="org1f43299"><span class="section-number-3">1.2</span> 在线广告类型</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>条幅广告(Banner Ad): 这是显示广告中中最传统,也是最典型的形式。这种广告一般是嵌入在页面中相对固定位置的图片,与内容一样需要占据固定的版面。</li>
@@ -224,8 +270,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-org6717b2d" class="outline-3">
-<h3 id="org6717b2d"><span class="section-number-3">1.3</span> 在线广告简史</h3>
+<div id="outline-container-org673ab24" class="outline-3">
+<h3 id="org673ab24"><span class="section-number-3">1.3</span> 在线广告简史</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>把网站的HTML页面当成是杂志的版面,在里面插入广告位,按照杂志的广告那样去售卖。
@@ -295,8 +341,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-orgbb4aa33" class="outline-3">
-<h3 id="orgbb4aa33"><span class="section-number-3">1.4</span> 广告有效性原理</h3>
+<div id="outline-container-org44027cf" class="outline-3">
+<h3 id="org44027cf"><span class="section-number-3">1.4</span> 广告有效性原理</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 广告效果生成过程
@@ -345,8 +391,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-org91f0601" class="outline-3">
-<h3 id="org91f0601"><span class="section-number-3">1.5</span> 在线广告相关行业协会</h3>
+<div id="outline-container-orgae81337" class="outline-3">
+<h3 id="orgae81337"><span class="section-number-3">1.5</span> 在线广告相关行业协会</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>交互广告局(Interactive Advertising Bureau, IAB)。
@@ -375,12 +421,12 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-org5c5e5fa" class="outline-2">
-<h2 id="org5c5e5fa"><span class="section-number-2">2</span> 计算广告基础</h2>
+<div id="outline-container-org7bd353f" class="outline-2">
+<h2 id="org7bd353f"><span class="section-number-2">2</span> 计算广告基础</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org9b9d29a" class="outline-3">
-<h3 id="org9b9d29a"><span class="section-number-3">2.1</span> 在线广告的技术特点</h3>
+<div id="outline-container-org737b905" class="outline-3">
+<h3 id="org737b905"><span class="section-number-3">2.1</span> 在线广告的技术特点</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>技术和计算导向。数字媒体的特点使在线广告可以进行精细的受众定向,技术又使得广告决策和交易朝着计算驱动的方向发展。除了受众定向,由于在线广告中独特拍卖性质的市场的存在,对于广告效果精确的预估和优化能力也是非常重要的。可以说,从来没有任何传统广告形式象在线广告那样,需要大规模地收集并利用数据,而这正是在线广告最吸引人之处。</li>
@@ -397,8 +443,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-orgc40dcd2" class="outline-3">
-<h3 id="orgc40dcd2"><span class="section-number-3">2.2</span> 计算广告核心问题</h3>
+<div id="outline-container-orgf883fc7" class="outline-3">
+<h3 id="orgf883fc7"><span class="section-number-3">2.2</span> 计算广告核心问题</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>计算广告的核心问题,是为一系列用户与环境的组合,找到最合适的广告投放策略以优化整体的投入产出比(ROI)。</li>
@@ -408,8 +454,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </ul>
 </div>
 
-<div id="outline-container-orgbd7d9fe" class="outline-4">
-<h4 id="orgbd7d9fe"><span class="section-number-4">2.2.1</span> 在线广告技术课题</h4>
+<div id="outline-container-org00d2d1c" class="outline-4">
+<h4 id="org00d2d1c"><span class="section-number-4">2.2.1</span> 在线广告技术课题</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 算法优化：
@@ -437,8 +483,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-org0317809" class="outline-4">
-<h4 id="org0317809"><span class="section-number-4">2.2.2</span> 在线广告计费模式</h4>
+<div id="outline-container-org9c64b84" class="outline-4">
+<h4 id="org9c64b84"><span class="section-number-4">2.2.2</span> 在线广告计费模式</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>CPM(Cost per Mille)计费,即按照千次展示计费,这里的“mille”是拉丁文“千次”的意思。（偏向品牌广告）
@@ -479,8 +525,8 @@ update@201509: 近期刘鹏老师出了一本书叫做 <a href="http://www.amazo
 </div>
 </div>
 
-<div id="outline-container-org54b6fb2" class="outline-3">
-<h3 id="org54b6fb2"><span class="section-number-3">2.3</span> 计算广告系统架构</h3>
+<div id="outline-container-org07b87df" class="outline-3">
+<h3 id="org07b87df"><span class="section-number-3">2.3</span> 计算广告系统架构</h3>
 <div class="outline-text-3" id="text-2-3">
 
 <div class="figure">
@@ -567,23 +613,23 @@ Ad Serving 基本功能:
 </div>
 </div>
 
-<div id="outline-container-orgc28a91f" class="outline-3">
-<h3 id="orgc28a91f"><span class="section-number-3">2.4</span> 基础知识准备</h3>
+<div id="outline-container-org1d11887" class="outline-3">
+<h3 id="org1d11887"><span class="section-number-3">2.4</span> 基础知识准备</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-orgbf16dc1" class="outline-4">
-<h4 id="orgbf16dc1"><span class="section-number-4">2.4.1</span> 信息检索</h4>
+<div id="outline-container-orge8edcd8" class="outline-4">
+<h4 id="orge8edcd8"><span class="section-number-4">2.4.1</span> 信息检索</h4>
 </div>
-<div id="outline-container-org22ca519" class="outline-4">
-<h4 id="org22ca519"><span class="section-number-4">2.4.2</span> 最优化方法</h4>
+<div id="outline-container-orgc2b1d61" class="outline-4">
+<h4 id="orgc2b1d61"><span class="section-number-4">2.4.2</span> 最优化方法</h4>
 </div>
-<div id="outline-container-org0020747" class="outline-4">
-<h4 id="org0020747"><span class="section-number-4">2.4.3</span> 统计机器学习</h4>
+<div id="outline-container-org203c85a" class="outline-4">
+<h4 id="org203c85a"><span class="section-number-4">2.4.3</span> 统计机器学习</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf58ef3c" class="outline-2">
-<h2 id="orgf58ef3c"><span class="section-number-2">3</span> 合约广告</h2>
+<div id="outline-container-org2fc9ec4" class="outline-2">
+<h2 id="org2fc9ec4"><span class="section-number-2">3</span> 合约广告</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 互联网广告业务开始阶段,拥有流量的媒体与需要广告资源的代理商是市场的主要参与者。线下广告的商业逻辑也被照搬到了线上,由广告代理公司和媒体签订协议,确保某些广告位在某时间段为制定的广告商所占有,同时广告商一次性支付广告费用。这种方式与技术的关系并不大,唯一需要用到的系统就是广告排期系统.
@@ -606,8 +652,8 @@ Ad Serving 基本功能:
 </p>
 </div>
 
-<div id="outline-container-orge71af99" class="outline-3">
-<h3 id="orge71af99"><span class="section-number-3">3.1</span> 广告位售卖和排期系统</h3>
+<div id="outline-container-orge472b82" class="outline-3">
+<h3 id="orge472b82"><span class="section-number-3">3.1</span> 广告位售卖和排期系统</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 最早产生的广告售卖方式,是媒体和广告主约定在某一时间段内,用某些广告位的流量为该广告主投送广告,相应的结算方式为CPT方式。
@@ -637,8 +683,8 @@ CPT售卖还有一种变形的形式,即按照轮播售卖。
 </div>
 </div>
 
-<div id="outline-container-org4a69c2e" class="outline-3">
-<h3 id="org4a69c2e"><span class="section-number-3">3.2</span> 担保式投送</h3>
+<div id="outline-container-org4c7d363" class="outline-3">
+<h3 id="org4c7d363"><span class="section-number-3">3.2</span> 担保式投送</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 担保式投送(guaranteed delivery, GD)是另一种常见的合约广告形式。一般来说,GD采用的是CPM结算方式,在合约中明确保证分配给广告主的流量下限。我们从供给方和需求方两方面来看这种售卖方式出现的合理性。
@@ -658,8 +704,8 @@ CPT售卖还有一种变形的形式,即按照轮播售卖。
 </div>
 </div>
 
-<div id="outline-container-org9265295" class="outline-3">
-<h3 id="org9265295"><span class="section-number-3">3.3</span> 在线分配问题</h3>
+<div id="outline-container-orgc2bb486" class="outline-3">
+<h3 id="orgc2bb486"><span class="section-number-3">3.3</span> 在线分配问题</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 二部图匹配算法 (see 拉格朗日方法, KKT, SVM)
@@ -679,8 +725,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-org93e2950" class="outline-3">
-<h3 id="org93e2950"><span class="section-number-3">3.4</span> 流量预测</h3>
+<div id="outline-container-orgabd12f1" class="outline-3">
+<h3 id="orgabd12f1"><span class="section-number-3">3.4</span> 流量预测</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 流量预测的问题可以这样描述,给定某广告的一组受众标签和其他条件,以及一个eCPM的阈值,估算在将来某个时间段内能够得到的在该eCPM阈值以下的流量。其中eCPM阈值主要是用于竞价广告系统中,目的是了解在一个某一个出价水平下能够得到的流量。对于合约式广告来说,这个阈值是不需要的,或者为了工程上一致起见,将该阈值设为一个很大的数。
@@ -692,8 +738,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-org474783f" class="outline-3">
-<h3 id="org474783f"><span class="section-number-3">3.5</span> 频次控制</h3>
+<div id="outline-container-orgeb35141" class="outline-3">
+<h3 id="orgeb35141"><span class="section-number-3">3.5</span> 频次控制</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 一般来说,随着某个用户看到同一个创意频次的逐渐上升,点击率呈逐渐下降的趋势这一点是可以被验证的。因此,在按照CPM采买流量时,广告主有时会要求根据频次控制某个用户接触到某创意的次数,以达到提高性价比的目的。
@@ -701,8 +747,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-orga845d49" class="outline-3">
-<h3 id="orga845d49"><span class="section-number-3">3.6</span> 合约广告的优缺点</h3>
+<div id="outline-container-org9fec5ce" class="outline-3">
+<h3 id="org9fec5ce"><span class="section-number-3">3.6</span> 合约广告的优缺点</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 从供给方或广告市场方来看,合约广告和竞价广告的对比,可以类比于计划经济和市场经济的区别。在合约广告的情况下,所有的量的保证和质的优化,都是由媒体方的Ad Server 来统一完成,这也直观地反应在GD合约广告比较复杂的planning和allocation过程。而在竞价广告的情况下,市场只负责制定竞价和收费的规则,而各广告主量的保证完全采用市场竞争的方式来完成。在这种情况下,市场方需要仔细设计宏观竞争机制,但是不一定需要实现象合约广告那样的allocation功能。
@@ -715,8 +761,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-orgdbcb128" class="outline-2">
-<h2 id="orgdbcb128"><span class="section-number-2">4</span> 受众定向</h2>
+<div id="outline-container-org8485452" class="outline-2">
+<h2 id="org8485452"><span class="section-number-2">4</span> 受众定向</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 受众定向技术即是对广告(a)、 用户(u)、上下文(c) 这三个维度提取有意义的特征(这些特征也称为标签)的过程。受众定向虽然不见得是计算广告中最困难的技术,但是确实是在线广告、特别是显示广告最核心的驱动力。
@@ -740,8 +786,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </p>
 </div>
 
-<div id="outline-container-org3bc8780" class="outline-3">
-<h3 id="org3bc8780"><span class="section-number-3">4.1</span> 定向方法综述</h3>
+<div id="outline-container-org5493eb2" class="outline-3">
+<h3 id="org5493eb2"><span class="section-number-3">4.1</span> 定向方法综述</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 在考察某种定向方法时,主要有两个方面的性能需要关注:一是定向的效果,即符合该定向方式的流量上高出平均eCPM的水平;二是定向的规模,即这部分流量占整体广告库存流量的比例。
@@ -778,8 +824,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-org8d9b422" class="outline-3">
-<h3 id="org8d9b422"><span class="section-number-3">4.2</span> 上下文定向</h3>
+<div id="outline-container-org08ff9db" class="outline-3">
+<h3 id="org08ff9db"><span class="section-number-3">4.2</span> 上下文定向</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 从打标签的方法上来看,上下文定向主要可以有如下的几种思路:
@@ -798,8 +844,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-orgfdea3db" class="outline-3">
-<h3 id="orgfdea3db"><span class="section-number-3">4.3</span> 行为定向</h3>
+<div id="outline-container-orgb43de0d" class="outline-3">
+<h3 id="orgb43de0d"><span class="section-number-3">4.3</span> 行为定向</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 行为定向是精准广告业务中对数据利用和变现最重要的问题,这一问题可以描述为,根据某用户一段时期内的各种网络行为,将该用户映射到某个定向标签上。
@@ -815,8 +861,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-org7ca1eaa" class="outline-3">
-<h3 id="org7ca1eaa"><span class="section-number-3">4.4</span> 行为定向数据来源</h3>
+<div id="outline-container-orgbaf9adb" class="outline-3">
+<h3 id="orgbaf9adb"><span class="section-number-3">4.4</span> 行为定向数据来源</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 一般来说,有九种行为是确定对行为定向的建模有意义的。在评价某种行为的作用时,主要关注两个因素,一是质,就是上面所说的信息强度,二是量,就是该行为的频繁程度。我们按照这些行为的信息强度和性质,将这些行为分为四组排列如下:
@@ -842,8 +888,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-orge294ac2" class="outline-3">
-<h3 id="orge294ac2"><span class="section-number-3">4.5</span> 文本主题挖掘</h3>
+<div id="outline-container-orgfa19ac7" class="outline-3">
+<h3 id="orgfa19ac7"><span class="section-number-3">4.5</span> 文本主题挖掘</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 总体上看,主题模型有两大类别:一种是预先定义好主题的集合,用监督学习的方法将文档映射到这一集合的元素上;一种是不预先定义主题集合,而是仅仅控制主题的总个数或聚类程度,用非监督学习的方法自动学习出主题集合,以及文档到这些主体的映射函数。
@@ -855,8 +901,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-orge8c5d36" class="outline-3">
-<h3 id="orge8c5d36"><span class="section-number-3">4.6</span> 数据加工与交易</h3>
+<div id="outline-container-orgf0f88a4" class="outline-3">
+<h3 id="orgf0f88a4"><span class="section-number-3">4.6</span> 数据加工与交易</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 要提高定向的精准程度与人群覆盖率,技术并不是最重要的因素。那么什么才是决定性的呢?其实是数据的来源与质量。这是正确认识精准广告业务非常重要的观念。
@@ -886,8 +932,8 @@ GD的分配方式在实际的品牌广告市场上存在一定的问题,其原�
 </div>
 </div>
 
-<div id="outline-container-orge1286a6" class="outline-3">
-<h3 id="orge1286a6"><span class="section-number-3">4.7</span> 数据管理平台(DMP)</h3>
+<div id="outline-container-org435fb9c" class="outline-3">
+<h3 id="org435fb9c"><span class="section-number-3">4.7</span> 数据管理平台(DMP)</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 数据管理平台(Data Management Platform, DMP)
@@ -912,8 +958,8 @@ Bluekai的主要业务模式,是聚合大量中小媒体的有价值行为数据
 </div>
 </div>
 
-<div id="outline-container-org3ee6484" class="outline-2">
-<h2 id="org3ee6484"><span class="section-number-2">5</span> 竞价广告</h2>
+<div id="outline-container-orgcf42a8d" class="outline-2">
+<h2 id="orgcf42a8d"><span class="section-number-2">5</span> 竞价广告</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 竞价顺应了定向广告向精细化发展的趋势要求,也为大量无法用合约形式售卖的剩余流量找到了可能的变现渠道,使得大量中小广告主的参与在线广告的可能性和积极性大大增强,也是的在线广告的商业环境与线下广告产生了本质的区别。
@@ -936,8 +982,8 @@ Bluekai的主要业务模式,是聚合大量中小媒体的有价值行为数据
 </ul>
 </div>
 
-<div id="outline-container-org7dd11bc" class="outline-3">
-<h3 id="org7dd11bc"><span class="section-number-3">5.1</span> 位置拍卖市场</h3>
+<div id="outline-container-orgfc788e6" class="outline-3">
+<h3 id="orgfc788e6"><span class="section-number-3">5.1</span> 位置拍卖市场</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 在广告这样的参与者可以针对同一个标的物不断调整出价的拍卖环境中,通过聪明的定价策略,完全可能为整个市场创造更高的收益以及其他好处。
@@ -1047,7 +1093,7 @@ VCG vs. GSP
 </p>
 
 <p>
-在CPC广告网络中,eCPM可以表示成点击率和出价的乘积。即r = μ · ν。但是在有的情况下,我们有动机对此公式做一些微调,把它变成下面的形式: r = μ^κ ·ν. 其中的κ为一个大于0的实数。我们可以考虑两种极端情况来理解κ的作用:当κ → ∞时,相当于只根据点击率来排序,而不考虑出价的作用;反之,当κ → 0时,则相当于只根据出价来排序。因此,随着κ的增大,相当于我们在挤压出价在整个竞价体系中的作用,因此我们把这个因子叫做价格积压(Squashing)因子。
+在CPC广告网络中,eCPM可以表示成点击率和出价的乘积。即r = μ · ν。但是在有的情况下,我们有动机对此公式做一些微调,把它变成下面的形式: r = μ<sup>κ</sup> ·ν. 其中的κ为一个大于0的实数。我们可以考虑两种极端情况来理解κ的作用:当κ → ∞时,相当于只根据点击率来排序,而不考虑出价的作用;反之,当κ → 0时,则相当于只根据出价来排序。因此,随着κ的增大,相当于我们在挤压出价在整个竞价体系中的作用,因此我们把这个因子叫做价格积压(Squashing)因子。
 </p>
 
 <p>
@@ -1056,8 +1102,8 @@ VCG vs. GSP
 </div>
 </div>
 
-<div id="outline-container-orgae3f00d" class="outline-3">
-<h3 id="orgae3f00d"><span class="section-number-3">5.2</span> 广告网络(Ad Network)</h3>
+<div id="outline-container-org18600be" class="outline-3">
+<h3 id="org18600be"><span class="section-number-3">5.2</span> 广告网络(Ad Network)</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 广告网络的基本业务,是批量聚合各媒体的剩余流量,按照人群或上下文标签的流量切割方式售卖给广告主。由于是按人群售卖,广告网络会极力淡化广告位的概念。另外,广告网络一般不会向广告主约定或保证能够买到的量,而只是根据变现能力来决定每次展示分配给哪个广告主。
@@ -1101,8 +1147,8 @@ VCG vs. GSP
 </div>
 </div>
 
-<div id="outline-container-org95e63a2" class="outline-3">
-<h3 id="org95e63a2"><span class="section-number-3">5.3</span> 广告检索</h3>
+<div id="outline-container-org113a3da" class="outline-3">
+<h3 id="org113a3da"><span class="section-number-3">5.3</span> 广告检索</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 媒体广告与搜索的检索技术,还有一点不太一样的地方,即在处理很多个term组成的query时的处理办法。我们考虑上下文定向的情形,当通过网页内容的关键词来匹配广告候选时,往往需要用十多个甚至几十个关键词去查询广告,再进行后续精细的排序。在这一情形下,如果仍然采用一般搜索引擎对query的处理办法,则会陷入两难的境地:如果假设各个term之间是与的关系,基本上不可能得到任何匹配的结果;如果假设各个term之间是或的关系,那么在检索阶段就会返回大量相关性很差的候选,为后续排序制造极大的麻烦。
@@ -1114,8 +1160,8 @@ VCG vs. GSP
 </div>
 </div>
 
-<div id="outline-container-org1a48f14" class="outline-3">
-<h3 id="org1a48f14"><span class="section-number-3">5.4</span> 智能频次控制</h3>
+<div id="outline-container-org087081e" class="outline-3">
+<h3 id="org087081e"><span class="section-number-3">5.4</span> 智能频次控制</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 在品牌广告中,可以通过EC(expected click)计数上的直接控制来达到一定用户接触程度的目的,由广告主来直接设定;在效果广告中,则可以将EC的计数,或者频次的计数,作为点击率预测模型的特征直接加入训练,靠点击率模型的作用降低出现频次过高的创意的竞争力。
@@ -1127,8 +1173,8 @@ VCG vs. GSP
 </div>
 </div>
 
-<div id="outline-container-org018512e" class="outline-3">
-<h3 id="org018512e"><span class="section-number-3">5.5</span> 媒体采买平台</h3>
+<div id="outline-container-org28ccecb" class="outline-3">
+<h3 id="org28ccecb"><span class="section-number-3">5.5</span> 媒体采买平台</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 即按照广告主预算跨媒体和广告网络一站式采买某种人群的广告投放机会。另外,还可以具备一项高级功能,即机器驱动的自动ROI优化功能。这样的产品形态,我们称为媒体采买平台(Media Buying Platform, MBP),与之类似的概念,还有所谓交易终端(Trading Desk),可以认为是同一类的产品。从市场发展来看,许多媒体采买平台都是4A或其他代理公司为了适应市场技术形态的变化, 收购或者孵化出来的子公司.
@@ -1137,8 +1183,8 @@ VCG vs. GSP
 </div>
 </div>
 
-<div id="outline-container-orgf4a8e9e" class="outline-2">
-<h2 id="orgf4a8e9e"><span class="section-number-2">6</span> eCPM估计</h2>
+<div id="outline-container-org2b04123" class="outline-2">
+<h2 id="org2b04123"><span class="section-number-2">6</span> eCPM估计</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 按照转化过程的自然划分,eCPM可以分解成点击率和点击价值的乘积。一般来说,相对于点击价值的预测,点击率的预测由于训练数据充分一些,而且主要描述的是媒体上发生的行为,其建模的难度要小一些。点击价值的估计虽然要困难得多,在很多广告产品中却是不可缺少的,比如按照CPS结算的广告网络,或者后面介绍参与实时竞价的DSP。对这个问题,由于行业的区别和数据完整性的不同,并不存在象点击率预测那样相对成熟的一致方法。
@@ -1153,8 +1199,8 @@ VCG vs. GSP
 </p>
 </div>
 
-<div id="outline-container-org0ddfccb" class="outline-3">
-<h3 id="org0ddfccb"><span class="section-number-3">6.1</span> eCPM的分解与估计问题</h3>
+<div id="outline-container-orgfb943f4" class="outline-3">
+<h3 id="orgfb943f4"><span class="section-number-3">6.1</span> eCPM的分解与估计问题</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 按照点击和转化两个发生在不同阶段的行为,eCPM可以分解 成点击率和点击价值的乘积: (a,u,c) = μ(a,u,c)·ν(a,u). 我们认为点击率μ是广告三个行为主体的函数,而点击价值则是用户u和广告商a的函数。后一点的假设有近似之处,因为实际上媒体的来源会影响用户对广告信息的信任程度,但我们为了概念清楚起见忽略这一影响。
@@ -1166,8 +1212,8 @@ VCG vs. GSP
 </div>
 </div>
 
-<div id="outline-container-org8e28cdc" class="outline-3">
-<h3 id="org8e28cdc"><span class="section-number-3">6.2</span> 点击率(CTR)预测</h3>
+<div id="outline-container-org3dd2df5" class="outline-3">
+<h3 id="org3dd2df5"><span class="section-number-3">6.2</span> 点击率(CTR)预测</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 LR模型, L-BFGS/ADMM优化, 点击率模型的校正, 点击率模型特征, 点击率预测评测
@@ -1207,8 +1253,8 @@ LR模型, L-BFGS/ADMM优化, 点击率模型的校正, 点击率模型特征, �
 </div>
 </div>
 
-<div id="outline-container-orga6ec792" class="outline-3">
-<h3 id="orga6ec792"><span class="section-number-3">6.3</span> 探索与利用(E&amp;E)</h3>
+<div id="outline-container-org2bbf892" class="outline-3">
+<h3 id="org2bbf892"><span class="section-number-3">6.3</span> 探索与利用(E&amp;E)</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Explore &amp; Exploit
@@ -1216,13 +1262,13 @@ Explore &amp; Exploit
 </div>
 </div>
 
-<div id="outline-container-orga042a18" class="outline-3">
-<h3 id="orga042a18"><span class="section-number-3">6.4</span> 点击价值估计</h3>
+<div id="outline-container-org3977c11" class="outline-3">
+<h3 id="org3977c11"><span class="section-number-3">6.4</span> 点击价值估计</h3>
 </div>
 </div>
 
-<div id="outline-container-org0207b4a" class="outline-2">
-<h2 id="org0207b4a"><span class="section-number-2">7</span> 搜索广告</h2>
+<div id="outline-container-org66420ef" class="outline-2">
+<h2 id="org66420ef"><span class="section-number-2">7</span> 搜索广告</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 从商业逻辑和产品形态上看,搜索广告可以认为是广告网络的一个特例。它是以上下文查询词为粒度进行受众定向,并按照竞价方式售卖和CPC结算的广告网络。从商业逻辑和产品形态上看,搜索广告可以认为是广告网络的一个特例。它是以上下文查询词为粒度进行受众定向,并按照竞价方式售卖和CPC结算的广告网络。
@@ -1260,8 +1306,8 @@ Hint: Google Adwords 排名前10000的关键字. 百分比: 前一万关键字�
 </p>
 </div>
 
-<div id="outline-container-org431de4c" class="outline-3">
-<h3 id="org431de4c"><span class="section-number-3">7.1</span> 搜索广告概览</h3>
+<div id="outline-container-orgabcd845" class="outline-3">
+<h3 id="orgabcd845"><span class="section-number-3">7.1</span> 搜索广告概览</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 搜索广告的展示区域,一般来说分为北(North)、东(East)、南(South)三个部分。搜索广告是一个非常典型的位置竞价问题,就期望点击率而言,北显著高于东区,而同区当中位置越靠上也越高。
@@ -1287,8 +1333,8 @@ Hint: Google Adwords 排名前10000的关键字. 百分比: 前一万关键字�
 </div>
 </div>
 
-<div id="outline-container-orgcdca84c" class="outline-3">
-<h3 id="orgcdca84c"><span class="section-number-3">7.2</span> 查询扩展</h3>
+<div id="outline-container-org3dbc23e" class="outline-3">
+<h3 id="org3dbc23e"><span class="section-number-3">7.2</span> 查询扩展</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>基于推荐的方法. (session/user, query)矩阵. SVD++在Netflix举办的推荐算法大赛中,以Yehuda Koren为首的小组获得了头名,并得到了100万美元的大奖。他们采用了一种称为SVD++的算法技术,来预测某个用户对某个电影的评分。</li>
@@ -1298,8 +1344,8 @@ Hint: Google Adwords 排名前10000的关键字. 百分比: 前一万关键字�
 </div>
 </div>
 
-<div id="outline-container-org7aa1c41" class="outline-3">
-<h3 id="org7aa1c41"><span class="section-number-3">7.3</span> 广告条数个性化</h3>
+<div id="outline-container-orga707f5a" class="outline-3">
+<h3 id="orga707f5a"><span class="section-number-3">7.3</span> 广告条数个性化</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 搜索广告的内容本身虽然不宜进行特别深入的个性化,但是在搜索页面中插入的广告条数则存在很大的个性化空间。这样做的基础,是不同用户对于广告,或者相关程度差一些的内容,接受和容忍的程度有着很大的不同。实际上,即使在北美市场这样的用户受教育程度较高的市场上,也至少有三四成的用户不能完全分辨搜索结果和广告。因此,对不同的用户动态调整广告的条目数,可以使得在平均广告数目相同的约束下,整体系统的营收有显著的提高。
@@ -1307,8 +1353,8 @@ Hint: Google Adwords 排名前10000的关键字. 百分比: 前一万关键字�
 </div>
 </div>
 
-<div id="outline-container-org511bba1" class="outline-3">
-<h3 id="org511bba1"><span class="section-number-3">7.4</span> 短时行为反馈</h3>
+<div id="outline-container-org923c010" class="outline-3">
+<h3 id="org923c010"><span class="section-number-3">7.4</span> 短时行为反馈</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 对于搜索广告,尽管深度的个性化结果并不一定有效,但同一个session内的一系列查询对于准确理解用户当前的任务时有帮助的。因此,如果将用户短时的行为数据及时地反馈到线上决策系统,对广告效果的提高大有帮助。
@@ -1320,11 +1366,11 @@ Hint: Google Adwords 排名前10000的关键字. 百分比: 前一万关键字�
 </div>
 </div>
 
-<div id="outline-container-orgb1f00fa" class="outline-3">
-<h3 id="orgb1f00fa"><span class="section-number-3">7.5</span> 流式计算平台</h3>
+<div id="outline-container-orgb7aaa3b" class="outline-3">
+<h3 id="orgb7aaa3b"><span class="section-number-3">7.5</span> 流式计算平台</h3>
 </div>
-<div id="outline-container-org252ffb9" class="outline-3">
-<h3 id="org252ffb9"><span class="section-number-3">7.6</span> 搜索引擎营销</h3>
+<div id="outline-container-org19d9869" class="outline-3">
+<h3 id="org19d9869"><span class="section-number-3">7.6</span> 搜索引擎营销</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 搜索广告对应的需求方问题,即通过竞价采买搜索引擎关键词来做广告的问题,我们称之为搜索引擎营销(Search Engine Marketing, SEM)。从本质上看,SEM与前文提到的媒体采买平台面临的挑战类似,即流量选择(此处为关键词选择)和出价。
@@ -1337,8 +1383,8 @@ Hint: Google Adwords 排名前10000的关键字. 百分比: 前一万关键字�
 </div>
 </div>
 
-<div id="outline-container-orgde51cc5" class="outline-2">
-<h2 id="orgde51cc5"><span class="section-number-2">8</span> 广告交易市场</h2>
+<div id="outline-container-org52c7ad3" class="outline-2">
+<h2 id="org52c7ad3"><span class="section-number-2">8</span> 广告交易市场</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 提供广告主自行选择流量和在每次展示上独立定价的功能。这样的功能，必然要求竞价这一过程在每次展示时实时进行，也就是实时竞价(Real Time Bidding, RTB)。RTB的产生，使得广告市场向着透明的比价平台的方向发展，这样的平台就是广告交易平台(Ad Exchange)，其主要特征即是用RTB的方式实时得到广告候选，并按照其出价简单完成投放决策。与广告交易平台对应的采买方，我们称为需求方平台(Demand Side Platform, DSP)。由于实时竞价的功能需求，广告交易市场解决供给方和需求方用户身份对应的问题，这需要用到cookie-mapping的技术。
@@ -1367,8 +1413,8 @@ Hint: Google Adwords 排名前10000的关键字. 百分比: 前一万关键字�
 </p>
 </div>
 
-<div id="outline-container-org6e53854" class="outline-3">
-<h3 id="org6e53854"><span class="section-number-3">8.1</span> 广告交易平台(Ad Exchange)</h3>
+<div id="outline-container-org1247aa7" class="outline-3">
+<h3 id="org1247aa7"><span class="section-number-3">8.1</span> 广告交易平台(Ad Exchange)</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 Ad Exchange的骨干架构：
@@ -1415,8 +1461,8 @@ Ad Exchange的骨干架构：
 </div>
 </div>
 
-<div id="outline-container-org2c931d2" class="outline-4">
-<h4 id="org2c931d2"><span class="section-number-4">8.1.1</span> 实时竞价</h4>
+<div id="outline-container-org4ff36ac" class="outline-4">
+<h4 id="org4ff36ac"><span class="section-number-4">8.1.1</span> 实时竞价</h4>
 <div class="outline-text-4" id="text-8-1-1">
 <p>
 实时竞价的的整个接口可以分成两部分：线下进行的将供给方与需求方用户ID对应起来的cookie-mapping过程，和线上广告请求到来时的竞价和投放过程，如下图所示。
@@ -1464,8 +1510,8 @@ RTB的接口有两个对接方：在Ad Exchange方实现的部分，我们称为
 </div>
 </div>
 
-<div id="outline-container-orga985e24" class="outline-4">
-<h4 id="orga985e24"><span class="section-number-4">8.1.2</span> Cookie Mapping</h4>
+<div id="outline-container-org821f243" class="outline-4">
+<h4 id="org821f243"><span class="section-number-4">8.1.2</span> Cookie Mapping</h4>
 <div class="outline-text-4" id="text-8-1-2">
 <p>
 Cookie mapping的情况虽然比较复杂，我们可以重点关注三个问题：由谁发起？在哪里发起？谁保存映射表？最典型的情景有两种：一是涉及到两个域名，即在一个域名的服务上向另一个域名发动的cookie mapping；二是涉及到三个域名，即在一个第三方域名页面上发动的其他两个域名间的cookie mapping。
@@ -1508,8 +1554,8 @@ Cookie mapping的情况虽然比较复杂，我们可以重点关注三个问题
 </div>
 </div>
 
-<div id="outline-container-org1355bdb" class="outline-4">
-<h4 id="org1355bdb"><span class="section-number-4">8.1.3</span> 询价优化</h4>
+<div id="outline-container-org28fa095" class="outline-4">
+<h4 id="org28fa095"><span class="section-number-4">8.1.3</span> 询价优化</h4>
 <div class="outline-text-4" id="text-8-1-3">
 <p>
 Ad Echange需要解决的一个关键问题，就是如何在带宽或服务成本的约束下，优化整体市场的eCPM水平。要考虑带宽或服务成本的约束，显然就需要对每次展示中询价的DSP数目做精简，因此，这个问题也称为询价优化(Call Out Optimization)。
@@ -1522,8 +1568,8 @@ Ad Echange需要解决的一个关键问题，就是如何在带宽或服务成�
 </div>
 </div>
 
-<div id="outline-container-orgb1c502f" class="outline-3">
-<h3 id="orgb1c502f"><span class="section-number-3">8.2</span> 需求方平台</h3>
+<div id="outline-container-org73541fa" class="outline-3">
+<h3 id="org73541fa"><span class="section-number-3">8.2</span> 需求方平台</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 DSP的系统广告投放的决策流程为：DSP服务器通过RTBS接口拿到广告请求，然后经过与广告网络类似的决策步骤，包括检索和eCPM排序，找到价值最高的广告，并将报价返回给Ad Exchange。与广告网络相比，DSP的广告决策过程有一些难点：一是在eCPM估计时，除了估计CTR，还要估计点击价值，并且由于出价的要求，这一估计要尽可能准确；二是由于DSP是完全面向广告主的产品，广告主量的需求也需要满足，因此还要考虑在线分配的策略。
@@ -1582,11 +1628,11 @@ DSP与其它广告产品的相比，多了定制化用户划分功能，即图�
 </div>
 </div>
 
-<div id="outline-container-orgf319dcd" class="outline-3">
-<h3 id="orgf319dcd"><span class="section-number-3">8.3</span> 广告程序交易谱系</h3>
+<div id="outline-container-org2e4e9c3" class="outline-3">
+<h3 id="org2e4e9c3"><span class="section-number-3">8.3</span> 广告程序交易谱系</h3>
 </div>
-<div id="outline-container-orgdb9acf9" class="outline-3">
-<h3 id="orgdb9acf9"><span class="section-number-3">8.4</span> 供给方平台</h3>
+<div id="outline-container-org150eb75" class="outline-3">
+<h3 id="org150eb75"><span class="section-number-3">8.4</span> 供给方平台</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 对于媒体而言，无需把全部流量的变现都押在一种交易方式上：既可以通过直接销售来高溢价地售卖品牌广告，也可以灵活地综合使用各种程序交易方式以追求更高的eCPM。媒体的统一变现平台需要这样的逻辑：
@@ -1602,8 +1648,8 @@ DSP与其它广告产品的相比，多了定制化用户划分功能，即图�
 </div>
 </div>
 
-<div id="outline-container-org40b3fbe" class="outline-2">
-<h2 id="org40b3fbe"><span class="section-number-2">9</span> 广告相关技术</h2>
+<div id="outline-container-orgc29c338" class="outline-2">
+<h2 id="orgc29c338"><span class="section-number-2">9</span> 广告相关技术</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>前面谈到的广告效果优化思路，基本上集中在受众定向的角度，而在实际的在线广告中，还有一项对广告效果影响巨大的技术，那就是创意优化。创意优化与受众优化性质有所不同，因为创意的改变实际上也改变了广告要表达的诉求。如何在基本的宣传诉求相对稳定的前提下，结合受众定向对创意做调整，这是广告系统不能不考虑的重要问题。</li>
@@ -1613,15 +1659,15 @@ DSP与其它广告产品的相比，多了定制化用户划分功能，即图�
 </ul>
 </div>
 
-<div id="outline-container-orgda7e926" class="outline-3">
-<h3 id="orgda7e926"><span class="section-number-3">9.1</span> 创意优化</h3>
+<div id="outline-container-org9e5f9f2" class="outline-3">
+<h3 id="org9e5f9f2"><span class="section-number-3">9.1</span> 创意优化</h3>
 </div>
-<div id="outline-container-orgfafd0c1" class="outline-3">
-<h3 id="orgfafd0c1"><span class="section-number-3">9.2</span> 流量保护和效果监测</h3>
+<div id="outline-container-orgea40e1a" class="outline-3">
+<h3 id="orgea40e1a"><span class="section-number-3">9.2</span> 流量保护和效果监测</h3>
 <div class="outline-text-3" id="text-9-2">
 </div>
-<div id="outline-container-orgb75d32c" class="outline-4">
-<h4 id="orgb75d32c"><span class="section-number-4">9.2.1</span> 爬虫流量去除</h4>
+<div id="outline-container-orgbb0321b" class="outline-4">
+<h4 id="orgbb0321b"><span class="section-number-4">9.2.1</span> 爬虫流量去除</h4>
 <div class="outline-text-4" id="text-9-2-1">
 <p>
 爬虫流量的去除比较简单，比较规范的搜索引擎会在抓取页面时做声明，而其他一些不做声明的爬虫，也比较容易线下收集其IP，于是用一个黑名单来去除这部分流量即可。对爬虫流量的过滤，最好在广告服务前端的http服务中直接配置实现，即对于已知的爬虫带来的页面请求，服务器直接返回空，而不做任何广告检索和排序的逻辑，这样对服务器压力的减轻有一定帮助。
@@ -1629,8 +1675,8 @@ DSP与其它广告产品的相比，多了定制化用户划分功能，即图�
 </div>
 </div>
 
-<div id="outline-container-org9b9b63c" class="outline-4">
-<h4 id="org9b9b63c"><span class="section-number-4">9.2.2</span> 反作弊</h4>
+<div id="outline-container-org9241346" class="outline-4">
+<h4 id="org9241346"><span class="section-number-4">9.2.2</span> 反作弊</h4>
 <div class="outline-text-4" id="text-9-2-2">
 <p>
 我们知道，广告活动是广告主、媒体与用户之间三方交互的行为，因此广告中的作弊行为主要有两种情况：
@@ -1646,8 +1692,8 @@ DSP与其它广告产品的相比，多了定制化用户划分功能，即图�
 </div>
 </div>
 
-<div id="outline-container-org15bbe4c" class="outline-4">
-<h4 id="org15bbe4c"><span class="section-number-4">9.2.3</span> 效果监测</h4>
+<div id="outline-container-org563d69e" class="outline-4">
+<h4 id="org563d69e"><span class="section-number-4">9.2.3</span> 效果监测</h4>
 <div class="outline-text-4" id="text-9-2-3">
 <p>
 委托某家第三方监测公司对实际发生的展示或点击数目进行核对，以确保自己的利益。
@@ -1661,8 +1707,8 @@ DSP与其它广告产品的相比，多了定制化用户划分功能，即图�
 </div>
 </div>
 
-<div id="outline-container-org1cda99e" class="outline-4">
-<h4 id="org1cda99e"><span class="section-number-4">9.2.4</span> 广告安全</h4>
+<div id="outline-container-org4bb9c4d" class="outline-4">
+<h4 id="org4bb9c4d"><span class="section-number-4">9.2.4</span> 广告安全</h4>
 <div class="outline-text-4" id="text-9-2-4">
 <p>
 为了服务于广告主，将流量监测、作弊监测和品牌保护等一系列任务都一站式地完成，从而保证广告投放过程对于广告主的安全性，市场上产生了广告安全相关的技术公司。
@@ -1671,12 +1717,12 @@ DSP与其它广告产品的相比，多了定制化用户划分功能，即图�
 </div>
 </div>
 
-<div id="outline-container-org65c053e" class="outline-3">
-<h3 id="org65c053e"><span class="section-number-3">9.3</span> 隐私保护和数据安全</h3>
+<div id="outline-container-org1c3335a" class="outline-3">
+<h3 id="org1c3335a"><span class="section-number-3">9.3</span> 隐私保护和数据安全</h3>
 <div class="outline-text-3" id="text-9-3">
 </div>
-<div id="outline-container-orgdd6ef67" class="outline-4">
-<h4 id="orgdd6ef67"><span class="section-number-4">9.3.1</span> 用户身份标识</h4>
+<div id="outline-container-orgd5186eb" class="outline-4">
+<h4 id="orgd5186eb"><span class="section-number-4">9.3.1</span> 用户身份标识</h4>
 <div class="outline-text-4" id="text-9-3-1">
 <p>
 cookie,account,imei etc&#x2026;
@@ -1684,11 +1730,11 @@ cookie,account,imei etc&#x2026;
 </div>
 </div>
 
-<div id="outline-container-orgfcac20b" class="outline-4">
-<h4 id="orgfcac20b"><span class="section-number-4">9.3.2</span> 去匿名化技术及应用</h4>
+<div id="outline-container-orgdea0e91" class="outline-4">
+<h4 id="orgdea0e91"><span class="section-number-4">9.3.2</span> 去匿名化技术及应用</h4>
 </div>
-<div id="outline-container-orgd000a3f" class="outline-4">
-<h4 id="orgd000a3f"><span class="section-number-4">9.3.3</span> RTB中的数据安全问题</h4>
+<div id="outline-container-org6bbce67" class="outline-4">
+<h4 id="org6bbce67"><span class="section-number-4">9.3.3</span> RTB中的数据安全问题</h4>
 <div class="outline-text-4" id="text-9-3-3">
 <p>
 我们先来看看供给方的数据安全性问题。由于在RTB过程中，Adx需要向参与竞价的DSP广播每次展示的URL和cookie，使得DSP理论上存在规模化监听媒体用户行为的可能。假设有某个恶意的DSP，对于能够参与竞价的所有广告请求，都以很低的价格参与竞价，目的不在于赢得流量，而在于收集媒体上的用户行为，这就产生了媒体数据的安全问题，我们将其称为供给方数据安全(Supply Data Security)。供给方的数据安全问题尽管在RTB中确实存在，但是并不是想象中那样严重。我们可以回顾一下询价优化技术：由于带宽的限制，实际上在每次询价时，Adx应该尽可能只向那些最可能赢得竞价的DSP发送询价请求，而那些以恶意收集数据为目的的DSP，在理想情况下应该被挡在大部分的询价以外。
@@ -1701,10 +1747,15 @@ cookie,account,imei etc&#x2026;
 </div>
 </div>
 
-<div id="outline-container-org120b37d" class="outline-3">
-<h3 id="org120b37d"><span class="section-number-3">9.4</span> SoLoMo时代的广告</h3>
+<div id="outline-container-org892c0f7" class="outline-3">
+<h3 id="org892c0f7"><span class="section-number-3">9.4</span> SoLoMo时代的广告</h3>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/computational-advertising.html';this.page.identifier = 'computational-advertising.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

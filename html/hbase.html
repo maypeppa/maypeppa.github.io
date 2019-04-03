@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HBase</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">HBase</h1>
@@ -38,34 +84,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7a854d0">1. 单节点搭建</a></li>
-<li><a href="#orgd53536a">2. table configuration</a></li>
-<li><a href="#org4c91d70">3. hbase shell</a></li>
-<li><a href="#org96750b1">4. hbase hbck</a></li>
-<li><a href="#org8f1b687">5. hbase increment</a></li>
-<li><a href="#org13f2a88">6. python client</a></li>
-<li><a href="#org4ba5531">7. 获取集群运行状况</a></li>
-<li><a href="#org0752ef5">8. bulk load</a></li>
-<li><a href="#org5e679d7">9. hbase merge</a></li>
-<li><a href="#org9c099a9">10. hbase export/import</a></li>
-<li><a href="#org834ea01">11. region can't be assigned</a></li>
-<li><a href="#org5fe9ca2">12. output error</a></li>
-<li><a href="#org143be53">13. zookeeper session expired</a></li>
-<li><a href="#orge4003d4">14. lease expired exception</a></li>
-<li><a href="#org89e769e">15. filesystem not available</a></li>
-<li><a href="#org22eb7ba">16. error block recovery</a></li>
-<li><a href="#orgee06427">17. dyq's hbase representation</a></li>
-<li><a href="#orgf4c780d">18. put大小限制分析</a></li>
-<li><a href="#orgf1a6c2a">19. put过程代码分析</a></li>
-<li><a href="#org99ba2e0">20. asynchbase</a></li>
-<li><a href="#orgf2ff33e">21. clock skew</a></li>
-<li><a href="#orga98ebde">22. hbase join</a></li>
+<li><a href="#orgd918bcd">1. 单节点搭建</a></li>
+<li><a href="#org599b8dd">2. table configuration</a></li>
+<li><a href="#orgdf7725e">3. hbase shell</a></li>
+<li><a href="#org8cfa6f6">4. hbase hbck</a></li>
+<li><a href="#orga2e0b5b">5. hbase increment</a></li>
+<li><a href="#orga65c513">6. python client</a></li>
+<li><a href="#orga8d38dd">7. 获取集群运行状况</a></li>
+<li><a href="#org5c6340b">8. bulk load</a></li>
+<li><a href="#org50c55f0">9. hbase merge</a></li>
+<li><a href="#org29ea3f3">10. hbase export/import</a></li>
+<li><a href="#org6d0068a">11. region can't be assigned</a></li>
+<li><a href="#orgeb0928d">12. output error</a></li>
+<li><a href="#org07f3697">13. zookeeper session expired</a></li>
+<li><a href="#org9b509bf">14. lease expired exception</a></li>
+<li><a href="#org6acdbf2">15. filesystem not available</a></li>
+<li><a href="#orgc0ba7e9">16. error block recovery</a></li>
+<li><a href="#orge45007a">17. dyq's hbase representation</a></li>
+<li><a href="#orgc970b57">18. put大小限制分析</a></li>
+<li><a href="#org70449a8">19. put过程代码分析</a></li>
+<li><a href="#org964c184">20. asynchbase</a></li>
+<li><a href="#org37e9a1e">21. clock skew</a></li>
+<li><a href="#orgae1a2cc">22. hbase join</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7a854d0" class="outline-2">
-<h2 id="org7a854d0"><span class="section-number-2">1</span> 单节点搭建</h2>
+<div id="outline-container-orgd918bcd" class="outline-2">
+<h2 id="orgd918bcd"><span class="section-number-2">1</span> 单节点搭建</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 修改conf/hbase-site.xml,增加选项
@@ -90,12 +136,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgd53536a" class="outline-2">
-<h2 id="orgd53536a"><span class="section-number-2">2</span> table configuration</h2>
+<div id="outline-container-org599b8dd" class="outline-2">
+<h2 id="org599b8dd"><span class="section-number-2">2</span> table configuration</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>DATA_BLOCK_ENCODING =&gt; 'FAST_DIFF'(PREFIX,DIFF) # block压缩算法（偏向应用层）</li>
-<li>ENCODE_ON_DISK =&gt; 'false' # 以上encoding是否需要作用在disk上</li>
+<li>DATA<sub>BLOCK</sub><sub>ENCODING</sub> =&gt; 'FAST<sub>DIFF</sub>'(PREFIX,DIFF) # block压缩算法（偏向应用层）</li>
+<li>ENCODE<sub>ON</sub><sub>DISK</sub> =&gt; 'false' # 以上encoding是否需要作用在disk上</li>
 <li>BLOOMFILTER =&gt; 'ROW'(ROWCOL) # 按照row还是按照row+qualifier做bloom filter.</li>
 <li>COMPRESSION =&gt; 'SNAPPY' # block压缩算法（偏向系统层）</li>
 <li>BLOCKSIZE =&gt; '32768' # 对于随机查询高的table,blocksize缩小可以减少LRUCache使用</li>
@@ -105,8 +151,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4c91d70" class="outline-2">
-<h2 id="org4c91d70"><span class="section-number-2">3</span> hbase shell</h2>
+<div id="outline-container-orgdf7725e" class="outline-2">
+<h2 id="orgdf7725e"><span class="section-number-2">3</span> hbase shell</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>scan 'test'
@@ -124,18 +170,18 @@
 <li>COLUMN = &gt; ['cf:url']</li>
 </ul></li>
 <li>put 'test', 'rowkey', 'cf:url', 'value'</li>
-<li>balance_switch (true/false) # 是否允许balance</li>
-<li>balancer # 执行balance. 和balance_switch有关
+<li>balance<sub>switch</sub> (true/false) # 是否允许balance</li>
+<li>balancer # 执行balance. 和balance<sub>switch有关</sub>
 <ul class="org-ul">
 <li>如果存在region in transition的话，那么直接返回false</li>
 </ul></li>
-<li>assign &lt;region_name&gt;
+<li>assign &lt;region<sub>name</sub>&gt;
 <ul class="org-ul">
 <li>如果存在某些region in transition一直没有成功的话，说明这个region一直处于unassigned状态，可以手动assign.</li>
 <li>hadoop - Repair HBase table (unassigned region in transition) - Stack Overflow : <a href="http://stackoverflow.com/questions/11010167/repair-hbase-table-unassigned-region-in-transition">http://stackoverflow.com/questions/11010167/repair-hbase-table-unassigned-region-in-transition</a></li>
 </ul></li>
 <li>flush 'test' 将in-memory数据刷到文件中</li>
-<li>compact / major_compact 'test' 将表格做major compaction.</li>
+<li>compact / major<sub>compact</sub> 'test' 将表格做major compaction.</li>
 </ul>
 
 <p>
@@ -144,8 +190,8 @@
 </div>
 </div>
 
-<div id="outline-container-org96750b1" class="outline-2">
-<h2 id="org96750b1"><span class="section-number-2">4</span> hbase hbck</h2>
+<div id="outline-container-org8cfa6f6" class="outline-2">
+<h2 id="org8cfa6f6"><span class="section-number-2">4</span> hbase hbck</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>默认检查hbase状态</li>
@@ -154,8 +200,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8f1b687" class="outline-2">
-<h2 id="org8f1b687"><span class="section-number-2">5</span> hbase increment</h2>
+<div id="outline-container-orga2e0b5b" class="outline-2">
+<h2 id="orga2e0b5b"><span class="section-number-2">5</span> hbase increment</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <a href="http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Increment.html">http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Increment.html</a>
@@ -167,8 +213,8 @@
 </div>
 </div>
 
-<div id="outline-container-org13f2a88" class="outline-2">
-<h2 id="org13f2a88"><span class="section-number-2">6</span> python client</h2>
+<div id="outline-container-orga65c513" class="outline-2">
+<h2 id="orga65c513"><span class="section-number-2">6</span> python client</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 使用python来访问hbase确实可以很大地提高开发效率，但是通过thrift server来进行中转的话对于性能还是存在影响的，因此比较适合测试。
@@ -207,8 +253,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </div>
 </div>
 
-<div id="outline-container-org4ba5531" class="outline-2">
-<h2 id="org4ba5531"><span class="section-number-2">7</span> 获取集群运行状况</h2>
+<div id="outline-container-orga8d38dd" class="outline-2">
+<h2 id="orga8d38dd"><span class="section-number-2">7</span> 获取集群运行状况</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><a href="https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/java/hbase/src/main/java/com/dirlt/java/hbase/ClusterSummary.java">code on github</a></li>
@@ -218,8 +264,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </div>
 </div>
 
-<div id="outline-container-org0752ef5" class="outline-2">
-<h2 id="org0752ef5"><span class="section-number-2">8</span> bulk load</h2>
+<div id="outline-container-org5c6340b" class="outline-2">
+<h2 id="org5c6340b"><span class="section-number-2">8</span> bulk load</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="http://hbase.apache.org/book/arch.bulk.load.html">http://hbase.apache.org/book/arch.bulk.load.html</a></li>
@@ -251,8 +297,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </div>
 </div>
 
-<div id="outline-container-org5e679d7" class="outline-2">
-<h2 id="org5e679d7"><span class="section-number-2">9</span> hbase merge</h2>
+<div id="outline-container-org50c55f0" class="outline-2">
+<h2 id="org50c55f0"><span class="section-number-2">9</span> hbase merge</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>#note: 需要停表或者是停集群</li>
@@ -268,8 +314,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </ul>
 </div>
 </div>
-<div id="outline-container-org9c099a9" class="outline-2">
-<h2 id="org9c099a9"><span class="section-number-2">10</span> hbase export/import</h2>
+<div id="outline-container-org29ea3f3" class="outline-2">
+<h2 id="org29ea3f3"><span class="section-number-2">10</span> hbase export/import</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 使用导出导入功能可以用来做数据迁移，这只是数据迁移的一种办法。这里介绍了许多办法 <a href="http://hbase.apache.org/book/ops.backup.html">http://hbase.apache.org/book/ops.backup.html</a> 包括
@@ -323,7 +369,7 @@ HFiles of data to prepare for a bulk data load, pass the option:
  To apply a generic org.apache.hadoop.hbase.filter.Filter to the input, use
 -Dimport.filter.class=&lt;name of filter class&gt;
 -Dimport.filter.args=&lt;comma separated list of args for filter
- NOTE: The filter will be applied BEFORE doing key renames via the HBASE_IMPORTER_RENAME_CFS property. Futher, filters will only use theFilter#filterKeyValue(KeyValue) method to determine if the KeyValue should be added; Filter.ReturnCode#INCLUDE and #INCLUDE_AND_NEXT_COL will be considered as including the KeyValue.
+ NOTE: The filter will be applied BEFORE doing key renames via the HBASE<sub>IMPORTER</sub><sub>RENAME</sub><sub>CFS</sub> property. Futher, filters will only use theFilter#filterKeyValue(KeyValue) method to determine if the KeyValue should be added; Filter.ReturnCode#INCLUDE and #INCLUDE<sub>AND</sub><sub>NEXT</sub><sub>COL</sub> will be considered as including the KeyValue.
 For performance consider the following options:
 -Dmapred.map.tasks.speculative.execution=false
 -Dmapred.reduce.tasks.speculative.execution=false
@@ -366,8 +412,8 @@ hadoop jar ~/utils/hbase-0.94.6-cdh4.3.0/hbase-0.94.6-cdh4.3.0-security.jar expo
 </div>
 </div>
 
-<div id="outline-container-org834ea01" class="outline-2">
-<h2 id="org834ea01"><span class="section-number-2">11</span> region can't be assigned</h2>
+<div id="outline-container-org6d0068a" class="outline-2">
+<h2 id="org6d0068a"><span class="section-number-2">11</span> region can't be assigned</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 region一直assign不上，观察曾经尝试被assigned的节点出现下面的错误
@@ -417,8 +463,8 @@ java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File do
 </div>
 </div>
 
-<div id="outline-container-org5fe9ca2" class="outline-2">
-<h2 id="org5fe9ca2"><span class="section-number-2">12</span> output error</h2>
+<div id="outline-container-orgeb0928d" class="outline-2">
+<h2 id="orgeb0928d"><span class="section-number-2">12</span> output error</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 2013.04.07 AttachAppkeyToDeviceInfo失败很多次，都是因为连接hbase很多次失败。观察发现每次task都是连接某一个regionserver失败。日志中出现很多下面这样的错误：
@@ -450,8 +496,8 @@ java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File do
 </div>
 </div>
 
-<div id="outline-container-org143be53" class="outline-2">
-<h2 id="org143be53"><span class="section-number-2">13</span> zookeeper session expired</h2>
+<div id="outline-container-org07f3697" class="outline-2">
+<h2 id="org07f3697"><span class="section-number-2">13</span> zookeeper session expired</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 HBase中出现如下FATAL信息。单独看这个日志只是知道zookeeper长时间没有汇报断开连接，但是具体是什么原因需要分析上下文
@@ -513,8 +559,8 @@ org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = 
 </div>
 </div>
 
-<div id="outline-container-orge4003d4" class="outline-2">
-<h2 id="orge4003d4"><span class="section-number-2">14</span> lease expired exception</h2>
+<div id="outline-container-org9b509bf" class="outline-2">
+<h2 id="org9b509bf"><span class="section-number-2">14</span> lease expired exception</h2>
 <div class="outline-text-2" id="text-14">
 <pre class="example">
 2013-04-11 08:07:34,121 ERROR org.apache.hadoop.hbase.regionserver.HRegionServer: Close and delete failed
@@ -552,8 +598,8 @@ not exist. [Lease.  Holder: DFSClient_hb_rs_dp22.umeng.com,60020,1365284229083_1
 </div>
 </div>
 
-<div id="outline-container-org89e769e" class="outline-2">
-<h2 id="org89e769e"><span class="section-number-2">15</span> filesystem not available</h2>
+<div id="outline-container-org6acdbf2" class="outline-2">
+<h2 id="org6acdbf2"><span class="section-number-2">15</span> filesystem not available</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 hbase出现如下fatal日志，并且可以看到这个日志造成region server退出。
@@ -632,8 +678,8 @@ throws IOException {
 </div>
 </div>
 
-<div id="outline-container-org22eb7ba" class="outline-2">
-<h2 id="org22eb7ba"><span class="section-number-2">16</span> error block recovery</h2>
+<div id="outline-container-orgc0ba7e9" class="outline-2">
+<h2 id="orgc0ba7e9"><span class="section-number-2">16</span> error block recovery</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 在dp47上面出现如下日志：
@@ -688,8 +734,8 @@ org.apache.hadoop.ipc.RemoteException: org.apache.hadoop.ipc.RemoteException: ja
 </div>
 </div>
 
-<div id="outline-container-orgee06427" class="outline-2">
-<h2 id="orgee06427"><span class="section-number-2">17</span> dyq's hbase representation</h2>
+<div id="outline-container-orge45007a" class="outline-2">
+<h2 id="orge45007a"><span class="section-number-2">17</span> dyq's hbase representation</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 @ 2012-08-16
@@ -740,8 +786,8 @@ scan过程大致是这样的：
 </div>
 </div>
 
-<div id="outline-container-orgf4c780d" class="outline-2">
-<h2 id="orgf4c780d"><span class="section-number-2">18</span> put大小限制分析</h2>
+<div id="outline-container-orgc970b57" class="outline-2">
+<h2 id="orgc970b57"><span class="section-number-2">18</span> put大小限制分析</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 在HTable.validatePut对put大小进行了限制
@@ -755,9 +801,9 @@ private void validatePut(final Put put) throws IllegalArgumentException{
   if (maxKeyValueSize &gt; 0) {
     for (List&lt;KeyValue&gt; list : put.getFamilyMap().values()) {
       for (KeyValue kv : list) {
-        if (kv.getLength() &gt; maxKeyValueSize) {
-          throw new IllegalArgumentException("KeyValue size too large");
-        }
+	if (kv.getLength() &gt; maxKeyValueSize) {
+	  throw new IllegalArgumentException("KeyValue size too large");
+	}
       }
     }
   }
@@ -796,8 +842,8 @@ private void validatePut(final Put put) throws IllegalArgumentException{
 </div>
 </div>
 
-<div id="outline-container-orgf1a6c2a" class="outline-2">
-<h2 id="orgf1a6c2a"><span class="section-number-2">19</span> put过程代码分析</h2>
+<div id="outline-container-org70449a8" class="outline-2">
+<h2 id="org70449a8"><span class="section-number-2">19</span> put过程代码分析</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 最后都走到了下面这个方法，可以看到对于每次put并不是立即去写hbase的，除非有特殊开关autoFlush. writeBuffer是一个ArrayList用来hold住所有需要write的put.默认autoFlush=false，所以会缓存到writeBufferSize大小才会commit，而大小是通过heapSize来得到的。而writeBufferSize是通过hbase.client.write.buffer这个属性配置的，默认是2097152=2M
@@ -833,7 +879,7 @@ private void validatePut(final Put put) throws IllegalArgumentException{
       // the write buffer was adjusted by processBatchOfPuts
       currentWriteBufferSize = 0;
       for (Put aPut : writeBuffer) {
-        currentWriteBufferSize += aPut.heapSize();
+	currentWriteBufferSize += aPut.heapSize();
       }
     }
   }
@@ -861,8 +907,8 @@ connection是一个virtual class,HConnection,默认实现是HConnectionImplement
     // walk the list backwards, so we can remove from list without impacting the indexes of earlier members
     for (int i = results.length - 1; i&gt;=0; i--) {
       if (results[i] instanceof Result) {
-        // successful Puts are removed from the list here.
-        list.remove(i);
+	// successful Puts are removed from the list here.
+	list.remove(i);
       }
     }
   }
@@ -891,8 +937,8 @@ processBatch代码比较冗长，大致意思如下：
 </div>
 </div>
 
-<div id="outline-container-org99ba2e0" class="outline-2">
-<h2 id="org99ba2e0"><span class="section-number-2">20</span> asynchbase</h2>
+<div id="outline-container-org964c184" class="outline-2">
+<h2 id="org964c184"><span class="section-number-2">20</span> asynchbase</h2>
 <div class="outline-text-2" id="text-20">
 <p>
 <a href="https://github.com/stumbleupon/asynchbase">https://github.com/stumbleupon/asynchbase</a>
@@ -994,8 +1040,8 @@ So everything is fine :)
 </div>
 </div>
 
-<div id="outline-container-orgf2ff33e" class="outline-2">
-<h2 id="orgf2ff33e"><span class="section-number-2">21</span> clock skew</h2>
+<div id="outline-container-org37e9a1e" class="outline-2">
+<h2 id="org37e9a1e"><span class="section-number-2">21</span> clock skew</h2>
 <div class="outline-text-2" id="text-21">
 <p>
 如果region server和master的时间偏差太大的话，会造成region server启动失败
@@ -1045,8 +1091,8 @@ rs2最近写入的数据是v2，而接下来如果从rs2查询"latest"的数据�
 </div>
 </div>
 
-<div id="outline-container-orga98ebde" class="outline-2">
-<h2 id="orga98ebde"><span class="section-number-2">22</span> hbase join</h2>
+<div id="outline-container-orgae1a2cc" class="outline-2">
+<h2 id="orgae1a2cc"><span class="section-number-2">22</span> hbase join</h2>
 <div class="outline-text-2" id="text-22">
 <p>
 <a href="http://stackoverflow.com/questions/11327316/how-to-join-tables-in-hbase">http://stackoverflow.com/questions/11327316/how-to-join-tables-in-hbase</a>
@@ -1066,6 +1112,11 @@ rs2最近写入的数据是v2，而接下来如果从rs2查询"latest"的数据�
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/hbase.html';this.page.identifier = 'hbase.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

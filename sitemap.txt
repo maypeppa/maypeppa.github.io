@@ -450,6 +450,7 @@ https://maypeppa.github.io/html/nginx.html
 https://maypeppa.github.io/html/nine-algos-that-changed-the-future.html
 https://maypeppa.github.io/html/nlp-sequence-models.html
 https://maypeppa.github.io/html/nmstl.html
+https://maypeppa.github.io/html/nnt-words-archive.html
 https://maypeppa.github.io/html/nobody-ever-got-fired-for-buying-a-cluster.html
 https://maypeppa.github.io/html/nolearn.html
 https://maypeppa.github.io/html/nosql-back-to-the-feature-or-yet-another-db-feature.html

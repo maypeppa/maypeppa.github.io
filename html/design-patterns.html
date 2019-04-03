@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>设计模式(Design Patterns)</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">设计模式(Design Patterns)</h1>
@@ -16,50 +62,50 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8993a39">1. 原则</a></li>
-<li><a href="#org0d2abad">2. 分类</a></li>
-<li><a href="#org41ab3b8">3. 继承/组合/参数化类型</a>
+<li><a href="#org3d30710">1. 原则</a></li>
+<li><a href="#org12870e0">2. 分类</a></li>
+<li><a href="#org997778d">3. 继承/组合/参数化类型</a>
 <ul>
-<li><a href="#org1ade55b">3.1. 继承</a></li>
-<li><a href="#org59bef8d">3.2. 组合</a></li>
-<li><a href="#org3a784a0">3.3. 参数化类型</a></li>
-<li><a href="#org0731d9e">3.4. 总结</a></li>
+<li><a href="#org2674e66">3.1. 继承</a></li>
+<li><a href="#orgf98648e">3.2. 组合</a></li>
+<li><a href="#orgc7d21ef">3.3. 参数化类型</a></li>
+<li><a href="#orgf7eb957">3.4. 总结</a></li>
 </ul>
 </li>
-<li><a href="#org7efd2df">4. 创建型</a>
+<li><a href="#orgad0953b">4. 创建型</a>
 <ul>
-<li><a href="#org65d5c08">4.1. Abstract Factory</a></li>
-<li><a href="#org9088a6d">4.2. Builder</a></li>
-<li><a href="#org6302001">4.3. Factory Method</a></li>
-<li><a href="#org77f8c4b">4.4. Prototype</a></li>
-<li><a href="#org67977b2">4.5. Singleton</a></li>
+<li><a href="#org510e2d6">4.1. Abstract Factory</a></li>
+<li><a href="#orgdd4317e">4.2. Builder</a></li>
+<li><a href="#orge9caf58">4.3. Factory Method</a></li>
+<li><a href="#org4d18f88">4.4. Prototype</a></li>
+<li><a href="#orgdfde6b5">4.5. Singleton</a></li>
 </ul>
 </li>
-<li><a href="#orgf5e243d">5. 结构型</a>
+<li><a href="#org6f5c968">5. 结构型</a>
 <ul>
-<li><a href="#orgfb21e01">5.1. Adapter</a></li>
-<li><a href="#org5fb01e5">5.2. Bridge</a></li>
-<li><a href="#org7944955">5.3. Composite</a></li>
-<li><a href="#orgb8f4da7">5.4. Decorator</a></li>
-<li><a href="#org976f167">5.5. Facade</a></li>
-<li><a href="#org454db9f">5.6. Flyweight</a></li>
-<li><a href="#orgb30602d">5.7. Proxy</a></li>
-<li><a href="#org10f064e">5.8. 对比</a></li>
+<li><a href="#orga0f4a2e">5.1. Adapter</a></li>
+<li><a href="#org0da3b4c">5.2. Bridge</a></li>
+<li><a href="#org8c45f2f">5.3. Composite</a></li>
+<li><a href="#orga15240d">5.4. Decorator</a></li>
+<li><a href="#orgd743dcb">5.5. Facade</a></li>
+<li><a href="#orgc50a334">5.6. Flyweight</a></li>
+<li><a href="#org04135ff">5.7. Proxy</a></li>
+<li><a href="#orgba0efab">5.8. 对比</a></li>
 </ul>
 </li>
-<li><a href="#org3abd7a9">6. 行为型</a>
+<li><a href="#org83649a7">6. 行为型</a>
 <ul>
-<li><a href="#orga90b616">6.1. Chain of Resonsibility</a></li>
-<li><a href="#org84a1fb8">6.2. Command</a></li>
-<li><a href="#org7d45ea2">6.3. Interpreter</a></li>
-<li><a href="#org22e3c6b">6.4. Iterator</a></li>
-<li><a href="#orgdc2d8e5">6.5. Mediator</a></li>
-<li><a href="#org42d38d4">6.6. Memento</a></li>
-<li><a href="#org1ba9a5c">6.7. Observer</a></li>
-<li><a href="#org886061f">6.8. State</a></li>
-<li><a href="#org5134719">6.9. Strategy</a></li>
-<li><a href="#org261a3d0">6.10. Template Method</a></li>
-<li><a href="#org775527e">6.11. Visitor</a></li>
+<li><a href="#org8d852a0">6.1. Chain of Resonsibility</a></li>
+<li><a href="#org091fbb3">6.2. Command</a></li>
+<li><a href="#org4704536">6.3. Interpreter</a></li>
+<li><a href="#org87f1cf5">6.4. Iterator</a></li>
+<li><a href="#org72b3290">6.5. Mediator</a></li>
+<li><a href="#org679033b">6.6. Memento</a></li>
+<li><a href="#org54812fb">6.7. Observer</a></li>
+<li><a href="#org912a8d8">6.8. State</a></li>
+<li><a href="#org2a34ca5">6.9. Strategy</a></li>
+<li><a href="#org528ed93">6.10. Template Method</a></li>
+<li><a href="#orga8e4e67">6.11. Visitor</a></li>
 </ul>
 </li>
 </ul>
@@ -81,8 +127,8 @@
 没有必要在使用中刻意地去拼凑使用某种模式，相反应该让模式渗入到自己的思想中去，指导自己写出更加优美更加可维护的代码，而不用在意"我使用了哪种模式"。
 </p>
 
-<div id="outline-container-org8993a39" class="outline-2">
-<h2 id="org8993a39"><span class="section-number-2">1</span> 原则</h2>
+<div id="outline-container-org3d30710" class="outline-2">
+<h2 id="org3d30710"><span class="section-number-2">1</span> 原则</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>针对接口而不是实现来进行编程。</li>
@@ -91,8 +137,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0d2abad" class="outline-2">
-<h2 id="org0d2abad"><span class="section-number-2">2</span> 分类</h2>
+<div id="outline-container-org12870e0" class="outline-2">
+<h2 id="org12870e0"><span class="section-number-2">2</span> 分类</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 根据模式目的可以分为三类：
@@ -105,8 +151,8 @@
 </div>
 </div>
 
-<div id="outline-container-org41ab3b8" class="outline-2">
-<h2 id="org41ab3b8"><span class="section-number-2">3</span> 继承/组合/参数化类型</h2>
+<div id="outline-container-org997778d" class="outline-2">
+<h2 id="org997778d"><span class="section-number-2">3</span> 继承/组合/参数化类型</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 在面向对象中最常用的两种代码复用技术就是继承和组合，而参数化类型也是一种有效的代码复用技术。
@@ -114,8 +160,8 @@
 </p>
 </div>
 
-<div id="outline-container-org1ade55b" class="outline-3">
-<h3 id="org1ade55b"><span class="section-number-3">3.1</span> 继承</h3>
+<div id="outline-container-org2674e66" class="outline-3">
+<h3 id="org2674e66"><span class="section-number-3">3.1</span> 继承</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>通过继承方式，子类能够非常方便地改写父类方法，同时保留部分父类方法，可以说是能够最快速地达到代码复用。</li>
@@ -126,8 +172,8 @@
 </div>
 </div>
 
-<div id="outline-container-org59bef8d" class="outline-3">
-<h3 id="org59bef8d"><span class="section-number-3">3.2</span> 组合</h3>
+<div id="outline-container-orgf98648e" class="outline-3">
+<h3 id="orgf98648e"><span class="section-number-3">3.2</span> 组合</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>对象组合通过获得其他对象引用而在运行时刻动态定义的。</li>
@@ -140,8 +186,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3a784a0" class="outline-3">
-<h3 id="org3a784a0"><span class="section-number-3">3.3</span> 参数化类型</h3>
+<div id="outline-container-orgc7d21ef" class="outline-3">
+<h3 id="orgc7d21ef"><span class="section-number-3">3.3</span> 参数化类型</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>参数化类型方式是基于接口的编程，在一定程度上消除了类型给程序设计语言带来的限制。</li>
@@ -152,8 +198,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0731d9e" class="outline-3">
-<h3 id="org0731d9e"><span class="section-number-3">3.4</span> 总结</h3>
+<div id="outline-container-orgf7eb957" class="outline-3">
+<h3 id="orgf7eb957"><span class="section-number-3">3.4</span> 总结</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>对象组合技术允许你在运行时刻改变被组合的行为，但是它存在间接性，相对来说比较低效。</li>
@@ -164,8 +210,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7efd2df" class="outline-2">
-<h2 id="org7efd2df"><span class="section-number-2">4</span> 创建型</h2>
+<div id="outline-container-orgad0953b" class="outline-2">
+<h2 id="orgad0953b"><span class="section-number-2">4</span> 创建型</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 一个类创建型模式使用继承改变被实例化的类，而一个对象创建型模式将实例化委托给另外一个对象。
@@ -180,8 +226,8 @@
 </p>
 </div>
 
-<div id="outline-container-org65d5c08" class="outline-3">
-<h3 id="org65d5c08"><span class="section-number-3">4.1</span> Abstract Factory</h3>
+<div id="outline-container-org510e2d6" class="outline-3">
+<h3 id="org510e2d6"><span class="section-number-3">4.1</span> Abstract Factory</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 意图：提供一个创建一系列相互依赖的对象的接口。
@@ -201,8 +247,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9088a6d" class="outline-3">
-<h3 id="org9088a6d"><span class="section-number-3">4.2</span> Builder</h3>
+<div id="outline-container-orgdd4317e" class="outline-3">
+<h3 id="orgdd4317e"><span class="section-number-3">4.2</span> Builder</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 意图：将一个复杂对象构建过程和元素表示分离。
@@ -221,8 +267,8 @@ Director内部调用Builder来创建元素并且组装起来。最终通过Build
 </div>
 </div>
 
-<div id="outline-container-org6302001" class="outline-3">
-<h3 id="org6302001"><span class="section-number-3">4.3</span> Factory Method</h3>
+<div id="outline-container-orge9caf58" class="outline-3">
+<h3 id="orge9caf58"><span class="section-number-3">4.3</span> Factory Method</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 意图：抽象类需要创建一个对象时，让子类决定实例化哪一个类。
@@ -241,8 +287,8 @@ Director内部调用Builder来创建元素并且组装起来。最终通过Build
 </div>
 </div>
 
-<div id="outline-container-org77f8c4b" class="outline-3">
-<h3 id="org77f8c4b"><span class="section-number-3">4.4</span> Prototype</h3>
+<div id="outline-container-org4d18f88" class="outline-3">
+<h3 id="org4d18f88"><span class="section-number-3">4.4</span> Prototype</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 意图：通过克隆原型实例来创建新的对象。
@@ -262,8 +308,8 @@ Director内部调用Builder来创建元素并且组装起来。最终通过Build
 </div>
 </div>
 
-<div id="outline-container-org67977b2" class="outline-3">
-<h3 id="org67977b2"><span class="section-number-3">4.5</span> Singleton</h3>
+<div id="outline-container-orgdfde6b5" class="outline-3">
+<h3 id="orgdfde6b5"><span class="section-number-3">4.5</span> Singleton</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 意图：保证一个类仅仅有一个实例并且提供一个访问它的全局访问点。
@@ -281,8 +327,8 @@ Director内部调用Builder来创建元素并且组装起来。最终通过Build
 </div>
 </div>
 
-<div id="outline-container-orgf5e243d" class="outline-2">
-<h2 id="orgf5e243d"><span class="section-number-2">5</span> 结构型</h2>
+<div id="outline-container-org6f5c968" class="outline-2">
+<h2 id="org6f5c968"><span class="section-number-2">5</span> 结构型</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 结构型类模式采用继承机制来组合接口或者是实现。结构型对象模式不是对接口和实现进行组合，
@@ -290,8 +336,8 @@ Director内部调用Builder来创建元素并且组装起来。最终通过Build
 </p>
 </div>
 
-<div id="outline-container-orgfb21e01" class="outline-3">
-<h3 id="orgfb21e01"><span class="section-number-3">5.1</span> Adapter</h3>
+<div id="outline-container-orga0f4a2e" class="outline-3">
+<h3 id="orga0f4a2e"><span class="section-number-3">5.1</span> Adapter</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 意图：将一个类的接口转化成为客户希望的另外一个接口。
@@ -308,8 +354,8 @@ Adapter模式就是产生一个新类C来使用A的Foo()接口实现Bar()。
 </div>
 </div>
 
-<div id="outline-container-org5fb01e5" class="outline-3">
-<h3 id="org5fb01e5"><span class="section-number-3">5.2</span> Bridge</h3>
+<div id="outline-container-org0da3b4c" class="outline-3">
+<h3 id="org0da3b4c"><span class="section-number-3">5.2</span> Bridge</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 意图：将抽象部分和具体实现相分离，使得它们之间可以独立变化。
@@ -340,8 +386,8 @@ Shape内部持有这个GDI对象，即可以在Linux和Win32下面很容易地�
 </div>
 </div>
 
-<div id="outline-container-org7944955" class="outline-3">
-<h3 id="org7944955"><span class="section-number-3">5.3</span> Composite</h3>
+<div id="outline-container-org8c45f2f" class="outline-3">
+<h3 id="org8c45f2f"><span class="section-number-3">5.3</span> Composite</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 意图：将对象组合成为树形以表示层级结构，对于叶子和非叶子节点对象使用需要有一致性。
@@ -355,8 +401,8 @@ Composite模式强调这种层级结构下面，叶子和非叶子节点需要�
 </div>
 </div>
 
-<div id="outline-container-orgb8f4da7" class="outline-3">
-<h3 id="orgb8f4da7"><span class="section-number-3">5.4</span> Decorator</h3>
+<div id="outline-container-orga15240d" class="outline-3">
+<h3 id="orga15240d"><span class="section-number-3">5.4</span> Decorator</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 意图：动态地给对象添加一些额外职责，通过组合而非继承方式完成。
@@ -377,8 +423,8 @@ Composite模式强调这种层级结构下面，叶子和非叶子节点需要�
 </div>
 </div>
 
-<div id="outline-container-org976f167" class="outline-3">
-<h3 id="org976f167"><span class="section-number-3">5.5</span> Facade</h3>
+<div id="outline-container-orgd743dcb" class="outline-3">
+<h3 id="orgd743dcb"><span class="section-number-3">5.5</span> Facade</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 意图：为子系统的一组接口提供一个一致的界面。
@@ -401,8 +447,8 @@ Facade模式对于大部分用户都是满足需求的。对于少部分不能�
 </div>
 </div>
 
-<div id="outline-container-org454db9f" class="outline-3">
-<h3 id="org454db9f"><span class="section-number-3">5.6</span> Flyweight</h3>
+<div id="outline-container-orgc50a334" class="outline-3">
+<h3 id="orgc50a334"><span class="section-number-3">5.6</span> Flyweight</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 意图：运用共享技术有效地支持大量细粒度对象。
@@ -421,8 +467,8 @@ Facade模式对于大部分用户都是满足需求的。对于少部分不能�
 </div>
 </div>
 
-<div id="outline-container-orgb30602d" class="outline-3">
-<h3 id="orgb30602d"><span class="section-number-3">5.7</span> Proxy</h3>
+<div id="outline-container-org04135ff" class="outline-3">
+<h3 id="org04135ff"><span class="section-number-3">5.7</span> Proxy</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 意图：为其他对象提供一种代理以控制对这个对象的访问。
@@ -436,8 +482,8 @@ Facade模式对于大部分用户都是满足需求的。对于少部分不能�
 </div>
 </div>
 
-<div id="outline-container-org10f064e" class="outline-3">
-<h3 id="org10f064e"><span class="section-number-3">5.8</span> 对比</h3>
+<div id="outline-container-orgba0efab" class="outline-3">
+<h3 id="orgba0efab"><span class="section-number-3">5.8</span> 对比</h3>
 <div class="outline-text-3" id="text-5-8">
 <p>
 这里个人感觉Adapter,Decorator以及Proxy之间比较相近，虽然说意图上差别很大，但是对于实践中，
@@ -452,8 +498,8 @@ Facade模式对于大部分用户都是满足需求的。对于少部分不能�
 </div>
 </div>
 
-<div id="outline-container-org3abd7a9" class="outline-2">
-<h2 id="org3abd7a9"><span class="section-number-2">6</span> 行为型</h2>
+<div id="outline-container-org83649a7" class="outline-2">
+<h2 id="org83649a7"><span class="section-number-2">6</span> 行为型</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 行为型涉及到算法和对象之间职责的分配。行为模式不仅描述对象或者是类的模式，还描述它们之间的通信模式。
@@ -466,8 +512,8 @@ Facade模式对于大部分用户都是满足需求的。对于少部分不能�
 </p>
 </div>
 
-<div id="outline-container-orga90b616" class="outline-3">
-<h3 id="orga90b616"><span class="section-number-3">6.1</span> Chain of Resonsibility</h3>
+<div id="outline-container-org8d852a0" class="outline-3">
+<h3 id="org8d852a0"><span class="section-number-3">6.1</span> Chain of Resonsibility</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 意图：将对象连成一条链并沿着链传递某个请求，直到有某个对象处理它为止。
@@ -482,8 +528,8 @@ Facade模式对于大部分用户都是满足需求的。对于少部分不能�
 </div>
 </div>
 
-<div id="outline-container-org84a1fb8" class="outline-3">
-<h3 id="org84a1fb8"><span class="section-number-3">6.2</span> Command</h3>
+<div id="outline-container-org091fbb3" class="outline-3">
+<h3 id="org091fbb3"><span class="section-number-3">6.2</span> Command</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 意图：将一个请求封装成为一个对象。
@@ -498,8 +544,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org7d45ea2" class="outline-3">
-<h3 id="org7d45ea2"><span class="section-number-3">6.3</span> Interpreter</h3>
+<div id="outline-container-org4704536" class="outline-3">
+<h3 id="org4704536"><span class="section-number-3">6.3</span> Interpreter</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 意图：为语言文法定义对应的类层次结构并配上响应的解释逻辑。
@@ -513,8 +559,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org22e3c6b" class="outline-3">
-<h3 id="org22e3c6b"><span class="section-number-3">6.4</span> Iterator</h3>
+<div id="outline-container-org87f1cf5" class="outline-3">
+<h3 id="org87f1cf5"><span class="section-number-3">6.4</span> Iterator</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 意图：提供一种方法顺序访问一个聚合对象中各个元素，但是又不需要暴露该对象内部表示。
@@ -528,8 +574,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-orgdc2d8e5" class="outline-3">
-<h3 id="orgdc2d8e5"><span class="section-number-3">6.5</span> Mediator</h3>
+<div id="outline-container-org72b3290" class="outline-3">
+<h3 id="org72b3290"><span class="section-number-3">6.5</span> Mediator</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 意图：用一个协调对象来封装一系列的对象交互。
@@ -548,8 +594,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org42d38d4" class="outline-3">
-<h3 id="org42d38d4"><span class="section-number-3">6.6</span> Memento</h3>
+<div id="outline-container-org679033b" class="outline-3">
+<h3 id="org679033b"><span class="section-number-3">6.6</span> Memento</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 意图：在不破坏封装性前提下，捕获一个对象的内部状态，并且在对象之外保存这个状态。
@@ -562,8 +608,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org1ba9a5c" class="outline-3">
-<h3 id="org1ba9a5c"><span class="section-number-3">6.7</span> Observer</h3>
+<div id="outline-container-org54812fb" class="outline-3">
+<h3 id="org54812fb"><span class="section-number-3">6.7</span> Observer</h3>
 <div class="outline-text-3" id="text-6-7">
 <p>
 意图：定义对象之间的依赖关系，当一个对象状态发生改变的话，所有依赖这个对象的对象都会被通知并且进行更新。
@@ -582,8 +628,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org886061f" class="outline-3">
-<h3 id="org886061f"><span class="section-number-3">6.8</span> State</h3>
+<div id="outline-container-org912a8d8" class="outline-3">
+<h3 id="org912a8d8"><span class="section-number-3">6.8</span> State</h3>
 <div class="outline-text-3" id="text-6-8">
 <p>
 意图：允许一个对象在其内部状态改变时改变它的行为。
@@ -596,8 +642,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org5134719" class="outline-3">
-<h3 id="org5134719"><span class="section-number-3">6.9</span> Strategy</h3>
+<div id="outline-container-org2a34ca5" class="outline-3">
+<h3 id="org2a34ca5"><span class="section-number-3">6.9</span> Strategy</h3>
 <div class="outline-text-3" id="text-6-9">
 <p>
 意图：定义一系列算法封装起来并且确保有相同接口，使得算法可替换。
@@ -605,8 +651,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org261a3d0" class="outline-3">
-<h3 id="org261a3d0"><span class="section-number-3">6.10</span> Template Method</h3>
+<div id="outline-container-org528ed93" class="outline-3">
+<h3 id="org528ed93"><span class="section-number-3">6.10</span> Template Method</h3>
 <div class="outline-text-3" id="text-6-10">
 <p>
 意图：定义一个操作里面算法的骨架，而将一些步骤延迟到子类。
@@ -625,8 +671,8 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 </div>
 </div>
 
-<div id="outline-container-org775527e" class="outline-3">
-<h3 id="org775527e"><span class="section-number-3">6.11</span> Visitor</h3>
+<div id="outline-container-orga8e4e67" class="outline-3">
+<h3 id="orga8e4e67"><span class="section-number-3">6.11</span> Visitor</h3>
 <div class="outline-text-3" id="text-6-11">
 <p>
 意图：表示一个作用于某个对象结构中的各个元素的操作。
@@ -642,6 +688,11 @@ Visitor模式就是要求把访问逻辑和元素表示分开。语法节点上�
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/design-patterns.html';this.page.identifier = 'design-patterns.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

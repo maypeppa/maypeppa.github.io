@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Convolutional Neural Networks</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Convolutional Neural Networks</h1>
@@ -16,14 +62,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org641fb3f">1. CNN的卷积基础</a></li>
-<li><a href="#org8956c64">2. 几种经典的CNN实现</a></li>
-<li><a href="#org8b4e517">3. Residual Network</a></li>
-<li><a href="#org562c029">4. Inception Network</a></li>
-<li><a href="#orgd0db2bf">5. Practical Advices</a></li>
-<li><a href="#org2157411">6. 物体检测(Object Detection)</a></li>
-<li><a href="#org987e6da">7. 脸部识别(Face Recognition)</a></li>
-<li><a href="#orgca2d43c">8. 风格迁移(Neural Style Transfer)</a></li>
+<li><a href="#orgf48b371">1. CNN的卷积基础</a></li>
+<li><a href="#orgd1b2b30">2. 几种经典的CNN实现</a></li>
+<li><a href="#org2ff0dda">3. Residual Network</a></li>
+<li><a href="#orgee2b0e2">4. Inception Network</a></li>
+<li><a href="#org326241a">5. Practical Advices</a></li>
+<li><a href="#org9d60e2d">6. 物体检测(Object Detection)</a></li>
+<li><a href="#orgb3f2d17">7. 脸部识别(Face Recognition)</a></li>
+<li><a href="#org0d85472">8. 风格迁移(Neural Style Transfer)</a></li>
 </ul>
 </div>
 </div>
@@ -35,8 +81,8 @@
 说实话课程难度还是比较高的，到后面几个weeks的作业光是写graph都已经焦头烂额了，更别说如果作业要求从头实现BP的话会怎么样。作业开始逐渐依赖于keras和tensorflow这种high level framework了，更多地强调如何构建起这些网络以及如何运行。
 </p>
 
-<div id="outline-container-org641fb3f" class="outline-2">
-<h2 id="org641fb3f"><span class="section-number-2">1</span> CNN的卷积基础</h2>
+<div id="outline-container-orgf48b371" class="outline-2">
+<h2 id="orgf48b371"><span class="section-number-2">1</span> CNN的卷积基础</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 filter应该是怎么样的？假设input image shape是(64, 64, 3)的话，那么filter的最后一个维度也必须是3. 如果filter size是5的话， <b>那么一个filter shape应该就是(5, 5, 3)</b> .
@@ -94,8 +140,8 @@ filter应该是怎么样的？假设input image shape是(64, 64, 3)的话，那�
 </div>
 </div>
 
-<div id="outline-container-org8956c64" class="outline-2">
-<h2 id="org8956c64"><span class="section-number-2">2</span> 几种经典的CNN实现</h2>
+<div id="outline-container-orgd1b2b30" class="outline-2">
+<h2 id="orgd1b2b30"><span class="section-number-2">2</span> 几种经典的CNN实现</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 我就直接照抄ppt了，可以认为这几种实现上没有更多概念的引入（相比后面的resnet和inception).
@@ -131,8 +177,8 @@ alexnet使用了很多比较奇怪的参数和结构，vgg则尝试是否可以�
 </div>
 </div>
 
-<div id="outline-container-org8b4e517" class="outline-2">
-<h2 id="org8b4e517"><span class="section-number-2">3</span> Residual Network</h2>
+<div id="outline-container-org2ff0dda" class="outline-2">
+<h2 id="org2ff0dda"><span class="section-number-2">3</span> Residual Network</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 残差网络，大意是经过几个layer之后，将原始输入叠加上去。残差网络是由多个residual block组成的
@@ -166,8 +212,8 @@ resnet可以更好地训练更深的神经网络，一个很重要的原因就�
 </div>
 </div>
 
-<div id="outline-container-org562c029" class="outline-2">
-<h2 id="org562c029"><span class="section-number-2">4</span> Inception Network</h2>
+<div id="outline-container-orgee2b0e2" class="outline-2">
+<h2 id="orgee2b0e2"><span class="section-number-2">4</span> Inception Network</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Inception network是google搞出来的，出发点很简单，就是我自己也不确定filter size是什么值比较合适，所以干脆把1, 3, 5, 都试试，然后放在一起作为output. 下图
@@ -224,8 +270,8 @@ Inception network是google搞出来的，出发点很简单，就是我自己也
 </div>
 </div>
 
-<div id="outline-container-orgd0db2bf" class="outline-2">
-<h2 id="orgd0db2bf"><span class="section-number-2">5</span> Practical Advices</h2>
+<div id="outline-container-org326241a" class="outline-2">
+<h2 id="org326241a"><span class="section-number-2">5</span> Practical Advices</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Data Augmentation在图像上可以适度使用，包括下面几种方法：
@@ -245,8 +291,8 @@ Data Augmentation在图像上可以适度使用，包括下面几种方法：
 </div>
 </div>
 
-<div id="outline-container-org2157411" class="outline-2">
-<h2 id="org2157411"><span class="section-number-2">6</span> 物体检测(Object Detection)</h2>
+<div id="outline-container-org9d60e2d" class="outline-2">
+<h2 id="org9d60e2d"><span class="section-number-2">6</span> 物体检测(Object Detection)</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 物体检测一个naive/simple的办法，可以是将图像配合不同尺寸的sliding window, 然后对每个sliding window下面的图像输入到CNN，判断这个小图片里面是否有某个物体。姑且称这种方式是sliding window吧。
@@ -301,8 +347,8 @@ Data Augmentation在图像上可以适度使用，包括下面几种方法：
 </div>
 </div>
 
-<div id="outline-container-org987e6da" class="outline-2">
-<h2 id="org987e6da"><span class="section-number-2">7</span> 脸部识别(Face Recognition)</h2>
+<div id="outline-container-orgb3f2d17" class="outline-2">
+<h2 id="orgb3f2d17"><span class="section-number-2">7</span> 脸部识别(Face Recognition)</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Face Recognition其实可以通过另外一个问题解决，就是FV/Face Verification. Face Verification会比较两个图片的相似度，而FR则可以使用这个相似度来选择和谁最匹配。
@@ -324,8 +370,8 @@ Face Recognition其实可以通过另外一个问题解决，就是FV/Face Verif
 </div>
 </div>
 
-<div id="outline-container-orgca2d43c" class="outline-2">
-<h2 id="orgca2d43c"><span class="section-number-2">8</span> 风格迁移(Neural Style Transfer)</h2>
+<div id="outline-container-org0d85472" class="outline-2">
+<h2 id="org0d85472"><span class="section-number-2">8</span> 风格迁移(Neural Style Transfer)</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 风格迁移的难点在于定义cost function，假设内容图像是C(content), 风格图像是S(style), 生成图像是G(generated), 那么J(C, S, G) = J(C, G) + J(S, G).
@@ -344,6 +390,11 @@ J(S, G)表示风格图像和生成图像的偏差，风格可以认为是，每�
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/convolutional-neural-networks.html';this.page.identifier = 'convolutional-neural-networks.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

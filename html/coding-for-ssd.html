@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Coding for SSD</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Coding for SSD</h1>
@@ -16,64 +62,64 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgda0ae01">1. Structure of an SSD</a>
+<li><a href="#org87910ea">1. Structure of an SSD</a>
 <ul>
-<li><a href="#orgecab52d">1.1. NAND-flash memory cells</a></li>
-<li><a href="#org7a77ffb">1.2. Organization of an SSD</a></li>
-<li><a href="#orgb2d0bc4">1.3. Manufacturing process</a></li>
+<li><a href="#org05a145c">1.1. NAND-flash memory cells</a></li>
+<li><a href="#orgcbdd67b">1.2. Organization of an SSD</a></li>
+<li><a href="#orga041705">1.3. Manufacturing process</a></li>
 </ul>
 </li>
-<li><a href="#org0c4006a">2. Benchmarking and performance metrics</a>
+<li><a href="#orgddcdca6">2. Benchmarking and performance metrics</a>
 <ul>
-<li><a href="#org53042eb">2.1. Basic benchmarks</a></li>
-<li><a href="#orgcfc855e">2.2. Pre-conditioning（预处理）</a></li>
-<li><a href="#org47a9a47">2.3. Workloads and metrics</a></li>
+<li><a href="#orgeeba23a">2.1. Basic benchmarks</a></li>
+<li><a href="#orgceb4842">2.2. Pre-conditioning（预处理）</a></li>
+<li><a href="#orgb2f36f5">2.3. Workloads and metrics</a></li>
 </ul>
 </li>
-<li><a href="#org8bfd5ef">3. Basic operations</a>
+<li><a href="#orgadf5c6b">3. Basic operations</a>
 <ul>
-<li><a href="#orgaaccb46">3.1. Read, write, erase</a></li>
-<li><a href="#orge1fa0d6">3.2. Write amplification</a></li>
-<li><a href="#org29dad7c">3.3. Wear leveling（损耗均衡）</a></li>
+<li><a href="#orgefe476f">3.1. Read, write, erase</a></li>
+<li><a href="#org4eef963">3.2. Write amplification</a></li>
+<li><a href="#orgad96b88">3.3. Wear leveling（损耗均衡）</a></li>
 </ul>
 </li>
-<li><a href="#orgb2251e9">4. Flash Translation Layer(FTL)</a>
+<li><a href="#org1baf0c4">4. Flash Translation Layer(FTL)</a>
 <ul>
-<li><a href="#orge346412">4.1. Logical block mapping</a></li>
-<li><a href="#orgf20ef7c">4.2. Garbage collection</a></li>
+<li><a href="#org91ebec0">4.1. Logical block mapping</a></li>
+<li><a href="#org5c8ba88">4.2. Garbage collection</a></li>
 </ul>
 </li>
-<li><a href="#org1e90cf6">5. Advanced functionalities</a>
+<li><a href="#org95b2a02">5. Advanced functionalities</a>
 <ul>
-<li><a href="#orgb6f5579">5.1. TRIM</a></li>
-<li><a href="#orga03a53e">5.2. Over-provisioning（预留空间）</a></li>
-<li><a href="#org51fa103">5.3. Secure Erase</a></li>
-<li><a href="#orgdf1228b">5.4. Native Command Queueing(NCQ)</a></li>
-<li><a href="#org05980ff">5.5. Power-loss protection</a></li>
+<li><a href="#org1248b6f">5.1. TRIM</a></li>
+<li><a href="#orgb90e03c">5.2. Over-provisioning（预留空间）</a></li>
+<li><a href="#orgef9740d">5.3. Secure Erase</a></li>
+<li><a href="#org22bc40b">5.4. Native Command Queueing(NCQ)</a></li>
+<li><a href="#org5abe03a">5.5. Power-loss protection</a></li>
 </ul>
 </li>
-<li><a href="#org48c5e03">6. Internal Parallelism in SSDs</a>
+<li><a href="#orga8b7dd3">6. Internal Parallelism in SSDs</a>
 <ul>
-<li><a href="#org506f876">6.1. Limited I/O bus bandwidth</a></li>
-<li><a href="#org5a93ec8">6.2. Multiple levels of parallelism</a></li>
-<li><a href="#org81ff6a1">6.3. Clustered blocks</a></li>
+<li><a href="#org067d8f0">6.1. Limited I/O bus bandwidth</a></li>
+<li><a href="#org7c0dc0f">6.2. Multiple levels of parallelism</a></li>
+<li><a href="#org965383b">6.3. Clustered blocks</a></li>
 </ul>
 </li>
-<li><a href="#org7dd9750">7. Access patterns</a>
+<li><a href="#orgbf72d0d">7. Access patterns</a>
 <ul>
-<li><a href="#orgab55c62">7.1. Defining sequential and random I/O operations</a></li>
-<li><a href="#org73d2027">7.2. Writes</a></li>
-<li><a href="#org0af1ed8">7.3. Reads</a></li>
-<li><a href="#orga89e0c7">7.4. Concurrent reads and writes</a></li>
+<li><a href="#orge00465f">7.1. Defining sequential and random I/O operations</a></li>
+<li><a href="#org26929ec">7.2. Writes</a></li>
+<li><a href="#orgfe6e2da">7.3. Reads</a></li>
+<li><a href="#org23ff529">7.4. Concurrent reads and writes</a></li>
 </ul>
 </li>
-<li><a href="#org67133a0">8. System optimizations</a>
+<li><a href="#orgce4019b">8. System optimizations</a>
 <ul>
-<li><a href="#org479ca33">8.1. Partition alignment（分区对齐）</a></li>
-<li><a href="#orga8ff7d1">8.2. Filesystem parameters</a></li>
-<li><a href="#org8a50d08">8.3. Operating system I/O scheduler</a></li>
-<li><a href="#org1608bf1">8.4. Swap</a></li>
-<li><a href="#orgefa9177">8.5. Temporary files</a></li>
+<li><a href="#org1ed9d2b">8.1. Partition alignment（分区对齐）</a></li>
+<li><a href="#org7d140c4">8.2. Filesystem parameters</a></li>
+<li><a href="#org5bf6db6">8.3. Operating system I/O scheduler</a></li>
+<li><a href="#orga327aa1">8.4. Swap</a></li>
+<li><a href="#org8bcb895">8.5. Temporary files</a></li>
 </ul>
 </li>
 </ul>
@@ -84,12 +130,12 @@
 <li><a href="http://blog.jobbole.com/63520/">http://blog.jobbole.com/63520/</a> 非常棒的中文翻译</li>
 </ul>
 
-<div id="outline-container-orgda0ae01" class="outline-2">
-<h2 id="orgda0ae01"><span class="section-number-2">1</span> Structure of an SSD</h2>
+<div id="outline-container-org87910ea" class="outline-2">
+<h2 id="org87910ea"><span class="section-number-2">1</span> Structure of an SSD</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgecab52d" class="outline-3">
-<h3 id="orgecab52d"><span class="section-number-3">1.1</span> NAND-flash memory cells</h3>
+<div id="outline-container-org05a145c" class="outline-3">
+<h3 id="org05a145c"><span class="section-number-3">1.1</span> NAND-flash memory cells</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>固态硬盘(SSD)是基于闪存的数据存储设备。每个数据位保存在由浮栅晶体管制成的闪存单元里。SSD整个都是由电子组件制成的，没有像硬盘那样的移动或者机械的部分。</li>
@@ -106,8 +152,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7a77ffb" class="outline-3">
-<h3 id="org7a77ffb"><span class="section-number-3">1.2</span> Organization of an SSD</h3>
+<div id="outline-container-orgcbdd67b" class="outline-3">
+<h3 id="orgcbdd67b"><span class="section-number-3">1.2</span> Organization of an SSD</h3>
 <div class="outline-text-3" id="text-1-2">
 
 <div class="figure">
@@ -169,16 +215,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgb2d0bc4" class="outline-3">
-<h3 id="orgb2d0bc4"><span class="section-number-3">1.3</span> Manufacturing process</h3>
+<div id="outline-container-orga041705" class="outline-3">
+<h3 id="orga041705"><span class="section-number-3">1.3</span> Manufacturing process</h3>
 </div>
 </div>
-<div id="outline-container-org0c4006a" class="outline-2">
-<h2 id="org0c4006a"><span class="section-number-2">2</span> Benchmarking and performance metrics</h2>
+<div id="outline-container-orgddcdca6" class="outline-2">
+<h2 id="orgddcdca6"><span class="section-number-2">2</span> Benchmarking and performance metrics</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org53042eb" class="outline-3">
-<h3 id="org53042eb"><span class="section-number-3">2.1</span> Basic benchmarks</h3>
+<div id="outline-container-orgeeba23a" class="outline-3">
+<h3 id="orgeeba23a"><span class="section-number-3">2.1</span> Basic benchmarks</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>影响性能的一个重要因素是接口。最新发布的SSD最常使用的接口是SATA3.0和PCI Express 3.0</li>
@@ -190,8 +236,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgcfc855e" class="outline-3">
-<h3 id="orgcfc855e"><span class="section-number-3">2.2</span> Pre-conditioning（预处理）</h3>
+<div id="outline-container-orgceb4842" class="outline-3">
+<h3 id="orgceb4842"><span class="section-number-3">2.2</span> Pre-conditioning（预处理）</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 正确评估SSD的性能并非易事。硬件评测博客上的很多文章都是在硬盘上随机写十分钟，便声称硬盘可以进行测试，并且测试结果是可信的。然而SSD性能只会在足够长时间的随机写工作负载下才会有性能降低，而所需的时间基于SSD的总大小会花费30分钟到3小时不等。这即是更多认真的基准性能测试开始于相当长时间的随机写负载（称为“预处理”）的原因。下图显示出在多个SSD上预处理的效果。可以看见在30分钟左右出现了明显的性能下降，所有硬盘都出现读写速度下降和延迟上升。之后的四个小时中，硬盘性能缓慢降低到一个最小的常量值。
@@ -217,8 +263,8 @@
 </div>
 </div>
 
-<div id="outline-container-org47a9a47" class="outline-3">
-<h3 id="org47a9a47"><span class="section-number-3">2.3</span> Workloads and metrics</h3>
+<div id="outline-container-orgb2f36f5" class="outline-3">
+<h3 id="orgb2f36f5"><span class="section-number-3">2.3</span> Workloads and metrics</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 性能基准都有相同的参数，并使用相同的度量。通常使用的参数如下：
@@ -241,12 +287,12 @@
 </div>
 </div>
 
-<div id="outline-container-org8bfd5ef" class="outline-2">
-<h2 id="org8bfd5ef"><span class="section-number-2">3</span> Basic operations</h2>
+<div id="outline-container-orgadf5c6b" class="outline-2">
+<h2 id="orgadf5c6b"><span class="section-number-2">3</span> Basic operations</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgaaccb46" class="outline-3">
-<h3 id="orgaaccb46"><span class="section-number-3">3.1</span> Read, write, erase</h3>
+<div id="outline-container-orgefe476f" class="outline-3">
+<h3 id="orgefe476f"><span class="section-number-3">3.1</span> Read, write, erase</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>读是以页大小对齐的。一次读取少于一页的内容是不可能的。操作系统当然可以只请求一字节，但是SSD会访问整个页，强制读取远超所需的数据。</li>
@@ -257,8 +303,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge1fa0d6" class="outline-3">
-<h3 id="orge1fa0d6"><span class="section-number-3">3.2</span> Write amplification</h3>
+<div id="outline-container-org4eef963" class="outline-3">
+<h3 id="org4eef963"><span class="section-number-3">3.2</span> Write amplification</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 因为写入是按页大小对齐的，任何没有对齐一个或者多个页大小的写操作都会写入大于所需的数据。写一个字节最终导致一整页都要写入，而一页的大小在某些型号的SSD中可能达到16KB，这是相当没有效率的。而这不是唯一的问题。除了写入过多的数据外，这些额外的写入也会触发更多不必要的内部操作。实际上，用未对齐的方法写入数据会导致在更改和写回硬盘之前需要页读到缓存（因为我们只是修改了部分内容，所以原来内容我们需要读上来，合并然后写入新页），这比直接写入硬盘要慢。这个操作被称为读-改-写，且应该尽可能的避免。 # 似乎唯一能做的就是将small writes聚合称为batch write.
@@ -271,8 +317,8 @@
 </div>
 </div>
 
-<div id="outline-container-org29dad7c" class="outline-3">
-<h3 id="org29dad7c"><span class="section-number-3">3.3</span> Wear leveling（损耗均衡）</h3>
+<div id="outline-container-orgad96b88" class="outline-3">
+<h3 id="orgad96b88"><span class="section-number-3">3.3</span> Wear leveling（损耗均衡）</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 想象一下我们有一个SSD，数据总是在同一个块上写入。这个块将很快达到其P/E循环限制、耗尽。而SSD控制器井标记其为不可用。这样硬盘的容量将减小。想象一下买了一个500GB的硬盘，过了几年还剩250G，这会非常恼火。因此，SSD控制器的一个主要目标是实现损耗均衡，即是将P/E循环在块间尽可能的平均分配。理想上，所有的块会在同一时间达到P/E循环上限并耗尽。
@@ -285,16 +331,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgb2251e9" class="outline-2">
-<h2 id="orgb2251e9"><span class="section-number-2">4</span> Flash Translation Layer(FTL)</h2>
+<div id="outline-container-org1baf0c4" class="outline-2">
+<h2 id="org1baf0c4"><span class="section-number-2">4</span> Flash Translation Layer(FTL)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 FTL有两个主要的作用：逻辑块寻址和垃圾回收
 </p>
 </div>
 
-<div id="outline-container-orge346412" class="outline-3">
-<h3 id="orge346412"><span class="section-number-3">4.1</span> Logical block mapping</h3>
+<div id="outline-container-org91ebec0" class="outline-3">
+<h3 id="org91ebec0"><span class="section-number-3">4.1</span> Logical block mapping</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 逻辑块映射将来自主机空间的逻辑块地址（LBA）转换为物理NAND闪存空间的物理块地址（PBA）。为了访问速度，这个映射表保存在SSD的RAM中，并保存在闪存中以防电源故障。当SSD启动后，这个表从闪存中读出并在SSD的RAM中重建。
@@ -314,8 +360,8 @@ FTL有两个主要的作用：逻辑块寻址和垃圾回收
 </div>
 </div>
 
-<div id="outline-container-orgf20ef7c" class="outline-3">
-<h3 id="orgf20ef7c"><span class="section-number-3">4.2</span> Garbage collection</h3>
+<div id="outline-container-org5c8ba88" class="outline-3">
+<h3 id="org5c8ba88"><span class="section-number-3">4.2</span> Garbage collection</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 如第一节中所说，擦除命令需要1500-3500 μs，写入命令需要250-1500 μs。因为擦除比写入需要更高的延迟，额外的擦除步骤导致一个延迟使得写入更慢。因此，一些控制器实现了后台垃圾回收进程，或者被称为闲置垃圾回收，其充分利用空闲时间并经常在后台运行以回收stale页并确保将来的前台操作具有足够的空页来实现最高性能。其他的实现使用并行垃圾回收方法，其在来自主机的写入操作的同时，以并行方式进行垃圾回收操作。
@@ -337,12 +383,12 @@ FTL有两个主要的作用：逻辑块寻址和垃圾回收
 </div>
 </div>
 
-<div id="outline-container-org1e90cf6" class="outline-2">
-<h2 id="org1e90cf6"><span class="section-number-2">5</span> Advanced functionalities</h2>
+<div id="outline-container-org95b2a02" class="outline-2">
+<h2 id="org95b2a02"><span class="section-number-2">5</span> Advanced functionalities</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgb6f5579" class="outline-3">
-<h3 id="orgb6f5579"><span class="section-number-3">5.1</span> TRIM</h3>
+<div id="outline-container-org1248b6f" class="outline-3">
+<h3 id="org1248b6f"><span class="section-number-3">5.1</span> TRIM</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 让我们假设一个程序向SSD所有的逻辑块地址都写入文件，这个SSD当然会被装满。然后删除这些文件。文件系统会报告所有的地方都是空的，尽管硬盘实际上还是满的，因为SSD主控没法知道逻辑数据是什么时候被主机删掉的。SSD主控只会在这些逻辑块地址被复写的时候才知道这些是空闲空间。此时，垃圾回收进程将会擦除与这些文件相关的块，为进来的写操作提供空的页。其结果就是，擦除操作并非在知道保存有无用数据之后立刻执行，而是被延迟了，这将严重影响性能。
@@ -366,8 +412,8 @@ TRIM命令的维基百科页面列出了支持TRIM的操作系统和文件系统
 </div>
 </div>
 
-<div id="outline-container-orga03a53e" class="outline-3">
-<h3 id="orga03a53e"><span class="section-number-3">5.2</span> Over-provisioning（预留空间）</h3>
+<div id="outline-container-orgb90e03c" class="outline-3">
+<h3 id="orgb90e03c"><span class="section-number-3">5.2</span> Over-provisioning（预留空间）</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 预留空间只是简单的使物理块比逻辑块多，即为主控保留一定比例的，用户不可见的物理块。大多专业级SSD生产商已经包括了一些预留空间，通常是7~25%。用户可以简单的通过创建比最大物理容量小的逻辑容量分区来创建更多的预留空间。例如，你可以在100G的硬盘上创建一个90G的分区，而把剩下的10G作为预留空间。即使预留空间在操作系统级是不可见的，但SSD主控仍然是可以看见的。生产商提供预留空间的主要原因是为了对付NAND闪存单元固有的寿命限制。不可见的预留空间的块将无缝的替换可见空间上的已耗损殆尽的块。
@@ -383,23 +429,23 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org51fa103" class="outline-3">
-<h3 id="org51fa103"><span class="section-number-3">5.3</span> Secure Erase</h3>
+<div id="outline-container-orgef9740d" class="outline-3">
+<h3 id="orgef9740d"><span class="section-number-3">5.3</span> Secure Erase</h3>
 </div>
-<div id="outline-container-orgdf1228b" class="outline-3">
-<h3 id="orgdf1228b"><span class="section-number-3">5.4</span> Native Command Queueing(NCQ)</h3>
+<div id="outline-container-org22bc40b" class="outline-3">
+<h3 id="org22bc40b"><span class="section-number-3">5.4</span> Native Command Queueing(NCQ)</h3>
 </div>
-<div id="outline-container-org05980ff" class="outline-3">
-<h3 id="org05980ff"><span class="section-number-3">5.5</span> Power-loss protection</h3>
+<div id="outline-container-org5abe03a" class="outline-3">
+<h3 id="org5abe03a"><span class="section-number-3">5.5</span> Power-loss protection</h3>
 </div>
 </div>
 
-<div id="outline-container-org48c5e03" class="outline-2">
-<h2 id="org48c5e03"><span class="section-number-2">6</span> Internal Parallelism in SSDs</h2>
+<div id="outline-container-orga8b7dd3" class="outline-2">
+<h2 id="orga8b7dd3"><span class="section-number-2">6</span> Internal Parallelism in SSDs</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org506f876" class="outline-3">
-<h3 id="org506f876"><span class="section-number-3">6.1</span> Limited I/O bus bandwidth</h3>
+<div id="outline-container-org067d8f0" class="outline-3">
+<h3 id="org067d8f0"><span class="section-number-3">6.1</span> Limited I/O bus bandwidth</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 内部并行是指在SSD内部，数个层次的并行允许一次将数个块写入到不同的NAND闪存芯片中，这些块称为簇(clustered block)。
@@ -411,8 +457,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org5a93ec8" class="outline-3">
-<h3 id="org5a93ec8"><span class="section-number-3">6.2</span> Multiple levels of parallelism</h3>
+<div id="outline-container-org7c0dc0f" class="outline-3">
+<h3 id="org7c0dc0f"><span class="section-number-3">6.2</span> Multiple levels of parallelism</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 下图展示了NAND闪存芯片的内部，其组织为一种分级的结构。这些级别包括通道、封装、芯片、面、块和页。这些不同的层通过下边的方法提供并行
@@ -432,8 +478,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org81ff6a1" class="outline-3">
-<h3 id="org81ff6a1"><span class="section-number-3">6.3</span> Clustered blocks</h3>
+<div id="outline-container-org965383b" class="outline-3">
+<h3 id="org965383b"><span class="section-number-3">6.3</span> Clustered blocks</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 一次访问的逻辑块地址被分到不同SSD闪存封装中的不同芯片上。这归功于FTL的映射算法，并且这与这些地址是否连续无关。分割块允许同时使用多个通道来整合其带宽，并同样可以并行执行多个读、写和擦除操作。这即表示I/O操作按簇大小对齐来确保SSD中多个级别的内部并行所提供的性能能够被最大程度的利用。
@@ -442,12 +488,12 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org7dd9750" class="outline-2">
-<h2 id="org7dd9750"><span class="section-number-2">7</span> Access patterns</h2>
+<div id="outline-container-orgbf72d0d" class="outline-2">
+<h2 id="orgbf72d0d"><span class="section-number-2">7</span> Access patterns</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgab55c62" class="outline-3">
-<h3 id="orgab55c62"><span class="section-number-3">7.1</span> Defining sequential and random I/O operations</h3>
+<div id="outline-container-orge00465f" class="outline-3">
+<h3 id="orge00465f"><span class="section-number-3">7.1</span> Defining sequential and random I/O operations</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 如果I/O操作开始的逻辑块地址（LBA）直接跟着前一个I/O操作的最后LBA，则称值为顺序访问。如果不是这样，那这个I/O操作称为随机访问。这很一点重要，因为FTL执行动态映射，相邻的逻辑空间地址可能被应用于不相邻的物理空间地址上。
@@ -455,8 +501,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org73d2027" class="outline-3">
-<h3 id="org73d2027"><span class="section-number-3">7.2</span> Writes</h3>
+<div id="outline-container-org26929ec" class="outline-3">
+<h3 id="org26929ec"><span class="section-number-3">7.2</span> Writes</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 基准测试和生产商提供的数据表显示出，随机写入比序列写入要慢，但这并不总是对的，因为随机写入的速度实际上取决于工作负载的类型。如果写入比较小，小是说小于簇（译注：关于簇的翻译请见上一篇文章）大小（就是说 &lt;32MB），那么是的，随机写入比顺序写入慢。然而，如果随机写入是按照簇大小对齐的，其性能将会和顺序写入一样。
@@ -492,8 +538,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org0af1ed8" class="outline-3">
-<h3 id="org0af1ed8"><span class="section-number-3">7.3</span> Reads</h3>
+<div id="outline-container-orgfe6e2da" class="outline-3">
+<h3 id="orgfe6e2da"><span class="section-number-3">7.3</span> Reads</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 读取比写入要快。无论是顺序读取还是随机读取，都是这样。FTL是逻辑块到物理块地址的动态映射，并且将写入分布到各个通道上。这个方法有时候被称为“基于写入顺序的”映射。如果数据是以和原本写入的顺序完全不相关，完全随机读取的，那就无法保证连续的读取分布在不同的通道。甚至有可能连续的随机读取访问的是同一个通道中的不同块，因此无法从内部并行中获取任何优势。
@@ -513,8 +559,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-orga89e0c7" class="outline-3">
-<h3 id="orga89e0c7"><span class="section-number-3">7.4</span> Concurrent reads and writes</h3>
+<div id="outline-container-org23ff529" class="outline-3">
+<h3 id="org23ff529"><span class="section-number-3">7.4</span> Concurrent reads and writes</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 小的读和写交错会导致性能下降。其主要原因是对于同一个内部资源来说读写是相互竞争的，而这种混合阻止了诸如预读取机制的完全利用。
@@ -527,8 +573,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org67133a0" class="outline-2">
-<h2 id="org67133a0"><span class="section-number-2">8</span> System optimizations</h2>
+<div id="outline-container-orgce4019b" class="outline-2">
+<h2 id="orgce4019b"><span class="section-number-2">8</span> System optimizations</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="https://wiki.debian.org/SSDOptimization">https://wiki.debian.org/SSDOptimization</a></li>
@@ -537,8 +583,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </ul>
 </div>
 
-<div id="outline-container-org479ca33" class="outline-3">
-<h3 id="org479ca33"><span class="section-number-3">8.1</span> Partition alignment（分区对齐）</h3>
+<div id="outline-container-org1ed9d2b" class="outline-3">
+<h3 id="org1ed9d2b"><span class="section-number-3">8.1</span> Partition alignment（分区对齐）</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 如3.1节中解释的那样，写入是页对齐的。大小是页大小，并且和页大小是对齐的写入请求，会被直接写入到一个NAND闪存物理页中。大小是页大小，但不对齐的写入请求将会被写入到两个个NAND闪存物理页中，并导致两个读-改-写操作。因此，确保用来写入的SSD分区是和硬盘采用的物理NAND闪存页的大小对齐是很重要的。很多 <a href="http://www.linux-mag.com/id/8397/">教程</a> 和 <a href="http://tytso.livejournal.com/2009/02/20/">指引</a> 都讲了格式化的时候如何将分区对齐SSD的参数
@@ -546,8 +592,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-orga8ff7d1" class="outline-3">
-<h3 id="orga8ff7d1"><span class="section-number-3">8.2</span> Filesystem parameters</h3>
+<div id="outline-container-org7d140c4" class="outline-3">
+<h3 id="org7d140c4"><span class="section-number-3">8.2</span> Filesystem parameters</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 使用TRIM指令以及设置noatime.
@@ -555,8 +601,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org8a50d08" class="outline-3">
-<h3 id="org8a50d08"><span class="section-number-3">8.3</span> Operating system I/O scheduler</h3>
+<div id="outline-container-org5bf6db6" class="outline-3">
+<h3 id="org5bf6db6"><span class="section-number-3">8.3</span> Operating system I/O scheduler</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 我个人从中学到的是，除非工作负载十分特殊并且特定应用的基准测试显示出某个调度器确实比另一个好，CFQ是一个比较安全的选择。
@@ -564,8 +610,8 @@ AnandTech有一篇有意思的文章显示出预留空间对SSD寿命和性能�
 </div>
 </div>
 
-<div id="outline-container-org1608bf1" class="outline-3">
-<h3 id="org1608bf1"><span class="section-number-3">8.4</span> Swap</h3>
+<div id="outline-container-orga327aa1" class="outline-3">
+<h3 id="orga327aa1"><span class="section-number-3">8.4</span> Swap</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 vm.swappiness=0 来尽可能地避免在SSD上做页交换
@@ -573,10 +619,15 @@ vm.swappiness=0 来尽可能地避免在SSD上做页交换
 </div>
 </div>
 
-<div id="outline-container-orgefa9177" class="outline-3">
-<h3 id="orgefa9177"><span class="section-number-3">8.5</span> Temporary files</h3>
+<div id="outline-container-org8bcb895" class="outline-3">
+<h3 id="org8bcb895"><span class="section-number-3">8.5</span> Temporary files</h3>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/coding-for-ssd.html';this.page.identifier = 'coding-for-ssd.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

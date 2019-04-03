@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Systems Software Research is Irrelevant</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Systems Software Research is Irrelevant</h1>
@@ -16,17 +62,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2c01fa6">1. Where is the Innovation?</a></li>
-<li><a href="#org8b5950f">2. What is Systems Research these days?</a></li>
-<li><a href="#org16a2fd4">3. What Happened?</a></li>
-<li><a href="#orgbc0d581">4. Things to Do</a></li>
-<li><a href="#orgef5b054">5. Things to Build</a></li>
+<li><a href="#org28ffe3b">1. Where is the Innovation?</a></li>
+<li><a href="#org1d1309e">2. What is Systems Research these days?</a></li>
+<li><a href="#orgeecfee2">3. What Happened?</a></li>
+<li><a href="#org85b4338">4. Things to Do</a></li>
+<li><a href="#org6a6d118">5. Things to Build</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2c01fa6" class="outline-2">
-<h2 id="org2c01fa6"><span class="section-number-2">1</span> Where is the Innovation?</h2>
+<div id="outline-container-org28ffe3b" class="outline-2">
+<h2 id="org28ffe3b"><span class="section-number-2">1</span> Where is the Innovation?</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Microsoft, mostly. Exercise: Compare 1990 Microsoft software with 2000.（大部分创新都来自于微软）</li>
@@ -54,8 +100,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8b5950f" class="outline-2">
-<h2 id="org8b5950f"><span class="section-number-2">2</span> What is Systems Research these days?</h2>
+<div id="outline-container-org1d1309e" class="outline-2">
+<h2 id="org1d1309e"><span class="section-number-2">2</span> What is Systems Research these days?</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Web caches, web servers, file systems, network packet delays, all that stuff. Performance, peripherals, and applications, but not kernels or even user-level applications.（系统研究都关注上层而不是底层）</li>
@@ -68,8 +114,8 @@
 </div>
 </div>
 
-<div id="outline-container-org16a2fd4" class="outline-2">
-<h2 id="org16a2fd4"><span class="section-number-2">3</span> What Happened?</h2>
+<div id="outline-container-orgeecfee2" class="outline-2">
+<h2 id="orgeecfee2"><span class="section-number-2">3</span> What Happened?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A lot of things:
@@ -156,8 +202,8 @@ A lot of things:
 </div>
 </div>
 
-<div id="outline-container-orgbc0d581" class="outline-2">
-<h2 id="orgbc0d581"><span class="section-number-2">4</span> Things to Do</h2>
+<div id="outline-container-org85b4338" class="outline-2">
+<h2 id="org85b4338"><span class="section-number-2">4</span> Things to Do</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Go back to thinking about and building systems. Narrowness is irrelevant; breadth is relevant: it’s the essence of system.</li>
@@ -169,8 +215,8 @@ A lot of things:
 </div>
 </div>
 
-<div id="outline-container-orgef5b054" class="outline-2">
-<h2 id="orgef5b054"><span class="section-number-2">5</span> Things to Build</h2>
+<div id="outline-container-org6a6d118" class="outline-2">
+<h2 id="org6a6d118"><span class="section-number-2">5</span> Things to Build</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 There are lots of valid, useful, interesting things to do. I offer a small sample as evidence. If the field is moribund, it’s not from a lack of possibilities.
@@ -185,6 +231,11 @@ There are lots of valid, useful, interesting things to do. I offer a small sampl
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/systems-software-research-is-irrelevant.html';this.page.identifier = 'systems-software-research-is-irrelevant.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

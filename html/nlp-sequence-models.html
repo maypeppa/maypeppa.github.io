@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sequence Models</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Sequence Models</h1>
@@ -16,15 +62,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3e56742">1. RNN(Recurrent Neural Network)</a></li>
-<li><a href="#orgb6f13c9">2. Word Embedding</a></li>
-<li><a href="#orge436aba">3. Machine Translation</a></li>
+<li><a href="#org0f77da0">1. RNN(Recurrent Neural Network)</a></li>
+<li><a href="#org037d74e">2. Word Embedding</a></li>
+<li><a href="#org672abad">3. Machine Translation</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3e56742" class="outline-2">
-<h2 id="org3e56742"><span class="section-number-2">1</span> RNN(Recurrent Neural Network)</h2>
+<div id="outline-container-org0f77da0" class="outline-2">
+<h2 id="org0f77da0"><span class="section-number-2">1</span> RNN(Recurrent Neural Network)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 序列模型针对输入是序列数据的应用，比如：
@@ -113,8 +159,8 @@ LSTM相比GRU则引入了更多的状态，除了Tu(update gate)还有Tf(forget 
 </div>
 </div>
 
-<div id="outline-container-orgb6f13c9" class="outline-2">
-<h2 id="orgb6f13c9"><span class="section-number-2">2</span> Word Embedding</h2>
+<div id="outline-container-org037d74e" class="outline-2">
+<h2 id="org037d74e"><span class="section-number-2">2</span> Word Embedding</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 相关链接：
@@ -169,8 +215,8 @@ skip-gram和CBOW互为镜像。
 </div>
 </div>
 
-<div id="outline-container-orge436aba" class="outline-2">
-<h2 id="orge436aba"><span class="section-number-2">3</span> Machine Translation</h2>
+<div id="outline-container-org672abad" class="outline-2">
+<h2 id="org672abad"><span class="section-number-2">3</span> Machine Translation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 这节主要说的应用是机器翻译(MT, machien translation).  在最开始也提到了image captioning. 这两个应用非常相似，差别在于MT输入是自然语言，而后面一个应用输入是图像。使用的模型都是课程最开始提到的many-to-many RNN. 因为Tx != Ty, 所以确切地说是右下方的模型。
@@ -219,6 +265,11 @@ skip-gram和CBOW互为镜像。
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/nlp-sequence-models.html';this.page.identifier = 'nlp-sequence-models.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

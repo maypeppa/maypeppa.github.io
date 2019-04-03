@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Python</h1>
@@ -16,39 +62,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org95ec6ed">1. book</a></li>
-<li><a href="#org606a6fd">2. language</a>
+<li><a href="#org48e4271">1. book</a></li>
+<li><a href="#org54553b3">2. language</a>
 <ul>
-<li><a href="#org57e4b90">2.1. philosophy</a></li>
-<li><a href="#org2120ac9">2.2. 基础知识(basic concepts)</a></li>
-<li><a href="#org02aab84">2.3. 命名惯例(name convention)</a></li>
-<li><a href="#orgd995ea4">2.4. 字符编码(encoding)</a></li>
-<li><a href="#orgda1ac85">2.5. import and reload</a></li>
-<li><a href="#orgb1e3fdc">2.6. list comprehension</a></li>
-<li><a href="#orgcb72657">2.7. 可变参数和字典参数</a></li>
-<li><a href="#org154d08d">2.8. generator(生成器)</a></li>
-<li><a href="#org50f6594">2.9. decorator(装饰器)</a></li>
-<li><a href="#orge1c0d43">2.10. 模块加载路径</a></li>
-<li><a href="#orgab38025">2.11. coroutine(协程)</a></li>
+<li><a href="#org9bb62fc">2.1. philosophy</a></li>
+<li><a href="#org3de64ed">2.2. 基础知识(basic concepts)</a></li>
+<li><a href="#org3019e13">2.3. 命名惯例(name convention)</a></li>
+<li><a href="#org7fa8244">2.4. 字符编码(encoding)</a></li>
+<li><a href="#org8f1fa67">2.5. import and reload</a></li>
+<li><a href="#org58a4524">2.6. list comprehension</a></li>
+<li><a href="#org0ea80f1">2.7. 可变参数和字典参数</a></li>
+<li><a href="#org3d936a5">2.8. generator(生成器)</a></li>
+<li><a href="#org2db87a7">2.9. decorator(装饰器)</a></li>
+<li><a href="#org9ef525a">2.10. 模块加载路径</a></li>
+<li><a href="#orgd229fb8">2.11. coroutine(协程)</a></li>
 </ul>
 </li>
-<li><a href="#org93f5637">3. library</a>
+<li><a href="#orgf65321c">3. library</a>
 <ul>
-<li><a href="#orgbf41c23">3.1. httplib</a></li>
-<li><a href="#org0e9adae">3.2. datetime</a></li>
-<li><a href="#org07f334e">3.3. pip(python package index)</a></li>
-<li><a href="#org2664307">3.4. logging</a></li>
-<li><a href="#orgc95b44b">3.5. virtualenv</a></li>
-<li><a href="#orgf31e368">3.6. asyncio</a></li>
+<li><a href="#org8e02ebb">3.1. httplib</a></li>
+<li><a href="#orgb56a7b3">3.2. datetime</a></li>
+<li><a href="#org5d42844">3.3. pip(python package index)</a></li>
+<li><a href="#org459dbf4">3.4. logging</a></li>
+<li><a href="#org6cfa46a">3.5. virtualenv</a></li>
+<li><a href="#org9dde1c0">3.6. asyncio</a></li>
 </ul>
 </li>
-<li><a href="#orgcaafc24">4. inside</a></li>
+<li><a href="#orgaf876fa">4. inside</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org95ec6ed" class="outline-2">
-<h2 id="org95ec6ed"><span class="section-number-2">1</span> book</h2>
+<div id="outline-container-org48e4271" class="outline-2">
+<h2 id="org48e4271"><span class="section-number-2">1</span> book</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="http://learnpythonthehardway.org/">Learn Python The Hard Way</a> (<a href="images/learn-py-the-hard-way/index.html">中文</a>)</li>
@@ -59,12 +105,12 @@
 </div>
 </div>
 
-<div id="outline-container-org606a6fd" class="outline-2">
-<h2 id="org606a6fd"><span class="section-number-2">2</span> language</h2>
+<div id="outline-container-org54553b3" class="outline-2">
+<h2 id="org54553b3"><span class="section-number-2">2</span> language</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org57e4b90" class="outline-3">
-<h3 id="org57e4b90"><span class="section-number-3">2.1</span> philosophy</h3>
+<div id="outline-container-org9bb62fc" class="outline-3">
+<h3 id="org9bb62fc"><span class="section-number-3">2.1</span> philosophy</h3>
 <div class="outline-text-3" id="text-2-1">
 <blockquote>
 <p>
@@ -97,8 +143,8 @@ Namespaces are one honking great idea &#x2013; let's do more of those!
 </div>
 </div>
 
-<div id="outline-container-org2120ac9" class="outline-3">
-<h3 id="org2120ac9"><span class="section-number-3">2.2</span> 基础知识(basic concepts)</h3>
+<div id="outline-container-org3de64ed" class="outline-3">
+<h3 id="org3de64ed"><span class="section-number-3">2.2</span> 基础知识(basic concepts)</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>str vs. repr # str是字符串表示，repr是code-form.</li>
@@ -107,25 +153,25 @@ Namespaces are one honking great idea &#x2013; let's do more of those!
 <li>r'&#x2026;' # raw-string. 对字符串不做任何转义</li>
 <li>except (E1, E2, &#x2026;) as e # 捕获多种类型异常</li>
 <li>PYTHONPATH环境变量可以控制模块搜索路径</li>
-<li>__init.py__ 文件中变量__all__(列表)可以控制"from X import *"导入的名字</li>
+<li>_<sub>init.py</sub>__ 文件中变量_<sub>all</sub>_<sub>(列表)</sub>可以控制"from X import *"导入的名字</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org02aab84" class="outline-3">
-<h3 id="org02aab84"><span class="section-number-3">2.3</span> 命名惯例(name convention)</h3>
+<div id="outline-container-org3019e13" class="outline-3">
+<h3 id="org3019e13"><span class="section-number-3">2.3</span> 命名惯例(name convention)</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>以单一下划线开头的变量名( _X )不会被from module import *语句导入</li>
 <li>前后有两个下划线的变量名( <span class="underline"><span class="underline">X</span></span> )是系统定义的变量名，对解释器有特殊意义</li>
-<li>以两下划线开头，但是结尾没有两个下划线的变量名(__X)是类的私有变量</li>
+<li>以两下划线开头，但是结尾没有两个下划线的变量名(_<sub>X</sub>)是类的私有变量</li>
 <li>通过交互模式运行，只有单个下划线的变量名(_)会保存左后表达式的结果</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd995ea4" class="outline-3">
-<h3 id="orgd995ea4"><span class="section-number-3">2.4</span> 字符编码(encoding)</h3>
+<div id="outline-container-org7fa8244" class="outline-3">
+<h3 id="org7fa8244"><span class="section-number-3">2.4</span> 字符编码(encoding)</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 python字符串是unicode类型，二进制是str类型。
@@ -153,19 +199,19 @@ u'\u4e2d\u56fd'
 <div class="org-src-container">
 <pre class="src src-Python">def toUTF8(s):
     try:
-        # detect gb2312 first.
-        return s.decode('gb2312').encode('utf8')
+	# detect gb2312 first.
+	return s.decode('gb2312').encode('utf8')
     except UnicodeDecodeError,e:
-        return s
+	return s
 
 def toLocal(s):
     try:
-        open(s,'r') # what a tricky way.
-        return s
+	open(s,'r') # what a tricky way.
+	return s
     except IOError,e:
-        if(e.errno==22): # errno.EINVAL
-            return s.decode('utf8').encode('gb2312')
-        return s
+	if(e.errno==22): # errno.EINVAL
+	    return s.decode('utf8').encode('gb2312')
+	return s
 </pre>
 </div>
 <p>
@@ -218,8 +264,8 @@ except (LookupError, TypeError):
 </div>
 </div>
 
-<div id="outline-container-orgda1ac85" class="outline-3">
-<h3 id="orgda1ac85"><span class="section-number-3">2.5</span> import and reload</h3>
+<div id="outline-container-org8f1fa67" class="outline-3">
+<h3 id="org8f1fa67"><span class="section-number-3">2.5</span> import and reload</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>import &lt;module&gt; # 模块只有首次import时候会被执行。模块名字&lt;module&gt;拷贝到本模块。</li>
@@ -259,8 +305,8 @@ print ls1, ss1 # [1,2,3,4], 'hello, world'
 </div>
 </div>
 
-<div id="outline-container-orgb1e3fdc" class="outline-3">
-<h3 id="orgb1e3fdc"><span class="section-number-3">2.6</span> list comprehension</h3>
+<div id="outline-container-org58a4524" class="outline-3">
+<h3 id="org58a4524"><span class="section-number-3">2.6</span> list comprehension</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 iterator可以是字符串，列表，元组，set/dict, 文件等各种迭代器（可迭代对象）
@@ -282,8 +328,8 @@ s = {x for x in s} # 集合作为迭代器
 </div>
 </div>
 
-<div id="outline-container-orgcb72657" class="outline-3">
-<h3 id="orgcb72657"><span class="section-number-3">2.7</span> 可变参数和字典参数</h3>
+<div id="outline-container-org0ea80f1" class="outline-3">
+<h3 id="org0ea80f1"><span class="section-number-3">2.7</span> 可变参数和字典参数</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 可变参数是以*开头标识的参数，字典参数是以**开头标识的参数。可变参数得到的是一个tuple, 而字典参数得到的是一个dict.
@@ -291,7 +337,7 @@ s = {x for x in s} # 集合作为迭代器
 <div class="org-src-container">
 <pre class="src src-Python">def foo(a, b, c, *args, **kwargs):
     print 'a = {}, b = {}, c = {}, args = {}, kwargs = {}'.format(
-        a, b, c, args, kwargs)
+	a, b, c, args, kwargs)
     if a == 0: return
     foo(a - 1, b, c, *(1, 2, 3), **{'e':1, 'f':2})
 
@@ -314,8 +360,8 @@ a = 0, b = 4, c = 5, args = (1, 2, 3), kwargs = {'e': 1, 'f': 2}
 </div>
 </div>
 
-<div id="outline-container-org154d08d" class="outline-3">
-<h3 id="org154d08d"><span class="section-number-3">2.8</span> generator(生成器)</h3>
+<div id="outline-container-org3d936a5" class="outline-3">
+<h3 id="org3d936a5"><span class="section-number-3">2.8</span> generator(生成器)</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 可以把生成器认为是一个有状态的，具有迭代接口(next)的对象。定义生成器有两种方法，一种是使用list comprehension, 另外一种则是在函数中用yield.
@@ -331,8 +377,8 @@ def fib():
     a = 0
     b = 1
     while True:
-        yield b
-        (a, b) = (b, a + b)
+	yield b
+	(a, b) = (b, a + b)
 f = fib()
 for i in range(0, 10):
     print f.next()
@@ -346,8 +392,8 @@ for i in range(0, 10):
 <pre class="src src-Python">def process_request():
     res = None
     while True:
-        req = yield res
-        res = req + 1
+	req = yield res
+	res = req + 1
 
 def io_loop():
     pr = process_request()
@@ -371,16 +417,16 @@ Python3之前如果需要将多个生成器串联起来的话，不是特别容�
 <div class="org-src-container">
 <pre class="src src-Python">def foo(n):
     for x in range(3):
-        yield x + n
+	yield x + n
 
 
 def bar():
     x = foo(10)
     for v in x:
-        yield v
+	yield v
     x = foo(20)
     for v in x:
-        yield v
+	yield v
     # yield from foo(10)
     # yield from foo(20)
 
@@ -397,8 +443,8 @@ for v in b:
 </div>
 </div>
 
-<div id="outline-container-org50f6594" class="outline-3">
-<h3 id="org50f6594"><span class="section-number-3">2.9</span> decorator(装饰器)</h3>
+<div id="outline-container-org2db87a7" class="outline-3">
+<h3 id="org2db87a7"><span class="section-number-3">2.9</span> decorator(装饰器)</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 装饰器是一种设计模式，在原有的对象上或者是函数上，在外部做一些处理。python里面的装饰器是函数，装饰的对象也是函数。
@@ -416,19 +462,19 @@ import functools
 def foo(f):
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
-        print '&gt;&gt;&gt;&gt;&gt;'
-        f(*args, **kwargs)
-        print '&lt;&lt;&lt;&lt;&lt;'
+	print '&gt;&gt;&gt;&gt;&gt;'
+	f(*args, **kwargs)
+	print '&lt;&lt;&lt;&lt;&lt;'
     return wrapper
 
 def foo2(text):
     def bar(f):
-        @functools.wraps(f)
-        def wrapper(*args, **kwargs):
-            print '&gt;&gt;&gt;&gt;', text
-            f(*args, **kwargs)
-            print '&lt;&lt;&lt;&lt;&lt;', text
-        return wrapper
+	@functools.wraps(f)
+	def wrapper(*args, **kwargs):
+	    print '&gt;&gt;&gt;&gt;', text
+	    f(*args, **kwargs)
+	    print '&lt;&lt;&lt;&lt;&lt;', text
+	return wrapper
     return bar
 
 @foo
@@ -462,8 +508,8 @@ wrapper
 </div>
 </div>
 
-<div id="outline-container-orge1c0d43" class="outline-3">
-<h3 id="orge1c0d43"><span class="section-number-3">2.10</span> 模块加载路径</h3>
+<div id="outline-container-org9ef525a" class="outline-3">
+<h3 id="org9ef525a"><span class="section-number-3">2.10</span> 模块加载路径</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 一些关于模块加载和模块检索路径方面的文章
@@ -484,8 +530,8 @@ UPDATE@201801: nova项目中我发现 <a href="http://v2in.com/pth-file-usage-in
 </div>
 
 
-<div id="outline-container-orgab38025" class="outline-3">
-<h3 id="orgab38025"><span class="section-number-3">2.11</span> coroutine(协程)</h3>
+<div id="outline-container-orgd229fb8" class="outline-3">
+<h3 id="orgd229fb8"><span class="section-number-3">2.11</span> coroutine(协程)</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
 我理解generator和coroutine之间的差别只是在于切换上下文上。generator的切换关系是沿着调用链的，也是是callee完成后必须要返回到caller.
@@ -508,11 +554,11 @@ coroutine之间是可以交换数据的，下面这两个操作是配对的。co
     print('start consumer')
     r = 'uninitialized'
     while True:
-        n = yield r
-        if not n:
-            return
-        print('[CONSUMER] Consuming %s...' % n)
-        r = '200 OK'
+	n = yield r
+	if not n:
+	    return
+	print('[CONSUMER] Consuming %s...' % n)
+	r = '200 OK'
 
 
 def produce(c):
@@ -521,10 +567,10 @@ def produce(c):
     print('start producer')
     n = 0
     while n &lt; 5:
-        n = n + 1
-        print('[PRODUCER] Producing %s...' % n)
-        r = c.send(n)
-        print('[PRODUCER] Consumer return: %s' % r)
+	n = n + 1
+	print('[PRODUCER] Producing %s...' % n)
+	r = c.send(n)
+	print('[PRODUCER] Consumer return: %s' % r)
     c.close()
 
 
@@ -565,12 +611,12 @@ start producer
 </div>
 </div>
 
-<div id="outline-container-org93f5637" class="outline-2">
-<h2 id="org93f5637"><span class="section-number-2">3</span> library</h2>
+<div id="outline-container-orgf65321c" class="outline-2">
+<h2 id="orgf65321c"><span class="section-number-2">3</span> library</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgbf41c23" class="outline-3">
-<h3 id="orgbf41c23"><span class="section-number-3">3.1</span> httplib</h3>
+<div id="outline-container-org8e02ebb" class="outline-3">
+<h3 id="org8e02ebb"><span class="section-number-3">3.1</span> httplib</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 关于httplib.HTTPConnection超时问题
@@ -600,8 +646,8 @@ Socket.connect = my_socket_connect
 </div>
 </div>
 
-<div id="outline-container-org0e9adae" class="outline-3">
-<h3 id="org0e9adae"><span class="section-number-3">3.2</span> datetime</h3>
+<div id="outline-container-orgb56a7b3" class="outline-3">
+<h3 id="orgb56a7b3"><span class="section-number-3">3.2</span> datetime</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 日期时间和时间戳之间的转化
@@ -664,18 +710,18 @@ UPDATE@201802: 解析各种时间格式是非常麻烦的事情，好在有个 `
 
 def parse_date(s):
     if not s:
-        return None
+	return None
     try:
-        x = dateutil.parser.parse(s, tzinfos=TZINFOS)
-        tzinfo = getattr(x, 'tzinfo')
-        if tzinfo:
-            offset = tzinfo.utcoffset(x)
-            y = x - offset
-            x = y.replace(tzinfo=None)
-        return x
+	x = dateutil.parser.parse(s, tzinfos=TZINFOS)
+	tzinfo = getattr(x, 'tzinfo')
+	if tzinfo:
+	    offset = tzinfo.utcoffset(x)
+	    y = x - offset
+	    x = y.replace(tzinfo=None)
+	return x
     except Exception:
-        logger.exception('parse date %s' % s)
-        return None
+	logger.exception('parse date %s' % s)
+	return None
 </pre>
 </div>
 
@@ -688,8 +734,8 @@ Out[5]: datetime.datetime(2018, 2, 9, 11, 0)
 </div>
 </div>
 
-<div id="outline-container-org07f334e" class="outline-3">
-<h3 id="org07f334e"><span class="section-number-3">3.3</span> pip(python package index)</h3>
+<div id="outline-container-org5d42844" class="outline-3">
+<h3 id="org5d42844"><span class="section-number-3">3.3</span> pip(python package index)</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 python模块管理工具
@@ -713,8 +759,8 @@ python模块管理工具
 </div>
 </div>
 
-<div id="outline-container-org2664307" class="outline-3">
-<h3 id="org2664307"><span class="section-number-3">3.4</span> logging</h3>
+<div id="outline-container-org459dbf4" class="outline-3">
+<h3 id="org459dbf4"><span class="section-number-3">3.4</span> logging</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 python logging主要有下面几个类
@@ -771,8 +817,8 @@ class=logging.Formatter
 </div>
 </div>
 
-<div id="outline-container-orgc95b44b" class="outline-3">
-<h3 id="orgc95b44b"><span class="section-number-3">3.5</span> virtualenv</h3>
+<div id="outline-container-org6cfa46a" class="outline-3">
+<h3 id="org6cfa46a"><span class="section-number-3">3.5</span> virtualenv</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 <a href="https://virtualenv.pypa.io/en/latest/index.html">https://virtualenv.pypa.io/en/latest/index.html</a>
@@ -791,8 +837,8 @@ class=logging.Formatter
 </div>
 </div>
 
-<div id="outline-container-orgf31e368" class="outline-3">
-<h3 id="orgf31e368"><span class="section-number-3">3.6</span> asyncio</h3>
+<div id="outline-container-org9dde1c0" class="outline-3">
+<h3 id="org9dde1c0"><span class="section-number-3">3.6</span> asyncio</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 理论上asynco也可以不配合coroutine，不过配合coroutine才能最好地发挥asyncio的性能。Python3.5引入关键字`async`和`await`让定义coroutine更加简单。
@@ -822,7 +868,7 @@ loop.close()
 </div>
 
 <p>
-asyncio里面的event_loop指的就是当前执行线程，所以我们只能往里面添加coroutine，否则一个阻塞操作会使得整个线程挂起，这样其他coroutines就没有办法执行了。
+asyncio里面的event<sub>loop指的就是当前执行线程</sub>，所以我们只能往里面添加coroutine，否则一个阻塞操作会使得整个线程挂起，这样其他coroutines就没有办法执行了。
 但是在很多情况下，我们使用的库函数本身就不是async/coroutine的，在这种情况下面，我们就需要把这些操作丢到另外一个thread pool下面执行。
 </p>
 <div class="org-src-container">
@@ -852,8 +898,8 @@ loop.run_until_complete(test())
 </div>
 </div>
 
-<div id="outline-container-orgcaafc24" class="outline-2">
-<h2 id="orgcaafc24"><span class="section-number-2">4</span> inside</h2>
+<div id="outline-container-orgaf876fa" class="outline-2">
+<h2 id="orgaf876fa"><span class="section-number-2">4</span> inside</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="http://pgbovine.net/cpython-internals.htm">Philip Guo - CPython internals: A ten-hour codewalk through the Python interpreter source code</a></li>
@@ -861,6 +907,11 @@ loop.run_until_complete(test())
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/python.html';this.page.identifier = 'python.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

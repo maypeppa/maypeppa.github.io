@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DBMS Introduction</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">DBMS Introduction</h1>
@@ -16,58 +62,58 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb17c913">1. 数据库系统世界</a>
+<li><a href="#org01c3c09">1. 数据库系统世界</a>
 <ul>
-<li><a href="#orgb4927a1">1.1. DBMS功能</a></li>
-<li><a href="#org71f6bba">1.2. DBMS组成</a></li>
-<li><a href="#org4a5a334">1.3. 事务性质</a></li>
-<li><a href="#org3cfa4be">1.4. 本书概览</a></li>
+<li><a href="#orge747ff7">1.1. DBMS功能</a></li>
+<li><a href="#org934638c">1.2. DBMS组成</a></li>
+<li><a href="#orgf9f93e0">1.3. 事务性质</a></li>
+<li><a href="#org8c3487c">1.4. 本书概览</a></li>
 </ul>
 </li>
-<li><a href="#org2dda35c">2. 关系数据模型</a>
+<li><a href="#org63ca8ed">2. 关系数据模型</a>
 <ul>
-<li><a href="#org4f67a3f">2.1. 数据模型</a></li>
-<li><a href="#org9f2754f">2.2. 关系模型</a></li>
-<li><a href="#org2100b64">2.3. 关系代数</a></li>
-<li><a href="#org81abcb1">2.4. 关系约束</a></li>
+<li><a href="#org657d2d3">2.1. 数据模型</a></li>
+<li><a href="#org9ac8852">2.2. 关系模型</a></li>
+<li><a href="#orgbe8293e">2.3. 关系代数</a></li>
+<li><a href="#org6bef1ea">2.4. 关系约束</a></li>
 </ul>
 </li>
-<li><a href="#org21f4261">3. 关系数据库设计理论</a></li>
-<li><a href="#org6b9ed98">4. 高级数据库模型</a></li>
-<li><a href="#orgdbdffb6">5. 代数和逻辑查询语言</a></li>
-<li><a href="#orgb32c604">6. 数据库语言SQL</a>
+<li><a href="#orgb8f87c2">3. 关系数据库设计理论</a></li>
+<li><a href="#orgdeddc6a">4. 高级数据库模型</a></li>
+<li><a href="#org8f9c5e2">5. 代数和逻辑查询语言</a></li>
+<li><a href="#orgb39040d">6. 数据库语言SQL</a>
 <ul>
-<li><a href="#orgcbc4b3a">6.1. SQL简单查询</a></li>
-<li><a href="#orga8f0760">6.2. 多关系查询</a></li>
-<li><a href="#orgf9e2da9">6.3. 关系代数操作</a></li>
-<li><a href="#orgee90a1b">6.4. 子查询</a></li>
-<li><a href="#org89b5c4a">6.5. 关系连接</a></li>
-<li><a href="#orgdf61068">6.6. 全关系操作</a></li>
-<li><a href="#org2bcc488">6.7. 数据库更新</a></li>
-<li><a href="#org08e8794">6.8. SQL中的事务</a></li>
-<li><a href="#org16b4b74">6.9. 事务隔离层次</a></li>
+<li><a href="#orgc504a67">6.1. SQL简单查询</a></li>
+<li><a href="#orga4e9db1">6.2. 多关系查询</a></li>
+<li><a href="#org5c09fa0">6.3. 关系代数操作</a></li>
+<li><a href="#org3870b7a">6.4. 子查询</a></li>
+<li><a href="#org6e9c59b">6.5. 关系连接</a></li>
+<li><a href="#org8572ef8">6.6. 全关系操作</a></li>
+<li><a href="#org354538c">6.7. 数据库更新</a></li>
+<li><a href="#org9f02455">6.8. SQL中的事务</a></li>
+<li><a href="#org3558fc2">6.9. 事务隔离层次</a></li>
 </ul>
 </li>
-<li><a href="#org99191e7">7. 约束与触发器</a>
+<li><a href="#org18d0c59">7. 约束与触发器</a>
 <ul>
-<li><a href="#org259f146">7.1. 约束命名</a></li>
-<li><a href="#orgdfe8909">7.2. 外键约束</a></li>
-<li><a href="#org019a5b2">7.3. CHECK约束</a></li>
-<li><a href="#org4bade1c">7.4. 断言</a></li>
-<li><a href="#orgc4065df">7.5. 触发器</a></li>
+<li><a href="#org458107d">7.1. 约束命名</a></li>
+<li><a href="#orgb396fa9">7.2. 外键约束</a></li>
+<li><a href="#org2484883">7.3. CHECK约束</a></li>
+<li><a href="#org6b70409">7.4. 断言</a></li>
+<li><a href="#org7d8827a">7.5. 触发器</a></li>
 </ul>
 </li>
-<li><a href="#orgbc918d5">8. 视图与索引</a>
+<li><a href="#org24fbcb0">8. 视图与索引</a>
 <ul>
-<li><a href="#org44cdde9">8.1. 虚拟视图</a></li>
-<li><a href="#org843fa39">8.2. 物化视图</a></li>
-<li><a href="#org03c9180">8.3. 索引</a></li>
+<li><a href="#org0a8784c">8.1. 虚拟视图</a></li>
+<li><a href="#orgdc5ba5b">8.2. 物化视图</a></li>
+<li><a href="#org56626ca">8.3. 索引</a></li>
 </ul>
 </li>
-<li><a href="#orgb3f7531">9. 服务器环境下的SQL</a></li>
-<li><a href="#org073e6ab">10. 关系数据库的新课题</a></li>
-<li><a href="#orgb80020e">11. 半结构化数据模型</a></li>
-<li><a href="#orgeb024f0">12. XML程序设计语言</a></li>
+<li><a href="#org94c0e19">9. 服务器环境下的SQL</a></li>
+<li><a href="#org07679f8">10. 关系数据库的新课题</a></li>
+<li><a href="#org63b1d48">11. 半结构化数据模型</a></li>
+<li><a href="#org6f8c5d1">12. XML程序设计语言</a></li>
 </ul>
 </div>
 </div>
@@ -75,12 +121,12 @@
 数据库系统基础教程(A First Course in Database Systems by Jeffrey D. Ullman)
 </p>
 
-<div id="outline-container-orgb17c913" class="outline-2">
-<h2 id="orgb17c913"><span class="section-number-2">1</span> 数据库系统世界</h2>
+<div id="outline-container-org01c3c09" class="outline-2">
+<h2 id="org01c3c09"><span class="section-number-2">1</span> 数据库系统世界</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgb4927a1" class="outline-3">
-<h3 id="orgb4927a1"><span class="section-number-3">1.1</span> DBMS功能</h3>
+<div id="outline-container-orge747ff7" class="outline-3">
+<h3 id="orge747ff7"><span class="section-number-3">1.1</span> DBMS功能</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 DBMS需要有如下功能：
@@ -95,8 +141,8 @@ DBMS需要有如下功能：
 </div>
 </div>
 
-<div id="outline-container-org71f6bba" class="outline-3">
-<h3 id="org71f6bba"><span class="section-number-3">1.2</span> DBMS组成</h3>
+<div id="outline-container-org934638c" class="outline-3">
+<h3 id="org934638c"><span class="section-number-3">1.2</span> DBMS组成</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <b>组件概览</b>
@@ -174,8 +220,8 @@ update@201509: 还是加上架构图吧, 一图胜千言. 那个时候没有智�
 </div>
 </div>
 
-<div id="outline-container-org4a5a334" class="outline-3">
-<h3 id="org4a5a334"><span class="section-number-3">1.3</span> 事务性质</h3>
+<div id="outline-container-orgf9f93e0" class="outline-3">
+<h3 id="orgf9f93e0"><span class="section-number-3">1.3</span> 事务性质</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 正确的事务通常应该满足一下ACID性质：
@@ -189,8 +235,8 @@ update@201509: 还是加上架构图吧, 一图胜千言. 那个时候没有智�
 </div>
 </div>
 
-<div id="outline-container-org3cfa4be" class="outline-3">
-<h3 id="org3cfa4be"><span class="section-number-3">1.4</span> 本书概览</h3>
+<div id="outline-container-org8c3487c" class="outline-3">
+<h3 id="org8c3487c"><span class="section-number-3">1.4</span> 本书概览</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 书主要是分三个部分来讨论的：
@@ -204,12 +250,12 @@ update@201509: 还是加上架构图吧, 一图胜千言. 那个时候没有智�
 </div>
 </div>
 
-<div id="outline-container-org2dda35c" class="outline-2">
-<h2 id="org2dda35c"><span class="section-number-2">2</span> 关系数据模型</h2>
+<div id="outline-container-org63ca8ed" class="outline-2">
+<h2 id="org63ca8ed"><span class="section-number-2">2</span> 关系数据模型</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4f67a3f" class="outline-3">
-<h3 id="org4f67a3f"><span class="section-number-3">2.1</span> 数据模型</h3>
+<div id="outline-container-org657d2d3" class="outline-3">
+<h3 id="org657d2d3"><span class="section-number-3">2.1</span> 数据模型</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 数据模型(data model)是用于描述数据或信息的标记，通常由三个部分组成：
@@ -237,8 +283,8 @@ update@201509: 还是加上架构图吧, 一图胜千言. 那个时候没有智�
 </div>
 </div>
 
-<div id="outline-container-org9f2754f" class="outline-3">
-<h3 id="org9f2754f"><span class="section-number-3">2.2</span> 关系模型</h3>
+<div id="outline-container-org9ac8852" class="outline-3">
+<h3 id="org9ac8852"><span class="section-number-3">2.2</span> 关系模型</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 关系模型中的一些重要概念包括下面这些：我们可以将关系(relation)理解为二维表
@@ -263,8 +309,8 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-org2100b64" class="outline-3">
-<h3 id="org2100b64"><span class="section-number-3">2.3</span> 关系代数</h3>
+<div id="outline-container-orgbe8293e" class="outline-3">
+<h3 id="orgbe8293e"><span class="section-number-3">2.3</span> 关系代数</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 代数查询语言使用的是关系代数。虽然关系代数没有C/Java强大，但是通过对于查询语言做出某些限制，可以获得两个极为有益的回报，非常方便地进行开发以及能够编译产生高度优化的代码。
@@ -283,8 +329,8 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-org81abcb1" class="outline-3">
-<h3 id="org81abcb1"><span class="section-number-3">2.4</span> 关系约束</h3>
+<div id="outline-container-org6bef1ea" class="outline-3">
+<h3 id="org6bef1ea"><span class="section-number-3">2.4</span> 关系约束</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 约束(constraint)即关系模型对于存储在数据库中的数据具有的约束能力。之前提到了键就是一种非常基本的约束。
@@ -295,8 +341,8 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-org21f4261" class="outline-2">
-<h2 id="org21f4261"><span class="section-number-2">3</span> 关系数据库设计理论</h2>
+<div id="outline-container-orgb8f87c2" class="outline-2">
+<h2 id="orgb8f87c2"><span class="section-number-2">3</span> 关系数据库设计理论</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 #todo:
@@ -304,8 +350,8 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-org6b9ed98" class="outline-2">
-<h2 id="org6b9ed98"><span class="section-number-2">4</span> 高级数据库模型</h2>
+<div id="outline-container-orgdeddc6a" class="outline-2">
+<h2 id="orgdeddc6a"><span class="section-number-2">4</span> 高级数据库模型</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 #todo:
@@ -313,8 +359,8 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-orgdbdffb6" class="outline-2">
-<h2 id="orgdbdffb6"><span class="section-number-2">5</span> 代数和逻辑查询语言</h2>
+<div id="outline-container-org8f9c5e2" class="outline-2">
+<h2 id="org8f9c5e2"><span class="section-number-2">5</span> 代数和逻辑查询语言</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 #todo:
@@ -322,12 +368,12 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-orgb32c604" class="outline-2">
-<h2 id="orgb32c604"><span class="section-number-2">6</span> 数据库语言SQL</h2>
+<div id="outline-container-orgb39040d" class="outline-2">
+<h2 id="orgb39040d"><span class="section-number-2">6</span> 数据库语言SQL</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgcbc4b3a" class="outline-3">
-<h3 id="orgcbc4b3a"><span class="section-number-3">6.1</span> SQL简单查询</h3>
+<div id="outline-container-orgc504a67" class="outline-3">
+<h3 id="orgc504a67"><span class="section-number-3">6.1</span> SQL简单查询</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 简单查询形式为SELECT L FROM R WHERE C.
@@ -362,8 +408,8 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-orga8f0760" class="outline-3">
-<h3 id="orga8f0760"><span class="section-number-3">6.2</span> 多关系查询</h3>
+<div id="outline-container-orga4e9db1" class="outline-3">
+<h3 id="orga4e9db1"><span class="section-number-3">6.2</span> 多关系查询</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 多关系查询相当于联合多个关系来做查询。如果遇到关系的字段同名的话，我们可以通过rename或者是显示地写上qualified name来消除歧义。see "关系连接"
@@ -383,8 +429,8 @@ SQL区分三类关系：
 </div>
 </div>
 
-<div id="outline-container-orgf9e2da9" class="outline-3">
-<h3 id="orgf9e2da9"><span class="section-number-3">6.3</span> 关系代数操作</h3>
+<div id="outline-container-org5c09fa0" class="outline-3">
+<h3 id="org5c09fa0"><span class="section-number-3">6.3</span> 关系代数操作</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 update@201509: 不常用
@@ -397,8 +443,8 @@ SQL提供了对应的包并(UNION)，交(INTERSECT)，差(EXCEPT)关系代数操
 </div>
 </div>
 
-<div id="outline-container-orgee90a1b" class="outline-3">
-<h3 id="orgee90a1b"><span class="section-number-3">6.4</span> 子查询</h3>
+<div id="outline-container-org3870b7a" class="outline-3">
+<h3 id="org3870b7a"><span class="section-number-3">6.4</span> 子查询</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 update@201509: 不常用. 大部分应用都可以使用JOIN表来完成, 而可读性更好.
@@ -415,8 +461,8 @@ update@201509: 不常用. 大部分应用都可以使用JOIN表来完成, 而可
 </div>
 </div>
 
-<div id="outline-container-org89b5c4a" class="outline-3">
-<h3 id="org89b5c4a"><span class="section-number-3">6.5</span> 关系连接</h3>
+<div id="outline-container-org6e9c59b" class="outline-3">
+<h3 id="org6e9c59b"><span class="section-number-3">6.5</span> 关系连接</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 update@201509: 关系操作产生新的关系, 比如`(A JOIN B ON A.id == B.id AND A.f1 &gt; 100 AND B.f2 &lt; 200) AS R`. 然后使用普通查询语句作用在关系R上如`SELECT A.f1, B.f2 FROM R`.
@@ -436,8 +482,8 @@ update@201509: 关系操作产生新的关系, 比如`(A JOIN B ON A.id == B.id 
 </div>
 </div>
 
-<div id="outline-container-orgdf61068" class="outline-3">
-<h3 id="orgdf61068"><span class="section-number-3">6.6</span> 全关系操作</h3>
+<div id="outline-container-org8572ef8" class="outline-3">
+<h3 id="org8572ef8"><span class="section-number-3">6.6</span> 全关系操作</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 所谓权关系操作指将关系作为一个整体而不是单个元组或者是一定数量的元组进行操作。
@@ -461,8 +507,8 @@ update@201509: 关系操作产生新的关系, 比如`(A JOIN B ON A.id == B.id 
 </div>
 </div>
 
-<div id="outline-container-org2bcc488" class="outline-3">
-<h3 id="org2bcc488"><span class="section-number-3">6.7</span> 数据库更新</h3>
+<div id="outline-container-org354538c" class="outline-3">
+<h3 id="org354538c"><span class="section-number-3">6.7</span> 数据库更新</h3>
 <div class="outline-text-3" id="text-6-7">
 <p>
 数据库更新操作有三种：
@@ -475,8 +521,8 @@ update@201509: 关系操作产生新的关系, 比如`(A JOIN B ON A.id == B.id 
 </div>
 </div>
 
-<div id="outline-container-org08e8794" class="outline-3">
-<h3 id="org08e8794"><span class="section-number-3">6.8</span> SQL中的事务</h3>
+<div id="outline-container-org9f02455" class="outline-3">
+<h3 id="org9f02455"><span class="section-number-3">6.8</span> SQL中的事务</h3>
 <div class="outline-text-3" id="text-6-8">
 <p>
 关于事务引入的原因在之前介绍了并且也介绍了事务性质。我们来看看事务使用：
@@ -493,8 +539,8 @@ update@201509: 关系操作产生新的关系, 比如`(A JOIN B ON A.id == B.id 
 </div>
 </div>
 
-<div id="outline-container-org16b4b74" class="outline-3">
-<h3 id="org16b4b74"><span class="section-number-3">6.9</span> 事务隔离层次</h3>
+<div id="outline-container-org3558fc2" class="outline-3">
+<h3 id="org3558fc2"><span class="section-number-3">6.9</span> 事务隔离层次</h3>
 <div class="outline-text-3" id="text-6-9">
 <p>
 事务的隔离层次会影响到该事务可以看到的数据。如果事务T在串行化层次上面执行的话，那么T的执行必须看起来好像所有其他事务要么完全在T
@@ -578,7 +624,7 @@ update@201509: sqlite中的事务级别和这里说的事务隔离级别还有�
 </ul>
 <blockquote>
 <p>
-Transactions can be deferred, immediate, or exclusive. The default transaction behavior is deferred. Deferred means that no locks are acquired on the database until the database is first accessed. Thus with a deferred transaction, the BEGIN statement itself does nothing to the filesystem. Locks are not acquired until the first read or write operation. The first read operation against a database creates a SHARED lock and the first write operation creates a RESERVED lock. Because the acquisition of locks is deferred until they are needed, it is possible that another thread or process could create a separate transaction and write to the database after the BEGIN on the current thread has executed. If the transaction is immediate, then RESERVED locks are acquired on all databases as soon as the BEGIN command is executed, without waiting for the database to be used. After a BEGIN IMMEDIATE, no other database connection will be able to write to the database or do a BEGIN IMMEDIATE or BEGIN EXCLUSIVE. Other processes can continue to read from the database, however. An exclusive transaction causes EXCLUSIVE locks to be acquired on all databases. After a BEGIN EXCLUSIVE, no other database connection except for read_uncommitted connections will be able to read the database and no other connection without exception will be able to write the database until the transaction is complete.
+Transactions can be deferred, immediate, or exclusive. The default transaction behavior is deferred. Deferred means that no locks are acquired on the database until the database is first accessed. Thus with a deferred transaction, the BEGIN statement itself does nothing to the filesystem. Locks are not acquired until the first read or write operation. The first read operation against a database creates a SHARED lock and the first write operation creates a RESERVED lock. Because the acquisition of locks is deferred until they are needed, it is possible that another thread or process could create a separate transaction and write to the database after the BEGIN on the current thread has executed. If the transaction is immediate, then RESERVED locks are acquired on all databases as soon as the BEGIN command is executed, without waiting for the database to be used. After a BEGIN IMMEDIATE, no other database connection will be able to write to the database or do a BEGIN IMMEDIATE or BEGIN EXCLUSIVE. Other processes can continue to read from the database, however. An exclusive transaction causes EXCLUSIVE locks to be acquired on all databases. After a BEGIN EXCLUSIVE, no other database connection except for read<sub>uncommitted</sub> connections will be able to read the database and no other connection without exception will be able to write the database until the transaction is complete.
 </p>
 </blockquote>
 
@@ -595,8 +641,8 @@ Transactions can be deferred, immediate, or exclusive. The default transaction b
 </div>
 </div>
 
-<div id="outline-container-org99191e7" class="outline-2">
-<h2 id="org99191e7"><span class="section-number-2">7</span> 约束与触发器</h2>
+<div id="outline-container-org18d0c59" class="outline-2">
+<h2 id="org18d0c59"><span class="section-number-2">7</span> 约束与触发器</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 在SQL中允许创建"主动"元素的相关内容。主动(active)元素是一个表达式或者语句，该表达式或语句只需要编写一次存储在数据库中，然后在适当的时间执行。主动元素的执行可以是由于某个特定时间引发，如对关系插入元组，或者是当修改数据库的值引起某个逻辑值为真等。在SQL中存在两种"主动"元素分别是约束(完整性约束,integrity constraint)与处触发器。
@@ -610,8 +656,8 @@ Transactions can be deferred, immediate, or exclusive. The default transaction b
 </ul>
 </div>
 
-<div id="outline-container-org259f146" class="outline-3">
-<h3 id="org259f146"><span class="section-number-3">7.1</span> 约束命名</h3>
+<div id="outline-container-org458107d" class="outline-3">
+<h3 id="org458107d"><span class="section-number-3">7.1</span> 约束命名</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 对于任何约束的话我们都可以为其命名，方式是CONSTRAINT &lt;name&lt;&gt; &lt;constraint-content&gt;.比如
@@ -633,8 +679,8 @@ name CHAR(30) CONSTRAINT hello nameIsKey PRIMARY KEY.
 </div>
 </div>
 
-<div id="outline-container-orgdfe8909" class="outline-3">
-<h3 id="orgdfe8909"><span class="section-number-3">7.2</span> 外键约束</h3>
+<div id="outline-container-orgb396fa9" class="outline-3">
+<h3 id="orgb396fa9"><span class="section-number-3">7.2</span> 外键约束</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 外键约束用于判定一个关系中出现的值也必须在另外一个关系的主键中出现，在SQL中可以将关系中的一个属性或者是属性组声明外键(foreign key),该
@@ -658,8 +704,8 @@ name CHAR(30) CONSTRAINT hello nameIsKey PRIMARY KEY.
 </div>
 </div>
 
-<div id="outline-container-org019a5b2" class="outline-3">
-<h3 id="org019a5b2"><span class="section-number-3">7.3</span> CHECK约束</h3>
+<div id="outline-container-org2484883" class="outline-3">
+<h3 id="org2484883"><span class="section-number-3">7.3</span> CHECK约束</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 CHECK约束包括基于属性的约束(attributed-based CHECK constraint)以及基于元组的约束(tuple-based CHECK constraint).基于属性的约束首先
@@ -678,8 +724,8 @@ CHECK约束仅仅是针对某一个关系的而不是针对于数据库的。如
 </div>
 </div>
 
-<div id="outline-container-org4bade1c" class="outline-3">
-<h3 id="org4bade1c"><span class="section-number-3">7.4</span> 断言</h3>
+<div id="outline-container-org6b70409" class="outline-3">
+<h3 id="org6b70409"><span class="section-number-3">7.4</span> 断言</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 公平地说触发器可以完成断言的功能，因为触发器是DBMS作为通用目的主动元素，可以说断言是触发器的特化。但是断言非常便于程序员使用，
@@ -738,8 +784,8 @@ CHECK约束仅仅是针对某一个关系的而不是针对于数据库的。如
 </div>
 </div>
 
-<div id="outline-container-orgc4065df" class="outline-3">
-<h3 id="orgc4065df"><span class="section-number-3">7.5</span> 触发器</h3>
+<div id="outline-container-org7d8827a" class="outline-3">
+<h3 id="org7d8827a"><span class="section-number-3">7.5</span> 触发器</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 触发器有时候也被称为事件-条件-动作规则(event-condition-action rule)或者是ECA规则。程序员可以选择动作执行的方式：
@@ -774,12 +820,12 @@ WHEN (OldTuple.y &gt; NewTuple.y) # 如果想执行多条语句的话那么需�
 </div>
 </div>
 
-<div id="outline-container-orgbc918d5" class="outline-2">
-<h2 id="orgbc918d5"><span class="section-number-2">8</span> 视图与索引</h2>
+<div id="outline-container-org24fbcb0" class="outline-2">
+<h2 id="org24fbcb0"><span class="section-number-2">8</span> 视图与索引</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org44cdde9" class="outline-3">
-<h3 id="org44cdde9"><span class="section-number-3">8.1</span> 虚拟视图</h3>
+<div id="outline-container-org0a8784c" class="outline-3">
+<h3 id="org0a8784c"><span class="section-number-3">8.1</span> 虚拟视图</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 虚拟视图是由其他关系上的查询所定义的一种关系。虚拟视图并不在数据库中进行存储，但是可以对其进行查询，就好像它确实被存在数据库中一样。查询处理器也会在执行查询时用视图的定义来替换视图。CREATE VIEW &lt;name&gt; AS &lt;视图定义&gt;可以用来创建视图(删除视图DROP VIEW &lt;name&gt;)。视图看上去像是table所以用户可能想进行insert/update/delete. 不过因为视图本身就是一个虚拟table, 所以进行更新操作陷阱会比较多. 但是我觉得为了简化我们的理解以及使用最好就先定视图只允许查询。如果我们确实想更新视图的话，我们可以使用触发器INSTEAD OF来截获对于视图本身的修改。
@@ -787,8 +833,8 @@ WHEN (OldTuple.y &gt; NewTuple.y) # 如果想执行多条语句的话那么需�
 </div>
 </div>
 
-<div id="outline-container-org843fa39" class="outline-3">
-<h3 id="org843fa39"><span class="section-number-3">8.2</span> 物化视图</h3>
+<div id="outline-container-orgdc5ba5b" class="outline-3">
+<h3 id="orgdc5ba5b"><span class="section-number-3">8.2</span> 物化视图</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 对于虚拟视图而言，每次查询底层查询解释器都会翻译称为子查询，效率无疑很低。如果我们可以将这个虚拟视图存储下来，并且维护好这个视图和原始table之间的关系，那么就能够提高效率了。所谓的物化(materialized)就是在任何时间都保存它的值，当基本表发生变化时，每次必须重新计算部分物化视图，因此维护物化视图也需要一定的代价。对于某些场景我们可以选择不去立即更新物化视图, 可以推迟积累一段时间变化batch地更新.
@@ -796,8 +842,8 @@ WHEN (OldTuple.y &gt; NewTuple.y) # 如果想执行多条语句的话那么需�
 </div>
 </div>
 
-<div id="outline-container-org03c9180" class="outline-3">
-<h3 id="org03c9180"><span class="section-number-3">8.3</span> 索引</h3>
+<div id="outline-container-org56626ca" class="outline-3">
+<h3 id="org56626ca"><span class="section-number-3">8.3</span> 索引</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 update@201509: 区分索引的键和关系的键. 索引键是用来指定索引的, 而关系的键是用作唯一标识的.
@@ -810,8 +856,8 @@ update@201509: 区分索引的键和关系的键. 索引键是用来指定索引
 </div>
 </div>
 
-<div id="outline-container-orgb3f7531" class="outline-2">
-<h2 id="orgb3f7531"><span class="section-number-2">9</span> 服务器环境下的SQL</h2>
+<div id="outline-container-org94c0e19" class="outline-2">
+<h2 id="org94c0e19"><span class="section-number-2">9</span> 服务器环境下的SQL</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 #todo:
@@ -819,8 +865,8 @@ update@201509: 区分索引的键和关系的键. 索引键是用来指定索引
 </div>
 </div>
 
-<div id="outline-container-org073e6ab" class="outline-2">
-<h2 id="org073e6ab"><span class="section-number-2">10</span> 关系数据库的新课题</h2>
+<div id="outline-container-org07679f8" class="outline-2">
+<h2 id="org07679f8"><span class="section-number-2">10</span> 关系数据库的新课题</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 #todo:
@@ -828,8 +874,8 @@ update@201509: 区分索引的键和关系的键. 索引键是用来指定索引
 </div>
 </div>
 
-<div id="outline-container-orgb80020e" class="outline-2">
-<h2 id="orgb80020e"><span class="section-number-2">11</span> 半结构化数据模型</h2>
+<div id="outline-container-org63b1d48" class="outline-2">
+<h2 id="org63b1d48"><span class="section-number-2">11</span> 半结构化数据模型</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 半结构化数据(semistructured-data)模型在数据库系统中有独特的地位：
@@ -851,8 +897,8 @@ DTD(Document Type Definition).而XML模式(XML Schema)则是另外一种为XML�
 </div>
 </div>
 
-<div id="outline-container-orgeb024f0" class="outline-2">
-<h2 id="orgeb024f0"><span class="section-number-2">12</span> XML程序设计语言</h2>
+<div id="outline-container-org6f8c5d1" class="outline-2">
+<h2 id="org6f8c5d1"><span class="section-number-2">12</span> XML程序设计语言</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 对于数据模型的话除了数据结构之外，还需要提供数据定义以及数据查询的功能。因为半结构化数据模型本身就是自描述的，所以没有特殊的数据定义。
@@ -865,6 +911,11 @@ DTD(Document Type Definition).而XML模式(XML Schema)则是另外一种为XML�
 </ul>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/dbms-intro.html';this.page.identifier = 'dbms-intro.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

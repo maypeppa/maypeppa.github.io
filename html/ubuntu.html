@@ -7,7 +7,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ubuntu</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -30,7 +76,7 @@
 </script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Ubuntu</h1>
@@ -38,67 +84,67 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge8b694a">1. 写在前面</a></li>
-<li><a href="#orgbe3132b">2. 系统配置</a>
+<li><a href="#org88e4396">1. 写在前面</a></li>
+<li><a href="#org1f9dbe8">2. 系统配置</a>
 <ul>
-<li><a href="#orgffd87bc">2.1. 察看ubuntu内部版本</a></li>
-<li><a href="#org494199a">2.2. 重启机器</a></li>
-<li><a href="#orgedd85fb">2.3. 关闭机器</a></li>
-<li><a href="#orgbf2aa12">2.4. 重启unity</a></li>
-<li><a href="#org7355385">2.5. 设置字符界面启动</a></li>
-<li><a href="#org064383e">2.6. 绑定静态IP</a></li>
-<li><a href="#org14a5ab4">2.7. 修改主机名称</a></li>
-<li><a href="#orgc2dba60">2.8. root密码</a></li>
-<li><a href="#orgb80ab0b">2.9. deb使用</a></li>
-<li><a href="#org3746cbf">2.10. apt-get: Waiting for headers</a></li>
-<li><a href="#org3c9fed7">2.11. /sbin/insserv: No such file or directory</a></li>
-<li><a href="#orgf1dd1ea">2.12. 允许/禁止服务自动启动</a></li>
-<li><a href="#orgcc533cf">2.13. 修改分区</a></li>
-<li><a href="#org9611706">2.14. 设置apt源</a></li>
+<li><a href="#org093d231">2.1. 察看ubuntu内部版本</a></li>
+<li><a href="#orgee7434f">2.2. 重启机器</a></li>
+<li><a href="#orge801488">2.3. 关闭机器</a></li>
+<li><a href="#org34d3982">2.4. 重启unity</a></li>
+<li><a href="#org0a055e4">2.5. 设置字符界面启动</a></li>
+<li><a href="#orgfb6a22c">2.6. 绑定静态IP</a></li>
+<li><a href="#orga060ddc">2.7. 修改主机名称</a></li>
+<li><a href="#org26f40ad">2.8. root密码</a></li>
+<li><a href="#orge4fbf06">2.9. deb使用</a></li>
+<li><a href="#orgf24b04a">2.10. apt-get: Waiting for headers</a></li>
+<li><a href="#org4a812f9">2.11. /sbin/insserv: No such file or directory</a></li>
+<li><a href="#org91d26de">2.12. 允许/禁止服务自动启动</a></li>
+<li><a href="#org4c8ef7c">2.13. 修改分区</a></li>
+<li><a href="#org1ef66ef">2.14. 设置apt源</a></li>
 </ul>
 </li>
-<li><a href="#orga3a88e8">3. 桌面应用</a>
+<li><a href="#orgc562534">3. 桌面应用</a>
 <ul>
-<li><a href="#orgc8f06f2">3.1. amarok循环播放</a></li>
-<li><a href="#org3db4e22">3.2. 设置输入法切换</a></li>
-<li><a href="#orgdadf51b">3.3. 自动启动输入法</a></li>
-<li><a href="#org10cf36d">3.4. google docs不能输入中文</a></li>
-<li><a href="#org5d26de4">3.5. 设置默认浏览器</a></li>
-<li><a href="#org671a4cf">3.6. thunderbird配置gmail</a></li>
-<li><a href="#org91e0546">3.7. thunderbird的Inbox文件过大</a></li>
-<li><a href="#org3dd848f">3.8. 窗口常用快捷键</a></li>
-<li><a href="#org3bfc431">3.9. 调整字体大小</a></li>
-<li><a href="#org4f72cc5">3.10. 调整边栏大小</a></li>
-<li><a href="#orga980b1f">3.11. 调整skype字体大小</a></li>
-<li><a href="#orgd95a39b">3.12. vlc字幕乱码</a></li>
-<li><a href="#orgac3340a">3.13. 使用搜狗输入法</a></li>
+<li><a href="#orgfd8399e">3.1. amarok循环播放</a></li>
+<li><a href="#org470fbf1">3.2. 设置输入法切换</a></li>
+<li><a href="#org889000b">3.3. 自动启动输入法</a></li>
+<li><a href="#orgff87111">3.4. google docs不能输入中文</a></li>
+<li><a href="#orgca07385">3.5. 设置默认浏览器</a></li>
+<li><a href="#org7da7290">3.6. thunderbird配置gmail</a></li>
+<li><a href="#org37e3fbf">3.7. thunderbird的Inbox文件过大</a></li>
+<li><a href="#orgb71e360">3.8. 窗口常用快捷键</a></li>
+<li><a href="#orgb160b83">3.9. 调整字体大小</a></li>
+<li><a href="#orgd8c446c">3.10. 调整边栏大小</a></li>
+<li><a href="#org9bfc8aa">3.11. 调整skype字体大小</a></li>
+<li><a href="#org359137b">3.12. vlc字幕乱码</a></li>
+<li><a href="#orga84cd3f">3.13. 使用搜狗输入法</a></li>
 </ul>
 </li>
-<li><a href="#orga642c56">4. 编程环境</a>
+<li><a href="#orgd1b2bb4">4. 编程环境</a>
 <ul>
-<li><a href="#org0830781">4.1. bash的tab自动补全</a></li>
-<li><a href="#org2058f55">4.2. 加快ssh登陆</a></li>
-<li><a href="#org8847cfa">4.3. 建立ssh信任关系</a></li>
-<li><a href="#orgd07065e">4.4. 简化ssh登陆</a></li>
-<li><a href="#org27a925d">4.5. 修改默认shell</a></li>
-<li><a href="#org4c7e4a4">4.6. 关闭ssh host key检查</a></li>
-<li><a href="#org22b0cdc">4.7. ssh identity file</a></li>
-<li><a href="#orgf18c04c">4.8. cannot change locale</a></li>
+<li><a href="#org4987bdb">4.1. bash的tab自动补全</a></li>
+<li><a href="#orgc4be824">4.2. 加快ssh登陆</a></li>
+<li><a href="#org6fc0f9a">4.3. 建立ssh信任关系</a></li>
+<li><a href="#org5cf4bee">4.4. 简化ssh登陆</a></li>
+<li><a href="#orgabcb63a">4.5. 修改默认shell</a></li>
+<li><a href="#org4bd1e61">4.6. 关闭ssh host key检查</a></li>
+<li><a href="#org6b5d691">4.7. ssh identity file</a></li>
+<li><a href="#org3913d3d">4.8. cannot change locale</a></li>
 </ul>
 </li>
-<li><a href="#org79c1c34">5. 虚拟机</a>
+<li><a href="#orgce63377">5. 虚拟机</a>
 <ul>
-<li><a href="#org8b4b28b">5.1. vmware虚拟机增加磁盘空间</a></li>
-<li><a href="#orgb405e5f">5.2. virtualbox安装windows虚拟机</a></li>
-<li><a href="#orge6fc004">5.3. virtualbox设置共享文件夹</a></li>
-<li><a href="#org2acb3d5">5.4. virtualbox下使用U盾</a></li>
+<li><a href="#org2d6edc1">5.1. vmware虚拟机增加磁盘空间</a></li>
+<li><a href="#org2aa41fc">5.2. virtualbox安装windows虚拟机</a></li>
+<li><a href="#org470982c">5.3. virtualbox设置共享文件夹</a></li>
+<li><a href="#orgb1d17d2">5.4. virtualbox下使用U盾</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge8b694a" class="outline-2">
-<h2 id="orge8b694a"><span class="section-number-2">1</span> 写在前面</h2>
+<div id="outline-container-org88e4396" class="outline-2">
+<h2 id="org88e4396"><span class="section-number-2">1</span> 写在前面</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 千万不要抱有一朝一兮就可以搞定的想法。最好的话身边有一个群体，大家都使用Ubuntu这个东西。这样如果有什么问题的话，大家就比较容易找到解决办法，直到自己完全适应为止。推荐安装下面这些软件：
@@ -212,15 +258,15 @@ C++ Libraries:
 </div>
 </div>
 
-<div id="outline-container-orgbe3132b" class="outline-2">
-<h2 id="orgbe3132b"><span class="section-number-2">2</span> 系统配置</h2>
+<div id="outline-container-org1f9dbe8" class="outline-2">
+<h2 id="org1f9dbe8"><span class="section-number-2">2</span> 系统配置</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgffd87bc" class="outline-3">
-<h3 id="orgffd87bc"><span class="section-number-3">2.1</span> 察看ubuntu内部版本</h3>
+<div id="outline-container-org093d231" class="outline-3">
+<h3 id="org093d231"><span class="section-number-3">2.1</span> 察看ubuntu内部版本</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-lsb_release -a
+lsb<sub>release</sub> -a
 </p>
 
 <pre class="example">
@@ -247,8 +293,8 @@ Codename:	trusty
 </div>
 </div>
 
-<div id="outline-container-org494199a" class="outline-3">
-<h3 id="org494199a"><span class="section-number-3">2.2</span> 重启机器</h3>
+<div id="outline-container-orgee7434f" class="outline-3">
+<h3 id="orgee7434f"><span class="section-number-3">2.2</span> 重启机器</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 似乎Ubuntu下面限制用户进行重启，可以使用sudo reboot重启机器。
@@ -256,8 +302,8 @@ Codename:	trusty
 </div>
 </div>
 
-<div id="outline-container-orgedd85fb" class="outline-3">
-<h3 id="orgedd85fb"><span class="section-number-3">2.3</span> 关闭机器</h3>
+<div id="outline-container-orge801488" class="outline-3">
+<h3 id="orge801488"><span class="section-number-3">2.3</span> 关闭机器</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 关闭机器同样需要超级权限，可以使用sudo shutdown 0立即关闭机器。
@@ -265,8 +311,8 @@ Codename:	trusty
 </div>
 </div>
 
-<div id="outline-container-orgbf2aa12" class="outline-3">
-<h3 id="orgbf2aa12"><span class="section-number-3">2.4</span> 重启unity</h3>
+<div id="outline-container-org34d3982" class="outline-3">
+<h3 id="org34d3982"><span class="section-number-3">2.4</span> 重启unity</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 unity restart &amp;
@@ -278,19 +324,19 @@ unity restart &amp;
 </div>
 </div>
 
-<div id="outline-container-org7355385" class="outline-3">
-<h3 id="org7355385"><span class="section-number-3">2.5</span> 设置字符界面启动</h3>
+<div id="outline-container-org0a055e4" class="outline-3">
+<h3 id="org0a055e4"><span class="section-number-3">2.5</span> 设置字符界面启动</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>编辑文件/etc/default/grub</li>
-<li>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"修改成GRUB_CMDLINE_LINUX_DEFAULT="quiet splash text"</li>
+<li>GRUB<sub>CMDLINE</sub><sub>LINUX</sub><sub>DEFAULT</sub>="quiet splash"修改成GRUB<sub>CMDLINE</sub><sub>LINUX</sub><sub>DEFAULT</sub>="quiet splash text"</li>
 <li>运行sudo update-grub</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org064383e" class="outline-3">
-<h3 id="org064383e"><span class="section-number-3">2.6</span> 绑定静态IP</h3>
+<div id="outline-container-orgfb6a22c" class="outline-3">
+<h3 id="orgfb6a22c"><span class="section-number-3">2.6</span> 绑定静态IP</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 修改/etc/network/interfaces
@@ -320,8 +366,8 @@ sudo /etc/init.d/networking restart
 </div>
 </div>
 
-<div id="outline-container-org14a5ab4" class="outline-3">
-<h3 id="org14a5ab4"><span class="section-number-3">2.7</span> 修改主机名称</h3>
+<div id="outline-container-orga060ddc" class="outline-3">
+<h3 id="orga060ddc"><span class="section-number-3">2.7</span> 修改主机名称</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>sudo hostname &lt;name&gt;</li>
@@ -330,8 +376,8 @@ sudo /etc/init.d/networking restart
 </div>
 </div>
 
-<div id="outline-container-orgc2dba60" class="outline-3">
-<h3 id="orgc2dba60"><span class="section-number-3">2.8</span> root密码</h3>
+<div id="outline-container-org26f40ad" class="outline-3">
+<h3 id="org26f40ad"><span class="section-number-3">2.8</span> root密码</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 初次启动的时候需要使用sudo passwd root来修改root密码
@@ -343,8 +389,8 @@ sudo /etc/init.d/networking restart
 </div>
 </div>
 
-<div id="outline-container-orgb80ab0b" class="outline-3">
-<h3 id="orgb80ab0b"><span class="section-number-3">2.9</span> deb使用</h3>
+<div id="outline-container-orge4fbf06" class="outline-3">
+<h3 id="orge4fbf06"><span class="section-number-3">2.9</span> deb使用</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 安装deb使用命令 sudo dpkg -i test.deb. （使用dpkg并不会自动下载.deb所需要的依赖. 这个工作可以通过gdebi来完成）
@@ -439,8 +485,8 @@ tcpdump
 </div>
 </div>
 
-<div id="outline-container-org3746cbf" class="outline-3">
-<h3 id="org3746cbf"><span class="section-number-3">2.10</span> apt-get: Waiting for headers</h3>
+<div id="outline-container-orgf24b04a" class="outline-3">
+<h3 id="orgf24b04a"><span class="section-number-3">2.10</span> apt-get: Waiting for headers</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 <a href="http://askubuntu.com/questions/156650/apt-get-update-very-slow-stuck-at-waiting-for-headers">http://askubuntu.com/questions/156650/apt-get-update-very-slow-stuck-at-waiting-for-headers</a>
@@ -456,8 +502,8 @@ Update Manager -&gt; Settings -&gt; Ubuntu Software -&gt; Download from Other -&
 </div>
 </div>
 
-<div id="outline-container-org3c9fed7" class="outline-3">
-<h3 id="org3c9fed7"><span class="section-number-3">2.11</span> /sbin/insserv: No such file or directory</h3>
+<div id="outline-container-org4a812f9" class="outline-3">
+<h3 id="org4a812f9"><span class="section-number-3">2.11</span> /sbin/insserv: No such file or directory</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
 这个命令会在chkconfig(用于配置是否自动启动)里面用到.
@@ -474,8 +520,8 @@ Update Manager -&gt; Settings -&gt; Ubuntu Software -&gt; Download from Other -&
 </div>
 </div>
 
-<div id="outline-container-orgf1dd1ea" class="outline-3">
-<h3 id="orgf1dd1ea"><span class="section-number-3">2.12</span> 允许/禁止服务自动启动</h3>
+<div id="outline-container-org91d26de" class="outline-3">
+<h3 id="org91d26de"><span class="section-number-3">2.12</span> 允许/禁止服务自动启动</h3>
 <div class="outline-text-3" id="text-2-12">
 <p>
 chkconfig可以用来配置服务是否自动启动 sudo chkconfig &lt;service&gt; on/off
@@ -544,8 +590,8 @@ virtualbox-g 0:off1:off2:on3:on4:on5:on6:off
 </div>
 </div>
 
-<div id="outline-container-orgcc533cf" class="outline-3">
-<h3 id="orgcc533cf"><span class="section-number-3">2.13</span> 修改分区</h3>
+<div id="outline-container-org4c8ef7c" class="outline-3">
+<h3 id="org4c8ef7c"><span class="section-number-3">2.13</span> 修改分区</h3>
 <div class="outline-text-3" id="text-2-13">
 <p>
 可以使用Ubuntu Disk工具来修改分区。
@@ -568,8 +614,8 @@ virtualbox-g 0:off1:off2:on3:on4:on5:on6:off
 </div>
 </div>
 
-<div id="outline-container-org9611706" class="outline-3">
-<h3 id="org9611706"><span class="section-number-3">2.14</span> 设置apt源</h3>
+<div id="outline-container-org1ef66ef" class="outline-3">
+<h3 id="org1ef66ef"><span class="section-number-3">2.14</span> 设置apt源</h3>
 <div class="outline-text-3" id="text-2-14">
 <p>
 好的apt源可以加快软件安装，节省不少时间。默认源mirrors.ubuntu.com离中国比较远所以下载会很慢。
@@ -586,12 +632,12 @@ Ubuntu Software Center -&gt; Edit -&gt; Software Sources -&gt; Ubuntu Sofware(Do
 </div>
 </div>
 
-<div id="outline-container-orga3a88e8" class="outline-2">
-<h2 id="orga3a88e8"><span class="section-number-2">3</span> 桌面应用</h2>
+<div id="outline-container-orgc562534" class="outline-2">
+<h2 id="orgc562534"><span class="section-number-2">3</span> 桌面应用</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc8f06f2" class="outline-3">
-<h3 id="orgc8f06f2"><span class="section-number-3">3.1</span> amarok循环播放</h3>
+<div id="outline-container-orgfd8399e" class="outline-3">
+<h3 id="orgfd8399e"><span class="section-number-3">3.1</span> amarok循环播放</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 在amarok的右下角有task progression的图标，选择repeat track即可。
@@ -599,8 +645,8 @@ Ubuntu Software Center -&gt; Edit -&gt; Software Sources -&gt; Ubuntu Sofware(Do
 </div>
 </div>
 
-<div id="outline-container-org3db4e22" class="outline-3">
-<h3 id="org3db4e22"><span class="section-number-3">3.2</span> 设置输入法切换</h3>
+<div id="outline-container-org470fbf1" class="outline-3">
+<h3 id="org470fbf1"><span class="section-number-3">3.2</span> 设置输入法切换</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 在Preferences里面：
@@ -609,7 +655,7 @@ Ubuntu Software Center -&gt; Edit -&gt; Software Sources -&gt; Ubuntu Sofware(Do
 <li>Input Method 里面添加 SunPinyin</li>
 <li>然后在General里面的Keyboard Shortcuts里面设置Enable or disable设置切换按键
 <ul class="org-ul">
-<li>Release+Shift_L 左边的Shift键</li>
+<li>Release+Shift<sub>L</sub> 左边的Shift键</li>
 <li>Constrol+space control和空格键</li>
 <li>这些都和windows输入法的默认配置很像。</li>
 </ul></li>
@@ -625,8 +671,8 @@ Ubuntu Software Center -&gt; Edit -&gt; Software Sources -&gt; Ubuntu Sofware(Do
 </div>
 </div>
 
-<div id="outline-container-orgdadf51b" class="outline-3">
-<h3 id="orgdadf51b"><span class="section-number-3">3.3</span> 自动启动输入法</h3>
+<div id="outline-container-org889000b" class="outline-3">
+<h3 id="org889000b"><span class="section-number-3">3.3</span> 自动启动输入法</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 另外系统默认是不会自动启动ibus的，可以在System Settings里面的Language Support里面设置Input method为ibus, 这样ibus就可以自动启动了。如果emacs需要使用ibus的话，那么ibus-daemon必须先于emacs启动。可能这样agent才能够工作。
@@ -634,8 +680,8 @@ Ubuntu Software Center -&gt; Edit -&gt; Software Sources -&gt; Ubuntu Sofware(Do
 </div>
 </div>
 
-<div id="outline-container-org10cf36d" class="outline-3">
-<h3 id="org10cf36d"><span class="section-number-3">3.4</span> google docs不能输入中文</h3>
+<div id="outline-container-orgff87111" class="outline-3">
+<h3 id="orgff87111"><span class="section-number-3">3.4</span> google docs不能输入中文</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 似乎sunpinyin在google docs下面工作不是很好。使用原来的pinyin就没有问题。what a shame！
@@ -643,22 +689,22 @@ Ubuntu Software Center -&gt; Edit -&gt; Software Sources -&gt; Ubuntu Sofware(Do
 </div>
 </div>
 
-<div id="outline-container-org5d26de4" class="outline-3">
-<h3 id="org5d26de4"><span class="section-number-3">3.5</span> 设置默认浏览器</h3>
+<div id="outline-container-orgca07385" class="outline-3">
+<h3 id="orgca07385"><span class="section-number-3">3.5</span> 设置默认浏览器</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 System Settings =》 Details 里面可以设置默认浏览器。至于emacs里面的话可以使用如下配置。
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">(<span class="org-keyword">setq</span> browse-url-generic-program (executable-find <span class="org-string">"chromium-browser"</span>)
+<pre class="src src-elisp">(<span style="font-weight: bold;">setq</span> browse-url-generic-program (executable-find <span style="font-style: italic;">"chromium-browser"</span>)
       browse-url-browser-function 'browse-url-generic)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org671a4cf" class="outline-3">
-<h3 id="org671a4cf"><span class="section-number-3">3.6</span> thunderbird配置gmail</h3>
+<div id="outline-container-org7da7290" class="outline-3">
+<h3 id="org7da7290"><span class="section-number-3">3.6</span> thunderbird配置gmail</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li>pop3 pop.gmail.com SSL/TLS 995 normal password</li>
@@ -679,8 +725,8 @@ System Settings =》 Details 里面可以设置默认浏览器。至于emacs里�
 </div>
 </div>
 
-<div id="outline-container-org91e0546" class="outline-3">
-<h3 id="org91e0546"><span class="section-number-3">3.7</span> thunderbird的Inbox文件过大</h3>
+<div id="outline-container-org37e3fbf" class="outline-3">
+<h3 id="org37e3fbf"><span class="section-number-3">3.7</span> thunderbird的Inbox文件过大</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li><a href="http://blog.tianya.cn/blogger/post_read.asp?BlogID=3802303&amp;PostID=35373429">http://blog.tianya.cn/blogger/post_read.asp?BlogID=3802303&amp;PostID=35373429</a></li>
@@ -709,8 +755,8 @@ System Settings =》 Details 里面可以设置默认浏览器。至于emacs里�
 </div>
 </div>
 
-<div id="outline-container-org3dd848f" class="outline-3">
-<h3 id="org3dd848f"><span class="section-number-3">3.8</span> 窗口常用快捷键</h3>
+<div id="outline-container-orgb71e360" class="outline-3">
+<h3 id="orgb71e360"><span class="section-number-3">3.8</span> 窗口常用快捷键</h3>
 <div class="outline-text-3" id="text-3-8">
 <ul class="org-ul">
 <li>Ctrl+Alt+T // 打开一个terminal。</li>
@@ -719,8 +765,8 @@ System Settings =》 Details 里面可以设置默认浏览器。至于emacs里�
 </div>
 </div>
 
-<div id="outline-container-org3bfc431" class="outline-3">
-<h3 id="org3bfc431"><span class="section-number-3">3.9</span> 调整字体大小</h3>
+<div id="outline-container-orgb160b83" class="outline-3">
+<h3 id="orgb160b83"><span class="section-number-3">3.9</span> 调整字体大小</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 System Settings =》 Universal Access里面的Seeing部分可以用来调整字体大小。但是只有等级没有具体的数字可以进行调整。
@@ -733,8 +779,8 @@ System Settings =》 Universal Access里面的Seeing部分可以用来调整字�
 </div>
 </div>
 
-<div id="outline-container-org4f72cc5" class="outline-3">
-<h3 id="org4f72cc5"><span class="section-number-3">3.10</span> 调整边栏大小</h3>
+<div id="outline-container-orgd8c446c" class="outline-3">
+<h3 id="orgd8c446c"><span class="section-number-3">3.10</span> 调整边栏大小</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 System Settings =&gt; Appearance =&gt; Launcher icon size.
@@ -742,8 +788,8 @@ System Settings =&gt; Appearance =&gt; Launcher icon size.
 </div>
 </div>
 
-<div id="outline-container-orga980b1f" class="outline-3">
-<h3 id="orga980b1f"><span class="section-number-3">3.11</span> 调整skype字体大小</h3>
+<div id="outline-container-org9bfc8aa" class="outline-3">
+<h3 id="org9bfc8aa"><span class="section-number-3">3.11</span> 调整skype字体大小</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 <a href="http://www.mintos.org/network/modify-skype-font.html">http://www.mintos.org/network/modify-skype-font.html</a>
@@ -758,8 +804,8 @@ System Settings =&gt; Appearance =&gt; Launcher icon size.
 </div>
 </div>
 
-<div id="outline-container-orgd95a39b" class="outline-3">
-<h3 id="orgd95a39b"><span class="section-number-3">3.12</span> vlc字幕乱码</h3>
+<div id="outline-container-org359137b" class="outline-3">
+<h3 id="org359137b"><span class="section-number-3">3.12</span> vlc字幕乱码</h3>
 <div class="outline-text-3" id="text-3-12">
 <p>
 Tools -&gt; Preferences -&gt; Subtitles &amp; OSD
@@ -771,8 +817,8 @@ Tools -&gt; Preferences -&gt; Subtitles &amp; OSD
 </div>
 </div>
 
-<div id="outline-container-orgac3340a" class="outline-3">
-<h3 id="orgac3340a"><span class="section-number-3">3.13</span> 使用搜狗输入法</h3>
+<div id="outline-container-orga84cd3f" class="outline-3">
+<h3 id="orga84cd3f"><span class="section-number-3">3.13</span> 使用搜狗输入法</h3>
 <div class="outline-text-3" id="text-3-13">
 <p>
 搜狗输入法依赖于fcitx框架，所以必须先安装好fcitx. 然后从搜狗输入法主页上下载deb进行安装。<a href="http://pinyin.sogou.com/linux/?r=pinyin">http://pinyin.sogou.com/linux/?r=pinyin</a>
@@ -793,12 +839,12 @@ Tools -&gt; Preferences -&gt; Subtitles &amp; OSD
 </div>
 </div>
 
-<div id="outline-container-orga642c56" class="outline-2">
-<h2 id="orga642c56"><span class="section-number-2">4</span> 编程环境</h2>
+<div id="outline-container-orgd1b2bb4" class="outline-2">
+<h2 id="orgd1b2bb4"><span class="section-number-2">4</span> 编程环境</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org0830781" class="outline-3">
-<h3 id="org0830781"><span class="section-number-3">4.1</span> bash的tab自动补全</h3>
+<div id="outline-container-org4987bdb" class="outline-3">
+<h3 id="org4987bdb"><span class="section-number-3">4.1</span> bash的tab自动补全</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 "sudo apt-get install bash-completion"
@@ -809,23 +855,23 @@ Tools -&gt; Preferences -&gt; Subtitles &amp; OSD
 </p>
 
 <p>
-这个自动补全配置文件在/etc/bash_completion下面。阅读代码发现可能是和file_dir这个函数相关。调用时候使用file_dir -d的话只会显示目录，而file_dir的话就会显示所有。所以最简单的做法就是将file_dir -d全部替换成为file_dir. done!!!
+这个自动补全配置文件在/etc/bash<sub>completion下面</sub>。阅读代码发现可能是和file<sub>dir这个函数相关</sub>。调用时候使用file<sub>dir</sub> -d的话只会显示目录，而file<sub>dir的话就会显示所有</sub>。所以最简单的做法就是将file<sub>dir</sub> -d全部替换成为file<sub>dir</sub>. done!!!
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2058f55" class="outline-3">
-<h3 id="org2058f55"><span class="section-number-3">4.2</span> 加快ssh登陆</h3>
+<div id="outline-container-orgc4be824" class="outline-3">
+<h3 id="orgc4be824"><span class="section-number-3">4.2</span> 加快ssh登陆</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
-对于服务器的话可以修改/etc/ssh/sshd_config
+对于服务器的话可以修改/etc/ssh/sshd<sub>config</sub>
 </p>
 <pre class="example">
 UseDNS no
 
 </pre>
 <p>
-对于客户端的话可以修改/etc/ssh/ssh_config
+对于客户端的话可以修改/etc/ssh/ssh<sub>config</sub>
 </p>
 <pre class="example">
 GSSAPIAuthentication no
@@ -834,15 +880,15 @@ GSSAPIDelegateCredentials no
 </div>
 </div>
 
-<div id="outline-container-org8847cfa" class="outline-3">
-<h3 id="org8847cfa"><span class="section-number-3">4.3</span> 建立ssh信任关系</h3>
+<div id="outline-container-org6fc0f9a" class="outline-3">
+<h3 id="org6fc0f9a"><span class="section-number-3">4.3</span> 建立ssh信任关系</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 关于sshd机器之间的信任关系，很多文章都有介绍。大致方法就是：
 </p>
 <ol class="org-ol">
-<li>在自己机器上面ssh-keygen生成~/.ssh/id_rsa{.pub}.其中.pub文件是公钥</li>
-<li>然后将id_rsa.pub内容copy到另外机器下面的~/.ssh/authorized_keys里面(注意chmod 600)</li>
+<li>在自己机器上面ssh-keygen生成~/.ssh/id<sub>rsa</sub>{.pub}.其中.pub文件是公钥</li>
+<li>然后将id<sub>rsa.pub内容copy到另外机器下面的</sub>~/.ssh/authorized<sub>keys里面</sub>(注意chmod 600)</li>
 <li>接着本地的.pub文件就可以删除</li>
 </ol>
 <p>
@@ -853,12 +899,12 @@ GSSAPIDelegateCredentials no
 我猜想大致工作过程应该是这样的：
 </p>
 <ol class="org-ol">
-<li>在ssh建立连接的时候，本地ssh-client会读取~/.ssh/id_rsa内容</li>
-<li>建立好连接之后会将rsa内容发给对端机器，对端机器针对authorized_keys进行验证</li>
+<li>在ssh建立连接的时候，本地ssh-client会读取~/.ssh/id<sub>rsa内容</sub></li>
+<li>建立好连接之后会将rsa内容发给对端机器，对端机器针对authorized<sub>keys进行验证</sub></li>
 <li>如果验证OK的话那么就认为是信任对方的。</li>
 </ol>
 <p>
-具体这些文件放置位置都是可以配置的，关于如何配置可以看man ssh_config(client) / man sshd_config(server). 之前遇到问题就是，在/etc/sshd_config里面修改了认证文件的位置，不是放在authorized_keys里面而是放在cloud_keys里面!!!
+具体这些文件放置位置都是可以配置的，关于如何配置可以看man ssh<sub>config</sub>(client) / man sshd<sub>config</sub>(server). 之前遇到问题就是，在/etc/sshd<sub>config里面修改了认证文件的位置</sub>，不是放在authorized<sub>keys里面而是放在cloud</sub><sub>keys里面</sub>!!!
 </p>
 
 <p>
@@ -876,8 +922,8 @@ ssh-add   ~/.ssh/id_rsa
 </div>
 </div>
 
-<div id="outline-container-orgd07065e" class="outline-3">
-<h3 id="orgd07065e"><span class="section-number-3">4.4</span> 简化ssh登陆</h3>
+<div id="outline-container-org5cf4bee" class="outline-3">
+<h3 id="org5cf4bee"><span class="section-number-3">4.4</span> 简化ssh登陆</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 简化ssh登陆第一个方式就是去除密码输出，这个可以通过配置信任关系完成。
@@ -899,8 +945,8 @@ User maypeppa
 </div>
 </div>
 
-<div id="outline-container-org27a925d" class="outline-3">
-<h3 id="org27a925d"><span class="section-number-3">4.5</span> 修改默认shell</h3>
+<div id="outline-container-orgabcb63a" class="outline-3">
+<h3 id="orgabcb63a"><span class="section-number-3">4.5</span> 修改默认shell</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 sudo chsh -s /bin/zsh dirlt
@@ -912,8 +958,8 @@ sudo chsh -s /bin/zsh dirlt
 </div>
 </div>
 
-<div id="outline-container-org4c7e4a4" class="outline-3">
-<h3 id="org4c7e4a4"><span class="section-number-3">4.6</span> 关闭ssh host key检查</h3>
+<div id="outline-container-org4bd1e61" class="outline-3">
+<h3 id="org4bd1e61"><span class="section-number-3">4.6</span> 关闭ssh host key检查</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 How to disable SSH host key checking <a href="http://linuxcommando.blogspot.com/2008/10/how-to-disable-ssh-host-key-checking.html">http://linuxcommando.blogspot.com/2008/10/how-to-disable-ssh-host-key-checking.html</a>
@@ -925,8 +971,8 @@ How to disable SSH host key checking <a href="http://linuxcommando.blogspot.com/
 </div>
 </div>
 
-<div id="outline-container-org22b0cdc" class="outline-3">
-<h3 id="org22b0cdc"><span class="section-number-3">4.7</span> ssh identity file</h3>
+<div id="outline-container-org6b5d691" class="outline-3">
+<h3 id="org6b5d691"><span class="section-number-3">4.7</span> ssh identity file</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 如果你的ssh identity file配置很多的话，有时候登录会出现"Too many authentication failures"的错误。这是因为ssh会使用你所有添加的identity files来尝试验证（比如4个），但是服务器配置最多3次验证的话那么最后一个identity file就不会被验证了，即使这个identity file是正确的。更常见的情况是历史上你可能无意添加了许多identity file，可是这些file到现在基本上都过时了，所以你需要清理一下。
@@ -953,8 +999,8 @@ Identity removed: /home/dirlt/.ssh/id_rsa ( dirlt@ubuntu)
 </div>
 </div>
 
-<div id="outline-container-orgf18c04c" class="outline-3">
-<h3 id="orgf18c04c"><span class="section-number-3">4.8</span> cannot change locale</h3>
+<div id="outline-container-org3913d3d" class="outline-3">
+<h3 id="org3913d3d"><span class="section-number-3">4.8</span> cannot change locale</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 通常是因为对应的locale没有找到
@@ -981,12 +1027,12 @@ Generation complete.
 </div>
 </div>
 
-<div id="outline-container-org79c1c34" class="outline-2">
-<h2 id="org79c1c34"><span class="section-number-2">5</span> 虚拟机</h2>
+<div id="outline-container-orgce63377" class="outline-2">
+<h2 id="orgce63377"><span class="section-number-2">5</span> 虚拟机</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org8b4b28b" class="outline-3">
-<h3 id="org8b4b28b"><span class="section-number-3">5.1</span> vmware虚拟机增加磁盘空间</h3>
+<div id="outline-container-org2d6edc1" class="outline-3">
+<h3 id="org2d6edc1"><span class="section-number-3">5.1</span> vmware虚拟机增加磁盘空间</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 今天感觉自己的磁盘空间好像有点不够了，大部分数据都是在$HOME下面的，需要增加磁盘空间。
@@ -1021,8 +1067,8 @@ Generation complete.
 </div>
 </div>
 
-<div id="outline-container-orgb405e5f" class="outline-3">
-<h3 id="orgb405e5f"><span class="section-number-3">5.2</span> virtualbox安装windows虚拟机</h3>
+<div id="outline-container-org2aa41fc" class="outline-3">
+<h3 id="org2aa41fc"><span class="section-number-3">5.2</span> virtualbox安装windows虚拟机</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 安装windows虚拟机主要是为了方便一些需要在windows下面完成的操作，比如U盾。
@@ -1041,8 +1087,8 @@ Generation complete.
 </div>
 </div>
 
-<div id="outline-container-orge6fc004" class="outline-3">
-<h3 id="orge6fc004"><span class="section-number-3">5.3</span> virtualbox设置共享文件夹</h3>
+<div id="outline-container-org470982c" class="outline-3">
+<h3 id="org470982c"><span class="section-number-3">5.3</span> virtualbox设置共享文件夹</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 设置共享文件夹主要是为了数据可以进行同步。通过windows虚拟机，安装同步软件比如GDrive。
@@ -1062,8 +1108,8 @@ Generation complete.
 </div>
 </div>
 
-<div id="outline-container-org2acb3d5" class="outline-3">
-<h3 id="org2acb3d5"><span class="section-number-3">5.4</span> virtualbox下使用U盾</h3>
+<div id="outline-container-orgb1d17d2" class="outline-3">
+<h3 id="orgb1d17d2"><span class="section-number-3">5.4</span> virtualbox下使用U盾</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 首先需要在 <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a> VirtualBox Extension Pack，双击执行。
@@ -1087,6 +1133,11 @@ Generation complete.
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/ubuntu.html';this.page.identifier = 'ubuntu.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

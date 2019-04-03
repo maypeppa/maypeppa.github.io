@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>微信跳一跳的自动化</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">微信跳一跳的自动化</h1>
@@ -76,17 +122,17 @@ self.s.tap_hold(press_w, press_h, press_time / 1000.)
 
     found = None
     for scale in np.linspace(1-range, 1+range, num)[::-1]:
-        resized = cv2.resize(screen, (int(W * scale), int(H * scale)))
-        r = W / float(resized.shape[1])
-        if resized.shape[0] &lt; h or resized.shape[1] &lt; w:
-            break
-        res = cv2.matchTemplate(resized, pivot, cv2.TM_CCOEFF_NORMED)
-        loc = np.where(res &gt;= res.max())
-        pos_h, pos_w = loc[0][0], loc[1][0]
-        # pos_h, pos_w = list(zip(*loc))[0]
+	resized = cv2.resize(screen, (int(W * scale), int(H * scale)))
+	r = W / float(resized.shape[1])
+	if resized.shape[0] &lt; h or resized.shape[1] &lt; w:
+	    break
+	res = cv2.matchTemplate(resized, pivot, cv2.TM_CCOEFF_NORMED)
+	loc = np.where(res &gt;= res.max())
+	pos_h, pos_w = loc[0][0], loc[1][0]
+	# pos_h, pos_w = list(zip(*loc))[0]
 
-        if found is None or res.max() &gt; found[-1]:
-            found = (pos_h, pos_w, r, res.max())
+	if found is None or res.max() &gt; found[-1]:
+	    found = (pos_h, pos_w, r, res.max())
 
     if found is None: return (0,0,0,0,0)
     pos_h, pos_w, r, score = found
@@ -118,10 +164,10 @@ self.s.tap_hold(press_w, press_h, press_time / 1000.)
     # 寻找联通子图. b1是联通的编号，b2是联通子图编号矩阵
     b1, b2 = cv2.connectedComponents(m)
     for i in range(1, np.max(b2) + 1):
-        x, y = np.where(b2 == i)
-        # print('fast', len(x))
-        if len(x) &gt; 280 and len(x) &lt; 310:
-            r_x, r_y = x, y
+	x, y = np.where(b2 == i)
+	# print('fast', len(x))
+	if len(x) &gt; 280 and len(x) &lt; 310:
+	    r_x, r_y = x, y
     h, w = int(r_x.mean()), int(r_y.mean())
     return np.array([h, w])
 </pre>
@@ -182,11 +228,11 @@ coarse/fine model如下。为了完整，我把使用到的函数也粘贴过来
 <div class="org-src-container">
 <pre class="src src-Python">def conv2d(self, name, input, ks, stride):
     with tf.name_scope(name):
-        with tf.variable_scope(name):
-            w = tf.get_variable('%s-w' % name, shape=ks, initializer=tf.truncated_normal_initializer())
-            b = tf.get_variable('%s-b' % name, shape=[ks[-1]], initializer=tf.constant_initializer())
-            out = tf.nn.conv2d(input, w, strides=[1, stride, stride, 1], padding='SAME', name='%s-conv' % name)
-            out = tf.nn.bias_add(out, b, name='%s-biad_add' % name)
+	with tf.variable_scope(name):
+	    w = tf.get_variable('%s-w' % name, shape=ks, initializer=tf.truncated_normal_initializer())
+	    b = tf.get_variable('%s-b' % name, shape=[ks[-1]], initializer=tf.constant_initializer())
+	    out = tf.nn.conv2d(input, w, strides=[1, stride, stride, 1], padding='SAME', name='%s-conv' % name)
+	    out = tf.nn.bias_add(out, b, name='%s-biad_add' % name)
     return out
 
 def make_conv_bn_relu(self, name, input, ks, stride, is_training):
@@ -197,62 +243,62 @@ def make_conv_bn_relu(self, name, input, ks, stride, is_training):
 
 def make_fc(self, name, input, ks, keep_prob):
     with tf.name_scope(name):
-        with tf.variable_scope(name):
-            w = tf.get_variable('%s-w' % name, shape=ks, initializer=tf.truncated_normal_initializer())
-            b = tf.get_variable('%s-b' % name, shape=[ks[-1]], initializer=tf.constant_initializer())
-            out = tf.matmul(input, w, name='%s-mat' % name)
-            out = tf.nn.bias_add(out, b, name='%s-bias_add' % name)
-            # out = tf.nn.dropout(out, keep_prob, name='%s-drop' % name)
+	with tf.variable_scope(name):
+	    w = tf.get_variable('%s-w' % name, shape=ks, initializer=tf.truncated_normal_initializer())
+	    b = tf.get_variable('%s-b' % name, shape=[ks[-1]], initializer=tf.constant_initializer())
+	    out = tf.matmul(input, w, name='%s-mat' % name)
+	    out = tf.nn.bias_add(out, b, name='%s-bias_add' % name)
+	    # out = tf.nn.dropout(out, keep_prob, name='%s-drop' % name)
     return out
 
 def forward(self, img, is_training, keep_prob, name='coarse'):
     with tf.name_scope(name):
-        with tf.variable_scope(name):
-            out = self.conv2d('conv1', img, [3, 3, self.input_channle, 16], 2)
-            # out = tf.layers.batch_normalization(out, name='bn1', training=is_training)
-            out = tf.nn.relu(out, name='relu1')
+	with tf.variable_scope(name):
+	    out = self.conv2d('conv1', img, [3, 3, self.input_channle, 16], 2)
+	    # out = tf.layers.batch_normalization(out, name='bn1', training=is_training)
+	    out = tf.nn.relu(out, name='relu1')
 
-            out = self.make_conv_bn_relu('conv2', out, [3, 3, 16, 32], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv2', out, [3, 3, 16, 32], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = self.make_conv_bn_relu('conv3', out, [5, 5, 32, 64], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv3', out, [5, 5, 32, 64], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = self.make_conv_bn_relu('conv4', out, [7, 7, 64, 128], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv4', out, [7, 7, 64, 128], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = self.make_conv_bn_relu('conv5', out, [9, 9, 128, 256], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv5', out, [9, 9, 128, 256], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = tf.reshape(out, [-1, 256 * 20 * 23])
-            out = self.make_fc('fc1', out, [256 * 20 * 23, 256], keep_prob)
-            out = self.make_fc('fc2', out, [256, 2], keep_prob)
+	    out = tf.reshape(out, [-1, 256 * 20 * 23])
+	    out = self.make_fc('fc1', out, [256 * 20 * 23, 256], keep_prob)
+	    out = self.make_fc('fc2', out, [256, 2], keep_prob)
 
     return out
 
 
 def forward(self, img, is_training, keep_prob, name='fine'):
     with tf.name_scope(name):
-        with tf.variable_scope(name):
-            out = self.conv2d('conv1', img, [3, 3, self.input_channle, 16], 2)
-            # out = tf.layers.batch_normalization(out, name='bn1', training=is_training)
-            out = tf.nn.relu(out, name='relu1')
+	with tf.variable_scope(name):
+	    out = self.conv2d('conv1', img, [3, 3, self.input_channle, 16], 2)
+	    # out = tf.layers.batch_normalization(out, name='bn1', training=is_training)
+	    out = tf.nn.relu(out, name='relu1')
 
-            out = self.make_conv_bn_relu('conv2', out, [3, 3, 16, 64], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv2', out, [3, 3, 16, 64], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = self.make_conv_bn_relu('conv3', out, [5, 5, 64, 128], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv3', out, [5, 5, 64, 128], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = self.make_conv_bn_relu('conv4', out, [7, 7, 128, 256], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv4', out, [7, 7, 128, 256], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = self.make_conv_bn_relu('conv5', out, [9, 9, 256, 512], 1, is_training)
-            out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
+	    out = self.make_conv_bn_relu('conv5', out, [9, 9, 256, 512], 1, is_training)
+	    out = tf.nn.max_pool(out, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
 
-            out = tf.reshape(out, [-1, 512 * 10 * 10])
-            out = self.make_fc('fc1', out, [512 * 10 * 10, 512], keep_prob)
-            out = self.make_fc('fc2', out, [512, 2], keep_prob)
+	    out = tf.reshape(out, [-1, 512 * 10 * 10])
+	    out = self.make_fc('fc1', out, [512 * 10 * 10, 512], keep_prob)
+	    out = self.make_fc('fc2', out, [512, 2], keep_prob)
 
     return out
 </pre>
@@ -261,6 +307,11 @@ def forward(self, img, is_training, keep_prob, name='fine'):
 <p>
 看上去coarse和fine模型差异不是很大，肉眼可以看到的差别就是第二个conv2d的filter number. 之后每层都是filter number翻倍，而filter size都是3, 5, 7, 9.
 </p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/wechat-auto-jump.html';this.page.identifier = 'wechat-auto-jump.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

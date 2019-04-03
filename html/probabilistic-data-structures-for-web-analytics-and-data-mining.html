@@ -7,8 +7,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Probabilistic Data Structures for Web Analytics and Data Mining</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="maypeppa" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
 <h1 class="title">Probabilistic Data Structures for Web Analytics and Data Mining</h1>
@@ -16,15 +62,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6f01ac1">1. Introduction</a></li>
-<li><a href="#orgbbf0b60">2. Cardinality Estimation: Linear Counting</a></li>
-<li><a href="#orge0bc684">3. Cardinality Estimation: Loglog Counting</a></li>
-<li><a href="#orgdc33822">4. Frequency Estimation: Count-Min Sketch</a></li>
-<li><a href="#org4e5e0a0">5. Frequency Estimation: Count-Mean-Min Sketch</a></li>
-<li><a href="#orgeb84262">6. Heavy Hitters: Count-Min Sketch</a></li>
-<li><a href="#org898adba">7. Heavy Hitters: Stream-Summary</a></li>
-<li><a href="#orgfa74633">8. Range Query: Array of Count-Min Sketches</a></li>
-<li><a href="#org0a2c71e">9. Membership Query: Bloom Filter</a></li>
+<li><a href="#org37ba7b9">1. Introduction</a></li>
+<li><a href="#orgc856934">2. Cardinality Estimation: Linear Counting</a></li>
+<li><a href="#org85e7fc2">3. Cardinality Estimation: Loglog Counting</a></li>
+<li><a href="#org2fa2f2a">4. Frequency Estimation: Count-Min Sketch</a></li>
+<li><a href="#org0ef20a7">5. Frequency Estimation: Count-Mean-Min Sketch</a></li>
+<li><a href="#org54c123b">6. Heavy Hitters: Count-Min Sketch</a></li>
+<li><a href="#org0d51f52">7. Heavy Hitters: Stream-Summary</a></li>
+<li><a href="#org3a244c9">8. Range Query: Array of Count-Min Sketches</a></li>
+<li><a href="#orgae65998">9. Membership Query: Bloom Filter</a></li>
 </ul>
 </div>
 </div>
@@ -32,8 +78,8 @@
 <a href="http://highlyscalable.wordpress.com/2012/05/01/probabilistic-structures-web-analytics-data-mining/">http://highlyscalable.wordpress.com/2012/05/01/probabilistic-structures-web-analytics-data-mining/</a>
 </p>
 
-<div id="outline-container-org6f01ac1" class="outline-2">
-<h2 id="org6f01ac1"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org37ba7b9" class="outline-2">
+<h2 id="org37ba7b9"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Let us start with a simple example that illustrates capabilities of probabilistic data structures:
@@ -61,8 +107,8 @@ Let us start with a simple example that illustrates capabilities of probabilisti
 The picture above shows (in scale) how much memory different representations of the data set will consume and which queries they support:（可以看到，这些概率性数据结构，通常假设数据集合是skewed的。这样对于高频和低频都保持在比较低的错误率上）
 </p>
 <ul class="org-ul">
-<li>A straightforward approach for cardinality computation and membership query processing is to maintain a sorted list of IDs or a hash table. This approach requires at least 4MB because we expect up to 10^6 values, the actual size of the hash table will be even larger.</li>
-<li>A straightforward approach for frequency counting and range query processing is to store a map like (value -&gt; counter) for each element. It requires a table of 7MB that stores values and counters (24-bit counters are sufficient because we have not more than 10^7 occurrences of each element).</li>
+<li>A straightforward approach for cardinality computation and membership query processing is to maintain a sorted list of IDs or a hash table. This approach requires at least 4MB because we expect up to 10<sup>6</sup> values, the actual size of the hash table will be even larger.</li>
+<li>A straightforward approach for frequency counting and range query processing is to store a map like (value -&gt; counter) for each element. It requires a table of 7MB that stores values and counters (24-bit counters are sufficient because we have not more than 10<sup>7</sup> occurrences of each element).</li>
 <li>With probabilistic data structures, a membership query can be processed with 4% error rate (false positive answers) using only 0.6MB of memory if data is stored in the Bloom filter.（Bloom filter来做存在性查询）</li>
 <li>Frequencies of 100 most frequent elements can be estimated with 4% precision using Count-Min Sketch structure that uses about 48KB (12k integer counters, based on the experimental result), assuming that data is skewed in accordance with Zipfian distribution that models well natural texts, many types of web events and network traffic. A group of several such sketches can be used to process range query.（Count-Min Sketch方法对于skewed dataset非常有效）</li>
 <li>100 most frequent items can be detected with 4% error (96 of 100 are determined correctly, based on the experimental results) using Stream-Summary structure, also assuming Zipfian distribution of probabilities of the items.（Stream-Summary同样假设skewed dataset）</li>
@@ -76,8 +122,8 @@ For some structures like Loglog Counter or Bloom filter, there exist simple and 
 </div>
 </div>
 
-<div id="outline-container-orgbbf0b60" class="outline-2">
-<h2 id="orgbbf0b60"><span class="section-number-2">2</span> Cardinality Estimation: Linear Counting</h2>
+<div id="outline-container-orgc856934" class="outline-2">
+<h2 id="orgc856934"><span class="section-number-2">2</span> Cardinality Estimation: Linear Counting</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这个算法比较简单。首先维护一个全0的bitset, 之后对每个value做hash，映射到bitset对应的bit并且置1。处理完所有的value之后统计这个bitset有多少个bit置1，这个数目就是cardinality.
@@ -108,11 +154,11 @@ The rule of thumb is that load factor of 10 can be used for large data sets even
 </div>
 </div>
 
-<div id="outline-container-orge0bc684" class="outline-2">
-<h2 id="orge0bc684"><span class="section-number-2">3</span> Cardinality Estimation: Loglog Counting</h2>
+<div id="outline-container-org85e7fc2" class="outline-2">
+<h2 id="org85e7fc2"><span class="section-number-2">3</span> Cardinality Estimation: Loglog Counting</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-这个算法 <a href="general-algorithm.html#orgbcecc73">之前(HyperLogLog这节)</a> 分析过
+这个算法 <a href="general-algorithm.html#org9347b1a">之前(HyperLogLog这节)</a> 分析过
 </p>
 
 <p>
@@ -126,13 +172,13 @@ The following table provides the estimation formula and equations that can be us
 </div>
 
 <p>
-These formulas are very impressive. One can see that a number of buckets is relatively small for most of the practically interesting values of the standard error of the estimation. For example, 1024 estimators provide a standard error of 4%. At the same time, the length of the estimator is a very slow growing function of the capacity, 5-bit buckets are enough for cardinalities up to 10^11, 8-bit buckets (etype is byte) can support practically unlimited cardinalities. This means that less than 1KB of auxiliary memory may be enough to process gigabytes of data in the real life applications! （bucket数量的增长相对与原始数据量的增长是非常缓慢的）
+These formulas are very impressive. One can see that a number of buckets is relatively small for most of the practically interesting values of the standard error of the estimation. For example, 1024 estimators provide a standard error of 4%. At the same time, the length of the estimator is a very slow growing function of the capacity, 5-bit buckets are enough for cardinalities up to 10<sup>11</sup>, 8-bit buckets (etype is byte) can support practically unlimited cardinalities. This means that less than 1KB of auxiliary memory may be enough to process gigabytes of data in the real life applications! （bucket数量的增长相对与原始数据量的增长是非常缓慢的）
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdc33822" class="outline-2">
-<h2 id="orgdc33822"><span class="section-number-2">4</span> Frequency Estimation: Count-Min Sketch</h2>
+<div id="outline-container-org2fa2f2a" class="outline-2">
+<h2 id="org2fa2f2a"><span class="section-number-2">4</span> Frequency Estimation: Count-Min Sketch</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The basic idea of Count-Min Sketch is quite simple and somehow similar to Linear Counting. Count-Min sketch is simply a two-dimensional array (d x w) of integer counters. When a value arrives, it is mapped to one position at each of d rows using d different and preferably independent hash functions. Counters on each position are incremented. This process is shown in the figure below:
@@ -153,32 +199,32 @@ It is clear that if sketch is large in comparison with the cardinality of the da
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">CountMinSketch</span> {
-    <span class="org-type">long</span> <span class="org-variable-name">estimators</span>[][] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d][w]    <span class="org-comment-delimiter">// </span><span class="org-comment">d and w are design parameters</span>
-    <span class="org-type">long</span> a[] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d]
-    <span class="org-type">long</span> b[] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d]
-    <span class="org-type">long</span> p      <span class="org-comment-delimiter">// </span><span class="org-comment">hashing parameter, a prime number. For example 2^31-1</span>
-    <span class="org-type">void</span> initializeHashes() {
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++) {
-            a[i] = random(p)    <span class="org-comment-delimiter">// </span><span class="org-comment">random in range 1..p</span>
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">CountMinSketch</span> {
+    <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">estimators</span>[][] = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">long</span>[d][w]    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">d and w are design parameters</span>
+    <span style="font-weight: bold; text-decoration: underline;">long</span> a[] = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">long</span>[d]
+    <span style="font-weight: bold; text-decoration: underline;">long</span> b[] = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">long</span>[d]
+    <span style="font-weight: bold; text-decoration: underline;">long</span> p      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">hashing parameter, a prime number. For example 2^31-1</span>
+    <span style="font-weight: bold; text-decoration: underline;">void</span> initializeHashes() {
+        <span style="font-weight: bold;">for</span>(i = 0; i &lt; d; i++) {
+            a[i] = random(p)    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">random in range 1..p</span>
             b[i] = random(p)
         }
     }
-    <span class="org-type">void</span> <span class="org-function-name">add</span>(value) {
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++)
+    <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">add</span>(value) {
+        <span style="font-weight: bold;">for</span>(i = 0; i &lt; d; i++)
             estimators[i][ hash(value, i) ]++
     }
-    <span class="org-type">long</span> <span class="org-function-name">estimateFrequency</span>(value) {
-        <span class="org-type">long</span> minimum = MAX_VALUE
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++)
+    <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold;">estimateFrequency</span>(value) {
+        <span style="font-weight: bold; text-decoration: underline;">long</span> minimum = MAX_VALUE
+        <span style="font-weight: bold;">for</span>(i = 0; i &lt; d; i++)
             minimum = min(
                 minimum,
-                <span class="org-type">estimators</span>[i][ hash(value, i) ]
+                <span style="font-weight: bold; text-decoration: underline;">estimators</span>[i][ hash(value, i) ]
             )
-        <span class="org-keyword">return</span> minimum
+        <span style="font-weight: bold;">return</span> minimum
     }
-    <span class="org-function-name">hash</span>(value, i) {
-        <span class="org-keyword">return</span> ((<span class="org-type">a</span>[i] * value + b[i]) <span class="org-type">mod</span> <span class="org-variable-name">p</span>) <span class="org-type">mod</span> <span class="org-variable-name">w</span>
+    <span style="font-weight: bold;">hash</span>(value, i) {
+        <span style="font-weight: bold;">return</span> ((<span style="font-weight: bold; text-decoration: underline;">a</span>[i] * value + b[i]) <span style="font-weight: bold; text-decoration: underline;">mod</span> <span style="font-weight: bold; font-style: italic;">p</span>) <span style="font-weight: bold; text-decoration: underline;">mod</span> <span style="font-weight: bold; font-style: italic;">w</span>
     }
 }
 </pre>
@@ -225,8 +271,8 @@ One can see that result is more accurate, at least for the most frequent items. 
 </div>
 </div>
 
-<div id="outline-container-org4e5e0a0" class="outline-2">
-<h2 id="org4e5e0a0"><span class="section-number-2">5</span> Frequency Estimation: Count-Mean-Min Sketch</h2>
+<div id="outline-container-org0ef20a7" class="outline-2">
+<h2 id="org0ef20a7"><span class="section-number-2">5</span> Frequency Estimation: Count-Mean-Min Sketch</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 对于low or moderately skewed dataset来说，hash冲突比较严重所以会导致结果偏差比较大。我们可以通过去除相互影响的噪音来解决这个问题。
@@ -237,17 +283,17 @@ As an alternative, more careful correction can be done to compensate the noise c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">CountMeanMinSketch</span> {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">initialization and addition procedures as in CountMinSketch</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">n is total number of added elements</span>
-    <span class="org-type">long</span> <span class="org-function-name">estimateFrequency</span>(value) {
-        <span class="org-type">long</span> <span class="org-variable-name">e</span>[] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d]
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++) {
+<pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">CountMeanMinSketch</span> {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">initialization and addition procedures as in CountMinSketch</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">n is total number of added elements</span>
+    <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold;">estimateFrequency</span>(value) {
+        <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">e</span>[] = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">long</span>[d]
+        <span style="font-weight: bold;">for</span>(i = 0; i &lt; d; i++) {
             sketchCounter = estimators[i][ hash(value, i) ]
             noiseEstimation = (n - sketchCounter) / (w - 1)
             e[i] = sketchCounter &#8211; noiseEstimator
         }
-        <span class="org-keyword">return</span> median(e)
+        <span style="font-weight: bold;">return</span> median(e)
     }
 }
 </pre>
@@ -265,8 +311,8 @@ This enhancement can significantly improve accuracy of the Count-Min structure. 
 </div>
 </div>
 
-<div id="outline-container-orgeb84262" class="outline-2">
-<h2 id="orgeb84262"><span class="section-number-2">6</span> Heavy Hitters: Count-Min Sketch</h2>
+<div id="outline-container-org54c123b" class="outline-2">
+<h2 id="org54c123b"><span class="section-number-2">6</span> Heavy Hitters: Count-Min Sketch</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Count-Min sketches are applicable to the following problem: Find all elements in the data set with the frequencies greater than k percent of the total number of elements in the data set.（获取频率大于k%的元素总数，使用heap作为辅助） The algorithm is straightforward:（
@@ -298,8 +344,8 @@ In general, the top-k problem makes sense only for skewed data, so usage of Coun
 </div>
 </div>
 
-<div id="outline-container-org898adba" class="outline-2">
-<h2 id="org898adba"><span class="section-number-2">7</span> Heavy Hitters: Stream-Summary</h2>
+<div id="outline-container-org0d51f52" class="outline-2">
+<h2 id="org0d51f52"><span class="section-number-2">7</span> Heavy Hitters: Stream-Summary</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 这个算法还是比较好理解的。数据结构里面保留一定数目的槽位，添加value的时候增加其frequency counter. 如果达到槽位上限的话，那么就删除frequency counter最低的元素。
@@ -337,8 +383,8 @@ The estimation procedure for most frequent elements and corresponding frequencie
 </div>
 </div>
 
-<div id="outline-container-orgfa74633" class="outline-2">
-<h2 id="orgfa74633"><span class="section-number-2">8</span> Range Query: Array of Count-Min Sketches</h2>
+<div id="outline-container-org3a244c9" class="outline-2">
+<h2 id="org3a244c9"><span class="section-number-2">8</span> Range Query: Array of Count-Min Sketches</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 In theory, one can process a range query (something like SELECT count(v) WHERE v &gt;= c1 AND v &lt; c2) using a Count-Min sketch  enumerating all points within a range and summing estimates for corresponding frequencies. However, this approach is impractical because the number of points within a range can be very high and accuracy also tends to be inacceptable because of cumulative error of the sum.（对于范围查询可以枚举[c1,c2)所有的value，然后使用count-min sketch来得到count. 但是这个算法并不实际因为这个range可能非常大并且误差也很大，因为全部存放在一个sketch上面）
@@ -379,8 +425,8 @@ Any range query can be reduced to a number of queries to the sketches of differe
 </div>
 </div>
 
-<div id="outline-container-org0a2c71e" class="outline-2">
-<h2 id="org0a2c71e"><span class="section-number-2">9</span> Membership Query: Bloom Filter</h2>
+<div id="outline-container-orgae65998" class="outline-2">
+<h2 id="orgae65998"><span class="section-number-2">9</span> Membership Query: Bloom Filter</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Bloom Filter is probably the most famous and widely used probabilistic data structure. There are multiple descriptions of the Bloom filter in the web, I provide a short overview here just for sake of completeness. Bloom filter is similar to Linear Counting, but it is designed to maintain an identity of each item rather than statistics. Similarly to Linear Counter, the Bloom filter maintains a bitset, but each value is mapped not to one, but to some fixed number of bits by using several independent hash functions. If the filter has a relatively large size in comparison with the number of distinct elements, each element has a relatively unique signature and it is possible to check a particular value – is it already registered in the bit set or not. If all the bits of the corresponding signature are ones then the answer is yes (with a certain probability, of course).
@@ -401,6 +447,11 @@ Bloom filter is widely used as a preliminary probabilistic test that allows one 
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-03 Wed 04:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/probabilistic-data-structures-for-web-analytics-and-data-mining.html';this.page.identifier = 'probabilistic-data-structures-for-web-analytics-and-data-mining.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>
