@@ -146,6 +146,7 @@ https://maypeppa.github.io/html/data-structures-and-algorithms-for-big-databases
 https://maypeppa.github.io/html/dbms-impl.html
 https://maypeppa.github.io/html/dbms-intro.html
 https://maypeppa.github.io/html/dear-andreas.html
+https://maypeppa.github.io/html/dear-baby.html
 https://maypeppa.github.io/html/deconstructing-recommender-systems.html
 https://maypeppa.github.io/html/deep-learning-material-recommendations.html
 https://maypeppa.github.io/html/delivering-happiness.html
@@ -304,6 +305,7 @@ https://maypeppa.github.io/html/in-house-programmer.html
 https://maypeppa.github.io/html/in-stream-big-data-processing.html
 https://maypeppa.github.io/html/index-aa.html
 https://maypeppa.github.io/html/index-ds.html
+https://maypeppa.github.io/html/index-fa.html
 https://maypeppa.github.io/html/index-ml.html
 https://maypeppa.github.io/html/index-np.html
 https://maypeppa.github.io/html/index-os.html
@@ -705,6 +707,7 @@ https://maypeppa.github.io/html/tips-for-work-life-balance.html
 https://maypeppa.github.io/html/to-death.html
 https://maypeppa.github.io/html/tool-is-to-free-people.html
 https://maypeppa.github.io/html/top-10-things-that-makes-you-a-good-programmer.html
+https://maypeppa.github.io/html/tour-of-europe-on-marital-leave.html
 https://maypeppa.github.io/html/tour-of-forbidden-city-on-festival-day.html
 https://maypeppa.github.io/html/tour-of-google-beijing.html
 https://maypeppa.github.io/html/trap-of-startup-side-project.html
