@@ -8,7 +8,7 @@ if [ $kernel"X" == "DarwinX" ]; then
     emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
 fi
 
-git pull origin master
+git210 pull origin master
 # generate html files.
 $emacs --batch --script ./scripts/publish.el
 if [ $? != 0 ]
@@ -19,6 +19,6 @@ fi
 
 # post processing html files.
 python ./scripts/pp-html
-git add .
-git commit -a -m '[R] publish org files'
-git push origin master
+git210 add .
+git210 commit -a -m '[R] publish org files'
+git210 push origin master
