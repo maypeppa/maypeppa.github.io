@@ -22,10 +22,7 @@ org_files = glob.glob(ORG_DIR + '*.org') + glob.glob(ORG_DIR + 'blogs/*.org')
 
 codes_link = 'https://github.com/maypeppa/maypeppa.github.io/tree/master/codes/'
 codes_refs = (
-    'file:///Users/dirlt/repo/maypeppa.github.io/codes/',
-    'file:///Users/dirlt/mysite/codes/',
-    'file:///home/dirlt/repo/maypeppa.github.io/codes/',
-    'file:///home/dirlt/mysite/codes/',
+    'file:///home/work/repo/maypeppa.github.io/codes/',
     'codes/'
 )
 

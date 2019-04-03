@@ -10,10 +10,10 @@
 ;; 暂时找不到原因。不过如果放在 publish.el 下面设置 (setq org-html-head ...) 是可以work的
 ;; 现在解决方案是将这个处理放在pp-html里面，这样的好处是可以快速地修改样式，
 ;; 而不用每次对整个项目重新输出，速度更快。
-(setq my-org-publish-html-head
-      (replace-regexp-in-string
-       "root/" "/"
-       (get-string-from-file "~/repo/maypeppa.github.io/themes/setup.txt")))
+;;;;(setq my-org-publish-html-head
+;;;;      (replace-regexp-in-string
+;;;;       "root/" "/"
+;;;;       (get-string-from-file "~/repo/maypeppa.github.io/themes/setup.txt")))
 ;; (message my-org-publish-html-head)
 ;; (when (sequencep my-org-publish-html-head)
 ;;   (message "IT'S SEQUENCE"))

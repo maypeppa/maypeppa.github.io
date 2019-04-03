@@ -1,0 +1,10 @@
+#+title: About Me
+
+Open your mind, and open your eyes. (放眼未来, 自由想象)
+
+file:images/valve-logo.jpg
+
+- maypeppa1987 AT gmail DOT com, [[file:cv.org][CV]] ([[file:cn-cv.org][中文]])
+- [[http://www.linkedin.com/in/maypeppa][LinkedIn]], [[https://twitter.com/maypeppa][Twitter]], [[https://github.com/maypeppa][GitHub]]
+- [[file:images/um-arch.pdf][Umeng Analytical Architecture]]
+- 中国系统架构师大会(SACC 2014） [[file:images/um-talk.pdf][如何在一天之内收集3.6亿移动设备的数据]]
