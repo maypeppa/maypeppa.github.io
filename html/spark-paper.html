@@ -68,14 +68,14 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org3bbd075">3.1. Resilient Distributed Datasets (RDDs)</a></li>
 <li><a href="#org391d287">3.2. Parallel Operations</a></li>
-<li><a href="#orgb3925d8">3.3. Shared Variables</a></li>
+<li><a href="#org4a80fa6">3.3. Shared Variables</a></li>
 </ul>
 </li>
 <li><a href="#org389496d">4. Examples</a></li>
 <li><a href="#orgf67faf1">5. Implementation</a>
 <ul>
 <li><a href="#orgb263663">5.1. RDD</a></li>
-<li><a href="#org4a80fa6">5.2. Shared Variables</a></li>
+<li><a href="#org46f1aca">5.2. Shared Variables</a></li>
 <li><a href="#org4fc101f">5.3. Interpret Intergation</a></li>
 </ul>
 </li>
@@ -170,8 +170,8 @@ We note that Spark does not currently support a grouped reduce operation as in M
 </div>
 </div>
 
-<div id="outline-container-orgb3925d8" class="outline-3">
-<h3 id="orgb3925d8"><span class="section-number-3">3.3</span> Shared Variables</h3>
+<div id="outline-container-org4a80fa6" class="outline-3">
+<h3 id="org4a80fa6"><span class="section-number-3">3.3</span> Shared Variables</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Programmers invoke operations like map, filter and re- duce by passing closures (functions) to Spark. As is typi- cal in functional programming, these closures can refer to variables in the scope where they are created. Normally, when Spark runs a closure on a worker node, these vari- ables are copied to the worker.（closure使用的变量会被复制到worker上）</li>
@@ -260,8 +260,8 @@ Finally, shipping tasks to workers requires shipping closures to them—both the
 </div>
 </div>
 
-<div id="outline-container-org4a80fa6" class="outline-3">
-<h3 id="org4a80fa6"><span class="section-number-3">5.2</span> Shared Variables</h3>
+<div id="outline-container-org46f1aca" class="outline-3">
+<h3 id="org46f1aca"><span class="section-number-3">5.2</span> Shared Variables</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 The two types of shared variables in Spark, broadcast variables and accumulators, are imple- mented using classes with custom serialization formats.
@@ -309,8 +309,8 @@ In future work, we plan to focus on four areas:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="date">Created: 2019-04-03 Wed 04:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/spark-paper.html';this.page.identifier = 'spark-paper.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/spark-paper.html';this.page.identifier = 'spark-paper.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

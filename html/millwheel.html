@@ -72,7 +72,7 @@ for the JavaScript code in this tag.
 <li><a href="#org543fe13">5.2. Keys</a></li>
 <li><a href="#org4d68374">5.3. Streams</a></li>
 <li><a href="#org787036a">5.4. Persistent State</a></li>
-<li><a href="#org7546061">5.5. Low Watermarks</a></li>
+<li><a href="#orgfd04220">5.5. Low Watermarks</a></li>
 <li><a href="#orgaf34700">5.6. Timers</a></li>
 </ul>
 </li>
@@ -94,7 +94,7 @@ for the JavaScript code in this tag.
 <li><a href="#org069bea8">8. SYSTEM IMPLEMENTATION</a>
 <ul>
 <li><a href="#org2c72495">8.1. Architecture</a></li>
-<li><a href="#orgfd04220">8.2. Low Watermarks</a></li>
+<li><a href="#org90204d8">8.2. Low Watermarks</a></li>
 </ul>
 </li>
 <li><a href="#orgd72c106">9. EVALUATION</a>
@@ -231,8 +231,8 @@ In its most basic form, persistent state in MillWheel is an opaque byte string t
 </div>
 </div>
 
-<div id="outline-container-org7546061" class="outline-3">
-<h3 id="org7546061"><span class="section-number-3">5.5</span> Low Watermarks</h3>
+<div id="outline-container-orgfd04220" class="outline-3">
+<h3 id="orgfd04220"><span class="section-number-3">5.5</span> Low Watermarks</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 The low watermark for a computation provides a bound on the timestamps of future records arriving at that computation. # LW用来给出未来会参与计算的记录的时间戳界限。
@@ -451,8 +451,8 @@ MillWheel recovers from machine failures efficiently by scan-ning metadata from 
 </div>
 </div>
 
-<div id="outline-container-orgfd04220" class="outline-3">
-<h3 id="orgfd04220"><span class="section-number-3">8.2</span> Low Watermarks</h3>
+<div id="outline-container-org90204d8" class="outline-3">
+<h3 id="org90204d8"><span class="section-number-3">8.2</span> Low Watermarks</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 注意LW是对应于computation而非key的，所以虽然每个computation节点可以自己推测出自己的LW, 但是这个LW仅仅是局部的(无效的). 所以计算LW只能由master或者是中央节点来完成。
@@ -582,8 +582,8 @@ If a computation is performing an aggregation based on low wa-termark timers, Mi
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="date">Created: 2019-04-03 Wed 04:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/millwheel.html';this.page.identifier = 'millwheel.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/millwheel.html';this.page.identifier = 'millwheel.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

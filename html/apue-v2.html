@@ -66,11 +66,11 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org66703d6">1.1. 登录</a></li>
 <li><a href="#org5c0bebf">1.2. 帮助</a></li>
-<li><a href="#org60af68e">1.3. 文件和目录</a></li>
+<li><a href="#orgd4ad3a8">1.3. 文件和目录</a></li>
 <li><a href="#org45a46c0">1.4. 输入和输出</a></li>
 <li><a href="#org858b125">1.5. 程序和进程</a></li>
 <li><a href="#orgc0a1b5a">1.6. 错误处理</a></li>
-<li><a href="#orgcba2494">1.7. 用户标识</a></li>
+<li><a href="#org8286e8b">1.7. 用户标识</a></li>
 <li><a href="#org6d5bd96">1.8. 信号</a></li>
 <li><a href="#orge714bbe">1.9. 时间值</a></li>
 <li><a href="#orgb51080a">1.10. 系统调用和库函数</a></li>
@@ -113,7 +113,7 @@ for the JavaScript code in this tag.
 <li><a href="#org7485ca8">3.13. 底层实现</a></li>
 </ul>
 </li>
-<li><a href="#orgd4ad3a8">4. 文件和目录</a>
+<li><a href="#org811ca59">4. 文件和目录</a>
 <ul>
 <li><a href="#org9c168e6">4.1. 文件系统</a></li>
 <li><a href="#orgf39745f">4.2. 文件类型</a></li>
@@ -172,7 +172,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgacad10d">7.4. 存储器分配</a></li>
 <li><a href="#org43cbffa">7.5. 命令行参数和环境表</a></li>
 <li><a href="#org828d0af">7.6. 非局部跳转</a></li>
-<li><a href="#org6f86131">7.7. 资源限制</a></li>
+<li><a href="#org6c123e2">7.7. 资源限制</a></li>
 <li><a href="#org32b8359">7.8. 进程调度</a>
 <ul>
 <li><a href="#org7255014">7.8.1. 控制进程和CPU亲和性</a></li>
@@ -190,7 +190,7 @@ for the JavaScript code in this tag.
 <li><a href="#org3ce5f06">8.6. 更改用户ID和组ID</a></li>
 <li><a href="#org4b6f2cc">8.7. system函数</a></li>
 <li><a href="#orgb5855b4">8.8. 解释器文件</a></li>
-<li><a href="#org8286e8b">8.9. 用户标识</a></li>
+<li><a href="#orgeedd7a4">8.9. 用户标识</a></li>
 <li><a href="#org61aec5c">8.10. 进程时间</a></li>
 </ul>
 </li>
@@ -222,7 +222,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgdf0ccbf">10.8. 常用函数</a>
 <ul>
-<li><a href="#org98b9474">10.8.1. signal</a></li>
+<li><a href="#org937abfe">10.8.1. signal</a></li>
 <li><a href="#orgea443af">10.8.2. kill/raise</a></li>
 <li><a href="#orgb6e08da">10.8.3. alarm/pause</a></li>
 <li><a href="#orgffb42d5">10.8.4. abort</a></li>
@@ -315,7 +315,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgb782926">14.3.1. 创建标识</a></li>
 <li><a href="#org3b91f0a">14.3.2. 权限结构</a></li>
-<li><a href="#org6c123e2">14.3.3. 资源限制</a></li>
+<li><a href="#org6d15fdc">14.3.3. 资源限制</a></li>
 <li><a href="#org23da730">14.3.4. 优点和缺点</a></li>
 </ul>
 </li>
@@ -375,8 +375,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org60af68e" class="outline-3">
-<h3 id="org60af68e"><span class="section-number-3">1.3</span> 文件和目录</h3>
+<div id="outline-container-orgd4ad3a8" class="outline-3">
+<h3 id="orgd4ad3a8"><span class="section-number-3">1.3</span> 文件和目录</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 目录的起点为根，名字是/.目录是包含多个目录项的文件，逻辑上来说目录包含文件名还包括文件
@@ -488,8 +488,8 @@ exrern <span style="font-weight: bold; text-decoration: underline;">int</span>* 
 </div>
 </div>
 
-<div id="outline-container-orgcba2494" class="outline-3">
-<h3 id="orgcba2494"><span class="section-number-3">1.7</span> 用户标识</h3>
+<div id="outline-container-org8286e8b" class="outline-3">
+<h3 id="org8286e8b"><span class="section-number-3">1.7</span> 用户标识</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 用户标识包括
@@ -2370,8 +2370,8 @@ dup2相当于一个原子操作，首先关闭dst<sub>fd然后再复制到dst</s
 </div>
 </div>
 
-<div id="outline-container-orgd4ad3a8" class="outline-2">
-<h2 id="orgd4ad3a8"><span class="section-number-2">4</span> 文件和目录</h2>
+<div id="outline-container-org811ca59" class="outline-2">
+<h2 id="org811ca59"><span class="section-number-2">4</span> 文件和目录</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上一章主要是围绕文件系统IO来展开的，而这章主要说明文件系统的其他特征和文件的性质(文件属性)。
@@ -4981,8 +4981,8 @@ jmp from foo
 </div>
 </div>
 
-<div id="outline-container-org6f86131" class="outline-3">
-<h3 id="org6f86131"><span class="section-number-3">7.7</span> 资源限制</h3>
+<div id="outline-container-org6c123e2" class="outline-3">
+<h3 id="org6c123e2"><span class="section-number-3">7.7</span> 资源限制</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 每个进程都有一组资源限制，可以设置和查看这些资源限制。
@@ -5893,8 +5893,8 @@ print("hello,world")
 </div>
 </div>
 
-<div id="outline-container-org8286e8b" class="outline-3">
-<h3 id="org8286e8b"><span class="section-number-3">8.9</span> 用户标识</h3>
+<div id="outline-container-orgeedd7a4" class="outline-3">
+<h3 id="orgeedd7a4"><span class="section-number-3">8.9</span> 用户标识</h3>
 <div class="outline-text-3" id="text-8-9">
 <p>
 如果多个用户对应同样一个uid的话，那么我们这个时候就没有办法区分用户了。Unix系统
@@ -7029,8 +7029,8 @@ SIGUSR1 masked=0
 <h3 id="orgdf0ccbf"><span class="section-number-3">10.8</span> 常用函数</h3>
 <div class="outline-text-3" id="text-10-8">
 </div>
-<div id="outline-container-org98b9474" class="outline-4">
-<h4 id="org98b9474"><span class="section-number-4">10.8.1</span> signal</h4>
+<div id="outline-container-org937abfe" class="outline-4">
+<h4 id="org937abfe"><span class="section-number-4">10.8.1</span> signal</h4>
 <div class="outline-text-4" id="text-10-8-1">
 <p>
 signal函数是最常见的信号机制相关函数，原型是这样的：
@@ -8386,7 +8386,7 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </div>
 </li>
 
-<li><a id="orgf5b6081"></a>sched<br />
+<li><a id="org24dd347"></a>sched<br />
 <div class="outline-text-5" id="text-11-14-1-4">
 <ul class="org-ul">
 <li>pthread<sub>attr</sub><sub>getinheritsched</sub></li>
@@ -8620,7 +8620,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 </div>
 </li>
 
-<li><a id="org937abfe"></a>signal<br />
+<li><a id="org418803b"></a>signal<br />
 <div class="outline-text-5" id="text-11-14-3-3">
 <ul class="org-ul">
 <li>pthread<sub>kill</sub></li>
@@ -8630,7 +8630,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 </div>
 </li>
 
-<li><a id="org24dd347"></a>sched<br />
+<li><a id="orgff675ef"></a>sched<br />
 <div class="outline-text-5" id="text-11-14-3-4">
 <ul class="org-ul">
 <li>pthread<sub>getschedparam</sub></li>
@@ -10199,8 +10199,8 @@ ftok必须引用一个已经存在的路径。底层实现可能是得到path的
 </div>
 </div>
 
-<div id="outline-container-org6c123e2" class="outline-4">
-<h4 id="org6c123e2"><span class="section-number-4">14.3.3</span> 资源限制</h4>
+<div id="outline-container-org6d15fdc" class="outline-4">
+<h4 id="org6d15fdc"><span class="section-number-4">14.3.3</span> 资源限制</h4>
 <div class="outline-text-4" id="text-14-3-3">
 <p>
 XSI IPC都有内置限制(built-in limit),大多数可以通过重新配置内核而加以修改。在Linux下面我们可以通过ipcs -l来显示
@@ -10822,8 +10822,8 @@ child about to exit
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="date">Created: 2019-04-03 Wed 04:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/apue-v2.html';this.page.identifier = 'apue-v2.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/apue-v2.html';this.page.identifier = 'apue-v2.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

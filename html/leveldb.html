@@ -85,7 +85,7 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org9492f99">1. Introduction</a></li>
-<li><a href="#org406efe0">2. WriteBatch</a></li>
+<li><a href="#orge0e3642">2. WriteBatch</a></li>
 <li><a href="#org0a8652d">3. BloomFilter</a>
 <ul>
 <li><a href="#org1bd700b">3.1. Format</a></li>
@@ -95,15 +95,15 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org7138e3a">4. Storage</a>
 <ul>
-<li><a href="#orgfdad24d">4.1. MemTable</a></li>
+<li><a href="#orga8d659e">4.1. MemTable</a></li>
 <li><a href="#orgdc9d1d9">4.2. RedoLog</a></li>
 <li><a href="#org8527e0d">4.3. DiskTable</a></li>
 </ul>
 </li>
-<li><a href="#org7630cda">5. Compaction</a></li>
+<li><a href="#orgafa40cd">5. Compaction</a></li>
 <li><a href="#orgfe89b34">6. Recovery</a></li>
 <li><a href="#org5baaa8c">7. Snapshot</a></li>
-<li><a href="#org3735af3">8. Cache</a></li>
+<li><a href="#org9bdbe37">8. Cache</a></li>
 <li><a href="#org0b6d4f6">9. Option</a></li>
 <li><a href="#orge85319e">10. ReadingCode</a>
 <ul>
@@ -128,8 +128,8 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgd90d397">10.3.1. FileName</a></li>
 <li><a href="#orgdcef09e">10.3.2. Config</a></li>
-<li><a href="#orgd064fc7">10.3.3. DBImpl</a></li>
-<li><a href="#org4c09349">10.3.4. DBIter</a></li>
+<li><a href="#org0d56679">10.3.3. DBImpl</a></li>
+<li><a href="#org43456bc">10.3.4. DBIter</a></li>
 <li><a href="#orgfa858ad">10.3.5. LookupKey</a></li>
 <li><a href="#org340d037">10.3.6. ValueType</a></li>
 <li><a href="#org8df6043">10.3.7. SequenceNumber</a></li>
@@ -137,9 +137,9 @@ for the JavaScript code in this tag.
 <li><a href="#org9925010">10.3.9. InternalKeyComparator</a></li>
 <li><a href="#org36e14db">10.3.10. FileMetaData</a></li>
 <li><a href="#orga188df5">10.3.11. Version</a></li>
-<li><a href="#org093bb83">10.3.12. VersionSet</a></li>
-<li><a href="#org79e02f7">10.3.13. VersionSetBuilder</a></li>
-<li><a href="#orgafa40cd">10.3.14. Compaction</a></li>
+<li><a href="#org394f8a1">10.3.12. VersionSet</a></li>
+<li><a href="#org35cb214">10.3.13. VersionSetBuilder</a></li>
+<li><a href="#orgcd100b2">10.3.14. Compaction</a></li>
 <li><a href="#org4b69d84">10.3.15. CompactionState</a></li>
 <li><a href="#org7f99d7e">10.3.16. VersionEdit</a></li>
 <li><a href="#orgca70630">10.3.17. ByteWiseComparatorImpl</a></li>
@@ -156,7 +156,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgf9a808c">10.4.6. PosixMmapFile</a></li>
 </ul>
 </li>
-<li><a href="#org9bdbe37">10.5. Cache</a>
+<li><a href="#org792448f">10.5. Cache</a>
 <ul>
 <li><a href="#orga1266be">10.5.1. ShardedLRUCache</a></li>
 <li><a href="#orgf531f9d">10.5.2. LRUCache</a></li>
@@ -166,8 +166,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgf5a1157">10.6. Batch</a>
 <ul>
-<li><a href="#orge0e3642">10.6.1. WriteBatch</a></li>
-<li><a href="#orga8d659e">10.6.2. MemTable</a></li>
+<li><a href="#org9ddf9ec">10.6.1. WriteBatch</a></li>
+<li><a href="#org2ff2f8f">10.6.2. MemTable</a></li>
 <li><a href="#org2a52f7b">10.6.3. MemTableInserter</a></li>
 <li><a href="#org24cd068">10.6.4. MemtableIterator</a></li>
 </ul>
@@ -179,23 +179,23 @@ for the JavaScript code in this tag.
 <li><a href="#org06a49f4">10.7.3. LogReader</a></li>
 </ul>
 </li>
-<li><a href="#org1bfe238">10.8. Table</a>
+<li><a href="#org2c95e77">10.8. Table</a>
 <ul>
 <li><a href="#org4e49a78">10.8.1. TableFormat</a></li>
 <li><a href="#orgfb5cfdb">10.8.2. BuildTable</a></li>
-<li><a href="#org1c2968c">10.8.3. TableCache</a></li>
-<li><a href="#orgb625d66">10.8.4. Table</a></li>
+<li><a href="#orgd0e2d95">10.8.3. TableCache</a></li>
+<li><a href="#org1bfe238">10.8.4. Table</a></li>
 <li><a href="#org72ae76b">10.8.5. TableBuilder</a></li>
-<li><a href="#org13ffea5">10.8.6. BlockBuilder</a></li>
-<li><a href="#org4fb3b20">10.8.7. Block</a></li>
-<li><a href="#org5a248e6">10.8.8. BlockIterator</a></li>
+<li><a href="#org9ac07d9">10.8.6. BlockBuilder</a></li>
+<li><a href="#orgb05a4a3">10.8.7. Block</a></li>
+<li><a href="#org57805aa">10.8.8. BlockIterator</a></li>
 <li><a href="#org652ba3a">10.8.9. BlockHandle</a></li>
 <li><a href="#org075757a">10.8.10. Footer</a></li>
 <li><a href="#orgf8918cf">10.8.11. ReadBlock</a></li>
 <li><a href="#orgfeeea7a">10.8.12. IteratorWrapper</a></li>
 <li><a href="#orge382ed4">10.8.13. EmptyIterator</a></li>
 <li><a href="#org8101eed">10.8.14. TwoLevelIterator</a></li>
-<li><a href="#org40b871a">10.8.15. MergingIterator</a></li>
+<li><a href="#org8cf7a1f">10.8.15. MergingIterator</a></li>
 </ul>
 </li>
 <li><a href="#orgabeacab">10.9. Util</a>
@@ -291,8 +291,8 @@ leveldb还是比较麻烦的.开始阅读的时候(像我)很多策略细节就�
 </div>
 </div>
 
-<div id="outline-container-org406efe0" class="outline-2">
-<h2 id="org406efe0"><span class="section-number-2">2</span> WriteBatch</h2>
+<div id="outline-container-orge0e3642" class="outline-2">
+<h2 id="orge0e3642"><span class="section-number-2">2</span> WriteBatch</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 leveldb使用WriteBatch来达到atomic write操作.WriteBatch过程非常简单，就是将atomic write的内容全部写到一个内存buffer上，然后提交这个WriteBatch.
@@ -506,8 +506,8 @@ lg(base)                              : 1 byte
 </ul>
 </div>
 
-<div id="outline-container-orgfdad24d" class="outline-3">
-<h3 id="orgfdad24d"><span class="section-number-3">4.1</span> MemTable</h3>
+<div id="outline-container-orga8d659e" class="outline-3">
+<h3 id="orga8d659e"><span class="section-number-3">4.1</span> MemTable</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 memtable在leveldb内部实现就是一个skiplist.所有的update都不是in-place的，对于memtable里面的修改来说的话使用的也是使用添加的方式完成的。
@@ -620,8 +620,8 @@ seperator可以设置成为ac.seperator的生成可以参考Comparator.使用尽
 </div>
 </div>
 
-<div id="outline-container-org7630cda" class="outline-2">
-<h2 id="org7630cda"><span class="section-number-2">5</span> Compaction</h2>
+<div id="outline-container-orgafa40cd" class="outline-2">
+<h2 id="orgafa40cd"><span class="section-number-2">5</span> Compaction</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 对于Compaction触发的策略牵扯到了算法问题，自己表示没有仔细看这个策略(其实当时看了但是完全没有理解).这里谈谈compaction如何删除文件的问题。
@@ -734,8 +734,8 @@ Snapshot集合在leveldb里面组织成为一个链表，oldest的节点必然�
 </div>
 </div>
 
-<div id="outline-container-org3735af3" class="outline-2">
-<h2 id="org3735af3"><span class="section-number-2">8</span> Cache</h2>
+<div id="outline-container-org9bdbe37" class="outline-2">
+<h2 id="org9bdbe37"><span class="section-number-2">8</span> Cache</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 对于leveldb来说的话存在两个cache系统，一个是TableCache，一个是BlockCache.其中TableCache是用来缓存文件描述符的，
@@ -2266,8 +2266,8 @@ db/dbformat.h config下面是一些静态常数.这里可以仔细看看.
 </div>
 </div>
 
-<div id="outline-container-orgd064fc7" class="outline-4">
-<h4 id="orgd064fc7"><span class="section-number-4">10.3.3</span> DBImpl</h4>
+<div id="outline-container-org0d56679" class="outline-4">
+<h4 id="org0d56679"><span class="section-number-4">10.3.3</span> DBImpl</h4>
 <div class="outline-text-4" id="text-10-3-3">
 <p>
 db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这个结构然后仔细看看每个字段是什么
@@ -2348,7 +2348,7 @@ db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这�
 </div>
 
 <ol class="org-ol">
-<li><a id="orgf9acea5"></a>Open<br />
+<li><a id="org81f497a"></a>Open<br />
 <div class="outline-text-5" id="text-10-3-3-1">
 <p>
 在Interface部分的db.h里面可以知道构造这个DB对象是通过DB::Open来构造的。
@@ -2399,7 +2399,7 @@ db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这�
 </div>
 </li>
 
-<li><a id="org0806dbd"></a>DBImpl<br />
+<li><a id="orgd064fc7"></a>DBImpl<br />
 <div class="outline-text-5" id="text-10-3-3-2">
 <p>
 先看看构造函数
@@ -2536,7 +2536,7 @@ db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这�
 </div>
 </li>
 
-<li><a id="org8b9f4c7"></a>Recover<br />
+<li><a id="orgaabc744"></a>Recover<br />
 <div class="outline-text-5" id="text-10-3-3-4">
 <p>
 恢复状态并且将恢复对于version日志操作.
@@ -2836,7 +2836,7 @@ db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这�
 </div>
 </li>
 
-<li><a id="orgcd6a042"></a>Put<br />
+<li><a id="org6b7c8d0"></a>Put<br />
 <div class="outline-text-5" id="text-10-3-3-8">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">Status</span> <span style="font-weight: bold; text-decoration: underline;">DBImpl</span>::<span style="font-weight: bold;">Put</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">WriteOptions</span>&amp; <span style="font-weight: bold; font-style: italic;">o</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">key</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">val</span>) {
@@ -2852,7 +2852,7 @@ db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这�
 </div>
 </li>
 
-<li><a id="orgb7789fd"></a>Delete<br />
+<li><a id="orgeb6af09"></a>Delete<br />
 <div class="outline-text-5" id="text-10-3-3-9">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">Status</span> <span style="font-weight: bold; text-decoration: underline;">DBImpl</span>::<span style="font-weight: bold;">Delete</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">WriteOptions</span>&amp; <span style="font-weight: bold; font-style: italic;">options</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">key</span>) {
@@ -3190,7 +3190,7 @@ db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这�
 </div>
 </li>
 
-<li><a id="org3b650e9"></a>CompactRange<br />
+<li><a id="org2b0a62a"></a>CompactRange<br />
 <div class="outline-text-5" id="text-10-3-3-16">
 <p>
 这个语义应该是针对某个range来进行compaction的.
@@ -3955,7 +3955,7 @@ db/db<sub>impl.cc</sub> DBImpl这个结构体挺大的。我们先过一个这�
 </div>
 </li>
 
-<li><a id="org3144b63"></a>Get<br />
+<li><a id="org3dd1114"></a>Get<br />
 <div class="outline-text-5" id="text-10-3-3-31">
 <p>
 Get的过程非常简单.因为实际Get的过程已经托管为Version::Get这个方法了.这里面我们只需要
@@ -4106,8 +4106,8 @@ Get的过程非常简单.因为实际Get的过程已经托管为Version::Get这�
 </ol>
 </div>
 
-<div id="outline-container-org4c09349" class="outline-4">
-<h4 id="org4c09349"><span class="section-number-4">10.3.4</span> DBIter</h4>
+<div id="outline-container-org43456bc" class="outline-4">
+<h4 id="org43456bc"><span class="section-number-4">10.3.4</span> DBIter</h4>
 <div class="outline-text-4" id="text-10-3-4">
 <p>
 db/db<sub>iter.cc</sub> DBIter通过工厂方法创建.然后就DBIter结构以及里面的接口看看.
@@ -4133,7 +4133,7 @@ db/db<sub>iter.cc</sub> DBIter通过工厂方法创建.然后就DBIter结构以�
 </div>
 </li>
 
-<li><a id="org1b13b46"></a>DBIter<br />
+<li><a id="org4c09349"></a>DBIter<br />
 <div class="outline-text-5" id="text-10-3-4-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Memtables and sstables that make the DB representation contain</span>
@@ -4235,7 +4235,7 @@ db/db<sub>iter.cc</sub> DBIter通过工厂方法创建.然后就DBIter结构以�
 </div>
 </li>
 
-<li><a id="org4a3b00b"></a>Seek<br />
+<li><a id="org40ab679"></a>Seek<br />
 <div class="outline-text-5" id="text-10-3-4-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">DBIter</span>::<span style="font-weight: bold;">Seek</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">target</span>) {
@@ -4256,7 +4256,7 @@ db/db<sub>iter.cc</sub> DBIter通过工厂方法创建.然后就DBIter结构以�
 </div>
 </li>
 
-<li><a id="org3190096"></a>Next<br />
+<li><a id="org993a4c3"></a>Next<br />
 <div class="outline-text-5" id="text-10-3-4-7">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">DBIter</span>::<span style="font-weight: bold;">Next</span>() {
@@ -4289,7 +4289,7 @@ db/db<sub>iter.cc</sub> DBIter通过工厂方法创建.然后就DBIter结构以�
 </div>
 </li>
 
-<li><a id="orgacf74f1"></a>Prev<br />
+<li><a id="org9dc4558"></a>Prev<br />
 <div class="outline-text-5" id="text-10-3-4-8">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">DBIter</span>::<span style="font-weight: bold;">Prev</span>() {
@@ -4426,7 +4426,7 @@ db/db<sub>iter.cc</sub> DBIter通过工厂方法创建.然后就DBIter结构以�
 </div>
 </li>
 
-<li><a id="orgbdd0f54"></a>SeekToFirst<br />
+<li><a id="orgf4c8a4d"></a>SeekToFirst<br />
 <div class="outline-text-5" id="text-10-3-4-11">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">DBIter</span>::<span style="font-weight: bold;">SeekToFirst</span>() {
@@ -4444,7 +4444,7 @@ db/db<sub>iter.cc</sub> DBIter通过工厂方法创建.然后就DBIter结构以�
 </div>
 </li>
 
-<li><a id="orge7e4462"></a>SeekToLast<br />
+<li><a id="org04b08cf"></a>SeekToLast<br />
 <div class="outline-text-5" id="text-10-3-4-12">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">DBIter</span>::<span style="font-weight: bold;">SeekToLast</span>() {
@@ -4782,7 +4782,7 @@ Compare接收两个Slice对象。对象是这样encode的,key<sub>size</sub> + k
 </div>
 
 <ol class="org-ol">
-<li><a id="orgf701f98"></a>Compare<br />
+<li><a id="orga26732a"></a>Compare<br />
 <div class="outline-text-5" id="text-10-3-9-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; text-decoration: underline;">InternalKeyComparator</span>::<span style="font-weight: bold;">Compare</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">akey</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">bkey</span>) <span style="font-weight: bold;">const</span> {
@@ -5237,7 +5237,7 @@ db/version<sub>set.h</sub> 判断是否有文件和某个范围[smallest,largest
 </div>
 </li>
 
-<li><a id="org0389b54"></a>Get<br />
+<li><a id="org03bca0d"></a>Get<br />
 <div class="outline-text-5" id="text-10-3-11-11">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">Status</span> <span style="font-weight: bold; text-decoration: underline;">Version</span>::<span style="font-weight: bold;">Get</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">ReadOptions</span>&amp; <span style="font-weight: bold; font-style: italic;">options</span>,
@@ -5589,8 +5589,8 @@ DebugString作为Version的调试信息打印出来.我们可以稍微得到一�
 </ol>
 </div>
 
-<div id="outline-container-org093bb83" class="outline-4">
-<h4 id="org093bb83"><span class="section-number-4">10.3.12</span> VersionSet</h4>
+<div id="outline-container-org394f8a1" class="outline-4">
+<h4 id="org394f8a1"><span class="section-number-4">10.3.12</span> VersionSet</h4>
 <div class="outline-text-4" id="text-10-3-12">
 <p>
 db/version<sub>set.h</sub> VersionSet用来管理不同的Version并且应该维护了一些全局信息.还是首先看看结构
@@ -5635,7 +5635,7 @@ db/version<sub>set.h</sub> VersionSet用来管理不同的Version并且应该维
 </div>
 
 <ol class="org-ol">
-<li><a id="org1ca20f1"></a>VersionSet<br />
+<li><a id="org093bb83"></a>VersionSet<br />
 <div class="outline-text-5" id="text-10-3-12-1">
 <p>
 首先看看构造函数和析构函数.
@@ -5784,7 +5784,7 @@ version<sub>set了解到哪些文件依然是被正在使用的</sub>.
 </div>
 </li>
 
-<li><a id="org89cfae0"></a>ApproximateOffsetOf<br />
+<li><a id="org6ccb559"></a>ApproximateOffsetOf<br />
 <div class="outline-text-5" id="text-10-3-12-8">
 <p>
 判断这个key在数据库内部大致偏移是多少.从这个实现里面我们可以看到.对于level-0的文件并不是排序的
@@ -5966,7 +5966,7 @@ version<sub>set了解到哪些文件依然是被正在使用的</sub>.
 </div>
 </li>
 
-<li><a id="orgaabc744"></a>Recover<br />
+<li><a id="org4b970f0"></a>Recover<br />
 <div class="outline-text-5" id="text-10-3-12-13">
 <p>
 从db<sub>impl.cc里面的DB</sub>::Open可以看到,这里的Recover并没有将剩余的version<sub>edit回放完成</sub>.
@@ -6303,7 +6303,7 @@ PickCompaction和CompactRange都是compaction行为.不过PickCompaction是自�
 </div>
 </li>
 
-<li><a id="org2b0a62a"></a>CompactRange<br />
+<li><a id="org86a1ace"></a>CompactRange<br />
 <div class="outline-text-5" id="text-10-3-12-17">
 <p>
 DBImpl里面提供CompactRange打包成为一个Manual Compaction的请求提交到后端.然后判断
@@ -6495,8 +6495,8 @@ Compaction对象真正进行执行.
 </ol>
 </div>
 
-<div id="outline-container-org79e02f7" class="outline-4">
-<h4 id="org79e02f7"><span class="section-number-4">10.3.13</span> VersionSetBuilder</h4>
+<div id="outline-container-org35cb214" class="outline-4">
+<h4 id="org35cb214"><span class="section-number-4">10.3.13</span> VersionSetBuilder</h4>
 <div class="outline-text-4" id="text-10-3-13">
 <p>
 db/version<sub>set.cc</sub> VersoionSetBuilder存在作用就是为了能够高效地做version edit对象的回放.
@@ -6539,7 +6539,7 @@ db/version<sub>set.cc</sub> VersoionSetBuilder存在作用就是为了能够高�
 </div>
 
 <ol class="org-ol">
-<li><a id="org79e67e4"></a>VersionSetBuilder<br />
+<li><a id="org79e02f7"></a>VersionSetBuilder<br />
 <div class="outline-text-5" id="text-10-3-13-1">
 <p>
 首先看看构造和析构函数.不是非常麻烦.对于析构函数的话将所有的add files refs&#x2013;.
@@ -6719,8 +6719,8 @@ db/version<sub>set.cc</sub> VersoionSetBuilder存在作用就是为了能够高�
 </ol>
 </div>
 
-<div id="outline-container-orgafa40cd" class="outline-4">
-<h4 id="orgafa40cd"><span class="section-number-4">10.3.14</span> Compaction</h4>
+<div id="outline-container-orgcd100b2" class="outline-4">
+<h4 id="orgcd100b2"><span class="section-number-4">10.3.14</span> Compaction</h4>
 <div class="outline-text-4" id="text-10-3-14">
 <p>
 db/version<sub>set.h</sub> Compaction包含的是进行compaction操作的信息.针对compaction对象通常是current version
@@ -6761,7 +6761,7 @@ db/version<sub>set.h</sub> Compaction包含的是进行compaction操作的信息
 </div>
 
 <ol class="org-ol">
-<li><a id="orga2f1712"></a>Compaction<br />
+<li><a id="org776d3af"></a>Compaction<br />
 <div class="outline-text-5" id="text-10-3-14-1">
 <p>
 构造函数过程非常简单.析构函数的话也只是将input<sub>version</sub><sub>修改引用计数</sub>。
@@ -7918,8 +7918,8 @@ Roundup非常简单.使用时候就是希望mapsize作为pagesize的整数倍存
 </div>
 </div>
 
-<div id="outline-container-org9bdbe37" class="outline-3">
-<h3 id="org9bdbe37"><span class="section-number-3">10.5</span> Cache</h3>
+<div id="outline-container-org792448f" class="outline-3">
+<h3 id="org792448f"><span class="section-number-3">10.5</span> Cache</h3>
 <div class="outline-text-3" id="text-10-5">
 </div>
 <div id="outline-container-orga1266be" class="outline-4">
@@ -8016,7 +8016,7 @@ util/cache.cc LRUCache实现就是按照LRU来实现的.LRUCache每一个item是
 </div>
 
 <ol class="org-ol">
-<li><a id="orgc00d5bc"></a>Insert<br />
+<li><a id="org7bd6644"></a>Insert<br />
 <div class="outline-text-5" id="text-10-5-2-1">
 <p>
 Insert的工作就是创建一个LRUHandle对象加入hashtable以及LRU队列里面.注意这里的引用计数
@@ -8173,8 +8173,8 @@ length肯定是2<sup>n.计算slot的方式就是</sup>
 <h3 id="orgf5a1157"><span class="section-number-3">10.6</span> Batch</h3>
 <div class="outline-text-3" id="text-10-6">
 </div>
-<div id="outline-container-orge0e3642" class="outline-4">
-<h4 id="orge0e3642"><span class="section-number-4">10.6.1</span> WriteBatch</h4>
+<div id="outline-container-org9ddf9ec" class="outline-4">
+<h4 id="org9ddf9ec"><span class="section-number-4">10.6.1</span> WriteBatch</h4>
 <div class="outline-text-4" id="text-10-6-1">
 <p>
 db/write<sub>batch.cc</sub> db/write<sub>batch</sub><sub>internal.h</sub> WriteBatch可以认为就是一个小型的数据记录仓库.
@@ -8261,7 +8261,7 @@ write<sub>batch</sub><sub>internal.h里面是一些write</sub><sub>batch里面�
 </div>
 </li>
 
-<li><a id="org6b7c8d0"></a>Put<br />
+<li><a id="orgf91821c"></a>Put<br />
 <div class="outline-text-5" id="text-10-6-1-5">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">WriteBatch</span>::<span style="font-weight: bold;">Put</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">key</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">value</span>) {
@@ -8275,7 +8275,7 @@ write<sub>batch</sub><sub>internal.h里面是一些write</sub><sub>batch里面�
 </div>
 </li>
 
-<li><a id="orgeb6af09"></a>Delete<br />
+<li><a id="orgfbe8d15"></a>Delete<br />
 <div class="outline-text-5" id="text-10-6-1-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">WriteBatch</span>::<span style="font-weight: bold;">Delete</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">key</span>) {
@@ -8359,8 +8359,8 @@ write<sub>batch</sub><sub>internal.h里面是一些write</sub><sub>batch里面�
 </ol>
 </div>
 
-<div id="outline-container-orga8d659e" class="outline-4">
-<h4 id="orga8d659e"><span class="section-number-4">10.6.2</span> MemTable</h4>
+<div id="outline-container-org2ff2f8f" class="outline-4">
+<h4 id="org2ff2f8f"><span class="section-number-4">10.6.2</span> MemTable</h4>
 <div class="outline-text-4" id="text-10-6-2">
 <p>
 db/memtable.cc MemTable应该算是leveldb里面的table一种.只不过所有的内容都是存放在内存里面的。我们首先看看字段和数据结构.
@@ -8373,7 +8373,7 @@ db/memtable.cc MemTable应该算是leveldb里面的table一种.只不过所有�
 </div>
 
 <ol class="org-ol">
-<li><a id="org417482a"></a>MemTable<br />
+<li><a id="org161ea82"></a>MemTable<br />
 <div class="outline-text-5" id="text-10-6-2-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">MemTable</span> {
@@ -8445,7 +8445,7 @@ db/memtable.cc MemTable应该算是leveldb里面的table一种.只不过所有�
 </div>
 </li>
 
-<li><a id="orga26732a"></a>Compare<br />
+<li><a id="org221116d"></a>Compare<br />
 <div class="outline-text-5" id="text-10-6-2-2">
 <p>
 这里KeyComparator的话因为考虑到key是length-prefixed的.底层使用InternalKeyComparator处理的就是
@@ -8465,7 +8465,7 @@ db/memtable.cc MemTable应该算是leveldb里面的table一种.只不过所有�
 </div>
 </li>
 
-<li><a id="orge3f5d52"></a>Add<br />
+<li><a id="org2f29538"></a>Add<br />
 <div class="outline-text-5" id="text-10-6-2-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">MemTable</span>::<span style="font-weight: bold;">Add</span>(<span style="font-weight: bold; text-decoration: underline;">SequenceNumber</span> <span style="font-weight: bold; font-style: italic;">s</span>, <span style="font-weight: bold; text-decoration: underline;">ValueType</span> <span style="font-weight: bold; font-style: italic;">type</span>,
@@ -8499,7 +8499,7 @@ db/memtable.cc MemTable应该算是leveldb里面的table一种.只不过所有�
 </div>
 </li>
 
-<li><a id="org3dd1114"></a>Get<br />
+<li><a id="orgf849591"></a>Get<br />
 <div class="outline-text-5" id="text-10-6-2-4">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#37324;&#20351;&#29992;&#36845;&#20195;&#22120;&#26597;&#25214;&#23545;&#24212;&#30340;&#20869;&#23481;.&#26684;&#24335;&#30340;&#35805;&#21487;&#20197;&#21442;&#32771;Add&#30340;&#37324;&#38754;&#30340;&#23454;&#29616;</span>
@@ -9295,8 +9295,8 @@ ReadRecord读取的是一条逻辑记录.底层调用ReadPhysicalRecord将多条
 </div>
 </div>
 
-<div id="outline-container-org1bfe238" class="outline-3">
-<h3 id="org1bfe238"><span class="section-number-3">10.8</span> Table</h3>
+<div id="outline-container-org2c95e77" class="outline-3">
+<h3 id="org2c95e77"><span class="section-number-3">10.8</span> Table</h3>
 <div class="outline-text-3" id="text-10-8">
 </div>
 <div id="outline-container-org4e49a78" class="outline-4">
@@ -9458,8 +9458,8 @@ db/builder.h BuildTable过程非常简单就是构造一个sstable.
 </div>
 </div>
 
-<div id="outline-container-org1c2968c" class="outline-4">
-<h4 id="org1c2968c"><span class="section-number-4">10.8.3</span> TableCache</h4>
+<div id="outline-container-orgd0e2d95" class="outline-4">
+<h4 id="orgd0e2d95"><span class="section-number-4">10.8.3</span> TableCache</h4>
 <div class="outline-text-4" id="text-10-8-3">
 <p>
 db/table<sub>cache.cc</sub> TableCache的工作非常简单，就是针对Table对象以及Table::Iterator对象进行cache.
@@ -9498,7 +9498,7 @@ db/table<sub>cache.cc</sub> TableCache的工作非常简单，就是针对Table�
 </div>
 
 <ol class="org-ol">
-<li><a id="org678e0ce"></a>TableCache<br />
+<li><a id="org1c2968c"></a>TableCache<br />
 <div class="outline-text-5" id="text-10-8-3-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">TableCache</span>::<span style="font-weight: bold;">TableCache</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">string</span>&amp; <span style="font-weight: bold; font-style: italic;">dbname</span>,
@@ -9532,7 +9532,7 @@ db/table<sub>cache.cc</sub> TableCache的工作非常简单，就是针对Table�
 </div>
 </li>
 
-<li><a id="org221d027"></a>NewIterator<br />
+<li><a id="orgd708e3b"></a>NewIterator<br />
 <div class="outline-text-5" id="text-10-8-3-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">TableAndFile</span> {
@@ -9605,8 +9605,8 @@ db/table<sub>cache.cc</sub> TableCache的工作非常简单，就是针对Table�
 </ol>
 </div>
 
-<div id="outline-container-orgb625d66" class="outline-4">
-<h4 id="orgb625d66"><span class="section-number-4">10.8.4</span> Table</h4>
+<div id="outline-container-org1bfe238" class="outline-4">
+<h4 id="org1bfe238"><span class="section-number-4">10.8.4</span> Table</h4>
 <div class="outline-text-4" id="text-10-8-4">
 <p>
 table/table.cc 这个接口在include/leveldb/table.h里面已经给出了.我们这里就是看看具体实现.
@@ -9614,7 +9614,7 @@ table/table.cc 这个接口在include/leveldb/table.h里面已经给出了.我�
 </div>
 
 <ol class="org-ol">
-<li><a id="orgdf8b270"></a>Rep<br />
+<li><a id="orgec8dbd0"></a>Rep<br />
 <div class="outline-text-5" id="text-10-8-4-1">
 <p>
 Rep是Table内部的数据结构.这样实现了之后那么头文件里面可以不包含任何实现了.
@@ -9639,7 +9639,7 @@ Rep是Table内部的数据结构.这样实现了之后那么头文件里面可�
 </div>
 </li>
 
-<li><a id="org81f497a"></a>Open<br />
+<li><a id="org47e21c7"></a>Open<br />
 <div class="outline-text-5" id="text-10-8-4-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">Status</span> <span style="font-weight: bold; text-decoration: underline;">Table</span>::<span style="font-weight: bold;">Open</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Options</span>&amp; <span style="font-weight: bold; font-style: italic;">options</span>,
@@ -9688,7 +9688,7 @@ Rep是Table内部的数据结构.这样实现了之后那么头文件里面可�
 </div>
 </li>
 
-<li><a id="org6ccb559"></a>ApproximateOffsetOf<br />
+<li><a id="org43e6085"></a>ApproximateOffsetOf<br />
 <div class="outline-text-5" id="text-10-8-4-3">
 <p>
 根据key找到kv在file的偏移.
@@ -9727,7 +9727,7 @@ Rep是Table内部的数据结构.这样实现了之后那么头文件里面可�
 </div>
 </li>
 
-<li><a id="orgc1c2066"></a>NewIterator<br />
+<li><a id="orgb7892b4"></a>NewIterator<br />
 <div class="outline-text-5" id="text-10-8-4-4">
 <p>
 NewIterator创建的是TwoLevelIterator.意思非常简单因为需要读取两次才能够读到内容.首先读取index block,
@@ -9862,7 +9862,7 @@ table/table<sub>builde.cc</sub> TableBuilder接口在之前include/leveldb/table
 </div>
 
 <ol class="org-ol">
-<li><a id="orgec8dbd0"></a>Rep<br />
+<li><a id="orgf7bb129"></a>Rep<br />
 <div class="outline-text-5" id="text-10-8-5-1">
 <p>
 Rep是TableBuilder里面具体涉及到的字段.我们来看看这个结构
@@ -9937,7 +9937,7 @@ Rep是TableBuilder里面具体涉及到的字段.我们来看看这个结构
 </div>
 </li>
 
-<li><a id="orgb0f536c"></a>Add<br />
+<li><a id="orgc150b12"></a>Add<br />
 <div class="outline-text-5" id="text-10-8-5-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TableBuilder</span>::<span style="font-weight: bold;">Add</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">key</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">value</span>) {
@@ -10063,7 +10063,7 @@ Rep是TableBuilder里面具体涉及到的字段.我们来看看这个结构
 </div>
 </li>
 
-<li><a id="org9ea6bda"></a>Finish<br />
+<li><a id="org8dd7d19"></a>Finish<br />
 <div class="outline-text-5" id="text-10-8-5-6">
 <p>
 Finish写入的TableFormat表述的最后面的index部分以及footer.
@@ -10126,8 +10126,8 @@ Finish写入的TableFormat表述的最后面的index部分以及footer.
 </ol>
 </div>
 
-<div id="outline-container-org13ffea5" class="outline-4">
-<h4 id="org13ffea5"><span class="section-number-4">10.8.6</span> BlockBuilder</h4>
+<div id="outline-container-org9ac07d9" class="outline-4">
+<h4 id="org9ac07d9"><span class="section-number-4">10.8.6</span> BlockBuilder</h4>
 <div class="outline-text-4" id="text-10-8-6">
 <p>
 table/block<sub>builder.h</sub> 从提供的接口来看的话，BlockBuilder功能应该是将多个有序的kv写到一个连续内存块内部。
@@ -10206,7 +10206,7 @@ table/block<sub>builder.h</sub> 从提供的接口来看的话，BlockBuilder功
 </div>
 </li>
 
-<li><a id="org64c39cc"></a>BlockBuilder<br />
+<li><a id="org13ffea5"></a>BlockBuilder<br />
 <div class="outline-text-5" id="text-10-8-6-2">
 <p>
 构造函数非常简单.这里options-&gt;block<sub>restrat</sub><sub>interval可能就是之前说的参数K</sub>
@@ -10263,7 +10263,7 @@ Reset和构造函数非常简单.
 </div>
 </li>
 
-<li><a id="org8dd7d19"></a>Finish<br />
+<li><a id="org2d6d051"></a>Finish<br />
 <div class="outline-text-5" id="text-10-8-6-5">
 <p>
 Finish的工作就是将restarts的信息全部写入到block buffer的结尾吧.同时将buffer<sub>包装称为Slice返回</sub>.
@@ -10283,7 +10283,7 @@ Finish的工作就是将restarts的信息全部写入到block buffer的结尾吧
 </div>
 </li>
 
-<li><a id="org2f29538"></a>Add<br />
+<li><a id="orge9adc39"></a>Add<br />
 <div class="outline-text-5" id="text-10-8-6-6">
 <p>
 我们这里仔细看看prefix-compressed是相对哪一个key来进行压缩的.阅读代码会发现是针对last<sub>key来进行的</sub>.
@@ -10336,8 +10336,8 @@ Finish的工作就是将restarts的信息全部写入到block buffer的结尾吧
 </ol>
 </div>
 
-<div id="outline-container-org4fb3b20" class="outline-4">
-<h4 id="org4fb3b20"><span class="section-number-4">10.8.7</span> Block</h4>
+<div id="outline-container-orgb05a4a3" class="outline-4">
+<h4 id="orgb05a4a3"><span class="section-number-4">10.8.7</span> Block</h4>
 <div class="outline-text-4" id="text-10-8-7">
 <p>
 table/block.h Block可以认为是BlockBuilder的Reader对象，解析BlockBuilder生成的Block.提供访问接口是遍历。
@@ -10384,7 +10384,7 @@ table/block.h Block可以认为是BlockBuilder的Reader对象，解析BlockBuild
 </div>
 </li>
 
-<li><a id="org3a98a3a"></a>Block<br />
+<li><a id="org4fb3b20"></a>Block<br />
 <div class="outline-text-5" id="text-10-8-7-2">
 <p>
 注意这里data已经由这个Block来托管了.在析构函数里面会释放data_
@@ -10413,7 +10413,7 @@ table/block.h Block可以认为是BlockBuilder的Reader对象，解析BlockBuild
 </div>
 </li>
 
-<li><a id="orgd708e3b"></a>NewIterator<br />
+<li><a id="org1fdf640"></a>NewIterator<br />
 <div class="outline-text-5" id="text-10-8-7-3">
 <p>
 创建一个迭代器.采用了工厂方法创建了具体类.关于这个具体类在后面会被称为BlockIterator来进行分析.
@@ -10437,8 +10437,8 @@ table/block.h Block可以认为是BlockBuilder的Reader对象，解析BlockBuild
 </ol>
 </div>
 
-<div id="outline-container-org5a248e6" class="outline-4">
-<h4 id="org5a248e6"><span class="section-number-4">10.8.8</span> BlockIterator</h4>
+<div id="outline-container-org57805aa" class="outline-4">
+<h4 id="org57805aa"><span class="section-number-4">10.8.8</span> BlockIterator</h4>
 <div class="outline-text-4" id="text-10-8-8">
 <p>
 table/block.cc BlockIterator本身完成的功能很简单就是Block的遍历器，我们首先看看结构
@@ -10463,7 +10463,7 @@ table/block.cc BlockIterator本身完成的功能很简单就是Block的遍历�
 </div>
 
 <ol class="org-ol">
-<li><a id="orga734311"></a>BlockIterator<br />
+<li><a id="org5a248e6"></a>BlockIterator<br />
 <div class="outline-text-5" id="text-10-8-8-1">
 <p>
 构造函数非常简单
@@ -10536,7 +10536,7 @@ table/block.cc BlockIterator本身完成的功能很简单就是Block的遍历�
 </div>
 </li>
 
-<li><a id="orgf1b7747"></a>Next<br />
+<li><a id="orgf1704f6"></a>Next<br />
 <div class="outline-text-5" id="text-10-8-8-5">
 <p>
 Next底层调用了ParseNextKey.后面我们会仔细看看ParseNextKey.
@@ -10551,7 +10551,7 @@ Next底层调用了ParseNextKey.后面我们会仔细看看ParseNextKey.
 </div>
 </li>
 
-<li><a id="org28ecde5"></a>SeekToFirst<br />
+<li><a id="orge91eeee"></a>SeekToFirst<br />
 <div class="outline-text-5" id="text-10-8-8-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">SeekToFirst</span>() {
@@ -10563,7 +10563,7 @@ Next底层调用了ParseNextKey.后面我们会仔细看看ParseNextKey.
 </div>
 </li>
 
-<li><a id="org04ef7e2"></a>SeekToLast<br />
+<li><a id="org0a41be7"></a>SeekToLast<br />
 <div class="outline-text-5" id="text-10-8-8-7">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">SeekToLast</span>() {
@@ -10649,7 +10649,7 @@ Next底层调用了ParseNextKey.后面我们会仔细看看ParseNextKey.
 </div>
 </li>
 
-<li><a id="orgc4b0d44"></a>Prev<br />
+<li><a id="org52a4056"></a>Prev<br />
 <div class="outline-text-5" id="text-10-8-8-10">
 <p>
 Prev相对于Next有一点低效.首先遍历找到restart point,然后在这个restart range里面遍历.
@@ -10680,7 +10680,7 @@ Prev相对于Next有一点低效.首先遍历找到restart point,然后在这个
 </div>
 </li>
 
-<li><a id="org1c8de3c"></a>Seek<br />
+<li><a id="org7861380"></a>Seek<br />
 <div class="outline-text-5" id="text-10-8-8-11">
 <p>
 Seek非常简单，首先在restart point地方因为里面存放都是有序的完整的key.那么可以restart point
@@ -10774,7 +10774,7 @@ table/format.h BlockHandle用于压缩和解压文件信息.包括两个字段of
 </div>
 
 <ol class="org-ol">
-<li><a id="org9801d15"></a>EncodeTo<br />
+<li><a id="orged0e6e0"></a>EncodeTo<br />
 <div class="outline-text-5" id="text-10-8-9-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">BlockHandle</span>::<span style="font-weight: bold;">EncodeTo</span>(<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">string</span>* <span style="font-weight: bold; font-style: italic;">dst</span>) <span style="font-weight: bold;">const</span> {
@@ -10789,7 +10789,7 @@ table/format.h BlockHandle用于压缩和解压文件信息.包括两个字段of
 </div>
 </li>
 
-<li><a id="orge9a9c7e"></a>DecodeFrom<br />
+<li><a id="org21d4608"></a>DecodeFrom<br />
 <div class="outline-text-5" id="text-10-8-9-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">Status</span> <span style="font-weight: bold; text-decoration: underline;">BlockHandle</span>::<span style="font-weight: bold;">DecodeFrom</span>(<span style="font-weight: bold; text-decoration: underline;">Slice</span>* <span style="font-weight: bold; font-style: italic;">input</span>) {
@@ -10863,7 +10863,7 @@ db/format.h Footer里面打包称为定长信息.从注释上说保存在各个t
 </div>
 
 <ol class="org-ol">
-<li><a id="orged0e6e0"></a>EncodeTo<br />
+<li><a id="org0bfaaba"></a>EncodeTo<br />
 <div class="outline-text-5" id="text-10-8-10-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">Footer</span>::<span style="font-weight: bold;">EncodeTo</span>(<span style="font-weight: bold; text-decoration: underline;">std</span>::<span style="font-weight: bold; text-decoration: underline;">string</span>* <span style="font-weight: bold; font-style: italic;">dst</span>) <span style="font-weight: bold;">const</span> {
@@ -10882,7 +10882,7 @@ db/format.h Footer里面打包称为定长信息.从注释上说保存在各个t
 </div>
 </li>
 
-<li><a id="org21d4608"></a>DecodeFrom<br />
+<li><a id="org2384d40"></a>DecodeFrom<br />
 <div class="outline-text-5" id="text-10-8-10-2">
 <p>
 这里input作为输入，头部是EncodeTo的内容后面可能带有其他数据。解析完成之后将剩余返回给input.
@@ -11132,7 +11132,7 @@ table/two<sub>level</sub><sub>iterator.h</sub> TwoLevelIterator是一个二级It
 </div>
 </li>
 
-<li><a id="org2f708b7"></a>Seek<br />
+<li><a id="org2099c02"></a>Seek<br />
 <div class="outline-text-5" id="text-10-8-14-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TwoLevelIterator</span>::<span style="font-weight: bold;">Seek</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">target</span>) {
@@ -11147,7 +11147,7 @@ table/two<sub>level</sub><sub>iterator.h</sub> TwoLevelIterator是一个二级It
 </div>
 </li>
 
-<li><a id="orgca6aa2f"></a>SeekToFirst<br />
+<li><a id="orgcce3863"></a>SeekToFirst<br />
 <div class="outline-text-5" id="text-10-8-14-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TwoLevelIterator</span>::<span style="font-weight: bold;">SeekToFirst</span>() {
@@ -11161,7 +11161,7 @@ table/two<sub>level</sub><sub>iterator.h</sub> TwoLevelIterator是一个二级It
 </div>
 </li>
 
-<li><a id="orged74198"></a>SeekToLast<br />
+<li><a id="orgb37155f"></a>SeekToLast<br />
 <div class="outline-text-5" id="text-10-8-14-4">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TwoLevelIterator</span>::<span style="font-weight: bold;">SeekToLast</span>() {
@@ -11175,7 +11175,7 @@ table/two<sub>level</sub><sub>iterator.h</sub> TwoLevelIterator是一个二级It
 </div>
 </li>
 
-<li><a id="orge13668d"></a>Next<br />
+<li><a id="orgfe19653"></a>Next<br />
 <div class="outline-text-5" id="text-10-8-14-5">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TwoLevelIterator</span>::<span style="font-weight: bold;">Next</span>() {
@@ -11188,7 +11188,7 @@ table/two<sub>level</sub><sub>iterator.h</sub> TwoLevelIterator是一个二级It
 </div>
 </li>
 
-<li><a id="org4bc17d0"></a>Prev<br />
+<li><a id="orgec0ac85"></a>Prev<br />
 <div class="outline-text-5" id="text-10-8-14-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold; text-decoration: underline;">TwoLevelIterator</span>::<span style="font-weight: bold;">Prev</span>() {
@@ -11285,8 +11285,8 @@ table/two<sub>level</sub><sub>iterator.h</sub> TwoLevelIterator是一个二级It
 </ol>
 </div>
 
-<div id="outline-container-org40b871a" class="outline-4">
-<h4 id="org40b871a"><span class="section-number-4">10.8.15</span> MergingIterator</h4>
+<div id="outline-container-org8cf7a1f" class="outline-4">
+<h4 id="org8cf7a1f"><span class="section-number-4">10.8.15</span> MergingIterator</h4>
 <div class="outline-text-4" id="text-10-8-15">
 <p>
 table/merger.cc 可以认为这个是一个Iterator的多路归并实现。但是巧妙的是将多路Iterator
@@ -11328,7 +11328,7 @@ table/merger.cc 可以认为这个是一个Iterator的多路归并实现。但�
 </div>
 </li>
 
-<li><a id="org973f0f4"></a>MergingIterator<br />
+<li><a id="org40b871a"></a>MergingIterator<br />
 <div class="outline-text-5" id="text-10-8-15-2">
 <p>
 首先看看结构以及构造和析构函数.
@@ -11396,7 +11396,7 @@ table/merger.cc 可以认为这个是一个Iterator的多路归并实现。但�
 </div>
 </li>
 
-<li><a id="org40ab679"></a>Seek<br />
+<li><a id="org8d555ec"></a>Seek<br />
 <div class="outline-text-5" id="text-10-8-15-5">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">Seek</span>(<span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Slice</span>&amp; <span style="font-weight: bold; font-style: italic;">target</span>) {
@@ -11412,7 +11412,7 @@ table/merger.cc 可以认为这个是一个Iterator的多路归并实现。但�
 </div>
 </li>
 
-<li><a id="orgf4c8a4d"></a>SeekToFirst<br />
+<li><a id="orgb2f14fe"></a>SeekToFirst<br />
 <div class="outline-text-5" id="text-10-8-15-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">SeekToFirst</span>() {
@@ -11427,7 +11427,7 @@ table/merger.cc 可以认为这个是一个Iterator的多路归并实现。但�
 </div>
 </li>
 
-<li><a id="org04b08cf"></a>SeekToLast<br />
+<li><a id="orgaa439e9"></a>SeekToLast<br />
 <div class="outline-text-5" id="text-10-8-15-7">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">SeekToLast</span>() {
@@ -11442,7 +11442,7 @@ table/merger.cc 可以认为这个是一个Iterator的多路归并实现。但�
 </div>
 </li>
 
-<li><a id="org993a4c3"></a>Next<br />
+<li><a id="org17eb1b7"></a>Next<br />
 <div class="outline-text-5" id="text-10-8-15-8">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">Next</span>() {
@@ -11476,7 +11476,7 @@ table/merger.cc 可以认为这个是一个Iterator的多路归并实现。但�
 </div>
 </li>
 
-<li><a id="org9dc4558"></a>Prev<br />
+<li><a id="orgf2a735e"></a>Prev<br />
 <div class="outline-text-5" id="text-10-8-15-9">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold;">virtual</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">Prev</span>() {
@@ -11957,7 +11957,7 @@ db/skiplist.h SkipList(跳表)之前在课本上看到过，但是当时觉得�
 </div>
 </li>
 
-<li><a id="org7bd6644"></a>Insert<br />
+<li><a id="org2d789e5"></a>Insert<br />
 <div class="outline-text-5" id="text-10-9-4-4">
 <p>
 插入某一个key.恩,逻辑还算是比较简单吧
@@ -12579,8 +12579,8 @@ versions_-&gt;current()-&gt;AddIterators(options, &amp;list);
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:29</p>
+<p class="date">Created: 2019-04-03 Wed 04:56</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/leveldb.html';this.page.identifier = 'leveldb.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/leveldb.html';this.page.identifier = 'leveldb.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

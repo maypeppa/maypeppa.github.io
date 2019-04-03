@@ -63,7 +63,7 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgfefbbd2">1. 写在前面</a></li>
-<li><a href="#org5acbb1a">2. 函数入口</a></li>
+<li><a href="#org927a533">2. 函数入口</a></li>
 <li><a href="#orgba66fde">3. 全局内存</a></li>
 <li><a href="#org91de354">4. 管理对象</a>
 <ul>
@@ -72,8 +72,8 @@ for the JavaScript code in this tag.
 <li><a href="#org2e6f5c1">4.3. SizeMap</a></li>
 <li><a href="#orgc12dba6">4.4. Central Cache</a>
 <ul>
-<li><a href="#orga0fdc22">4.4.1. Data Structure</a></li>
-<li><a href="#orge01d984">4.4.2. Init</a></li>
+<li><a href="#org322784c">4.4.1. Data Structure</a></li>
+<li><a href="#org11f5565">4.4.2. Init</a></li>
 <li><a href="#orgf01bc66">4.4.3. InsertRange</a></li>
 <li><a href="#orgb6ac97e">4.4.4. RemoveRange</a></li>
 <li><a href="#org52c6d71">4.4.5. Populate</a></li>
@@ -81,7 +81,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org089f414">4.5. PageHeap</a>
 <ul>
-<li><a href="#org4fc5044">4.5.1. Data Structure</a></li>
+<li><a href="#org02128f2">4.5.1. Data Structure</a></li>
 <li><a href="#org9983943">4.5.2. New</a></li>
 <li><a href="#orgeaab645">4.5.3. Carve</a></li>
 <li><a href="#org11a6555">4.5.4. GrowHeap</a></li>
@@ -96,14 +96,14 @@ for the JavaScript code in this tag.
 <li><a href="#orgc2f035e">4.7. PackedCache</a></li>
 <li><a href="#org4961989">4.8. Thread Cache</a>
 <ul>
-<li><a href="#org322784c">4.8.1. Data Structure</a></li>
+<li><a href="#org67d42ea">4.8.1. Data Structure</a></li>
 <li><a href="#org54f5166">4.8.2. InitModule</a></li>
 <li><a href="#orge832814">4.8.3. InitTSD</a></li>
 <li><a href="#org9ce3377">4.8.4. GetCache</a></li>
 <li><a href="#org0978d7d">4.8.5. CreateCacheIfNecessary</a></li>
 <li><a href="#org16e1431">4.8.6. NewHeap</a></li>
 <li><a href="#org29b7da7">4.8.7. BecomeIdle</a></li>
-<li><a href="#org11f5565">4.8.8. Init</a></li>
+<li><a href="#org1b67568">4.8.8. Init</a></li>
 <li><a href="#org8ceb193">4.8.9. ThreadCache::FreeList</a></li>
 <li><a href="#org06eaadb">4.8.10. IncreaseCacheLimitLocked</a></li>
 <li><a href="#org1135bdb">4.8.11. DeleteCache</a></li>
@@ -120,7 +120,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgf7bf644">5. 用户对象</a>
 <ul>
-<li><a href="#org927a533">5.1. 函数入口</a></li>
+<li><a href="#org1d6c654">5.1. 函数入口</a></li>
 <li><a href="#org23eb231">5.2. 分配逻辑</a></li>
 <li><a href="#orgfa7bb8f">5.3. 释放逻辑</a></li>
 </ul>
@@ -200,8 +200,8 @@ tcmalloc代码写得相当得好，虽然很多地方没有看懂(而且我猜�
 </div>
 </div>
 
-<div id="outline-container-org5acbb1a" class="outline-2">
-<h2 id="org5acbb1a"><span class="section-number-2">2</span> 函数入口</h2>
+<div id="outline-container-org927a533" class="outline-2">
+<h2 id="org927a533"><span class="section-number-2">2</span> 函数入口</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 tcmalloc.cc
@@ -562,8 +562,8 @@ central<sub>freelist.h</sub>
 </p>
 </div>
 
-<div id="outline-container-orga0fdc22" class="outline-4">
-<h4 id="orga0fdc22"><span class="section-number-4">4.4.1</span> Data Structure</h4>
+<div id="outline-container-org322784c" class="outline-4">
+<h4 id="org322784c"><span class="section-number-4">4.4.1</span> Data Structure</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 首先在static里面定义的central<sub>cache是一个数组大小为kNumClasses</sub>，相当于和每一个thread cache里面的slab对应。
@@ -666,8 +666,8 @@ CentralFreeList的接口非常少
 </div>
 </div>
 
-<div id="outline-container-orge01d984" class="outline-4">
-<h4 id="orge01d984"><span class="section-number-4">4.4.2</span> Init</h4>
+<div id="outline-container-org11f5565" class="outline-4">
+<h4 id="org11f5565"><span class="section-number-4">4.4.2</span> Init</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 init主要是计算了tc(transfer cache)的max<sub>cache</sub><sub>size以及cache</sub><sub>size,然后初始化了字段</sub>。
@@ -937,8 +937,8 @@ page<sub>heap.h</sub>
 </p>
 </div>
 
-<div id="outline-container-org4fc5044" class="outline-4">
-<h4 id="org4fc5044"><span class="section-number-4">4.5.1</span> Data Structure</h4>
+<div id="outline-container-org02128f2" class="outline-4">
+<h4 id="org02128f2"><span class="section-number-4">4.5.1</span> Data Structure</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <p>
 PageHeap是在page<sub>heap.h里面定义的</sub>，主要是用来分配page的。对于PageHeap结构还是比较复杂的.阅读tcmalloc文档也会发现，
@@ -1588,8 +1588,8 @@ thread<sub>cache.h</sub>
 </p>
 </div>
 
-<div id="outline-container-org322784c" class="outline-4">
-<h4 id="org322784c"><span class="section-number-4">4.8.1</span> Data Structure</h4>
+<div id="outline-container-org67d42ea" class="outline-4">
+<h4 id="org67d42ea"><span class="section-number-4">4.8.1</span> Data Structure</h4>
 <div class="outline-text-4" id="text-4-8-1">
 <p>
 Thread Cache就是每一个线程里面管理小对象分配的cache.tcmalloc应该是假设局部线程里面通常分配的都是小对象，这样可以减少锁竞争。
@@ -1851,8 +1851,8 @@ BecomeIdle触发条件现在还不是很清楚，但是作用是认为这个tc�
 </div>
 </div>
 
-<div id="outline-container-org11f5565" class="outline-4">
-<h4 id="org11f5565"><span class="section-number-4">4.8.8</span> Init</h4>
+<div id="outline-container-org1b67568" class="outline-4">
+<h4 id="org1b67568"><span class="section-number-4">4.8.8</span> Init</h4>
 <div class="outline-text-4" id="text-4-8-8">
 <p>
 注意这里Init已经在外围的NewHeap加锁了。这个地方进行初始化。设置一下最大分配多少空间以及初始化每一个slab
@@ -2273,8 +2273,8 @@ tcmalloc.h
 </p>
 </div>
 
-<div id="outline-container-org927a533" class="outline-3">
-<h3 id="org927a533"><span class="section-number-3">5.1</span> 函数入口</h3>
+<div id="outline-container-org1d6c654" class="outline-3">
+<h3 id="org1d6c654"><span class="section-number-3">5.1</span> 函数入口</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 我们还是以最初的函数入门进行分析，我们只是关注tc<sub>malloc与tc</sub><sub>free</sub>.
@@ -2648,8 +2648,8 @@ system-alloc.h:extern void* TCMalloc_SystemAlloc(size_t bytes, size_t *actual_by
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="date">Created: 2019-04-03 Wed 04:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/tcmalloc.html';this.page.identifier = 'tcmalloc.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/tcmalloc.html';this.page.identifier = 'tcmalloc.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

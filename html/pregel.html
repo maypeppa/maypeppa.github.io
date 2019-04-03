@@ -70,7 +70,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org549c2cf">5.1. Message Passing</a></li>
 <li><a href="#org7928d85">5.2. Combiners</a></li>
-<li><a href="#org6c6e976">5.3. Aggregators</a></li>
+<li><a href="#org5a1af12">5.3. Aggregators</a></li>
 <li><a href="#org0f5b5d0">5.4. Topology Mutations</a></li>
 <li><a href="#org21a59b8">5.5. Input and Output</a></li>
 </ul>
@@ -81,7 +81,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgacda25a">6.2. Fault tolerance</a></li>
 <li><a href="#org92206be">6.3. Worker implementation</a></li>
 <li><a href="#org4c7592f">6.4. Master implementation</a></li>
-<li><a href="#org5a1af12">6.5. Aggregators</a></li>
+<li><a href="#orgce6044c">6.5. Aggregators</a></li>
 </ul>
 </li>
 <li><a href="#org7ed652c">7. Applications</a>
@@ -224,8 +224,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org6c6e976" class="outline-3">
-<h3 id="org6c6e976"><span class="section-number-3">5.3</span> Aggregators</h3>
+<div id="outline-container-org5a1af12" class="outline-3">
+<h3 id="org5a1af12"><span class="section-number-3">5.3</span> Aggregators</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>Pregel aggregators are a mechanism for global communica-tion, monitoring, and data. Each vertex can provide a value to an aggregator in superstep S, the system combines those values using a reduction operator, and the resulting value is made available to all vertices in superstep S + 1. （通过将S的所有节点数据全部聚合起来，然后在S+1散播给所有的节点）
@@ -344,8 +344,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org5a1af12" class="outline-3">
-<h3 id="org5a1af12"><span class="section-number-3">6.5</span> Aggregators</h3>
+<div id="outline-container-orgce6044c" class="outline-3">
+<h3 id="orgce6044c"><span class="section-number-3">6.5</span> Aggregators</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li>Each worker maintains a collection of ag-gregator instances, identified by a type name and instance name. When a worker executes a superstep for any partition of the graph, the worker combines all of the values supplied to an aggregator instance into a single local value: an ag-gregator that is partially reduced over all of the worker’s vertices in the partition. （每个worker上面都会维护聚合操作实例。在一个superstep执行的时候会将节点的值进行聚合/考虑到不确定哪一个vertex先完成，因此聚合操作必须满足交换律。而最后聚合操作会聚合所有worker上的value，因此也必须满足结合律）</li>
@@ -420,8 +420,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="date">Created: 2019-04-03 Wed 04:59</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/pregel.html';this.page.identifier = 'pregel.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/pregel.html';this.page.identifier = 'pregel.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

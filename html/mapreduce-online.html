@@ -82,39 +82,39 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#org43a0091">4.2. Pipelining Between Jobs</a></li>
-<li><a href="#org7889057">4.3. Fault Tolerance</a></li>
+<li><a href="#org4bca77f">4.3. Fault Tolerance</a></li>
 <li><a href="#org597f8fe">4.4. Task Scheduling</a></li>
 <li><a href="#org49ff106">4.5. Performance Evaluation</a></li>
 </ul>
 </li>
-<li><a href="#orgd6cbba1">5. Online Aggregation</a>
+<li><a href="#org0ef8af4">5. Online Aggregation</a>
 <ul>
 <li><a href="#org2ab39f7">5.1. Single-Job Online Aggregation</a>
 <ul>
 <li><a href="#orga0c33fe">5.1.1. Progress Metric</a></li>
-<li><a href="#orgf4d2580">5.1.2. Evaluation</a></li>
+<li><a href="#org98e1135">5.1.2. Evaluation</a></li>
 </ul>
 </li>
 <li><a href="#org6db4808">5.2. Multi-Job Online Aggregation</a>
 <ul>
-<li><a href="#orge7a67cc">5.2.1. Evaluation</a></li>
+<li><a href="#orgf206056">5.2.1. Evaluation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgfe53ea5">6. Continuous Queries</a>
+<li><a href="#orgffef5a5">6. Continuous Queries</a>
 <ul>
 <li><a href="#orgc5d5d21">6.1. Continuous MapReduce Jobs</a></li>
-<li><a href="#org4bca77f">6.2. Fault Tolerance</a></li>
+<li><a href="#org3c1d383">6.2. Fault Tolerance</a></li>
 <li><a href="#org16d2ad5">6.3. Prototype Monitoring System</a></li>
-<li><a href="#org98e1135">6.4. Evaluation</a></li>
+<li><a href="#orgd26d54c">6.4. Evaluation</a></li>
 </ul>
 </li>
 <li><a href="#org0d41004">7. Related Work</a>
 <ul>
 <li><a href="#org5e2c846">7.1. Parallel Dataflow</a></li>
-<li><a href="#org0ef8af4">7.2. Online Aggregation</a></li>
-<li><a href="#orgffef5a5">7.3. Continuous Queries</a></li>
+<li><a href="#org5b3c15e">7.2. Online Aggregation</a></li>
+<li><a href="#org45a283c">7.3. Continuous Queries</a></li>
 </ul>
 </li>
 <li><a href="#org2ccccbc">8. Conclusion and Future Work</a></li>
@@ -267,8 +267,8 @@ Unfortunately, the computation of the reduce function from the previous job and 
 </div>
 </div>
 
-<div id="outline-container-org7889057" class="outline-3">
-<h3 id="org7889057"><span class="section-number-3">4.3</span> Fault Tolerance</h3>
+<div id="outline-container-org4bca77f" class="outline-3">
+<h3 id="org4bca77f"><span class="section-number-3">4.3</span> Fault Tolerance</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>To recover from map task failures, we added some bookkeeping to the reduce task to record which map task produced each pipelined spill file.
@@ -290,8 +290,8 @@ Unfortunately, the computation of the reduce function from the previous job and 
 </div>
 </div>
 
-<div id="outline-container-orgd6cbba1" class="outline-2">
-<h2 id="orgd6cbba1"><span class="section-number-2">5</span> Online Aggregation</h2>
+<div id="outline-container-org0ef8af4" class="outline-2">
+<h2 id="org0ef8af4"><span class="section-number-2">5</span> Online Aggregation</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Traditional MapReduce implementations provide a poor interface for interactive data analysis, because they do not emit any output until the job has been executed to completion. However, in many cases, an interactive user would prefer a “quick and dirty” approximation over a correct answer that takes much longer to compute.
@@ -323,8 +323,8 @@ We show that online aggregation has a minimal impact on job completion times, an
 </div>
 </div>
 
-<div id="outline-container-orgf4d2580" class="outline-4">
-<h4 id="orgf4d2580"><span class="section-number-4">5.1.2</span> Evaluation</h4>
+<div id="outline-container-org98e1135" class="outline-4">
+<h4 id="org98e1135"><span class="section-number-4">5.1.2</span> Evaluation</h4>
 </div>
 </div>
 
@@ -332,14 +332,14 @@ We show that online aggregation has a minimal impact on job completion times, an
 <h3 id="org6db4808"><span class="section-number-3">5.2</span> Multi-Job Online Aggregation</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-orge7a67cc" class="outline-4">
-<h4 id="orge7a67cc"><span class="section-number-4">5.2.1</span> Evaluation</h4>
+<div id="outline-container-orgf206056" class="outline-4">
+<h4 id="orgf206056"><span class="section-number-4">5.2.1</span> Evaluation</h4>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfe53ea5" class="outline-2">
-<h2 id="orgfe53ea5"><span class="section-number-2">6</span> Continuous Queries</h2>
+<div id="outline-container-orgffef5a5" class="outline-2">
+<h2 id="orgffef5a5"><span class="section-number-2">6</span> Continuous Queries</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Our pipelined version of Hadoop allows an alternative architecture: MapReduce jobs that run continuously, ac- cepting new data as it becomes available and analyzing it immediately. This allows for near-real-time analysis of data streams, and thus allows the MapReduce program- ming model to be applied to domains such as environ- ment monitoring and real-time fraud detection.
@@ -362,8 +362,8 @@ Our pipelined version of Hadoop allows an alternative architecture: MapReduce jo
 </div>
 </div>
 
-<div id="outline-container-org4bca77f" class="outline-3">
-<h3 id="org4bca77f"><span class="section-number-3">6.2</span> Fault Tolerance</h3>
+<div id="outline-container-org3c1d383" class="outline-3">
+<h3 id="org3c1d383"><span class="section-number-3">6.2</span> Fault Tolerance</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 #note: 这里只需要考虑reduce挂掉的情况。注意方式1重跑是会带有副作用的，而方式2重跑是没有副作用的
@@ -380,8 +380,8 @@ Our pipelined version of Hadoop allows an alternative architecture: MapReduce jo
 <div id="outline-container-org16d2ad5" class="outline-3">
 <h3 id="org16d2ad5"><span class="section-number-3">6.3</span> Prototype Monitoring System</h3>
 </div>
-<div id="outline-container-org98e1135" class="outline-3">
-<h3 id="org98e1135"><span class="section-number-3">6.4</span> Evaluation</h3>
+<div id="outline-container-orgd26d54c" class="outline-3">
+<h3 id="orgd26d54c"><span class="section-number-3">6.4</span> Evaluation</h3>
 </div>
 </div>
 
@@ -392,11 +392,11 @@ Our pipelined version of Hadoop allows an alternative architecture: MapReduce jo
 <div id="outline-container-org5e2c846" class="outline-3">
 <h3 id="org5e2c846"><span class="section-number-3">7.1</span> Parallel Dataflow</h3>
 </div>
-<div id="outline-container-org0ef8af4" class="outline-3">
-<h3 id="org0ef8af4"><span class="section-number-3">7.2</span> Online Aggregation</h3>
+<div id="outline-container-org5b3c15e" class="outline-3">
+<h3 id="org5b3c15e"><span class="section-number-3">7.2</span> Online Aggregation</h3>
 </div>
-<div id="outline-container-orgffef5a5" class="outline-3">
-<h3 id="orgffef5a5"><span class="section-number-3">7.3</span> Continuous Queries</h3>
+<div id="outline-container-org45a283c" class="outline-3">
+<h3 id="org45a283c"><span class="section-number-3">7.3</span> Continuous Queries</h3>
 </div>
 </div>
 <div id="outline-container-org2ccccbc" class="outline-2">
@@ -405,8 +405,8 @@ Our pipelined version of Hadoop allows an alternative architecture: MapReduce jo
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:32</p>
+<p class="date">Created: 2019-04-03 Wed 04:59</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/mapreduce-online.html';this.page.identifier = 'mapreduce-online.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/mapreduce-online.html';this.page.identifier = 'mapreduce-online.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

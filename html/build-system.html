@@ -87,7 +87,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgc2c5e8e">1. GYP</a>
 <ul>
 <li><a href="#orga3947b6">1.1. 设计目标</a></li>
-<li><a href="#org954249d">1.2. 构建文件</a></li>
+<li><a href="#orgeb422ae">1.2. 构建文件</a></li>
 <li><a href="#orgcc27325">1.3. .gyp文件剖析</a>
 <ul>
 <li><a href="#orgeb1c286">1.3.1. conditions</a></li>
@@ -100,13 +100,13 @@ for the JavaScript code in this tag.
 <li><a href="#orgc80ce11">1.4. early and late phases</a></li>
 <li><a href="#orge7d7dd8">1.5. operator</a></li>
 <li><a href="#orgafccbc1">1.6. 路径内容属性</a></li>
-<li><a href="#orgc98b54f">1.7. 总结</a></li>
+<li><a href="#org758b185">1.7. 总结</a></li>
 </ul>
 </li>
 <li><a href="#org36f36e1">2. SCons</a>
 <ul>
 <li><a href="#orgcf73509">2.1. Make缺陷</a></li>
-<li><a href="#orgb930799">2.2. 构建文件</a></li>
+<li><a href="#orgdbfa6b9">2.2. 构建文件</a></li>
 <li><a href="#org01a0654">2.3. SConstruct文件剖析</a>
 <ul>
 <li><a href="#orgff8b65b">2.3.1. Builder</a></li>
@@ -116,21 +116,21 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#org716e356">2.4. 其他问题</a></li>
-<li><a href="#org74695c7">2.5. 总结</a></li>
+<li><a href="#org8096f57">2.5. 总结</a></li>
 </ul>
 </li>
 <li><a href="#org096594c">3. Ninja</a></li>
 <li><a href="#org0971333">4. ABS</a></li>
 <li><a href="#org73c6a3a">5. CMake</a>
 <ul>
-<li><a href="#orgeb422ae">5.1. 构建文件</a></li>
+<li><a href="#org8b75ea7">5.1. 构建文件</a></li>
 <li><a href="#orgc5e875d">5.2. CMakeLists.txt解析</a></li>
 <li><a href="#orgbbaf7d6">5.3. 变量和属性</a></li>
 <li><a href="#org296561d">5.4. 注释</a></li>
 <li><a href="#org66cd830">5.5. 编译类型</a></li>
 <li><a href="#orga200010">5.6. 生成config.h</a></li>
 <li><a href="#orgb60e3c6">5.7. Makefile</a></li>
-<li><a href="#org758b185">5.8. 总结</a></li>
+<li><a href="#orgb9ff9a9">5.8. 总结</a></li>
 </ul>
 </li>
 <li><a href="#orga9f2617">6. Others</a></li>
@@ -178,8 +178,8 @@ Scons/Make(Unix/Linux)，Xcode(Mac)或者是Visual Studio(Windows).并且因为c
 </div>
 </div>
 
-<div id="outline-container-org954249d" class="outline-3">
-<h3 id="org954249d"><span class="section-number-3">1.2</span> 构建文件</h3>
+<div id="outline-container-orgeb422ae" class="outline-3">
+<h3 id="orgeb422ae"><span class="section-number-3">1.2</span> 构建文件</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 构建文件名字不固定，但是后缀通常是.gyp和.gypi(gyp included).构建文件内容就是python的一个数据结构
@@ -474,8 +474,8 @@ ps:comake2在设计的时候，就没有考虑late phase这个功能。造成没
 </div>
 </div>
 
-<div id="outline-container-orgc98b54f" class="outline-3">
-<h3 id="orgc98b54f"><span class="section-number-3">1.7</span> 总结</h3>
+<div id="outline-container-org758b185" class="outline-3">
+<h3 id="org758b185"><span class="section-number-3">1.7</span> 总结</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 gyp文档缺乏导致在分析这个系统的时候，也没有完全使用只是通过阅读文档来完成的，没有一个可以run的Makefile。
@@ -539,8 +539,8 @@ SCons对于Make缺陷也有一个总结，链接是<a href="http://scons.org/wik
 </div>
 </div>
 
-<div id="outline-container-orgb930799" class="outline-3">
-<h3 id="orgb930799"><span class="section-number-3">2.2</span> 构建文件</h3>
+<div id="outline-container-orgdbfa6b9" class="outline-3">
+<h3 id="orgdbfa6b9"><span class="section-number-3">2.2</span> 构建文件</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 scons的构建文件名称是统一的都称为SConstruct。当然为了方便目录的组织，也允许在各个目录下面存放SConscript，
@@ -894,8 +894,8 @@ scons还支持cache编译产出物这样的功能，不过个人还是觉得没�
 </div>
 </div>
 
-<div id="outline-container-org74695c7" class="outline-3">
-<h3 id="org74695c7"><span class="section-number-3">2.5</span> 总结</h3>
+<div id="outline-container-org8096f57" class="outline-3">
+<h3 id="org8096f57"><span class="section-number-3">2.5</span> 总结</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 scons是一个文档相对来说比较完整，已经被一些大型项目所使用的，比较成熟和完善的产品。
@@ -1062,8 +1062,8 @@ cmake相对于其他构建工具优越的几点有：
 </ul>
 </div>
 
-<div id="outline-container-orgeb422ae" class="outline-3">
-<h3 id="orgeb422ae"><span class="section-number-3">5.1</span> 构建文件</h3>
+<div id="outline-container-org8b75ea7" class="outline-3">
+<h3 id="org8b75ea7"><span class="section-number-3">5.1</span> 构建文件</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 编写一个简单的CMakeLists.txt非常简单：
@@ -1256,8 +1256,8 @@ cmake能够自动分析C/C++的编译依赖。同时如果CMakeLists.txt发生�
 </div>
 </div>
 
-<div id="outline-container-org758b185" class="outline-3">
-<h3 id="org758b185"><span class="section-number-3">5.8</span> 总结</h3>
+<div id="outline-container-orgb9ff9a9" class="outline-3">
+<h3 id="orgb9ff9a9"><span class="section-number-3">5.8</span> 总结</h3>
 <div class="outline-text-3" id="text-5-8">
 <p>
 是一个相当成熟的项目，并且有一系列的外围和cmake形成一个整体，内置了相当多的辅助函数来帮助使用其他开源的库，
@@ -1376,8 +1376,8 @@ include "COMAKE.mk"
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:31</p>
+<p class="date">Created: 2019-04-03 Wed 04:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/build-system.html';this.page.identifier = 'build-system.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/build-system.html';this.page.identifier = 'build-system.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

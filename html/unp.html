@@ -92,8 +92,8 @@ for the JavaScript code in this tag.
 <li><a href="#org7f79d15">2.2. socket</a></li>
 <li><a href="#org520b7ee">2.3. connect</a>
 <ul>
-<li><a href="#org2f909ab">2.3.1. 使用说明</a></li>
-<li><a href="#org54759d9">2.3.2. 非阻塞</a></li>
+<li><a href="#orgb6e5fed">2.3.1. 使用说明</a></li>
+<li><a href="#orgbf5b4d9">2.3.2. 非阻塞</a></li>
 <li><a href="#orgc59da85">2.3.3. 三次握手</a></li>
 <li><a href="#org46dbd8c">2.3.4. ETIMEOUT</a></li>
 <li><a href="#orgad8f1de">2.3.5. ECONNREFUSED</a></li>
@@ -104,15 +104,15 @@ for the JavaScript code in this tag.
 <li><a href="#orga90bd24">2.4. bind</a></li>
 <li><a href="#org58a56f1">2.5. listen</a>
 <ul>
-<li><a href="#org25c712f">2.5.1. 使用说明</a></li>
+<li><a href="#orgb366e74">2.5.1. 使用说明</a></li>
 <li><a href="#org396e25b">2.5.2. backlog</a></li>
 </ul>
 </li>
 <li><a href="#org791dacc">2.6. accept</a>
 <ul>
-<li><a href="#org5f41a37">2.6.1. 使用说明</a></li>
+<li><a href="#org310a8bd">2.6.1. 使用说明</a></li>
 <li><a href="#org879b2ab">2.6.2. 惊群效应(thundering herd)</a></li>
-<li><a href="#orgbf5b4d9">2.6.3. 非阻塞</a></li>
+<li><a href="#orgd68d0a5">2.6.3. 非阻塞</a></li>
 <li><a href="#org9691e61">2.6.4. ECONNABORTED/EPROTO</a></li>
 <li><a href="#org1c539b3">2.6.5. EPIPE</a></li>
 </ul>
@@ -146,7 +146,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org59f8abd">2.11. conversion</a>
 <ul>
-<li><a href="#orgb6e5fed">2.11.1. 使用说明</a></li>
+<li><a href="#org7a5c051">2.11.1. 使用说明</a></li>
 <li><a href="#orgcbee6de">2.11.2. name2addr</a></li>
 <li><a href="#org0b51b5d">2.11.3. addr2name</a></li>
 </ul>
@@ -155,7 +155,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgc8d2125">3. TCP</a>
 <ul>
-<li><a href="#org3bae3c7">3.1. 特点</a></li>
+<li><a href="#orgec0c637">3.1. 特点</a></li>
 <li><a href="#org696e2dc">3.2. TCP首部</a>
 <ul>
 <li><a href="#orgd0a3973">3.2.1. RST分节</a></li>
@@ -188,21 +188,21 @@ for the JavaScript code in this tag.
 <li><a href="#org94c9e43">3.5.3. 保活定时器</a></li>
 </ul>
 </li>
-<li><a href="#org6b309b2">3.6. 读写数据</a>
+<li><a href="#org74accdf">3.6. 读写数据</a>
 <ul>
-<li><a href="#org92da840">3.6.1. 读数据</a></li>
-<li><a href="#orgdd72649">3.6.2. 写数据</a></li>
+<li><a href="#orge212cb3">3.6.1. 读数据</a></li>
+<li><a href="#orgfb3af20">3.6.2. 写数据</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#org55f7f79">4. UDP</a>
 <ul>
-<li><a href="#orgec0c637">4.1. 特点</a></li>
-<li><a href="#org74accdf">4.2. 读写数据</a>
+<li><a href="#org8f46d95">4.1. 特点</a></li>
+<li><a href="#orga6c6cff">4.2. 读写数据</a>
 <ul>
-<li><a href="#orge212cb3">4.2.1. 读数据</a></li>
-<li><a href="#orgfb3af20">4.2.2. 写数据</a></li>
+<li><a href="#org0539cfc">4.2.1. 读数据</a></li>
+<li><a href="#org66060e3">4.2.2. 写数据</a></li>
 </ul>
 </li>
 </ul>
@@ -859,8 +859,8 @@ protocol取值有下面这些：
 建立客户端和服务端的连接。
 </p>
 </div>
-<div id="outline-container-org2f909ab" class="outline-4">
-<h4 id="org2f909ab"><span class="section-number-4">2.3.1</span> 使用说明</h4>
+<div id="outline-container-orgb6e5fed" class="outline-4">
+<h4 id="orgb6e5fed"><span class="section-number-4">2.3.1</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">#include &lt;sys/socket.h&gt;</span>
@@ -886,8 +886,8 @@ protocol取值有下面这些：
 </div>
 </div>
 
-<div id="outline-container-org54759d9" class="outline-4">
-<h4 id="org54759d9"><span class="section-number-4">2.3.2</span> 非阻塞</h4>
+<div id="outline-container-orgbf5b4d9" class="outline-4">
+<h4 id="orgbf5b4d9"><span class="section-number-4">2.3.2</span> 非阻塞</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 默认情况下connect是阻塞版本，直到对端的ACK响应之后才返回。但是如果客户端需要尝试多个连接的话并且顺序阻塞连接的话，
@@ -1083,8 +1083,8 @@ Local address is already in use.
 将主动套接字设置成为被动套接字。
 </p>
 </div>
-<div id="outline-container-org25c712f" class="outline-4">
-<h4 id="org25c712f"><span class="section-number-4">2.5.1</span> 使用说明</h4>
+<div id="outline-container-orgb366e74" class="outline-4">
+<h4 id="orgb366e74"><span class="section-number-4">2.5.1</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">#include &lt;sys/socket.h&gt;</span>
@@ -1145,8 +1145,8 @@ RST分节还是不回复ACK分节，而让客户端进行重传。对于manpage�
 处理已经建立好的连接。
 </p>
 </div>
-<div id="outline-container-org5f41a37" class="outline-4">
-<h4 id="org5f41a37"><span class="section-number-4">2.6.1</span> 使用说明</h4>
+<div id="outline-container-org310a8bd" class="outline-4">
+<h4 id="org310a8bd"><span class="section-number-4">2.6.1</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">#include &lt;sys/socket.h&gt;</span>
@@ -1176,8 +1176,8 @@ RST分节还是不回复ACK分节，而让客户端进行重传。对于manpage�
 </div>
 </div>
 
-<div id="outline-container-orgbf5b4d9" class="outline-4">
-<h4 id="orgbf5b4d9"><span class="section-number-4">2.6.3</span> 非阻塞</h4>
+<div id="outline-container-orgd68d0a5" class="outline-4">
+<h4 id="orgd68d0a5"><span class="section-number-4">2.6.3</span> 非阻塞</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <p>
 默认情况下面accept是阻塞版本，直到连接三次握手完成进入complete queue并且被取出才返回。如果我们使用非阻塞版本的话，
@@ -2423,8 +2423,8 @@ recv/send界面上和write/read非常相似，不过多了一个flags参数。�
 <h3 id="org59f8abd"><span class="section-number-3">2.11</span> conversion</h3>
 <div class="outline-text-3" id="text-2-11">
 </div>
-<div id="outline-container-orgb6e5fed" class="outline-4">
-<h4 id="orgb6e5fed"><span class="section-number-4">2.11.1</span> 使用说明</h4>
+<div id="outline-container-org7a5c051" class="outline-4">
+<h4 id="org7a5c051"><span class="section-number-4">2.11.1</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-11-1">
 <p>
 关于名字与地址转换，我们这里只关注主机名和IP地址之间的转换接口。至于实现方面的话，大致有两种方式：
@@ -2598,8 +2598,8 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 </p>
 </div>
 
-<div id="outline-container-org3bae3c7" class="outline-3">
-<h3 id="org3bae3c7"><span class="section-number-3">3.1</span> 特点</h3>
+<div id="outline-container-orgec0c637" class="outline-3">
+<h3 id="orgec0c637"><span class="section-number-3">3.1</span> 特点</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 TCP(Transmission Control Protocol,传输控制协议)相对于UDP来说更加复杂而功能也更加强大。首先TCP是面向连接的，
@@ -3126,12 +3126,12 @@ RTO=R+4D
 </div>
 </div>
 
-<div id="outline-container-org6b309b2" class="outline-3">
-<h3 id="org6b309b2"><span class="section-number-3">3.6</span> 读写数据</h3>
+<div id="outline-container-org74accdf" class="outline-3">
+<h3 id="org74accdf"><span class="section-number-3">3.6</span> 读写数据</h3>
 <div class="outline-text-3" id="text-3-6">
 </div>
-<div id="outline-container-org92da840" class="outline-4">
-<h4 id="org92da840"><span class="section-number-4">3.6.1</span> 读数据</h4>
+<div id="outline-container-orge212cb3" class="outline-4">
+<h4 id="orge212cb3"><span class="section-number-4">3.6.1</span> 读数据</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <p>
 #todo:
@@ -3139,8 +3139,8 @@ RTO=R+4D
 </div>
 </div>
 
-<div id="outline-container-orgdd72649" class="outline-4">
-<h4 id="orgdd72649"><span class="section-number-4">3.6.2</span> 写数据</h4>
+<div id="outline-container-orgfb3af20" class="outline-4">
+<h4 id="orgfb3af20"><span class="section-number-4">3.6.2</span> 写数据</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <p>
 首先应用层只是调用write将应用层数据完全copy到内核的tcp send buffer上，至于这个tcp send buffer大小是SO<sub>SNDBUF来控制的</sub>。
@@ -3167,8 +3167,8 @@ tcp send buffer不会被丢弃直到对端收到这块buffer所包含内容的�
 </p>
 </div>
 
-<div id="outline-container-orgec0c637" class="outline-3">
-<h3 id="orgec0c637"><span class="section-number-3">4.1</span> 特点</h3>
+<div id="outline-container-org8f46d95" class="outline-3">
+<h3 id="org8f46d95"><span class="section-number-3">4.1</span> 特点</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 UDP(User Datagram Procotol,数据报传输协议)是一个简单的传输层协议，在RFC768中有详细说明。
@@ -3189,12 +3189,12 @@ UDP可以是全双工的，只要在UDP层面上提供链接这样的概念。�
 </div>
 </div>
 
-<div id="outline-container-org74accdf" class="outline-3">
-<h3 id="org74accdf"><span class="section-number-3">4.2</span> 读写数据</h3>
+<div id="outline-container-orga6c6cff" class="outline-3">
+<h3 id="orga6c6cff"><span class="section-number-3">4.2</span> 读写数据</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-orge212cb3" class="outline-4">
-<h4 id="orge212cb3"><span class="section-number-4">4.2.1</span> 读数据</h4>
+<div id="outline-container-org0539cfc" class="outline-4">
+<h4 id="org0539cfc"><span class="section-number-4">4.2.1</span> 读数据</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 #todo:
@@ -3202,8 +3202,8 @@ UDP可以是全双工的，只要在UDP层面上提供链接这样的概念。�
 </div>
 </div>
 
-<div id="outline-container-orgfb3af20" class="outline-4">
-<h4 id="orgfb3af20"><span class="section-number-4">4.2.2</span> 写数据</h4>
+<div id="outline-container-org66060e3" class="outline-4">
+<h4 id="org66060e3"><span class="section-number-4">4.2.2</span> 写数据</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 和TCP输出一样，UDP也维护着内核udp send buffer,大小可以通过SO<sub>SNDBUF来控制</sub>，而这个参数控制着一次写UDP数据报的大小上限。
@@ -3760,8 +3760,8 @@ Unix domain socket走的是loopback接口。loopback接口是没有网卡流量�
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:30</p>
+<p class="date">Created: 2019-04-03 Wed 04:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/unp.html';this.page.identifier = 'unp.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/unp.html';this.page.identifier = 'unp.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

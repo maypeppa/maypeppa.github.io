@@ -58,7 +58,7 @@ this.page.identifier = '%(site_id)s';
 };
 (function() {
 var d = document, s = d.createElement('script');
-s.src = 'https://dirlt.disqus.com/embed.js';
+s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
