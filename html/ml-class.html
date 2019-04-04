@@ -135,7 +135,7 @@ T(task),E(experience),P(performance)
 <li><a href="images/ml-class-lr.pdf">logistic regression</a> # 逻辑回归
 <ul class="org-ul">
 <li>sigmoid / logistic function</li>
-<li>g(x) = 1 / (1 + e<sup>-x</sup>) [0, 1]</li>
+<li>g(x) = 1 / (1 + e^-x) [0, 1]</li>
 <li>interpretation of hypothesis output.</li>
 <li>p(y=0|x;theta) + p(y=1|x;theta) = 1 (for binary-class)</li>
 <li>h(x) = 1 / (1 + e^-(theta * x)) [0, 1]</li>
@@ -213,7 +213,7 @@ T(task),E(experience),P(performance)
 <li>complex non-linear classification / hypothesis # 针对复杂非线性分类</li>
 <li>many features -&gt; too many polynomial terms.
 <ul class="org-ul">
-<li>quantic x, then O(n<sup>x</sup>).</li>
+<li>quantic x, then O(n^x).</li>
 <li>quadratic : O(n ^ 2)</li>
 <li>cubic: O(n ^ 3)</li>
 </ul></li>
@@ -311,9 +311,9 @@ T(task),E(experience),P(performance)
 <li>to compute similarity (with landmarks) as more complex, non-linear features.</li>
 <li>gaussian kernel function.
 <ul class="org-ul">
-<li>K(x,y,e) = exp ^ (-0.5 / e<sup>2</sup> * |x-y|<sup>2</sup>)</li>
-<li>if e<sup>2</sup> is large, high bias and low variance</li>
-<li>if e<sup>2</sup> is small, low bias and high variance</li>
+<li>K(x,y,e) = exp ^ (-0.5 / e^2 * |x-y|^2)</li>
+<li>if e^2 is large, high bias and low variance</li>
+<li>if e^2 is small, low bias and high variance</li>
 </ul></li>
 <li>output range [0,1]</li>
 </ul></li>
@@ -355,7 +355,7 @@ T(task),E(experience),P(performance)
 <li>evaluating hypothesis
 <ul class="org-ul">
 <li>split examples randomly into training set(70%) and test set(30%).</li>
-<li>see J<sub>test</sub>(theta) is overfitting or not.</li>
+<li>see J_test(theta) is overfitting or not.</li>
 </ul></li>
 <li>model selection (for choosing polynomial terms and regularization)
 <ul class="org-ul">
@@ -365,9 +365,9 @@ T(task),E(experience),P(performance)
 </ul></li>
 <li>high bias vs. variance
 <ul class="org-ul">
-<li>bias =&gt; underfit: J<sub>train</sub>(theta) is high, J<sub>cv</sub>/test(theta) = J<sub>train</sub>(theta)</li>
-<li>variance =&gt; overfit: J<sub>train</sub>(theta) is low, but J<sub>cv</sub>/test(theta) &gt; J<sub>train</sub>(theta)</li>
-<li>learning curves # J<sub>cv</sub>/test(theta) and J<sub>train</sub>(theta) over training set size</li>
+<li>bias =&gt; underfit: J_train(theta) is high, J_cv/test(theta) = J_train(theta)</li>
+<li>variance =&gt; overfit: J_train(theta) is low, but J_cv/test(theta) &gt; J_train(theta)</li>
+<li>learning curves # J_cv/test(theta) and J_train(theta) over training set size</li>
 <li>if suffers from high bias, more training data will not help</li>
 <li>if suffers from high variance, more training data might help</li>
 </ul></li>
@@ -384,7 +384,7 @@ T(task),E(experience),P(performance)
 <li>error analysis # spot any systematic trend in what type of examples it is making errors on. 误差分析</li>
 <li>skewed classes.
 <ul class="org-ul">
-<li>y = 1 in presence of rare class # 如果y<sub>pred</sub>=0的话没有任何预测性但是accuracy准确率超高</li>
+<li>y = 1 in presence of rare class # 如果y_pred=0的话没有任何预测性但是accuracy准确率超高</li>
 <li>precision = true positive / [no. of predicted positive = (true pos + false pos)] # 精确度</li>
 <li>recall = true positive / [no. of actual positive = (true pos + false neg)] # 召回率</li>
 <li>good classifier: precision and recall are both high enough.
@@ -446,9 +446,9 @@ T(task),E(experience),P(performance)
 <ul class="org-ul">
 <li>sigma = 1/m * sum{X(i) * X(i)'}. X(i)~n*1, so sigma~n*n</li>
 <li>[U,S,V] = svd(sigma) # singular value decomposition</li>
-<li>U~n*n. use first k columns called U<sub>reduce</sub>~(n*k)</li>
-<li>z = U<sub>reduce</sub>' * X(i) ~ (k * n * n * 1) = (k*1)</li>
-<li>reconstruct: X<sub>approx</sub>(i) = U<sub>reduce</sub> * z ~ (n * k * k * 1) = (n*1)</li>
+<li>U~n*n. use first k columns called U_reduce~(n*k)</li>
+<li>z = U_reduce' * X(i) ~ (k * n * n * 1) = (k*1)</li>
+<li>reconstruct: X_approx(i) = U_reduce * z ~ (n * k * k * 1) = (n*1)</li>
 </ul></li>
 <li>choose k # n% of variance is retained.
 <ul class="org-ul">
@@ -471,13 +471,13 @@ T(task),E(experience),P(performance)
 <ul class="org-ul">
 <li>gaussian distribution # 高斯分布
 <ul class="org-ul">
-<li>X ~ N(u, e<sup>2</sup>) # X distributed as N. where mean = u, variance = e<sup>2</sup></li>
-<li>p(x, u, e<sup>2</sup>) = 1 / ((sqrt(2 * pi) * e)) * exp ^ { - (x-u)<sup>2</sup> / (2 * e<sup>2</sup>) } # probability</li>
+<li>X ~ N(u, e^2) # X distributed as N. where mean = u, variance = e^2</li>
+<li>p(x, u, e^2) = 1 / ((sqrt(2 * pi) * e)) * exp ^ { - (x-u)^2 / (2 * e^2) } # probability</li>
 <li>multivariate version # 多变量高斯分布
 <ul class="org-ul">
 <li>to capture anomalous combination of values. computationally expensive.</li>
 <li>u~{n*1}, e~{n*n} (covariance matrix) # intuition. contour not axis aligned.</li>
-<li>p(x, u, e) = 1 / ((2 * pi) ^ (n/2) * sqrt(det(e))) * exp ^ {-0.5 * (x-u)' * e<sup>-1</sup> * (x-u)}</li>
+<li>p(x, u, e) = 1 / ((2 * pi) ^ (n/2) * sqrt(det(e))) * exp ^ {-0.5 * (x-u)' * e^-1 * (x-u)}</li>
 <li>u = 1/m * sum{x}, e = 1/m * sum{(x-u) * (x-u)'}</li>
 <li>#note: m &gt; n, otherwise e is non-invertible.</li>
 </ul></li>
@@ -489,7 +489,7 @@ T(task),E(experience),P(performance)
 <ul class="org-ul">
 <li>epsilon # p(x) is comparable for normal and anomalous examples.</li>
 <li>features to distinguish normal and anomalous examples.</li>
-<li>p(x) = p1(x1, u1, e1<sup>2</sup>) * &#x2026; pj(xj, uj, ej<sup>2</sup>).. # j = # of features.</li>
+<li>p(x) = p1(x1, u1, e1^2) * &#x2026; pj(xj, uj, ej^2).. # j = # of features.</li>
 <li>if xj is not gaussian feature, transform it to fit into gaussian distribution. # 如果数据不满足高斯分布，那么要对数据做变换符合高斯分布</li>
 </ul></li>
 </ul></li>
@@ -538,7 +538,7 @@ T(task),E(experience),P(performance)
 <ul class="org-ul">
 <li>vs. batch gradient descent # 可以增量使用训练数据</li>
 <li>randomly shuffle dataset</li>
-<li>repeat for i = 1..m { for j = 0..n  { update theta<sub>j</sub> only use ith data } }</li>
+<li>repeat for i = 1..m { for j = 0..n  { update theta_j only use ith data } }</li>
 <li>move to global minimum generally, but not always in one iteration.</li>
 <li>convergence checking
 <ul class="org-ul">
@@ -1148,7 +1148,7 @@ starts comment with %</li>
 <li>if &lt;cond&gt;, &lt;stmt&gt; end; / elseif / else</li>
 <li>while &lt;cond&gt;, &lt;stmt&gt; end;</li>
 <li>break/continue</li>
-<li>function definition resides in function<sub>name.m</sub>
+<li>function definition resides in function_name.m
 <ul class="org-ul">
 <li>function y = &lt;name&gt;(x)</li>
 <li>function [y1,y2] = &lt;name&gt;(x)</li>
@@ -1163,7 +1163,7 @@ starts comment with %</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: work</p>
-<p class="date">Created: 2019-04-03 Wed 04:58</p>
+<p class="date">Created: 2019-04-04 Thu 15:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/ml-class.html';this.page.identifier = 'ml-class.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

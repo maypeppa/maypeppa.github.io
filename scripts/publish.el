@@ -1,6 +1,9 @@
 ;; load env
 (load "~/.emacs.d/init.el")
 
+(setq org-export-with-sub-superscripts '{})
+(setq org-use-sub-superscripts '{})
+
 ;; http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
 (require 'ox-publish)
 

@@ -1,4 +1,5 @@
 #+title: Machine Learning by Andrew Ng
+#+OPTIONS: ^:{}
 
 https://class.coursera.org/ml-007
 
