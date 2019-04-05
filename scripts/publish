@@ -19,6 +19,7 @@ fi
 
 # post processing html files.
 python ./scripts/pp-html
+find .  -name "*.html~" | xargs rm -f
 git210 add .
 git210 commit -a -m '[R] publish org files'
 git210 push origin master
