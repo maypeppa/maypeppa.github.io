@@ -1,0 +1,4 @@
+#+title: 数据可视化 Data Visualization
+
+- [[https://echarts.baidu.com/][echarts]] 百度开源的JS图表库。
+- [[https://pyecharts.org/#/][pyecharts]] Python 是一门富有表达力的语言，很适合用于数据处理，当数据分析遇上echarts时，pyecharts 诞生了。

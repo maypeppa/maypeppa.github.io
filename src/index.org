@@ -1,5 +1,6 @@
 #+title: An amateur programmer
 
+- [[file:index-vi.org][数据可视化 Data Visualization]]
 - [[file:index-pl.org][程序设计语言 Programming Language]]
 - [[file:index-aa.org][算法和数据结构 Algorithm and Data Structure]]
 - [[file:index-os.org][操作系统 Operating System]]
@@ -12,5 +13,5 @@
 - [[file:fun.org][冷笑话 Fun]] / [[file:paste.org][网络摘录 Paste]]
 - [[file:index-fa.org][家庭生活 Family]]
 #+BEGIN_CENTER
-                            /©apply zhangyan's template/
+/©apply zhangyan's template/
 #+END_CENTER

@@ -312,6 +312,7 @@ https://maypeppa.github.io/html/index-os.html
 https://maypeppa.github.io/html/index-pl.html
 https://maypeppa.github.io/html/index-sd.html
 https://maypeppa.github.io/html/index-ss.html
+https://maypeppa.github.io/html/index-vi.html
 https://maypeppa.github.io/html/index.html
 https://maypeppa.github.io/html/inside-job.html
 https://maypeppa.github.io/html/inside-nginx-how-we-designed-for-performance-scale.html
