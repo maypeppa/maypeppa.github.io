@@ -419,6 +419,7 @@ https://maypeppa.github.io/html/minimal-wsgi-app-in-python.html
 https://maypeppa.github.io/html/mining-massive-datasets.html
 https://maypeppa.github.io/html/ml-class.html
 https://maypeppa.github.io/html/ml-foundations.html
+https://maypeppa.github.io/html/ml-outline.html
 https://maypeppa.github.io/html/ml-reading.html
 https://maypeppa.github.io/html/ml-techniques.html
 https://maypeppa.github.io/html/ml-the-hard-way.html

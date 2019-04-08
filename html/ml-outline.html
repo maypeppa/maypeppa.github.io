@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="work" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.loli.net/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1ed4483">1. week 1</a>
+<ul>
+<li><a href="#org427f684">1.1. Introduction</a>
+<ul>
+<li><a href="#org777fae2">1.1.1. What is Machine Learning?</a></li>
+<li><a href="#org651e542">1.1.2. Supervised Learning</a></li>
+<li><a href="#org8f5dfd0">1.1.3. Unsupervised Learning</a></li>
+</ul>
+</li>
+<li><a href="#org79cef3d">1.2. Linear Regression with One Variable</a>
+<ul>
+<li><a href="#org7a11749">1.2.1. Model Representation</a></li>
+<li><a href="#org983b7b9">1.2.2. Cost Function</a></li>
+<li><a href="#org9e1e2b7">1.2.3. Cost Function - Intuition I</a></li>
+<li><a href="#org780ad09">1.2.4. Cost Function - Intuition II</a></li>
+<li><a href="#org79b96b5">1.2.5. Gradient Descent</a></li>
+<li><a href="#org8b72d4f">1.2.6. Gradient Descent Intuition</a></li>
+<li><a href="#org6769d65">1.2.7. Gradient Descent For Linear Regression</a></li>
+</ul>
+</li>
+<li><a href="#orgec3f089">1.3. Linear Algebra Review</a>
+<ul>
+<li><a href="#orgc17dca9">1.3.1. More Octave/MATLAB tutorial</a></li>
+<li><a href="#org4fa79b7">1.3.2. Matrices and Vectors</a></li>
+<li><a href="#orgcd2dc57">1.3.3. Addition and Scalar Multiplication</a></li>
+<li><a href="#org740cad3">1.3.4. Matrix Vector Multiplication</a></li>
+<li><a href="#orgac4aabf">1.3.5. Matrix Matrix Multiplication</a></li>
+<li><a href="#org7b8b996">1.3.6. Matrix Multiplication Properties</a></li>
+<li><a href="#org3ec56aa">1.3.7. Inverse and Transpose</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3d19dde">2. week 2</a>
+<ul>
+<li><a href="#org5b2084b">2.1. Linear Regression with Multiple Variables</a>
+<ul>
+<li><a href="#org825f8fc">2.1.1. Multiple Features</a></li>
+<li><a href="#orga86ff6e">2.1.2. Gradient Descent for Multiple Variables</a></li>
+<li><a href="#org5f7b044">2.1.3. Gradient Descent in Practice I</a></li>
+<li><a href="#org043fd8e">2.1.4. Gradient Descent in Practice II</a></li>
+<li><a href="#orga44eb6c">2.1.5. Features and Polynomial Regression</a></li>
+<li><a href="#org2fac9fc">2.1.6. Normal Equation</a></li>
+<li><a href="#orgae671c0">2.1.7. Normal Equation Noninvertibility</a></li>
+<li><a href="#org76b7da3">2.1.8. Working on and Submitting Programming Assignments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org17aa1e6">3. week 3</a>
+<ul>
+<li><a href="#org455e173">3.1. Logistic Regression</a>
+<ul>
+<li><a href="#org99e3f25">3.1.1. Classification</a></li>
+<li><a href="#orgbe456b9">3.1.2. Hypothesis Representation</a></li>
+<li><a href="#orgd151631">3.1.3. Decision Boundary</a></li>
+<li><a href="#org120208c">3.1.4. Cost Function</a></li>
+<li><a href="#orgb9e9463">3.1.5. Simplified Cost Function and Gradient Descent</a></li>
+<li><a href="#orga1e8295">3.1.6. Advanced Optimization</a></li>
+<li><a href="#orgfba1d05">3.1.7. Multiclass Classification: One-vs-all</a></li>
+</ul>
+</li>
+<li><a href="#orgc190fc4">3.2. Regularization</a>
+<ul>
+<li><a href="#orgea75aff">3.2.1. The Problem of Overfitting</a></li>
+<li><a href="#org782f0c4">3.2.2. Cost Function</a></li>
+<li><a href="#orge64bbf9">3.2.3. Regularized Linear Regression</a></li>
+<li><a href="#orge877260">3.2.4. Regularized Logistic Regression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+#+ Outline of Machine Learning
+</p>
+
+<div id="outline-container-org1ed4483" class="outline-2">
+<h2 id="org1ed4483"><span class="section-number-2">1</span> week 1</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org427f684" class="outline-3">
+<h3 id="org427f684"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org777fae2" class="outline-4">
+<h4 id="org777fae2"><span class="section-number-4">1.1.1</span> What is Machine Learning?</h4>
+</div>
+<div id="outline-container-org651e542" class="outline-4">
+<h4 id="org651e542"><span class="section-number-4">1.1.2</span> Supervised Learning</h4>
+</div>
+<div id="outline-container-org8f5dfd0" class="outline-4">
+<h4 id="org8f5dfd0"><span class="section-number-4">1.1.3</span> Unsupervised Learning</h4>
+</div>
+</div>
+
+<div id="outline-container-org79cef3d" class="outline-3">
+<h3 id="org79cef3d"><span class="section-number-3">1.2</span> Linear Regression with One Variable</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org7a11749" class="outline-4">
+<h4 id="org7a11749"><span class="section-number-4">1.2.1</span> Model Representation</h4>
+</div>
+<div id="outline-container-org983b7b9" class="outline-4">
+<h4 id="org983b7b9"><span class="section-number-4">1.2.2</span> Cost Function</h4>
+</div>
+<div id="outline-container-org9e1e2b7" class="outline-4">
+<h4 id="org9e1e2b7"><span class="section-number-4">1.2.3</span> Cost Function - Intuition I</h4>
+</div>
+<div id="outline-container-org780ad09" class="outline-4">
+<h4 id="org780ad09"><span class="section-number-4">1.2.4</span> Cost Function - Intuition II</h4>
+</div>
+<div id="outline-container-org79b96b5" class="outline-4">
+<h4 id="org79b96b5"><span class="section-number-4">1.2.5</span> Gradient Descent</h4>
+</div>
+<div id="outline-container-org8b72d4f" class="outline-4">
+<h4 id="org8b72d4f"><span class="section-number-4">1.2.6</span> Gradient Descent Intuition</h4>
+</div>
+<div id="outline-container-org6769d65" class="outline-4">
+<h4 id="org6769d65"><span class="section-number-4">1.2.7</span> Gradient Descent For Linear Regression</h4>
+</div>
+</div>
+
+<div id="outline-container-orgec3f089" class="outline-3">
+<h3 id="orgec3f089"><span class="section-number-3">1.3</span> Linear Algebra Review</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgc17dca9" class="outline-4">
+<h4 id="orgc17dca9"><span class="section-number-4">1.3.1</span> More Octave/MATLAB tutorial</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Basic Operations: Moving Data Around、 Computing on Data、 Plotting Data、 Control Statements: for, while, if statement、Vectorization。
+</p>
+</div>
+</div>
+<div id="outline-container-org4fa79b7" class="outline-4">
+<h4 id="org4fa79b7"><span class="section-number-4">1.3.2</span> Matrices and Vectors</h4>
+</div>
+<div id="outline-container-orgcd2dc57" class="outline-4">
+<h4 id="orgcd2dc57"><span class="section-number-4">1.3.3</span> Addition and Scalar Multiplication</h4>
+</div>
+<div id="outline-container-org740cad3" class="outline-4">
+<h4 id="org740cad3"><span class="section-number-4">1.3.4</span> Matrix Vector Multiplication</h4>
+</div>
+<div id="outline-container-orgac4aabf" class="outline-4">
+<h4 id="orgac4aabf"><span class="section-number-4">1.3.5</span> Matrix Matrix Multiplication</h4>
+</div>
+<div id="outline-container-org7b8b996" class="outline-4">
+<h4 id="org7b8b996"><span class="section-number-4">1.3.6</span> Matrix Multiplication Properties</h4>
+</div>
+<div id="outline-container-org3ec56aa" class="outline-4">
+<h4 id="org3ec56aa"><span class="section-number-4">1.3.7</span> Inverse and Transpose</h4>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d19dde" class="outline-2">
+<h2 id="org3d19dde"><span class="section-number-2">2</span> week 2</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org5b2084b" class="outline-3">
+<h3 id="org5b2084b"><span class="section-number-3">2.1</span> Linear Regression with Multiple Variables</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org825f8fc" class="outline-4">
+<h4 id="org825f8fc"><span class="section-number-4">2.1.1</span> Multiple Features</h4>
+</div>
+<div id="outline-container-orga86ff6e" class="outline-4">
+<h4 id="orga86ff6e"><span class="section-number-4">2.1.2</span> Gradient Descent for Multiple Variables</h4>
+</div>
+<div id="outline-container-org5f7b044" class="outline-4">
+<h4 id="org5f7b044"><span class="section-number-4">2.1.3</span> Gradient Descent in Practice I</h4>
+</div>
+<div id="outline-container-org043fd8e" class="outline-4">
+<h4 id="org043fd8e"><span class="section-number-4">2.1.4</span> Gradient Descent in Practice II</h4>
+</div>
+<div id="outline-container-orga44eb6c" class="outline-4">
+<h4 id="orga44eb6c"><span class="section-number-4">2.1.5</span> Features and Polynomial Regression</h4>
+</div>
+<div id="outline-container-org2fac9fc" class="outline-4">
+<h4 id="org2fac9fc"><span class="section-number-4">2.1.6</span> Normal Equation</h4>
+</div>
+<div id="outline-container-orgae671c0" class="outline-4">
+<h4 id="orgae671c0"><span class="section-number-4">2.1.7</span> Normal Equation Noninvertibility</h4>
+</div>
+<div id="outline-container-org76b7da3" class="outline-4">
+<h4 id="org76b7da3"><span class="section-number-4">2.1.8</span> Working on and Submitting Programming Assignments</h4>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org17aa1e6" class="outline-2">
+<h2 id="org17aa1e6"><span class="section-number-2">3</span> week 3</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org455e173" class="outline-3">
+<h3 id="org455e173"><span class="section-number-3">3.1</span> Logistic Regression</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org99e3f25" class="outline-4">
+<h4 id="org99e3f25"><span class="section-number-4">3.1.1</span> Classification</h4>
+</div>
+<div id="outline-container-orgbe456b9" class="outline-4">
+<h4 id="orgbe456b9"><span class="section-number-4">3.1.2</span> Hypothesis Representation</h4>
+</div>
+<div id="outline-container-orgd151631" class="outline-4">
+<h4 id="orgd151631"><span class="section-number-4">3.1.3</span> Decision Boundary</h4>
+</div>
+<div id="outline-container-org120208c" class="outline-4">
+<h4 id="org120208c"><span class="section-number-4">3.1.4</span> Cost Function</h4>
+</div>
+<div id="outline-container-orgb9e9463" class="outline-4">
+<h4 id="orgb9e9463"><span class="section-number-4">3.1.5</span> Simplified Cost Function and Gradient Descent</h4>
+</div>
+<div id="outline-container-orga1e8295" class="outline-4">
+<h4 id="orga1e8295"><span class="section-number-4">3.1.6</span> Advanced Optimization</h4>
+</div>
+<div id="outline-container-orgfba1d05" class="outline-4">
+<h4 id="orgfba1d05"><span class="section-number-4">3.1.7</span> Multiclass Classification: One-vs-all</h4>
+</div>
+</div>
+
+<div id="outline-container-orgc190fc4" class="outline-3">
+<h3 id="orgc190fc4"><span class="section-number-3">3.2</span> Regularization</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-orgea75aff" class="outline-4">
+<h4 id="orgea75aff"><span class="section-number-4">3.2.1</span> The Problem of Overfitting</h4>
+</div>
+<div id="outline-container-org782f0c4" class="outline-4">
+<h4 id="org782f0c4"><span class="section-number-4">3.2.2</span> Cost Function</h4>
+</div>
+<div id="outline-container-orge64bbf9" class="outline-4">
+<h4 id="orge64bbf9"><span class="section-number-4">3.2.3</span> Regularized Linear Regression</h4>
+</div>
+<div id="outline-container-orge877260" class="outline-4">
+<h4 id="orge877260"><span class="section-number-4">3.2.4</span> Regularized Logistic Regression</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: work</p>
+<p class="date">Created: 2019-04-08 Mon 17:27</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://maypeppa.github.io/html/ml-outline.html';this.page.identifier = 'ml-outline.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://cdnjs.cloudflare.com/ajax/libs/embed-js/4.2.1/embed.min.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
