@@ -1,58 +1,57 @@
 #+title: Outline of Machine Learning
 
-* week 1
+- week 1
 
-** Introduction
-*** What is Machine Learning?
-*** Supervised Learning
-*** Unsupervised Learning
+  - Introduction
+    - What is Machine Learning?
+    - Supervised Learning
+    - Unsupervised Learning
 
-** Linear Regression with One Variable
-*** Model Representation
-*** Cost Function
-*** Cost Function - Intuition I
-*** Cost Function - Intuition II
-*** Gradient Descent
-*** Gradient Descent Intuition
-*** Gradient Descent For Linear Regression
+  - Linear Regression with One Variable
+    - Model Representation
+    - Cost Function
+    - Cost Function - Intuition I
+    - Cost Function - Intuition II
+    - Gradient Descent
+    - Gradient Descent Intuition
+    - Gradient Descent For Linear Regression
 
-** Linear Algebra Review
-*** More Octave/MATLAB tutorial
-	Basic Operations: Moving Data Around、 Computing on Data、 Plotting Data、 Control Statements: for, while, if statement、Vectorization。
-*** Matrices and Vectors
-*** Addition and Scalar Multiplication
-*** Matrix Vector Multiplication
-*** Matrix Matrix Multiplication
-*** Matrix Multiplication Properties
-*** Inverse and Transpose
+  - Linear Algebra Review
+    - More Octave/MATLAB tutorial: Moving Data Around、 Computing on Data、 Plotting Data、 Control Statements: for, while, if statement、Vectorization。
+    - Matrices and Vectors
+    - Addition and Scalar Multiplication
+    - Matrix Vector Multiplication
+    - Matrix Matrix Multiplication
+    - Matrix Multiplication Properties
+    - Inverse and Transpose
 
-* week 2
+- week 2
 
-** Linear Regression with Multiple Variables
-*** Multiple Features
-*** Gradient Descent for Multiple Variables
-*** Gradient Descent in Practice I
-*** Gradient Descent in Practice II
-*** Features and Polynomial Regression
-*** Normal Equation
-*** Normal Equation Noninvertibility
-*** Working on and Submitting Programming Assignments
+  - Linear Regression with Multiple Variables
+    - Multiple Features
+    - Gradient Descent for Multiple Variables
+    - Gradient Descent in Practice I
+     - Gradient Descent in Practice II
+     - Features and Polynomial Regression
+     - Normal Equation
+     - Normal Equation Noninvertibility
+     - Working on and Submitting Programming Assignments
 
-* week 3
+- week 3
 
-** Logistic Regression
+  - Logistic Regression
 
-*** Classification
-*** Hypothesis Representation
-*** Decision Boundary
-*** Cost Function
-*** Simplified Cost Function and Gradient Descent
-*** Advanced Optimization
-*** Multiclass Classification: One-vs-all
+    - Classification
+    - Hypothesis Representation
+    - Decision Boundary
+    - Cost Function
+    - Simplified Cost Function and Gradient Descent
+    - Advanced Optimization
+    - Multiclass Classification: One-vs-all
 
-** Regularization
-*** The Problem of Overfitting
-*** Cost Function
-*** Regularized Linear Regression
-*** Regularized Logistic Regression
+  - Regularization
+    - The Problem of Overfitting
+    - Cost Function
+    - Regularized Linear Regression
+    - Regularized Logistic Regression
 
