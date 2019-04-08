@@ -1,4 +1,4 @@
-#+ Outline of Machine Learning
+#+title: Outline of Machine Learning
 
 * week 1
 
