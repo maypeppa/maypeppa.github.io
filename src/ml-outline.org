@@ -55,3 +55,17 @@
     - Regularized Linear Regression
     - Regularized Logistic Regression
 
+- week 4, Neural Networks: Representation
+
+  - Motivations
+    - Motivations
+	- Neurons and the Brain
+
+  - Neural Networks
+    - Model Representation I
+	- Model Representation II
+
+  - Application
+    - Examples and Intuitions I
+	- Examples and Intuitions II
+	- Multiclass Classification
