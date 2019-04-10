@@ -59,29 +59,29 @@
 
   - Motivations
     - Motivations
-	- Neurons and the Brain
+    - Neurons and the Brain
 
   - Neural Networks
     - Model Representation I
-	- Model Representation II
+    - Model Representation II
 
   - Application
     - Examples and Intuitions I
-	- Examples and Intuitions II
-	- Multiclass Classification
+    - Examples and Intuitions II
+    - Multiclass Classification
 
 - week 5. Neural Networks: Learning
 
   - Cost Function and Backpropagation
     - Cost Function
-	- BackPropagation Algorithm
-	- Backpropagation Intuition
+    - BackPropagation Algorithm
+    - Backpropagation Intuition
 
   - Backpropagation in Practice
     - Implementation Note: Unrolling Parameters
-	- Gradient Checking
-	- Random Initialization
-	- Putting It Together
+    - Gradient Checking
+    - Random Initialization
+    - Putting It Together
 
   - Application of Neural Networks
     - Autonomous Driving
