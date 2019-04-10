@@ -1,6 +1,6 @@
 #+title: Outline of Machine Learning
 
-- week 1
+- week 1. Introduction
 
   - Introduction
     - What is Machine Learning?
@@ -25,7 +25,7 @@
     - Matrix Multiplication Properties
     - Inverse and Transpose
 
-- week 2
+- week 2. Linear Regression with Multiple Variables
 
   - Linear Regression with Multiple Variables
     - Multiple Features
@@ -37,7 +37,7 @@
      - Normal Equation Noninvertibility
      - Working on and Submitting Programming Assignments
 
-- week 3
+- week 3. Logistic Regression
 
   - Logistic Regression
 
@@ -55,7 +55,7 @@
     - Regularized Linear Regression
     - Regularized Logistic Regression
 
-- week 4, Neural Networks: Representation
+- week 4. Neural Networks: Representation
 
   - Motivations
     - Motivations
@@ -69,3 +69,19 @@
     - Examples and Intuitions I
 	- Examples and Intuitions II
 	- Multiclass Classification
+
+- week 5. Neural Networks: Learning
+
+  - Cost Function and Backpropagation
+    - Cost Function
+	- BackPropagation Algorithm
+	- Backpropagation Intuition
+
+  - Backpropagation in Practice
+    - Implementation Note: Unrolling Parameters
+	- Gradient Checking
+	- Random Initialization
+	- Putting It Together
+
+  - Application of Neural Networks
+    - Autonomous Driving
