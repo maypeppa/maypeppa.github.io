@@ -74,7 +74,7 @@
 
   - Cost Function and Backpropagation
     - Cost Function
-    - BackPropagation Algorithm ([[file:images/back-propagation.pdf][推导过程.pdf]])
+    - BackPropagation Algorithm ([[file:images/back-propagation.org][推导过程]])
     - Backpropagation Intuition
 
   - Backpropagation in Practice
