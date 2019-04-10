@@ -7,5 +7,5 @@ file:images/bp_06.jpg
 file:images/bp_07.jpg
 file:images/bp_08.jpg
 file:images/bp_09.jpg
-file:images/bp_010.jpg
-file:images/bp_011.jpg
+file:images/bp_10.jpg
+file:images/bp_11.jpg
