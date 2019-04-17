@@ -58,3 +58,7 @@ file:images/nn-dl-bp-basic.png
 按照上面的原理，我们就可以得到很多函数的bp公式了：
 - ReLU(x) = max(x, 0). 那么dx = dout if x >=0 else 0
 - Dropout(x) = x * p. 其中p可以认为是开关。那么dx = dout * p
+
+** 手写推导
+file:images/nn-dl-bp-hand1.png
+file:images/nn-dl-bp-hand2.png
