@@ -5,4 +5,5 @@
   - [[https://github.com/pyecharts/pyecharts/][github]] Pyecharts on Github
   - [[https://pyecharts.org/#/zh-cn/intro][document]] Get Started
 - [[https://matplotlib.org/][matplotlib]] 一个Python 2D绘图库,配合mpl_toolkits.mplot3d可画出3D图形
+- [[https://github.com/ContextLab/hypertools][hypertools]] 高维数据可视化&处理工具包. A Python toolbox for gaining geometric insights into high-dimensional data.
 - [[https://cs.stanford.edu/people/karpathy/convnetjs/][ConvNetJS]] 用于训练深度学习模型的JS库，可直接运行在浏览器。
