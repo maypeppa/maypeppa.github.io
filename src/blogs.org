@@ -123,7 +123,6 @@
 - 201705 [[file:use-wifi-aps-to-identify-location.org][利用WiFi热点来定位]]
 - 201704 [[file:u-of-t-professor-geoffrey-hiton.org][U of T, Geoffrey Hinton]] 一篇关于Geoffrey Hiton的文章
 - 201704 [[file:scaling-your-api-with-rate-limiters.org][Scaling your API with rate limiters]]
-- 201704 [[file:a-few-days-at-village.org][在老家的几天]]
 - 201703 [[file:software-engineering-at-google.org][Software Engineering at Google]] by Fergus Henderson
 - 201703 [[file:a-possible-impl-of-reco-sys.org][推荐系统的可能实现]]
 - 201703 [[file:automation-on-finacial-report.org][实事求是谈金融报告自动化 – 文因互联]]
@@ -269,7 +268,6 @@
 - 201509 [[file:tips-for-work-life-balance.org][Tips for work-life balance]]
 - 201509 [[file:start-from-simple.org][start from simple]]
 - 201508 [[file:you-know-so-little.org][其实你知道的太少]]
-- 201507 [[file:have-a-baby.org][宝宝出生了]]
 - 201505 [[file:equipped-with-ssd.org][装配SSD]]
 - 201504 [[file:kaggle-facial-keypoints-detection.org][Kaggle Facial Keypoints Detection]]
 - 201504 [[file:kaggle-digit-recongnizer.org][Kaggle Digit Recognizer]]
