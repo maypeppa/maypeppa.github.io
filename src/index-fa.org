@@ -2,3 +2,5 @@
 
 - [[file:tour-of-europe-on-marital-leave.org][Tour of Europe on Marital Leave]] 婚假欧洲游
 - [[file:dear-baby.org][Baby]] 小猪猪
+- [[file:wennaiqi.org][Pigeon]] 温奶器使用方法
+- [[file:dage.org][宝宝打嗝处理方法]]

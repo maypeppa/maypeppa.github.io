@@ -11,6 +11,7 @@
 小猪猪简介：
  - 性别：男
  - 体重：8.1斤
+ - 小名：团团
 
 file:images/dear-baby-0.jpg
 

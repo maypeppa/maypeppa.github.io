@@ -140,6 +140,7 @@ https://maypeppa.github.io/html/cpp.html
 https://maypeppa.github.io/html/cracking-the-coding-interview.html
 https://maypeppa.github.io/html/cross-ocean.html
 https://maypeppa.github.io/html/cv.html
+https://maypeppa.github.io/html/dage.html
 https://maypeppa.github.io/html/dapper.html
 https://maypeppa.github.io/html/dark-time.html
 https://maypeppa.github.io/html/data-infra-at-airbnb.html
@@ -737,6 +738,7 @@ https://maypeppa.github.io/html/ways-of-paying-mortgage.html
 https://maypeppa.github.io/html/web-search-for-a-planet.html
 https://maypeppa.github.io/html/websocket-and-socketio.html
 https://maypeppa.github.io/html/wechat-auto-jump.html
+https://maypeppa.github.io/html/wennaiqi.html
 https://maypeppa.github.io/html/what-are-the-best-kept-secrets-of-great-programmers.html
 https://maypeppa.github.io/html/what-can-i-do-when-old.html
 https://maypeppa.github.io/html/what-does-big-data-mean.html
