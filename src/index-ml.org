@@ -32,7 +32,7 @@
 - [[file:improving-deep-neural-networks.org][Coursera: Improving Deep Neural Networks]] by Andrew Ng [[file:images/coursera-dnn.pdf][证书]]
 - [[file:structing-machine-learning-projects.org][Coursera: Structuring Machine Learning Projects]] by Andrew Ng [[file:images/coursera-ml-strategy.pdf][证书]]
 - [[file:convolutional-neural-networks.org][Coursera: Convolutional Neural Networks]] by Andrew Ng [[file:images/coursera-cnn.pdf][证书]]
-- [[file:nlp-sequence-models.org][Coursera: Sequence Models]] by Andrew Ng
+- [[file:nlp-sequence-models.org][Coursera: Sequence Models]] by Andrew Ng [[file:images/coursera-sm.pdf][证书]]
 - 201801 [[file:wechat-auto-jump.org][微信跳一跳的自动化]]
 - [[file:building-machine-learning-systems-with-python.org][机器学习系统设计(Building Machine Learning Systems with Python)]]
 - [[file:intro-to-cnn.org][CNN(卷积神经网络)入门]]
